@@ -36,8 +36,9 @@ namespace WebHMI
 
             Configuration.Settings.Providers.Add<AppSettingProvider>();
             
-            Configuration.Localization.Languages.Add(new LanguageInfo("fa", "فارسی", "famfamfam-flags ir"));
-            
+            // TODO: study this, English?
+            Configuration.Localization.Languages.Add(new LanguageInfo("de", "Deutsch"));
+
             Configuration.Settings.SettingEncryptionConfiguration.DefaultPassPhrase = WebHMIConsts.DefaultPassPhrase;
             SimpleStringCipher.DefaultPassPhrase = WebHMIConsts.DefaultPassPhrase;
         }

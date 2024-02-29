@@ -254,3 +254,6 @@ paket-files/
 src/WebHMI.Web.Mvc/secrets.json
 src/WebHMI.Web.Host/secrets.json
 src/WebHMI.Migrator/secrets.json
+
+# Others
+src/WebHMI.Web.Host/App_Data/
