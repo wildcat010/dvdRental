@@ -11,16 +11,17 @@ $PathContext = $LocalPath.ToString() + '\EntityFrameworkCore\PRDB'
 
 $ModelsName = 'PrdbContext'
 $ModelsNamespace = 'WebHMI.Prdb'
-$ContextNamespace =  ' WebHMI.EntityFrameworkCore.PRDB'
+$ContextNamespace =  'WebHMI.EntityFrameworkCore.PRDB'
 $PathModelsToDelete = $PathModels.ToString() + '*.cs'
 
 Write-Host 'Deleting old models from ' $PathModelsToDelete.ToString()
 DEL $PathModelsToDelete
 
 Write-Host 'Running scaffold on database objects to genereate models and context'
-$DBConnString = 'Name=ConnectionStrings:PRDB'
+#$DBConnString = 'Name=ConnectionStrings:PRDB'
+$DBConnString = 'Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=ML-NCTR-SRV02)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=prdb)));User Id=PRDB;Password=a423pa;'
 
-#generate models with EF scaffold tool
+# Generate models with EF scaffold tool
 dotnet ef dbcontext scaffold $DBConnString Oracle.EntityFrameworkCore `
 --context-dir $PathContext `
 --output-dir $PathModels `
@@ -31,6 +32,8 @@ dotnet ef dbcontext scaffold $DBConnString Oracle.EntityFrameworkCore `
 --no-build `
 --no-onconfiguring `
 -t PLANTLIMITS `
+
+pause
 
 Write-Host 'Adjusting PrdbContext.cs file to project requirements'
 
