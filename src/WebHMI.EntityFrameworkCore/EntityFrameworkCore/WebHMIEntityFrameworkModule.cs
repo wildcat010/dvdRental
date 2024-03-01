@@ -2,7 +2,9 @@
 using Abp.Modules;
 using Abp.Reflection.Extensions;
 using Abp.Zero.EntityFrameworkCore;
-using WebHMI.EntityFrameworkCore.Seed;
+using WebHMI.EntityFrameworkCore.PRDB;
+using WebHMI.EntityFrameworkCore.WebHMI;
+using WebHMI.EntityFrameworkCore.WebHMI.Seed;
 
 namespace WebHMI.EntityFrameworkCore
 {
@@ -20,6 +22,10 @@ namespace WebHMI.EntityFrameworkCore
         {
             if (!SkipDbContextRegistration)
             {
+                Configuration.UnitOfWork.IsolationLevel = System.Transactions.IsolationLevel.ReadCommitted;
+                Configuration.UnitOfWork.IsTransactional = false;
+
+				// Add WebHMI database
                 Configuration.Modules.AbpEfCore().AddDbContext<WebHMIDbContext>(options =>
                 {
                     if (options.ExistingConnection != null)
@@ -31,7 +37,20 @@ namespace WebHMI.EntityFrameworkCore
                         WebHMIDbContextConfigurer.Configure(options.DbContextOptions, options.ConnectionString);
                     }
                 });
-            }
+
+				// Add PRDB database
+				Configuration.Modules.AbpEfCore().AddDbContext<PrdbContext>(options =>
+				{
+					if (options.ExistingConnection != null)
+					{
+						PrdbContextConfigurer.Configure(options.DbContextOptions, options.ExistingConnection);
+					}
+					else
+					{
+						PrdbContextConfigurer.Configure(options.DbContextOptions, options.ConnectionString);
+					}
+				});
+			}
         }
 
         public override void Initialize()

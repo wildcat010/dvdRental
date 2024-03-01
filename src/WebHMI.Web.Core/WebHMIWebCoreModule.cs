@@ -13,6 +13,7 @@ using WebHMI.Authentication.JwtBearer;
 using WebHMI.Configuration;
 using WebHMI.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
+using Abp;
 
 namespace WebHMI
 {
@@ -34,10 +35,11 @@ namespace WebHMI
         }
 
         public override void PreInitialize()
-        {
-            Configuration.DefaultNameOrConnectionString = _appConfiguration.GetConnectionString(
-                WebHMIConsts.ConnectionStringName
-            );
+		{
+			Configuration.Set(WebHMIConsts.PRDBConnectionStringName, _appConfiguration.GetConnectionString
+				(WebHMIConsts.PRDBConnectionStringName));
+			Configuration.DefaultNameOrConnectionString = _appConfiguration.GetConnectionString(
+                WebHMIConsts.ConnectionStringName);
 
             // Use database for language management
             Configuration.Modules.Zero().LanguageManagement.EnableDbLocalization();
