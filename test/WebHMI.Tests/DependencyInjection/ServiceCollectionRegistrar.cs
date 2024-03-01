@@ -4,8 +4,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor.MsDependencyInjection;
 using Abp.Dependency;
-using WebHMI.EntityFrameworkCore;
 using WebHMI.Identity;
+using WebHMI.EntityFrameworkCore.WebHMI;
 
 namespace WebHMI.Tests.DependencyInjection
 {

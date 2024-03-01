@@ -10,10 +10,10 @@ using Abp.MultiTenancy;
 using Abp.Runtime.Session;
 using Abp.TestBase;
 using WebHMI.Authorization.Users;
-using WebHMI.EntityFrameworkCore;
-using WebHMI.EntityFrameworkCore.Seed.Host;
-using WebHMI.EntityFrameworkCore.Seed.Tenants;
 using WebHMI.MultiTenancy;
+using WebHMI.EntityFrameworkCore.WebHMI;
+using WebHMI.EntityFrameworkCore.WebHMI.Seed.Host;
+using WebHMI.EntityFrameworkCore.WebHMI.Seed.Tenants;
 
 namespace WebHMI.Tests
 {

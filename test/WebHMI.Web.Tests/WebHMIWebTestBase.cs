@@ -12,13 +12,13 @@ using Abp.Extensions;
 using Abp.Json;
 using Abp.MultiTenancy;
 using Abp.Web.Models;
-using WebHMI.EntityFrameworkCore;
 using WebHMI.Models.TokenAuth;
 using WebHMI.Web.Startup;
 using AngleSharp.Html.Dom;
 using AngleSharp.Html.Parser;
 using Microsoft.AspNetCore.Hosting;
 using Shouldly;
+using WebHMI.EntityFrameworkCore.WebHMI;
 
 namespace WebHMI.Web.Tests
 {

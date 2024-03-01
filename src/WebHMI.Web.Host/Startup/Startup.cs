@@ -151,22 +151,18 @@ namespace WebHMI.Web.Host.Startup
                     Type = SecuritySchemeType.ApiKey
                 });
 
-                //add summaries to swagger
-                bool canShowSummaries = _appConfiguration.GetValue<bool>("Swagger:ShowSummaries");
-                if (canShowSummaries)
-                {
-                    var hostXmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                    var hostXmlPath = Path.Combine(AppContext.BaseDirectory, hostXmlFile);
-                    options.IncludeXmlComments(hostXmlPath);
+                // Add summaries to swagger
+                var hostXmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var hostXmlPath = Path.Combine(AppContext.BaseDirectory, hostXmlFile);
+                options.IncludeXmlComments(hostXmlPath);
 
-                    var applicationXml = $"WebHMI.Application.xml";
-                    var applicationXmlPath = Path.Combine(AppContext.BaseDirectory, applicationXml);
-                    options.IncludeXmlComments(applicationXmlPath);
+                var applicationXml = $"WebHMI.Application.xml";
+                var applicationXmlPath = Path.Combine(AppContext.BaseDirectory, applicationXml);
+                options.IncludeXmlComments(applicationXmlPath);
 
-                    var webCoreXmlFile = $"WebHMI.Web.Core.xml";
-                    var webCoreXmlPath = Path.Combine(AppContext.BaseDirectory, webCoreXmlFile);
-                    options.IncludeXmlComments(webCoreXmlPath);
-                }
+                var webCoreXmlFile = $"WebHMI.Web.Core.xml";
+                var webCoreXmlPath = Path.Combine(AppContext.BaseDirectory, webCoreXmlFile);
+                options.IncludeXmlComments(webCoreXmlPath);
             });
         }
     }

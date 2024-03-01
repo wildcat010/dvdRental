@@ -4,7 +4,6 @@ using Abp.AspNetCore.TestBase;
 using Abp.Dependency;
 using WebHMI.Authentication.JwtBearer;
 using WebHMI.Configuration;
-using WebHMI.EntityFrameworkCore;
 using WebHMI.Identity;
 using WebHMI.Web.Resources;
 using WebHMI.Web.Startup;
@@ -15,6 +14,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using WebHMI.EntityFrameworkCore.WebHMI;
 
 namespace WebHMI.Web.Tests
 {

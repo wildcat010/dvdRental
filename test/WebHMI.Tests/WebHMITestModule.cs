@@ -11,6 +11,7 @@ using Abp.Zero.Configuration;
 using Abp.Zero.EntityFrameworkCore;
 using WebHMI.EntityFrameworkCore;
 using WebHMI.Tests.DependencyInjection;
+using WebHMI.EntityFrameworkCore.WebHMI;
 
 namespace WebHMI.Tests
 {
