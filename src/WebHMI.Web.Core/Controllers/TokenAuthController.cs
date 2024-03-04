@@ -14,10 +14,11 @@ using WebHMI.Authorization;
 using WebHMI.Authorization.Users;
 using WebHMI.Models.TokenAuth;
 using WebHMI.MultiTenancy;
+using WebHMI.Helpers;
 
 namespace WebHMI.Controllers
 {
-    [Route("api/[controller]/[action]")]
+	[Route("api/[controller]/[action]")]
     public class TokenAuthController : WebHMIControllerBase
     {
         private readonly LogInManager _logInManager;
