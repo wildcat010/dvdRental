@@ -4,12 +4,11 @@ using Abp.Events.Bus;
 using Abp.Modules;
 using Abp.Reflection.Extensions;
 using WebHMI.Configuration;
-using WebHMI.EntityFrameworkCore;
 using WebHMI.Migrator.DependencyInjection;
 
 namespace WebHMI.Migrator
 {
-    [DependsOn(typeof(WebHMIEntityFrameworkModule))]
+	[DependsOn(typeof(WebHMIEntityFrameworkModule))]
     public class WebHMIMigratorModule : AbpModule
     {
         private readonly IConfigurationRoot _appConfiguration;

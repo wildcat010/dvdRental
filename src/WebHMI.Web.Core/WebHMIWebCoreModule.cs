@@ -11,13 +11,12 @@ using Abp.Reflection.Extensions;
 using Abp.Zero.Configuration;
 using WebHMI.Authentication.JwtBearer;
 using WebHMI.Configuration;
-using WebHMI.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Abp;
 
 namespace WebHMI
 {
-    [DependsOn(
+	[DependsOn(
          typeof(WebHMIApplicationModule),
          typeof(WebHMIEntityFrameworkModule),
          typeof(AbpAspNetCoreModule)

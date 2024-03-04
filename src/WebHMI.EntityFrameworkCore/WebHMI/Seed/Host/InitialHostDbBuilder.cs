@@ -1,0 +1,26 @@
+﻿using WebHMI.WebHMI;
+
+namespace WebHMI.WebHMI.Seed.Host
+{
+	public class InitialHostDbBuilder
+	{
+		private readonly WebHMIDbContext _context;
+
+		public InitialHostDbBuilder(WebHMIDbContext context)
+		{
+			_context = context;
+		}
+
+		public void Create()
+		{
+			new DefaultEditionCreator(_context).Create();
+			new DefaultLanguagesCreator(_context).Create();
+			new HostRoleAndUserCreator(_context).Create();
+			new DefaultSettingsCreator(_context).Create();
+
+			_context.SaveChanges();
+		}
+	}
+}
+
+

@@ -7,7 +7,8 @@ namespace WebHMI
 {
     [DependsOn(
         typeof(WebHMICoreModule), 
-        typeof(AbpAutoMapperModule))]
+        typeof(AbpAutoMapperModule),
+		typeof(WebHMIEntityFrameworkModule))]
     public class WebHMIApplicationModule : AbpModule
     {
         public override void PreInitialize()

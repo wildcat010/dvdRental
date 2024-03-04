@@ -8,13 +8,13 @@ using Abp.Domain.Uow;
 using Abp.Extensions;
 using Abp.MultiTenancy;
 using Abp.Runtime.Security;
-using WebHMI.EntityFrameworkCore.WebHMI;
-using WebHMI.EntityFrameworkCore.WebHMI.Seed;
 using WebHMI.MultiTenancy;
+using WebHMI.WebHMI;
+using WebHMI.WebHMI.Seed;
 
 namespace WebHMI.Migrator
 {
-    public class MultiTenantMigrateExecuter : ITransientDependency
+	public class MultiTenantMigrateExecuter : ITransientDependency
     {
         private readonly Log _log;
         private readonly AbpZeroDbMigrator _migrator;

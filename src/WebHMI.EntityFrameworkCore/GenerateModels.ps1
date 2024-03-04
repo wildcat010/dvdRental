@@ -1,27 +1,22 @@
 Write-Host "This is a PowerShell script to generate DB entities and context for WebHMI project"
-
-#Path where the powershell script is located. It is expected to be in project WebHMI.EntityFrameworkCore root folder
+#Path where the powershell script is located. It is expected to be in project WebHMI.API.EntityFrameworkCore root folder
 $LocalPath = gl
-
 #Path where the models classes should be written
 $PathModels = $LocalPath.ToString() + '\..\WebHMI.Core\Prdb\'
-
 #Path to location where PRDB context file is located
-$PathContext = $LocalPath.ToString() + '\EntityFrameworkCore\PRDB'
-
+$PathContext = $LocalPath.ToString() + '\PRDB'
 $ModelsName = 'PrdbContext'
 $ModelsNamespace = 'WebHMI.Prdb'
-$ContextNamespace =  'WebHMI.EntityFrameworkCore.PRDB'
+$ContextNamespace =  'WebHMI.PRDB'
 $PathModelsToDelete = $PathModels.ToString() + '*.cs'
-
 Write-Host 'Deleting old models from ' $PathModelsToDelete.ToString()
 DEL $PathModelsToDelete
 
+#DB connection string, here a TNS name for Oracle 19 DB with user and password
 Write-Host 'Running scaffold on database objects to genereate models and context'
-#$DBConnString = 'Name=ConnectionStrings:PRDB'
 $DBConnString = 'Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=ML-NCTR-SRV02)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=prdb)));User Id=PRDB;Password=a423pa;'
 
-# Generate models with EF scaffold tool
+#generate models with EF scaffold tool
 dotnet ef dbcontext scaffold $DBConnString Oracle.EntityFrameworkCore `
 --context-dir $PathContext `
 --output-dir $PathModels `
@@ -31,34 +26,23 @@ dotnet ef dbcontext scaffold $DBConnString Oracle.EntityFrameworkCore `
 --force `
 --no-build `
 --no-onconfiguring `
--t PLANTLIMITS `
+-t SPORD1PC `
 
-pause
-
-Write-Host 'Adjusting PrdbContext.cs file to project requirements'
+Write-Host 'Adjusting PrdbContext.cs file to project requirements...'
 
 #change base class from DbContext to AbpDbContext
 $PathModelContext = $PathContext.ToString() + '\PrdbContext.cs'
 ((Get-Content -path $PathModelContext -Raw) -replace ' DbContext',' AbpDbContext') | Set-Content -Path $PathModelContext
 
 #remove lines 11 to 13 with paremeterless constructor  public PrdbContext() from just generated PrdbContext.cs file, line index is 0 based
-$lines = [IO.File]::ReadAllLines($PathModelContext)
-Set-Content -Encoding UTF8 $PathModelContext -Value $lines[0..9 + 14..($lines.Count-1)]
+#$lines = [IO.File]::ReadAllLines($PathModelContext)
+#Set-Content -Encoding UTF8 $PathModelContext -Value $lines[0..9 + 14..($lines.Count-1)]
 
-#add required using lines to generated code after last one
-(Get-Content -Encoding UTF8 $PathModelContext) |
-    Foreach-Object {
-        $_ # send the current line to output
-        if ($_ -match "using Microsoft.EntityFrameworkCore.Metadata;")
-        {
-            #Add Lines after the selected pattern
-            #"Text To Add"
-            'using Abp.EntityFrameworkCore;',
-            'using Abp.EntityFrameworkCore.Repositories;'
-        }
-    } | Set-Content $PathModelContext
+# Add using statement
+$UsingDirective = "using Abp.EntityFrameworkCore;"
+$Content = Get-Content -Path $PathModelContext -Raw -Encoding UTF8
+$NewContent = $UsingDirective + "`n" + $Content
+$NewContent | Set-Content -Path $PathModelContext -Encoding UTF8
 
-Write-Host 'Renaming files'
-
-Write-Host 'All EF models generated, ready to build'
+Write-Host 'EF Core models regenerated'
 pause
