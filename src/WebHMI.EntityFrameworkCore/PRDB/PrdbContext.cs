@@ -2,13 +2,12 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-using WebHMI.Prdb;
 
 namespace WebHMI.PRDB;
 
 public partial class PrdbContext : AbpDbContext
 {
-	public PrdbContext(DbContextOptions<PrdbContext> options)
+    public PrdbContext(DbContextOptions<PrdbContext> options)
         : base(options)
     {
     }

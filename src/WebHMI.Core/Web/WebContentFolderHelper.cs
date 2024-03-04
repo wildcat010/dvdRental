@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using Abp.Reflection.Extensions;
@@ -20,7 +21,7 @@ namespace WebHMI.Web
             }
 
             var directoryInfo = new DirectoryInfo(coreAssemblyDirectoryPath);
-            while (!DirectoryContains(directoryInfo.FullName, "WebHMI.sln"))
+            while (!DirectoryContains(directoryInfo.FullName, "WebHMI.API.sln"))
             {
                 if (directoryInfo.Parent == null)
                 {

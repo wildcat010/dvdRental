@@ -20,7 +20,7 @@
     <PackageReference Include="Castle.Windsor.MsDependencyInjection" Version="4.1.0" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Prdb\" />
+    <Folder Include="PRDB\" />
   </ItemGroup>
 </Project>
 

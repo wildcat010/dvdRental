@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace WebHMI.Prdb;
+namespace WebHMI.PRDB;
 
 public partial class Spord1pc
 {

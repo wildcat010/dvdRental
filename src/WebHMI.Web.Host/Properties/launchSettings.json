@@ -15,16 +15,14 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "WebHMI.Web.Host": {
-      "commandName": "Project",
-      "launchBrowser": true,
-      "launchUrl": "https://localhost:44311/",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      },
-      "applicationUrl": "https://localhost:44311/"
-    }
+		"WebHMI.Web.Host": {
+			"commandName": "Project",
+			"launchBrowser": true,
+			"launchUrl": "http://localhost:21029/swagger/index.html",
+			"environmentVariables": {
+				"ASPNETCORE_ENVIRONMENT": "Development"
+			},
+			"applicationUrl": "https://localhost:21029/"
+		}
   }
 }
-
-
