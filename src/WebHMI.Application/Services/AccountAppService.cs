@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Abp.Auditing;
 using Abp.Configuration;
 using Abp.Zero.Configuration;
 using WebHMI.Authorization.Users;
@@ -39,6 +40,7 @@ namespace WebHMI.Services
 			return new IsTenantAvailableOutput(TenantAvailabilityState.Available, tenant.Id);
 		}
 
+		[Audited]
 		public async Task<RegisterOutput> Register(RegisterInput input)
 		{
 			var user = await _userRegistrationManager.RegisterAsync(

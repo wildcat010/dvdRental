@@ -1,4 +1,5 @@
 ﻿using Abp.Application.Services.Dto;
+using Abp.Auditing;
 using Abp.Domain.Entities;
 using Abp.EntityFrameworkCore;
 using Abp.UI;
@@ -32,6 +33,7 @@ namespace WebHMI.Services
 
 		// Test prdb database
 
+		[Audited]
 		public async Task<Stddirdccoiler> Create(int planNo)
 		{
 			var context = await _prdbContextProvider.GetDbContextAsync();
@@ -53,6 +55,7 @@ namespace WebHMI.Services
 			return await ApplyFilterWithoutMapping(context.Stddirdccoilers.AsQueryable(), filter);
 		}
 
+		[Audited]
 		public async Task<Stddirdccoiler> Update(int planNo, string newDescription)
 		{
 			if (string.IsNullOrWhiteSpace(newDescription))
@@ -67,6 +70,7 @@ namespace WebHMI.Services
 			return record;
 		}
 
+		[Audited]
 		public async Task Delete(int planNo)
 		{
 			var context = await _prdbContextProvider.GetDbContextAsync();

@@ -11,7 +11,6 @@ namespace WebHMI.Services
 	/// </summary>
 	public class SessionAppService : ApplicationServiceBase
 	{
-		[DisableAuditing]
 		public async Task<GetCurrentLoginInformationsOutput> GetCurrentLoginInformations()
 		{
 			var output = new GetCurrentLoginInformationsOutput
@@ -23,11 +22,6 @@ namespace WebHMI.Services
 					Features = new Dictionary<string, bool>()
 				}
 			};
-
-			if (AbpSession.TenantId.HasValue)
-			{
-				output.Tenant = ObjectMapper.Map<TenantLoginInfoDto>(await GetCurrentTenantAsync());
-			}
 
 			if (AbpSession.UserId.HasValue)
 			{

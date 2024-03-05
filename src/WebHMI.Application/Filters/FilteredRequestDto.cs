@@ -6,7 +6,7 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace WebHMI.Filters
+namespace WebHMI
 {
 	public class FilteredRequestDto : IPagedResultRequest
 	{

@@ -26,7 +26,7 @@ using WebHMI.Controllers;
 
 namespace WebHMI.Web.Host.Startup
 {
-    public class Startup
+	public class Startup
     {
         private const string _defaultCorsPolicyName = "localhost";
 

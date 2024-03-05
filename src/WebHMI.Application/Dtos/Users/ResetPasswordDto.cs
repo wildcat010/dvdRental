@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Abp.Auditing;
+using System.ComponentModel.DataAnnotations;
 
 namespace WebHMI.Dtos.Users
 {
@@ -11,6 +12,7 @@ namespace WebHMI.Dtos.Users
 		public long UserId { get; set; }
 
 		[Required]
+		[DisableAuditing]
 		public string NewPassword { get; set; }
 	}
 }
