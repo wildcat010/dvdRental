@@ -1,4 +1,4 @@
-﻿namespace WebHMI.Dtos.Accounts
+﻿namespace WebHMI.Dtos.Account
 {
 	public class RegisterOutput
 	{

@@ -1,4 +1,5 @@
-﻿using Abp.Domain.Entities;
+﻿using Abp.Application.Services.Dto;
+using Abp.Domain.Entities;
 using Abp.EntityFrameworkCore;
 using Abp.UI;
 using Microsoft.EntityFrameworkCore;
@@ -9,18 +10,19 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using WebHMI.Authorization.Users;
+using WebHMI.Filters;
 using WebHMI.Helpers;
 using WebHMI.PRDB;
 using WebHMI.WebHMI;
 
 namespace WebHMI.Services
 {
-	public class TestService : WebHMIAppServiceBase
+	public class TestAppService : ApplicationServiceBase
 	{
 		private readonly IDbContextProvider<PrdbContext> _prdbContextProvider;
 		private readonly IDbContextProvider<WebHMIDbContext> _hmiContextProvider;
 
-		public TestService(
+		public TestAppService(
 			IDbContextProvider<PrdbContext> prdbContextProvider,
 			IDbContextProvider<WebHMIDbContext> hmiContextProvider)
 		{
@@ -45,20 +47,16 @@ namespace WebHMI.Services
 			return record;
 		}
 
-		public async Task<List<Stddirdccoiler>> GetAll() // TODO: add filter
+		public async Task<PagedResultDto<Stddirdccoiler>> GetAll(FilteredRequestDto filter)
 		{ 
 			var context = await _prdbContextProvider.GetDbContextAsync();
-
-			var records = await context.Stddirdccoilers.ToListAsync();
-			return records;
+			return await ApplyFilterWithoutMapping(context.Stddirdccoilers.AsQueryable(), filter);
 		}
 
 		public async Task<Stddirdccoiler> Update(int planNo, string newDescription)
 		{
 			if (string.IsNullOrWhiteSpace(newDescription))
 				throw new UserFriendlyException("Description can't be empty");
-
-			throw new Exception("test");
 
 			var context = await _prdbContextProvider.GetDbContextAsync();
 

@@ -5,7 +5,7 @@ using Abp.Authorization.Users;
 using Abp.Extensions;
 using WebHMI.Validation;
 
-namespace WebHMI.Dtos.Accounts
+namespace WebHMI.Dtos.Account
 {
 	public class RegisterInput : IValidatableObject
 	{
