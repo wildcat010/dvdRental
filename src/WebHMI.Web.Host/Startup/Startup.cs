@@ -17,6 +17,12 @@ using Abp.AspNetCore.SignalR.Hubs;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System.IO;
+using Newtonsoft.Json.Converters;
+using System.Text.Json.Serialization;
+using WebHMI.Services;
+using System.Collections.Generic;
+using System.Runtime.Serialization;
+using WebHMI.Controllers;
 
 namespace WebHMI.Web.Host.Startup
 {
@@ -37,55 +43,51 @@ namespace WebHMI.Web.Host.Startup
 
         public void ConfigureServices(IServiceCollection services)
         {
-            //MVC
             services.AddControllersWithViews(options =>
             {
                 options.Filters.Add(new AbpAutoValidateAntiforgeryTokenAttribute());
-            });
+            })
+			.AddNewtonsoftJson(options =>
+			{
+				options.SerializerSettings.Converters.Add(new StringEnumConverter());
+				options.SerializerSettings.Converters.Add(new TimeSpanConverter());
+			});
 
-            IdentityRegistrar.Register(services);
+			IdentityRegistrar.Register(services);
             AuthConfigurer.Configure(services, _appConfiguration);
 
-            services.AddSignalR();
+            services.AddSignalR().AddJsonProtocol(option => { option.PayloadSerializerOptions.NumberHandling = JsonNumberHandling.AllowNamedFloatingPointLiterals; });
 
-            // Configure CORS for angular2 UI
-            services.AddCors(
-                options => options.AddPolicy(
-                    _defaultCorsPolicyName,
-                    builder => builder
-                        .WithOrigins(
-                            // App:CorsOrigins in appsettings.json can contain more than one address separated by comma.
-                            _appConfiguration["App:CorsOrigins"]
-                                .Split(",", StringSplitOptions.RemoveEmptyEntries)
-                                .Select(o => o.RemovePostFix("/"))
-                                .ToArray()
-                        )
-                        .AllowAnyHeader()
-                        .AllowAnyMethod()
-                        .AllowCredentials()
-                )
-            );
+			services.AddCors(
+				options => options.AddPolicy(
+					_defaultCorsPolicyName,
+					builder => builder
+						.WithOrigins(
+							// CorsOrigins in appsettings.json
+							_appConfiguration.GetSection("CorsOrigins").Get<string[]>()
+						)
+						.AllowAnyHeader()
+						.AllowAnyMethod()
+						.AllowCredentials()
+				)
+			);
 
-            // Swagger - Enable this line and the related lines in Configure method to enable swagger UI
-            ConfigureSwagger(services);
+			ConfigureSwagger(services);
 
-            // Configure Abp and Dependency Injection
-            services.AddAbpWithoutCreatingServiceProvider<WebHMIWebHostModule>(
-                // Configure Log4Net logging
-                options => options.IocManager.IocContainer.AddFacility<LoggingFacility>(
-                    f => f.UseAbpLog4Net().WithConfig(_hostingEnvironment.IsDevelopment()
-                        ? "log4net.config"
-                        : "log4net.Production.config"
-                    )
-                )
-            );
-        }
+			// Configure Abp and Dependency Injection
+			services.AddAbpWithoutCreatingServiceProvider<WebHMIWebHostModule>(
+				// Configure Log4Net logging
+				options => options.IocManager.IocContainer.AddFacility<LoggingFacility>(
+					f => f.UseAbpLog4Net().WithConfig("log4net.config")
+				)
+			);
+		}
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
             app.UseAbp(options => { options.UseAbpRequestLocalization = false; }); // Initializes ABP framework.
 
-            app.UseCors(_defaultCorsPolicyName); // Enable CORS!
+            app.UseCors(_defaultCorsPolicyName);
 
             app.UseStaticFiles();
 
@@ -114,57 +116,67 @@ namespace WebHMI.Web.Host.Startup
                 options.IndexStream = () => Assembly.GetExecutingAssembly()
                     .GetManifestResourceStream("WebHMI.Web.Host.wwwroot.swagger.ui.index.html");
                 options.DisplayRequestDuration(); // Controls the display of the request duration (in milliseconds) for "Try it out" requests.
-            }); // URL: /swagger
+				options.EnableTryItOutByDefault();
+			}); // URL: /swagger
         }
 
         private void ConfigureSwagger(IServiceCollection services)
         {
-            services.AddSwaggerGen(options =>
-            {
-                options.SwaggerDoc(_apiVersion, new OpenApiInfo
-                {
-                    Version = _apiVersion,
-                    Title = "WebHMI API",
-                    Description = "WebHMI",
-                    // uncomment if needed TermsOfService = new Uri("https://example.com/terms"),
-                    Contact = new OpenApiContact
-                    {
-                        Name = "WebHMI",
-                        Email = string.Empty,
-                        Url = new Uri("https://twitter.com/aspboilerplate"),
-                    },
-                    License = new OpenApiLicense
-                    {
-                        Name = "MIT License",
-                        Url = new Uri("https://github.com/aspnetboilerplate/aspnetboilerplate/blob/dev/LICENSE"),
-                    }
-                });
-                options.DocInclusionPredicate((docName, description) => true);
+			services.AddSwaggerGen(options =>
+			{
+				options.UseOneOfForPolymorphism();
+				options.SelectSubTypesUsing(KnownTypeSelector);
 
-                // Define the BearerAuth scheme that's in use
-                options.AddSecurityDefinition("bearerAuth", new OpenApiSecurityScheme()
-                {
-                    Description =
-                        "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
-                    Name = "Authorization",
-                    In = ParameterLocation.Header,
-                    Type = SecuritySchemeType.ApiKey
-                });
+				IEnumerable<Type> KnownTypeSelector(Type t)
+				{
+					if (t.GetCustomAttributes(typeof(KnownTypeAttribute), true) is Attribute[] attributes)
+					{
+						foreach (var attribute in attributes)
+						{
+							var knownTypeAttribute = (KnownTypeAttribute)attribute;
+							yield return knownTypeAttribute.Type;
+						}
+					}
+				}
 
-                // Add summaries to swagger
-                var hostXmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                var hostXmlPath = Path.Combine(AppContext.BaseDirectory, hostXmlFile);
-                options.IncludeXmlComments(hostXmlPath);
+				options.SwaggerDoc(_apiVersion, new OpenApiInfo
+				{
+					Version = _apiVersion,
+					Title = "WebHMI API"
+				});
+				options.DocInclusionPredicate((docName, description) => true);
 
-                var applicationXml = $"WebHMI.Application.xml";
-                var applicationXmlPath = Path.Combine(AppContext.BaseDirectory, applicationXml);
-                options.IncludeXmlComments(applicationXmlPath);
+				//Define the BearerAuth scheme that's in use
+				options.AddSecurityDefinition("bearerAuth", new OpenApiSecurityScheme()
+				{
+					Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
+					Name = "Authorization",
+					In = ParameterLocation.Header,
+					Type = SecuritySchemeType.ApiKey,
+					Scheme = "Bearer"
+				});
 
-                var webCoreXmlFile = $"WebHMI.Web.Core.xml";
-                var webCoreXmlPath = Path.Combine(AppContext.BaseDirectory, webCoreXmlFile);
-                options.IncludeXmlComments(webCoreXmlPath);
-            });
-        }
+				options.OperationFilter<AuthOperationFilter>();
+
+				// Add summaries to swagger
+				var hostXmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+				var hostXmlPath = Path.Combine(AppContext.BaseDirectory, hostXmlFile);
+				options.IncludeXmlComments(hostXmlPath);
+
+				string applicationXml = $"{typeof(AccountAppService).Assembly.GetName().Name}.xml";
+				var applicationXmlPath = Path.Combine(AppContext.BaseDirectory, applicationXml);
+				options.IncludeXmlComments(applicationXmlPath);
+
+				string webCoreXmlFile = $"{typeof(TokenAuthController).Assembly.GetName().Name}.xml";
+				var webCoreXmlPath = Path.Combine(AppContext.BaseDirectory, webCoreXmlFile);
+				options.IncludeXmlComments(webCoreXmlPath);
+
+				options.SchemaFilter<EnumAsStringSchemaFilter>();
+
+				options.MapType<TimeSpan>(() => new OpenApiSchema { Type = "string", Format = "d.hh:mm:ss.fff", Reference = null, Nullable = false });
+				options.MapType<TimeSpan?>(() => new OpenApiSchema { Type = "string", Format = "d.hh:mm:ss.fff", Reference = null, Nullable = true });
+			});
+		}
     }
 }
 

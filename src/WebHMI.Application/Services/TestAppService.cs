@@ -88,5 +88,20 @@ namespace WebHMI.Services
 			var records = await context.Users.ToListAsync();
 			return records;
 		}
+
+		// Others
+
+		public async Task<TestDto> GetTestDto(TestDto ignoredInput)
+		{
+			return new TestDto();
+		}
+
+		public class TestDto
+		{
+			/// <summary>
+			/// Example description
+			/// </summary>
+			public TimeSpan Duration { get; set; } = TimeSpan.FromSeconds(213742069);
+		}
 	}
 }
