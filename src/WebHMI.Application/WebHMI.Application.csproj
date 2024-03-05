@@ -15,5 +15,8 @@
     <ProjectReference Include="..\WebHMI.Core\WebHMI.Core.csproj" />
     <ProjectReference Include="..\WebHMI.EntityFrameworkCore\WebHMI.EntityFrameworkCore.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Mapping\Extensions\" />
+  </ItemGroup>
 </Project>
 

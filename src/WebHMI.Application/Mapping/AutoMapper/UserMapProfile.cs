@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
 using WebHMI.Authorization.Users;
+using WebHMI.Dtos.Users;
 
-namespace WebHMI.Dtos.Users
+namespace WebHMI.Mapping.AutoMapper
 {
 	public class UserMapProfile : Profile
 	{

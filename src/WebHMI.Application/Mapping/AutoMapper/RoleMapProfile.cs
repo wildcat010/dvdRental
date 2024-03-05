@@ -3,8 +3,9 @@ using AutoMapper;
 using Abp.Authorization;
 using Abp.Authorization.Roles;
 using WebHMI.Authorization.Roles;
+using WebHMI.Dtos.Roles;
 
-namespace WebHMI.Dtos.Roles
+namespace WebHMI.Mapping.AutoMapper
 {
 	public class RoleMapProfile : Profile
 	{
