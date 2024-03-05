@@ -1,7 +1,10 @@
-﻿using Abp.EntityFrameworkCore.Configuration;
+﻿using Abp.Configuration.Startup;
+using Abp.Domain.Uow;
+using Abp.EntityFrameworkCore.Configuration;
 using Abp.Modules;
 using Abp.Reflection.Extensions;
 using Abp.Zero.EntityFrameworkCore;
+using System.Transactions;
 using WebHMI.PRDB;
 using WebHMI.WebHMI;
 using WebHMI.WebHMI.Seed;
@@ -20,9 +23,11 @@ namespace WebHMI
 
 		public override void PreInitialize()
 		{
+			Configuration.ReplaceService<IConnectionStringResolver, CustomConnectionStringResolver>();
+
 			if (!SkipDbContextRegistration)
 			{
-				Configuration.UnitOfWork.IsolationLevel = System.Transactions.IsolationLevel.ReadCommitted;
+				Configuration.UnitOfWork.IsolationLevel = IsolationLevel.ReadCommitted;
 				Configuration.UnitOfWork.IsTransactional = false;
 
 				// Add WebHMI database

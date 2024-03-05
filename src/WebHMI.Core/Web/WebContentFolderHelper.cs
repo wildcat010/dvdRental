@@ -14,10 +14,12 @@ namespace WebHMI.Web
     {
         public static string CalculateContentRootFolder()
         {
+			string exMsg = $"Exception thrown in project's '{nameof(WebContentDirectoryFinder)}' class";
+
             var coreAssemblyDirectoryPath = Path.GetDirectoryName(typeof(WebHMICoreModule).GetAssembly().Location);
             if (coreAssemblyDirectoryPath == null)
             {
-                throw new Exception("Could not find location of WebHMI.Core assembly!");
+                throw new Exception($"{exMsg}. Could not find location of WebHMI.Core assembly!");
             }
 
             var directoryInfo = new DirectoryInfo(coreAssemblyDirectoryPath);
@@ -25,7 +27,7 @@ namespace WebHMI.Web
             {
                 if (directoryInfo.Parent == null)
                 {
-                    throw new Exception("Could not find content root folder!");
+                    throw new Exception($"{exMsg}. Could not find content root folder!");
                 }
 
                 directoryInfo = directoryInfo.Parent;
@@ -43,7 +45,7 @@ namespace WebHMI.Web
                 return webHostFolder;
             }
 
-            throw new Exception("Could not find root folder of the web project!");
+            throw new Exception($"{exMsg}. Could not find root folder of the web project!");
         }
 
         private static bool DirectoryContains(string directory, string fileName)

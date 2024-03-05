@@ -33,7 +33,7 @@ dotnet ef dbcontext scaffold $DBConnString Oracle.EntityFrameworkCore `
 --force `
 --no-build `
 --no-onconfiguring `
--t SPORD1PC `
+-t STDDIRDCCOILER `
 
 # Change base class from DbContext to AbpDbContext
 Write-Host 'Adjusting PrdbContext file to project requirements...'
