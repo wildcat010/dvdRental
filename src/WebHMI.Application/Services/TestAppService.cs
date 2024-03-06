@@ -26,18 +26,20 @@ namespace WebHMI.Services
 	{
 		private readonly IDbContextProvider<PrdbContext> _prdbContextProvider;
 		private readonly IDbContextProvider<WebHMIDbContext> _hmiContextProvider;
-		private readonly ITypedCache<MaterialKey, VMatStructEntry> _matEntryCache;
+		private readonly ITypedCache<MaterialKeyDto, VMatStructEntry> _matEntryCache;
+		private readonly MatStructEntryService _matStructEntryService;
 
 		public TestAppService(
 			IDbContextProvider<PrdbContext> prdbContextProvider,
 			IDbContextProvider<WebHMIDbContext> hmiContextProvider,
-            ICacheManager cacheManager
-			)
+			ICacheManager cacheManager,
+			MatStructEntryService matStructEntryService)
 		{
-			_matEntryCache = cacheManager.GetCache<MaterialKey, VMatStructEntry>(nameof(VMatStructEntry));
+			_matEntryCache = cacheManager.GetCache<MaterialKeyDto, VMatStructEntry>(nameof(VMatStructEntry));
 
 			_prdbContextProvider = prdbContextProvider;
 			_hmiContextProvider = hmiContextProvider;
+			_matStructEntryService = matStructEntryService;
 		}
 
 		// Test CRUD PRDB database
@@ -94,12 +96,12 @@ namespace WebHMI.Services
 
 		// Test PRDB view and caching
 
-		public async Task<VMatStructEntry> GetMaterial(MaterialKey key)
+		public async Task<VMatStructEntry> GetMaterial(MaterialKeyDto key)
 		{
 			return await _matEntryCache.GetAsync(key, async () =>
 			{
 				var context = await _prdbContextProvider.GetDbContextAsync();
-				return await context.GetMaterialEntryStruct(key);
+				return await _matStructEntryService.GetMaterialEntryStruct(key);
 			});
 		}
 

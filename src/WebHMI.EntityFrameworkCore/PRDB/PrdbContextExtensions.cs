@@ -13,17 +13,13 @@ namespace WebHMI.PRDB
 {
 	public static class PrdbContextExtensions
 	{
-		public static async Task<VMatStructEntry> GetMaterialEntryStruct(this PrdbContext prdbContext, MaterialKey key)
-		{
-			var result = key.MatType switch
+		public static async Task<VMatStructEntry> GetMaterialEntryStruct(this PrdbContext prdbContext, MaterialKey key) =>
+			key.MatType switch
 			{
 				"OR" => await prdbContext.VMatStructEntries.FirstOrDefaultAsync(x => x.Enormeid == key.MeId),
 				"LO" => await prdbContext.VMatStructEntries.FirstOrDefaultAsync(x => x.Enlomeid == key.MeId),
 				"PH" => await prdbContext.VMatStructEntries.FirstOrDefaultAsync(x => x.Enphmeid == key.MeId),
-				_ => throw new UserFriendlyException($"Material type unknown. Use ['OR', 'LO', 'PH']")
+				_ => null
 			};
-
-			return result ?? throw new EntityNotFoundException($"Material with meid '{key.MeId}' and matType '{key.MatType}' not found");
-		}
 	}
 }

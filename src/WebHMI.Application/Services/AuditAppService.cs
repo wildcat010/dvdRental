@@ -15,7 +15,7 @@ using WebHMI.Authorization.Users;
 using WebHMI.Authorization;
 using WebHMI.Dtos.Audit;
 using WebHMI.Filters;
-using WebHMI.API.Mapping.Extensions;
+using WebHMI.Mapping.Extensions;
 
 namespace WebHMI.Services
 {
