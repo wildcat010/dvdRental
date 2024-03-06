@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace WebHMI.Web.Host.Startup
+namespace WebHMI.Web.Host.Filters
 {
 	class AuthOperationFilter : IOperationFilter
 	{

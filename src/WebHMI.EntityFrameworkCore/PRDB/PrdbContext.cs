@@ -14,6 +14,8 @@ public partial class PrdbContext : AbpDbContext
 
     public virtual DbSet<Stddirdccoiler> Stddirdccoilers { get; set; }
 
+    public virtual DbSet<VMatStructEntry> VMatStructEntries { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder
@@ -64,6 +66,98 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("null\n")
                 .HasColumnType("DATE")
                 .HasColumnName("TOM");
+        });
+
+        modelBuilder.Entity<VMatStructEntry>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("V_MAT_STRUCT_ENTRY");
+
+            entity.Property(e => e.Enlobasid)
+                .HasPrecision(5)
+                .HasColumnName("ENLOBASID");
+            entity.Property(e => e.Enlocreator)
+                .IsRequired()
+                .HasMaxLength(2)
+                .IsUnicode(false)
+                .HasColumnName("ENLOCREATOR");
+            entity.Property(e => e.Enloextid)
+                .IsRequired()
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("ENLOEXTID");
+            entity.Property(e => e.Enlomeid)
+                .HasPrecision(10)
+                .HasColumnName("ENLOMEID");
+            entity.Property(e => e.Enlomesid)
+                .HasPrecision(5)
+                .HasColumnName("ENLOMESID");
+            entity.Property(e => e.Enlometype)
+                .IsRequired()
+                .HasMaxLength(2)
+                .IsUnicode(false)
+                .HasColumnName("ENLOMETYPE");
+            entity.Property(e => e.Enlostatus)
+                .HasPrecision(5)
+                .HasColumnName("ENLOSTATUS");
+            entity.Property(e => e.Enorbasid)
+                .HasPrecision(5)
+                .HasColumnName("ENORBASID");
+            entity.Property(e => e.Enorcreator)
+                .IsRequired()
+                .HasMaxLength(2)
+                .IsUnicode(false)
+                .HasColumnName("ENORCREATOR");
+            entity.Property(e => e.Enorextid)
+                .IsRequired()
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("ENOREXTID");
+            entity.Property(e => e.Enormeid)
+                .HasPrecision(10)
+                .HasColumnName("ENORMEID");
+            entity.Property(e => e.Enormesid)
+                .HasPrecision(5)
+                .HasColumnName("ENORMESID");
+            entity.Property(e => e.Enormetype)
+                .IsRequired()
+                .HasMaxLength(2)
+                .IsUnicode(false)
+                .HasColumnName("ENORMETYPE");
+            entity.Property(e => e.Enorstatus)
+                .HasPrecision(5)
+                .HasColumnName("ENORSTATUS");
+            entity.Property(e => e.Enphbasid)
+                .HasPrecision(5)
+                .HasColumnName("ENPHBASID");
+            entity.Property(e => e.Enphcreator)
+                .IsRequired()
+                .HasMaxLength(2)
+                .IsUnicode(false)
+                .HasColumnName("ENPHCREATOR");
+            entity.Property(e => e.Enphextid)
+                .IsRequired()
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("ENPHEXTID");
+            entity.Property(e => e.Enphmeid)
+                .HasPrecision(10)
+                .HasColumnName("ENPHMEID");
+            entity.Property(e => e.Enphmesid)
+                .HasPrecision(5)
+                .HasColumnName("ENPHMESID");
+            entity.Property(e => e.Enphmetype)
+                .IsRequired()
+                .HasMaxLength(2)
+                .IsUnicode(false)
+                .HasColumnName("ENPHMETYPE");
+            entity.Property(e => e.Enphstatus)
+                .HasPrecision(5)
+                .HasColumnName("ENPHSTATUS");
+            entity.Property(e => e.Lastupdate)
+                .HasColumnType("DATE")
+                .HasColumnName("LASTUPDATE");
         });
         modelBuilder.HasSequence("BASID")
             .IncrementsBy(10)

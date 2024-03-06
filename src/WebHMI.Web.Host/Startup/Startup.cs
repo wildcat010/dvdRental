@@ -23,6 +23,7 @@ using WebHMI.Services;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using WebHMI.Controllers;
+using WebHMI.Web.Host.Filters;
 
 namespace WebHMI.Web.Host.Startup
 {
@@ -158,16 +159,16 @@ namespace WebHMI.Web.Host.Startup
 
 				options.OperationFilter<AuthOperationFilter>();
 
-				// Add summaries to swagger
+				// Add summaries to swagger (used to generate API description document)
 				var hostXmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
 				var hostXmlPath = Path.Combine(AppContext.BaseDirectory, hostXmlFile);
 				options.IncludeXmlComments(hostXmlPath);
 
-				string applicationXml = $"{typeof(AccountAppService).Assembly.GetName().Name}.xml";
+				string applicationXml = $"{typeof(WebHMIApplicationModule).Assembly.GetName().Name}.xml";
 				var applicationXmlPath = Path.Combine(AppContext.BaseDirectory, applicationXml);
 				options.IncludeXmlComments(applicationXmlPath);
 
-				string webCoreXmlFile = $"{typeof(TokenAuthController).Assembly.GetName().Name}.xml";
+				string webCoreXmlFile = $"{typeof(WebHMIWebCoreModule).Assembly.GetName().Name}.xml";
 				var webCoreXmlPath = Path.Combine(AppContext.BaseDirectory, webCoreXmlFile);
 				options.IncludeXmlComments(webCoreXmlPath);
 

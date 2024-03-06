@@ -11,8 +11,10 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using WebHMI.Authorization.Users;
+using WebHMI.Dtos;
 using WebHMI.Filters;
 using WebHMI.Helpers;
+using WebHMI.Mapping.Extensions;
 using WebHMI.PRDB;
 using WebHMI.WebHMI;
 
@@ -31,7 +33,7 @@ namespace WebHMI.Services
 			_hmiContextProvider = hmiContextProvider;
 		}
 
-		// Test prdb database
+		// Test CRUD PRDB database
 
 		[Audited]
 		public async Task<Stddirdccoiler> Create(int planNo)
@@ -83,6 +85,23 @@ namespace WebHMI.Services
 			context.Stddirdccoilers.Remove(record);
 		}
 
+		// Test PRDB View
+
+		public async Task<VMatStructEntry> GetMaterial(int meid, string matType)
+		{
+			var context = await _prdbContextProvider.GetDbContextAsync();
+			return await context.GetMaterialEntryStruct(meid, matType);
+		}
+
+		public async Task<List<MeCodeDto>> GetMeCodes()
+		{
+			var context = await _prdbContextProvider.GetDbContextAsync();
+
+			return (await context.VMatStructEntries.ToListAsync())
+				.Select(x => x.ToMeCodeDto())
+				.ToList();
+		}
+
 		// Test Hmi database
 
 		public async Task<List<User>> GetHmiUsers()
@@ -95,7 +114,7 @@ namespace WebHMI.Services
 
 		// Others
 
-		public async Task<TestDto> GetTestDto(TestDto ignoredInput)
+		public TestDto GetTestDto(TestDto ignoredInput)
 		{
 			return new TestDto();
 		}
