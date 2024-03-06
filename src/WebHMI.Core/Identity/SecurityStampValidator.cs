@@ -2,15 +2,13 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Abp.Authorization;
-using WebHMI.Authorization.Roles;
-using WebHMI.Authorization.Users;
-using WebHMI.MultiTenancy;
 using Microsoft.Extensions.Logging;
 using Abp.Domain.Uow;
+using WebHMI.WebHMI.Dbo;
 
 namespace WebHMI.Identity
 {
-    public class SecurityStampValidator : AbpSecurityStampValidator<Tenant, Role, User>
+	public class SecurityStampValidator : AbpSecurityStampValidator<Tenant, Role, User>
     {
         public SecurityStampValidator(
             IOptions<SecurityStampValidatorOptions> options,

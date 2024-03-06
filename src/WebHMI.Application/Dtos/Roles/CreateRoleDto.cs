@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Abp.Authorization.Roles;
-using WebHMI.Authorization.Roles;
+using WebHMI.WebHMI.Dbo;
 
 namespace WebHMI.Dtos.Roles
 {

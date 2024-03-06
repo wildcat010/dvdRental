@@ -21,7 +21,7 @@ namespace WebHMI.WebHMI
              */
 			var configuration = AppConfigurations.Get(WebContentDirectoryFinder.CalculateContentRootFolder());
 
-			WebHMIDbContextConfigurer.Configure(builder, configuration.GetConnectionString(WebHMIConsts.ConnectionStringName));
+			WebHMIDbContextConfigurer.Configure(builder, configuration.GetConnectionString("PRDB"));
 
 			return new WebHMIDbContext(builder.Options);
 		}

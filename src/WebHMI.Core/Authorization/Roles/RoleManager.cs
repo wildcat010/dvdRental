@@ -8,11 +8,11 @@ using Abp.Domain.Uow;
 using Abp.Organizations;
 using Abp.Runtime.Caching;
 using Abp.Zero.Configuration;
-using WebHMI.Authorization.Users;
+using WebHMI.WebHMI.Dbo;
 
 namespace WebHMI.Authorization.Roles
 {
-    public class RoleManager : AbpRoleManager<Role, User>
+	public class RoleManager : AbpRoleManager<Role, User>
     {
         public RoleManager(
             RoleStore store,

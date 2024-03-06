@@ -2,8 +2,8 @@
 using AutoMapper;
 using Abp.Authorization;
 using Abp.Authorization.Roles;
-using WebHMI.Authorization.Roles;
 using WebHMI.Dtos.Roles;
+using WebHMI.WebHMI.Dbo;
 
 namespace WebHMI.Mapping.AutoMapper
 {

@@ -15,7 +15,7 @@ namespace WebHMI.WebHMI.Seed.Host
 
 		private static List<ApplicationLanguage> GetInitialLanguages()
 		{
-			var tenantId = WebHMIConsts.MultiTenancyEnabled ? null : (int?)MultiTenancyConsts.DefaultTenantId;
+			var tenantId = (int?)MultiTenancyConsts.DefaultTenantId;
 			return new List<ApplicationLanguage>
 			{
 				new ApplicationLanguage(tenantId, "en", "English", "famfamfam-flags us"),

@@ -6,10 +6,7 @@ using Abp.Authorization;
 using Abp.Authorization.Roles;
 using Abp.Authorization.Users;
 using Abp.MultiTenancy;
-using WebHMI.Authorization;
-using WebHMI.Authorization.Roles;
-using WebHMI.Authorization.Users;
-using WebHMI.WebHMI;
+using WebHMI.WebHMI.Dbo;
 
 namespace WebHMI.WebHMI.Seed.Tenants
 {

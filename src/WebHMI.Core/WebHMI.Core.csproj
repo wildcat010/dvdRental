@@ -20,7 +20,7 @@
     <PackageReference Include="Castle.Windsor.MsDependencyInjection" Version="4.1.0" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="PRDB\" />
+    <ProjectReference Include="..\WebHMI.EntityFrameworkCore\WebHMI.EntityFrameworkCore.csproj" />
   </ItemGroup>
 </Project>
 

@@ -7,15 +7,13 @@ using System.Collections.Generic;
 using Abp.Authorization;
 using System;
 using Microsoft.EntityFrameworkCore;
-using WebHMI.Dtos;
 using Abp.Auditing;
 using Abp.Domain.Entities;
 using WebHMI.Helpers;
-using WebHMI.Authorization.Users;
-using WebHMI.Authorization;
 using WebHMI.Dtos.Audit;
-using WebHMI.Filters;
 using WebHMI.API.Mapping.Extensions;
+using WebHMI.WebHMI;
+using WebHMI.WebHMI.Dbo;
 
 namespace WebHMI.Services
 {

@@ -11,11 +11,11 @@ using Abp.Domain.Uow;
 using Abp.Organizations;
 using Abp.Runtime.Caching;
 using WebHMI.Authorization.Roles;
-using Abp.Authorization.Roles;
+using WebHMI.WebHMI.Dbo;
 
 namespace WebHMI.Authorization.Users
 {
-    public class UserManager : AbpUserManager<Role, User>
+	public class UserManager : AbpUserManager<Role, User>
     {
         public UserManager(
           RoleManager roleManager,

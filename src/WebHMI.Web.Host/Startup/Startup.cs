@@ -14,15 +14,12 @@ using Abp.Extensions;
 using WebHMI.Configuration;
 using WebHMI.Identity;
 using Abp.AspNetCore.SignalR.Hubs;
-using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System.IO;
 using Newtonsoft.Json.Converters;
 using System.Text.Json.Serialization;
-using WebHMI.Services;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
-using WebHMI.Controllers;
 using WebHMI.Web.Host.Filters;
 
 namespace WebHMI.Web.Host.Startup

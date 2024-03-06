@@ -12,7 +12,6 @@ using WebHMI.WebHMI.Seed;
 namespace WebHMI
 {
 	[DependsOn(
-		typeof(WebHMICoreModule),
 		typeof(AbpZeroCoreEntityFrameworkCoreModule))]
 	public class WebHMIEntityFrameworkModule : AbpModule
 	{

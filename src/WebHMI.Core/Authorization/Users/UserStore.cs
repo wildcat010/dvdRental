@@ -3,11 +3,11 @@ using Abp.Domain.Repositories;
 using Abp.Domain.Uow;
 using Abp.Linq;
 using Abp.Organizations;
-using WebHMI.Authorization.Roles;
+using WebHMI.WebHMI.Dbo;
 
 namespace WebHMI.Authorization.Users
 {
-    public class UserStore : AbpUserStore<Role, User>
+	public class UserStore : AbpUserStore<Role, User>
     {
         public UserStore(
             IUnitOfWorkManager unitOfWorkManager,

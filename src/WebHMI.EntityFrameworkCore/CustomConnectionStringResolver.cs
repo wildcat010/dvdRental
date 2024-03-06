@@ -24,7 +24,7 @@ namespace WebHMI
 		{
 			if (args["DbContextConcreteType"] as Type == typeof(PrdbContext))
 			{
-				return _configuration.Get<string>(WebHMIConsts.PRDBConnectionStringName);
+				return _configuration.Get<string>("PRDB");
 			}
 
 			return base.GetNameOrConnectionString(args);

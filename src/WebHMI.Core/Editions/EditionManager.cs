@@ -7,8 +7,6 @@ namespace WebHMI.Editions
 {
     public class EditionManager : AbpEditionManager
     {
-        public const string DefaultEditionName = "Standard";
-
         public EditionManager(
             IRepository<Edition> editionRepository,
             IAbpZeroFeatureValueStore featureValueStore,

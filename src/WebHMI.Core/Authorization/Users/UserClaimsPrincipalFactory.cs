@@ -1,12 +1,13 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Abp.Authorization;
-using WebHMI.Authorization.Roles;
 using Abp.Domain.Uow;
+using WebHMI.Authorization.Roles;
+using WebHMI.WebHMI.Dbo;
 
 namespace WebHMI.Authorization.Users
 {
-    public class UserClaimsPrincipalFactory : AbpUserClaimsPrincipalFactory<User, Role>
+	public class UserClaimsPrincipalFactory : AbpUserClaimsPrincipalFactory<User, Role>
     {
         public UserClaimsPrincipalFactory(
             UserManager userManager,

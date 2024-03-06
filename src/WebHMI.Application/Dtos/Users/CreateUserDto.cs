@@ -3,7 +3,7 @@ using Abp.Auditing;
 using Abp.Authorization.Users;
 using Abp.AutoMapper;
 using Abp.Runtime.Validation;
-using WebHMI.Authorization.Users;
+using WebHMI.WebHMI.Dbo;
 
 namespace WebHMI.Dtos.Users
 {

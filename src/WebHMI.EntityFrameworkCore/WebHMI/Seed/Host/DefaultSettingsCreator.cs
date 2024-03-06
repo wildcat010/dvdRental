@@ -18,12 +18,7 @@ namespace WebHMI.WebHMI.Seed.Host
 
 		public void Create()
 		{
-			int? tenantId = null;
-
-			if (WebHMIConsts.MultiTenancyEnabled == false)
-			{
-				tenantId = MultiTenancyConsts.DefaultTenantId;
-			}
+			int? tenantId = MultiTenancyConsts.DefaultTenantId;
 
 			// Emailing
 			AddSettingIfNotExists(EmailSettingNames.DefaultFromAddress, "admin@mydomain.com", tenantId);

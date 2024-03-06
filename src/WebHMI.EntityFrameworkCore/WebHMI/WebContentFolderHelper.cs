@@ -16,7 +16,7 @@ namespace WebHMI.Web
         {
 			string exMsg = $"Exception thrown in project's '{nameof(WebContentDirectoryFinder)}' class";
 
-            var coreAssemblyDirectoryPath = Path.GetDirectoryName(typeof(WebHMICoreModule).GetAssembly().Location);
+            var coreAssemblyDirectoryPath = Path.GetDirectoryName(typeof(WebHMIEntityFrameworkModule).GetAssembly().Location);
             if (coreAssemblyDirectoryPath == null)
             {
                 throw new Exception($"{exMsg}. Could not find location of WebHMI.Core assembly!");

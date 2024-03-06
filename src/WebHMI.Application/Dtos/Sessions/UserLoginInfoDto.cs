@@ -1,6 +1,6 @@
 ﻿using Abp.Application.Services.Dto;
 using Abp.AutoMapper;
-using WebHMI.Authorization.Users;
+using WebHMI.WebHMI.Dbo;
 
 namespace WebHMI.Dtos.Sessions
 {

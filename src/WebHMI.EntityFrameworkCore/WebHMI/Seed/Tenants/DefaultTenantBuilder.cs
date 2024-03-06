@@ -1,9 +1,7 @@
 ﻿using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Abp.MultiTenancy;
-using WebHMI.Editions;
-using WebHMI.MultiTenancy;
-using WebHMI.WebHMI;
+using WebHMI.WebHMI.Dbo;
 
 namespace WebHMI.WebHMI.Seed.Tenants
 {
@@ -30,7 +28,7 @@ namespace WebHMI.WebHMI.Seed.Tenants
 			{
 				defaultTenant = new Tenant(AbpTenantBase.DefaultTenantName, AbpTenantBase.DefaultTenantName);
 
-				var defaultEdition = _context.Editions.IgnoreQueryFilters().FirstOrDefault(e => e.Name == EditionManager.DefaultEditionName);
+				var defaultEdition = _context.Editions.IgnoreQueryFilters().FirstOrDefault(e => e.Name == "Standard");
 				if (defaultEdition != null)
 				{
 					defaultTenant.EditionId = defaultEdition.Id;

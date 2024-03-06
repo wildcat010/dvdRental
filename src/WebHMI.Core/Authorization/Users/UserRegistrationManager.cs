@@ -9,12 +9,13 @@ using Abp.Domain.Services;
 using Abp.IdentityFramework;
 using Abp.Runtime.Session;
 using Abp.UI;
-using WebHMI.Authorization.Roles;
 using WebHMI.MultiTenancy;
+using WebHMI.Authorization.Roles;
+using WebHMI.WebHMI.Dbo;
 
 namespace WebHMI.Authorization.Users
 {
-    public class UserRegistrationManager : DomainService
+	public class UserRegistrationManager : DomainService
     {
         public IAbpSession AbpSession { get; set; }
 

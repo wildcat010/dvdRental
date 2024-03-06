@@ -2,7 +2,7 @@
 using Abp.Localization;
 using Abp.MultiTenancy;
 
-namespace WebHMI.Authorization
+namespace WebHMI.WebHMI
 {
     public class WebHMIAuthorizationProvider : AuthorizationProvider
     {

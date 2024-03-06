@@ -6,8 +6,9 @@ using Abp.Reflection.Extensions;
 namespace WebHMI.Configuration
 {
     public static class AppConfigurations
-    {
-        private static readonly ConcurrentDictionary<string, IConfigurationRoot> _configurationCache;
+	{
+		public const string DefaultEditionName = "Standard";
+		private static readonly ConcurrentDictionary<string, IConfigurationRoot> _configurationCache;
 
         static AppConfigurations()
         {

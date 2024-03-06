@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using WebHMI.Authorization.Users;
 using WebHMI.Dtos.Users;
+using WebHMI.WebHMI.Dbo;
 
 namespace WebHMI.Mapping.AutoMapper
 {

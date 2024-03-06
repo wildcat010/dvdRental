@@ -6,15 +6,15 @@ using Abp.Timing;
 using Abp.Zero;
 using Abp.Zero.Configuration;
 using WebHMI.Authorization.Roles;
-using WebHMI.Authorization.Users;
 using WebHMI.Configuration;
 using WebHMI.Localization;
-using WebHMI.MultiTenancy;
 using WebHMI.Timing;
+using WebHMI.WebHMI.Dbo;
 
 namespace WebHMI
 {
-    [DependsOn(typeof(AbpZeroCoreModule))]
+	[DependsOn(typeof(AbpZeroCoreModule),
+		typeof(WebHMIEntityFrameworkModule))]
     public class WebHMICoreModule : AbpModule
     {
         public override void PreInitialize()

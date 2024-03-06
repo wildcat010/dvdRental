@@ -5,10 +5,11 @@ using WebHMI.Authorization.Roles;
 using WebHMI.Authorization.Users;
 using WebHMI.Editions;
 using WebHMI.MultiTenancy;
+using WebHMI.WebHMI.Dbo;
 
 namespace WebHMI.Identity
 {
-    public static class IdentityRegistrar
+	public static class IdentityRegistrar
     {
         public static IdentityBuilder Register(IServiceCollection services)
         {

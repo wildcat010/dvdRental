@@ -2,8 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Abp.Application.Editions;
 using Abp.Application.Features;
-using WebHMI.Editions;
-using WebHMI.WebHMI;
+using WebHMI.Configuration;
 
 namespace WebHMI.WebHMI.Seed.Host
 {
@@ -23,10 +22,10 @@ namespace WebHMI.WebHMI.Seed.Host
 
 		private void CreateEditions()
 		{
-			var defaultEdition = _context.Editions.IgnoreQueryFilters().FirstOrDefault(e => e.Name == EditionManager.DefaultEditionName);
+			var defaultEdition = _context.Editions.IgnoreQueryFilters().FirstOrDefault(e => e.Name == AppConfigurations.DefaultEditionName);
 			if (defaultEdition == null)
 			{
-				defaultEdition = new Edition { Name = EditionManager.DefaultEditionName, DisplayName = EditionManager.DefaultEditionName };
+				defaultEdition = new Edition { Name = AppConfigurations.DefaultEditionName, DisplayName = AppConfigurations.DefaultEditionName };
 				_context.Editions.Add(defaultEdition);
 				_context.SaveChanges();
 

@@ -8,8 +8,8 @@ using Abp.Domain.Uow;
 using Abp.Extensions;
 using Abp.MultiTenancy;
 using Abp.Runtime.Security;
-using WebHMI.MultiTenancy;
 using WebHMI.WebHMI;
+using WebHMI.WebHMI.Dbo;
 using WebHMI.WebHMI.Seed;
 
 namespace WebHMI.Migrator

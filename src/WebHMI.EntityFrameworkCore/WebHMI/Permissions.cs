@@ -1,4 +1,4 @@
-﻿namespace WebHMI.Authorization
+﻿namespace WebHMI.WebHMI
 {
     public static class Permissions
     {

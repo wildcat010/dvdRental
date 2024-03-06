@@ -10,11 +10,10 @@ using Abp.Authorization.Users;
 using Abp.MultiTenancy;
 using Abp.Runtime.Security;
 using WebHMI.Authentication.JwtBearer;
-using WebHMI.Authorization;
-using WebHMI.Authorization.Users;
 using WebHMI.Models.TokenAuth;
-using WebHMI.MultiTenancy;
 using WebHMI.Helpers;
+using WebHMI.Authorization;
+using WebHMI.WebHMI.Dbo;
 
 namespace WebHMI.Controllers
 {

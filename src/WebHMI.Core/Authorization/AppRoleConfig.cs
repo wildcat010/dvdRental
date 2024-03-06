@@ -1,5 +1,6 @@
 ﻿using Abp.MultiTenancy;
 using Abp.Zero.Configuration;
+using WebHMI.WebHMI;
 
 namespace WebHMI.Authorization.Roles
 {

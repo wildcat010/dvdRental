@@ -4,7 +4,7 @@ Write-Host "This is a PowerShell script to generate DB entities and context for 
 $LocalPath = gl
 
 # Path where the models classes should be written
-$PathModels = $LocalPath.ToString() + '\..\..\WebHMI.Core\Prdb\'
+$PathModels = $LocalPath.ToString() + '\dbo'
 
 # Path to location where PRDB context file is located
 $PathContext = $LocalPath.ToString()
@@ -27,7 +27,7 @@ dotnet ef dbcontext scaffold $DBConnString Oracle.EntityFrameworkCore `
 --project $ProjectPath `
 --context-dir $PathContext `
 --output-dir $PathModels `
---namespace 'WebHMI.PRDB' `
+--namespace 'WebHMI.PRDB.Dbo' `
 --context-namespace 'WebHMI.PRDB' `
 --context 'PrdbContext' `
 --force `

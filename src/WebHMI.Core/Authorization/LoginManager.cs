@@ -7,13 +7,13 @@ using Abp.Dependency;
 using Abp.Domain.Repositories;
 using Abp.Domain.Uow;
 using Abp.Zero.Configuration;
-using WebHMI.Authorization.Roles;
 using WebHMI.Authorization.Users;
-using WebHMI.MultiTenancy;
+using WebHMI.Authorization.Roles;
+using WebHMI.WebHMI.Dbo;
 
 namespace WebHMI.Authorization
 {
-    public class LogInManager : AbpLogInManager<Tenant, Role, User>
+	public class LogInManager : AbpLogInManager<Tenant, Role, User>
     {
         public LogInManager(
             UserManager userManager, 

@@ -1,11 +1,11 @@
 ﻿using Abp.Authorization.Roles;
 using Abp.Domain.Repositories;
 using Abp.Domain.Uow;
-using WebHMI.Authorization.Users;
+using WebHMI.WebHMI.Dbo;
 
 namespace WebHMI.Authorization.Roles
 {
-    public class RoleStore : AbpRoleStore<Role, User>
+	public class RoleStore : AbpRoleStore<Role, User>
     {
         public RoleStore(
             IUnitOfWorkManager unitOfWorkManager,

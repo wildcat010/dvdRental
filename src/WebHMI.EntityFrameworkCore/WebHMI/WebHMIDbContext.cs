@@ -1,10 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Abp.Zero.EntityFrameworkCore;
-using WebHMI.Authorization.Roles;
-using WebHMI.Authorization.Users;
-using WebHMI.MultiTenancy;
 using Abp.Auditing;
-using System.Diagnostics;
+using WebHMI.WebHMI.Dbo;
 
 namespace WebHMI.WebHMI
 {

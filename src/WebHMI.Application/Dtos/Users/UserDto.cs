@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using Abp.Application.Services.Dto;
 using Abp.Authorization.Users;
 using Abp.AutoMapper;
-using WebHMI.Authorization.Users;
+using WebHMI.WebHMI.Dbo;
 
 namespace WebHMI.Dtos.Users
 {
