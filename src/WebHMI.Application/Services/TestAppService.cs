@@ -15,6 +15,7 @@ using WebHMI.Authorization.Users;
 using WebHMI.Dtos;
 using WebHMI.Filters;
 using WebHMI.Helpers;
+using WebHMI.L2Adapter.CommunicationHandlers;
 using WebHMI.Mapping.Extensions;
 using WebHMI.Material;
 using WebHMI.PRDB;
@@ -28,18 +29,21 @@ namespace WebHMI.Services
 		private readonly IDbContextProvider<WebHMIDbContext> _hmiContextProvider;
 		private readonly ITypedCache<MaterialKeyDto, VMatStructEntry> _matEntryCache;
 		private readonly MatStructEntryService _matStructEntryService;
+		private readonly IL2CommunicationHandler _l2CommHandler;
 
 		public TestAppService(
 			IDbContextProvider<PrdbContext> prdbContextProvider,
 			IDbContextProvider<WebHMIDbContext> hmiContextProvider,
 			ICacheManager cacheManager,
-			MatStructEntryService matStructEntryService)
+			MatStructEntryService matStructEntryService,
+			IL2CommunicationHandler l2CommHandler)
 		{
 			_matEntryCache = cacheManager.GetCache<MaterialKeyDto, VMatStructEntry>(nameof(VMatStructEntry));
 
 			_prdbContextProvider = prdbContextProvider;
 			_hmiContextProvider = hmiContextProvider;
 			_matStructEntryService = matStructEntryService;
+			_l2CommHandler = l2CommHandler;
 		}
 
 		// Test CRUD PRDB database
@@ -125,6 +129,11 @@ namespace WebHMI.Services
 		}
 
 		// Others
+
+		public string CallL2()
+		{
+			return _l2CommHandler.InstanceName;
+		}
 
 		public async Task FlushAllCaches()
 		{

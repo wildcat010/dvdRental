@@ -1,0 +1,36 @@
+﻿using Abp.Modules;
+using WebHMI.L2Adapter.CommunicationHandlers;
+using Microsoft.Extensions.Configuration;
+
+namespace WebHMI.L2Adapter
+{
+	public class L2AdapterModule : AbpModule
+	{
+		private readonly IConfiguration _configuration;
+		private L2CommunicationConfiguration _l2CommunicationConfiguration;
+
+		public L2AdapterModule(IConfiguration configuration)
+		{
+			_configuration = configuration;
+		}
+
+		public override void PreInitialize()
+		{
+			IocManager.Register<L2CommunicationConfiguration>(); // add manually before Initialize method
+			_l2CommunicationConfiguration = IocManager.Resolve<L2CommunicationConfiguration>();
+			_configuration.Bind("L2Communication", _l2CommunicationConfiguration);
+		}
+
+		public override void Initialize()
+		{
+			if (_l2CommunicationConfiguration.IsEnabled)
+			{
+				IocManager.Register<IL2CommunicationHandler, L2CommunicationHandler>();
+			}
+			else
+			{
+				IocManager.Register<IL2CommunicationHandler, NullL2CommunicationHandler>();
+			}
+		}
+	}
+}

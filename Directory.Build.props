@@ -1,6 +1,12 @@
 <Project>
-    
-    <PropertyGroup>
+
+	<ItemGroup>
+		<Reference Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\bin\$(Configuration)\xidl_dotnet.dll" />
+		<Reference Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\bin\$(Configuration)\platform_types_dotnet.dll" />
+		<Reference Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\bin\$(Configuration)\platform_glue_dotnet.dll" />
+	</ItemGroup>
+
+	<PropertyGroup>
 			<GenerateDocumentationFile>true</GenerateDocumentationFile>
 			<NoWarn>$(NoWarn);1591</NoWarn>
     </PropertyGroup>
