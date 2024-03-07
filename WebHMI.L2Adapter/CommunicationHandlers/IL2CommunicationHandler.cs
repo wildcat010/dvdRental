@@ -8,6 +8,6 @@ namespace WebHMI.L2Adapter.CommunicationHandlers
 {
 	public interface IL2CommunicationHandler
 	{
-		string InstanceName { get; }
+		void SendTestMessage(string msg);
 	}
 }

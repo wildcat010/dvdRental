@@ -22,8 +22,5 @@
   <ItemGroup>
     <Folder Include="PRDB\" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\WebHMI.L2Adapter\WebHMI.L2Adapter.csproj" />
-  </ItemGroup>
 </Project>
 

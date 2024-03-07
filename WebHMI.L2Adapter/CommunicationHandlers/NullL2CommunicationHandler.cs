@@ -11,6 +11,8 @@ namespace WebHMI.L2Adapter.CommunicationHandlers
 	/// </summary>
 	internal class NullL2CommunicationHandler : IL2CommunicationHandler
 	{
-		public string InstanceName => GetType().Name;
+		public void SendTestMessage(string msg)
+		{
+		}
 	}
 }

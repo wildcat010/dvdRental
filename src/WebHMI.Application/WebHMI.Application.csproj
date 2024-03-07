@@ -12,6 +12,7 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\WebHMI.L2Adapter\WebHMI.L2Adapter.csproj" />
     <ProjectReference Include="..\WebHMI.Core\WebHMI.Core.csproj" />
     <ProjectReference Include="..\WebHMI.EntityFrameworkCore\WebHMI.EntityFrameworkCore.csproj" />
   </ItemGroup>
