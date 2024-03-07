@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WebHMI.L2Adapter.CommunicationHandlers
+namespace WebHMI.L2Adapter.Senders
 {
-	public interface IL2CommunicationHandler
+	public interface IL2Sender
 	{
 		void SendTestMessage(string msg);
 	}

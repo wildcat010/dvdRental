@@ -1,43 +1,37 @@
 ﻿using Abp.Dependency;
+using Abp.Events.Bus;
 using Castle.Core.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WebHMI.Notification;
 using XIDL;
 
-namespace WebHMI.L2Adapter
+namespace WebHMI.L2Adapter.Listeners
 {
-	internal class CommunicationTask
-	{
-	}
-
-	public class HmiPa : IHmiPa, ISingletonDependency
+	public class PlatformListener : IHmiPa, ISingletonDependency
 	{
 		private readonly ILogger _logger;
 		private readonly ISignalRNotifier _signalRNotifier;
+		private readonly IEventBus _eventBus;
 
-		public HmiPa(ILogger logger, ISignalRNotifier signalRNotifier)
+		public PlatformListener(
+			ILogger logger, 
+			ISignalRNotifier signalRNotifier, 
+			IEventBus eventBus)
 		{
 			_logger = logger;
 			_signalRNotifier = signalRNotifier;
+			_eventBus = eventBus;
 		}
 
 		public override void HmiRefresh(string[] eventKey, ME_CODE meCode, string locationName, int locationId)
 		{
-			throw new NotImplementedException();
 		}
 
 		public override void HmiReturn(string eventKey, ME_CODE meCode, HMI_RETURN hmiReturn)
 		{
-			throw new NotImplementedException();
 		}
 
 		public override void MsgRefresh(string ReloadMsg)
 		{
-			throw new NotImplementedException();
 		}
 	}
 }

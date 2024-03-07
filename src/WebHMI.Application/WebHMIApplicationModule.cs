@@ -1,6 +1,7 @@
 ﻿using Abp.AutoMapper;
 using Abp.Modules;
 using Abp.Reflection.Extensions;
+using WebHMI.L2Adapter;
 using WebHMI.WebHMI;
 
 namespace WebHMI
@@ -8,7 +9,9 @@ namespace WebHMI
     [DependsOn(
         typeof(WebHMICoreModule), 
         typeof(AbpAutoMapperModule),
-		typeof(WebHMIEntityFrameworkModule))]
+		typeof(WebHMIEntityFrameworkModule),
+		typeof(L2AdapterModule)
+		)]
     public class WebHMIApplicationModule : AbpModule
     {
         public override void PreInitialize()

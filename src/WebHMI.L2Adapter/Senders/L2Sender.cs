@@ -6,14 +6,14 @@ using System.Text;
 using System.Threading.Tasks;
 using XIDL;
 
-namespace WebHMI.L2Adapter.CommunicationHandlers
+namespace WebHMI.L2Adapter.Senders
 {
-	internal class L2CommunicationHandler : IL2CommunicationHandler
+	internal class L2Sender : IL2Sender
 	{
 		private readonly ILogger _logger;
 		private readonly IHmiPaStub _paStub;
 
-		public L2CommunicationHandler(ILogger logger, IHmiPaStub paStub)
+		public L2Sender(ILogger logger, IHmiPaStub paStub)
 		{
 			// Initialize communication objects here (like stubs)
 

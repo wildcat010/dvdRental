@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using WebHMI.EventBus;
 using XIDL;
 
-namespace WebHMI.L2Adapter
+namespace WebHMI.L2Adapter.Listeners
 {
 	public class AlarmListener : IAlarmListener, ISingletonDependency
 	{
