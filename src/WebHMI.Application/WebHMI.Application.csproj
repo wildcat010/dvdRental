@@ -14,6 +14,7 @@
   <ItemGroup>
     <ProjectReference Include="..\WebHMI.Core\WebHMI.Core.csproj" />
     <ProjectReference Include="..\WebHMI.EntityFrameworkCore\WebHMI.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\WebHMI.L2Adapter\WebHMI.L2Adapter.csproj" />
   </ItemGroup>
 </Project>
 

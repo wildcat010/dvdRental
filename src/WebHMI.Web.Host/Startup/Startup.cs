@@ -21,6 +21,7 @@ using System.Text.Json.Serialization;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using WebHMI.Web.Host.Filters;
+using WebHMI.Notification;
 
 namespace WebHMI.Web.Host.Startup
 {
@@ -98,7 +99,8 @@ namespace WebHMI.Web.Host.Startup
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapHub<AbpCommonHub>("/signalr");
+                endpoints.MapHub<HmiHub>("/signalr");
+
                 endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapControllerRoute("defaultWithArea", "{area}/{controller=Home}/{action=Index}/{id?}");
             });
