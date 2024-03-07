@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WebHMI.EventBus;
 using XIDL;
 
 namespace WebHMI.L2Adapter
@@ -20,7 +21,7 @@ namespace WebHMI.L2Adapter
 
 		public override void onAlarm(AlarmInfo alarmInfo)
 		{
-			_eventBus.TriggerAsync(new L2EventWrapper<AlarmInfo>(alarmInfo));
+			_eventBus.TriggerAsync(new EventWrapper<AlarmInfo>(alarmInfo));
 		}
 	}
 }

@@ -17,6 +17,7 @@ using WebHMI.WebHMI;
 using WebHMI.Authorization.Roles;
 using WebHMI.Authorization.Users;
 using WebHMI.WebHMI.Dbo;
+using WebHMI.Filters;
 
 namespace WebHMI.Services
 {

@@ -128,9 +128,9 @@ namespace WebHMI.Services
 
 		// Others
 
-		public string CallL2()
+		public void CallL2(string msg)
 		{
-			return _l2CommHandler.InstanceName;
+			_l2CommHandler.SendTestMessage(msg);
 		}
 
 		public async Task FlushAllCaches()

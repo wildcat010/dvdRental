@@ -15,7 +15,6 @@ namespace WebHMI.Notification
 		public ILogger Logger { get; set; }
 
 		private readonly IOnlineClientManager _onlineClientManager;
-
 		private readonly IHubContext<HmiHub> _hubContext;
 
 		public SignalRNotifier(
@@ -43,7 +42,6 @@ namespace WebHMI.Notification
 		{
 			try
 			{
-				Logger.Debug($"Broadcasting to all clients: methodName:{methodName},data:{input.ToJsonString()}");
 				await _hubContext.Clients.All.SendAsync(methodName, input);
 			}
 			catch (Exception ex)
@@ -56,34 +54,29 @@ namespace WebHMI.Notification
 		{
 			try
 			{
-
 				var onlineClients = await _onlineClientManager.GetAllByUserIdAsync(userIdentifier);
 				foreach (var onlineClient in onlineClients)
 				{
 					var signalRClient = _hubContext.Clients.Client(onlineClient.ConnectionId);
 					if (signalRClient == null)
 					{
-						Logger.Debug("Can not get user with connectionId " + onlineClient.ConnectionId + " from SignalR hub!");
+						Logger.Warn("Can not get user with connectionId " + onlineClient.ConnectionId + " from SignalR hub!");
 						continue;
 					}
 
-					//		userNotification.Notification.EntityType = null; // Serialization of System.Type causes SignalR to disconnect. See https://github.com/aspnetboilerplate/aspnetboilerplate/issues/5230
 					await signalRClient.SendAsync("getNotification", input);
 				}
 			}
 			catch (Exception ex)
 			{
-				//	Logger.Warn("Could not send notification to user: " + userNotification.ToUserIdentifier());
-				Logger.Warn(ex.ToString(), ex);
+				Logger.Error("Could not send notification to user: " + userIdentifier.ToUserIdentifier(), ex);
 			}
-
 		}
 
 		public async Task BroadcastToUserClientAsync<T>(T input, string hmiClientId, string methodName)
 		{
 			try
 			{
-				Logger.Debug($"Processing \"{methodName}\" to client:{hmiClientId}");
 				foreach (var onlineClient in await _onlineClientManager.GetAllClientsAsync())
 				{
 					if (onlineClient.ConnectionId == hmiClientId)
@@ -91,19 +84,17 @@ namespace WebHMI.Notification
 						var signalRClient = _hubContext.Clients.Client(onlineClient.ConnectionId);
 						if (signalRClient == null)
 						{
-							Logger.Debug("Can not get user  with connectionId " + onlineClient.ConnectionId + " from SignalR hub!");
+							Logger.Debug("Can not get user with connectionId " + onlineClient.ConnectionId + " from SignalR hub!");
 							continue;
 						}
 
-						Logger.Debug($"Sending Signal: MethodName:\"{methodName}\", Data:{input.ToJsonString()}");
 						await signalRClient.SendAsync(methodName, input);
 					}
 				}
 			}
 			catch (Exception ex)
 			{
-				//	Logger.Warn("Could not send notification to user: " + userNotification.ToUserIdentifier());
-				Logger.Error(ex.ToString());
+				Logger.Error("Could not send notification to hmiClientId: " + hmiClientId, ex);
 			}
 		}
 	}

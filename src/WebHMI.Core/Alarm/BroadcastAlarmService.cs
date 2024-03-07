@@ -7,12 +7,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WebHMI.L2Adapter;
+using WebHMI.EventBus;
 using XIDL;
 
 namespace WebHMI.Alarm
 {
-	internal class BroadcastAlarmService : IAsyncEventHandler<L2EventWrapper<AlarmInfo>>, ITransientDependency
+	internal class BroadcastAlarmService : IAsyncEventHandler<EventWrapper<AlarmInfo>>, ITransientDependency
 	{
 		private readonly ILogger _logger;
 
@@ -21,7 +21,7 @@ namespace WebHMI.Alarm
 			_logger = logger;
 		}
 
-		public async Task HandleEventAsync(L2EventWrapper<AlarmInfo> eventData)
+		public async Task HandleEventAsync(EventWrapper<AlarmInfo> eventData)
 		{
 			if (eventData.Data != null)
 				await ProcessMessage(eventData.Data);

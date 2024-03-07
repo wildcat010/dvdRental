@@ -7,7 +7,6 @@ using Abp.Zero;
 using Abp.Zero.Configuration;
 using WebHMI.Authorization.Roles;
 using WebHMI.Configuration;
-using WebHMI.L2Adapter;
 using WebHMI.Localization;
 using WebHMI.Timing;
 using WebHMI.WebHMI.Dbo;
@@ -15,8 +14,7 @@ using WebHMI.WebHMI.Dbo;
 namespace WebHMI
 {
     [DependsOn(
-		typeof(AbpZeroCoreModule),
-		typeof(L2AdapterModule)
+		typeof(AbpZeroCoreModule)
 		)]
     public class WebHMICoreModule : AbpModule
     {

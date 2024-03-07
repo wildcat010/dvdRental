@@ -13,6 +13,8 @@ using WebHMI.Helpers;
 using WebHMI.Dtos.Audit;
 using WebHMI.Filters;
 using WebHMI.Mapping.Extensions;
+using WebHMI.WebHMI;
+using WebHMI.WebHMI.Dbo;
 
 namespace WebHMI.Services
 {

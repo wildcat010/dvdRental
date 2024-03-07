@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WebHMI.L2Adapter
+namespace WebHMI.EventBus
 {
-	public class L2EventWrapper<T> : IEventData
+	public class EventWrapper<T> : IEventData
 	{
-		public L2EventWrapper(T data)
+		public EventWrapper(T data)
 		{
 			Data = data;
 		}
