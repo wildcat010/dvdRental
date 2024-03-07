@@ -2,6 +2,7 @@
 using Abp.Auditing;
 using Abp.Domain.Entities;
 using Abp.EntityFrameworkCore;
+using Abp.Runtime.Caching;
 using Abp.UI;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 using WebHMI.Dtos;
 using WebHMI.Helpers;
 using WebHMI.Mapping.Extensions;
+using WebHMI.Material;
 using WebHMI.PRDB;
 using WebHMI.WebHMI;
 using WebHMI.WebHMI.Dbo;
@@ -21,13 +23,20 @@ namespace WebHMI.Services
 	{
 		private readonly IDbContextProvider<PrdbContext> _prdbContextProvider;
 		private readonly IDbContextProvider<WebHMIDbContext> _hmiContextProvider;
+		private readonly ITypedCache<MaterialKeyDto, VMatStructEntry> _matEntryCache;
+		private readonly MatStructEntryService _matStructEntryService;
 
 		public TestAppService(
 			IDbContextProvider<PrdbContext> prdbContextProvider,
-			IDbContextProvider<WebHMIDbContext> hmiContextProvider)
+			IDbContextProvider<WebHMIDbContext> hmiContextProvider,
+			ICacheManager cacheManager,
+			MatStructEntryService matStructEntryService)
 		{
+			_matEntryCache = cacheManager.GetCache<MaterialKeyDto, VMatStructEntry>(nameof(VMatStructEntry));
+
 			_prdbContextProvider = prdbContextProvider;
 			_hmiContextProvider = hmiContextProvider;
+			_matStructEntryService = matStructEntryService;
 		}
 
 		// Test CRUD PRDB database
@@ -82,12 +91,15 @@ namespace WebHMI.Services
 			context.Stddirdccoilers.Remove(record);
 		}
 
-		// Test PRDB View
+		// Test PRDB view and caching
 
-		public async Task<VMatStructEntry> GetMaterial(int meid, string matType)
+		public async Task<VMatStructEntry> GetMaterial(MaterialKeyDto key)
 		{
-			var context = await _prdbContextProvider.GetDbContextAsync();
-			return await context.GetMaterialEntryStruct(meid, matType);
+			return await _matEntryCache.GetAsync(key, async () =>
+			{
+				var context = await _prdbContextProvider.GetDbContextAsync();
+				return await _matStructEntryService.GetMaterialEntryStruct(key);
+			});
 		}
 
 		public async Task<List<MeCodeDto>> GetMeCodes()
@@ -110,6 +122,11 @@ namespace WebHMI.Services
 		}
 
 		// Others
+
+		public async Task FlushAllCaches()
+		{
+			await _matEntryCache.ClearAsync();
+		}
 
 		public TestDto GetTestDto(TestDto ignoredInput)
 		{

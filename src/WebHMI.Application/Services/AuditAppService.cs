@@ -11,9 +11,8 @@ using Abp.Auditing;
 using Abp.Domain.Entities;
 using WebHMI.Helpers;
 using WebHMI.Dtos.Audit;
-using WebHMI.API.Mapping.Extensions;
-using WebHMI.WebHMI;
-using WebHMI.WebHMI.Dbo;
+using WebHMI.Filters;
+using WebHMI.Mapping.Extensions;
 
 namespace WebHMI.Services
 {

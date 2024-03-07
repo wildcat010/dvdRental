@@ -22,18 +22,7 @@ namespace WebHMI.Helpers
 	/// </summary>
 	public abstract class ApplicationServiceBase : ApplicationService
 	{
-		public IAsyncQueryableExecuter AsyncQueryableExecuter { get; set; }
-
-		public TenantManager TenantManager { get; set; }
-
 		public UserManager UserManager { get; set; }
-
-
-		protected ApplicationServiceBase()
-		{
-			LocalizationSourceName = WebHMIConsts.LocalizationSourceName;
-			AsyncQueryableExecuter = NullAsyncQueryableExecuter.Instance;
-		}
 
 		protected virtual async Task<User> GetCurrentUserAsync()
 		{
@@ -44,11 +33,6 @@ namespace WebHMI.Helpers
 			}
 
 			return user;
-		}
-
-		protected virtual Task<Tenant> GetCurrentTenantAsync()
-		{
-			return TenantManager.GetByIdAsync(AbpSession.GetTenantId());
 		}
 
 		protected static async Task<PagedResultDto<TEntity>> ApplyFilterWithoutMapping<TEntity>(IQueryable<TEntity> query, FilteredRequestDto input)
