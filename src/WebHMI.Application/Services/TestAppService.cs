@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebHMI.Dtos;
+using WebHMI.Filters;
 using WebHMI.Helpers;
 using WebHMI.Mapping.Extensions;
 using WebHMI.Material;

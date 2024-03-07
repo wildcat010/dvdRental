@@ -7,18 +7,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WebHMI.Material;
 
 namespace WebHMI.PRDB
 {
 	public static class PrdbContextExtensions
 	{
-		public static async Task<VMatStructEntry> GetMaterialEntryStruct(this PrdbContext prdbContext, MaterialKey key) =>
-			key.MatType switch
+		public static async Task<VMatStructEntry> GetMaterialEntryStruct(this PrdbContext prdbContext, long meId, string matType) =>
+			matType switch
 			{
-				"OR" => await prdbContext.VMatStructEntries.FirstOrDefaultAsync(x => x.Enormeid == key.MeId),
-				"LO" => await prdbContext.VMatStructEntries.FirstOrDefaultAsync(x => x.Enlomeid == key.MeId),
-				"PH" => await prdbContext.VMatStructEntries.FirstOrDefaultAsync(x => x.Enphmeid == key.MeId),
+				"OR" => await prdbContext.VMatStructEntries.FirstOrDefaultAsync(x => x.Enormeid == meId),
+				"LO" => await prdbContext.VMatStructEntries.FirstOrDefaultAsync(x => x.Enlomeid == meId),
+				"PH" => await prdbContext.VMatStructEntries.FirstOrDefaultAsync(x => x.Enphmeid == meId),
 				_ => null
 			};
 	}

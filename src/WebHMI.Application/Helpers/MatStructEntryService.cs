@@ -23,7 +23,7 @@ namespace WebHMI.Helpers
 		public async Task<VMatStructEntry> GetMaterialEntryStruct(MaterialKeyDto key)
 		{
 			var context = await _prdbContextProvider.GetDbContextAsync();
-			var result = await context.GetMaterialEntryStruct(new MaterialKey(key.MeId, key.MatType));
+			var result = await context.GetMaterialEntryStruct(key.MeId, key.MatType);
 			return result ?? throw new EntityNotFoundException($"Material with meid '{key.MeId}' and matType '{key.MatType}' not found");
 		}
 	}
