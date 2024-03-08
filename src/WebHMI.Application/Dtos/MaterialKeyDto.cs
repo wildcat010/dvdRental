@@ -11,7 +11,6 @@ namespace WebHMI.Material
 	{
 		public long MeId { get; set; }
 
-		// TODO: validation only OR, LO, PH allowed
 		[RegularExpression("OR|LO|PH", ErrorMessage = $"{nameof(MatType)} must be either 'OR', 'LO' or 'PH' only")]
 		public string MatType { get; set; }
 	}

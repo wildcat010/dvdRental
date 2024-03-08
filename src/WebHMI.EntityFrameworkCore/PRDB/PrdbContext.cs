@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using WebHMI.PRDB.Dbo;
 
 namespace WebHMI.PRDB;
 
@@ -12,6 +13,10 @@ public partial class PrdbContext : AbpDbContext
     {
     }
 
+    public virtual DbSet<LogFormat> LogFormats { get; set; }
+
+    public virtual DbSet<LogIndex> LogIndices { get; set; }
+
     public virtual DbSet<Stddirdccoiler> Stddirdccoilers { get; set; }
 
     public virtual DbSet<VMatStructEntry> VMatStructEntries { get; set; }
@@ -21,6 +26,92 @@ public partial class PrdbContext : AbpDbContext
         modelBuilder
             .HasDefaultSchema("PRDB")
             .UseCollation("USING_NLS_COMP");
+
+        modelBuilder.Entity<LogFormat>(entity =>
+        {
+            entity.HasKey(e => new { e.Id, e.Lang });
+
+            entity.ToTable("LOG_FORMAT");
+
+            entity.Property(e => e.Id)
+                .HasPrecision(5)
+                .HasDefaultValueSql("0 ")
+                .HasColumnName("ID");
+            entity.Property(e => e.Lang)
+                .HasMaxLength(16)
+                .IsUnicode(false)
+                .HasDefaultValueSql("'-' ")
+                .HasColumnName("LANG");
+            entity.Property(e => e.Format)
+                .HasMaxLength(254)
+                .IsUnicode(false)
+                .HasDefaultValueSql("null\n")
+                .HasColumnName("FORMAT");
+            entity.Property(e => e.Mop)
+                .HasMaxLength(120)
+                .IsUnicode(false)
+                .ValueGeneratedOnAdd()
+                .HasDefaultValueSql("null\n")
+                .HasColumnName("MOP");
+            entity.Property(e => e.Toc)
+                .ValueGeneratedOnAdd()
+                .HasDefaultValueSql("null\n")
+                .HasColumnType("DATE")
+                .HasColumnName("TOC");
+            entity.Property(e => e.Tom)
+                .ValueGeneratedOnAdd()
+                .HasDefaultValueSql("null\n")
+                .HasColumnType("DATE")
+                .HasColumnName("TOM");
+
+            entity.HasOne(d => d.IdNavigation).WithMany(p => p.LogFormats)
+                .HasForeignKey(d => d.Id)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_LOG_FORMAT_ID");
+        });
+
+        modelBuilder.Entity<LogIndex>(entity =>
+        {
+            entity.ToTable("LOG_INDEX");
+
+            entity.Property(e => e.Id)
+                .HasPrecision(5)
+                .HasDefaultValueSql("0 ")
+                .HasColumnName("ID");
+            entity.Property(e => e.Dbkeep)
+                .HasPrecision(5)
+                .HasDefaultValueSql("null\n")
+                .HasColumnName("DBKEEP");
+            entity.Property(e => e.Descr)
+                .HasMaxLength(64)
+                .IsUnicode(false)
+                .HasDefaultValueSql("null\n")
+                .HasColumnName("DESCR");
+            entity.Property(e => e.Mop)
+                .HasMaxLength(120)
+                .IsUnicode(false)
+                .ValueGeneratedOnAdd()
+                .HasDefaultValueSql("null\n")
+                .HasColumnName("MOP");
+            entity.Property(e => e.Needconfirm)
+                .HasPrecision(1)
+                .HasDefaultValueSql("0\n")
+                .HasColumnName("NEEDCONFIRM");
+            entity.Property(e => e.Severity)
+                .HasPrecision(5)
+                .HasDefaultValueSql("null\n")
+                .HasColumnName("SEVERITY");
+            entity.Property(e => e.Toc)
+                .ValueGeneratedOnAdd()
+                .HasDefaultValueSql("null\n")
+                .HasColumnType("DATE")
+                .HasColumnName("TOC");
+            entity.Property(e => e.Tom)
+                .ValueGeneratedOnAdd()
+                .HasDefaultValueSql("null\n")
+                .HasColumnType("DATE")
+                .HasColumnName("TOM");
+        });
 
         modelBuilder.Entity<Stddirdccoiler>(entity =>
         {

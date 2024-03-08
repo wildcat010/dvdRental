@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WebHMI.Material;
 using WebHMI.PRDB;
+using WebHMI.PRDB.Dbo;
 
 namespace WebHMI.Helpers
 {

@@ -37,10 +37,9 @@ namespace WebHMI
 
             Configuration.Settings.Providers.Add<AppSettingProvider>();
             
-            // TODO: study this, English?
-            Configuration.Localization.Languages.Add(new LanguageInfo("de", "Deutsch"));
+			Configuration.Localization.Languages.Add(new LanguageInfo("en", "English", isDefault: true));
 
-            Configuration.Settings.SettingEncryptionConfiguration.DefaultPassPhrase = WebHMIConsts.DefaultPassPhrase;
+			Configuration.Settings.SettingEncryptionConfiguration.DefaultPassPhrase = WebHMIConsts.DefaultPassPhrase;
             SimpleStringCipher.DefaultPassPhrase = WebHMIConsts.DefaultPassPhrase;
         }
 

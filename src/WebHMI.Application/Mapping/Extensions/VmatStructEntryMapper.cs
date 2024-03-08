@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WebHMI.Dtos;
 using WebHMI.PRDB;
+using WebHMI.PRDB.Dbo;
 
 namespace WebHMI.Mapping.Extensions
 {

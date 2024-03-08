@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace WebHMI.PRDB;
+namespace WebHMI.PRDB.Dbo;
 
 public partial class Stddirdccoiler
 {

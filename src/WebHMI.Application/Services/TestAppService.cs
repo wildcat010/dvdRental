@@ -21,6 +21,7 @@ using WebHMI.Mapping.Extensions;
 using WebHMI.Material;
 using WebHMI.Notification;
 using WebHMI.PRDB;
+using WebHMI.PRDB.Dbo;
 using WebHMI.WebHMI;
 using WebHMI.WebHMI.Dbo;
 
@@ -84,6 +85,12 @@ namespace WebHMI.Services
 		{
 			if (string.IsNullOrWhiteSpace(newDescription))
 				throw new UserFriendlyException("Description can't be empty");
+
+			if (newDescription == "1")
+				throw new EntityNotFoundException("not found");
+
+			if (newDescription == "2")
+				throw new Exception("server exception");
 
 			var context = await _prdbContextProvider.GetDbContextAsync();
 
