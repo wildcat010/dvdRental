@@ -13,8 +13,10 @@ namespace WebHMI.L2Adapter.Senders
 		private readonly ILogger _logger;
 		private readonly IHmiPaStub _paStub;
 
-		public L2Sender(ILogger logger, IHmiPaStub paStub)
+		public L2Sender(ILogger logger)
 		{
+			_logger = logger;
+
 			// Initialize communication objects here (like stubs)
 
 			try
@@ -33,9 +35,6 @@ namespace WebHMI.L2Adapter.Senders
 			{
 				_logger.Error($"{nameof(IHmiPaStub)} can't be created", ex);
 			}
-
-			_logger = logger;
-			_paStub = paStub;
 		}
 
 		public void SendTestMessage(string msg)
