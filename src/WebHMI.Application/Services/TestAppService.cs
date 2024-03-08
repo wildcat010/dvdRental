@@ -1,7 +1,10 @@
-﻿using Abp.Application.Services.Dto;
+﻿using Abp.Application.Services;
+using Abp.Application.Services.Dto;
 using Abp.Auditing;
 using Abp.Domain.Entities;
 using Abp.EntityFrameworkCore;
+using Abp.Events.Bus;
+using Abp.Events.Bus.Handlers;
 using Abp.Runtime.Caching;
 using Abp.UI;
 using Microsoft.EntityFrameworkCore;
@@ -10,31 +13,37 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebHMI.Dtos;
+using WebHMI.EventBus;
 using WebHMI.Filters;
 using WebHMI.Helpers;
 using WebHMI.L2Adapter.Senders;
 using WebHMI.Mapping.Extensions;
 using WebHMI.Material;
+using WebHMI.Notification;
 using WebHMI.PRDB;
 using WebHMI.WebHMI;
 using WebHMI.WebHMI.Dbo;
 
 namespace WebHMI.Services
 {
-	public class TestAppService : ApplicationServiceBase
+	public class TestAppService : ApplicationServiceBase, IAsyncEventHandler<EventWrapper<string>>
 	{
 		private readonly IDbContextProvider<PrdbContext> _prdbContextProvider;
 		private readonly IDbContextProvider<WebHMIDbContext> _hmiContextProvider;
 		private readonly ITypedCache<MaterialKeyDto, VMatStructEntry> _matEntryCache;
 		private readonly MatStructEntryService _matStructEntryService;
 		private readonly IL2Sender _l2CommHandler;
+		private readonly IEventBus _eventBus;
+		private readonly ISignalRNotifier _signalRNotifier;
 
 		public TestAppService(
 			IDbContextProvider<PrdbContext> prdbContextProvider,
 			IDbContextProvider<WebHMIDbContext> hmiContextProvider,
 			ICacheManager cacheManager,
 			MatStructEntryService matStructEntryService,
-			IL2Sender l2CommHandler)
+			IL2Sender l2CommHandler,
+			IEventBus eventBus,
+			ISignalRNotifier signalRNotifier)
 		{
 			_matEntryCache = cacheManager.GetCache<MaterialKeyDto, VMatStructEntry>(nameof(VMatStructEntry));
 
@@ -42,6 +51,8 @@ namespace WebHMI.Services
 			_hmiContextProvider = hmiContextProvider;
 			_matStructEntryService = matStructEntryService;
 			_l2CommHandler = l2CommHandler;
+			_eventBus = eventBus;
+			_signalRNotifier = signalRNotifier;
 		}
 
 		// Test CRUD PRDB database
@@ -127,6 +138,20 @@ namespace WebHMI.Services
 		}
 
 		// Others
+
+		public async Task SendHmiRefresh(string msg)
+		{
+			await _eventBus.TriggerAsync(new EventWrapper<string>(msg));
+		}
+
+		[RemoteService(false)] // not visible endpoint
+		public async Task HandleEventAsync(EventWrapper<string> eventData)
+		{
+			if (string.IsNullOrEmpty(eventData?.Data))
+				return;
+
+			await _signalRNotifier.SendHmiRefresh(eventData.Data, eventData.EventTime);
+		}
 
 		public void CallL2(string msg)
 		{
