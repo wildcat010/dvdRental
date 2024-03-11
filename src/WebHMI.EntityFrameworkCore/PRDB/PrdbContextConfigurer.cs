@@ -12,12 +12,12 @@ namespace WebHMI.PRDB
 	{
 		public static void Configure(DbContextOptionsBuilder<PrdbContext> builder, string connectionString)
 		{
-			builder.UseOracle(connectionString);
+			builder.UseSqlServer(connectionString);
 		}
 
 		public static void Configure(DbContextOptionsBuilder<PrdbContext> builder, DbConnection connection)
 		{
-			builder.UseOracle(connection);
+			builder.UseSqlServer(connection);
 		}
 	}
 }

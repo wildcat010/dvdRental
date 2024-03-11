@@ -6,7 +6,6 @@ using Castle.Core.Logging;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.DirectoryServices.ActiveDirectory;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -77,7 +76,6 @@ namespace WebHMI.Alarm
 			return new FlattenedMessage
 			{
 				Code = logIndex.Descr,
-				NeedConfirmation = logIndex.Needconfirm ?? false,
 				Level = (SeverityLevel)logIndex.Level,
 
 				Language = format.Lang,

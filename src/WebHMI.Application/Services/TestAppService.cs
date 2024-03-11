@@ -59,29 +59,29 @@ namespace WebHMI.Services
 		// Test CRUD PRDB database
 
 		[Audited]
-		public async Task<Stddirdccoiler> Create(int planNo)
+		public async Task<StdDirFmPfcParaP> Create(int planNo)
 		{
 			var context = await _prdbContextProvider.GetDbContextAsync();
 
-			var record = new Stddirdccoiler
+			var record = new StdDirFmPfcParaP
 			{
-				Planno = planNo,
+				PlanNo = planNo,
 				Description = "hmi core test"
 			};
 
-			await context.Stddirdccoilers.AddAsync(record);
+			await context.StdDirFmPfcParaPs.AddAsync(record);
 			await CurrentUnitOfWork.SaveChangesAsync();
 			return record;
 		}
 
-		public async Task<PagedResultDto<Stddirdccoiler>> GetAll(FilteredRequestDto filter)
+		public async Task<PagedResultDto<StdDirFmPfcParaP>> GetAll(FilteredRequestDto filter)
 		{ 
 			var context = await _prdbContextProvider.GetDbContextAsync();
-			return await ApplyFilterWithoutMapping(context.Stddirdccoilers.AsQueryable(), filter);
+			return await ApplyFilterWithoutMapping(context.StdDirFmPfcParaPs.AsQueryable(), filter);
 		}
 
 		[Audited]
-		public async Task<Stddirdccoiler> Update(int planNo, string newDescription)
+		public async Task<StdDirFmPfcParaP> Update(int planNo, string newDescription)
 		{
 			if (string.IsNullOrWhiteSpace(newDescription))
 				throw new UserFriendlyException("Description can't be empty");
@@ -94,7 +94,7 @@ namespace WebHMI.Services
 
 			var context = await _prdbContextProvider.GetDbContextAsync();
 
-			var record = await context.Stddirdccoilers.FirstOrDefaultAsync(x => x.Planno == planNo);
+			var record = await context.StdDirFmPfcParaPs.FirstOrDefaultAsync(x => x.PlanNo == planNo);
 			record.Description = newDescription;
 
 			await CurrentUnitOfWork.SaveChangesAsync();
@@ -106,12 +106,12 @@ namespace WebHMI.Services
 		{
 			var context = await _prdbContextProvider.GetDbContextAsync();
 
-			var record = await context.Stddirdccoilers.FirstOrDefaultAsync(x => x.Planno == planNo);
+			var record = await context.StdDirFmPfcParaPs.FirstOrDefaultAsync(x => x.PlanNo == planNo);
 
 			if (record is null)
 				throw new EntityNotFoundException("Plan not found");
 
-			context.Stddirdccoilers.Remove(record);
+			context.StdDirFmPfcParaPs.Remove(record);
 		}
 
 		// Test PRDB view and caching

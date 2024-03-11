@@ -15,24 +15,24 @@ namespace WebHMI.WebHMI.Migrations
                 name: "AbpAuditLogs",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "NUMBER(19)", nullable: false)
-                        .Annotation("Oracle:Identity", "START WITH 1 INCREMENT BY 1"),
-                    TenantId = table.Column<int>(type: "NUMBER(10)", nullable: true),
-                    UserId = table.Column<long>(type: "NUMBER(19)", nullable: true),
-                    ServiceName = table.Column<string>(type: "NVARCHAR2(256)", maxLength: 256, nullable: true),
-                    MethodName = table.Column<string>(type: "NVARCHAR2(256)", maxLength: 256, nullable: true),
-                    Parameters = table.Column<string>(type: "CLOB", maxLength: 1024, nullable: true),
-                    ReturnValue = table.Column<string>(type: "CLOB", nullable: true),
-                    ExecutionTime = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: false),
-                    ExecutionDuration = table.Column<int>(type: "NUMBER(10)", nullable: false),
-                    ClientIpAddress = table.Column<string>(type: "NVARCHAR2(64)", maxLength: 64, nullable: true),
-                    ClientName = table.Column<string>(type: "NVARCHAR2(128)", maxLength: 128, nullable: true),
-                    BrowserInfo = table.Column<string>(type: "NVARCHAR2(512)", maxLength: 512, nullable: true),
-                    ExceptionMessage = table.Column<string>(type: "NVARCHAR2(1024)", maxLength: 1024, nullable: true),
-                    Exception = table.Column<string>(type: "NVARCHAR2(2000)", maxLength: 2000, nullable: true),
-                    ImpersonatorUserId = table.Column<long>(type: "NUMBER(19)", nullable: true),
-                    ImpersonatorTenantId = table.Column<int>(type: "NUMBER(10)", nullable: true),
-                    CustomData = table.Column<string>(type: "NVARCHAR2(2000)", maxLength: 2000, nullable: true)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TenantId = table.Column<int>(type: "int", nullable: true),
+                    UserId = table.Column<long>(type: "bigint", nullable: true),
+                    ServiceName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    MethodName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    Parameters = table.Column<string>(type: "nvarchar(max)", maxLength: 2147483647, nullable: true),
+                    ReturnValue = table.Column<string>(type: "nvarchar(max)", maxLength: 2147483647, nullable: true),
+                    ExecutionTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ExecutionDuration = table.Column<int>(type: "int", nullable: false),
+                    ClientIpAddress = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: true),
+                    ClientName = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: true),
+                    BrowserInfo = table.Column<string>(type: "nvarchar(512)", maxLength: 512, nullable: true),
+                    ExceptionMessage = table.Column<string>(type: "nvarchar(1024)", maxLength: 1024, nullable: true),
+                    Exception = table.Column<string>(type: "nvarchar(2000)", maxLength: 2000, nullable: true),
+                    ImpersonatorUserId = table.Column<long>(type: "bigint", nullable: true),
+                    ImpersonatorTenantId = table.Column<int>(type: "int", nullable: true),
+                    CustomData = table.Column<string>(type: "nvarchar(2000)", maxLength: 2000, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -43,17 +43,17 @@ namespace WebHMI.WebHMI.Migrations
                 name: "AbpBackgroundJobs",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "NUMBER(19)", nullable: false)
-                        .Annotation("Oracle:Identity", "START WITH 1 INCREMENT BY 1"),
-                    JobType = table.Column<string>(type: "NVARCHAR2(512)", maxLength: 512, nullable: false),
-                    JobArgs = table.Column<string>(type: "NCLOB", maxLength: 1048576, nullable: false),
-                    TryCount = table.Column<short>(type: "NUMBER(5)", nullable: false),
-                    NextTryTime = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: false),
-                    LastTryTime = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: true),
-                    IsAbandoned = table.Column<bool>(type: "NUMBER(1)", nullable: false),
-                    Priority = table.Column<byte>(type: "NUMBER(3)", nullable: false),
-                    CreationTime = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: false),
-                    CreatorUserId = table.Column<long>(type: "NUMBER(19)", nullable: true)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    JobType = table.Column<string>(type: "nvarchar(512)", maxLength: 512, nullable: false),
+                    JobArgs = table.Column<string>(type: "nvarchar(max)", maxLength: 1048576, nullable: false),
+                    TryCount = table.Column<short>(type: "smallint", nullable: false),
+                    NextTryTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastTryTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsAbandoned = table.Column<bool>(type: "bit", nullable: false),
+                    Priority = table.Column<byte>(type: "tinyint", nullable: false),
+                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatorUserId = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -64,13 +64,13 @@ namespace WebHMI.WebHMI.Migrations
                 name: "AbpDynamicProperties",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "NUMBER(10)", nullable: false)
-                        .Annotation("Oracle:Identity", "START WITH 1 INCREMENT BY 1"),
-                    PropertyName = table.Column<string>(type: "NVARCHAR2(256)", maxLength: 256, nullable: true),
-                    DisplayName = table.Column<string>(type: "NVARCHAR2(2000)", nullable: true),
-                    InputType = table.Column<string>(type: "NVARCHAR2(2000)", nullable: true),
-                    Permission = table.Column<string>(type: "NVARCHAR2(2000)", nullable: true),
-                    TenantId = table.Column<int>(type: "NUMBER(10)", nullable: true)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PropertyName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    DisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    InputType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Permission = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TenantId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -81,17 +81,17 @@ namespace WebHMI.WebHMI.Migrations
                 name: "AbpEditions",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "NUMBER(10)", nullable: false)
-                        .Annotation("Oracle:Identity", "START WITH 1 INCREMENT BY 1"),
-                    Name = table.Column<string>(type: "NVARCHAR2(32)", maxLength: 32, nullable: false),
-                    DisplayName = table.Column<string>(type: "NVARCHAR2(64)", maxLength: 64, nullable: false),
-                    CreationTime = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: false),
-                    CreatorUserId = table.Column<long>(type: "NUMBER(19)", nullable: true),
-                    LastModificationTime = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: true),
-                    LastModifierUserId = table.Column<long>(type: "NUMBER(19)", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "NUMBER(1)", nullable: false),
-                    DeleterUserId = table.Column<long>(type: "NUMBER(19)", nullable: true),
-                    DeletionTime = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: true)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(32)", maxLength: 32, nullable: false),
+                    DisplayName = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
+                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatorUserId = table.Column<long>(type: "bigint", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastModifierUserId = table.Column<long>(type: "bigint", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    DeleterUserId = table.Column<long>(type: "bigint", nullable: true),
+                    DeletionTime = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -102,18 +102,18 @@ namespace WebHMI.WebHMI.Migrations
                 name: "AbpEntityChangeSets",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "NUMBER(19)", nullable: false)
-                        .Annotation("Oracle:Identity", "START WITH 1 INCREMENT BY 1"),
-                    BrowserInfo = table.Column<string>(type: "NVARCHAR2(512)", maxLength: 512, nullable: true),
-                    ClientIpAddress = table.Column<string>(type: "NVARCHAR2(64)", maxLength: 64, nullable: true),
-                    ClientName = table.Column<string>(type: "NVARCHAR2(128)", maxLength: 128, nullable: true),
-                    CreationTime = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: false),
-                    ExtensionData = table.Column<string>(type: "NVARCHAR2(2000)", nullable: true),
-                    ImpersonatorTenantId = table.Column<int>(type: "NUMBER(10)", nullable: true),
-                    ImpersonatorUserId = table.Column<long>(type: "NUMBER(19)", nullable: true),
-                    Reason = table.Column<string>(type: "NVARCHAR2(256)", maxLength: 256, nullable: true),
-                    TenantId = table.Column<int>(type: "NUMBER(10)", nullable: true),
-                    UserId = table.Column<long>(type: "NUMBER(19)", nullable: true)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    BrowserInfo = table.Column<string>(type: "nvarchar(512)", maxLength: 512, nullable: true),
+                    ClientIpAddress = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: true),
+                    ClientName = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: true),
+                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ExtensionData = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ImpersonatorTenantId = table.Column<int>(type: "int", nullable: true),
+                    ImpersonatorUserId = table.Column<long>(type: "bigint", nullable: true),
+                    Reason = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    TenantId = table.Column<int>(type: "int", nullable: true),
+                    UserId = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -124,20 +124,20 @@ namespace WebHMI.WebHMI.Migrations
                 name: "AbpLanguages",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "NUMBER(10)", nullable: false)
-                        .Annotation("Oracle:Identity", "START WITH 1 INCREMENT BY 1"),
-                    TenantId = table.Column<int>(type: "NUMBER(10)", nullable: true),
-                    Name = table.Column<string>(type: "NVARCHAR2(128)", maxLength: 128, nullable: false),
-                    DisplayName = table.Column<string>(type: "NVARCHAR2(64)", maxLength: 64, nullable: false),
-                    Icon = table.Column<string>(type: "NVARCHAR2(128)", maxLength: 128, nullable: true),
-                    IsDisabled = table.Column<bool>(type: "NUMBER(1)", nullable: false),
-                    CreationTime = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: false),
-                    CreatorUserId = table.Column<long>(type: "NUMBER(19)", nullable: true),
-                    LastModificationTime = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: true),
-                    LastModifierUserId = table.Column<long>(type: "NUMBER(19)", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "NUMBER(1)", nullable: false),
-                    DeleterUserId = table.Column<long>(type: "NUMBER(19)", nullable: true),
-                    DeletionTime = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: true)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TenantId = table.Column<int>(type: "int", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    DisplayName = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
+                    Icon = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: true),
+                    IsDisabled = table.Column<bool>(type: "bit", nullable: false),
+                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatorUserId = table.Column<long>(type: "bigint", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastModifierUserId = table.Column<long>(type: "bigint", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    DeleterUserId = table.Column<long>(type: "bigint", nullable: true),
+                    DeletionTime = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -148,17 +148,17 @@ namespace WebHMI.WebHMI.Migrations
                 name: "AbpLanguageTexts",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "NUMBER(19)", nullable: false)
-                        .Annotation("Oracle:Identity", "START WITH 1 INCREMENT BY 1"),
-                    TenantId = table.Column<int>(type: "NUMBER(10)", nullable: true),
-                    LanguageName = table.Column<string>(type: "NVARCHAR2(128)", maxLength: 128, nullable: false),
-                    Source = table.Column<string>(type: "NVARCHAR2(128)", maxLength: 128, nullable: false),
-                    Key = table.Column<string>(type: "NVARCHAR2(256)", maxLength: 256, nullable: false),
-                    Value = table.Column<string>(type: "NCLOB", maxLength: 67108864, nullable: false),
-                    CreationTime = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: false),
-                    CreatorUserId = table.Column<long>(type: "NUMBER(19)", nullable: true),
-                    LastModificationTime = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: true),
-                    LastModifierUserId = table.Column<long>(type: "NUMBER(19)", nullable: true)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TenantId = table.Column<int>(type: "int", nullable: true),
+                    LanguageName = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    Source = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    Key = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
+                    Value = table.Column<string>(type: "nvarchar(max)", maxLength: 67108864, nullable: false),
+                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatorUserId = table.Column<long>(type: "bigint", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastModifierUserId = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -169,20 +169,20 @@ namespace WebHMI.WebHMI.Migrations
                 name: "AbpNotifications",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "RAW(16)", nullable: false),
-                    NotificationName = table.Column<string>(type: "NVARCHAR2(96)", maxLength: 96, nullable: false),
-                    Data = table.Column<string>(type: "NCLOB", maxLength: 1048576, nullable: true),
-                    DataTypeName = table.Column<string>(type: "NVARCHAR2(512)", maxLength: 512, nullable: true),
-                    EntityTypeName = table.Column<string>(type: "NVARCHAR2(250)", maxLength: 250, nullable: true),
-                    EntityTypeAssemblyQualifiedName = table.Column<string>(type: "NVARCHAR2(512)", maxLength: 512, nullable: true),
-                    EntityId = table.Column<string>(type: "NVARCHAR2(96)", maxLength: 96, nullable: true),
-                    Severity = table.Column<byte>(type: "NUMBER(3)", nullable: false),
-                    UserIds = table.Column<string>(type: "NCLOB", maxLength: 131072, nullable: true),
-                    ExcludedUserIds = table.Column<string>(type: "NCLOB", maxLength: 131072, nullable: true),
-                    TenantIds = table.Column<string>(type: "NCLOB", maxLength: 131072, nullable: true),
-                    TargetNotifiers = table.Column<string>(type: "NVARCHAR2(1024)", maxLength: 1024, nullable: true),
-                    CreationTime = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: false),
-                    CreatorUserId = table.Column<long>(type: "NUMBER(19)", nullable: true)
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    NotificationName = table.Column<string>(type: "nvarchar(96)", maxLength: 96, nullable: false),
+                    Data = table.Column<string>(type: "nvarchar(max)", maxLength: 1048576, nullable: true),
+                    DataTypeName = table.Column<string>(type: "nvarchar(512)", maxLength: 512, nullable: true),
+                    EntityTypeName = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
+                    EntityTypeAssemblyQualifiedName = table.Column<string>(type: "nvarchar(512)", maxLength: 512, nullable: true),
+                    EntityId = table.Column<string>(type: "nvarchar(96)", maxLength: 96, nullable: true),
+                    Severity = table.Column<byte>(type: "tinyint", nullable: false),
+                    UserIds = table.Column<string>(type: "nvarchar(max)", maxLength: 131072, nullable: true),
+                    ExcludedUserIds = table.Column<string>(type: "nvarchar(max)", maxLength: 131072, nullable: true),
+                    TenantIds = table.Column<string>(type: "nvarchar(max)", maxLength: 131072, nullable: true),
+                    TargetNotifiers = table.Column<string>(type: "nvarchar(1024)", maxLength: 1024, nullable: true),
+                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatorUserId = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -193,16 +193,16 @@ namespace WebHMI.WebHMI.Migrations
                 name: "AbpNotificationSubscriptions",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "RAW(16)", nullable: false),
-                    TenantId = table.Column<int>(type: "NUMBER(10)", nullable: true),
-                    UserId = table.Column<long>(type: "NUMBER(19)", nullable: false),
-                    NotificationName = table.Column<string>(type: "NVARCHAR2(96)", maxLength: 96, nullable: true),
-                    EntityTypeName = table.Column<string>(type: "NVARCHAR2(250)", maxLength: 250, nullable: true),
-                    EntityTypeAssemblyQualifiedName = table.Column<string>(type: "NVARCHAR2(512)", maxLength: 512, nullable: true),
-                    EntityId = table.Column<string>(type: "NVARCHAR2(96)", maxLength: 96, nullable: true),
-                    TargetNotifiers = table.Column<string>(type: "NVARCHAR2(1024)", maxLength: 1024, nullable: true),
-                    CreationTime = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: false),
-                    CreatorUserId = table.Column<long>(type: "NUMBER(19)", nullable: true)
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    TenantId = table.Column<int>(type: "int", nullable: true),
+                    UserId = table.Column<long>(type: "bigint", nullable: false),
+                    NotificationName = table.Column<string>(type: "nvarchar(96)", maxLength: 96, nullable: true),
+                    EntityTypeName = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
+                    EntityTypeAssemblyQualifiedName = table.Column<string>(type: "nvarchar(512)", maxLength: 512, nullable: true),
+                    EntityId = table.Column<string>(type: "nvarchar(96)", maxLength: 96, nullable: true),
+                    TargetNotifiers = table.Column<string>(type: "nvarchar(1024)", maxLength: 1024, nullable: true),
+                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatorUserId = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -213,14 +213,14 @@ namespace WebHMI.WebHMI.Migrations
                 name: "AbpOrganizationUnitRoles",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "NUMBER(19)", nullable: false)
-                        .Annotation("Oracle:Identity", "START WITH 1 INCREMENT BY 1"),
-                    TenantId = table.Column<int>(type: "NUMBER(10)", nullable: true),
-                    RoleId = table.Column<int>(type: "NUMBER(10)", nullable: false),
-                    OrganizationUnitId = table.Column<long>(type: "NUMBER(19)", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "NUMBER(1)", nullable: false),
-                    CreationTime = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: false),
-                    CreatorUserId = table.Column<long>(type: "NUMBER(19)", nullable: true)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TenantId = table.Column<int>(type: "int", nullable: true),
+                    RoleId = table.Column<int>(type: "int", nullable: false),
+                    OrganizationUnitId = table.Column<long>(type: "bigint", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatorUserId = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -231,19 +231,19 @@ namespace WebHMI.WebHMI.Migrations
                 name: "AbpOrganizationUnits",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "NUMBER(19)", nullable: false)
-                        .Annotation("Oracle:Identity", "START WITH 1 INCREMENT BY 1"),
-                    TenantId = table.Column<int>(type: "NUMBER(10)", nullable: true),
-                    ParentId = table.Column<long>(type: "NUMBER(19)", nullable: true),
-                    Code = table.Column<string>(type: "NVARCHAR2(95)", maxLength: 95, nullable: false),
-                    DisplayName = table.Column<string>(type: "NVARCHAR2(128)", maxLength: 128, nullable: false),
-                    CreationTime = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: false),
-                    CreatorUserId = table.Column<long>(type: "NUMBER(19)", nullable: true),
-                    LastModificationTime = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: true),
-                    LastModifierUserId = table.Column<long>(type: "NUMBER(19)", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "NUMBER(1)", nullable: false),
-                    DeleterUserId = table.Column<long>(type: "NUMBER(19)", nullable: true),
-                    DeletionTime = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: true)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TenantId = table.Column<int>(type: "int", nullable: true),
+                    ParentId = table.Column<long>(type: "bigint", nullable: true),
+                    Code = table.Column<string>(type: "nvarchar(95)", maxLength: 95, nullable: false),
+                    DisplayName = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatorUserId = table.Column<long>(type: "bigint", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastModifierUserId = table.Column<long>(type: "bigint", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    DeleterUserId = table.Column<long>(type: "bigint", nullable: true),
+                    DeletionTime = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -259,17 +259,17 @@ namespace WebHMI.WebHMI.Migrations
                 name: "AbpTenantNotifications",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "RAW(16)", nullable: false),
-                    TenantId = table.Column<int>(type: "NUMBER(10)", nullable: true),
-                    NotificationName = table.Column<string>(type: "NVARCHAR2(96)", maxLength: 96, nullable: false),
-                    Data = table.Column<string>(type: "NCLOB", maxLength: 1048576, nullable: true),
-                    DataTypeName = table.Column<string>(type: "NVARCHAR2(512)", maxLength: 512, nullable: true),
-                    EntityTypeName = table.Column<string>(type: "NVARCHAR2(250)", maxLength: 250, nullable: true),
-                    EntityTypeAssemblyQualifiedName = table.Column<string>(type: "NVARCHAR2(512)", maxLength: 512, nullable: true),
-                    EntityId = table.Column<string>(type: "NVARCHAR2(96)", maxLength: 96, nullable: true),
-                    Severity = table.Column<byte>(type: "NUMBER(3)", nullable: false),
-                    CreationTime = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: false),
-                    CreatorUserId = table.Column<long>(type: "NUMBER(19)", nullable: true)
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    TenantId = table.Column<int>(type: "int", nullable: true),
+                    NotificationName = table.Column<string>(type: "nvarchar(96)", maxLength: 96, nullable: false),
+                    Data = table.Column<string>(type: "nvarchar(max)", maxLength: 1048576, nullable: true),
+                    DataTypeName = table.Column<string>(type: "nvarchar(512)", maxLength: 512, nullable: true),
+                    EntityTypeName = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
+                    EntityTypeAssemblyQualifiedName = table.Column<string>(type: "nvarchar(512)", maxLength: 512, nullable: true),
+                    EntityId = table.Column<string>(type: "nvarchar(96)", maxLength: 96, nullable: true),
+                    Severity = table.Column<byte>(type: "tinyint", nullable: false),
+                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatorUserId = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -280,20 +280,20 @@ namespace WebHMI.WebHMI.Migrations
                 name: "AbpUserAccounts",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "NUMBER(19)", nullable: false)
-                        .Annotation("Oracle:Identity", "START WITH 1 INCREMENT BY 1"),
-                    TenantId = table.Column<int>(type: "NUMBER(10)", nullable: true),
-                    UserId = table.Column<long>(type: "NUMBER(19)", nullable: false),
-                    UserLinkId = table.Column<long>(type: "NUMBER(19)", nullable: true),
-                    UserName = table.Column<string>(type: "NVARCHAR2(256)", maxLength: 256, nullable: true),
-                    EmailAddress = table.Column<string>(type: "NVARCHAR2(256)", maxLength: 256, nullable: true),
-                    CreationTime = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: false),
-                    CreatorUserId = table.Column<long>(type: "NUMBER(19)", nullable: true),
-                    LastModificationTime = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: true),
-                    LastModifierUserId = table.Column<long>(type: "NUMBER(19)", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "NUMBER(1)", nullable: false),
-                    DeleterUserId = table.Column<long>(type: "NUMBER(19)", nullable: true),
-                    DeletionTime = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: true)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TenantId = table.Column<int>(type: "int", nullable: true),
+                    UserId = table.Column<long>(type: "bigint", nullable: false),
+                    UserLinkId = table.Column<long>(type: "bigint", nullable: true),
+                    UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    EmailAddress = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatorUserId = table.Column<long>(type: "bigint", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastModifierUserId = table.Column<long>(type: "bigint", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    DeleterUserId = table.Column<long>(type: "bigint", nullable: true),
+                    DeletionTime = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -304,17 +304,17 @@ namespace WebHMI.WebHMI.Migrations
                 name: "AbpUserLoginAttempts",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "NUMBER(19)", nullable: false)
-                        .Annotation("Oracle:Identity", "START WITH 1 INCREMENT BY 1"),
-                    TenantId = table.Column<int>(type: "NUMBER(10)", nullable: true),
-                    TenancyName = table.Column<string>(type: "NVARCHAR2(64)", maxLength: 64, nullable: true),
-                    UserId = table.Column<long>(type: "NUMBER(19)", nullable: true),
-                    UserNameOrEmailAddress = table.Column<string>(type: "NVARCHAR2(256)", maxLength: 256, nullable: true),
-                    ClientIpAddress = table.Column<string>(type: "NVARCHAR2(64)", maxLength: 64, nullable: true),
-                    ClientName = table.Column<string>(type: "NVARCHAR2(128)", maxLength: 128, nullable: true),
-                    BrowserInfo = table.Column<string>(type: "NVARCHAR2(512)", maxLength: 512, nullable: true),
-                    Result = table.Column<byte>(type: "NUMBER(3)", nullable: false),
-                    CreationTime = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TenantId = table.Column<int>(type: "int", nullable: true),
+                    TenancyName = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: true),
+                    UserId = table.Column<long>(type: "bigint", nullable: true),
+                    UserNameOrEmailAddress = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    ClientIpAddress = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: true),
+                    ClientName = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: true),
+                    BrowserInfo = table.Column<string>(type: "nvarchar(512)", maxLength: 512, nullable: true),
+                    Result = table.Column<byte>(type: "tinyint", nullable: false),
+                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -325,13 +325,13 @@ namespace WebHMI.WebHMI.Migrations
                 name: "AbpUserNotifications",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "RAW(16)", nullable: false),
-                    TenantId = table.Column<int>(type: "NUMBER(10)", nullable: true),
-                    UserId = table.Column<long>(type: "NUMBER(19)", nullable: false),
-                    TenantNotificationId = table.Column<Guid>(type: "RAW(16)", nullable: false),
-                    State = table.Column<int>(type: "NUMBER(10)", nullable: false),
-                    CreationTime = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: false),
-                    TargetNotifiers = table.Column<string>(type: "NVARCHAR2(1024)", maxLength: 1024, nullable: true)
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    TenantId = table.Column<int>(type: "int", nullable: true),
+                    UserId = table.Column<long>(type: "bigint", nullable: false),
+                    TenantNotificationId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    State = table.Column<int>(type: "int", nullable: false),
+                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    TargetNotifiers = table.Column<string>(type: "nvarchar(1024)", maxLength: 1024, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -342,14 +342,14 @@ namespace WebHMI.WebHMI.Migrations
                 name: "AbpUserOrganizationUnits",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "NUMBER(19)", nullable: false)
-                        .Annotation("Oracle:Identity", "START WITH 1 INCREMENT BY 1"),
-                    TenantId = table.Column<int>(type: "NUMBER(10)", nullable: true),
-                    UserId = table.Column<long>(type: "NUMBER(19)", nullable: false),
-                    OrganizationUnitId = table.Column<long>(type: "NUMBER(19)", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "NUMBER(1)", nullable: false),
-                    CreationTime = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: false),
-                    CreatorUserId = table.Column<long>(type: "NUMBER(19)", nullable: true)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TenantId = table.Column<int>(type: "int", nullable: true),
+                    UserId = table.Column<long>(type: "bigint", nullable: false),
+                    OrganizationUnitId = table.Column<long>(type: "bigint", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatorUserId = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -360,36 +360,36 @@ namespace WebHMI.WebHMI.Migrations
                 name: "AbpUsers",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "NUMBER(19)", nullable: false)
-                        .Annotation("Oracle:Identity", "START WITH 1 INCREMENT BY 1"),
-                    CreationTime = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: false),
-                    CreatorUserId = table.Column<long>(type: "NUMBER(19)", nullable: true),
-                    LastModificationTime = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: true),
-                    LastModifierUserId = table.Column<long>(type: "NUMBER(19)", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "NUMBER(1)", nullable: false),
-                    DeleterUserId = table.Column<long>(type: "NUMBER(19)", nullable: true),
-                    DeletionTime = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: true),
-                    AuthenticationSource = table.Column<string>(type: "NVARCHAR2(64)", maxLength: 64, nullable: true),
-                    UserName = table.Column<string>(type: "NVARCHAR2(256)", maxLength: 256, nullable: false),
-                    TenantId = table.Column<int>(type: "NUMBER(10)", nullable: true),
-                    EmailAddress = table.Column<string>(type: "NVARCHAR2(256)", maxLength: 256, nullable: false),
-                    Name = table.Column<string>(type: "NVARCHAR2(64)", maxLength: 64, nullable: false),
-                    Surname = table.Column<string>(type: "NVARCHAR2(64)", maxLength: 64, nullable: false),
-                    Password = table.Column<string>(type: "NVARCHAR2(128)", maxLength: 128, nullable: false),
-                    EmailConfirmationCode = table.Column<string>(type: "NVARCHAR2(328)", maxLength: 328, nullable: true),
-                    PasswordResetCode = table.Column<string>(type: "NVARCHAR2(328)", maxLength: 328, nullable: true),
-                    LockoutEndDateUtc = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: true),
-                    AccessFailedCount = table.Column<int>(type: "NUMBER(10)", nullable: false),
-                    IsLockoutEnabled = table.Column<bool>(type: "NUMBER(1)", nullable: false),
-                    PhoneNumber = table.Column<string>(type: "NVARCHAR2(32)", maxLength: 32, nullable: true),
-                    IsPhoneNumberConfirmed = table.Column<bool>(type: "NUMBER(1)", nullable: false),
-                    SecurityStamp = table.Column<string>(type: "NVARCHAR2(128)", maxLength: 128, nullable: true),
-                    IsTwoFactorEnabled = table.Column<bool>(type: "NUMBER(1)", nullable: false),
-                    IsEmailConfirmed = table.Column<bool>(type: "NUMBER(1)", nullable: false),
-                    IsActive = table.Column<bool>(type: "NUMBER(1)", nullable: false),
-                    NormalizedUserName = table.Column<string>(type: "NVARCHAR2(256)", maxLength: 256, nullable: false),
-                    NormalizedEmailAddress = table.Column<string>(type: "NVARCHAR2(256)", maxLength: 256, nullable: false),
-                    ConcurrencyStamp = table.Column<string>(type: "NVARCHAR2(128)", maxLength: 128, nullable: true)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatorUserId = table.Column<long>(type: "bigint", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastModifierUserId = table.Column<long>(type: "bigint", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    DeleterUserId = table.Column<long>(type: "bigint", nullable: true),
+                    DeletionTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    AuthenticationSource = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: true),
+                    UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
+                    TenantId = table.Column<int>(type: "int", nullable: true),
+                    EmailAddress = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
+                    Surname = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    EmailConfirmationCode = table.Column<string>(type: "nvarchar(328)", maxLength: 328, nullable: true),
+                    PasswordResetCode = table.Column<string>(type: "nvarchar(328)", maxLength: 328, nullable: true),
+                    LockoutEndDateUtc = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    AccessFailedCount = table.Column<int>(type: "int", nullable: false),
+                    IsLockoutEnabled = table.Column<bool>(type: "bit", nullable: false),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(32)", maxLength: 32, nullable: true),
+                    IsPhoneNumberConfirmed = table.Column<bool>(type: "bit", nullable: false),
+                    SecurityStamp = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: true),
+                    IsTwoFactorEnabled = table.Column<bool>(type: "bit", nullable: false),
+                    IsEmailConfirmed = table.Column<bool>(type: "bit", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
+                    NormalizedEmailAddress = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
+                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -415,13 +415,13 @@ namespace WebHMI.WebHMI.Migrations
                 name: "AbpWebhookEvents",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "RAW(16)", nullable: false),
-                    WebhookName = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false),
-                    Data = table.Column<string>(type: "NVARCHAR2(2000)", nullable: true),
-                    CreationTime = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: false),
-                    TenantId = table.Column<int>(type: "NUMBER(10)", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "NUMBER(1)", nullable: false),
-                    DeletionTime = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: true)
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    WebhookName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Data = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    TenantId = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    DeletionTime = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -432,15 +432,15 @@ namespace WebHMI.WebHMI.Migrations
                 name: "AbpWebhookSubscriptions",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "RAW(16)", nullable: false),
-                    TenantId = table.Column<int>(type: "NUMBER(10)", nullable: true),
-                    WebhookUri = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false),
-                    Secret = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false),
-                    IsActive = table.Column<bool>(type: "NUMBER(1)", nullable: false),
-                    Webhooks = table.Column<string>(type: "NVARCHAR2(2000)", nullable: true),
-                    Headers = table.Column<string>(type: "NVARCHAR2(2000)", nullable: true),
-                    CreationTime = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: false),
-                    CreatorUserId = table.Column<long>(type: "NUMBER(19)", nullable: true)
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    TenantId = table.Column<int>(type: "int", nullable: true),
+                    WebhookUri = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Secret = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    Webhooks = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Headers = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatorUserId = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -451,11 +451,11 @@ namespace WebHMI.WebHMI.Migrations
                 name: "AbpDynamicEntityProperties",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "NUMBER(10)", nullable: false)
-                        .Annotation("Oracle:Identity", "START WITH 1 INCREMENT BY 1"),
-                    EntityFullName = table.Column<string>(type: "NVARCHAR2(256)", maxLength: 256, nullable: true),
-                    DynamicPropertyId = table.Column<int>(type: "NUMBER(10)", nullable: false),
-                    TenantId = table.Column<int>(type: "NUMBER(10)", nullable: true)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    EntityFullName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    DynamicPropertyId = table.Column<int>(type: "int", nullable: false),
+                    TenantId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -472,11 +472,11 @@ namespace WebHMI.WebHMI.Migrations
                 name: "AbpDynamicPropertyValues",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "NUMBER(19)", nullable: false)
-                        .Annotation("Oracle:Identity", "START WITH 1 INCREMENT BY 1"),
-                    Value = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false),
-                    TenantId = table.Column<int>(type: "NUMBER(10)", nullable: true),
-                    DynamicPropertyId = table.Column<int>(type: "NUMBER(10)", nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Value = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TenantId = table.Column<int>(type: "int", nullable: true),
+                    DynamicPropertyId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -493,15 +493,15 @@ namespace WebHMI.WebHMI.Migrations
                 name: "AbpFeatures",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "NUMBER(19)", nullable: false)
-                        .Annotation("Oracle:Identity", "START WITH 1 INCREMENT BY 1"),
-                    TenantId = table.Column<int>(type: "NUMBER(10)", nullable: true),
-                    Name = table.Column<string>(type: "NVARCHAR2(128)", maxLength: 128, nullable: false),
-                    Value = table.Column<string>(type: "NVARCHAR2(2000)", maxLength: 2000, nullable: false),
-                    Discriminator = table.Column<string>(type: "NVARCHAR2(21)", maxLength: 21, nullable: false),
-                    EditionId = table.Column<int>(type: "NUMBER(10)", nullable: true),
-                    CreationTime = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: false),
-                    CreatorUserId = table.Column<long>(type: "NUMBER(19)", nullable: true)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TenantId = table.Column<int>(type: "int", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    Value = table.Column<string>(type: "nvarchar(2000)", maxLength: 2000, nullable: false),
+                    Discriminator = table.Column<string>(type: "nvarchar(21)", maxLength: 21, nullable: false),
+                    EditionId = table.Column<int>(type: "int", nullable: true),
+                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatorUserId = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -518,14 +518,14 @@ namespace WebHMI.WebHMI.Migrations
                 name: "AbpEntityChanges",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "NUMBER(19)", nullable: false)
-                        .Annotation("Oracle:Identity", "START WITH 1 INCREMENT BY 1"),
-                    ChangeTime = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: false),
-                    ChangeType = table.Column<byte>(type: "NUMBER(3)", nullable: false),
-                    EntityChangeSetId = table.Column<long>(type: "NUMBER(19)", nullable: false),
-                    EntityId = table.Column<string>(type: "NVARCHAR2(48)", maxLength: 48, nullable: true),
-                    EntityTypeFullName = table.Column<string>(type: "NVARCHAR2(192)", maxLength: 192, nullable: true),
-                    TenantId = table.Column<int>(type: "NUMBER(10)", nullable: true)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ChangeTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ChangeType = table.Column<byte>(type: "tinyint", nullable: false),
+                    EntityChangeSetId = table.Column<long>(type: "bigint", nullable: false),
+                    EntityId = table.Column<string>(type: "nvarchar(48)", maxLength: 48, nullable: true),
+                    EntityTypeFullName = table.Column<string>(type: "nvarchar(192)", maxLength: 192, nullable: true),
+                    TenantId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -542,23 +542,23 @@ namespace WebHMI.WebHMI.Migrations
                 name: "AbpRoles",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "NUMBER(10)", nullable: false)
-                        .Annotation("Oracle:Identity", "START WITH 1 INCREMENT BY 1"),
-                    Description = table.Column<string>(type: "NCLOB", maxLength: 5000, nullable: true),
-                    CreationTime = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: false),
-                    CreatorUserId = table.Column<long>(type: "NUMBER(19)", nullable: true),
-                    LastModificationTime = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: true),
-                    LastModifierUserId = table.Column<long>(type: "NUMBER(19)", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "NUMBER(1)", nullable: false),
-                    DeleterUserId = table.Column<long>(type: "NUMBER(19)", nullable: true),
-                    DeletionTime = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: true),
-                    TenantId = table.Column<int>(type: "NUMBER(10)", nullable: true),
-                    Name = table.Column<string>(type: "NVARCHAR2(32)", maxLength: 32, nullable: false),
-                    DisplayName = table.Column<string>(type: "NVARCHAR2(64)", maxLength: 64, nullable: false),
-                    IsStatic = table.Column<bool>(type: "NUMBER(1)", nullable: false),
-                    IsDefault = table.Column<bool>(type: "NUMBER(1)", nullable: false),
-                    NormalizedName = table.Column<string>(type: "NVARCHAR2(32)", maxLength: 32, nullable: false),
-                    ConcurrencyStamp = table.Column<string>(type: "NVARCHAR2(128)", maxLength: 128, nullable: true)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Description = table.Column<string>(type: "nvarchar(max)", maxLength: 5000, nullable: true),
+                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatorUserId = table.Column<long>(type: "bigint", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastModifierUserId = table.Column<long>(type: "bigint", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    DeleterUserId = table.Column<long>(type: "bigint", nullable: true),
+                    DeletionTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    TenantId = table.Column<int>(type: "int", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(32)", maxLength: 32, nullable: false),
+                    DisplayName = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
+                    IsStatic = table.Column<bool>(type: "bit", nullable: false),
+                    IsDefault = table.Column<bool>(type: "bit", nullable: false),
+                    NormalizedName = table.Column<string>(type: "nvarchar(32)", maxLength: 32, nullable: false),
+                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -584,16 +584,16 @@ namespace WebHMI.WebHMI.Migrations
                 name: "AbpSettings",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "NUMBER(19)", nullable: false)
-                        .Annotation("Oracle:Identity", "START WITH 1 INCREMENT BY 1"),
-                    TenantId = table.Column<int>(type: "NUMBER(10)", nullable: true),
-                    UserId = table.Column<long>(type: "NUMBER(19)", nullable: true),
-                    Name = table.Column<string>(type: "NVARCHAR2(256)", maxLength: 256, nullable: false),
-                    Value = table.Column<string>(type: "NVARCHAR2(2000)", nullable: true),
-                    CreationTime = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: false),
-                    CreatorUserId = table.Column<long>(type: "NUMBER(19)", nullable: true),
-                    LastModificationTime = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: true),
-                    LastModifierUserId = table.Column<long>(type: "NUMBER(19)", nullable: true)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TenantId = table.Column<int>(type: "int", nullable: true),
+                    UserId = table.Column<long>(type: "bigint", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
+                    Value = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatorUserId = table.Column<long>(type: "bigint", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastModifierUserId = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -609,20 +609,20 @@ namespace WebHMI.WebHMI.Migrations
                 name: "AbpTenants",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "NUMBER(10)", nullable: false)
-                        .Annotation("Oracle:Identity", "START WITH 1 INCREMENT BY 1"),
-                    CreationTime = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: false),
-                    CreatorUserId = table.Column<long>(type: "NUMBER(19)", nullable: true),
-                    LastModificationTime = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: true),
-                    LastModifierUserId = table.Column<long>(type: "NUMBER(19)", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "NUMBER(1)", nullable: false),
-                    DeleterUserId = table.Column<long>(type: "NUMBER(19)", nullable: true),
-                    DeletionTime = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: true),
-                    TenancyName = table.Column<string>(type: "NVARCHAR2(64)", maxLength: 64, nullable: false),
-                    Name = table.Column<string>(type: "NVARCHAR2(128)", maxLength: 128, nullable: false),
-                    ConnectionString = table.Column<string>(type: "NVARCHAR2(1024)", maxLength: 1024, nullable: true),
-                    IsActive = table.Column<bool>(type: "NUMBER(1)", nullable: false),
-                    EditionId = table.Column<int>(type: "NUMBER(10)", nullable: true)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatorUserId = table.Column<long>(type: "bigint", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastModifierUserId = table.Column<long>(type: "bigint", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    DeleterUserId = table.Column<long>(type: "bigint", nullable: true),
+                    DeletionTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    TenancyName = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    ConnectionString = table.Column<string>(type: "nvarchar(1024)", maxLength: 1024, nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    EditionId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -653,14 +653,14 @@ namespace WebHMI.WebHMI.Migrations
                 name: "AbpUserClaims",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "NUMBER(19)", nullable: false)
-                        .Annotation("Oracle:Identity", "START WITH 1 INCREMENT BY 1"),
-                    TenantId = table.Column<int>(type: "NUMBER(10)", nullable: true),
-                    UserId = table.Column<long>(type: "NUMBER(19)", nullable: false),
-                    ClaimType = table.Column<string>(type: "NVARCHAR2(256)", maxLength: 256, nullable: true),
-                    ClaimValue = table.Column<string>(type: "NVARCHAR2(2000)", nullable: true),
-                    CreationTime = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: false),
-                    CreatorUserId = table.Column<long>(type: "NUMBER(19)", nullable: true)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TenantId = table.Column<int>(type: "int", nullable: true),
+                    UserId = table.Column<long>(type: "bigint", nullable: false),
+                    ClaimType = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    ClaimValue = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatorUserId = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -677,12 +677,12 @@ namespace WebHMI.WebHMI.Migrations
                 name: "AbpUserLogins",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "NUMBER(19)", nullable: false)
-                        .Annotation("Oracle:Identity", "START WITH 1 INCREMENT BY 1"),
-                    TenantId = table.Column<int>(type: "NUMBER(10)", nullable: true),
-                    UserId = table.Column<long>(type: "NUMBER(19)", nullable: false),
-                    LoginProvider = table.Column<string>(type: "NVARCHAR2(128)", maxLength: 128, nullable: false),
-                    ProviderKey = table.Column<string>(type: "NVARCHAR2(256)", maxLength: 256, nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TenantId = table.Column<int>(type: "int", nullable: true),
+                    UserId = table.Column<long>(type: "bigint", nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    ProviderKey = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -699,13 +699,13 @@ namespace WebHMI.WebHMI.Migrations
                 name: "AbpUserRoles",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "NUMBER(19)", nullable: false)
-                        .Annotation("Oracle:Identity", "START WITH 1 INCREMENT BY 1"),
-                    TenantId = table.Column<int>(type: "NUMBER(10)", nullable: true),
-                    UserId = table.Column<long>(type: "NUMBER(19)", nullable: false),
-                    RoleId = table.Column<int>(type: "NUMBER(10)", nullable: false),
-                    CreationTime = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: false),
-                    CreatorUserId = table.Column<long>(type: "NUMBER(19)", nullable: true)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TenantId = table.Column<int>(type: "int", nullable: true),
+                    UserId = table.Column<long>(type: "bigint", nullable: false),
+                    RoleId = table.Column<int>(type: "int", nullable: false),
+                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatorUserId = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -722,14 +722,14 @@ namespace WebHMI.WebHMI.Migrations
                 name: "AbpUserTokens",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "NUMBER(19)", nullable: false)
-                        .Annotation("Oracle:Identity", "START WITH 1 INCREMENT BY 1"),
-                    TenantId = table.Column<int>(type: "NUMBER(10)", nullable: true),
-                    UserId = table.Column<long>(type: "NUMBER(19)", nullable: false),
-                    LoginProvider = table.Column<string>(type: "NVARCHAR2(128)", maxLength: 128, nullable: true),
-                    Name = table.Column<string>(type: "NVARCHAR2(128)", maxLength: 128, nullable: true),
-                    Value = table.Column<string>(type: "NVARCHAR2(512)", maxLength: 512, nullable: true),
-                    ExpireDate = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: true)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TenantId = table.Column<int>(type: "int", nullable: true),
+                    UserId = table.Column<long>(type: "bigint", nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: true),
+                    Value = table.Column<string>(type: "nvarchar(512)", maxLength: 512, nullable: true),
+                    ExpireDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -746,14 +746,14 @@ namespace WebHMI.WebHMI.Migrations
                 name: "AbpWebhookSendAttempts",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "RAW(16)", nullable: false),
-                    WebhookEventId = table.Column<Guid>(type: "RAW(16)", nullable: false),
-                    WebhookSubscriptionId = table.Column<Guid>(type: "RAW(16)", nullable: false),
-                    Response = table.Column<string>(type: "NVARCHAR2(2000)", nullable: true),
-                    ResponseStatusCode = table.Column<int>(type: "NUMBER(10)", nullable: true),
-                    CreationTime = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: false),
-                    LastModificationTime = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: true),
-                    TenantId = table.Column<int>(type: "NUMBER(10)", nullable: true)
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    WebhookEventId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    WebhookSubscriptionId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Response = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ResponseStatusCode = table.Column<int>(type: "int", nullable: true),
+                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    TenantId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -770,12 +770,12 @@ namespace WebHMI.WebHMI.Migrations
                 name: "AbpDynamicEntityPropertyValues",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "NUMBER(19)", nullable: false)
-                        .Annotation("Oracle:Identity", "START WITH 1 INCREMENT BY 1"),
-                    Value = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false),
-                    EntityId = table.Column<string>(type: "NVARCHAR2(2000)", nullable: true),
-                    DynamicEntityPropertyId = table.Column<int>(type: "NUMBER(10)", nullable: false),
-                    TenantId = table.Column<int>(type: "NUMBER(10)", nullable: true)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Value = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    EntityId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DynamicEntityPropertyId = table.Column<int>(type: "int", nullable: false),
+                    TenantId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -792,16 +792,16 @@ namespace WebHMI.WebHMI.Migrations
                 name: "AbpEntityPropertyChanges",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "NUMBER(19)", nullable: false)
-                        .Annotation("Oracle:Identity", "START WITH 1 INCREMENT BY 1"),
-                    EntityChangeId = table.Column<long>(type: "NUMBER(19)", nullable: false),
-                    NewValue = table.Column<string>(type: "NVARCHAR2(512)", maxLength: 512, nullable: true),
-                    OriginalValue = table.Column<string>(type: "NVARCHAR2(512)", maxLength: 512, nullable: true),
-                    PropertyName = table.Column<string>(type: "NVARCHAR2(96)", maxLength: 96, nullable: true),
-                    PropertyTypeFullName = table.Column<string>(type: "NVARCHAR2(192)", maxLength: 192, nullable: true),
-                    TenantId = table.Column<int>(type: "NUMBER(10)", nullable: true),
-                    NewValueHash = table.Column<string>(type: "NVARCHAR2(2000)", nullable: true),
-                    OriginalValueHash = table.Column<string>(type: "NVARCHAR2(2000)", nullable: true)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    EntityChangeId = table.Column<long>(type: "bigint", nullable: false),
+                    NewValue = table.Column<string>(type: "nvarchar(512)", maxLength: 512, nullable: true),
+                    OriginalValue = table.Column<string>(type: "nvarchar(512)", maxLength: 512, nullable: true),
+                    PropertyName = table.Column<string>(type: "nvarchar(96)", maxLength: 96, nullable: true),
+                    PropertyTypeFullName = table.Column<string>(type: "nvarchar(192)", maxLength: 192, nullable: true),
+                    TenantId = table.Column<int>(type: "int", nullable: true),
+                    NewValueHash = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    OriginalValueHash = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -818,16 +818,16 @@ namespace WebHMI.WebHMI.Migrations
                 name: "AbpPermissions",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "NUMBER(19)", nullable: false)
-                        .Annotation("Oracle:Identity", "START WITH 1 INCREMENT BY 1"),
-                    TenantId = table.Column<int>(type: "NUMBER(10)", nullable: true),
-                    Name = table.Column<string>(type: "NVARCHAR2(128)", maxLength: 128, nullable: false),
-                    IsGranted = table.Column<bool>(type: "NUMBER(1)", nullable: false),
-                    Discriminator = table.Column<string>(type: "NVARCHAR2(21)", maxLength: 21, nullable: false),
-                    RoleId = table.Column<int>(type: "NUMBER(10)", nullable: true),
-                    UserId = table.Column<long>(type: "NUMBER(19)", nullable: true),
-                    CreationTime = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: false),
-                    CreatorUserId = table.Column<long>(type: "NUMBER(19)", nullable: true)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TenantId = table.Column<int>(type: "int", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    IsGranted = table.Column<bool>(type: "bit", nullable: false),
+                    Discriminator = table.Column<string>(type: "nvarchar(21)", maxLength: 21, nullable: false),
+                    RoleId = table.Column<int>(type: "int", nullable: true),
+                    UserId = table.Column<long>(type: "bigint", nullable: true),
+                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatorUserId = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -850,14 +850,14 @@ namespace WebHMI.WebHMI.Migrations
                 name: "AbpRoleClaims",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "NUMBER(19)", nullable: false)
-                        .Annotation("Oracle:Identity", "START WITH 1 INCREMENT BY 1"),
-                    TenantId = table.Column<int>(type: "NUMBER(10)", nullable: true),
-                    RoleId = table.Column<int>(type: "NUMBER(10)", nullable: false),
-                    ClaimType = table.Column<string>(type: "NVARCHAR2(256)", maxLength: 256, nullable: true),
-                    ClaimValue = table.Column<string>(type: "NVARCHAR2(2000)", nullable: true),
-                    CreationTime = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: false),
-                    CreatorUserId = table.Column<long>(type: "NUMBER(19)", nullable: true)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TenantId = table.Column<int>(type: "int", nullable: true),
+                    RoleId = table.Column<int>(type: "int", nullable: false),
+                    ClaimType = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    ClaimValue = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatorUserId = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -900,7 +900,7 @@ namespace WebHMI.WebHMI.Migrations
                 table: "AbpDynamicEntityProperties",
                 columns: new[] { "EntityFullName", "DynamicPropertyId", "TenantId" },
                 unique: true,
-                filter: "\"EntityFullName\" IS NOT NULL AND \"TenantId\" IS NOT NULL");
+                filter: "[EntityFullName] IS NOT NULL AND [TenantId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AbpDynamicEntityPropertyValues_DynamicEntityPropertyId",
@@ -912,7 +912,7 @@ namespace WebHMI.WebHMI.Migrations
                 table: "AbpDynamicProperties",
                 columns: new[] { "PropertyName", "TenantId" },
                 unique: true,
-                filter: "\"PropertyName\" IS NOT NULL AND \"TenantId\" IS NOT NULL");
+                filter: "[PropertyName] IS NOT NULL AND [TenantId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AbpDynamicPropertyValues_DynamicPropertyId",
@@ -1135,7 +1135,7 @@ namespace WebHMI.WebHMI.Migrations
                 table: "AbpUserLogins",
                 columns: new[] { "ProviderKey", "TenantId" },
                 unique: true,
-                filter: "\"TenantId\" IS NOT NULL");
+                filter: "[TenantId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AbpUserLogins_TenantId_LoginProvider_ProviderKey",

@@ -16,9 +16,9 @@ namespace WebHMI.PRDB
 		public static async Task<VMatStructEntry> GetMaterialEntryStruct(this PrdbContext prdbContext, long meId, string matType) =>
 			matType switch
 			{
-				"OR" => await prdbContext.VMatStructEntries.FirstOrDefaultAsync(x => x.Enormeid == meId),
-				"LO" => await prdbContext.VMatStructEntries.FirstOrDefaultAsync(x => x.Enlomeid == meId),
-				"PH" => await prdbContext.VMatStructEntries.FirstOrDefaultAsync(x => x.Enphmeid == meId),
+				"OR" => await prdbContext.VMatStructEntries.FirstOrDefaultAsync(x => x.EnOrMeId == meId),
+				"LO" => await prdbContext.VMatStructEntries.FirstOrDefaultAsync(x => x.EnLoMeId == meId),
+				"PH" => await prdbContext.VMatStructEntries.FirstOrDefaultAsync(x => x.EnPhMeId == meId),
 				_ => null
 			};
 	}

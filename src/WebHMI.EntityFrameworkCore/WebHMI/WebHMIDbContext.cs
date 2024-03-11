@@ -18,11 +18,11 @@ namespace WebHMI.WebHMI
 
 			modelBuilder.Entity<AuditLog>()
 				.Property(e => e.Parameters)
-				.HasColumnType("CLOB"); // largest 'string' in Oracle
+				.HasMaxLength(int.MaxValue);
 
 			modelBuilder.Entity<AuditLog>()
 				.Property(e => e.ReturnValue)
-				.HasColumnType("CLOB"); // largest 'string' in Oracle
+				.HasMaxLength(int.MaxValue);
 		}
 	}
 }
