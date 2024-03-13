@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Abp.Application.Editions;
 using Abp.Application.Features;
-using WebHMI.Configuration;
 
 namespace WebHMI.WebHMI.Seed.Host
 {

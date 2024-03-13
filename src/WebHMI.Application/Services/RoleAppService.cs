@@ -13,7 +13,6 @@ using Microsoft.EntityFrameworkCore;
 using WebHMI.Dtos.Roles;
 using WebHMI.Helpers;
 using Abp.Auditing;
-using WebHMI.WebHMI;
 using WebHMI.Authorization.Roles;
 using WebHMI.Authorization.Users;
 using WebHMI.WebHMI.Dbo;

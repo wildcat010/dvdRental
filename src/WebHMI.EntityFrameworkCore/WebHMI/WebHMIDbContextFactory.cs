@@ -1,8 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
-using WebHMI.Configuration;
-using WebHMI.Web;
 
 namespace WebHMI.WebHMI
 {
@@ -21,7 +19,7 @@ namespace WebHMI.WebHMI
              */
 			var configuration = AppConfigurations.Get(WebContentDirectoryFinder.CalculateContentRootFolder());
 
-			WebHMIDbContextConfigurer.Configure(builder, configuration.GetConnectionString("PRDB"));
+			WebHMIDbContextConfigurer.Configure(builder, configuration.GetConnectionString("Default"));
 
 			return new WebHMIDbContext(builder.Options);
 		}

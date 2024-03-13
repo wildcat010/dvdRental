@@ -2,11 +2,10 @@
 using Abp.Modules;
 using Abp.Reflection.Extensions;
 using WebHMI.L2Adapter;
-using WebHMI.WebHMI;
 
 namespace WebHMI
 {
-    [DependsOn(
+	[DependsOn(
         typeof(WebHMICoreModule), 
         typeof(AbpAutoMapperModule),
 		typeof(WebHMIEntityFrameworkModule),

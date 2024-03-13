@@ -3,7 +3,6 @@ using Castle.MicroKernel.Registration;
 using Abp.Events.Bus;
 using Abp.Modules;
 using Abp.Reflection.Extensions;
-using WebHMI.Configuration;
 using WebHMI.Migrator.DependencyInjection;
 
 namespace WebHMI.Migrator

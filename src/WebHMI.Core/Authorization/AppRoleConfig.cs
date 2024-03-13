@@ -1,10 +1,9 @@
 ﻿using Abp.MultiTenancy;
 using Abp.Zero.Configuration;
-using WebHMI.WebHMI;
 
 namespace WebHMI.Authorization.Roles
 {
-    public static class AppRoleConfig
+	public static class AppRoleConfig
     {
         public static void Configure(IRoleManagementConfig roleManagementConfig)
         {

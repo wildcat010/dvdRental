@@ -1,4 +1,4 @@
-﻿namespace WebHMI.WebHMI
+﻿namespace WebHMI
 {
 	public static class StaticRoleNames
 	{
