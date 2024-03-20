@@ -34,10 +34,6 @@ dotnet ef dbcontext scaffold $DBConnString Microsoft.EntityFrameworkCore.SqlServ
 --force `
 --no-build `
 --no-onconfiguring `
-#-t STDDIRDCCOILER `
-#-t V_MAT_STRUCT_ENTRY `
-#-t LOG_INDEX `
-#-t LOG_FORMAT `
 
 # Change base class from DbContext to AbpDbContext
 Write-Host 'Adjusting PrdbContext file to project requirements...'
@@ -49,7 +45,26 @@ $PathModelContext = $PathContext.ToString() + '\PrdbContext.cs'
 $UsingDirective = "using Abp.EntityFrameworkCore;"
 $Content = Get-Content -Path $PathModelContext -Raw -Encoding UTF8
 $NewContent = $UsingDirective + "`n" + $Content
-$NewContent | Set-Content -Path $PathModelContext -Encoding UTF8
 
-Write-Host 'EF Core models regenerated' -ForegroundColor Green
+#Save changes to PrdbContext.cs
+$retryCount = 0
+$success = $false
+
+while (-not $success -and $retryCount -lt 5) {
+  try {
+    $NewContent | Set-Content -Path $PathModelContext -Encoding UTF8
+    $success = $true
+  } catch {
+		Write-Host 'Failed to update PrdbContext file, retrying...' -ForegroundColor Red
+    Start-Sleep -Seconds 1
+    $retryCount++
+  }
+}
+
+if (-not $success) {
+  Write-Host "Failed to write to $PathModelContext after several attempts." -ForegroundColor Red
+} else {
+	Write-Host 'EF Core models regenerated' -ForegroundColor Green
+}
+
 pause

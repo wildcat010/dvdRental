@@ -185,9 +185,13 @@ public partial class PrdbContext : AbpDbContext
 
     public virtual DbSet<HmiVLimit> HmiVLimits { get; set; }
 
+    public virtual DbSet<HmiVMatInfoShort> HmiVMatInfoShorts { get; set; }
+
     public virtual DbSet<HmiVMeid> HmiVMeids { get; set; }
 
     public virtual DbSet<HmiVMeids2> HmiVMeids2s { get; set; }
+
+    public virtual DbSet<HmiVProdsequence> HmiVProdsequences { get; set; }
 
     public virtual DbSet<HmiVRollclass> HmiVRollclasses { get; set; }
 
@@ -202,6 +206,8 @@ public partial class PrdbContext : AbpDbContext
     public virtual DbSet<HmiVRolldatausage> HmiVRolldatausages { get; set; }
 
     public virtual DbSet<HmiVSelect> HmiVSelects { get; set; }
+
+    public virtual DbSet<HmiVSlabOverview> HmiVSlabOverviews { get; set; }
 
     public virtual DbSet<HmiVStdtxtLang> HmiVStdtxtLangs { get; set; }
 
@@ -649,11 +655,10 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<AdpResult>(entity =>
         {
-            entity.HasKey(e => new { e.Name, e.CalcTime }).HasName("PK__AdpResul__865482446E9CE01E");
+            entity.HasKey(e => new { e.Name, e.CalcTime }).HasName("PK__AdpResul__865482443C605F68");
 
             entity.ToTable("AdpResult", tb =>
                 {
-                    tb.HasComment("");
                     tb.HasTrigger("TI_AdpResult");
                     tb.HasTrigger("TU_AdpResult");
                 });
@@ -662,454 +667,344 @@ public partial class PrdbContext : AbpDbContext
                 .HasMaxLength(40)
                 .IsUnicode(false)
                 .HasDefaultValue("-")
-                .HasComment("name")
                 .HasColumnName("name");
-            entity.Property(e => e.CalcTime)
-                .HasComment("")
-                .HasColumnName("calcTime");
+            entity.Property(e => e.CalcTime).HasColumnName("calcTime");
             entity.Property(e => e.AdaCrInd0)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("adaCR_ind0");
             entity.Property(e => e.AdaCrInd1)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("adaCR_ind1");
             entity.Property(e => e.AdaCrInd2)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("adaCR_ind2");
             entity.Property(e => e.AdaCrInd3)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("adaCR_ind3");
             entity.Property(e => e.AdaCrInd4)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("adaCR_ind4");
             entity.Property(e => e.AlloyCode)
                 .HasMaxLength(40)
                 .IsUnicode(false)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("alloyCode");
             entity.Property(e => e.B)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("b");
             entity.Property(e => e.C)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("c");
             entity.Property(e => e.Cr)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("cr");
             entity.Property(e => e.FlatnessError)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("flatnessError");
             entity.Property(e => e.HrmAdaCrInd0)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("hrm_ada_cr_ind0");
             entity.Property(e => e.HrmAdaCrInd1)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("hrm_ada_cr_ind1");
             entity.Property(e => e.HrmAdaCrInd2)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("hrm_ada_cr_ind2");
             entity.Property(e => e.HrmPreCrInd0)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("hrm_pre_cr_ind0");
             entity.Property(e => e.HrmPreCrInd1)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("hrm_pre_cr_ind1");
             entity.Property(e => e.HrmPreCrInd2)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("hrm_pre_cr_ind2");
             entity.Property(e => e.InheritanceId)
                 .HasMaxLength(40)
                 .IsUnicode(false)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("inheritanceId");
             entity.Property(e => e.InheritanceType)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("inheritanceType");
             entity.Property(e => e.LastFbInd0)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("lastFB_ind0");
             entity.Property(e => e.LastFbInd1)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("lastFB_ind1");
             entity.Property(e => e.LastFbInd2)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("lastFB_ind2");
             entity.Property(e => e.LastFbInd3)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("lastFB_ind3");
             entity.Property(e => e.LastFbInd4)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("lastFB_ind4");
             entity.Property(e => e.ManFbInd0)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("manFB_ind0");
             entity.Property(e => e.ManFbInd1)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("manFB_ind1");
             entity.Property(e => e.ManFbInd2)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("manFB_ind2");
             entity.Property(e => e.ManFbInd3)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("manFB_ind3");
             entity.Property(e => e.ManFbInd4)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("manFB_ind4");
             entity.Property(e => e.ManSrInd0)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("manSR_ind0");
             entity.Property(e => e.ManSrInd1)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("manSR_ind1");
             entity.Property(e => e.ManSrInd2)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("manSR_ind2");
             entity.Property(e => e.ManSrInd3)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("manSR_ind3");
             entity.Property(e => e.ManSrInd4)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("manSR_ind4");
             entity.Property(e => e.MeasThickness)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("measThickness");
             entity.Property(e => e.MiFbInd0)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("miFB_ind0");
             entity.Property(e => e.MiFbInd1)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("miFB_ind1");
             entity.Property(e => e.MiFbInd2)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("miFB_ind2");
             entity.Property(e => e.MiFbInd3)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("miFB_ind3");
             entity.Property(e => e.MiFbInd4)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("miFB_ind4");
             entity.Property(e => e.Mn)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("mn");
             entity.Property(e => e.ModelProfile)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("modelProfile");
             entity.Property(e => e.Mop)
                 .HasMaxLength(120)
                 .IsUnicode(false)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("modifying process")
                 .HasColumnName("mop");
             entity.Property(e => e.Ni)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("ni");
             entity.Property(e => e.P)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("p");
             entity.Property(e => e.PreCrInd0)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("preCR_ind0");
             entity.Property(e => e.PreCrInd1)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("preCR_ind1");
             entity.Property(e => e.PreCrInd2)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("preCR_ind2");
             entity.Property(e => e.PreCrInd3)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("preCR_ind3");
             entity.Property(e => e.PreCrInd4)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("preCR_ind4");
             entity.Property(e => e.ProfileError)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("profileError");
             entity.Property(e => e.ProfileGauge)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("profileGauge");
             entity.Property(e => e.ProfileHrm)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("profileHRM");
             entity.Property(e => e.ProfileMeas)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("profileMeas");
             entity.Property(e => e.ProfileX2)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("profileX2");
             entity.Property(e => e.RollIdHrmInd0)
                 .HasMaxLength(4000)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("rollId_hrm_ind0");
             entity.Property(e => e.RollIdHrmInd1)
                 .HasMaxLength(4000)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("rollId_hrm_ind1");
             entity.Property(e => e.RollIdHrmInd2)
                 .HasMaxLength(4000)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("rollId_hrm_ind2");
             entity.Property(e => e.RollIdWrTopInd0)
                 .HasMaxLength(4000)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("rollIdWrTop_ind0");
             entity.Property(e => e.RollIdWrTopInd1)
                 .HasMaxLength(4000)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("rollIdWrTop_ind1");
             entity.Property(e => e.RollIdWrTopInd2)
                 .HasMaxLength(4000)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("rollIdWrTop_ind2");
             entity.Property(e => e.RollIdWrTopInd3)
                 .HasMaxLength(4000)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("rollIdWrTop_ind3");
             entity.Property(e => e.RollIdWrTopInd4)
                 .HasMaxLength(4000)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("rollIdWrTop_ind4");
             entity.Property(e => e.S)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("s");
             entity.Property(e => e.SetFrInd0)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("setFR_ind0");
             entity.Property(e => e.SetFrInd1)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("setFR_ind1");
             entity.Property(e => e.SetFrInd2)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("setFR_ind2");
             entity.Property(e => e.SetFrInd3)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("setFR_ind3");
             entity.Property(e => e.SetFrInd4)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("setFR_ind4");
             entity.Property(e => e.SetSrInd0)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("setSR_ind0");
             entity.Property(e => e.SetSrInd1)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("setSR_ind1");
             entity.Property(e => e.SetSrInd2)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("setSR_ind2");
             entity.Property(e => e.SetSrInd3)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("setSR_ind3");
             entity.Property(e => e.SetSrInd4)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("setSR_ind4");
             entity.Property(e => e.SetupFbInd0)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("setupFB_ind0");
             entity.Property(e => e.SetupFbInd1)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("setupFB_ind1");
             entity.Property(e => e.SetupFbInd2)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("setupFB_ind2");
             entity.Property(e => e.SetupFbInd3)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("setupFB_ind3");
             entity.Property(e => e.SetupFbInd4)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("setupFB_ind4");
             entity.Property(e => e.ShiftSpeedInd0)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("shiftSpeed_ind0");
             entity.Property(e => e.ShiftSpeedInd1)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("shiftSpeed_ind1");
             entity.Property(e => e.ShiftSpeedInd2)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("shiftSpeed_ind2");
             entity.Property(e => e.ShiftSpeedInd3)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("shiftSpeed_ind3");
             entity.Property(e => e.ShiftSpeedInd4)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("shiftSpeed_ind4");
             entity.Property(e => e.Si)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("si");
             entity.Property(e => e.TargetProfile)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("targetProfile");
             entity.Property(e => e.ThickHrmEx)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("thick_hrmEx");
             entity.Property(e => e.ThicknessInd0)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] ")
                 .HasColumnName("thickness_ind0");
             entity.Property(e => e.ThicknessInd1)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] ")
                 .HasColumnName("thickness_ind1");
             entity.Property(e => e.ThicknessInd2)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] ")
                 .HasColumnName("thickness_ind2");
             entity.Property(e => e.ThicknessInd3)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] ")
                 .HasColumnName("thickness_ind3");
             entity.Property(e => e.ThicknessInd4)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] ")
                 .HasColumnName("thickness_ind4");
             entity.Property(e => e.ThicknessInd5)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] ")
                 .HasColumnName("thickness_ind5");
             entity.Property(e => e.Toc)
                 .HasPrecision(3)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("time of creation")
                 .HasColumnName("toc");
             entity.Property(e => e.Tom)
                 .HasPrecision(3)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("time of modification")
                 .HasColumnName("tom");
             entity.Property(e => e.V)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("v");
             entity.Property(e => e.W)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("w");
             entity.Property(e => e.WearCorrectionInd0)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("wearCorrection_ind0");
             entity.Property(e => e.WearCorrectionInd1)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("wearCorrection_ind1");
             entity.Property(e => e.WearCorrectionInd2)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("wearCorrection_ind2");
             entity.Property(e => e.WearCorrectionInd3)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("wearCorrection_ind3");
             entity.Property(e => e.WearCorrectionInd4)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("wearCorrection_ind4");
             entity.Property(e => e.WearInd0)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("wear_ind0");
             entity.Property(e => e.WearInd1)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("wear_ind1");
             entity.Property(e => e.WearInd2)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("wear_ind2");
             entity.Property(e => e.WearInd3)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("wear_ind3");
             entity.Property(e => e.WearInd4)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
                 .HasColumnName("wear_ind4");
             entity.Property(e => e.Width)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] ")
                 .HasColumnName("width");
         });
 
@@ -13457,6 +13352,78 @@ public partial class PrdbContext : AbpDbContext
                 .HasColumnName("UG");
         });
 
+        modelBuilder.Entity<HmiVMatInfoShort>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("HMI_V_MAT_INFO_SHORT");
+
+            entity.Property(e => e.AlloyCode)
+                .HasMaxLength(30)
+                .IsUnicode(false)
+                .HasColumnName("alloyCode");
+            entity.Property(e => e.ApsKey)
+                .HasMaxLength(6)
+                .IsUnicode(false)
+                .HasColumnName("apsKey");
+            entity.Property(e => e.CoilTemp).HasColumnName("coilTemp");
+            entity.Property(e => e.EdLoSrc)
+                .IsRequired()
+                .HasMaxLength(2)
+                .IsUnicode(false);
+            entity.Property(e => e.EdOrSrc)
+                .IsRequired()
+                .HasMaxLength(2)
+                .IsUnicode(false);
+            entity.Property(e => e.EdPhySrc)
+                .IsRequired()
+                .HasMaxLength(2)
+                .IsUnicode(false);
+            entity.Property(e => e.EnLoMeId).HasColumnName("EnLoMeID");
+            entity.Property(e => e.EnOrCreator)
+                .IsRequired()
+                .HasMaxLength(2)
+                .IsUnicode(false);
+            entity.Property(e => e.EnOrExtId)
+                .IsRequired()
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("EnOrExtID");
+            entity.Property(e => e.EnOrMeId).HasColumnName("EnOrMeID");
+            entity.Property(e => e.EnOrMeType)
+                .IsRequired()
+                .HasMaxLength(2)
+                .IsUnicode(false);
+            entity.Property(e => e.EnPhExtId)
+                .IsRequired()
+                .HasMaxLength(20)
+                .IsUnicode(false);
+            entity.Property(e => e.EnPhMeId).HasColumnName("EnPhMeID");
+            entity.Property(e => e.FlagBatchRolling).HasColumnName("flagBatchRolling");
+            entity.Property(e => e.HEntry).HasColumnName("hEntry");
+            entity.Property(e => e.HExit).HasColumnName("hExit");
+            entity.Property(e => e.HeatId)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("heatId");
+            entity.Property(e => e.LEntry).HasColumnName("lEntry");
+            entity.Property(e => e.LastCalc).HasPrecision(3);
+            entity.Property(e => e.Sbaz).HasColumnName("sbaz");
+            entity.Property(e => e.SequenceId)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("sequenceId");
+            entity.Property(e => e.SetpointsCsOk).HasColumnName("setpointsCsOk");
+            entity.Property(e => e.SetpointsPc2Ok).HasColumnName("setpointsPc2Ok");
+            entity.Property(e => e.SimMat).HasColumnName("simMat");
+            entity.Property(e => e.TEntryFm).HasColumnName("tEntryFM");
+            entity.Property(e => e.TExitCaster).HasColumnName("tExitCaster");
+            entity.Property(e => e.TExitFm).HasColumnName("tExitFM");
+            entity.Property(e => e.WEntry).HasColumnName("wEntry");
+            entity.Property(e => e.WExit).HasColumnName("wExit");
+            entity.Property(e => e.WeightEntry).HasColumnName("weightEntry");
+        });
+
         modelBuilder.Entity<HmiVMeid>(entity =>
         {
             entity
@@ -13586,6 +13553,71 @@ public partial class PrdbContext : AbpDbContext
                 .IsUnicode(false)
                 .HasColumnName("phyName");
             entity.Property(e => e.PhyStatus).HasColumnName("phyStatus");
+        });
+
+        modelBuilder.Entity<HmiVProdsequence>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("HMI_V_PRODSEQUENCE");
+
+            entity.Property(e => e.AlloyCode)
+                .HasMaxLength(30)
+                .IsUnicode(false)
+                .HasColumnName("alloyCode");
+            entity.Property(e => e.ApsKey)
+                .HasMaxLength(6)
+                .IsUnicode(false)
+                .HasColumnName("apsKey");
+            entity.Property(e => e.CoilTemp).HasColumnName("coilTemp");
+            entity.Property(e => e.EdOrSrc)
+                .IsRequired()
+                .HasMaxLength(2)
+                .IsUnicode(false);
+            entity.Property(e => e.EdPhySrc)
+                .IsRequired()
+                .HasMaxLength(2)
+                .IsUnicode(false);
+            entity.Property(e => e.EnLoMeId).HasColumnName("EnLoMeID");
+            entity.Property(e => e.EnOrExtId)
+                .IsRequired()
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("EnOrExtID");
+            entity.Property(e => e.EnOrMeId).HasColumnName("EnOrMeID");
+            entity.Property(e => e.EnOrMeType)
+                .IsRequired()
+                .HasMaxLength(2)
+                .IsUnicode(false);
+            entity.Property(e => e.EnPhExtId)
+                .IsRequired()
+                .HasMaxLength(20)
+                .IsUnicode(false);
+            entity.Property(e => e.EnPhMeId).HasColumnName("EnPhMeID");
+            entity.Property(e => e.FlagBatchRolling).HasColumnName("flagBatchRolling");
+            entity.Property(e => e.HEntry).HasColumnName("hEntry");
+            entity.Property(e => e.HExit).HasColumnName("hExit");
+            entity.Property(e => e.HeatId)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("heatId");
+            entity.Property(e => e.LEntry).HasColumnName("lEntry");
+            entity.Property(e => e.LastCalc).HasPrecision(3);
+            entity.Property(e => e.Next).HasColumnName("next");
+            entity.Property(e => e.Sbaz).HasColumnName("sbaz");
+            entity.Property(e => e.SequenceId)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("sequenceId");
+            entity.Property(e => e.SetpointsCsOk).HasColumnName("setpointsCsOk");
+            entity.Property(e => e.SetpointsPc2Ok).HasColumnName("setpointsPc2Ok");
+            entity.Property(e => e.SimMat).HasColumnName("simMat");
+            entity.Property(e => e.TEntryFm).HasColumnName("tEntryFM");
+            entity.Property(e => e.TExitCaster).HasColumnName("tExitCaster");
+            entity.Property(e => e.TExitFm).HasColumnName("tExitFM");
+            entity.Property(e => e.WEntry).HasColumnName("wEntry");
+            entity.Property(e => e.WExit).HasColumnName("wExit");
+            entity.Property(e => e.WeightEntry).HasColumnName("weightEntry");
         });
 
         modelBuilder.Entity<HmiVRollclass>(entity =>
@@ -13915,6 +13947,78 @@ public partial class PrdbContext : AbpDbContext
             entity.Property(e => e.Tom)
                 .HasPrecision(3)
                 .HasColumnName("tom");
+        });
+
+        modelBuilder.Entity<HmiVSlabOverview>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("HMI_V_SLAB_OVERVIEW");
+
+            entity.Property(e => e.AlloyCode)
+                .HasMaxLength(30)
+                .IsUnicode(false)
+                .HasColumnName("alloyCode");
+            entity.Property(e => e.ApsKey)
+                .HasMaxLength(6)
+                .IsUnicode(false)
+                .HasColumnName("apsKey");
+            entity.Property(e => e.CoilTemp).HasColumnName("coilTemp");
+            entity.Property(e => e.EdLoSrc)
+                .IsRequired()
+                .HasMaxLength(2)
+                .IsUnicode(false);
+            entity.Property(e => e.EdOrSrc)
+                .IsRequired()
+                .HasMaxLength(2)
+                .IsUnicode(false);
+            entity.Property(e => e.EdPhySrc)
+                .IsRequired()
+                .HasMaxLength(2)
+                .IsUnicode(false);
+            entity.Property(e => e.EnLoMeId).HasColumnName("EnLoMeID");
+            entity.Property(e => e.EnOrCreator)
+                .IsRequired()
+                .HasMaxLength(2)
+                .IsUnicode(false);
+            entity.Property(e => e.EnOrExtId)
+                .IsRequired()
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("EnOrExtID");
+            entity.Property(e => e.EnOrMeId).HasColumnName("EnOrMeID");
+            entity.Property(e => e.EnOrMeType)
+                .IsRequired()
+                .HasMaxLength(2)
+                .IsUnicode(false);
+            entity.Property(e => e.EnPhExtId)
+                .IsRequired()
+                .HasMaxLength(20)
+                .IsUnicode(false);
+            entity.Property(e => e.EnPhMeId).HasColumnName("EnPhMeID");
+            entity.Property(e => e.FlagBatchRolling).HasColumnName("flagBatchRolling");
+            entity.Property(e => e.Gradegroup)
+                .HasMaxLength(40)
+                .IsUnicode(false)
+                .HasColumnName("gradegroup");
+            entity.Property(e => e.HEntry).HasColumnName("hEntry");
+            entity.Property(e => e.HExit).HasColumnName("hExit");
+            entity.Property(e => e.LEntry).HasColumnName("lEntry");
+            entity.Property(e => e.LastCalc).HasPrecision(3);
+            entity.Property(e => e.Sbaz).HasColumnName("sbaz");
+            entity.Property(e => e.SequenceId)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("sequenceId");
+            entity.Property(e => e.SetpointsCsOk).HasColumnName("setpointsCsOk");
+            entity.Property(e => e.SetpointsPc2Ok).HasColumnName("setpointsPc2Ok");
+            entity.Property(e => e.SimMat).HasColumnName("simMat");
+            entity.Property(e => e.TEntryFm).HasColumnName("tEntryFM");
+            entity.Property(e => e.TExitCaster).HasColumnName("tExitCaster");
+            entity.Property(e => e.TExitFm).HasColumnName("tExitFM");
+            entity.Property(e => e.WEntry).HasColumnName("wEntry");
+            entity.Property(e => e.WExit).HasColumnName("wExit");
+            entity.Property(e => e.WeightEntry).HasColumnName("weightEntry");
         });
 
         modelBuilder.Entity<HmiVStdtxtLang>(entity =>
@@ -43523,2086 +43627,1568 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<Rsl2rollGrindDatum>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__RSL2Roll__3213E83FBDBCF756");
+            entity.HasKey(e => e.Id).HasName("PK__RSL2Roll__3213E83F109E7C73");
 
             entity.ToTable("RSL2RollGrindData", "COMUSER", tb =>
                 {
-                    tb.HasComment("");
                     tb.HasTrigger("TI_RSL2RollGrindData");
                     tb.HasTrigger("TU_RSL2RollGrindData");
                 });
 
-            entity.Property(e => e.Id)
-                .HasComment("Plant type:HRM / HFM")
-                .HasColumnName("id");
+            entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Diameter)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] diameter of roll")
                 .HasColumnName("diameter");
             entity.Property(e => e.Dx)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] Distance between data points")
                 .HasColumnName("dx");
             entity.Property(e => e.GrindFlag)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("0 - before grinding 1 - after grinding")
                 .HasColumnName("grindFlag");
             entity.Property(e => e.GrindTime)
                 .HasPrecision(3)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Time when roll got ground (secondary key)")
                 .HasColumnName("grindTime");
             entity.Property(e => e.MachineId)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] Grinding machine ID")
                 .HasColumnName("machineId");
             entity.Property(e => e.Mop)
                 .HasMaxLength(120)
                 .IsUnicode(false)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("modifying process")
                 .HasColumnName("mop");
             entity.Property(e => e.Offset)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] Offset of starting point to barrel edge")
                 .HasColumnName("offset");
             entity.Property(e => e.PlantType)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("0-RM, 1 - FM")
                 .HasColumnName("plantType");
             entity.Property(e => e.Position)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("0: Upper 1: Lower")
                 .HasColumnName("position");
             entity.Property(e => e.RollId)
                 .HasMaxLength(8)
                 .IsUnicode(false)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Roll ID (primary key)")
                 .HasColumnName("rollID");
             entity.Property(e => e.RollType)
                 .HasMaxLength(3)
                 .IsUnicode(false)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Roll type (_BUR_, _WKR_)")
                 .HasColumnName("rollType");
             entity.Property(e => e.StandId)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("HRM: 1,2,3; HFM:1,2,3,4,5")
                 .HasColumnName("standId");
             entity.Property(e => e.Toc)
                 .HasPrecision(3)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("time of creation")
                 .HasColumnName("toc");
             entity.Property(e => e.Tom)
                 .HasPrecision(3)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("time of modification")
                 .HasColumnName("tom");
             entity.Property(e => e.ValidPoints)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Number of valid points in recording")
                 .HasColumnName("validPoints");
             entity.Property(e => e.ValueInd0)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind0");
             entity.Property(e => e.ValueInd1)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind1");
             entity.Property(e => e.ValueInd10)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind10");
             entity.Property(e => e.ValueInd100)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind100");
             entity.Property(e => e.ValueInd101)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind101");
             entity.Property(e => e.ValueInd102)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind102");
             entity.Property(e => e.ValueInd103)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind103");
             entity.Property(e => e.ValueInd104)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind104");
             entity.Property(e => e.ValueInd105)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind105");
             entity.Property(e => e.ValueInd106)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind106");
             entity.Property(e => e.ValueInd107)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind107");
             entity.Property(e => e.ValueInd108)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind108");
             entity.Property(e => e.ValueInd109)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind109");
             entity.Property(e => e.ValueInd11)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind11");
             entity.Property(e => e.ValueInd110)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind110");
             entity.Property(e => e.ValueInd111)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind111");
             entity.Property(e => e.ValueInd112)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind112");
             entity.Property(e => e.ValueInd113)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind113");
             entity.Property(e => e.ValueInd114)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind114");
             entity.Property(e => e.ValueInd115)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind115");
             entity.Property(e => e.ValueInd116)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind116");
             entity.Property(e => e.ValueInd117)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind117");
             entity.Property(e => e.ValueInd118)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind118");
             entity.Property(e => e.ValueInd119)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind119");
             entity.Property(e => e.ValueInd12)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind12");
             entity.Property(e => e.ValueInd120)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind120");
             entity.Property(e => e.ValueInd121)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind121");
             entity.Property(e => e.ValueInd122)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind122");
             entity.Property(e => e.ValueInd123)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind123");
             entity.Property(e => e.ValueInd124)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind124");
             entity.Property(e => e.ValueInd125)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind125");
             entity.Property(e => e.ValueInd126)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind126");
             entity.Property(e => e.ValueInd127)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind127");
             entity.Property(e => e.ValueInd128)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind128");
             entity.Property(e => e.ValueInd129)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind129");
             entity.Property(e => e.ValueInd13)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind13");
             entity.Property(e => e.ValueInd130)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind130");
             entity.Property(e => e.ValueInd131)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind131");
             entity.Property(e => e.ValueInd132)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind132");
             entity.Property(e => e.ValueInd133)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind133");
             entity.Property(e => e.ValueInd134)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind134");
             entity.Property(e => e.ValueInd135)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind135");
             entity.Property(e => e.ValueInd136)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind136");
             entity.Property(e => e.ValueInd137)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind137");
             entity.Property(e => e.ValueInd138)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind138");
             entity.Property(e => e.ValueInd139)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind139");
             entity.Property(e => e.ValueInd14)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind14");
             entity.Property(e => e.ValueInd140)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind140");
             entity.Property(e => e.ValueInd141)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind141");
             entity.Property(e => e.ValueInd142)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind142");
             entity.Property(e => e.ValueInd143)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind143");
             entity.Property(e => e.ValueInd144)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind144");
             entity.Property(e => e.ValueInd145)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind145");
             entity.Property(e => e.ValueInd146)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind146");
             entity.Property(e => e.ValueInd147)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind147");
             entity.Property(e => e.ValueInd148)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind148");
             entity.Property(e => e.ValueInd149)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind149");
             entity.Property(e => e.ValueInd15)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind15");
             entity.Property(e => e.ValueInd150)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind150");
             entity.Property(e => e.ValueInd151)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind151");
             entity.Property(e => e.ValueInd152)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind152");
             entity.Property(e => e.ValueInd153)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind153");
             entity.Property(e => e.ValueInd154)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind154");
             entity.Property(e => e.ValueInd155)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind155");
             entity.Property(e => e.ValueInd156)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind156");
             entity.Property(e => e.ValueInd157)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind157");
             entity.Property(e => e.ValueInd158)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind158");
             entity.Property(e => e.ValueInd159)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind159");
             entity.Property(e => e.ValueInd16)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind16");
             entity.Property(e => e.ValueInd160)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind160");
             entity.Property(e => e.ValueInd161)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind161");
             entity.Property(e => e.ValueInd162)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind162");
             entity.Property(e => e.ValueInd163)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind163");
             entity.Property(e => e.ValueInd164)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind164");
             entity.Property(e => e.ValueInd165)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind165");
             entity.Property(e => e.ValueInd166)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind166");
             entity.Property(e => e.ValueInd167)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind167");
             entity.Property(e => e.ValueInd168)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind168");
             entity.Property(e => e.ValueInd169)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind169");
             entity.Property(e => e.ValueInd17)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind17");
             entity.Property(e => e.ValueInd170)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind170");
             entity.Property(e => e.ValueInd171)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind171");
             entity.Property(e => e.ValueInd172)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind172");
             entity.Property(e => e.ValueInd173)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind173");
             entity.Property(e => e.ValueInd174)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind174");
             entity.Property(e => e.ValueInd175)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind175");
             entity.Property(e => e.ValueInd176)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind176");
             entity.Property(e => e.ValueInd177)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind177");
             entity.Property(e => e.ValueInd178)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind178");
             entity.Property(e => e.ValueInd179)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind179");
             entity.Property(e => e.ValueInd18)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind18");
             entity.Property(e => e.ValueInd180)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind180");
             entity.Property(e => e.ValueInd181)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind181");
             entity.Property(e => e.ValueInd182)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind182");
             entity.Property(e => e.ValueInd183)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind183");
             entity.Property(e => e.ValueInd184)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind184");
             entity.Property(e => e.ValueInd185)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind185");
             entity.Property(e => e.ValueInd186)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind186");
             entity.Property(e => e.ValueInd187)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind187");
             entity.Property(e => e.ValueInd188)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind188");
             entity.Property(e => e.ValueInd189)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind189");
             entity.Property(e => e.ValueInd19)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind19");
             entity.Property(e => e.ValueInd190)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind190");
             entity.Property(e => e.ValueInd191)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind191");
             entity.Property(e => e.ValueInd192)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind192");
             entity.Property(e => e.ValueInd193)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind193");
             entity.Property(e => e.ValueInd194)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind194");
             entity.Property(e => e.ValueInd195)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind195");
             entity.Property(e => e.ValueInd196)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind196");
             entity.Property(e => e.ValueInd197)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind197");
             entity.Property(e => e.ValueInd198)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind198");
             entity.Property(e => e.ValueInd199)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind199");
             entity.Property(e => e.ValueInd2)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind2");
             entity.Property(e => e.ValueInd20)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind20");
             entity.Property(e => e.ValueInd200)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind200");
             entity.Property(e => e.ValueInd201)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind201");
             entity.Property(e => e.ValueInd202)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind202");
             entity.Property(e => e.ValueInd203)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind203");
             entity.Property(e => e.ValueInd204)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind204");
             entity.Property(e => e.ValueInd205)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind205");
             entity.Property(e => e.ValueInd206)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind206");
             entity.Property(e => e.ValueInd207)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind207");
             entity.Property(e => e.ValueInd208)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind208");
             entity.Property(e => e.ValueInd209)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind209");
             entity.Property(e => e.ValueInd21)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind21");
             entity.Property(e => e.ValueInd210)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind210");
             entity.Property(e => e.ValueInd211)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind211");
             entity.Property(e => e.ValueInd212)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind212");
             entity.Property(e => e.ValueInd213)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind213");
             entity.Property(e => e.ValueInd214)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind214");
             entity.Property(e => e.ValueInd215)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind215");
             entity.Property(e => e.ValueInd216)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind216");
             entity.Property(e => e.ValueInd217)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind217");
             entity.Property(e => e.ValueInd218)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind218");
             entity.Property(e => e.ValueInd219)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind219");
             entity.Property(e => e.ValueInd22)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind22");
             entity.Property(e => e.ValueInd220)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind220");
             entity.Property(e => e.ValueInd221)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind221");
             entity.Property(e => e.ValueInd222)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind222");
             entity.Property(e => e.ValueInd223)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind223");
             entity.Property(e => e.ValueInd224)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind224");
             entity.Property(e => e.ValueInd225)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind225");
             entity.Property(e => e.ValueInd226)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind226");
             entity.Property(e => e.ValueInd227)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind227");
             entity.Property(e => e.ValueInd228)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind228");
             entity.Property(e => e.ValueInd229)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind229");
             entity.Property(e => e.ValueInd23)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind23");
             entity.Property(e => e.ValueInd230)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind230");
             entity.Property(e => e.ValueInd231)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind231");
             entity.Property(e => e.ValueInd232)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind232");
             entity.Property(e => e.ValueInd233)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind233");
             entity.Property(e => e.ValueInd234)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind234");
             entity.Property(e => e.ValueInd235)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind235");
             entity.Property(e => e.ValueInd236)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind236");
             entity.Property(e => e.ValueInd237)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind237");
             entity.Property(e => e.ValueInd238)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind238");
             entity.Property(e => e.ValueInd239)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind239");
             entity.Property(e => e.ValueInd24)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind24");
             entity.Property(e => e.ValueInd240)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind240");
             entity.Property(e => e.ValueInd241)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind241");
             entity.Property(e => e.ValueInd242)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind242");
             entity.Property(e => e.ValueInd243)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind243");
             entity.Property(e => e.ValueInd244)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind244");
             entity.Property(e => e.ValueInd245)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind245");
             entity.Property(e => e.ValueInd246)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind246");
             entity.Property(e => e.ValueInd247)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind247");
             entity.Property(e => e.ValueInd248)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind248");
             entity.Property(e => e.ValueInd249)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind249");
             entity.Property(e => e.ValueInd25)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind25");
             entity.Property(e => e.ValueInd250)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind250");
             entity.Property(e => e.ValueInd251)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind251");
             entity.Property(e => e.ValueInd252)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind252");
             entity.Property(e => e.ValueInd253)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind253");
             entity.Property(e => e.ValueInd254)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind254");
             entity.Property(e => e.ValueInd255)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind255");
             entity.Property(e => e.ValueInd256)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind256");
             entity.Property(e => e.ValueInd257)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind257");
             entity.Property(e => e.ValueInd258)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind258");
             entity.Property(e => e.ValueInd259)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind259");
             entity.Property(e => e.ValueInd26)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind26");
             entity.Property(e => e.ValueInd260)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind260");
             entity.Property(e => e.ValueInd261)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind261");
             entity.Property(e => e.ValueInd262)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind262");
             entity.Property(e => e.ValueInd263)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind263");
             entity.Property(e => e.ValueInd264)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind264");
             entity.Property(e => e.ValueInd265)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind265");
             entity.Property(e => e.ValueInd266)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind266");
             entity.Property(e => e.ValueInd267)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind267");
             entity.Property(e => e.ValueInd268)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind268");
             entity.Property(e => e.ValueInd269)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind269");
             entity.Property(e => e.ValueInd27)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind27");
             entity.Property(e => e.ValueInd270)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind270");
             entity.Property(e => e.ValueInd271)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind271");
             entity.Property(e => e.ValueInd272)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind272");
             entity.Property(e => e.ValueInd273)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind273");
             entity.Property(e => e.ValueInd274)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind274");
             entity.Property(e => e.ValueInd275)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind275");
             entity.Property(e => e.ValueInd276)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind276");
             entity.Property(e => e.ValueInd277)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind277");
             entity.Property(e => e.ValueInd278)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind278");
             entity.Property(e => e.ValueInd279)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind279");
             entity.Property(e => e.ValueInd28)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind28");
             entity.Property(e => e.ValueInd280)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind280");
             entity.Property(e => e.ValueInd281)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind281");
             entity.Property(e => e.ValueInd282)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind282");
             entity.Property(e => e.ValueInd283)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind283");
             entity.Property(e => e.ValueInd284)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind284");
             entity.Property(e => e.ValueInd285)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind285");
             entity.Property(e => e.ValueInd286)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind286");
             entity.Property(e => e.ValueInd287)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind287");
             entity.Property(e => e.ValueInd288)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind288");
             entity.Property(e => e.ValueInd289)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind289");
             entity.Property(e => e.ValueInd29)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind29");
             entity.Property(e => e.ValueInd290)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind290");
             entity.Property(e => e.ValueInd291)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind291");
             entity.Property(e => e.ValueInd292)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind292");
             entity.Property(e => e.ValueInd293)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind293");
             entity.Property(e => e.ValueInd294)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind294");
             entity.Property(e => e.ValueInd295)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind295");
             entity.Property(e => e.ValueInd296)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind296");
             entity.Property(e => e.ValueInd297)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind297");
             entity.Property(e => e.ValueInd298)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind298");
             entity.Property(e => e.ValueInd299)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind299");
             entity.Property(e => e.ValueInd3)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind3");
             entity.Property(e => e.ValueInd30)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind30");
             entity.Property(e => e.ValueInd300)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind300");
             entity.Property(e => e.ValueInd301)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind301");
             entity.Property(e => e.ValueInd302)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind302");
             entity.Property(e => e.ValueInd303)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind303");
             entity.Property(e => e.ValueInd304)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind304");
             entity.Property(e => e.ValueInd305)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind305");
             entity.Property(e => e.ValueInd306)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind306");
             entity.Property(e => e.ValueInd307)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind307");
             entity.Property(e => e.ValueInd308)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind308");
             entity.Property(e => e.ValueInd309)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind309");
             entity.Property(e => e.ValueInd31)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind31");
             entity.Property(e => e.ValueInd310)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind310");
             entity.Property(e => e.ValueInd311)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind311");
             entity.Property(e => e.ValueInd312)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind312");
             entity.Property(e => e.ValueInd313)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind313");
             entity.Property(e => e.ValueInd314)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind314");
             entity.Property(e => e.ValueInd315)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind315");
             entity.Property(e => e.ValueInd316)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind316");
             entity.Property(e => e.ValueInd317)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind317");
             entity.Property(e => e.ValueInd318)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind318");
             entity.Property(e => e.ValueInd319)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind319");
             entity.Property(e => e.ValueInd32)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind32");
             entity.Property(e => e.ValueInd320)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind320");
             entity.Property(e => e.ValueInd321)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind321");
             entity.Property(e => e.ValueInd322)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind322");
             entity.Property(e => e.ValueInd323)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind323");
             entity.Property(e => e.ValueInd324)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind324");
             entity.Property(e => e.ValueInd325)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind325");
             entity.Property(e => e.ValueInd326)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind326");
             entity.Property(e => e.ValueInd327)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind327");
             entity.Property(e => e.ValueInd328)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind328");
             entity.Property(e => e.ValueInd329)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind329");
             entity.Property(e => e.ValueInd33)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind33");
             entity.Property(e => e.ValueInd330)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind330");
             entity.Property(e => e.ValueInd331)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind331");
             entity.Property(e => e.ValueInd332)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind332");
             entity.Property(e => e.ValueInd333)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind333");
             entity.Property(e => e.ValueInd334)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind334");
             entity.Property(e => e.ValueInd335)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind335");
             entity.Property(e => e.ValueInd336)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind336");
             entity.Property(e => e.ValueInd337)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind337");
             entity.Property(e => e.ValueInd338)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind338");
             entity.Property(e => e.ValueInd339)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind339");
             entity.Property(e => e.ValueInd34)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind34");
             entity.Property(e => e.ValueInd340)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind340");
             entity.Property(e => e.ValueInd341)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind341");
             entity.Property(e => e.ValueInd342)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind342");
             entity.Property(e => e.ValueInd343)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind343");
             entity.Property(e => e.ValueInd344)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind344");
             entity.Property(e => e.ValueInd345)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind345");
             entity.Property(e => e.ValueInd346)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind346");
             entity.Property(e => e.ValueInd347)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind347");
             entity.Property(e => e.ValueInd348)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind348");
             entity.Property(e => e.ValueInd349)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind349");
             entity.Property(e => e.ValueInd35)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind35");
             entity.Property(e => e.ValueInd350)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind350");
             entity.Property(e => e.ValueInd351)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind351");
             entity.Property(e => e.ValueInd352)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind352");
             entity.Property(e => e.ValueInd353)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind353");
             entity.Property(e => e.ValueInd354)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind354");
             entity.Property(e => e.ValueInd355)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind355");
             entity.Property(e => e.ValueInd356)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind356");
             entity.Property(e => e.ValueInd357)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind357");
             entity.Property(e => e.ValueInd358)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind358");
             entity.Property(e => e.ValueInd359)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind359");
             entity.Property(e => e.ValueInd36)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind36");
             entity.Property(e => e.ValueInd360)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind360");
             entity.Property(e => e.ValueInd361)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind361");
             entity.Property(e => e.ValueInd362)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind362");
             entity.Property(e => e.ValueInd363)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind363");
             entity.Property(e => e.ValueInd364)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind364");
             entity.Property(e => e.ValueInd365)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind365");
             entity.Property(e => e.ValueInd366)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind366");
             entity.Property(e => e.ValueInd367)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind367");
             entity.Property(e => e.ValueInd368)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind368");
             entity.Property(e => e.ValueInd369)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind369");
             entity.Property(e => e.ValueInd37)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind37");
             entity.Property(e => e.ValueInd370)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind370");
             entity.Property(e => e.ValueInd371)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind371");
             entity.Property(e => e.ValueInd372)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind372");
             entity.Property(e => e.ValueInd373)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind373");
             entity.Property(e => e.ValueInd374)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind374");
             entity.Property(e => e.ValueInd375)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind375");
             entity.Property(e => e.ValueInd376)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind376");
             entity.Property(e => e.ValueInd377)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind377");
             entity.Property(e => e.ValueInd378)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind378");
             entity.Property(e => e.ValueInd379)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind379");
             entity.Property(e => e.ValueInd38)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind38");
             entity.Property(e => e.ValueInd380)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind380");
             entity.Property(e => e.ValueInd381)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind381");
             entity.Property(e => e.ValueInd382)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind382");
             entity.Property(e => e.ValueInd383)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind383");
             entity.Property(e => e.ValueInd384)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind384");
             entity.Property(e => e.ValueInd385)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind385");
             entity.Property(e => e.ValueInd386)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind386");
             entity.Property(e => e.ValueInd387)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind387");
             entity.Property(e => e.ValueInd388)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind388");
             entity.Property(e => e.ValueInd389)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind389");
             entity.Property(e => e.ValueInd39)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind39");
             entity.Property(e => e.ValueInd390)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind390");
             entity.Property(e => e.ValueInd391)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind391");
             entity.Property(e => e.ValueInd392)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind392");
             entity.Property(e => e.ValueInd393)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind393");
             entity.Property(e => e.ValueInd394)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind394");
             entity.Property(e => e.ValueInd395)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind395");
             entity.Property(e => e.ValueInd396)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind396");
             entity.Property(e => e.ValueInd397)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind397");
             entity.Property(e => e.ValueInd398)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind398");
             entity.Property(e => e.ValueInd399)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind399");
             entity.Property(e => e.ValueInd4)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind4");
             entity.Property(e => e.ValueInd40)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind40");
             entity.Property(e => e.ValueInd400)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind400");
             entity.Property(e => e.ValueInd401)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind401");
             entity.Property(e => e.ValueInd402)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind402");
             entity.Property(e => e.ValueInd403)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind403");
             entity.Property(e => e.ValueInd404)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind404");
             entity.Property(e => e.ValueInd405)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind405");
             entity.Property(e => e.ValueInd406)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind406");
             entity.Property(e => e.ValueInd407)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind407");
             entity.Property(e => e.ValueInd408)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind408");
             entity.Property(e => e.ValueInd409)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind409");
             entity.Property(e => e.ValueInd41)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind41");
             entity.Property(e => e.ValueInd410)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind410");
             entity.Property(e => e.ValueInd411)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind411");
             entity.Property(e => e.ValueInd412)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind412");
             entity.Property(e => e.ValueInd413)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind413");
             entity.Property(e => e.ValueInd414)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind414");
             entity.Property(e => e.ValueInd415)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind415");
             entity.Property(e => e.ValueInd416)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind416");
             entity.Property(e => e.ValueInd417)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind417");
             entity.Property(e => e.ValueInd418)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind418");
             entity.Property(e => e.ValueInd419)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind419");
             entity.Property(e => e.ValueInd42)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind42");
             entity.Property(e => e.ValueInd420)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind420");
             entity.Property(e => e.ValueInd421)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind421");
             entity.Property(e => e.ValueInd422)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind422");
             entity.Property(e => e.ValueInd423)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind423");
             entity.Property(e => e.ValueInd424)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind424");
             entity.Property(e => e.ValueInd425)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind425");
             entity.Property(e => e.ValueInd426)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind426");
             entity.Property(e => e.ValueInd427)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind427");
             entity.Property(e => e.ValueInd428)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind428");
             entity.Property(e => e.ValueInd429)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind429");
             entity.Property(e => e.ValueInd43)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind43");
             entity.Property(e => e.ValueInd430)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind430");
             entity.Property(e => e.ValueInd431)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind431");
             entity.Property(e => e.ValueInd432)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind432");
             entity.Property(e => e.ValueInd433)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind433");
             entity.Property(e => e.ValueInd434)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind434");
             entity.Property(e => e.ValueInd435)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind435");
             entity.Property(e => e.ValueInd436)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind436");
             entity.Property(e => e.ValueInd437)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind437");
             entity.Property(e => e.ValueInd438)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind438");
             entity.Property(e => e.ValueInd439)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind439");
             entity.Property(e => e.ValueInd44)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind44");
             entity.Property(e => e.ValueInd440)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind440");
             entity.Property(e => e.ValueInd441)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind441");
             entity.Property(e => e.ValueInd442)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind442");
             entity.Property(e => e.ValueInd443)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind443");
             entity.Property(e => e.ValueInd444)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind444");
             entity.Property(e => e.ValueInd445)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind445");
             entity.Property(e => e.ValueInd446)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind446");
             entity.Property(e => e.ValueInd447)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind447");
             entity.Property(e => e.ValueInd448)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind448");
             entity.Property(e => e.ValueInd449)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind449");
             entity.Property(e => e.ValueInd45)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind45");
             entity.Property(e => e.ValueInd450)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind450");
             entity.Property(e => e.ValueInd451)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind451");
             entity.Property(e => e.ValueInd452)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind452");
             entity.Property(e => e.ValueInd453)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind453");
             entity.Property(e => e.ValueInd454)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind454");
             entity.Property(e => e.ValueInd455)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind455");
             entity.Property(e => e.ValueInd456)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind456");
             entity.Property(e => e.ValueInd457)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind457");
             entity.Property(e => e.ValueInd458)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind458");
             entity.Property(e => e.ValueInd459)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind459");
             entity.Property(e => e.ValueInd46)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind46");
             entity.Property(e => e.ValueInd460)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind460");
             entity.Property(e => e.ValueInd461)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind461");
             entity.Property(e => e.ValueInd462)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind462");
             entity.Property(e => e.ValueInd463)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind463");
             entity.Property(e => e.ValueInd464)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind464");
             entity.Property(e => e.ValueInd465)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind465");
             entity.Property(e => e.ValueInd466)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind466");
             entity.Property(e => e.ValueInd467)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind467");
             entity.Property(e => e.ValueInd468)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind468");
             entity.Property(e => e.ValueInd469)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind469");
             entity.Property(e => e.ValueInd47)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind47");
             entity.Property(e => e.ValueInd470)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind470");
             entity.Property(e => e.ValueInd471)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind471");
             entity.Property(e => e.ValueInd472)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind472");
             entity.Property(e => e.ValueInd473)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind473");
             entity.Property(e => e.ValueInd474)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind474");
             entity.Property(e => e.ValueInd475)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind475");
             entity.Property(e => e.ValueInd476)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind476");
             entity.Property(e => e.ValueInd477)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind477");
             entity.Property(e => e.ValueInd478)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind478");
             entity.Property(e => e.ValueInd479)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind479");
             entity.Property(e => e.ValueInd48)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind48");
             entity.Property(e => e.ValueInd480)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind480");
             entity.Property(e => e.ValueInd481)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind481");
             entity.Property(e => e.ValueInd482)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind482");
             entity.Property(e => e.ValueInd483)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind483");
             entity.Property(e => e.ValueInd484)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind484");
             entity.Property(e => e.ValueInd485)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind485");
             entity.Property(e => e.ValueInd486)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind486");
             entity.Property(e => e.ValueInd487)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind487");
             entity.Property(e => e.ValueInd488)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind488");
             entity.Property(e => e.ValueInd489)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind489");
             entity.Property(e => e.ValueInd49)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind49");
             entity.Property(e => e.ValueInd490)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind490");
             entity.Property(e => e.ValueInd491)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind491");
             entity.Property(e => e.ValueInd492)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind492");
             entity.Property(e => e.ValueInd493)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind493");
             entity.Property(e => e.ValueInd494)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind494");
             entity.Property(e => e.ValueInd495)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind495");
             entity.Property(e => e.ValueInd496)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind496");
             entity.Property(e => e.ValueInd497)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind497");
             entity.Property(e => e.ValueInd498)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind498");
             entity.Property(e => e.ValueInd499)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind499");
             entity.Property(e => e.ValueInd5)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind5");
             entity.Property(e => e.ValueInd50)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind50");
             entity.Property(e => e.ValueInd51)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind51");
             entity.Property(e => e.ValueInd52)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind52");
             entity.Property(e => e.ValueInd53)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind53");
             entity.Property(e => e.ValueInd54)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind54");
             entity.Property(e => e.ValueInd55)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind55");
             entity.Property(e => e.ValueInd56)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind56");
             entity.Property(e => e.ValueInd57)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind57");
             entity.Property(e => e.ValueInd58)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind58");
             entity.Property(e => e.ValueInd59)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind59");
             entity.Property(e => e.ValueInd6)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind6");
             entity.Property(e => e.ValueInd60)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind60");
             entity.Property(e => e.ValueInd61)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind61");
             entity.Property(e => e.ValueInd62)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind62");
             entity.Property(e => e.ValueInd63)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind63");
             entity.Property(e => e.ValueInd64)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind64");
             entity.Property(e => e.ValueInd65)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind65");
             entity.Property(e => e.ValueInd66)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind66");
             entity.Property(e => e.ValueInd67)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind67");
             entity.Property(e => e.ValueInd68)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind68");
             entity.Property(e => e.ValueInd69)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind69");
             entity.Property(e => e.ValueInd7)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind7");
             entity.Property(e => e.ValueInd70)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind70");
             entity.Property(e => e.ValueInd71)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind71");
             entity.Property(e => e.ValueInd72)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind72");
             entity.Property(e => e.ValueInd73)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind73");
             entity.Property(e => e.ValueInd74)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind74");
             entity.Property(e => e.ValueInd75)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind75");
             entity.Property(e => e.ValueInd76)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind76");
             entity.Property(e => e.ValueInd77)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind77");
             entity.Property(e => e.ValueInd78)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind78");
             entity.Property(e => e.ValueInd79)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind79");
             entity.Property(e => e.ValueInd8)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind8");
             entity.Property(e => e.ValueInd80)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind80");
             entity.Property(e => e.ValueInd81)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind81");
             entity.Property(e => e.ValueInd82)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind82");
             entity.Property(e => e.ValueInd83)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind83");
             entity.Property(e => e.ValueInd84)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind84");
             entity.Property(e => e.ValueInd85)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind85");
             entity.Property(e => e.ValueInd86)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind86");
             entity.Property(e => e.ValueInd87)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind87");
             entity.Property(e => e.ValueInd88)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind88");
             entity.Property(e => e.ValueInd89)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind89");
             entity.Property(e => e.ValueInd9)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind9");
             entity.Property(e => e.ValueInd90)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind90");
             entity.Property(e => e.ValueInd91)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind91");
             entity.Property(e => e.ValueInd92)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind92");
             entity.Property(e => e.ValueInd93)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind93");
             entity.Property(e => e.ValueInd94)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind94");
             entity.Property(e => e.ValueInd95)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind95");
             entity.Property(e => e.ValueInd96)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind96");
             entity.Property(e => e.ValueInd97)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind97");
             entity.Property(e => e.ValueInd98)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind98");
             entity.Property(e => e.ValueInd99)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind99");
         });
 
@@ -57624,6 +57210,11 @@ public partial class PrdbContext : AbpDbContext
             .StartsAt(10000L)
             .HasMin(1L)
             .HasMax(1000000000L)
+            .IsCyclic();
+        modelBuilder.HasSequence("TRANSFERID")
+            .StartsAt(10000L)
+            .HasMin(1L)
+            .HasMax(2000000000L)
             .IsCyclic();
         modelBuilder.HasSequence("vprunit")
             .HasMin(1L)
