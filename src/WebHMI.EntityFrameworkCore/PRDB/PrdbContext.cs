@@ -183,6 +183,8 @@ public partial class PrdbContext : AbpDbContext
 
     public virtual DbSet<HmiVCoils3> HmiVCoils3s { get; set; }
 
+    public virtual DbSet<HmiVInlineMaterial> HmiVInlineMaterials { get; set; }
+
     public virtual DbSet<HmiVLimit> HmiVLimits { get; set; }
 
     public virtual DbSet<HmiVMatInfoShort> HmiVMatInfoShorts { get; set; }
@@ -192,6 +194,8 @@ public partial class PrdbContext : AbpDbContext
     public virtual DbSet<HmiVMeids2> HmiVMeids2s { get; set; }
 
     public virtual DbSet<HmiVProdsequence> HmiVProdsequences { get; set; }
+
+    public virtual DbSet<HmiVRemovedMaterial> HmiVRemovedMaterials { get; set; }
 
     public virtual DbSet<HmiVRollclass> HmiVRollclasses { get; set; }
 
@@ -640,6 +644,8 @@ public partial class PrdbContext : AbpDbContext
     public virtual DbSet<UserMessage> UserMessages { get; set; }
 
     public virtual DbSet<VInputPqe> VInputPqes { get; set; }
+
+    public virtual DbSet<VMatStructComplete> VMatStructCompletes { get; set; }
 
     public virtual DbSet<VMatStructEntry> VMatStructEntries { get; set; }
 
@@ -13310,6 +13316,81 @@ public partial class PrdbContext : AbpDbContext
                 .HasColumnName("toc");
         });
 
+        modelBuilder.Entity<HmiVInlineMaterial>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("HMI_V_INLINE_MATERIALS");
+
+            entity.Property(e => e.AlloyCode)
+                .HasMaxLength(30)
+                .IsUnicode(false)
+                .HasColumnName("alloyCode");
+            entity.Property(e => e.ApsKey)
+                .HasMaxLength(6)
+                .IsUnicode(false)
+                .HasColumnName("apsKey");
+            entity.Property(e => e.CoilTemp).HasColumnName("coilTemp");
+            entity.Property(e => e.EdLoSrc)
+                .IsRequired()
+                .HasMaxLength(2)
+                .IsUnicode(false);
+            entity.Property(e => e.EdOrSrc)
+                .IsRequired()
+                .HasMaxLength(2)
+                .IsUnicode(false);
+            entity.Property(e => e.EdPhySrc)
+                .IsRequired()
+                .HasMaxLength(2)
+                .IsUnicode(false);
+            entity.Property(e => e.EnLoMeId).HasColumnName("EnLoMeID");
+            entity.Property(e => e.EnOrCreator)
+                .IsRequired()
+                .HasMaxLength(2)
+                .IsUnicode(false);
+            entity.Property(e => e.EnOrExtId)
+                .IsRequired()
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("EnOrExtID");
+            entity.Property(e => e.EnOrMeId).HasColumnName("EnOrMeID");
+            entity.Property(e => e.EnOrMeType)
+                .IsRequired()
+                .HasMaxLength(2)
+                .IsUnicode(false);
+            entity.Property(e => e.EnPhExtId)
+                .IsRequired()
+                .HasMaxLength(20)
+                .IsUnicode(false);
+            entity.Property(e => e.EnPhMeId).HasColumnName("EnPhMeID");
+            entity.Property(e => e.FlagBatchRolling).HasColumnName("flagBatchRolling");
+            entity.Property(e => e.HEntry).HasColumnName("hEntry");
+            entity.Property(e => e.HExit).HasColumnName("hExit");
+            entity.Property(e => e.HeatId)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("heatId");
+            entity.Property(e => e.LEntry).HasColumnName("lEntry");
+            entity.Property(e => e.LastCalc).HasPrecision(3);
+            entity.Property(e => e.ProdStartTime)
+                .HasPrecision(3)
+                .HasColumnName("prodStartTime");
+            entity.Property(e => e.Sbaz).HasColumnName("sbaz");
+            entity.Property(e => e.SequenceId)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("sequenceId");
+            entity.Property(e => e.SetpointsCsOk).HasColumnName("setpointsCsOk");
+            entity.Property(e => e.SetpointsPc2Ok).HasColumnName("setpointsPc2Ok");
+            entity.Property(e => e.SimMat).HasColumnName("simMat");
+            entity.Property(e => e.TEntryFm).HasColumnName("tEntryFM");
+            entity.Property(e => e.TExitCaster).HasColumnName("tExitCaster");
+            entity.Property(e => e.TExitFm).HasColumnName("tExitFM");
+            entity.Property(e => e.WEntry).HasColumnName("wEntry");
+            entity.Property(e => e.WExit).HasColumnName("wExit");
+            entity.Property(e => e.WeightEntry).HasColumnName("weightEntry");
+        });
+
         modelBuilder.Entity<HmiVLimit>(entity =>
         {
             entity
@@ -13604,6 +13685,85 @@ public partial class PrdbContext : AbpDbContext
             entity.Property(e => e.LEntry).HasColumnName("lEntry");
             entity.Property(e => e.LastCalc).HasPrecision(3);
             entity.Property(e => e.Next).HasColumnName("next");
+            entity.Property(e => e.Sbaz).HasColumnName("sbaz");
+            entity.Property(e => e.SequenceId)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("sequenceId");
+            entity.Property(e => e.SetpointsCsOk).HasColumnName("setpointsCsOk");
+            entity.Property(e => e.SetpointsPc2Ok).HasColumnName("setpointsPc2Ok");
+            entity.Property(e => e.SimMat).HasColumnName("simMat");
+            entity.Property(e => e.TEntryFm).HasColumnName("tEntryFM");
+            entity.Property(e => e.TExitCaster).HasColumnName("tExitCaster");
+            entity.Property(e => e.TExitFm).HasColumnName("tExitFM");
+            entity.Property(e => e.WEntry).HasColumnName("wEntry");
+            entity.Property(e => e.WExit).HasColumnName("wExit");
+            entity.Property(e => e.WeightEntry).HasColumnName("weightEntry");
+        });
+
+        modelBuilder.Entity<HmiVRemovedMaterial>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("HMI_V_REMOVED_MATERIALS");
+
+            entity.Property(e => e.AlloyCode)
+                .HasMaxLength(30)
+                .IsUnicode(false)
+                .HasColumnName("alloyCode");
+            entity.Property(e => e.ApsKey)
+                .HasMaxLength(6)
+                .IsUnicode(false)
+                .HasColumnName("apsKey");
+            entity.Property(e => e.CoilTemp).HasColumnName("coilTemp");
+            entity.Property(e => e.EdLoSrc)
+                .IsRequired()
+                .HasMaxLength(2)
+                .IsUnicode(false);
+            entity.Property(e => e.EdOrSrc)
+                .IsRequired()
+                .HasMaxLength(2)
+                .IsUnicode(false);
+            entity.Property(e => e.EdPhySrc)
+                .IsRequired()
+                .HasMaxLength(2)
+                .IsUnicode(false);
+            entity.Property(e => e.EnLoMeId).HasColumnName("EnLoMeID");
+            entity.Property(e => e.EnOrCreator)
+                .IsRequired()
+                .HasMaxLength(2)
+                .IsUnicode(false);
+            entity.Property(e => e.EnOrExtId)
+                .IsRequired()
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("EnOrExtID");
+            entity.Property(e => e.EnOrMeId).HasColumnName("EnOrMeID");
+            entity.Property(e => e.EnOrMeType)
+                .IsRequired()
+                .HasMaxLength(2)
+                .IsUnicode(false);
+            entity.Property(e => e.EnPhExtId)
+                .IsRequired()
+                .HasMaxLength(20)
+                .IsUnicode(false);
+            entity.Property(e => e.EnPhMeId).HasColumnName("EnPhMeID");
+            entity.Property(e => e.FlagBatchRolling).HasColumnName("flagBatchRolling");
+            entity.Property(e => e.HEntry).HasColumnName("hEntry");
+            entity.Property(e => e.HExit).HasColumnName("hExit");
+            entity.Property(e => e.HeatId)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("heatId");
+            entity.Property(e => e.LEntry).HasColumnName("lEntry");
+            entity.Property(e => e.LastCalc).HasPrecision(3);
+            entity.Property(e => e.ReasonCode)
+                .HasMaxLength(9)
+                .IsUnicode(false)
+                .HasColumnName("reasonCode");
+            entity.Property(e => e.RejectTime)
+                .HasPrecision(3)
+                .HasColumnName("rejectTime");
             entity.Property(e => e.Sbaz).HasColumnName("sbaz");
             entity.Property(e => e.SequenceId)
                 .HasMaxLength(20)
@@ -56898,6 +57058,93 @@ public partial class PrdbContext : AbpDbContext
             entity.Property(e => e.Wexitmin).HasColumnName("wexitmin");
             entity.Property(e => e.Widthexitcustomer).HasColumnName("WIDTHEXITCUSTOMER");
             entity.Property(e => e.Yieldstress).HasColumnName("yieldstress");
+        });
+
+        modelBuilder.Entity<VMatStructComplete>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("V_MAT_STRUCT_COMPLETE");
+
+            entity.Property(e => e.Enlocreator)
+                .IsRequired()
+                .HasMaxLength(2)
+                .IsUnicode(false)
+                .HasColumnName("ENLOCREATOR");
+            entity.Property(e => e.Enloenphmesid).HasColumnName("ENLOENPHMESID");
+            entity.Property(e => e.Enlomeid).HasColumnName("ENLOMEID");
+            entity.Property(e => e.Enlomesid)
+                .IsRequired()
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("ENLOMESID");
+            entity.Property(e => e.Enlometype)
+                .IsRequired()
+                .HasMaxLength(2)
+                .IsUnicode(false)
+                .HasColumnName("ENLOMETYPE");
+            entity.Property(e => e.Enorcreator)
+                .IsRequired()
+                .HasMaxLength(2)
+                .IsUnicode(false)
+                .HasColumnName("ENORCREATOR");
+            entity.Property(e => e.Enorcurmesid).HasColumnName("ENORCURMESID");
+            entity.Property(e => e.Enorenlomesid).HasColumnName("ENORENLOMESID");
+            entity.Property(e => e.Enorexlomesid).HasColumnName("ENOREXLOMESID");
+            entity.Property(e => e.Enorextid)
+                .IsRequired()
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("ENOREXTID");
+            entity.Property(e => e.Enormeid).HasColumnName("ENORMEID");
+            entity.Property(e => e.Enormetype)
+                .IsRequired()
+                .HasMaxLength(2)
+                .IsUnicode(false)
+                .HasColumnName("ENORMETYPE");
+            entity.Property(e => e.Enphcreator)
+                .IsRequired()
+                .HasMaxLength(2)
+                .IsUnicode(false)
+                .HasColumnName("ENPHCREATOR");
+            entity.Property(e => e.Enphextid)
+                .IsRequired()
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("ENPHEXTID");
+            entity.Property(e => e.Enphmeid).HasColumnName("ENPHMEID");
+            entity.Property(e => e.Enphmetype)
+                .IsRequired()
+                .HasMaxLength(2)
+                .IsUnicode(false)
+                .HasColumnName("ENPHMETYPE");
+            entity.Property(e => e.Exlocreator)
+                .HasMaxLength(2)
+                .IsUnicode(false)
+                .HasColumnName("EXLOCREATOR");
+            entity.Property(e => e.Exloexitid)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("EXLOEXITID");
+            entity.Property(e => e.Exlomeid).HasColumnName("EXLOMEID");
+            entity.Property(e => e.Exlometype)
+                .HasMaxLength(2)
+                .IsUnicode(false)
+                .HasColumnName("EXLOMETYPE");
+            entity.Property(e => e.Exphcreator)
+                .HasMaxLength(2)
+                .IsUnicode(false)
+                .HasColumnName("EXPHCREATOR");
+            entity.Property(e => e.Exphextid)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("EXPHEXTID");
+            entity.Property(e => e.Exphmeid).HasColumnName("EXPHMEID");
+            entity.Property(e => e.Exphmetype)
+                .HasMaxLength(2)
+                .IsUnicode(false)
+                .HasColumnName("EXPHMETYPE");
+            entity.Property(e => e.Mesid).HasColumnName("MESID");
         });
 
         modelBuilder.Entity<VMatStructEntry>(entity =>

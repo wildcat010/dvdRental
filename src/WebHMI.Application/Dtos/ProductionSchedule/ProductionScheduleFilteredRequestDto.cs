@@ -7,7 +7,7 @@ using WebHMI.Filters;
 
 namespace WebHMI.Dtos.ProductionSchedule
 {
-	internal class ProductionScheduleFilteredRequestDto : FilteredRequestDto
+	public class ProductionScheduleFilteredRequestDto : FilteredRequestDto
 	{
 		public ProductionScheduleMode Mode { get; set; }
 	}

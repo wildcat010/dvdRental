@@ -67,13 +67,7 @@ namespace WebHMI.Services
 
 		public async Task<PagedResultDto<InLineMaterialDto>> GetInLineMaterials(FilteredRequestDto input)
 		{
-			throw new NotImplementedException();
-
-			//var result = await ApplyFilter(_inlineMaterialRepository.GetAll()
-			//	.OrderByDescending(t => t.Osdatetime),
-			//	input, TrackingDataMapper.ToDto);
-
-			//return result;
+			return await ApplyFilter(_prdbContext.HmiVInlineMaterials.AsQueryable(), input, TrackingDataMapper.ToDto);
 		}
 
 		public async Task<PagedResultDto<MaterialHeaderDto>> GetMaterialHeaderList(FilteredRequestDto input)
@@ -94,7 +88,7 @@ namespace WebHMI.Services
 					},
 				};
 
-				dto.MapEffectiveData(item);
+				dto.MapData([item]);
 
 				result.Add(dto);
 			}
