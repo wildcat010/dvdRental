@@ -257,3 +257,6 @@ src/WebHMI.Migrator/secrets.json
 
 # Others
 src/WebHMI.Web.Host/App_Data/
+/MapGenerator/mapping.xlsx
+/MapGenerator/get.txt
+/MapGenerator/update.txt
