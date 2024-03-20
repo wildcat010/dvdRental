@@ -27,5 +27,10 @@ namespace WebHMI.Helpers
 			var result = await context.GetMaterialEntryStruct(key.MeId, key.MatType);
 			return result ?? throw new EntityNotFoundException($"Material with meid '{key.MeId}' and matType '{key.MatType}' not found");
 		}
+
+		public async Task<VMatStructEntry> GetMaterialEntryStruct(long meid, string matType)
+		{
+			return await GetMaterialEntryStruct(new MaterialKeyDto { MeId = meid, MatType = matType });
+		}
 	}
 }
