@@ -37,7 +37,7 @@ namespace WebHMI.PRDB
             return prdbContext.Add(entity).Entity;
         }
 
-        private static TEntity CreateEntity<TEntity>(
+        public static TEntity CreateEntity<TEntity>(
         VMatStructEntry entryMatStruct,
         string source)
         where TEntity : class, IMaterialIdType, new()
