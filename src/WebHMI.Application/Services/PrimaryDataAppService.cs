@@ -1,4 +1,5 @@
-﻿using Abp.EntityFrameworkCore;
+﻿using Abp.Domain.Entities;
+using Abp.EntityFrameworkCore;
 using Abp.UI;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -158,9 +159,48 @@ namespace WebHMI.Services
 			}
 
 			edlogentM.AlloyCode = input.Data.AlloyCode.M;
-			// TODO: update chemistry
+			await UpdateChemistry(input, edlogentM, entryMatStruct);
 
 			// TODO: override SaveChangesAsync and insert left ed records
+		}
+
+		private async Task UpdateChemistry(PrimaryDataDto input, EdLogEnt edlogentManual, VMatStructEntry entryMatStruct)
+		{
+			var edlogentE = await _prdbContext.EdLogEnts.FirstOrDefaultAsync(x => x.MeId == entryMatStruct.EnLoMeId && x.Source == "E");
+
+			if (edlogentE is null)
+				throw new EntityNotFoundException("Chemistry entity original record not found");
+
+			var properties = edlogentE.GetType().GetProperties().Where(prop => prop.Name.StartsWith("AlloyNameInd", StringComparison.OrdinalIgnoreCase));
+			foreach (var prop in properties)
+			{
+				var manualProp = edlogentManual.GetType().GetProperty(prop.Name);
+				if (manualProp is null)
+					continue;
+
+				var value = prop.GetValue(edlogentE);
+				manualProp.SetValue(edlogentManual, value);
+			}
+
+			foreach (var chemistryElement in input.ChemistryElements)
+			{
+				var namePropertyInfo = edlogentManual.GetType()
+					.GetProperties()
+					.FirstOrDefault(prop => prop.Name.StartsWith("AlloyNameInd", StringComparison.OrdinalIgnoreCase) &&
+									prop.GetValue(edlogentManual)?.ToString() == chemistryElement.Name);
+
+				var valuePropertyInfo = edlogentManual.GetType()
+					.GetProperties()
+					.FirstOrDefault(prop => prop.Name.Equals($"AlloyValueInd{namePropertyInfo.Name["AlloyNameInd".Length..]}", StringComparison.OrdinalIgnoreCase));
+
+				if (namePropertyInfo is null || valuePropertyInfo is null)
+					throw new UserFriendlyException($"Chemistry element '{chemistryElement.Name}' not found");
+
+				var sourceValueProperty = chemistryElement.Value.GetType().GetProperty(edlogentManual.Source);
+
+				var sentValue = (float?)sourceValueProperty.GetValue(chemistryElement.Value);
+				valuePropertyInfo.SetValue(edlogentManual, sentValue);
+			}
 		}
 
 		private async Task<PrimaryDataDataBlob> GetDataBlob(VMatStructEntry entryMatStruct)

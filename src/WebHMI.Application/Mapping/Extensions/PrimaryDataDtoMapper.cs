@@ -302,7 +302,35 @@ namespace WebHMI.Mapping.Extensions
 
 		public static PrimaryDataDto MapChemistryElements(this PrimaryDataDto result, PrimaryDataDataBlob dataBlob)
 		{
-			// TODO: add mapping
+			foreach (var edlogent in dataBlob.EdLogEnts)
+			{
+				var nameProperties = edlogent.GetType()
+					.GetProperties()
+					.Where(prop => prop.Name.StartsWith("AlloyNameInd", StringComparison.OrdinalIgnoreCase))
+					.Select(prop => new { Number = prop.Name["AlloyNameInd".Length..], ElementName = prop.GetValue(edlogent)?.ToString() });
+
+				var valueProperties = edlogent.GetType()
+					.GetProperties()
+					.Where(prop => prop.Name.StartsWith("AlloyValueInd", StringComparison.OrdinalIgnoreCase))
+					.Select(prop => new { Number = prop.Name["AlloyValueInd".Length..], ElementValue = (float?)prop.GetValue(edlogent) });
+
+				foreach (var nameProperty in nameProperties.Where(x => x.ElementName is not null))
+				{
+					var resultElement = result.ChemistryElements.FirstOrDefault(x => x.Name == nameProperty.ElementName);
+
+					if (resultElement is null)
+					{
+						ChemistryElement newElement = new() { Name = nameProperty.ElementName };
+						result.ChemistryElements.Add(newElement);
+						resultElement = newElement;
+					}
+
+					float? matchedValue = valueProperties.FirstOrDefault(x => x.Number == nameProperty.Number).ElementValue;
+
+					var sourceProperty = resultElement.Value.GetType().GetProperty(edlogent.Source);
+					sourceProperty?.SetValue(resultElement.Value, matchedValue);
+				}
+			}
 
 			return result;
 		}
