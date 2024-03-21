@@ -4,6 +4,7 @@ using Abp.UI;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -51,24 +52,8 @@ namespace WebHMI.Services
 			var entryMatStruct = await _matStructEntryService.GetMaterialEntryStruct(input.MeCode.MeId, input.MeCode.MatType);
 
 			var edphyentM = await _prdbContext.EdPhyEnts.FirstOrDefaultAsync(x => x.MeId == entryMatStruct.EnPhMeId && x.Source == "M");
-
-			// TODO: add extension InsertIfNullAsync
-			//edphyent = await _edphyentRepository.InsertIfNullAsync(edphyent, hmiVEntryMatStruct);
-
-			if (edphyentM is null)
-			{
-				edphyentM = new EdPhyEnt
-				{
-					MeId = entryMatStruct.EnPhMeId,
-					MesId = entryMatStruct.EnPhMesId ?? 1,
-					MeCreator = entryMatStruct.EnPhCreator,
-					Source = "M",
-				};
-
-				_prdbContext.EdPhyEnts.Add(edphyentM);
-			}
-
-			edphyentM.SequenceId = input.Data.SequenceId.M;
+            edphyentM = _prdbContext.InsertIfNull(edphyentM, entryMatStruct);
+            edphyentM.SequenceId = input.Data.SequenceId.M;
 			edphyentM.HeatId = input.Data.HeatId.M;
 			edphyentM.AimSlabThickness = input.Data.SlabThickness.M;
 			edphyentM.SlabWidth = input.Data.SlabWidth.M;
@@ -89,21 +74,7 @@ namespace WebHMI.Services
 			edphyentM.WidthExitCustomer = input.Data.FMExitWidthCustomer.M;
 
 			var edordentM = await _prdbContext.EdOrdEnts.FirstOrDefaultAsync(x => x.MeId == entryMatStruct.EnOrMeId && x.Source == "M");
-
-			// TODO: add extension InsertIfNullAsync
-			if (edordentM is null)
-			{
-				edordentM = new EdOrdEnt
-				{
-					MeId = entryMatStruct.EnOrMeId,
-					MesId = entryMatStruct.EnOrMesId ?? 1,
-					MeCreator = entryMatStruct.EnOrCreator,
-					Source = "M",
-				};
-
-				_prdbContext.EdOrdEnts.Add(edordentM);
-			}
-
+            edordentM = _prdbContext.InsertIfNull(edordentM, entryMatStruct);
 			edordentM.FlagBatchRolling = input.Data.FlagBatchRolling.M;
 			edordentM.AlloyCompensation = input.Data.AlloyCompensation.M;
 			edordentM.CastSpeed = input.Data.CastSpeed.M;
@@ -143,25 +114,11 @@ namespace WebHMI.Services
 			edordentM.CoolingStrategyModeSelection = input.Data.CoolingStrategyMode.M;
 
 			var edlogentM = await _prdbContext.EdLogEnts.FirstOrDefaultAsync(x => x.MeId == entryMatStruct.EnLoMeId && x.Source == "M");
-
-			// TODO: add extension InsertIfNullAsync
-			if (edlogentM is null)
-			{
-				edlogentM = new EdLogEnt
-				{
-					MeId = entryMatStruct.EnLoMeId,
-					MesId = entryMatStruct.EnLoMesid ?? 1,
-					MeCreator = entryMatStruct.EnLoCreator,
-					Source = "M"
-				};
-
-				_prdbContext.EdLogEnts.Add(edlogentM);
-			}
-
+            edlogentM = _prdbContext.InsertIfNull(edlogentM, entryMatStruct);
 			edlogentM.AlloyCode = input.Data.AlloyCode.M;
 			await UpdateChemistry(input, edlogentM, entryMatStruct);
 
-			// TODO: override SaveChangesAsync and insert left ed records
+			// TODO: override SaveChangesAsync and insert left ed records?
 		}
 
 		private async Task UpdateChemistry(PrimaryDataDto input, EdLogEnt edlogentManual, VMatStructEntry entryMatStruct)
