@@ -1,11 +1,12 @@
 ﻿using Abp.Modules;
 using Abp.Reflection.Extensions;
 using Microsoft.Extensions.Configuration;
+using WebHMI.L2Adapter.ConnectionManagers;
 using WebHMI.L2Adapter.Senders;
 
 namespace WebHMI.L2Adapter
 {
-	public class L2AdapterModule : AbpModule
+    public class L2AdapterModule : AbpModule
 	{
 		private readonly IConfiguration _configuration;
 		private L2CommunicationConfiguration _l2CommunicationConfiguration;
@@ -29,16 +30,18 @@ namespace WebHMI.L2Adapter
 			if (_l2CommunicationConfiguration.IsEnabled)
 			{
 				IocManager.Register<IL2Sender, L2Sender>();
+				IocManager.Register<IConnectionManager, ConnectionManager>();
 			}
 			else
 			{
 				IocManager.Register<IL2Sender, NullL2Sender>();
-			}
-		}
+				IocManager.Register<IConnectionManager, NullConnectionManager>();
+            }
+        }
 
 		public override void PostInitialize()
 		{
-			IocManager.Resolve<ConnectionManager>();
+			IocManager.Resolve<IConnectionManager>();
 		}
 	}
 }
