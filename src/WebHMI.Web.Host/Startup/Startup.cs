@@ -157,6 +157,7 @@ namespace WebHMI.Web.Host.Startup
 				});
 
 				options.OperationFilter<AuthOperationFilter>();
+				options.OperationFilter<SortParametersFilter>();
 
 				// Add summaries to swagger (used to generate API description document)
 				var hostXmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
