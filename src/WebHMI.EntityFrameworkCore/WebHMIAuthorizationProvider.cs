@@ -13,7 +13,11 @@ namespace WebHMI
 			context.CreatePermission(Permissions.Pages_Roles);
 
 			context.CreatePermission(Permissions.Pages_Audit);
-		}
+
+            var rollData = context.CreatePermission(Permissions.Pages_RollData);
+            rollData.CreateChildPermission(Permissions.Pages_RollData_Edit);
+            rollData.CreateChildPermission(Permissions.Pages_RollData_Delete);
+        }
 	}
 }
 

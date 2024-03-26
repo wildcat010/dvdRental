@@ -197,6 +197,8 @@ public partial class PrdbContext : AbpDbContext
 
     public virtual DbSet<HmiVRemovedMaterial> HmiVRemovedMaterials { get; set; }
 
+    public virtual DbSet<HmiVRollInventory> HmiVRollInventories { get; set; }
+
     public virtual DbSet<HmiVRollclass> HmiVRollclasses { get; set; }
 
     public virtual DbSet<HmiVRolldRollselector> HmiVRolldRollselectors { get; set; }
@@ -13780,6 +13782,75 @@ public partial class PrdbContext : AbpDbContext
             entity.Property(e => e.WeightEntry).HasColumnName("weightEntry");
         });
 
+        modelBuilder.Entity<HmiVRollInventory>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("HMI_V_ROLL_INVENTORY");
+
+            entity.Property(e => e.Diameter).HasColumnName("DIAMETER");
+            entity.Property(e => e.Dismounttime)
+                .HasPrecision(3)
+                .HasColumnName("DISMOUNTTIME");
+            entity.Property(e => e.Grinding).HasColumnName("GRINDING");
+            entity.Property(e => e.Mounttime)
+                .HasPrecision(3)
+                .HasColumnName("MOUNTTIME");
+            entity.Property(e => e.Plannedrollpos)
+                .HasMaxLength(1)
+                .IsUnicode(false)
+                .HasColumnName("PLANNEDROLLPOS");
+            entity.Property(e => e.Plannedstandid).HasColumnName("PLANNEDSTANDID");
+            entity.Property(e => e.Planttype)
+                .IsRequired()
+                .HasMaxLength(3)
+                .IsUnicode(false)
+                .HasColumnName("PLANTTYPE");
+            entity.Property(e => e.Relatedrollid)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("RELATEDROLLID");
+            entity.Property(e => e.Remarks)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("REMARKS");
+            entity.Property(e => e.Removereason).HasColumnName("REMOVEREASON");
+            entity.Property(e => e.Rollchamfercode).HasColumnName("ROLLCHAMFERCODE");
+            entity.Property(e => e.Rollclass).HasColumnName("ROLLCLASS");
+            entity.Property(e => e.Rollclassdesc)
+                .HasMaxLength(80)
+                .IsUnicode(false)
+                .HasColumnName("ROLLCLASSDESC");
+            entity.Property(e => e.Rolledlength).HasColumnName("ROLLEDLENGTH");
+            entity.Property(e => e.Rolledweight).HasColumnName("ROLLEDWEIGHT");
+            entity.Property(e => e.Rollid)
+                .IsRequired()
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("ROLLID");
+            entity.Property(e => e.Rollpos)
+                .IsRequired()
+                .HasMaxLength(1)
+                .IsUnicode(false)
+                .HasColumnName("ROLLPOS");
+            entity.Property(e => e.Rollpropertyclass).HasColumnName("ROLLPROPERTYCLASS");
+            entity.Property(e => e.Rollpropertydesc)
+                .HasMaxLength(80)
+                .IsUnicode(false)
+                .HasColumnName("ROLLPROPERTYDESC");
+            entity.Property(e => e.Rolltype)
+                .HasMaxLength(3)
+                .IsUnicode(false)
+                .HasColumnName("ROLLTYPE");
+            entity.Property(e => e.Shapecode).HasColumnName("SHAPECODE");
+            entity.Property(e => e.Shimm).HasColumnName("SHIMM");
+            entity.Property(e => e.Standid).HasColumnName("STANDID");
+            entity.Property(e => e.Stat)
+                .HasMaxLength(1)
+                .IsUnicode(false)
+                .HasColumnName("STAT");
+        });
+
         modelBuilder.Entity<HmiVRollclass>(entity =>
         {
             entity
@@ -15667,130 +15738,120 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<Iscppass>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.PassNo }).HasName("PK__ISCPPass__5DCFA6F9172E7A85");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.PassNo }).HasName("PK__ISCPPass__5DCFA6F9428F43AA");
 
             entity.ToTable("ISCPPass", tb =>
                 {
-                    tb.HasComment("");
                     tb.HasTrigger("TI_ISCPPass");
                     tb.HasTrigger("TU_ISCPPass");
                 });
 
             entity.Property(e => e.MeId)
                 .HasDefaultValue(1)
-                .HasComment("Material idendification number")
                 .HasColumnName("meId");
             entity.Property(e => e.MeCreator)
                 .HasMaxLength(2)
                 .IsUnicode(false)
                 .HasDefaultValue("")
-                .HasComment("Material owner")
                 .HasColumnName("meCreator");
             entity.Property(e => e.MesId)
                 .HasDefaultValue((short)1)
-                .HasComment("Line status")
                 .HasColumnName("mesId");
             entity.Property(e => e.Source)
                 .HasMaxLength(2)
                 .IsUnicode(false)
                 .HasDefaultValue("-")
-                .HasComment("owner")
                 .HasColumnName("source");
-            entity.Property(e => e.PassNo)
-                .HasComment("pass number")
-                .HasColumnName("passNo");
+            entity.Property(e => e.PassNo).HasColumnName("passNo");
             entity.Property(e => e.DescalerAuto)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[0..1] descaler auto AUTO = 0 MAN = 1")
                 .HasColumnName("descalerAuto");
             entity.Property(e => e.DescalerState)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[0 / 1] descaler state: ON=0, OFF=1")
                 .HasColumnName("descalerState");
             entity.Property(e => e.DescalerVolume)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[0...1] descaler factor from maximum cooling flow")
                 .HasColumnName("descalerVolume");
             entity.Property(e => e.FumeSuppSprayBefor)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[0...1] fume (dust) suppresion spray")
                 .HasColumnName("fumeSuppSprayBefor");
             entity.Property(e => e.FumeSuppSprayBehind)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[0...1] fume (dust) suppresion spray")
                 .HasColumnName("fumeSuppSprayBehind");
             entity.Property(e => e.IntermBeamCool)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[0...1] intermediate beam cooling")
                 .HasColumnName("intermBeamCool");
             entity.Property(e => e.IscAuto)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[0 / 1] ISC automatic mode: AUTO=0, MAN=1")
                 .HasColumnName("iscAuto");
-            entity.Property(e => e.IscMaxVolume)
+            entity.Property(e => e.IscMaxVolumeInd0)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[0...1] ISC maximum volume factor from maximum cooling flow (plant par)")
-                .HasColumnName("iscMaxVolume");
-            entity.Property(e => e.IscMinVolume)
+                .HasColumnName("iscMaxVolume_ind0");
+            entity.Property(e => e.IscMaxVolumeInd1)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[0...1] ISC minimum volume factor from maximum cooling flow (plant par)")
-                .HasColumnName("iscMinVolume");
+                .HasColumnName("iscMaxVolume_ind1");
+            entity.Property(e => e.IscMaxVolumeInd2)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("iscMaxVolume_ind2");
+            entity.Property(e => e.IscMinVolumeInd0)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("iscMinVolume_ind0");
+            entity.Property(e => e.IscMinVolumeInd1)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("iscMinVolume_ind1");
+            entity.Property(e => e.IscMinVolumeInd2)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("iscMinVolume_ind2");
             entity.Property(e => e.IscState)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[0 / 1] ISC state: ON=0, OFF=1")
                 .HasColumnName("iscState");
-            entity.Property(e => e.IscVolume)
+            entity.Property(e => e.IscVolumeInd0)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[0...1] ISC volume factor from maximum cooling flow (plant par)")
-                .HasColumnName("iscVolume");
+                .HasColumnName("iscVolume_ind0");
+            entity.Property(e => e.IscVolumeInd1)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("iscVolume_ind1");
+            entity.Property(e => e.IscVolumeInd2)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("iscVolume_ind2");
             entity.Property(e => e.LooperCool)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[0...1] looper cooling")
                 .HasColumnName("looperCool");
             entity.Property(e => e.Mop)
                 .HasMaxLength(120)
                 .IsUnicode(false)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("modifying process")
                 .HasColumnName("mop");
             entity.Property(e => e.PlanNo)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[0...999] i s c p number")
                 .HasColumnName("planNo");
             entity.Property(e => e.PrioDescaler)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[0 .... n] behind pass X, priority: -1: do not switch, 0,1,2,3,.....: lowest number is switched on first and switched off last")
                 .HasColumnName("prioDescaler");
             entity.Property(e => e.PrioIsc)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[0 ..... n] ISC, priority: -1: do not switch, 0,1,2,3,.....: lowest number is switched on first and switched off last")
                 .HasColumnName("prioIsc");
             entity.Property(e => e.RollGapSpray)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[0...1] special spray, before pass X, roll gap spray")
                 .HasColumnName("rollGapSpray");
             entity.Property(e => e.StripSprayBefor)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[0...1] strip spraying")
                 .HasColumnName("stripSprayBefor");
             entity.Property(e => e.StripSprayBehind)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[0...1] strip spraying")
                 .HasColumnName("stripSprayBehind");
             entity.Property(e => e.Toc)
                 .HasPrecision(3)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("time of creation")
                 .HasColumnName("toc");
             entity.Property(e => e.Tom)
                 .HasPrecision(3)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("time of modification")
                 .HasColumnName("tom");
 
             entity.HasOne(d => d.Me1).WithMany(p => p.Iscppasses)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__ISCPPass__6B25B5D9");
+                .HasConstraintName("FK__ISCPPass__0D5DFFA8");
         });
 
         modelBuilder.Entity<Iscvalf>(entity =>
@@ -54414,107 +54475,98 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdIscppass>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag, e.PassNo }).HasName("PK__StdISCPP__461E4FDD6205E690");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag, e.PassNo }).HasName("PK__StdISCPP__461E4FDDAD68D8C8");
 
             entity.ToTable("StdISCPPass", tb =>
                 {
-                    tb.HasComment("Standard interstand cooling plan pass");
                     tb.HasTrigger("TI_StdISCPPass");
                     tb.HasTrigger("TU_StdISCPPass");
                 });
 
-            entity.Property(e => e.PlanNo)
-                .HasComment("Unit[0...999] i s c p number")
-                .HasColumnName("planNo");
-            entity.Property(e => e.ActiveFlag)
-                .HasComment("active flag")
-                .HasColumnName("activeFlag");
-            entity.Property(e => e.PassNo)
-                .HasComment("pass number")
-                .HasColumnName("passNo");
+            entity.Property(e => e.PlanNo).HasColumnName("planNo");
+            entity.Property(e => e.ActiveFlag).HasColumnName("activeFlag");
+            entity.Property(e => e.PassNo).HasColumnName("passNo");
             entity.Property(e => e.DescalerAuto)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[0..1] descaler auto AUTO = 0 MAN = 1")
                 .HasColumnName("descalerAuto");
             entity.Property(e => e.DescalerState)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[0 / 1] descaler state: ON=0, OFF=1")
                 .HasColumnName("descalerState");
             entity.Property(e => e.DescalerVolume)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[0...1] descaler factor from maximum cooling flow")
                 .HasColumnName("descalerVolume");
             entity.Property(e => e.FumeSuppSprayBefor)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[0...1] fume (dust) suppresion spray")
                 .HasColumnName("fumeSuppSprayBefor");
             entity.Property(e => e.FumeSuppSprayBehind)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[0...1] fume (dust) suppresion spray")
                 .HasColumnName("fumeSuppSprayBehind");
             entity.Property(e => e.IntermBeamCool)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[0...1] intermediate beam cooling")
                 .HasColumnName("intermBeamCool");
             entity.Property(e => e.IscAuto)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[0 / 1] ISC automatic mode: AUTO=0, MAN=1")
                 .HasColumnName("iscAuto");
-            entity.Property(e => e.IscMaxVolume)
+            entity.Property(e => e.IscMaxVolumeInd0)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[0...1] ISC maximum volume factor from maximum cooling flow (plant par)")
-                .HasColumnName("iscMaxVolume");
-            entity.Property(e => e.IscMinVolume)
+                .HasColumnName("iscMaxVolume_ind0");
+            entity.Property(e => e.IscMaxVolumeInd1)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[0...1] ISC minimum volume factor from maximum cooling flow (plant par)")
-                .HasColumnName("iscMinVolume");
+                .HasColumnName("iscMaxVolume_ind1");
+            entity.Property(e => e.IscMaxVolumeInd2)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("iscMaxVolume_ind2");
+            entity.Property(e => e.IscMinVolumeInd0)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("iscMinVolume_ind0");
+            entity.Property(e => e.IscMinVolumeInd1)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("iscMinVolume_ind1");
+            entity.Property(e => e.IscMinVolumeInd2)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("iscMinVolume_ind2");
             entity.Property(e => e.IscState)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[0 / 1] ISC state: ON=0, OFF=1")
                 .HasColumnName("iscState");
-            entity.Property(e => e.IscVolume)
+            entity.Property(e => e.IscVolumeInd0)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[0...1] ISC volume factor from maximum cooling flow (plant par)")
-                .HasColumnName("iscVolume");
+                .HasColumnName("iscVolume_ind0");
+            entity.Property(e => e.IscVolumeInd1)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("iscVolume_ind1");
+            entity.Property(e => e.IscVolumeInd2)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("iscVolume_ind2");
             entity.Property(e => e.LooperCool)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[0...1] looper cooling")
                 .HasColumnName("looperCool");
             entity.Property(e => e.Mop)
                 .HasMaxLength(120)
                 .IsUnicode(false)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("modifying process")
                 .HasColumnName("mop");
             entity.Property(e => e.PrioDescaler)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[0 .... n] behind pass X, priority: -1: do not switch, 0,1,2,3,.....: lowest number is switched on first and switched off last")
                 .HasColumnName("prioDescaler");
             entity.Property(e => e.PrioIsc)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[0 ..... n] ISC, priority: -1: do not switch, 0,1,2,3,.....: lowest number is switched on first and switched off last")
                 .HasColumnName("prioIsc");
             entity.Property(e => e.RollGapSpray)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[0...1] special spray, before pass X, roll gap spray")
                 .HasColumnName("rollGapSpray");
             entity.Property(e => e.StripSprayBefor)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[0...1] strip spraying")
                 .HasColumnName("stripSprayBefor");
             entity.Property(e => e.StripSprayBehind)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[0...1] strip spraying")
                 .HasColumnName("stripSprayBehind");
             entity.Property(e => e.Toc)
                 .HasPrecision(3)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("time of creation")
                 .HasColumnName("toc");
             entity.Property(e => e.Tom)
                 .HasPrecision(3)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("time of modification")
                 .HasColumnName("tom");
         });
 

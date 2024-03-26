@@ -6,13 +6,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WebHMI.Material;
+using WebHMI.Dtos;
 using WebHMI.PRDB;
 using WebHMI.PRDB.Dbo;
 
 namespace WebHMI.Helpers
 {
-	public class MatStructEntryService : ITransientDependency
+    public class MatStructEntryService : ITransientDependency
 	{
 		private readonly IDbContextProvider<PrdbContext> _prdbContextProvider;
 

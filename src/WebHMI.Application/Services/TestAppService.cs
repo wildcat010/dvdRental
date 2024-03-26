@@ -18,7 +18,6 @@ using WebHMI.Filters;
 using WebHMI.Helpers;
 using WebHMI.L2Adapter.Senders;
 using WebHMI.Mapping.Extensions;
-using WebHMI.Material;
 using WebHMI.Notification;
 using WebHMI.PRDB;
 using WebHMI.PRDB.Dbo;
@@ -27,7 +26,7 @@ using WebHMI.WebHMI.Dbo;
 
 namespace WebHMI.Services
 {
-	public class TestAppService : ApplicationServiceBase, IAsyncEventHandler<EventWrapper<string>>
+    public class TestAppService : ApplicationServiceBase, IAsyncEventHandler<EventWrapper<string>>
 	{
 		private readonly IDbContextProvider<PrdbContext> _prdbContextProvider;
 		private readonly IDbContextProvider<WebHMIDbContext> _hmiContextProvider;
