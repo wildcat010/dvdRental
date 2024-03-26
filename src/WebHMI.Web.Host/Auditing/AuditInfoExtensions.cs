@@ -11,7 +11,9 @@ namespace WebHMI.Web.Host.Auditing
 			// Override, full length, do not truncate with postfix
 			auditLog.Parameters = auditInfo.Parameters;
 
-			return auditLog;
+            auditLog.ExecutionTime = auditLog.ExecutionTime.ToUniversalTime();
+
+            return auditLog;
 		}
 
 		public static string ToAuditLogString(this AuditInfo auditInfo)

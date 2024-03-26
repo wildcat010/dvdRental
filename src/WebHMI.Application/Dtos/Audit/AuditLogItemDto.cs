@@ -8,7 +8,8 @@ namespace WebHMI.Dtos.Audit
 		public string ServiceName { get; set; }
 		public string EndpointName { get; set; }
 		public DateTime ExecutionTime { get; set; }
+        public int ExecutionDuration { get; set; }
 		public CallerUser CallerUser { get; set; }
-		public AuditCallResult CallResult { get; set; }
+        public AuditCallResult CallResult { get; set; }
 	}
 }

@@ -2,6 +2,7 @@
 using Abp.Zero.EntityFrameworkCore;
 using Abp.Auditing;
 using WebHMI.WebHMI.Dbo;
+using System;
 
 namespace WebHMI.WebHMI
 {
@@ -16,7 +17,9 @@ namespace WebHMI.WebHMI
 		{
 			base.OnModelCreating(modelBuilder);
 
-			modelBuilder.Entity<AuditLog>()
+            TreatDatabaseDateAsUtc(modelBuilder);
+
+            modelBuilder.Entity<AuditLog>()
 				.Property(e => e.Parameters)
 				.HasMaxLength(int.MaxValue);
 
@@ -24,6 +27,32 @@ namespace WebHMI.WebHMI
 				.Property(e => e.ReturnValue)
 				.HasMaxLength(int.MaxValue);
 		}
-	}
+
+        private static void TreatDatabaseDateAsUtc(ModelBuilder modelBuilder)
+        {
+            foreach (var entityType in modelBuilder.Model.GetEntityTypes())
+            {
+                foreach (var property in entityType.GetProperties())
+                {
+                    if (property.ClrType == typeof(DateTime))
+                    {
+                        modelBuilder.Entity(entityType.ClrType)
+                         .Property<DateTime>(property.Name)
+                         .HasConversion(
+                          v => v.ToUniversalTime(),
+                          v => DateTime.SpecifyKind(v, DateTimeKind.Utc));
+                    }
+                    else if (property.ClrType == typeof(DateTime?))
+                    {
+                        modelBuilder.Entity(entityType.ClrType)
+                         .Property<DateTime?>(property.Name)
+                         .HasConversion(
+                          v => v.HasValue ? v.Value.ToUniversalTime() : v,
+                          v => v.HasValue ? DateTime.SpecifyKind(v.Value, DateTimeKind.Utc) : v);
+                    }
+                }
+            }
+        }
+    }
 }
 

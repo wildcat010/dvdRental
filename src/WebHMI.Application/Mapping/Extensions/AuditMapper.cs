@@ -12,7 +12,8 @@ namespace WebHMI.Mapping.Extensions
 			EndpointName = entity.MethodName,
 			ServiceName = entity.ServiceName,
 			ExecutionTime = entity.ExecutionTime,
-			CallerUser = new CallerUser
+            ExecutionDuration = entity.ExecutionDuration,
+            CallerUser = new CallerUser
 			{
 				IpAddress = entity.ClientIpAddress
 			},
@@ -30,7 +31,8 @@ namespace WebHMI.Mapping.Extensions
 			ServiceName = entity.ServiceName,
 			MethodParamsJson = entity.Parameters,
 			ExecutionTime = entity.ExecutionTime,
-			CallerUser = new CallerUser
+            ExecutionDuration = entity.ExecutionDuration,
+            CallerUser = new CallerUser
 			{
 				IpAddress = entity.ClientIpAddress
 			},

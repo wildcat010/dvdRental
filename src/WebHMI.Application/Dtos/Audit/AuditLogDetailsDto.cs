@@ -13,7 +13,8 @@ namespace WebHMI.Dtos.Audit
 		public string EndpointName { get; set; }
 		public string MethodParamsJson { get; set; }
 		public DateTime ExecutionTime { get; set; }
-		public CallerUser CallerUser { get; set; }
+        public int ExecutionDuration { get; set; }
+        public CallerUser CallerUser { get; set; }
 		public AuditCallResult CallResult { get; set; }
 	}
 }
