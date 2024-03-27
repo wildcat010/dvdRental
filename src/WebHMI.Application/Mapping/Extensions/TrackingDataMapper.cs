@@ -1,4 +1,5 @@
-﻿using WebHMI.Dtos.Common;
+﻿using WebHMI.Dtos;
+using WebHMI.Dtos.Common;
 using WebHMI.PRDB.Dbo;
 
 namespace WebHMI.Mapping.Extensions
@@ -41,6 +42,7 @@ namespace WebHMI.Mapping.Extensions
 			HeatId = view.HeatId,
 			FlagBatchRolling = view.FlagBatchRolling,
 			ProdStartTime = view.ProdStartTime,
+            ProductType = view.PlateProduction
 		};
 	}
 }

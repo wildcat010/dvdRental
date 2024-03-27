@@ -70,4 +70,6 @@ public partial class HmiVMatInfoShort
     public string HeatId { get; set; }
 
     public int? FlagBatchRolling { get; set; }
+
+    public int? PlateProduction { get; set; }
 }

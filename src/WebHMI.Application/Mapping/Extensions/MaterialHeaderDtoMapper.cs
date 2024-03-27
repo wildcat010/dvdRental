@@ -185,6 +185,11 @@ namespace WebHMI.Mapping.Extensions
 			result.Data.FlagBatchRolling.S = sourceS?.FlagBatchRolling;
 			result.Data.FlagBatchRolling.E = sourceE?.FlagBatchRolling;
 
+			result.Data.ProductType.L = sourceL?.PlateProduction;
+			result.Data.ProductType.M = sourceM?.PlateProduction;
+			result.Data.ProductType.S = sourceS?.PlateProduction;
+			result.Data.ProductType.E = sourceE?.PlateProduction;
+
 			return result;
 		}
 	}

@@ -75,5 +75,6 @@ namespace WebHMI.Dtos.Common
 		public int? FlagBatchRolling { get; set; }
 
 		public DateTime? ProdStartTime { get; set; }
+		public int? ProductType { get; set; }
 	}
 }

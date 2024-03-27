@@ -72,4 +72,6 @@ public partial class HmiVInlineMaterial
     public int? FlagBatchRolling { get; set; }
 
     public DateTime? ProdStartTime { get; set; }
+
+    public int? PlateProduction { get; set; }
 }
