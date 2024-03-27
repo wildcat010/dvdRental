@@ -21,10 +21,10 @@ using WebHMI.PRDB.Dbo;
 
 namespace WebHMI.Services
 {
-	public class CommonAppService : ApplicationServiceBase
-	{
-		private readonly IDbContextProvider<PrdbContext> _prdbContextProvider;
-		private PrdbContext _prdbContext => _prdbContextProvider.GetDbContext();
+    public class CommonAppService : ApplicationServiceBase
+    {
+        private readonly IDbContextProvider<PrdbContext> _prdbContextProvider;
+        private PrdbContext _prdbContext => _prdbContextProvider.GetDbContext();
         private readonly IEventBus _eventBus;
         private readonly ISignalRNotifier _signalRNotifier;
 
@@ -39,73 +39,138 @@ namespace WebHMI.Services
         }
 
         public async Task<MaterialHeaderDto> GetMaterialHeaderDataById(int meid, string matType)
-		{
-			var result = new MaterialHeaderDto();
-			List<HmiVMatInfoShort> hmiVMatInfoShortList = null;
+        {
+            var result = new MaterialHeaderDto();
+            List<HmiVMatInfoShort> hmiVMatInfoShortList = null;
 
-			switch (matType)
-			{
-				case "OR":
-					hmiVMatInfoShortList = await _prdbContext.HmiVMatInfoShorts.Where(x => x.EnOrMeId == meid).ToListAsync();
-					break;
-				case "PH":
-					hmiVMatInfoShortList = await _prdbContext.HmiVMatInfoShorts.Where(x => x.EnPhMeId == meid).ToListAsync();
-					break;
-				case "LO":
-					hmiVMatInfoShortList = await _prdbContext.HmiVMatInfoShorts.Where(x => x.EnLoMeId == meid).ToListAsync();
-					break;
-			}
+            switch (matType)
+            {
+                case "OR":
+                    hmiVMatInfoShortList = await _prdbContext.HmiVMatInfoShorts.Where(x => x.EnOrMeId == meid).ToListAsync();
+                    break;
+                case "PH":
+                    hmiVMatInfoShortList = await _prdbContext.HmiVMatInfoShorts.Where(x => x.EnPhMeId == meid).ToListAsync();
+                    break;
+                case "LO":
+                    hmiVMatInfoShortList = await _prdbContext.HmiVMatInfoShorts.Where(x => x.EnLoMeId == meid).ToListAsync();
+                    break;
+            }
 
-			var rec = hmiVMatInfoShortList.FirstOrDefault();
+            var rec = hmiVMatInfoShortList.FirstOrDefault();
 
-			if (rec is null)
-				throw new UserFriendlyException($"Material info not found for material with meid: '{meid}' and matType: '{matType}'");
+            if (rec is null)
+                throw new UserFriendlyException($"Material info not found for material with meid: '{meid}' and matType: '{matType}'");
 
-			result.MeCode = new MeCodeDto
-			{
-				ExtId = rec.EnOrExtId,
-				MatType = "OR",
-				MeCreator = rec.EnOrCreator,
-				MeId = rec.EnOrMeId,
-				MesId = 1,
-				Status = rec.EnPhStatus ?? -1
-			};
+            result.MeCode = new MeCodeDto
+            {
+                ExtId = rec.EnOrExtId,
+                MatType = "OR",
+                MeCreator = rec.EnOrCreator,
+                MeId = rec.EnOrMeId,
+                MesId = 1,
+                Status = rec.EnPhStatus ?? -1
+            };
 
-			result.MapData(hmiVMatInfoShortList);
+            result.MapData(hmiVMatInfoShortList);
 
-			return result;
-		}
+            return result;
+        }
 
-		public async Task<PagedResultDto<InLineMaterialDto>> GetInLineMaterials(FilteredRequestDto input)
-		{
-			return await ApplyFilter(_prdbContext.HmiVInlineMaterials.AsQueryable(), input, TrackingDataMapper.ToDto);
-		}
+        public async Task<PagedResultDto<InLineMaterialDto>> GetInLineMaterials(FilteredRequestDto input)
+        {
+            return await ApplyFilter(_prdbContext.HmiVInlineMaterials.AsQueryable(), input, TrackingDataMapper.ToDto);
+        }
 
-		public async Task<PagedResultDto<MaterialHeaderDto>> GetMaterialHeaderList(FilteredRequestDto input)
-		{
-			var query = await ApplyFilterWithoutMapping(_prdbContext.HmiVMatInfoShorts.Where(x => x.EdOrSrc == "E" && x.EdLoSrc == "E" && x.EdPhySrc == "E"), input);
-			var result = new List<MaterialHeaderDto>();
+        public async Task<PagedResultDto<MaterialHeaderDto>> GetMaterialHeaderList(FilteredRequestDto input)
+        {
+            var query = await ApplyFilterWithoutMapping(_prdbContext.HmiVMatInfoShorts.Where(x => x.EdOrSrc == "E" && x.EdLoSrc == "E" && x.EdPhySrc == "E"), input);
+            var result = new List<MaterialHeaderDto>();
 
-			foreach (var item in query.Items.DistinctBy(x => x.EnOrMeId))
-			{
-				var dto = new MaterialHeaderDto()
-				{
-					MeCode = new MeCodeDto()
-					{
-						Status = item.EnPhStatus,
-						MeId = item.EnOrMeId,
-						MatType = "OR",
-						ExtId = item.EnOrExtId
-					},
-				};
+            foreach (var item in query.Items.DistinctBy(x => x.EnOrMeId))
+            {
+                var dto = new MaterialHeaderDto()
+                {
+                    MeCode = new MeCodeDto()
+                    {
+                        Status = item.EnPhStatus,
+                        MeId = item.EnOrMeId,
+                        MatType = "OR",
+                        ExtId = item.EnOrExtId
+                    },
+                };
 
-				dto.MapData([item]);
+                dto.MapData([item]);
 
-				result.Add(dto);
-			}
+                result.Add(dto);
+            }
 
-			return new PagedResultDto<MaterialHeaderDto>(result.Count, result.ToList());
-		}
+            return new PagedResultDto<MaterialHeaderDto>(result.Count, result.ToList());
+        }
+
+        public async Task<MeCodeDto> GetNextMaterial(int meid, string matType)
+        {
+            MeCodeDto result = new() { MeId = -1 };
+
+            var fullRollSeqColl = await _prdbContext.HmiVRollinghistoryseqs
+                .OrderBy(f => f.Optstatdatetime)
+                .ThenBy(f => f.Position)
+                .ToListAsync();
+
+            if (fullRollSeqColl.Count == 0)
+                return result;
+
+            bool actualFound = false;
+
+            foreach (HmiVRollinghistoryseq el in fullRollSeqColl)
+            {
+                if (actualFound)
+                {
+                    result.MeId = el.Enormeid;
+                    result.MatType = el.EnOrMeType;
+                    result.ExtId = el.Enorextid;
+                    break;
+                }
+                if (el.Enormeid == meid)
+                {
+                    actualFound = true;
+                    continue;
+                }
+            }
+
+            return result;
+        }
+
+        public async Task<MeCodeDto> GetPreviousMaterial(int meid, string matType)
+        {
+            MeCodeDto result = new() { MeId = -1 };
+
+            var fullRollSeqColl = await _prdbContext.HmiVRollinghistoryseqs
+                .OrderBy(f => f.Optstatdatetime)
+                .ThenBy(f => f.Position)
+                .ToListAsync();
+
+            if (fullRollSeqColl.Count == 0)
+                return result;
+
+            HmiVRollinghistoryseq prevMat = null;
+
+            foreach (HmiVRollinghistoryseq el in fullRollSeqColl)
+            {
+                if (el.Enormeid == meid)
+                    break;
+                else
+                    prevMat = el;
+            }
+
+            if (prevMat != null)
+            {
+                result.MeId = prevMat.Enormeid;
+                result.MatType = prevMat.EnOrMeType;
+                result.ExtId = prevMat.Enorextid;
+            }
+
+            return result;
+        }
 
         public async Task SendTestRefresh(string refreshKey, int? meId, string matType)
         {

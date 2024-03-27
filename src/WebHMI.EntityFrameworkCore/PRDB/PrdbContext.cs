@@ -213,6 +213,8 @@ public partial class PrdbContext : AbpDbContext
 
     public virtual DbSet<HmiVRolldatausage> HmiVRolldatausages { get; set; }
 
+    public virtual DbSet<HmiVRollinghistoryseq> HmiVRollinghistoryseqs { get; set; }
+
     public virtual DbSet<HmiVSelect> HmiVSelects { get; set; }
 
     public virtual DbSet<HmiVStdtxtLang> HmiVStdtxtLangs { get; set; }
@@ -14229,6 +14231,34 @@ public partial class PrdbContext : AbpDbContext
                 .HasPrecision(3)
                 .HasColumnName("tom");
             entity.Property(e => e.WearFacMan).HasColumnName("wearFacMan");
+        });
+
+        modelBuilder.Entity<HmiVRollinghistoryseq>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("HMI_V_ROLLINGHISTORYSEQ");
+
+            entity.Property(e => e.EnOrMeType)
+                .IsRequired()
+                .HasMaxLength(2)
+                .IsUnicode(false);
+            entity.Property(e => e.Enorcreator)
+                .IsRequired()
+                .HasMaxLength(2)
+                .IsUnicode(false)
+                .HasColumnName("enorcreator");
+            entity.Property(e => e.Enorextid)
+                .IsRequired()
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("enorextid");
+            entity.Property(e => e.Enormeid).HasColumnName("enormeid");
+            entity.Property(e => e.Enorstatus).HasColumnName("enorstatus");
+            entity.Property(e => e.Enphmeid).HasColumnName("enphmeid");
+            entity.Property(e => e.Optstatdatetime)
+                .HasPrecision(3)
+                .HasColumnName("optstatdatetime");
         });
 
         modelBuilder.Entity<HmiVSelect>(entity =>
