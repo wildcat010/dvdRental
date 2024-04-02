@@ -5,19 +5,19 @@ namespace WebHMI.PRDB.Dbo;
 
 public partial class HmiVCoils2
 {
-    public int Meid { get; set; }
+    public int? Meid { get; set; }
 
     public string Extid { get; set; }
 
     public int SeqNo { get; set; }
 
-    public int IsNext { get; set; }
+    public int? IsNext { get; set; }
 
     public int? FurnaceNo { get; set; }
 
-    public int Slabmeid { get; set; }
+    public int? Slabmeid { get; set; }
 
-    public int Coilmeid { get; set; }
+    public int? Coilmeid { get; set; }
 
     public string HeatId { get; set; }
 
@@ -58,6 +58,8 @@ public partial class HmiVCoils2
     public int LprmMan { get; set; }
 
     public int EoeMan { get; set; }
+
+    public string Batchrolling { get; set; }
 
     public short? Status { get; set; }
 

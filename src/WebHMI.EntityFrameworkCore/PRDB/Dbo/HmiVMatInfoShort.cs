@@ -72,4 +72,8 @@ public partial class HmiVMatInfoShort
     public int? FlagBatchRolling { get; set; }
 
     public int? PlateProduction { get; set; }
+
+    public DateTime? ProdStartTime { get; set; }
+
+    public DateTime? ProdEndTime { get; set; }
 }

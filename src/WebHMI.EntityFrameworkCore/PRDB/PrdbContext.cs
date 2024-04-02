@@ -13224,12 +13224,16 @@ public partial class PrdbContext : AbpDbContext
                 .HasMaxLength(30)
                 .IsUnicode(false)
                 .HasColumnName("alloycode");
+            entity.Property(e => e.Batchrolling)
+                .IsRequired()
+                .HasMaxLength(7)
+                .IsUnicode(false)
+                .HasColumnName("batchrolling");
             entity.Property(e => e.CoilerTemp).HasColumnName("coiler_temp");
             entity.Property(e => e.Coilmeid).HasColumnName("coilmeid");
             entity.Property(e => e.CoolingStrategy).HasColumnName("cooling_strategy");
             entity.Property(e => e.EoeMan).HasColumnName("eoe_man");
             entity.Property(e => e.Extid)
-                .IsRequired()
                 .HasMaxLength(20)
                 .IsUnicode(false)
                 .HasColumnName("extid");
@@ -13495,6 +13499,12 @@ public partial class PrdbContext : AbpDbContext
             entity.Property(e => e.LEntry).HasColumnName("lEntry");
             entity.Property(e => e.LastCalc).HasPrecision(3);
             entity.Property(e => e.PlateProduction).HasColumnName("plateProduction");
+            entity.Property(e => e.ProdEndTime)
+                .HasPrecision(3)
+                .HasColumnName("prodEndTime");
+            entity.Property(e => e.ProdStartTime)
+                .HasPrecision(3)
+                .HasColumnName("prodStartTime");
             entity.Property(e => e.Sbaz).HasColumnName("sbaz");
             entity.Property(e => e.SequenceId)
                 .HasMaxLength(20)
@@ -13764,6 +13774,7 @@ public partial class PrdbContext : AbpDbContext
             entity.Property(e => e.LEntry).HasColumnName("lEntry");
             entity.Property(e => e.LastCalc).HasPrecision(3);
             entity.Property(e => e.Next).HasColumnName("next");
+            entity.Property(e => e.PlateProduction).HasColumnName("plateProduction");
             entity.Property(e => e.Sbaz).HasColumnName("sbaz");
             entity.Property(e => e.SequenceId)
                 .HasMaxLength(20)

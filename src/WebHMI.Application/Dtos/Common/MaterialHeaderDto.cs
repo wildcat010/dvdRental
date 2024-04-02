@@ -48,5 +48,7 @@ namespace WebHMI.Dtos.Common
 		public SourceSet<string> HeatId { get; set; } = new();
 		public SourceSet<int?> FlagBatchRolling { get; set; } = new();
 		public SourceSet<int?> ProductType { get; set; } = new();
+		public SourceSet<DateTime?> ProdStartTime { get; set; } = new();
+		public SourceSet<DateTime?> ProdEndTime { get; set; } = new();
 	}
 }

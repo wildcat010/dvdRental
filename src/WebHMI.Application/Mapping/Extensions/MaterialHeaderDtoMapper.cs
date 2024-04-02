@@ -190,7 +190,17 @@ namespace WebHMI.Mapping.Extensions
 			result.Data.ProductType.S = sourceS?.PlateProduction;
 			result.Data.ProductType.E = sourceE?.PlateProduction;
 
-			return result;
+            result.Data.ProdStartTime.L = sourceL?.ProdStartTime;
+            result.Data.ProdStartTime.M = sourceM?.ProdStartTime;
+            result.Data.ProdStartTime.S = sourceS?.ProdStartTime;
+            result.Data.ProdStartTime.E = sourceE?.ProdStartTime;
+
+            result.Data.ProdEndTime.L = sourceL?.ProdEndTime;
+            result.Data.ProdEndTime.M = sourceM?.ProdEndTime;
+            result.Data.ProdEndTime.S = sourceS?.ProdEndTime;
+            result.Data.ProdEndTime.E = sourceE?.ProdEndTime;
+
+            return result;
 		}
 	}
 }

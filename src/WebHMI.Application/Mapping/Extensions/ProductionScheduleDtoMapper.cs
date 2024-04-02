@@ -51,6 +51,7 @@ namespace WebHMI.Mapping.Extensions
 			CoilTemp = dbo.CoilTemp,
 			HeatId = dbo.HeatId,
 			FlagBatchRolling = dbo.FlagBatchRolling,
-		};
+            ProductType = dbo.PlateProduction
+        };
 	}
 }
