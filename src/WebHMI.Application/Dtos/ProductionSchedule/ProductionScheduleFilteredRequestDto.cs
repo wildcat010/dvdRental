@@ -10,14 +10,13 @@ namespace WebHMI.Dtos.ProductionSchedule
 	public class ProductionScheduleFilteredRequestDto : FilteredRequestDto
 	{
 		public ProductionScheduleMode Mode { get; set; }
-	}
+    }
 
 	public enum ProductionScheduleMode
 	{
 		Scheduled,
-		Planned,
-		Ghost,
-		Test,
-		Produced
+		Rolled,
+        Rejected,
+        Test
 	}
 }
