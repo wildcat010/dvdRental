@@ -1,5 +1,6 @@
 ﻿using Abp;
 using Abp.Dependency;
+using Abp.Logging;
 using Castle.Core.Logging;
 using System;
 using System.Collections.Generic;
@@ -12,9 +13,8 @@ using XIDL;
 
 namespace WebHMI.L2Adapter.ConnectionManagers
 {
-    internal class ConnectionManager : IConnectionManager, IDisposable
+    public class ConnectionManager : IConnectionManager, IDisposable
     {
-        private readonly CancellationTokenSource _cts = new();
         private readonly ILogger _logger;
         private readonly PlatformListener _platformListener;
         private readonly AlarmListener _alarmListener;
@@ -28,7 +28,13 @@ namespace WebHMI.L2Adapter.ConnectionManagers
             _platformListener = platformListener;
             _alarmListener = alarmListener;
 
-            Task.Factory.StartNew(StartL2CommunicationLoop, _cts.Token, TaskCreationOptions.None, TaskScheduler.Default);
+            _logger.Info($"Starting {nameof(ConnectionManager)}...");
+
+            Task.Run(StartL2CommunicationLoop).ContinueWith(t => 
+            {
+               _logger.Error(t.Exception.Message);
+            }, 
+            TaskContinuationOptions.OnlyOnFaulted);
         }
 
         private void StartL2CommunicationLoop()
