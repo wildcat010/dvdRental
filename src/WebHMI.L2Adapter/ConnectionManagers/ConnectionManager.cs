@@ -26,9 +26,9 @@ namespace WebHMI.L2Adapter.ConnectionManagers
         {
             _logger = logger;
             _platformListener = platformListener;
+            _alarmListener = alarmListener;
 
             Task.Factory.StartNew(StartL2CommunicationLoop, _cts.Token, TaskCreationOptions.None, TaskScheduler.Default);
-            _alarmListener = alarmListener;
         }
 
         private void StartL2CommunicationLoop()

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Abp.Dependency;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace WebHMI.Message
 {
-    public class MessagesCache
+    public class MessagesCache : ISingletonDependency
     {
         private ReaderWriterLockSlim cacheLock = new();
         private List<FlattenedMessage> messagesCache = [];
@@ -20,20 +21,6 @@ namespace WebHMI.Message
             try
             {
                 messagesCache.Add(new FlattenedMessage(message));
-                TrimCache();
-            }
-            finally
-            {
-                cacheLock.ExitWriteLock();
-            }
-        }
-
-        public void Add(List<FlattenedMessage> messages)
-        {
-            cacheLock.EnterWriteLock();
-            try
-            {
-                messagesCache.AddRange(messages.Select(x => new FlattenedMessage(x)));
                 TrimCache();
             }
             finally

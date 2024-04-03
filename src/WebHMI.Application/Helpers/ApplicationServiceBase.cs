@@ -14,6 +14,7 @@ using System.Linq.Dynamic.Core;
 using WebHMI.MultiTenancy;
 using WebHMI.Authorization.Users;
 using WebHMI.WebHMI.Dbo;
+using System.Collections.Generic;
 
 namespace WebHMI.Helpers
 {
@@ -69,7 +70,26 @@ namespace WebHMI.Helpers
 			);
 		}
 
-		private static IQueryable<TEntity> ApplyFilters<TEntity>(IQueryable<TEntity> query, FilteredRequestDto input)
+        protected PagedResultDto<TEntityDto> ApplyFilter<TEntity, TEntityDto>(IEnumerable<TEntity> list, FilteredRequestDto input, Func<TEntity, TEntityDto> map)
+        {
+            var query = list.AsQueryable();
+
+            query = ApplySorting(query, input);
+            query = ApplyFilters(query, input);
+
+            var totalCount = query.Count();
+
+            query = ApplyPaging(query, input);
+
+            var entities = query.ToList();
+
+            return new PagedResultDto<TEntityDto>(
+                totalCount,
+                entities.Select(map).ToList()
+            );
+        }
+
+        private static IQueryable<TEntity> ApplyFilters<TEntity>(IQueryable<TEntity> query, FilteredRequestDto input)
 		{
 			if (input.Filter != null)
 			{

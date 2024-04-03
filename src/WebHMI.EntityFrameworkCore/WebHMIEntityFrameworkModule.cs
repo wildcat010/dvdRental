@@ -1,9 +1,12 @@
 ﻿using Abp.Configuration.Startup;
+using Abp.Dependency;
 using Abp.Domain.Uow;
+using Abp.EntityFrameworkCore;
 using Abp.EntityFrameworkCore.Configuration;
 using Abp.Modules;
 using Abp.Reflection.Extensions;
 using Abp.Zero.EntityFrameworkCore;
+using System.Threading.Tasks;
 using System.Transactions;
 using WebHMI.PRDB;
 using WebHMI.WebHMI;
@@ -64,7 +67,14 @@ namespace WebHMI
 
 		public override void PostInitialize()
 		{
-			if (!SkipDbSeed)
+            // Early database warmup
+            Task.Run(() =>
+            {
+                using (IocManager.Resolve<IUnitOfWorkManager>().Begin())
+                    _ = IocManager.ResolveAsDisposable<IDbContextProvider<PrdbContext>>().Object.GetDbContext().Model;
+            });
+
+            if (!SkipDbSeed)
 			{
 				SeedHelper.SeedHostDb(IocManager);
 			}

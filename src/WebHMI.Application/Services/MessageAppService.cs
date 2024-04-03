@@ -19,9 +19,12 @@ namespace WebHMI.Services
         private PrdbContext _prdbContext => _prdbContextProvider.GetDbContext();
         private readonly MessagesCache _messageStorage;
 
-        public MessageAppService(IDbContextProvider<PrdbContext> prdbContextProvider)
+        public MessageAppService(
+            IDbContextProvider<PrdbContext> prdbContextProvider, 
+            MessagesCache messageStorage)
         {
             _prdbContextProvider = prdbContextProvider;
+            _messageStorage = messageStorage;
         }
 
         public async Task<PagedResultDto<MessageOutput>> GetAll(MessageRequestDto input)
@@ -65,16 +68,15 @@ namespace WebHMI.Services
             }
             else
             {
-                var output = _messageStorage.GetAll()
+                var cachedMessages = _messageStorage.GetAll()
                     .Where(d => d.Language == input.Language)
-                    .OrderByDescending(x => x.Id)
-                    .AsQueryable();
+                    .OrderByDescending(x => x.Id);
 
-                return await ApplyFilter(output, input, MessageMapper.ToOutput);
+                return ApplyFilter(cachedMessages, input, MessageMapper.ToOutput);
             }
         }
 
-        private SeverityLevel MapAlarmLevel(short? severity) => severity switch
+        private static SeverityLevel MapAlarmLevel(short? severity) => severity switch
         {
             161 => SeverityLevel.Error,
             162 => SeverityLevel.Warning,

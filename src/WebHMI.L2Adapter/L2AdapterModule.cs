@@ -27,7 +27,7 @@ namespace WebHMI.L2Adapter
 		{
 			IocManager.RegisterAssemblyByConvention(typeof(L2AdapterModule).GetAssembly());
 
-			if (_l2CommunicationConfiguration.IsEnabled)
+            if (_l2CommunicationConfiguration.IsEnabled)
 			{
 				IocManager.Register<IL2Sender, L2Sender>();
 				IocManager.Register<IConnectionManager, ConnectionManager>();
