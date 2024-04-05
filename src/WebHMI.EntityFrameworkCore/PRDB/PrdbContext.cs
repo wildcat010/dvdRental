@@ -13876,67 +13876,68 @@ public partial class PrdbContext : AbpDbContext
                 .HasNoKey()
                 .ToView("HMI_V_ROLL_INVENTORY");
 
-            entity.Property(e => e.Diameter).HasColumnName("DIAMETER");
-            entity.Property(e => e.Dismounttime)
+            entity.Property(e => e.Diameter).HasColumnName("diameter");
+            entity.Property(e => e.DismountTime)
                 .HasPrecision(3)
-                .HasColumnName("DISMOUNTTIME");
-            entity.Property(e => e.Grinding).HasColumnName("GRINDING");
-            entity.Property(e => e.Mounttime)
+                .HasColumnName("dismountTime");
+            entity.Property(e => e.Grinding).HasColumnName("grinding");
+            entity.Property(e => e.MountTime)
                 .HasPrecision(3)
-                .HasColumnName("MOUNTTIME");
-            entity.Property(e => e.Plannedrollpos)
+                .HasColumnName("mountTime");
+            entity.Property(e => e.PlannedRollPos)
                 .HasMaxLength(1)
                 .IsUnicode(false)
-                .HasColumnName("PLANNEDROLLPOS");
-            entity.Property(e => e.Plannedstandid).HasColumnName("PLANNEDSTANDID");
-            entity.Property(e => e.Planttype)
+                .HasColumnName("plannedRollPos");
+            entity.Property(e => e.PlannedStandId).HasColumnName("plannedStandId");
+            entity.Property(e => e.PlantType)
                 .IsRequired()
                 .HasMaxLength(3)
                 .IsUnicode(false)
-                .HasColumnName("PLANTTYPE");
-            entity.Property(e => e.Relatedrollid)
+                .HasColumnName("plantType");
+            entity.Property(e => e.RelatedRollId)
                 .HasMaxLength(20)
                 .IsUnicode(false)
-                .HasColumnName("RELATEDROLLID");
+                .HasColumnName("relatedRollId");
             entity.Property(e => e.Remarks)
                 .HasMaxLength(255)
                 .IsUnicode(false)
-                .HasColumnName("REMARKS");
-            entity.Property(e => e.Removereason).HasColumnName("REMOVEREASON");
-            entity.Property(e => e.Rollchamfercode).HasColumnName("ROLLCHAMFERCODE");
-            entity.Property(e => e.Rollclass).HasColumnName("ROLLCLASS");
+                .HasColumnName("remarks");
+            entity.Property(e => e.RemoveReason).HasColumnName("removeReason");
+            entity.Property(e => e.RollChamferCode).HasColumnName("rollChamferCode");
+            entity.Property(e => e.RollClass).HasColumnName("rollClass");
+            entity.Property(e => e.RollId)
+                .IsRequired()
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("rollId");
+            entity.Property(e => e.RollPos)
+                .IsRequired()
+                .HasMaxLength(1)
+                .IsUnicode(false)
+                .HasColumnName("rollPos");
+            entity.Property(e => e.RollPropertyClass).HasColumnName("rollPropertyClass");
+            entity.Property(e => e.RollType)
+                .HasMaxLength(3)
+                .IsUnicode(false)
+                .HasColumnName("rollType");
             entity.Property(e => e.Rollclassdesc)
                 .HasMaxLength(80)
                 .IsUnicode(false)
                 .HasColumnName("ROLLCLASSDESC");
-            entity.Property(e => e.Rolledlength).HasColumnName("ROLLEDLENGTH");
-            entity.Property(e => e.Rolledweight).HasColumnName("ROLLEDWEIGHT");
-            entity.Property(e => e.Rollid)
-                .IsRequired()
-                .HasMaxLength(20)
-                .IsUnicode(false)
-                .HasColumnName("ROLLID");
-            entity.Property(e => e.Rollpos)
-                .IsRequired()
-                .HasMaxLength(1)
-                .IsUnicode(false)
-                .HasColumnName("ROLLPOS");
-            entity.Property(e => e.Rollpropertyclass).HasColumnName("ROLLPROPERTYCLASS");
+            entity.Property(e => e.Rolledlength).HasColumnName("rolledlength");
+            entity.Property(e => e.Rolledweight).HasColumnName("rolledweight");
             entity.Property(e => e.Rollpropertydesc)
                 .HasMaxLength(80)
                 .IsUnicode(false)
                 .HasColumnName("ROLLPROPERTYDESC");
-            entity.Property(e => e.Rolltype)
-                .HasMaxLength(3)
-                .IsUnicode(false)
-                .HasColumnName("ROLLTYPE");
+            entity.Property(e => e.Roughness).HasColumnName("roughness");
             entity.Property(e => e.Shapecode).HasColumnName("SHAPECODE");
-            entity.Property(e => e.Shimm).HasColumnName("SHIMM");
-            entity.Property(e => e.Standid).HasColumnName("STANDID");
+            entity.Property(e => e.Shimm).HasColumnName("shimm");
+            entity.Property(e => e.StandId).HasColumnName("standId");
             entity.Property(e => e.Stat)
                 .HasMaxLength(1)
                 .IsUnicode(false)
-                .HasColumnName("STAT");
+                .HasColumnName("stat");
         });
 
         modelBuilder.Entity<HmiVRollclass>(entity =>

@@ -19,8 +19,6 @@ namespace WebHMI.Dtos.Roll
         public string RollPropertyClassName { get; set; }
         public DateTime? Mounttime { get; set; }
         public DateTime? Dismounttime { get; set; }
-        public float? MinDiameter { get; set; }
-        public float? MaxDiameter { get; set; }
         public float? Roughness { get; set; }
         public short ShapeCode { get; set; }
         public int? ShapeType { get; set; }
@@ -32,5 +30,9 @@ namespace WebHMI.Dtos.Roll
         public int? Grinding { get; set; }
         public string RelatedRollid { get; set; }
         public short RollChamferClassId { get; set; }
+        public string Remarks { get; internal set; }
+        public int? ReasonId { get; internal set; }
+        public string PlannedRollPos { get; internal set; }
+        public int? PlannedStandId { get; internal set; }
     }
 }

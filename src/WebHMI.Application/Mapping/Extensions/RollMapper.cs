@@ -85,29 +85,32 @@ namespace WebHMI.Mapping.Extensions
             return entity;
         }
 
-        public static SingleRollDetailsDto ToRollDetailsDto(this RollDatum entity) => new()
+        public static SingleRollDetailsDto ToRollDetailsDto(this HmiVRollInventory entity) => new()
         {
             Rollid = entity.RollId,
-            Rolltype = entity.RollType,
             Planttype = entity.PlantType,
-            Standid = entity.StandId,
-            Stat = entity.Stat,
-            Rollpos = entity.RollPos,
+            Rolltype = entity.RollType,
             Diameter = entity.Diameter,
+            Stat = entity.Stat,
             Rollclass = entity.RollClass,
-            RollPropertyClass = entity.RollPropertyClass,
+            RollClassName = entity.Rollclassdesc,
+            ShapeCode = entity.Shapecode,
             Mounttime = entity.MountTime,
             Dismounttime = entity.DismountTime,
-            Roughness = entity.Roughness,
-            ShapeCode = entity.RollShapeCode,
+            RollPropertyClass = entity.RollPropertyClass,
+            Rollpos = entity.RollPos,
+            Standid = entity.StandId,
+            RolledLength = entity.Rolledlength,
+            RolledWeight = entity.Rolledweight,
             Grinding = entity.Grinding,
             RelatedRollid = entity.RelatedRollId,
-            MinDiameter = entity.MinDiameter,
-            MaxDiameter = entity.MaxDiameter,
-            RolledWeight = entity.RolledWeight,
-            RolledLength = entity.RolledLength,
+            PlannedStandId = entity.PlannedStandId,
+            PlannedRollPos = entity.PlannedRollPos,
+            ReasonId = entity.RemoveReason,
+            Remarks = entity.Remarks,
             RollChamferClassId = entity.RollChamferCode,
             Shimm = entity.Shimm,
+            Roughness = entity.Roughness,
         };
 
         public static SingleRollDataCoreDto ToRollDataCoreDto(this RollDatum entity) => new()
@@ -144,8 +147,6 @@ namespace WebHMI.Mapping.Extensions
             entity.Diameter = dto.Diameter;
             entity.RollClass = dto.Rollclass;
             entity.RollPropertyClass = dto.RollPropertyClass;
-            entity.MinDiameter = dto.MinDiameter;
-            entity.MaxDiameter = dto.MaxDiameter;
             entity.Roughness = dto.Roughness;
             entity.RollShapeCode = dto.ShapeCode;
             entity.Grinding = dto.Grinding;
@@ -159,26 +160,26 @@ namespace WebHMI.Mapping.Extensions
 
         public static SingleRollDataCoreDto ToRollDataCoreDto(this HmiVRollInventory entity) => new()
         {
-            Rollid = entity.Rollid,
-            Rolltype = entity.Rolltype,
-            Planttype = entity.Planttype,
-            Standid = entity.Standid,
+            Rollid = entity.RollId,
+            Rolltype = entity.RollType,
+            Planttype = entity.PlantType,
+            Standid = entity.StandId,
             Stat = entity.Stat,
-            Rollpos = entity.Rollpos,
+            Rollpos = entity.RollPos,
             Diameter = entity.Diameter,
-            Rollclass = entity.Rollclass,
+            Rollclass = entity.RollClass,
             RollClassName = entity.Rollclassdesc,
-            RollPropertyClass = entity.Rollpropertyclass,
+            RollPropertyClass = entity.RollPropertyClass,
             RollPropertyClassName = entity.Rollpropertydesc,
-            Mounttime = entity.Mounttime,
-            Dismounttime = entity.Dismounttime,
+            Mounttime = entity.MountTime,
+            Dismounttime = entity.DismountTime,
             Grinding = entity.Grinding,
             RolledWeight = entity.Rolledweight,
             RolledLength = entity.Rolledlength,
-            RelatedRollid = entity.Relatedrollid,
-            ResonId = entity.Removereason,
+            RelatedRollid = entity.RelatedRollId,
+            ResonId = entity.RemoveReason,
             Remarks = entity.Remarks,
-            RollChamferClassId = entity.Rollchamfercode,
+            RollChamferClassId = entity.RollChamferCode,
             Shimm = entity.Shimm
         };
 

@@ -70,7 +70,7 @@ namespace WebHMI.Services
                 throw new UserFriendlyException("Bei der Erzeugung / Beim Speichern von Walzendaten in der Datenbank ist ein Fehler aufgetreten." + ex.Message);
             }
 
-            return rollData.ToRollDetailsDto();
+            return await GetRollDetailsById(rollDto.Rollid, rollDto.Planttype);
         }
 
         [AbpAuthorize(Permissions.Pages_RollData)]
@@ -78,7 +78,7 @@ namespace WebHMI.Services
         {
             return await ApplyFilter(
                 _prdbContext.HmiVRollInventories
-                    .OrderByDescending(t => t.Rollid),
+                    .OrderByDescending(t => t.RollId),
                 input,
                 RollMapper.ToRollDataCoreDto);
         }
@@ -90,16 +90,16 @@ namespace WebHMI.Services
 
             try
             {
-                var rollData = await _prdbContext.RollData.FirstOrDefaultAsync(x => x.RollId == rollId && x.PlantType == planttype.ToString());
+                var rollInventory = await _prdbContext.HmiVRollInventories.FirstOrDefaultAsync(x => x.RollId == rollId && x.PlantType == planttype.ToString());
 
-                if (rollData is null)
+                if (rollInventory is null)
                     throw new UserFriendlyException("Roll not found in database");
 
-                result = rollData.ToRollDetailsDto();
+                result = rollInventory.ToRollDetailsDto();
 
                 // Map shape coefficients
-                result.ShapeCoeffArray = new List<double>();
-                var shapeCoeffData = await _prdbContext.RollShapeCoeffs.FirstOrDefaultAsync(x => x.ShapeCode == rollData.RollShapeCode);
+                result.ShapeCoeffArray = [];
+                var shapeCoeffData = await _prdbContext.RollShapeCoeffs.FirstOrDefaultAsync(x => x.ShapeCode == rollInventory.Shapecode);
 
                 if (shapeCoeffData is not null)
                 {
@@ -116,11 +116,11 @@ namespace WebHMI.Services
                     result.ShapeCoeffArray.Add(shapeCoeffData.ShapeX9 ?? 0.0);
                 }
 
-                var rollClass = await _prdbContext.RollClasses.FirstOrDefaultAsync(x => x.RollClass1 == rollData.RollClass);
+                var rollClass = await _prdbContext.RollClasses.FirstOrDefaultAsync(x => x.RollClass1 == rollInventory.RollClass);
                 if (rollClass is not null)
                     result.RollClassName = rollClass.Description;
 
-                var rollProperty = await _prdbContext.RollProperties.FirstOrDefaultAsync(x => x.RollPropertyClass == rollData.RollPropertyClass);
+                var rollProperty = await _prdbContext.RollProperties.FirstOrDefaultAsync(x => x.RollPropertyClass == rollInventory.RollPropertyClass);
                 if (rollProperty is not null)
                     result.RollPropertyClassName = rollProperty.Description;
             }
@@ -153,7 +153,7 @@ namespace WebHMI.Services
                 throw new UserFriendlyException($"Exception occured druing updating Roll data in DB. {ex.Message}");
             }
 
-            return rollData.ToRollDetailsDto();
+            return await GetRollDetailsById(rollDto.Rollid, rollDto.Planttype);
         }
 
         [Audited]
@@ -489,7 +489,7 @@ namespace WebHMI.Services
             SingleRollDataCoreDto result = new SingleRollDataCoreDto();
             try
             {
-                HmiVRollInventory rollData = await _prdbContext.HmiVRollInventories.FirstOrDefaultAsync(x => x.Planttype == plantType && x.Standid == standId && x.Rolltype == rollType && x.Rollpos == rollPos && x.Stat == rollStatus);
+                HmiVRollInventory rollData = await _prdbContext.HmiVRollInventories.FirstOrDefaultAsync(x => x.PlantType == plantType && x.StandId == standId && x.RollType == rollType && x.RollPos == rollPos && x.Stat == rollStatus);
                 if (rollData is not null)
                 {
                     result = rollData.ToRollDataCoreDto();
@@ -523,8 +523,8 @@ namespace WebHMI.Services
                 {
                     return ApplyFilter(
                         _prdbContext.HmiVRollInventories
-                           .Where(z => z.Planttype == plantType && z.Rolltype == rollType && (z.Stat == null || z.Stat == "R"))
-                           .OrderByDescending(t => t.Rollid),
+                           .Where(z => z.PlantType == plantType && z.RollType == rollType && (z.Stat == null || z.Stat == "R"))
+                           .OrderByDescending(t => t.RollId),
                        input,
                        RollMapper.ToRollDataCoreDto);
 
@@ -543,8 +543,8 @@ namespace WebHMI.Services
                 {
                     return ApplyFilter(
                         _prdbContext.HmiVRollInventories
-                            .Where(z => z.Planttype == plantType && z.Rolltype == rollType && (z.Stat == null || z.Stat == "R") && z.Plannedrollpos == rollPos && z.Plannedstandid == standId)
-                            .OrderByDescending(t => t.Rollid),
+                            .Where(z => z.PlantType == plantType && z.RollType == rollType && (z.Stat == null || z.Stat == "R") && z.PlannedRollPos == rollPos && z.PlannedStandId == standId)
+                            .OrderByDescending(t => t.RollId),
                         input,
                         RollMapper.ToRollDataCoreDto);
 
@@ -624,7 +624,7 @@ namespace WebHMI.Services
                 }
 
                 //read roll data from DB after update to initialize return DTO
-                HmiVRollInventory rollDataAfterUpdate = await _prdbContext.HmiVRollInventories.FirstOrDefaultAsync(x => x.Rollid == rollId && x.Planttype == plantType.ToString());
+                HmiVRollInventory rollDataAfterUpdate = await _prdbContext.HmiVRollInventories.FirstOrDefaultAsync(x => x.RollId == rollId && x.PlantType == plantType.ToString());
                 return rollDataAfterUpdate?.ToRollDataCoreDto();
             }
             catch (Exception ex)
