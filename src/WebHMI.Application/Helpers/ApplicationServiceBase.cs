@@ -70,6 +70,11 @@ namespace WebHMI.Helpers
 			);
 		}
 
+        protected Task<PagedResultDto<TEntityDto>> ApplyFilter<TEntity, TEntityDto>(IQueryable<TEntity> query, FilteredRequestDto input)
+        {
+            return ApplyFilter(query, input, MapToEntityDto<TEntity, TEntityDto>);
+        }
+
         protected PagedResultDto<TEntityDto> ApplyFilter<TEntity, TEntityDto>(IEnumerable<TEntity> list, FilteredRequestDto input, Func<TEntity, TEntityDto> map)
         {
             var query = list.AsQueryable();
@@ -228,7 +233,12 @@ namespace WebHMI.Helpers
 			value = input;
 			return false;
 		}
-	}
+
+        private TEntityDto MapToEntityDto<TEntity, TEntityDto>(TEntity entity)
+        {
+            return ObjectMapper.Map<TEntityDto>(entity);
+        }
+    }
 }
 
 
