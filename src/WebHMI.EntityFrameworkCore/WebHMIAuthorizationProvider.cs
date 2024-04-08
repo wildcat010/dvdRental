@@ -4,21 +4,28 @@ using Abp.MultiTenancy;
 
 namespace WebHMI
 {
-	public class WebHMIAuthorizationProvider : AuthorizationProvider
-	{
-		public override void SetPermissions(IPermissionDefinitionContext context)
-		{
-			context.CreatePermission(Permissions.Pages_Users);
+    public class WebHMIAuthorizationProvider : AuthorizationProvider
+    {
+        public override void SetPermissions(IPermissionDefinitionContext context)
+        {
+            context.CreatePermission(Permissions.Pages_Users);
 
-			context.CreatePermission(Permissions.Pages_Roles);
+            context.CreatePermission(Permissions.Pages_Roles);
 
-			context.CreatePermission(Permissions.Pages_Audit);
+            context.CreatePermission(Permissions.Pages_Audit);
 
             var rollData = context.CreatePermission(Permissions.Pages_RollData);
             rollData.CreateChildPermission(Permissions.Pages_RollData_Edit);
             rollData.CreateChildPermission(Permissions.Pages_RollData_Delete);
+
+            var limits = context.CreatePermission(Permissions.Pages_Limits);
+            limits.CreateChildPermission(Permissions.Pages_Limits_Edit);
+            limits.CreateChildPermission(Permissions.Pages_Limits_Delete);
+
+            var parameters = context.CreatePermission(Permissions.Pages_Parameters);
+            parameters.CreateChildPermission(Permissions.Pages_Parameters_Edit);
         }
-	}
+    }
 }
 
 
