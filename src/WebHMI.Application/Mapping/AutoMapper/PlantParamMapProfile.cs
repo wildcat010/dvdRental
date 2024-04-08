@@ -14,6 +14,7 @@ namespace WebHMI.Mapping.AutoMapper
         public PlantParamMapProfile()
         {
             CreateMap<PlantParam, ParameterDto>().ReverseMap();
+
             CreateMap<PlantParam, ParameterKeyDto>().ReverseMap();
         }
     }
