@@ -23,13 +23,41 @@ namespace WebHMI.Services
 			_prdbContextProvider = prdbContextProvider;
 		}
 
-		public async Task<PagedResultDto<ProductionScheduleDto>> GetAll(ProductionScheduleFilteredRequestDto input)
-		{
-			return input.Mode switch
-			{
-				ProductionScheduleMode.Scheduled => await ApplyFilter(_prdbContext.HmiVProdsequences, input, ProductionScheduleDtoMapper.ToDtoFromDbo),
-				_ => throw new NotImplementedException($"Unhandled {nameof(input.Mode)}"),
-			};
-		}
-	}
+        public async Task<PagedResultDto<ScheduledMaterialsDto>> GetScheduledMaterials(FilteredRequestDto input)
+        {
+            return await ApplyFilter(
+                _prdbContext.HmiVProdsequences, 
+                input, 
+                ProductionScheduleMapper.ToScheduledMaterialsDto);
+        }
+
+        public async Task<PagedResultDto<GhostDischargedMaterialsDto>> GetGhostMaterials(FilteredRequestDto input)
+        {
+            return await ApplyFilter(
+                _prdbContext.HmiVMatInfoShorts
+                    .Where(x => x.SimMat == 1),
+                input,
+                ProductionScheduleMapper.ToGhostDischargedMaterialsDto);
+        }
+
+        public async Task<PagedResultDto<GhostDischargedMaterialsDto>> GetDischargedSlabs(FilteredRequestDto input)
+        {
+            return await ApplyFilter(
+                _prdbContext.HmiVMatInfoShorts
+                    .Where(x => x.SimMat == 1 && x.EnPhStatus >= 1)
+                    .OrderByDescending(x => x.ProdStartTime),
+                input,
+                ProductionScheduleMapper.ToGhostDischargedMaterialsDto);
+        }
+        
+        public async Task<PagedResultDto<RemovedMaterialsDto>> GetRemovedMaterials(FilteredRequestDto input)
+        {
+            return await ApplyFilter(
+                _prdbContext.HmiVRemovedMaterials
+                    .Where(x => x.SimMat == 0)
+                    .OrderByDescending(x => x.RejectTime),
+                input,
+                ProductionScheduleMapper.ToRemovedMaterialsDto);
+        }
+    }
 }

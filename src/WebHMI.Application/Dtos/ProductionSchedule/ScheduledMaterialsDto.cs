@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WebHMI.Dtos.ProductionSchedule
 {
-	public class ProductionScheduleDto
+	public class ScheduledMaterialsDto
 	{
 		public MeCodeDto EnOrMeCode { get; set; }
 		public MeCodeDto EnLogMeCode { get; set; }
