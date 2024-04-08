@@ -208,5 +208,53 @@ namespace WebHMI.Services
             _eventBus.Trigger(eventData);
             await _signalRNotifier.BroadcastToAllClientsAsync(eventData, "HmiRefreshData");
         }
+
+        public async Task<string> GetActualSequenceId()
+        {
+            var seq = (await _prdbContext.HmiVProdsequences
+                .Select(x => new { x.SequenceId, x.Next })
+                .FirstOrDefaultAsync(x => x.Next == 1));
+
+            if (seq is null)
+                return "-1";
+
+            return seq.SequenceId;
+        }
+
+        public async Task<string> GetPreviousSequenceId(string actuallyDisplayedSequenceId)
+        {
+            var sequences = await _prdbContext.EdPhyEnts
+                .Where(x => x.Source == "E")
+                .Select(x => x.SequenceId)
+                .Distinct()
+                .OrderBy(x => x)
+                .ToListAsync();
+
+            var actualIndex = sequences.IndexOf(actuallyDisplayedSequenceId);
+
+            // Doesn't contain or first
+            if (actualIndex < 1)
+                return "-1";
+
+            return sequences[--actualIndex];
+        }
+
+        public async Task<string> GetNextSequenceId(string actuallyDisplayedSequenceId)
+        {
+            var sequences = await _prdbContext.EdPhyEnts
+                .Where(x => x.Source == "E")
+                .Select(x => x.SequenceId)
+                .Distinct()
+                .OrderBy(x => x)
+                .ToListAsync();
+
+            var actualIndex = sequences.IndexOf(actuallyDisplayedSequenceId);
+
+            // Doesn't contain or last
+            if (actualIndex == -1 || actualIndex == sequences.Count - 1)
+                return "-1";
+
+            return sequences[++actualIndex];
+        }
     }
 }
