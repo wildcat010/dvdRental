@@ -234,7 +234,7 @@ namespace WebHMI.Helpers
 			return false;
 		}
 
-        private TEntityDto MapToEntityDto<TEntity, TEntityDto>(TEntity entity)
+        protected TEntityDto MapToEntityDto<TEntity, TEntityDto>(TEntity entity)
         {
             return ObjectMapper.Map<TEntityDto>(entity);
         }

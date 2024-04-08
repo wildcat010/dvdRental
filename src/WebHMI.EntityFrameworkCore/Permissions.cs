@@ -15,6 +15,9 @@
         public const string Pages_Limits = "Pages.Limits";
         public const string Pages_Limits_Edit = "Pages.Limits.Edit";
         public const string Pages_Limits_Delete = "Pages.Limits.Delete";
+
+        public const string Pages_Parameters = "Pages.Parameters";
+        public const string Pages_Parameters_Edit = "Pages.Parameters.Edit";
     }
 }
 

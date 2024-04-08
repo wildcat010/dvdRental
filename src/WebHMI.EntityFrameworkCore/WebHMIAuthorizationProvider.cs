@@ -21,6 +21,9 @@ namespace WebHMI
             var limits = context.CreatePermission(Permissions.Pages_Limits);
             limits.CreateChildPermission(Permissions.Pages_Limits_Edit);
             limits.CreateChildPermission(Permissions.Pages_Limits_Delete);
+
+            var parameters = context.CreatePermission(Permissions.Pages_Parameters);
+            parameters.CreateChildPermission(Permissions.Pages_Parameters_Edit);
         }
     }
 }
