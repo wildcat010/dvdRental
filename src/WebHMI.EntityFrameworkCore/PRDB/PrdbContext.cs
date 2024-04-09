@@ -13497,6 +13497,7 @@ public partial class PrdbContext : AbpDbContext
                 .IsUnicode(false)
                 .HasColumnName("heatId");
             entity.Property(e => e.LEntry).HasColumnName("lEntry");
+            entity.Property(e => e.LExit).HasColumnName("lExit");
             entity.Property(e => e.LastCalc).HasPrecision(3);
             entity.Property(e => e.PlateProduction).HasColumnName("plateProduction");
             entity.Property(e => e.ProdEndTime)

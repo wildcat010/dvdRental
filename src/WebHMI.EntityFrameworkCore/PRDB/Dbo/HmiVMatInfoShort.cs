@@ -76,4 +76,6 @@ public partial class HmiVMatInfoShort
     public DateTime? ProdStartTime { get; set; }
 
     public DateTime? ProdEndTime { get; set; }
+
+    public float? LExit { get; set; }
 }
