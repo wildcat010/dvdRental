@@ -8,6 +8,7 @@ namespace WebHMI.Dtos.ProductionSchedule
 {
     public class SequenceOverviewDto
     {
+        public string SequenceId { get; set; }
         public int NoOfHeats { get; set; }
         public int NoOfCoils { get; set; }
         public int RemNoOfCoils { get; set; }

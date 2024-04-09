@@ -88,6 +88,8 @@ namespace WebHMI.Services
 
             return new SequenceOverviewDto
             {
+                SequenceId = sequenceId,
+
                 NoOfHeats = matInfos.Select(x => x.HeatId)
                                     .Distinct()
                                     .Count(),
