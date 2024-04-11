@@ -20,8 +20,6 @@ namespace WebHMI.Web.Host
 			Configuration.Auditing.Selectors.Clear();
 			Configuration.ReplaceService<IAuditingStore, CustomAuditingStore>();
 			Configuration.ReplaceService<IAuditingHelper, IgnoreDefaultAuditingHelper>();
-
-			Configuration.Localization.IsEnabled = false;
 		}
 
 		public override void Initialize()

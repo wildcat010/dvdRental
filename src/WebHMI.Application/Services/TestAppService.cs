@@ -85,12 +85,6 @@ namespace WebHMI.Services
 			if (string.IsNullOrWhiteSpace(newDescription))
 				throw new UserFriendlyException("Description can't be empty");
 
-			if (newDescription == "1")
-				throw new EntityNotFoundException("not found");
-
-			if (newDescription == "2")
-				throw new Exception("server exception");
-
 			var context = await _prdbContextProvider.GetDbContextAsync();
 
 			var record = await context.StdDirFmPfcParaPs.FirstOrDefaultAsync(x => x.PlanNo == planNo);
@@ -173,6 +167,18 @@ namespace WebHMI.Services
 		{
 			return new TestDto();
 		}
+
+        public void TestException(string input)
+        {
+            if (input == "1")
+                throw new EntityNotFoundException("Not found");
+
+            if (input == "2")
+                throw new Exception("Server exception");
+
+            if (input == "3")
+                throw new UserFriendlyException("My message");
+        }
 
 		public class TestDto
 		{
