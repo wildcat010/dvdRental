@@ -373,12 +373,12 @@ namespace WebHMI.Services
             if (rollPropertyClassDto.RollType is not null && rollPropertyClassDto.RollType.Length > 3)
                 throw new UserFriendlyException("RollType can have maximum 3 characters");
 
-            rollProperty = rollPropertyClassDto.ToRollPropertyEntity();
+            var newRollProperty = rollPropertyClassDto.ToRollPropertyEntity();
 
-             _prdbContext.RollProperties.Add(rollProperty);
-            rollProperty = await _prdbContext.RollProperties.FirstOrDefaultAsync(t => t.RollPropertyClass == rollPropertyClassDto.RollPropertyClass);
+             _prdbContext.RollProperties.Add(newRollProperty);
+            await CurrentUnitOfWork.SaveChangesAsync();
 
-            return rollProperty.ToRollPropertyClassDto();
+            return newRollProperty.ToRollPropertyClassDto();
         }
 
         [AbpAuthorize(Permissions.Pages_RollData)]
