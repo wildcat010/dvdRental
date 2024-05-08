@@ -42,5 +42,10 @@ namespace WebHMI.L2Adapter.Senders
 			_logger.Debug($"Sending message '{msg}' to L2...");
 			//_paStub.MsgRefresh(msg);
 		}
-	}
+
+        public void UpdateSetpointsRm(string extId, int meId, short mesId, string meCreator, string connectionId)
+        {
+            // TODO: add L2 call
+        }
+    }
 }

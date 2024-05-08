@@ -64,7 +64,7 @@ namespace WebHMI.PRDB
                     entity.MeCreator = entryMatStruct.EnPhCreator;
                     break;
                 default:
-                    throw new InvalidOperationException($"Entity must implement only one metrial id type interface");
+                    throw new InvalidOperationException("Entity must implement only one material id type interface");
             }
 
             return entity;

@@ -11,12 +11,12 @@ namespace WebHMI.Dtos
 		/// <summary>
 		/// Refers to table ME.MEID (material key)
 		/// </summary>
-		public long MeId { get; set; }
+		public int MeId { get; set; }
 
 		/// <summary>
 		/// Refers to table ME.CURMESID (material key)  1 - ENTRY MATERIAL, 2 - EXIT MATEIRAL (PRODUCT)
 		/// </summary>
-		public long MesId { get; set; }
+		public short MesId { get; set; }
 
 		/// <summary>
 		/// L3 - Created by MES/L3 system, PC - created by L2, OD - created by L2 after material has been divided

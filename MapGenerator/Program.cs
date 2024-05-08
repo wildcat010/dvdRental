@@ -5,7 +5,7 @@ using WebHMI;
 const string filePath = @"..\..\..\mapping.xlsx";
 const short worksheetIndex = 0; // worksheet index in excel file (bottom tabs)
 const int rowStartIndex = 5;
-const int rowEndIndex = 61;
+const int rowEndIndex = 21;
 
 var workbook = new Workbook();
 workbook.LoadFromFile(filePath);
@@ -17,18 +17,18 @@ for (int i = rowStartIndex; i <= rowEndIndex; i++)
 {
 	var mapData = new MapData();
 
-	string propName = worksheet.Range[i, LetterToNumber('B')].Value;
+	string propName = worksheet.Range[i, LetterToNumber('A')].Value;
 	if (string.IsNullOrWhiteSpace(propName))
 		continue;
 
 	mapData.PropertyName = propName;
 
-	mapData.Sources.Add("L", new Source
-	{
-		TableName = worksheet.Range[i, LetterToNumber('C')].Value,
-		OriginalSource = worksheet.Range[i, LetterToNumber('D')].Value,
-		ColumnName = worksheet.Range[i, LetterToNumber('E')].Value
-	});
+	// mapData.Sources.Add("L", new Source
+	// {
+	// 	TableName = worksheet.Range[i, LetterToNumber('C')].Value,
+	// 	OriginalSource = worksheet.Range[i, LetterToNumber('D')].Value,
+	// 	ColumnName = worksheet.Range[i, LetterToNumber('E')].Value
+	// });
 
 	mapData.Sources.Add("M", new Source
 	{
@@ -37,12 +37,12 @@ for (int i = rowStartIndex; i <= rowEndIndex; i++)
 		ColumnName = worksheet.Range[i, LetterToNumber('H')].Value
 	});
 
-	mapData.Sources.Add("S", new Source
-	{
-		TableName = worksheet.Range[i, LetterToNumber('I')].Value,
-		OriginalSource = worksheet.Range[i, LetterToNumber('J')].Value,
-		ColumnName = worksheet.Range[i, LetterToNumber('K')].Value
-	});
+	// mapData.Sources.Add("S", new Source
+	// {
+	// 	TableName = worksheet.Range[i, LetterToNumber('I')].Value,
+	// 	OriginalSource = worksheet.Range[i, LetterToNumber('J')].Value,
+	// 	ColumnName = worksheet.Range[i, LetterToNumber('K')].Value
+	// });
 
 	// mapData.Sources.Add("P", new Source
 	// {

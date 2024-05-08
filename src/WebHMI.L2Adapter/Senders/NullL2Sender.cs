@@ -14,5 +14,9 @@ namespace WebHMI.L2Adapter.Senders
 		public void SendTestMessage(string msg)
 		{
 		}
-	}
+
+        public void UpdateSetpointsRm(string extId, int meId, short mesId, string meCreator, string connectionId)
+        {
+        }
+    }
 }
