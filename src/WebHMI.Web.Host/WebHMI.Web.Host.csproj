@@ -26,6 +26,10 @@
   </ItemGroup>
   
   <ItemGroup>
+    <_WebToolingArtifacts Remove="Properties\PublishProfiles\NCTR.pubxml" />
+  </ItemGroup>
+  
+  <ItemGroup>
     <None Update="log4net.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>

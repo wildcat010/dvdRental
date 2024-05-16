@@ -10,8 +10,7 @@ $PathModels = $LocalPath.ToString() + '\dbo'
 $PathContext = $LocalPath.ToString()
 
 # DB connection string
-#$DBConnString = 'Driver={ODBC Driver 17 for SQL Server}; server=L2NCTR\PRJ_01; database=PRDB; Uid=prdb; Pwd=a423pa'
-$DBConnString = 'Server=L2NCTR\PRJ_01;Database=PRDB;User Id=prdb;Password=a423pa;TrustServerCertificate=True;'
+$DBConnString = 'Server=ESPSTDNCTR\PRDB;Database=PRDB;User Id=sa;Password=X.admin1;TrustServerCertificate=True;'
 
 # The path to the EntityFrameworkCore.csproj file
 $ProjectPath = $LocalPath.ToString() + '\..\'
