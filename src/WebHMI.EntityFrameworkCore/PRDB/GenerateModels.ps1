@@ -4,7 +4,7 @@ Write-Host "This is a PowerShell script to generate DB entities and context for 
 $LocalPath = gl
 
 # Path where the models classes should be written
-$PathModels = $LocalPath.ToString() + '\dbo'
+$PathModels = $LocalPath.ToString() + '\Dbo\'
 
 # Path to location where PRDB context file is located
 $PathContext = $LocalPath.ToString()
@@ -16,9 +16,11 @@ $DBConnString = 'Server=ESPSTDNCTR\PRDB;Database=PRDB;User Id=sa;Password=X.admi
 $ProjectPath = $LocalPath.ToString() + '\..\'
 
 # Delete old models
-Write-Host 'Deleting old models...'
 $PathModelsToDelete = $PathModels.ToString() + '*.cs'
+Write-Host 'Deleting old models from ' $PathModelsToDelete.ToString()
 DEL $PathModelsToDelete
+
+pause
 
 # Generate models with EF scaffold tool
 Write-Host 'Generating new models...'
