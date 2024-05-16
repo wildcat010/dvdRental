@@ -20,8 +20,6 @@ $PathModelsToDelete = $PathModels.ToString() + '*.cs'
 Write-Host 'Deleting old models from ' $PathModelsToDelete.ToString()
 DEL $PathModelsToDelete
 
-pause
-
 # Generate models with EF scaffold tool
 Write-Host 'Generating new models...'
 
