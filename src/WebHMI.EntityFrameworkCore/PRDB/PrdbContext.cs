@@ -175,23 +175,11 @@ public partial class PrdbContext : AbpDbContext
 
     public virtual DbSet<HmiVApspcChecktable> HmiVApspcChecktables { get; set; }
 
-    public virtual DbSet<HmiVCoil> HmiVCoils { get; set; }
-
-    public virtual DbSet<HmiVCoils1> HmiVCoils1s { get; set; }
-
-    public virtual DbSet<HmiVCoils2> HmiVCoils2s { get; set; }
-
-    public virtual DbSet<HmiVCoils3> HmiVCoils3s { get; set; }
-
     public virtual DbSet<HmiVInlineMaterial> HmiVInlineMaterials { get; set; }
 
     public virtual DbSet<HmiVLimit> HmiVLimits { get; set; }
 
     public virtual DbSet<HmiVMatInfoShort> HmiVMatInfoShorts { get; set; }
-
-    public virtual DbSet<HmiVMaterialOverview> HmiVMaterialOverviews { get; set; }
-
-    public virtual DbSet<HmiVMeid> HmiVMeids { get; set; }
 
     public virtual DbSet<HmiVMeids2> HmiVMeids2s { get; set; }
 
@@ -649,8 +637,6 @@ public partial class PrdbContext : AbpDbContext
 
     public virtual DbSet<VInputPqe> VInputPqes { get; set; }
 
-    public virtual DbSet<VMatStructComplete> VMatStructCompletes { get; set; }
-
     public virtual DbSet<VMatStructEntry> VMatStructEntries { get; set; }
 
     public virtual DbSet<Wmp> Wmps { get; set; }
@@ -661,14 +647,13 @@ public partial class PrdbContext : AbpDbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.HasDefaultSchema("PRDB");
-
         modelBuilder.Entity<AdpResult>(entity =>
         {
-            entity.HasKey(e => new { e.Name, e.CalcTime }).HasName("PK__AdpResul__865482443C605F68");
+            entity.HasKey(e => new { e.Name, e.CalcTime }).HasName("PK__AdpResul__86548244D0A2D73E");
 
-            entity.ToTable("AdpResult", tb =>
+            entity.ToTable("AdpResult", "PRDB", tb =>
                 {
+                    tb.HasComment("");
                     tb.HasTrigger("TI_AdpResult");
                     tb.HasTrigger("TU_AdpResult");
                 });
@@ -677,352 +662,462 @@ public partial class PrdbContext : AbpDbContext
                 .HasMaxLength(40)
                 .IsUnicode(false)
                 .HasDefaultValue("-")
+                .HasComment("name")
                 .HasColumnName("name");
-            entity.Property(e => e.CalcTime).HasColumnName("calcTime");
+            entity.Property(e => e.CalcTime)
+                .HasComment("")
+                .HasColumnName("calcTime");
             entity.Property(e => e.AdaCrInd0)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("adaCR_ind0");
             entity.Property(e => e.AdaCrInd1)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("adaCR_ind1");
             entity.Property(e => e.AdaCrInd2)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("adaCR_ind2");
             entity.Property(e => e.AdaCrInd3)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("adaCR_ind3");
             entity.Property(e => e.AdaCrInd4)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("adaCR_ind4");
             entity.Property(e => e.AlloyCode)
                 .HasMaxLength(40)
                 .IsUnicode(false)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("alloyCode");
             entity.Property(e => e.B)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("b");
             entity.Property(e => e.C)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("c");
             entity.Property(e => e.Cr)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("cr");
             entity.Property(e => e.FlatnessError)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("flatnessError");
             entity.Property(e => e.HrmAdaCrInd0)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("hrm_ada_cr_ind0");
             entity.Property(e => e.HrmAdaCrInd1)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("hrm_ada_cr_ind1");
             entity.Property(e => e.HrmAdaCrInd2)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("hrm_ada_cr_ind2");
             entity.Property(e => e.HrmPreCrInd0)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("hrm_pre_cr_ind0");
             entity.Property(e => e.HrmPreCrInd1)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("hrm_pre_cr_ind1");
             entity.Property(e => e.HrmPreCrInd2)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("hrm_pre_cr_ind2");
             entity.Property(e => e.InheritanceId)
                 .HasMaxLength(40)
                 .IsUnicode(false)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("inheritanceId");
             entity.Property(e => e.InheritanceType)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("inheritanceType");
             entity.Property(e => e.LastFbInd0)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("lastFB_ind0");
             entity.Property(e => e.LastFbInd1)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("lastFB_ind1");
             entity.Property(e => e.LastFbInd2)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("lastFB_ind2");
             entity.Property(e => e.LastFbInd3)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("lastFB_ind3");
             entity.Property(e => e.LastFbInd4)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("lastFB_ind4");
             entity.Property(e => e.ManFbInd0)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("manFB_ind0");
             entity.Property(e => e.ManFbInd1)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("manFB_ind1");
             entity.Property(e => e.ManFbInd2)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("manFB_ind2");
             entity.Property(e => e.ManFbInd3)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("manFB_ind3");
             entity.Property(e => e.ManFbInd4)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("manFB_ind4");
             entity.Property(e => e.ManSrInd0)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("manSR_ind0");
             entity.Property(e => e.ManSrInd1)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("manSR_ind1");
             entity.Property(e => e.ManSrInd2)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("manSR_ind2");
             entity.Property(e => e.ManSrInd3)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("manSR_ind3");
             entity.Property(e => e.ManSrInd4)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("manSR_ind4");
             entity.Property(e => e.MeasThickness)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("measThickness");
             entity.Property(e => e.MiFbInd0)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("miFB_ind0");
             entity.Property(e => e.MiFbInd1)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("miFB_ind1");
             entity.Property(e => e.MiFbInd2)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("miFB_ind2");
             entity.Property(e => e.MiFbInd3)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("miFB_ind3");
             entity.Property(e => e.MiFbInd4)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("miFB_ind4");
             entity.Property(e => e.Mn)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("mn");
             entity.Property(e => e.ModelProfile)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("modelProfile");
             entity.Property(e => e.Mop)
                 .HasMaxLength(120)
                 .IsUnicode(false)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("modifying process")
                 .HasColumnName("mop");
             entity.Property(e => e.Ni)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("ni");
             entity.Property(e => e.P)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("p");
             entity.Property(e => e.PreCrInd0)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("preCR_ind0");
             entity.Property(e => e.PreCrInd1)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("preCR_ind1");
             entity.Property(e => e.PreCrInd2)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("preCR_ind2");
             entity.Property(e => e.PreCrInd3)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("preCR_ind3");
             entity.Property(e => e.PreCrInd4)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("preCR_ind4");
             entity.Property(e => e.ProfileError)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("profileError");
             entity.Property(e => e.ProfileGauge)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("profileGauge");
             entity.Property(e => e.ProfileHrm)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("profileHRM");
             entity.Property(e => e.ProfileMeas)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("profileMeas");
             entity.Property(e => e.ProfileX2)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("profileX2");
             entity.Property(e => e.RollIdHrmInd0)
                 .HasMaxLength(4000)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("rollId_hrm_ind0");
             entity.Property(e => e.RollIdHrmInd1)
                 .HasMaxLength(4000)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("rollId_hrm_ind1");
             entity.Property(e => e.RollIdHrmInd2)
                 .HasMaxLength(4000)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("rollId_hrm_ind2");
             entity.Property(e => e.RollIdWrTopInd0)
                 .HasMaxLength(4000)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("rollIdWrTop_ind0");
             entity.Property(e => e.RollIdWrTopInd1)
                 .HasMaxLength(4000)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("rollIdWrTop_ind1");
             entity.Property(e => e.RollIdWrTopInd2)
                 .HasMaxLength(4000)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("rollIdWrTop_ind2");
             entity.Property(e => e.RollIdWrTopInd3)
                 .HasMaxLength(4000)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("rollIdWrTop_ind3");
             entity.Property(e => e.RollIdWrTopInd4)
                 .HasMaxLength(4000)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("rollIdWrTop_ind4");
             entity.Property(e => e.S)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("s");
             entity.Property(e => e.SetFrInd0)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("setFR_ind0");
             entity.Property(e => e.SetFrInd1)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("setFR_ind1");
             entity.Property(e => e.SetFrInd2)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("setFR_ind2");
             entity.Property(e => e.SetFrInd3)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("setFR_ind3");
             entity.Property(e => e.SetFrInd4)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("setFR_ind4");
             entity.Property(e => e.SetSrInd0)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("setSR_ind0");
             entity.Property(e => e.SetSrInd1)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("setSR_ind1");
             entity.Property(e => e.SetSrInd2)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("setSR_ind2");
             entity.Property(e => e.SetSrInd3)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("setSR_ind3");
             entity.Property(e => e.SetSrInd4)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("setSR_ind4");
             entity.Property(e => e.SetupFbInd0)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("setupFB_ind0");
             entity.Property(e => e.SetupFbInd1)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("setupFB_ind1");
             entity.Property(e => e.SetupFbInd2)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("setupFB_ind2");
             entity.Property(e => e.SetupFbInd3)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("setupFB_ind3");
             entity.Property(e => e.SetupFbInd4)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("setupFB_ind4");
             entity.Property(e => e.ShiftSpeedInd0)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("shiftSpeed_ind0");
             entity.Property(e => e.ShiftSpeedInd1)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("shiftSpeed_ind1");
             entity.Property(e => e.ShiftSpeedInd2)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("shiftSpeed_ind2");
             entity.Property(e => e.ShiftSpeedInd3)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("shiftSpeed_ind3");
             entity.Property(e => e.ShiftSpeedInd4)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("shiftSpeed_ind4");
             entity.Property(e => e.Si)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("si");
             entity.Property(e => e.TargetProfile)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("targetProfile");
             entity.Property(e => e.ThickHrmEx)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("thick_hrmEx");
             entity.Property(e => e.ThicknessInd0)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] ")
                 .HasColumnName("thickness_ind0");
             entity.Property(e => e.ThicknessInd1)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] ")
                 .HasColumnName("thickness_ind1");
             entity.Property(e => e.ThicknessInd2)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] ")
                 .HasColumnName("thickness_ind2");
             entity.Property(e => e.ThicknessInd3)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] ")
                 .HasColumnName("thickness_ind3");
             entity.Property(e => e.ThicknessInd4)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] ")
                 .HasColumnName("thickness_ind4");
             entity.Property(e => e.ThicknessInd5)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] ")
                 .HasColumnName("thickness_ind5");
             entity.Property(e => e.Toc)
                 .HasPrecision(3)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("time of creation")
                 .HasColumnName("toc");
             entity.Property(e => e.Tom)
                 .HasPrecision(3)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("time of modification")
                 .HasColumnName("tom");
             entity.Property(e => e.V)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("v");
             entity.Property(e => e.W)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("w");
             entity.Property(e => e.WearCorrectionInd0)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("wearCorrection_ind0");
             entity.Property(e => e.WearCorrectionInd1)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("wearCorrection_ind1");
             entity.Property(e => e.WearCorrectionInd2)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("wearCorrection_ind2");
             entity.Property(e => e.WearCorrectionInd3)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("wearCorrection_ind3");
             entity.Property(e => e.WearCorrectionInd4)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("wearCorrection_ind4");
             entity.Property(e => e.WearInd0)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("wear_ind0");
             entity.Property(e => e.WearInd1)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("wear_ind1");
             entity.Property(e => e.WearInd2)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("wear_ind2");
             entity.Property(e => e.WearInd3)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("wear_ind3");
             entity.Property(e => e.WearInd4)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("")
                 .HasColumnName("wear_ind4");
             entity.Property(e => e.Width)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] ")
                 .HasColumnName("width");
         });
 
         modelBuilder.Entity<AggregateSelection>(entity =>
         {
-            entity.HasKey(e => new { e.Active, e.RecId, e.Aggregate }).HasName("PK__Aggregat__DE19C9B4474B9C6B");
+            entity.HasKey(e => new { e.Active, e.RecId, e.Aggregate }).HasName("PK__Aggregat__DE19C9B46C2CCE3E");
 
-            entity.ToTable("AggregateSelection", tb =>
+            entity.ToTable("AggregateSelection", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_AggregateSelection");
@@ -1512,9 +1607,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<AlloyDatum>(entity =>
         {
-            entity.HasKey(e => e.AlloyCode).HasName("PK__AlloyDat__CE6D2C49EAB624D4");
+            entity.HasKey(e => e.AlloyCode).HasName("PK__AlloyDat__CE6D2C49364AA79A");
 
-            entity.ToTable(tb =>
+            entity.ToTable("AlloyData", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_AlloyData");
@@ -1895,9 +1990,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<AltMat>(entity =>
         {
-            entity.HasKey(e => e.RecId).HasName("PK__AltMat__1B434612992DD69D");
+            entity.HasKey(e => e.RecId).HasName("PK__AltMat__1B43461272E38C37");
 
-            entity.ToTable("AltMat", tb =>
+            entity.ToTable("AltMat", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_AltMat");
@@ -2113,9 +2208,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<Aop>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Owner }).HasName("PK__AOP__2C893E8D19B2E314");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Owner }).HasName("PK__AOP__2C893E8D4E43C2E1");
 
-            entity.ToTable("AOP", tb =>
+            entity.ToTable("AOP", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_AOP");
@@ -2174,9 +2269,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<Aoppass>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.PassNo }).HasName("PK__AOPPass__5DCFA6F918827BA1");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.PassNo }).HasName("PK__AOPPass__5DCFA6F965823AB0");
 
-            entity.ToTable("AOPPass", tb =>
+            entity.ToTable("AOPPass", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_AOPPass");
@@ -2258,9 +2353,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<ApsRef>(entity =>
         {
-            entity.HasKey(e => new { e.KeyType, e.KeyName }).HasName("PK__ApsRef__3DB36223FE74EBF8");
+            entity.HasKey(e => new { e.KeyType, e.KeyName }).HasName("PK__ApsRef__3DB362236EB74421");
 
-            entity.ToTable("ApsRef", tb =>
+            entity.ToTable("ApsRef", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_ApsRef");
@@ -2305,9 +2400,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<AreaLocationDesc>(entity =>
         {
-            entity.HasKey(e => e.LocationId).HasName("PK__AreaLoca__30646B0E53A39DD3");
+            entity.HasKey(e => e.LocationId).HasName("PK__AreaLoca__30646B0E0720FD34");
 
-            entity.ToTable("AreaLocationDesc", tb =>
+            entity.ToTable("AreaLocationDesc", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_AreaLocationDesc");
@@ -2358,9 +2453,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<CalBendShift>(entity =>
         {
-            entity.HasKey(e => new { e.StandNo, e.RollNumber, e.PlantType }).HasName("PK__CalBendS__0F1A3E013CAEBB93");
+            entity.HasKey(e => new { e.StandNo, e.RollNumber, e.PlantType }).HasName("PK__CalBendS__0F1A3E0154596828");
 
-            entity.ToTable("CalBendShift", tb =>
+            entity.ToTable("CalBendShift", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_CalBendShift");
@@ -2407,9 +2502,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<CalBendShiftAct>(entity =>
         {
-            entity.HasKey(e => new { e.StandNo, e.RollNumber, e.PlantType }).HasName("PK__CalBendS__0F1A3E01392DDB66");
+            entity.HasKey(e => new { e.StandNo, e.RollNumber, e.PlantType }).HasName("PK__CalBendS__0F1A3E01FFC9B1A7");
 
-            entity.ToTable("CalBendShiftAct", tb =>
+            entity.ToTable("CalBendShiftAct", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_CalBendShiftAct");
@@ -2456,9 +2551,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<CalDss>(entity =>
         {
-            entity.HasKey(e => new { e.StandNo, e.DssNumber, e.PlantType }).HasName("PK__CalDss__2520E944C3653244");
+            entity.HasKey(e => new { e.StandNo, e.DssNumber, e.PlantType }).HasName("PK__CalDss__2520E944D99AFC49");
 
-            entity.ToTable("CalDss", tb =>
+            entity.ToTable("CalDss", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_CalDss");
@@ -2509,9 +2604,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<CalDssAct>(entity =>
         {
-            entity.HasKey(e => new { e.StandNo, e.DssNumber, e.PlantType }).HasName("PK__CalDssAc__2520E944143FA992");
+            entity.HasKey(e => new { e.StandNo, e.DssNumber, e.PlantType }).HasName("PK__CalDssAc__2520E94439C0C378");
 
-            entity.ToTable("CalDssAct", tb =>
+            entity.ToTable("CalDssAct", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_CalDssAct");
@@ -2562,9 +2657,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<CalInfo>(entity =>
         {
-            entity.HasKey(e => new { e.StandNo, e.PlantType }).HasName("PK__CalInfo__F4BA79A322F84A4C");
+            entity.HasKey(e => new { e.StandNo, e.PlantType }).HasName("PK__CalInfo__F4BA79A369F6FA86");
 
-            entity.ToTable("CalInfo", tb =>
+            entity.ToTable("CalInfo", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_CalInfo");
@@ -2640,9 +2735,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<CalInfoAct>(entity =>
         {
-            entity.HasKey(e => new { e.StandNo, e.PlantType }).HasName("PK__CalInfoA__F4BA79A3CFA0821D");
+            entity.HasKey(e => new { e.StandNo, e.PlantType }).HasName("PK__CalInfoA__F4BA79A3930A823F");
 
-            entity.ToTable("CalInfoAct", tb =>
+            entity.ToTable("CalInfoAct", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_CalInfoAct");
@@ -2718,9 +2813,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<CalPade>(entity =>
         {
-            entity.HasKey(e => new { e.StandNo, e.CurveType, e.PlantType }).HasName("PK__CalPade__070CCC5AA38630E1");
+            entity.HasKey(e => new { e.StandNo, e.CurveType, e.PlantType }).HasName("PK__CalPade__070CCC5A668B8422");
 
-            entity.ToTable("CalPade", tb =>
+            entity.ToTable("CalPade", "PRDB", tb =>
                 {
                     tb.HasComment("pade curve for stand spring");
                     tb.HasTrigger("TI_CalPade");
@@ -2775,9 +2870,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<CalPadeAct>(entity =>
         {
-            entity.HasKey(e => new { e.StandNo, e.CurveType, e.PlantType }).HasName("PK__CalPadeA__070CCC5A26C07E03");
+            entity.HasKey(e => new { e.StandNo, e.CurveType, e.PlantType }).HasName("PK__CalPadeA__070CCC5A6FE4CCFA");
 
-            entity.ToTable("CalPadeAct", tb =>
+            entity.ToTable("CalPadeAct", "PRDB", tb =>
                 {
                     tb.HasComment("actual measured pade curve");
                     tb.HasTrigger("TI_CalPadeAct");
@@ -2832,7 +2927,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<CasL3sampleTaken>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__CasL3Sam__3214EC278C934DB1");
+            entity.HasKey(e => e.Id).HasName("PK__CasL3Sam__3214EC27F41B6F70");
 
             entity.ToTable("CasL3SampleTaken", "COMUSER", tb =>
                 {
@@ -2887,7 +2982,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<CasMillNewHeat>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__CasMillN__3213E83F7C016343");
+            entity.HasKey(e => e.Id).HasName("PK__CasMillN__3213E83F7812582F");
 
             entity.ToTable("CasMillNewHeat", "COMUSER", tb =>
                 {
@@ -3127,7 +3222,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<CasMillNewSpeed>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__CasMillN__3213E83F68B3F087");
+            entity.HasKey(e => e.Id).HasName("PK__CasMillN__3213E83F824E86D4");
 
             entity.ToTable("CasMillNewSpeed", "COMUSER", tb =>
                 {
@@ -3167,7 +3262,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<CasMillPreRolling>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__CasMillP__3213E83F855D5D97");
+            entity.HasKey(e => e.Id).HasName("PK__CasMillP__3213E83F7D88FB25");
 
             entity.ToTable("CasMillPreRolling", "COMUSER", tb =>
                 {
@@ -3209,7 +3304,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<CasMillSegInfo>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__CasMillS__3213E83FF2BC814A");
+            entity.HasKey(e => e.Id).HasName("PK__CasMillS__3213E83FD04991AD");
 
             entity.ToTable("CasMillSegInfo", "COMUSER", tb =>
                 {
@@ -3639,7 +3734,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<CasMillSeqState>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__CasMillS__3213E83FC22E86C8");
+            entity.HasKey(e => e.Id).HasName("PK__CasMillS__3213E83F2AA0573A");
 
             entity.ToTable("CasMillSeqState", "COMUSER", tb =>
                 {
@@ -3711,9 +3806,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<CasSegInfoTranslate>(entity =>
         {
-            entity.HasKey(e => e.Value).HasName("PK__CasSegIn__40BBEA3B1F2897D0");
+            entity.HasKey(e => e.Value).HasName("PK__CasSegIn__40BBEA3BD8832C95");
 
-            entity.ToTable("CasSegInfoTranslate", tb =>
+            entity.ToTable("CasSegInfoTranslate", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_CasSegInfoTranslate");
@@ -3755,7 +3850,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<Casl3heatevent>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__CASL3HEA__3214EC2703A3852C");
+            entity.HasKey(e => e.Id).HasName("PK__CASL3HEA__3214EC27D04F0EAF");
 
             entity.ToTable("CASL3HEATEVENT", "COMUSER", tb =>
                 {
@@ -3816,7 +3911,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<Casl3heateventparam>(entity =>
         {
-            entity.HasKey(e => new { e.Id, e.Parametername }).HasName("PK__CASL3HEA__15AC6EE4A2978B9E");
+            entity.HasKey(e => new { e.Id, e.Parametername }).HasName("PK__CASL3HEA__15AC6EE4E9870C02");
 
             entity.ToTable("CASL3HEATEVENTPARAM", "COMUSER", tb =>
                 {
@@ -3875,7 +3970,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<Casl3heatrep>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__CASL3HEA__3214EC27435D9046");
+            entity.HasKey(e => e.Id).HasName("PK__CASL3HEA__3214EC270202F035");
 
             entity.ToTable("CASL3HEATREP", "COMUSER", tb =>
                 {
@@ -3935,7 +4030,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<Casl3heatrepparam>(entity =>
         {
-            entity.HasKey(e => new { e.Id, e.Parametername }).HasName("PK__CASL3HEA__15AC6EE478140493");
+            entity.HasKey(e => new { e.Id, e.Parametername }).HasName("PK__CASL3HEA__15AC6EE4E7EB5662");
 
             entity.ToTable("CASL3HEATREPPARAM", "COMUSER", tb =>
                 {
@@ -3994,9 +4089,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<CastSegInfo>(entity =>
         {
-            entity.HasKey(e => new { e.RecTime, e.Counter }).HasName("PK__CastSegI__6360008403F739CC");
+            entity.HasKey(e => new { e.RecTime, e.Counter }).HasName("PK__CastSegI__6360008437DB07B8");
 
-            entity.ToTable("CastSegInfo", tb =>
+            entity.ToTable("CastSegInfo", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_CastSegInfo");
@@ -4465,9 +4560,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<CastSlabStartPo>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId }).HasName("PK__CastSlab__97FBDCEF8A078A83");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId }).HasName("PK__CastSlab__97FBDCEFF7F6F269");
 
-            entity.ToTable(tb =>
+            entity.ToTable("CastSlabStartPos", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_CastSlabStartPos");
@@ -4544,9 +4639,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<CasterSndRequest>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.SeqNum }).HasName("PK__CasterSn__6D0E24881137EC2F");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.SeqNum }).HasName("PK__CasterSn__6D0E24889B14AE7D");
 
-            entity.ToTable("CasterSndRequest", tb =>
+            entity.ToTable("CasterSndRequest", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_CasterSndRequest");
@@ -4600,7 +4695,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<ComInterfaceLog>(entity =>
         {
-            entity.HasKey(e => e.Lognb).HasName("PK__COM_INTE__E39E3E7EBBE41C9B");
+            entity.HasKey(e => e.Lognb).HasName("PK__COM_INTE__E39E3E7E7A989775");
 
             entity.ToTable("COM_INTERFACE_LOGS", "COMUSER", tb =>
                 {
@@ -4647,9 +4742,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<CsCoilTempOffset>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__CsCoilTe__D3DB124A43AABEBC");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__CsCoilTe__D3DB124A8CCE41BB");
 
-            entity.ToTable("CsCoilTempOffset", tb =>
+            entity.ToTable("CsCoilTempOffset", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_CsCoilTempOffset");
@@ -4718,9 +4813,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<CsCr>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__CsCrs__D3DB124A84B36F83");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__CsCrs__D3DB124A7C3533A2");
 
-            entity.ToTable(tb =>
+            entity.ToTable("CsCrs", "PRDB", tb =>
                 {
                     tb.HasComment("Material specific strategy Table with Effective (E), Manual (M) and original (X) lines for each material");
                     tb.HasTrigger("TI_CsCrs");
@@ -4949,9 +5044,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<CsMaintSequence>(entity =>
         {
-            entity.HasKey(e => new { e.Id, e.MId }).HasName("PK__CsMaint___35D8C9209FEA760D");
+            entity.HasKey(e => new { e.Id, e.MId }).HasName("PK__CsMaint___35D8C920CC21658F");
 
-            entity.ToTable("CsMaint_Sequence", tb =>
+            entity.ToTable("CsMaint_Sequence", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_CsMaint_Sequence");
@@ -5012,9 +5107,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<CsMaintSession>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__CsMaint___3213E83FC728DF19");
+            entity.HasKey(e => e.Id).HasName("PK__CsMaint___3213E83FA5AC12FD");
 
-            entity.ToTable("CsMaint_Session", tb =>
+            entity.ToTable("CsMaint_Session", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_CsMaint_Session");
@@ -5048,9 +5143,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<CsMaintStep>(entity =>
         {
-            entity.HasKey(e => new { e.Id, e.SqId, e.MId }).HasName("PK__CsMaint___5C164B086E2DEFE3");
+            entity.HasKey(e => new { e.Id, e.SqId, e.MId }).HasName("PK__CsMaint___5C164B083117590E");
 
-            entity.ToTable("CsMaint_Step", tb =>
+            entity.ToTable("CsMaint_Step", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_CsMaint_Step");
@@ -5150,9 +5245,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<CsMaintValve>(entity =>
         {
-            entity.HasKey(e => new { e.Id, e.StId, e.SqId, e.MId }).HasName("PK__CsMaint___AE765A1098D60B6E");
+            entity.HasKey(e => new { e.Id, e.StId, e.SqId, e.MId }).HasName("PK__CsMaint___AE765A10A09199FE");
 
-            entity.ToTable("CsMaint_Valve", tb =>
+            entity.ToTable("CsMaint_Valve", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_CsMaint_Valve");
@@ -5239,9 +5334,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<CsMe>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator }).HasName("PK__CsMe__BEC8C9C355888147");
+            entity.HasKey(e => new { e.MeId, e.MeCreator }).HasName("PK__CsMe__BEC8C9C324B0B1E0");
 
-            entity.ToTable("CsMe", tb =>
+            entity.ToTable("CsMe", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_CsMe");
@@ -5295,9 +5390,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<CsPcResult>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId }).HasName("PK__CsPcResu__97FBDCEFEFD03974");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId }).HasName("PK__CsPcResu__97FBDCEFFD7D64BF");
 
-            entity.ToTable(tb =>
+            entity.ToTable("CsPcResults", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_CsPcResults");
@@ -5364,9 +5459,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<CsPcSpeedDiag>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.PhaseIndex }).HasName("PK__CsPcSpee__880F62E4C966152C");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.PhaseIndex }).HasName("PK__CsPcSpee__880F62E4386655BA");
 
-            entity.ToTable("CsPcSpeedDiag", tb =>
+            entity.ToTable("CsPcSpeedDiag", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_CsPcSpeedDiag");
@@ -5434,9 +5529,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<CsPerf>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__CsPerf__D3DB124A57E7A5A4");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__CsPerf__D3DB124A3C76FA86");
 
-            entity.ToTable("CsPerf", tb =>
+            entity.ToTable("CsPerf", "PRDB", tb =>
                 {
                     tb.HasComment("Material specific strategy Table with Effective (E), Manual (M) and original (X) lines for each material");
                     tb.HasTrigger("TI_CsPerf");
@@ -5529,9 +5624,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<CsProfile>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__CsProfil__D3DB124A3A7632F5");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__CsProfil__D3DB124AA1EA5EB1");
 
-            entity.ToTable("CsProfile", tb =>
+            entity.ToTable("CsProfile", "PRDB", tb =>
                 {
                     tb.HasComment("Material specific strategy Table with Effective (E), Manual (M) and original (X) lines for each material");
                     tb.HasTrigger("TI_CsProfile");
@@ -5628,9 +5723,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<CsProtDatum>(entity =>
         {
-            entity.HasKey(e => e.MeId).HasName("PK__CsProtDa__7D0E9F4B1A7185DB");
+            entity.HasKey(e => e.MeId).HasName("PK__CsProtDa__7D0E9F4B7B07DBD7");
 
-            entity.ToTable(tb =>
+            entity.ToTable("CsProtData", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_CsProtData");
@@ -6512,9 +6607,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<CsProtSimilar>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeIdSim, e.Seg }).HasName("PK__CsProtSi__C0CDB9C4631CF04B");
+            entity.HasKey(e => new { e.MeId, e.MeIdSim, e.Seg }).HasName("PK__CsProtSi__C0CDB9C43D6D16DE");
 
-            entity.ToTable("CsProtSimilar", tb =>
+            entity.ToTable("CsProtSimilar", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_CsProtSimilar");
@@ -6558,9 +6653,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<CsProtTick>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.Seg }).HasName("PK__CsProtTi__60D36480B7252C60");
+            entity.HasKey(e => new { e.MeId, e.Seg }).HasName("PK__CsProtTi__60D3648096B338A2");
 
-            entity.ToTable(tb =>
+            entity.ToTable("CsProtTicks", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_CsProtTicks");
@@ -6753,9 +6848,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<CsReportCurf>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.Segment, e.PointNo }).HasName("PK__CsReport__6278CE24F83301CE");
+            entity.HasKey(e => new { e.MeId, e.Segment, e.PointNo }).HasName("PK__CsReport__6278CE24F3DEBAEB");
 
-            entity.ToTable(tb =>
+            entity.ToTable("CsReportCurves", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_CsReportCurves");
@@ -6825,9 +6920,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<CsReportSeries>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeasType, e.MeterId, e.PointNo }).HasName("PK__CsReport__EF72BE54F8362962");
+            entity.HasKey(e => new { e.MeId, e.MeasType, e.MeterId, e.PointNo }).HasName("PK__CsReport__EF72BE54B806191B");
 
-            entity.ToTable(tb =>
+            entity.ToTable("CsReportSeries", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_CsReportSeries");
@@ -6878,9 +6973,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<CsReportStatistic>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeasType, e.MeterId, e.Segment }).HasName("PK__CsReport__5F954FF037F639F0");
+            entity.HasKey(e => new { e.MeId, e.MeasType, e.MeterId, e.Segment }).HasName("PK__CsReport__5F954FF063E00EA0");
 
-            entity.ToTable(tb =>
+            entity.ToTable("CsReportStatistics", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_CsReportStatistics");
@@ -6966,9 +7061,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<CsRolledStrip>(entity =>
         {
-            entity.HasKey(e => e.MeId).HasName("PK__CsRolled__7D0E9F4BAFB5D6F6");
+            entity.HasKey(e => e.MeId).HasName("PK__CsRolled__7D0E9F4BC21F8E68");
 
-            entity.ToTable(tb =>
+            entity.ToTable("CsRolledStrips", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_CsRolledStrips");
@@ -7348,9 +7443,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<CsRtCooling>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__CsRtCool__D3DB124A2ADA925F");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__CsRtCool__D3DB124A759F7BAF");
 
-            entity.ToTable("CsRtCooling", tb =>
+            entity.ToTable("CsRtCooling", "PRDB", tb =>
                 {
                     tb.HasComment("Material specific strategy Table with Effective (E), Manual (M) and original (X) lines for each material");
                     tb.HasTrigger("TI_CsRtCooling");
@@ -7483,9 +7578,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<CsStrategy>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__CsStrate__D3DB124A95DA4870");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__CsStrate__D3DB124A56E4AED8");
 
-            entity.ToTable("CsStrategy", tb =>
+            entity.ToTable("CsStrategy", "PRDB", tb =>
                 {
                     tb.HasComment("Material specific strategy Table with Effective (E), Manual (M) and original (X) lines for each material");
                     tb.HasTrigger("TI_CsStrategy");
@@ -7753,9 +7848,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<CsValveChar>(entity =>
         {
-            entity.HasKey(e => new { e.ValveNo, e.ValveGroup, e.Step }).HasName("PK__CsValveC__EA9A33F26CD06FB3");
+            entity.HasKey(e => new { e.ValveNo, e.ValveGroup, e.Step }).HasName("PK__CsValveC__EA9A33F261774ADA");
 
-            entity.ToTable("CsValveChar", tb =>
+            entity.ToTable("CsValveChar", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_CsValveChar");
@@ -7799,9 +7894,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<CsccCurve>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.NumPoint }).HasName("PK__CSCcCurv__0C1CE492D88A8CC2");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.NumPoint }).HasName("PK__CSCcCurv__0C1CE4927A11D7A0");
 
-            entity.ToTable("CSCcCurve", tb =>
+            entity.ToTable("CSCcCurve", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_CSCcCurve");
@@ -7857,9 +7952,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<Csdir>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__CSDir__D3DB124A5778AE7B");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__CSDir__D3DB124A1D473854");
 
-            entity.ToTable("CSDir", tb =>
+            entity.ToTable("CSDir", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_CSDir");
@@ -8002,9 +8097,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<CspcCurve>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.NumPoint }).HasName("PK__CSPcCurv__0C1CE492114B9967");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.NumPoint }).HasName("PK__CSPcCurv__0C1CE492F1B1E32E");
 
-            entity.ToTable("CSPcCurve", tb =>
+            entity.ToTable("CSPcCurve", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_CSPcCurve");
@@ -8060,9 +8155,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<DeadTime>(entity =>
         {
-            entity.HasKey(e => new { e.No, e.Type, e.Version }).HasName("PK__DeadTime__F155E06DE16EB0E6");
+            entity.HasKey(e => new { e.No, e.Type, e.Version }).HasName("PK__DeadTime__F155E06D24B7A6F3");
 
-            entity.ToTable(tb =>
+            entity.ToTable("DeadTimes", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_DeadTimes");
@@ -8113,9 +8208,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<Defect>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Sid, e.Source }).HasName("PK__Defect__10C40DF875DD41E2");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Sid, e.Source }).HasName("PK__Defect__10C40DF8C56D5EFD");
 
-            entity.ToTable("Defect", tb =>
+            entity.ToTable("Defect", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_Defect");
@@ -8233,9 +8328,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<DefectValf>(entity =>
         {
-            entity.HasKey(e => new { e.No, e.Type, e.Version }).HasName("PK__DefectVa__F155E06D840D745A");
+            entity.HasKey(e => new { e.No, e.Type, e.Version }).HasName("PK__DefectVa__F155E06DB5E92E24");
 
-            entity.ToTable(tb =>
+            entity.ToTable("DefectValves", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_DefectValves");
@@ -8279,9 +8374,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<DirFmPfcCycShiftP>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__DirFmPfc__D3DB124A4F41330A");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__DirFmPfc__D3DB124AE15EFF4D");
 
-            entity.ToTable("DirFmPfcCycShiftP", tb =>
+            entity.ToTable("DirFmPfcCycShiftP", "PRDB", tb =>
                 {
                     tb.HasComment("Material related strategy value: cyclic shifting");
                     tb.HasTrigger("TEXTID_DirFmPfcCycShiftP");
@@ -8353,9 +8448,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<DirFmPfcCycShiftPpass>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.PassNo }).HasName("PK__DirFmPfc__5DCFA6F9B6F76FE0");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.PassNo }).HasName("PK__DirFmPfc__5DCFA6F966963A06");
 
-            entity.ToTable("DirFmPfcCycShiftPPass", tb =>
+            entity.ToTable("DirFmPfcCycShiftPPass", "PRDB", tb =>
                 {
                     tb.HasComment("Material related strategy value: cyclic shifting pass");
                     tb.HasTrigger("TEXTID_DirFmPfcCycShiftPPass");
@@ -8462,9 +8557,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<DirFmPfcParaP>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__DirFmPfc__D3DB124A667E9D44");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__DirFmPfc__D3DB124A360C5243");
 
-            entity.ToTable("DirFmPfcParaP", tb =>
+            entity.ToTable("DirFmPfcParaP", "PRDB", tb =>
                 {
                     tb.HasComment("Material related strategy value: flatness");
                     tb.HasTrigger("TEXTID_DirFmPfcParaP");
@@ -8546,9 +8641,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<DirFmPfcParaPpass>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.PassNo }).HasName("PK__DirFmPfc__5DCFA6F97EBE04E5");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.PassNo }).HasName("PK__DirFmPfc__5DCFA6F9058ED42B");
 
-            entity.ToTable("DirFmPfcParaPPass", tb =>
+            entity.ToTable("DirFmPfcParaPPass", "PRDB", tb =>
                 {
                     tb.HasComment("Material related strategy value: flatness pass");
                     tb.HasTrigger("TEXTID_DirFmPfcParaPPass");
@@ -8661,9 +8756,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<Disturbance>(entity =>
         {
-            entity.HasKey(e => new { e.DistNo, e.Status, e.WorkLevel }).HasName("PK__Disturba__33F9948157B96FF1");
+            entity.HasKey(e => new { e.DistNo, e.Status, e.WorkLevel }).HasName("PK__Disturba__33F99481FFBEF436");
 
-            entity.ToTable("Disturbance", tb =>
+            entity.ToTable("Disturbance", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_Disturbance");
@@ -8764,9 +8859,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<Dp>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId }).HasName("PK__DP__97FBDCEF224480FE");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId }).HasName("PK__DP__97FBDCEFBCCEBB85");
 
-            entity.ToTable("DP", tb =>
+            entity.ToTable("DP", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_DP");
@@ -8811,9 +8906,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<Dpfm>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__DPFM__D3DB124AF912E3D5");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__DPFM__D3DB124A6885D343");
 
-            entity.ToTable("DPFM", tb =>
+            entity.ToTable("DPFM", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_DPFM");
@@ -8876,9 +8971,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<Dphrm>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__DPHRM__D3DB124A18A4A1DA");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__DPHRM__D3DB124A862564EE");
 
-            entity.ToTable("DPHRM", tb =>
+            entity.ToTable("DPHRM", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_DPHRM");
@@ -8941,9 +9036,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<Dpramp>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId }).HasName("PK__DPRamp__97FBDCEFBDB5A9D4");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId }).HasName("PK__DPRamp__97FBDCEF91E5D066");
 
-            entity.ToTable("DPRamp", tb =>
+            entity.ToTable("DPRamp", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_DPRamp");
@@ -8988,9 +9083,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<DprampFm>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.RampNo }).HasName("PK__DPRampFM__D9DDAEC3DB05AB68");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.RampNo }).HasName("PK__DPRampFM__D9DDAEC3FBEC66F5");
 
-            entity.ToTable("DPRampFM", tb =>
+            entity.ToTable("DPRampFM", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_DPRampFM");
@@ -9064,9 +9159,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<DprampHrm>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.RampNo }).HasName("PK__DPRampHR__D9DDAEC3B0A9B04A");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.RampNo }).HasName("PK__DPRampHR__D9DDAEC3D8182C26");
 
-            entity.ToTable("DPRampHRM", tb =>
+            entity.ToTable("DPRampHRM", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_DPRampHRM");
@@ -9140,9 +9235,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<EdLogEnt>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__EdLogEnt__D3DB124A47072C10");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__EdLogEnt__D3DB124AF3B2093F");
 
-            entity.ToTable("EdLogEnt", tb =>
+            entity.ToTable("EdLogEnt", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_EdLogEnt");
@@ -9591,9 +9686,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<EdOrdEnt>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__EdOrdEnt__D3DB124AC0DB5E11");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__EdOrdEnt__D3DB124AB82C6F0F");
 
-            entity.ToTable("EdOrdEnt", tb =>
+            entity.ToTable("EdOrdEnt", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_EdOrdEnt");
@@ -10466,9 +10561,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<EdPhyEnt>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__EdPhyEnt__D3DB124A483E9985");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__EdPhyEnt__D3DB124A0BF2EA67");
 
-            entity.ToTable("EdPhyEnt", tb =>
+            entity.ToTable("EdPhyEnt", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_EdPhyEnt");
@@ -10691,9 +10786,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<EntryProfileMeasuring>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.ScanNo }).HasName("PK__EntryPro__2A7F51D351B2EB98");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.ScanNo }).HasName("PK__EntryPro__2A7F51D33D702C3F");
 
-            entity.ToTable("EntryProfileMeasuring", tb =>
+            entity.ToTable("EntryProfileMeasuring", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_EntryProfileMeasuring");
@@ -11821,9 +11916,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<FdescValue>(entity =>
         {
-            entity.HasKey(e => new { e.FDescName, e.ActiveFlag, e.PlantType }).HasName("PK__FDescVal__7C83649EAF04EA65");
+            entity.HasKey(e => new { e.FDescName, e.ActiveFlag, e.PlantType }).HasName("PK__FDescVal__7C83649EEA42E11C");
 
-            entity.ToTable("FDescValue", tb =>
+            entity.ToTable("FDescValue", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_FDescValue");
@@ -12213,9 +12308,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<FlatnessMeasuring>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.AccLength }).HasName("PK__Flatness__C34D9A5C1AFC3086");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.AccLength }).HasName("PK__Flatness__C34D9A5C4ADF83E6");
 
-            entity.ToTable("FlatnessMeasuring", tb =>
+            entity.ToTable("FlatnessMeasuring", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_FlatnessMeasuring");
@@ -12843,9 +12938,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<Heat>(entity =>
         {
-            entity.HasKey(e => new { e.HeatId, e.HeatStart }).HasName("PK__Heat__5476F768B5BBAE83");
+            entity.HasKey(e => new { e.HeatId, e.HeatStart }).HasName("PK__Heat__5476F76855D24B91");
 
-            entity.ToTable("Heat", tb =>
+            entity.ToTable("Heat", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_Heat");
@@ -12937,9 +13032,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<HmiCoil>(entity =>
         {
-            entity.HasKey(e => e.Param).HasName("PK__HmiCoil__09E70393AAC32249");
+            entity.HasKey(e => e.Param).HasName("PK__HmiCoil__09E70393BC30204C");
 
-            entity.ToTable("HmiCoil", tb =>
+            entity.ToTable("HmiCoil", "PRDB", tb =>
                 {
                     tb.HasComment("Information for hmi where a coil is");
                     tb.HasTrigger("TI_HmiCoil");
@@ -12978,9 +13073,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<HmiMessage>(entity =>
         {
-            entity.HasKey(e => new { e.No, e.ScreenLfe, e.Lang }).HasName("PK__HmiMessa__3CBC8A014B87B736");
+            entity.HasKey(e => new { e.No, e.ScreenLfe, e.Lang }).HasName("PK__HmiMessa__3CBC8A01D3170A47");
 
-            entity.ToTable("HmiMessage", tb =>
+            entity.ToTable("HmiMessage", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_HmiMessage");
@@ -13028,9 +13123,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<HmiProcessArea>(entity =>
         {
-            entity.HasKey(e => e.ProcessArea).HasName("PK__HmiProce__9654173F4F1F8E9D");
+            entity.HasKey(e => e.ProcessArea).HasName("PK__HmiProce__9654173F76DFF9D0");
 
-            entity.ToTable("HmiProcessArea", tb =>
+            entity.ToTable("HmiProcessArea", "PRDB", tb =>
                 {
                     tb.HasComment("Information for the hmi offer the status off the mill");
                     tb.HasTrigger("TI_HmiProcessArea");
@@ -13077,7 +13172,7 @@ public partial class PrdbContext : AbpDbContext
         {
             entity
                 .HasNoKey()
-                .ToView("HMI_V_APSAZ");
+                .ToView("HMI_V_APSAZ", "PRDB");
 
             entity.Property(e => e.Apskey)
                 .HasMaxLength(6)
@@ -13099,236 +13194,16 @@ public partial class PrdbContext : AbpDbContext
         {
             entity
                 .HasNoKey()
-                .ToView("HMI_V_APSPC_CHECKTABLE");
+                .ToView("HMI_V_APSPC_CHECKTABLE", "PRDB");
 
             entity.Property(e => e.PlannoInd0).HasColumnName("PLANNO_IND0");
-        });
-
-        modelBuilder.Entity<HmiVCoil>(entity =>
-        {
-            entity
-                .HasNoKey()
-                .ToView("HMI_V_COILS");
-
-            entity.Property(e => e.Alloycode)
-                .HasMaxLength(30)
-                .IsUnicode(false)
-                .HasColumnName("alloycode");
-            entity.Property(e => e.Batchrolling)
-                .IsRequired()
-                .HasMaxLength(7)
-                .IsUnicode(false)
-                .HasColumnName("batchrolling");
-            entity.Property(e => e.CoilerTemp).HasColumnName("coiler_temp");
-            entity.Property(e => e.Coilmeid).HasColumnName("coilmeid");
-            entity.Property(e => e.CoolingStrategy).HasColumnName("cooling_strategy");
-            entity.Property(e => e.EoeMan).HasColumnName("eoe_man");
-            entity.Property(e => e.Extid)
-                .HasMaxLength(20)
-                .IsUnicode(false)
-                .HasColumnName("extid");
-            entity.Property(e => e.FinishedLength).HasColumnName("finished_length");
-            entity.Property(e => e.FinishedTemp).HasColumnName("finished_temp");
-            entity.Property(e => e.FinishedThick).HasColumnName("finished_thick");
-            entity.Property(e => e.FinishedWidth).HasColumnName("finished_width");
-            entity.Property(e => e.FurnaceNo).HasColumnName("furnaceNo");
-            entity.Property(e => e.HeatId)
-                .HasMaxLength(9)
-                .IsUnicode(false)
-                .HasColumnName("heatId");
-            entity.Property(e => e.IsNext).HasColumnName("isNext");
-            entity.Property(e => e.LprmMan).HasColumnName("lprm_man");
-            entity.Property(e => e.Meid).HasColumnName("meid");
-            entity.Property(e => e.Ok0).HasColumnName("ok0");
-            entity.Property(e => e.Ok1).HasColumnName("ok1");
-            entity.Property(e => e.Ok3).HasColumnName("ok3");
-            entity.Property(e => e.Ok4).HasColumnName("ok4");
-            entity.Property(e => e.Rnum).HasColumnName("rnum");
-            entity.Property(e => e.SeqNo).HasColumnName("seqNo");
-            entity.Property(e => e.SequenceId)
-                .HasMaxLength(12)
-                .IsUnicode(false)
-                .HasColumnName("sequenceId");
-            entity.Property(e => e.Simmat).HasColumnName("simmat");
-            entity.Property(e => e.SlabLength1).HasColumnName("slab_length");
-            entity.Property(e => e.SlabTemp).HasColumnName("slab_temp");
-            entity.Property(e => e.SlabThick).HasColumnName("slab_thick");
-            entity.Property(e => e.Slablength).HasColumnName("slablength");
-            entity.Property(e => e.Slabmeid).HasColumnName("slabmeid");
-            entity.Property(e => e.Status).HasColumnName("status");
-            entity.Property(e => e.Toc)
-                .HasPrecision(3)
-                .HasColumnName("toc");
-        });
-
-        modelBuilder.Entity<HmiVCoils1>(entity =>
-        {
-            entity
-                .HasNoKey()
-                .ToView("HMI_V_COILS_1");
-
-            entity.Property(e => e.Alloycode)
-                .HasMaxLength(30)
-                .IsUnicode(false)
-                .HasColumnName("alloycode");
-            entity.Property(e => e.CoilerTemp).HasColumnName("coiler_temp");
-            entity.Property(e => e.Coilmeid).HasColumnName("coilmeid");
-            entity.Property(e => e.CoolingStrategy).HasColumnName("cooling_strategy");
-            entity.Property(e => e.EoeMan).HasColumnName("eoe_man");
-            entity.Property(e => e.Extid)
-                .IsRequired()
-                .HasMaxLength(20)
-                .IsUnicode(false)
-                .HasColumnName("extid");
-            entity.Property(e => e.FinishedLength).HasColumnName("finished_length");
-            entity.Property(e => e.FinishedTemp).HasColumnName("finished_temp");
-            entity.Property(e => e.FinishedThick).HasColumnName("finished_thick");
-            entity.Property(e => e.FinishedWidth).HasColumnName("finished_width");
-            entity.Property(e => e.FurnaceNo).HasColumnName("furnaceNo");
-            entity.Property(e => e.HeatId)
-                .HasMaxLength(9)
-                .IsUnicode(false)
-                .HasColumnName("heatId");
-            entity.Property(e => e.IsNext).HasColumnName("isNext");
-            entity.Property(e => e.LprmMan).HasColumnName("lprm_man");
-            entity.Property(e => e.Meid).HasColumnName("meid");
-            entity.Property(e => e.Ok0).HasColumnName("ok0");
-            entity.Property(e => e.Ok1).HasColumnName("ok1");
-            entity.Property(e => e.Ok3).HasColumnName("ok3");
-            entity.Property(e => e.Ok4).HasColumnName("ok4");
-            entity.Property(e => e.Rnum).HasColumnName("rnum");
-            entity.Property(e => e.SeqNo).HasColumnName("seqNo");
-            entity.Property(e => e.SequenceId)
-                .HasMaxLength(12)
-                .IsUnicode(false)
-                .HasColumnName("sequenceId");
-            entity.Property(e => e.Simmat).HasColumnName("simmat");
-            entity.Property(e => e.SlabLength1).HasColumnName("slab_length");
-            entity.Property(e => e.SlabTemp).HasColumnName("slab_temp");
-            entity.Property(e => e.SlabThick).HasColumnName("slab_thick");
-            entity.Property(e => e.Slablength).HasColumnName("slablength");
-            entity.Property(e => e.Slabmeid).HasColumnName("slabmeid");
-            entity.Property(e => e.Status).HasColumnName("status");
-            entity.Property(e => e.Toc)
-                .HasPrecision(3)
-                .HasColumnName("toc");
-        });
-
-        modelBuilder.Entity<HmiVCoils2>(entity =>
-        {
-            entity
-                .HasNoKey()
-                .ToView("HMI_V_COILS_2");
-
-            entity.Property(e => e.Alloycode)
-                .HasMaxLength(30)
-                .IsUnicode(false)
-                .HasColumnName("alloycode");
-            entity.Property(e => e.Batchrolling)
-                .IsRequired()
-                .HasMaxLength(7)
-                .IsUnicode(false)
-                .HasColumnName("batchrolling");
-            entity.Property(e => e.CoilerTemp).HasColumnName("coiler_temp");
-            entity.Property(e => e.Coilmeid).HasColumnName("coilmeid");
-            entity.Property(e => e.CoolingStrategy).HasColumnName("cooling_strategy");
-            entity.Property(e => e.EoeMan).HasColumnName("eoe_man");
-            entity.Property(e => e.Extid)
-                .HasMaxLength(20)
-                .IsUnicode(false)
-                .HasColumnName("extid");
-            entity.Property(e => e.FinishedLength).HasColumnName("finished_length");
-            entity.Property(e => e.FinishedTemp).HasColumnName("finished_temp");
-            entity.Property(e => e.FinishedThick).HasColumnName("finished_thick");
-            entity.Property(e => e.FinishedWidth).HasColumnName("finished_width");
-            entity.Property(e => e.FurnaceNo).HasColumnName("furnaceNo");
-            entity.Property(e => e.HeatId)
-                .HasMaxLength(9)
-                .IsUnicode(false)
-                .HasColumnName("heatId");
-            entity.Property(e => e.IsNext).HasColumnName("isNext");
-            entity.Property(e => e.LprmMan).HasColumnName("lprm_man");
-            entity.Property(e => e.Meid).HasColumnName("meid");
-            entity.Property(e => e.Ok0).HasColumnName("ok0");
-            entity.Property(e => e.Ok1).HasColumnName("ok1");
-            entity.Property(e => e.Ok3).HasColumnName("ok3");
-            entity.Property(e => e.Ok4).HasColumnName("ok4");
-            entity.Property(e => e.Rnum).HasColumnName("rnum");
-            entity.Property(e => e.SeqNo).HasColumnName("seqNo");
-            entity.Property(e => e.SequenceId)
-                .HasMaxLength(12)
-                .IsUnicode(false)
-                .HasColumnName("sequenceId");
-            entity.Property(e => e.Simmat).HasColumnName("simmat");
-            entity.Property(e => e.SlabLength1).HasColumnName("slab_length");
-            entity.Property(e => e.SlabTemp).HasColumnName("slab_temp");
-            entity.Property(e => e.SlabThick).HasColumnName("slab_thick");
-            entity.Property(e => e.Slablength).HasColumnName("slablength");
-            entity.Property(e => e.Slabmeid).HasColumnName("slabmeid");
-            entity.Property(e => e.Status).HasColumnName("status");
-            entity.Property(e => e.Toc)
-                .HasPrecision(3)
-                .HasColumnName("toc");
-        });
-
-        modelBuilder.Entity<HmiVCoils3>(entity =>
-        {
-            entity
-                .HasNoKey()
-                .ToView("HMI_V_COILS_3");
-
-            entity.Property(e => e.Alloycode)
-                .HasMaxLength(30)
-                .IsUnicode(false)
-                .HasColumnName("alloycode");
-            entity.Property(e => e.CoilerTemp).HasColumnName("coiler_temp");
-            entity.Property(e => e.Coilmeid).HasColumnName("coilmeid");
-            entity.Property(e => e.CoolingStrategy).HasColumnName("cooling_strategy");
-            entity.Property(e => e.EoeMan).HasColumnName("eoe_man");
-            entity.Property(e => e.Extid)
-                .IsRequired()
-                .HasMaxLength(20)
-                .IsUnicode(false)
-                .HasColumnName("extid");
-            entity.Property(e => e.FinishedLength).HasColumnName("finished_length");
-            entity.Property(e => e.FinishedTemp).HasColumnName("finished_temp");
-            entity.Property(e => e.FinishedThick).HasColumnName("finished_thick");
-            entity.Property(e => e.FinishedWidth).HasColumnName("finished_width");
-            entity.Property(e => e.FurnaceNo).HasColumnName("furnaceNo");
-            entity.Property(e => e.HeatId)
-                .HasMaxLength(9)
-                .IsUnicode(false)
-                .HasColumnName("heatId");
-            entity.Property(e => e.IsNext).HasColumnName("isNext");
-            entity.Property(e => e.LprmMan).HasColumnName("lprm_man");
-            entity.Property(e => e.Meid).HasColumnName("meid");
-            entity.Property(e => e.Ok0).HasColumnName("ok0");
-            entity.Property(e => e.Ok1).HasColumnName("ok1");
-            entity.Property(e => e.Ok3).HasColumnName("ok3");
-            entity.Property(e => e.Ok4).HasColumnName("ok4");
-            entity.Property(e => e.Rnum).HasColumnName("rnum");
-            entity.Property(e => e.SeqNo).HasColumnName("seqNo");
-            entity.Property(e => e.SequenceId)
-                .HasMaxLength(12)
-                .IsUnicode(false)
-                .HasColumnName("sequenceId");
-            entity.Property(e => e.Simmat).HasColumnName("simmat");
-            entity.Property(e => e.SlabLength1).HasColumnName("slab_length");
-            entity.Property(e => e.SlabTemp).HasColumnName("slab_temp");
-            entity.Property(e => e.SlabThick).HasColumnName("slab_thick");
-            entity.Property(e => e.Slablength).HasColumnName("slablength");
-            entity.Property(e => e.Slabmeid).HasColumnName("slabmeid");
-            entity.Property(e => e.Status).HasColumnName("status");
-            entity.Property(e => e.Toc)
-                .HasPrecision(3)
-                .HasColumnName("toc");
         });
 
         modelBuilder.Entity<HmiVInlineMaterial>(entity =>
         {
             entity
                 .HasNoKey()
-                .ToView("HMI_V_INLINE_MATERIALS");
+                .ToView("HMI_V_INLINE_MATERIALS", "PRDB");
 
             entity.Property(e => e.AlloyCode)
                 .HasMaxLength(30)
@@ -13404,7 +13279,7 @@ public partial class PrdbContext : AbpDbContext
         {
             entity
                 .HasNoKey()
-                .ToView("HMI_V_LIMIT");
+                .ToView("HMI_V_LIMIT", "PRDB");
 
             entity.Property(e => e.Description)
                 .IsRequired()
@@ -13446,7 +13321,7 @@ public partial class PrdbContext : AbpDbContext
         {
             entity
                 .HasNoKey()
-                .ToView("HMI_V_MAT_INFO_SHORT");
+                .ToView("HMI_V_MAT_INFO_SHORT", "PRDB");
 
             entity.Property(e => e.AlloyCode)
                 .HasMaxLength(30)
@@ -13522,143 +13397,11 @@ public partial class PrdbContext : AbpDbContext
             entity.Property(e => e.WeightEntry).HasColumnName("weightEntry");
         });
 
-        modelBuilder.Entity<HmiVMaterialOverview>(entity =>
-        {
-            entity
-                .HasNoKey()
-                .ToView("HMI_V_MATERIAL_OVERVIEW");
-
-            entity.Property(e => e.AlloyCode)
-                .HasMaxLength(30)
-                .IsUnicode(false)
-                .HasColumnName("alloyCode");
-            entity.Property(e => e.ApsKey)
-                .HasMaxLength(6)
-                .IsUnicode(false)
-                .HasColumnName("apsKey");
-            entity.Property(e => e.CoilTemp).HasColumnName("coilTemp");
-            entity.Property(e => e.EdLoSrc)
-                .IsRequired()
-                .HasMaxLength(2)
-                .IsUnicode(false);
-            entity.Property(e => e.EdOrSrc)
-                .IsRequired()
-                .HasMaxLength(2)
-                .IsUnicode(false);
-            entity.Property(e => e.EdPhySrc)
-                .IsRequired()
-                .HasMaxLength(2)
-                .IsUnicode(false);
-            entity.Property(e => e.EnLoMeId).HasColumnName("EnLoMeID");
-            entity.Property(e => e.EnOrCreator)
-                .IsRequired()
-                .HasMaxLength(2)
-                .IsUnicode(false);
-            entity.Property(e => e.EnOrExtId)
-                .IsRequired()
-                .HasMaxLength(20)
-                .IsUnicode(false)
-                .HasColumnName("EnOrExtID");
-            entity.Property(e => e.EnOrMeId).HasColumnName("EnOrMeID");
-            entity.Property(e => e.EnOrMeType)
-                .IsRequired()
-                .HasMaxLength(2)
-                .IsUnicode(false);
-            entity.Property(e => e.EnPhExtId)
-                .IsRequired()
-                .HasMaxLength(20)
-                .IsUnicode(false);
-            entity.Property(e => e.EnPhMeId).HasColumnName("EnPhMeID");
-            entity.Property(e => e.FlagBatchRolling).HasColumnName("flagBatchRolling");
-            entity.Property(e => e.Gradegroup)
-                .HasMaxLength(40)
-                .IsUnicode(false)
-                .HasColumnName("gradegroup");
-            entity.Property(e => e.HEntry).HasColumnName("hEntry");
-            entity.Property(e => e.HExit).HasColumnName("hExit");
-            entity.Property(e => e.LEntry).HasColumnName("lEntry");
-            entity.Property(e => e.LastCalc).HasPrecision(3);
-            entity.Property(e => e.PlateProduction).HasColumnName("plateProduction");
-            entity.Property(e => e.Sbaz).HasColumnName("sbaz");
-            entity.Property(e => e.SequenceId)
-                .HasMaxLength(20)
-                .IsUnicode(false)
-                .HasColumnName("sequenceId");
-            entity.Property(e => e.SetpointsCsOk).HasColumnName("setpointsCsOk");
-            entity.Property(e => e.SetpointsPc2Ok).HasColumnName("setpointsPc2Ok");
-            entity.Property(e => e.SimMat).HasColumnName("simMat");
-            entity.Property(e => e.TEntryFm).HasColumnName("tEntryFM");
-            entity.Property(e => e.TExitCaster).HasColumnName("tExitCaster");
-            entity.Property(e => e.TExitFm).HasColumnName("tExitFM");
-            entity.Property(e => e.WEntry).HasColumnName("wEntry");
-            entity.Property(e => e.WExit).HasColumnName("wExit");
-            entity.Property(e => e.WeightEntry).HasColumnName("weightEntry");
-        });
-
-        modelBuilder.Entity<HmiVMeid>(entity =>
-        {
-            entity
-                .HasNoKey()
-                .ToView("HMI_V_MEIDS");
-
-            entity.Property(e => e.LogCreator)
-                .IsRequired()
-                .HasMaxLength(2)
-                .IsUnicode(false)
-                .HasColumnName("logCreator");
-            entity.Property(e => e.LogId).HasColumnName("logId");
-            entity.Property(e => e.LogName)
-                .IsRequired()
-                .HasMaxLength(20)
-                .IsUnicode(false)
-                .HasColumnName("logName");
-            entity.Property(e => e.OrdCreator1)
-                .IsRequired()
-                .HasMaxLength(2)
-                .IsUnicode(false)
-                .HasColumnName("ordCreator1");
-            entity.Property(e => e.OrdCreator2)
-                .HasMaxLength(2)
-                .IsUnicode(false)
-                .HasColumnName("ordCreator2");
-            entity.Property(e => e.OrdCreator3)
-                .HasMaxLength(2)
-                .IsUnicode(false)
-                .HasColumnName("ordCreator3");
-            entity.Property(e => e.OrdId1).HasColumnName("ordId1");
-            entity.Property(e => e.OrdId2).HasColumnName("ordId2");
-            entity.Property(e => e.OrdId3).HasColumnName("ordId3");
-            entity.Property(e => e.OrdName1)
-                .IsRequired()
-                .HasMaxLength(20)
-                .IsUnicode(false)
-                .HasColumnName("ordName1");
-            entity.Property(e => e.OrdName2)
-                .HasMaxLength(20)
-                .IsUnicode(false)
-                .HasColumnName("ordName2");
-            entity.Property(e => e.OrdName3)
-                .HasMaxLength(20)
-                .IsUnicode(false)
-                .HasColumnName("ordName3");
-            entity.Property(e => e.PhyCreator)
-                .IsRequired()
-                .HasMaxLength(2)
-                .IsUnicode(false)
-                .HasColumnName("phyCreator");
-            entity.Property(e => e.PhyId).HasColumnName("phyId");
-            entity.Property(e => e.PhyName)
-                .IsRequired()
-                .HasMaxLength(20)
-                .IsUnicode(false)
-                .HasColumnName("phyName");
-        });
-
         modelBuilder.Entity<HmiVMeids2>(entity =>
         {
             entity
                 .HasNoKey()
-                .ToView("HMI_V_MEIDS2");
+                .ToView("HMI_V_MEIDS2", "PRDB");
 
             entity.Property(e => e.LogBasId).HasColumnName("logBasId");
             entity.Property(e => e.LogCreator)
@@ -13730,7 +13473,7 @@ public partial class PrdbContext : AbpDbContext
         {
             entity
                 .HasNoKey()
-                .ToView("HMI_V_PRODSEQUENCE");
+                .ToView("HMI_V_PRODSEQUENCE", "PRDB");
 
             entity.Property(e => e.AlloyCode)
                 .HasMaxLength(30)
@@ -13796,7 +13539,7 @@ public partial class PrdbContext : AbpDbContext
         {
             entity
                 .HasNoKey()
-                .ToView("HMI_V_REMOVED_MATERIALS");
+                .ToView("HMI_V_REMOVED_MATERIALS", "PRDB");
 
             entity.Property(e => e.AlloyCode)
                 .HasMaxLength(30)
@@ -13875,7 +13618,7 @@ public partial class PrdbContext : AbpDbContext
         {
             entity
                 .HasNoKey()
-                .ToView("HMI_V_ROLL_INVENTORY");
+                .ToView("HMI_V_ROLL_INVENTORY", "PRDB");
 
             entity.Property(e => e.Diameter).HasColumnName("diameter");
             entity.Property(e => e.DismountTime)
@@ -13945,7 +13688,7 @@ public partial class PrdbContext : AbpDbContext
         {
             entity
                 .HasNoKey()
-                .ToView("hmi_v_rollclass");
+                .ToView("hmi_v_rollclass", "PRDB");
 
             entity.Property(e => e.Description)
                 .HasMaxLength(80)
@@ -13971,7 +13714,7 @@ public partial class PrdbContext : AbpDbContext
         {
             entity
                 .HasNoKey()
-                .ToView("hmi_v_rolld_rollselector");
+                .ToView("hmi_v_rolld_rollselector", "PRDB");
 
             entity.Property(e => e.Diameter).HasColumnName("diameter");
             entity.Property(e => e.Grinding).HasColumnName("grinding");
@@ -14022,7 +13765,7 @@ public partial class PrdbContext : AbpDbContext
         {
             entity
                 .HasNoKey()
-                .ToView("hmi_v_rolld_rollusage");
+                .ToView("HMI_V_ROLLD_ROLLUSAGE", "PRDB");
 
             entity.Property(e => e.Installct).HasColumnName("installct");
             entity.Property(e => e.Rolledlength).HasColumnName("rolledlength");
@@ -14047,7 +13790,7 @@ public partial class PrdbContext : AbpDbContext
         {
             entity
                 .HasNoKey()
-                .ToView("hmi_v_rolld_standsetup_hfm");
+                .ToView("hmi_v_rolld_standsetup_hfm", "PRDB");
 
             entity.Property(e => e.Diameter).HasColumnName("diameter");
             entity.Property(e => e.Grinding).HasColumnName("grinding");
@@ -14087,7 +13830,7 @@ public partial class PrdbContext : AbpDbContext
         {
             entity
                 .HasNoKey()
-                .ToView("hmi_v_rolld_standsetup_hrm");
+                .ToView("hmi_v_rolld_standsetup_hrm", "PRDB");
 
             entity.Property(e => e.Diameter).HasColumnName("diameter");
             entity.Property(e => e.Grinding).HasColumnName("grinding");
@@ -14127,7 +13870,7 @@ public partial class PrdbContext : AbpDbContext
         {
             entity
                 .HasNoKey()
-                .ToView("HMI_V_ROLLDATAUSAGE");
+                .ToView("HMI_V_ROLLDATAUSAGE", "PRDB");
 
             entity.Property(e => e.ActUsedCal).HasColumnName("actUsedCal");
             entity.Property(e => e.CheckerPlate).HasColumnName("checkerPlate");
@@ -14250,7 +13993,7 @@ public partial class PrdbContext : AbpDbContext
         {
             entity
                 .HasNoKey()
-                .ToView("HMI_V_ROLLINGHISTORYSEQ");
+                .ToView("HMI_V_ROLLINGHISTORYSEQ", "PRDB");
 
             entity.Property(e => e.EnOrMeType)
                 .IsRequired()
@@ -14278,7 +14021,7 @@ public partial class PrdbContext : AbpDbContext
         {
             entity
                 .HasNoKey()
-                .ToView("HMI_V_SELECT");
+                .ToView("HMI_V_SELECT", "PRDB");
 
             entity.Property(e => e.ExtId)
                 .IsRequired()
@@ -14302,7 +14045,7 @@ public partial class PrdbContext : AbpDbContext
         {
             entity
                 .HasNoKey()
-                .ToView("HMI_V_STDTXT_LANG");
+                .ToView("HMI_V_STDTXT_LANG", "PRDB");
 
             entity.Property(e => e.Parametertext)
                 .IsRequired()
@@ -14332,9 +14075,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<Ihp>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__IHP__D3DB124AF44D674E");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__IHP__D3DB124AF05F1880");
 
-            entity.ToTable("IHP", tb =>
+            entity.ToTable("IHP", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_IHP");
@@ -14393,9 +14136,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<InspCut>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.CutTime }).HasName("PK__InspCut__CA20C434D942BB89");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.CutTime }).HasName("PK__InspCut__CA20C43455B43C46");
 
-            entity.ToTable("InspCut", tb =>
+            entity.ToTable("InspCut", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_InspCut");
@@ -14465,7 +14208,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<IntBofHeatReport>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__INT_BOF___3214EC27870C5B90");
+            entity.HasKey(e => e.Id).HasName("PK__INT_BOF___3214EC27F9E2BA45");
 
             entity.ToTable("INT_BOF_HEAT_REPORT", "COMUSER", tb =>
                 {
@@ -14626,7 +14369,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<IntCcmHeatReport>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__INT_CCM___3214EC273BFF02C1");
+            entity.HasKey(e => e.Id).HasName("PK__INT_CCM___3214EC2733C0FFB7");
 
             entity.ToTable("INT_CCM_HEAT_REPORT", "COMUSER", tb =>
                 {
@@ -14842,7 +14585,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<IntCcmHeatStatus>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__INT_CCM___3214EC27D37CC184");
+            entity.HasKey(e => e.Id).HasName("PK__INT_CCM___3214EC273472E00C");
 
             entity.ToTable("INT_CCM_HEAT_STATUS", "COMUSER", tb =>
                 {
@@ -14905,7 +14648,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<IntCcmMeasurement>(entity =>
         {
-            entity.HasKey(e => new { e.Id, e.Time, e.Type }).HasName("PK__INT_CCM___28FB1B419C8C375C");
+            entity.HasKey(e => new { e.Id, e.Time, e.Type }).HasName("PK__INT_CCM___28FB1B415013CD49");
 
             entity.ToTable("INT_CCM_MEASUREMENTS", "COMUSER", tb =>
                 {
@@ -14959,7 +14702,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<IntLfHeatReport>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__INT_LF_H__3214EC27736BFFCF");
+            entity.HasKey(e => e.Id).HasName("PK__INT_LF_H__3214EC27D15FA9C7");
 
             entity.ToTable("INT_LF_HEAT_REPORT", "COMUSER", tb =>
                 {
@@ -15078,7 +14821,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<IntMediaConsumption>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__INT_MEDI__3213E83F9B265A7D");
+            entity.HasKey(e => e.Id).HasName("PK__INT_MEDI__3213E83F64027458");
 
             entity.ToTable("INT_MEDIA_CONSUMPTION", "COMUSER", tb =>
                 {
@@ -15190,7 +14933,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<IntMsgSetup>(entity =>
         {
-            entity.HasKey(e => e.MsgId).HasName("PK__INT_MSG___9CA9728D99737B45");
+            entity.HasKey(e => e.MsgId).HasName("PK__INT_MSG___9CA9728DEBB36A4F");
 
             entity.ToTable("INT_MSG_SETUP", "COMUSER", tb =>
                 {
@@ -15268,7 +15011,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<IntPartnerSetup>(entity =>
         {
-            entity.HasKey(e => e.PartnerId).HasName("PK__INT_PART__576F1B274E992F64");
+            entity.HasKey(e => e.PartnerId).HasName("PK__INT_PART__576F1B27A7904E06");
 
             entity.ToTable("INT_PARTNER_SETUP", "COMUSER", tb =>
                 {
@@ -15363,7 +15106,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<IntRhHeatReport>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__INT_RH_H__3214EC2789646626");
+            entity.HasKey(e => e.Id).HasName("PK__INT_RH_H__3214EC27C0A1C15E");
 
             entity.ToTable("INT_RH_HEAT_REPORT", "COMUSER", tb =>
                 {
@@ -15494,7 +15237,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<IntSampleResult>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__INT_SAMP__3214EC27C0EBD923");
+            entity.HasKey(e => e.Id).HasName("PK__INT_SAMP__3214EC271C70FA6C");
 
             entity.ToTable("INT_SAMPLE_RESULT", "COMUSER", tb =>
                 {
@@ -15559,7 +15302,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<IntSampleResultDetail>(entity =>
         {
-            entity.HasKey(e => new { e.Id, e.Element }).HasName("PK__INT_SAMP__19CD703E7403EACC");
+            entity.HasKey(e => new { e.Id, e.Element }).HasName("PK__INT_SAMP__19CD703E2716A85F");
 
             entity.ToTable("INT_SAMPLE_RESULT_DETAIL", "COMUSER", tb =>
                 {
@@ -15600,7 +15343,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<IntSend>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__INT_SEND__3213E83F8901DD2D");
+            entity.HasKey(e => e.Id).HasName("PK__INT_SEND__3213E83FEE37BE08");
 
             entity.ToTable("INT_SEND", "COMUSER", tb =>
                 {
@@ -15670,7 +15413,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<IntTableSetup>(entity =>
         {
-            entity.HasKey(e => e.MsgTableName).HasName("PK__INT_TABL__5B36AA18FCDDA49A");
+            entity.HasKey(e => e.MsgTableName).HasName("PK__INT_TABL__5B36AA1811AB7A11");
 
             entity.ToTable("INT_TABLE_SETUP", "COMUSER", tb =>
                 {
@@ -15723,9 +15466,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<Iscp>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__ISCP__D3DB124AF7EFDFFC");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__ISCP__D3DB124AF6B8A7FF");
 
-            entity.ToTable("ISCP", tb =>
+            entity.ToTable("ISCP", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_ISCP");
@@ -15784,127 +15527,161 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<Iscppass>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.PassNo }).HasName("PK__ISCPPass__5DCFA6F9428F43AA");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.PassNo }).HasName("PK__ISCPPass__5DCFA6F903F1AEBC");
 
-            entity.ToTable("ISCPPass", tb =>
+            entity.ToTable("ISCPPass", "PRDB", tb =>
                 {
+                    tb.HasComment("");
                     tb.HasTrigger("TI_ISCPPass");
                     tb.HasTrigger("TU_ISCPPass");
                 });
 
             entity.Property(e => e.MeId)
                 .HasDefaultValue(1)
+                .HasComment("Material idendification number")
                 .HasColumnName("meId");
             entity.Property(e => e.MeCreator)
                 .HasMaxLength(2)
                 .IsUnicode(false)
                 .HasDefaultValue("")
+                .HasComment("Material owner")
                 .HasColumnName("meCreator");
             entity.Property(e => e.MesId)
                 .HasDefaultValue((short)1)
+                .HasComment("Line status")
                 .HasColumnName("mesId");
             entity.Property(e => e.Source)
                 .HasMaxLength(2)
                 .IsUnicode(false)
                 .HasDefaultValue("-")
+                .HasComment("owner")
                 .HasColumnName("source");
-            entity.Property(e => e.PassNo).HasColumnName("passNo");
+            entity.Property(e => e.PassNo)
+                .HasComment("pass number")
+                .HasColumnName("passNo");
             entity.Property(e => e.DescalerAuto)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0..1] descaler auto AUTO = 0 MAN = 1")
                 .HasColumnName("descalerAuto");
             entity.Property(e => e.DescalerState)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0 / 1] descaler state: ON=0, OFF=1")
                 .HasColumnName("descalerState");
             entity.Property(e => e.DescalerVolume)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0...1] descaler factor from maximum cooling flow")
                 .HasColumnName("descalerVolume");
             entity.Property(e => e.FumeSuppSprayBefor)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0...1] fume (dust) suppresion spray")
                 .HasColumnName("fumeSuppSprayBefor");
             entity.Property(e => e.FumeSuppSprayBehind)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0...1] fume (dust) suppresion spray")
                 .HasColumnName("fumeSuppSprayBehind");
             entity.Property(e => e.IntermBeamCool)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0...1] intermediate beam cooling")
                 .HasColumnName("intermBeamCool");
             entity.Property(e => e.IscAuto)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0 / 1] ISC automatic mode: AUTO=0, MAN=1")
                 .HasColumnName("iscAuto");
             entity.Property(e => e.IscMaxVolumeInd0)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0...1] ISC maximum volume factor from maximum cooling flow (plant par). [0]= isc 0, [1]= isc 1, [2]= mill stand power cooling")
                 .HasColumnName("iscMaxVolume_ind0");
             entity.Property(e => e.IscMaxVolumeInd1)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0...1] ISC maximum volume factor from maximum cooling flow (plant par). [0]= isc 0, [1]= isc 1, [2]= mill stand power cooling")
                 .HasColumnName("iscMaxVolume_ind1");
             entity.Property(e => e.IscMaxVolumeInd2)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0...1] ISC maximum volume factor from maximum cooling flow (plant par). [0]= isc 0, [1]= isc 1, [2]= mill stand power cooling")
                 .HasColumnName("iscMaxVolume_ind2");
             entity.Property(e => e.IscMinVolumeInd0)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0...1] ISC minimum volume factor from maximum cooling flow (plant par). [0]= isc 0, [1]= isc 1, [2]= mill stand power cooling")
                 .HasColumnName("iscMinVolume_ind0");
             entity.Property(e => e.IscMinVolumeInd1)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0...1] ISC minimum volume factor from maximum cooling flow (plant par). [0]= isc 0, [1]= isc 1, [2]= mill stand power cooling")
                 .HasColumnName("iscMinVolume_ind1");
             entity.Property(e => e.IscMinVolumeInd2)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0...1] ISC minimum volume factor from maximum cooling flow (plant par). [0]= isc 0, [1]= isc 1, [2]= mill stand power cooling")
                 .HasColumnName("iscMinVolume_ind2");
             entity.Property(e => e.IscState)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0 / 1] ISC state: ON=0, OFF=1")
                 .HasColumnName("iscState");
             entity.Property(e => e.IscVolumeInd0)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0...1] ISC volume factor from maximum cooling flow (plant par). [0]= isc 0, [1]= isc 1, [2]= mill stand power cooling")
                 .HasColumnName("iscVolume_ind0");
             entity.Property(e => e.IscVolumeInd1)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0...1] ISC volume factor from maximum cooling flow (plant par). [0]= isc 0, [1]= isc 1, [2]= mill stand power cooling")
                 .HasColumnName("iscVolume_ind1");
             entity.Property(e => e.IscVolumeInd2)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0...1] ISC volume factor from maximum cooling flow (plant par). [0]= isc 0, [1]= isc 1, [2]= mill stand power cooling")
                 .HasColumnName("iscVolume_ind2");
             entity.Property(e => e.LooperCool)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0...1] looper cooling")
                 .HasColumnName("looperCool");
             entity.Property(e => e.Mop)
                 .HasMaxLength(120)
                 .IsUnicode(false)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("modifying process")
                 .HasColumnName("mop");
             entity.Property(e => e.PlanNo)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0...999] i s c p number")
                 .HasColumnName("planNo");
             entity.Property(e => e.PrioDescaler)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0 .... n] behind pass X, priority: -1: do not switch, 0,1,2,3,.....: lowest number is switched on first and switched off last")
                 .HasColumnName("prioDescaler");
             entity.Property(e => e.PrioIsc)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0 ..... n] ISC, priority: -1: do not switch, 0,1,2,3,.....: lowest number is switched on first and switched off last")
                 .HasColumnName("prioIsc");
             entity.Property(e => e.RollGapSpray)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0...1] special spray, before pass X, roll gap spray")
                 .HasColumnName("rollGapSpray");
             entity.Property(e => e.StripSprayBefor)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0...1] strip spraying")
                 .HasColumnName("stripSprayBefor");
             entity.Property(e => e.StripSprayBehind)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0...1] strip spraying")
                 .HasColumnName("stripSprayBehind");
             entity.Property(e => e.Toc)
                 .HasPrecision(3)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("time of creation")
                 .HasColumnName("toc");
             entity.Property(e => e.Tom)
                 .HasPrecision(3)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("time of modification")
                 .HasColumnName("tom");
 
             entity.HasOne(d => d.Me1).WithMany(p => p.Iscppasses)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__ISCPPass__0D5DFFA8");
+                .HasConstraintName("FK__ISCPPass__70DE8F2F");
         });
 
         modelBuilder.Entity<Iscvalf>(entity =>
         {
-            entity.HasKey(e => e.StandIdx).HasName("PK__ISCValve__5439AF407405449A");
+            entity.HasKey(e => e.StandIdx).HasName("PK__ISCValve__5439AF402B724FDD");
 
-            entity.ToTable("ISCValves", tb =>
+            entity.ToTable("ISCValves", "PRDB", tb =>
                 {
                     tb.HasComment("Stand related ISC valve type definitions CS writes, FM reads");
                     tb.HasTrigger("TI_ISCValves");
@@ -15950,9 +15727,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<IscvalveChar>(entity =>
         {
-            entity.HasKey(e => new { e.ValveType, e.PointIdx }).HasName("PK__ISCValve__899CD8D6EAB55990");
+            entity.HasKey(e => new { e.ValveType, e.PointIdx }).HasName("PK__ISCValve__899CD8D6FE237EAB");
 
-            entity.ToTable("ISCValveChar", tb =>
+            entity.ToTable("ISCValveChar", "PRDB", tb =>
                 {
                     tb.HasComment("ISC Valve characteristics");
                     tb.HasTrigger("TI_ISCValveChar");
@@ -15993,9 +15770,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<IscvalveHeadType>(entity =>
         {
-            entity.HasKey(e => e.ValveHeadTypeIndex).HasName("PK__ISCValve__2123D82AD654C4CA");
+            entity.HasKey(e => e.ValveHeadTypeIndex).HasName("PK__ISCValve__2123D82AAE889EDF");
 
-            entity.ToTable("ISCValveHeadTypes", tb =>
+            entity.ToTable("ISCValveHeadTypes", "PRDB", tb =>
                 {
                     tb.HasComment("Definitions of ISC header types");
                     tb.HasTrigger("TI_ISCValveHeadTypes");
@@ -16033,9 +15810,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<IscvalveType>(entity =>
         {
-            entity.HasKey(e => e.ValveType).HasName("PK__ISCValve__49E188305D790952");
+            entity.HasKey(e => e.ValveType).HasName("PK__ISCValve__49E188307D1710F7");
 
-            entity.ToTable("ISCValveTypes", tb =>
+            entity.ToTable("ISCValveTypes", "PRDB", tb =>
                 {
                     tb.HasComment("ISC Valve type related information");
                     tb.HasTrigger("TI_ISCValveTypes");
@@ -16109,7 +15886,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<L2l3calcDatum>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__L2L3Calc__3213E83FB9D50660");
+            entity.HasKey(e => e.Id).HasName("PK__L2L3Calc__3213E83F1DB0174A");
 
             entity.ToTable("L2L3CalcData", "COMUSER", tb =>
                 {
@@ -17059,7 +16836,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<L2l3coilWeight>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__L2L3Coil__3213E83F2D8A4E3B");
+            entity.HasKey(e => e.Id).HasName("PK__L2L3Coil__3213E83FFCB7C1F5");
 
             entity.ToTable("L2L3CoilWeight", "COMUSER", tb =>
                 {
@@ -17101,7 +16878,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<L2l3measSeq>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__L2L3Meas__3213E83FCBD5552D");
+            entity.HasKey(e => e.Id).HasName("PK__L2L3Meas__3213E83FB489684C");
 
             entity.ToTable("L2L3MeasSeq", "COMUSER", tb =>
                 {
@@ -19147,7 +18924,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<L2l3millStatus>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__L2L3Mill__3214EC275CFF47D5");
+            entity.HasKey(e => e.Id).HasName("PK__L2L3Mill__3214EC27F8E94575");
 
             entity.ToTable("L2L3MillStatus", "COMUSER", tb =>
                 {
@@ -19192,7 +18969,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<L2l3primDataReq>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__L2L3Prim__3213E83F02386725");
+            entity.HasKey(e => e.Id).HasName("PK__L2L3Prim__3213E83F19B06D6B");
 
             entity.ToTable("L2L3PrimDataReq", "COMUSER", tb =>
                 {
@@ -19230,7 +19007,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<L2l3prodDatum>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__L2L3Prod__3213E83FCA819A0E");
+            entity.HasKey(e => e.Id).HasName("PK__L2L3Prod__3213E83FAC2766EA");
 
             entity.ToTable("L2L3ProdData", "COMUSER", tb =>
                 {
@@ -20082,7 +19859,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<L2l3profileScan>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__L2L3Prof__3213E83F3E0DE244");
+            entity.HasKey(e => e.Id).HasName("PK__L2L3Prof__3213E83FB283D470");
 
             entity.ToTable("L2L3ProfileScan", "COMUSER", tb =>
                 {
@@ -22128,7 +21905,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<L2l3slabInMill>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__L2L3Slab__3213E83F6AD7F74B");
+            entity.HasKey(e => e.Id).HasName("PK__L2L3Slab__3213E83FBD3C89A0");
 
             entity.ToTable("L2L3SlabInMill", "COMUSER", tb =>
                 {
@@ -22666,7 +22443,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<L2rsrollDataReq>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__L2RSRoll__3213E83FA3FECDC2");
+            entity.HasKey(e => e.Id).HasName("PK__L2RSRoll__3213E83F363A4E79");
 
             entity.ToTable("L2RSRollDataReq", "COMUSER", tb =>
                 {
@@ -22704,7 +22481,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<L2rsrollDatum>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__L2RSRoll__3213E83F414561D8");
+            entity.HasKey(e => e.Id).HasName("PK__L2RSRoll__3213E83F0C1927BB");
 
             entity.ToTable("L2RSRollData", "COMUSER", tb =>
                 {
@@ -22820,7 +22597,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<L3casheatevent>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__L3CASHEA__3214EC272F2493C3");
+            entity.HasKey(e => e.Id).HasName("PK__L3CASHEA__3214EC27C8021578");
 
             entity.ToTable("L3CASHEATEVENT", "COMUSER", tb =>
                 {
@@ -22881,7 +22658,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<L3casheateventparam>(entity =>
         {
-            entity.HasKey(e => new { e.Id, e.Parametername }).HasName("PK__L3CASHEA__15AC6EE4946E5FBE");
+            entity.HasKey(e => new { e.Id, e.Parametername }).HasName("PK__L3CASHEA__15AC6EE489B70B4D");
 
             entity.ToTable("L3CASHEATEVENTPARAM", "COMUSER", tb =>
                 {
@@ -22940,7 +22717,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<L3casheatrep>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__L3CASHEA__3214EC2703F64D1B");
+            entity.HasKey(e => e.Id).HasName("PK__L3CASHEA__3214EC27BBB12993");
 
             entity.ToTable("L3CASHEATREP", "COMUSER", tb =>
                 {
@@ -23000,7 +22777,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<L3casheatrepparam>(entity =>
         {
-            entity.HasKey(e => new { e.Id, e.Parametername }).HasName("PK__L3CASHEA__15AC6EE4EE87797B");
+            entity.HasKey(e => new { e.Id, e.Parametername }).HasName("PK__L3CASHEA__15AC6EE49E2B2B4B");
 
             entity.ToTable("L3CASHEATREPPARAM", "COMUSER", tb =>
                 {
@@ -23059,7 +22836,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<L3l2altDatum>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__L3L2AltD__3213E83F600BE92B");
+            entity.HasKey(e => e.Id).HasName("PK__L3L2AltD__3213E83FE118A36C");
 
             entity.ToTable("L3L2AltData", "COMUSER", tb =>
                 {
@@ -23269,7 +23046,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<L3l2analysis>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__L3L2Anal__3213E83F82815E11");
+            entity.HasKey(e => e.Id).HasName("PK__L3L2Anal__3213E83F1272D3F5");
 
             entity.ToTable("L3L2Analysis", "COMUSER", tb =>
                 {
@@ -23575,7 +23352,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<L3l2heatStatus>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__L3L2Heat__3213E83FE6516533");
+            entity.HasKey(e => e.Id).HasName("PK__L3L2Heat__3213E83FED8A4B6A");
 
             entity.ToTable("L3L2HeatStatus", "COMUSER", tb =>
                 {
@@ -23649,7 +23426,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<L3l2inspectionDatum>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__L3L2Insp__3213E83F2A77BBCC");
+            entity.HasKey(e => e.Id).HasName("PK__L3L2Insp__3213E83F57153EAB");
 
             entity.ToTable("L3L2InspectionData", "COMUSER", tb =>
                 {
@@ -23874,7 +23651,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<L3l2primDatum>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__L3L2Prim__3213E83FF42000E5");
+            entity.HasKey(e => e.Id).HasName("PK__L3L2Prim__3213E83F8F3C404F");
 
             entity.ToTable("L3L2PrimData", "COMUSER", tb =>
                 {
@@ -24361,7 +24138,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<L3l2rollingSeq>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__L3L2Roll__3213E83F6A43C83F");
+            entity.HasKey(e => e.Id).HasName("PK__L3L2Roll__3213E83FBF9CE95B");
 
             entity.ToTable("L3L2RollingSeq", "COMUSER", tb =>
                 {
@@ -24999,9 +24776,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<LaborDatum>(entity =>
         {
-            entity.HasKey(e => e.SampleIndex).HasName("PK__LaborDat__EB4CD222CA402967");
+            entity.HasKey(e => e.SampleIndex).HasName("PK__LaborDat__EB4CD222C0A7167C");
 
-            entity.ToTable(tb =>
+            entity.ToTable("LaborData", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_LaborData");
@@ -25040,9 +24817,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<LocationActionDesc>(entity =>
         {
-            entity.HasKey(e => e.ActId).HasName("PK__Location__B95F7C98E85CCE94");
+            entity.HasKey(e => e.ActId).HasName("PK__Location__B95F7C987DFFA423");
 
-            entity.ToTable("LocationActionDesc", tb =>
+            entity.ToTable("LocationActionDesc", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_LocationActionDesc");
@@ -25102,9 +24879,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<LogAreaSetup>(entity =>
         {
-            entity.HasKey(e => new { e.Area, e.Lang }).HasName("PK__Log_Area__77F7B503C857F90B");
+            entity.HasKey(e => new { e.Area, e.Lang }).HasName("PK__Log_Area__77F7B50337B44719");
 
-            entity.ToTable("Log_Area_Setup", tb =>
+            entity.ToTable("Log_Area_Setup", "PRDB", tb =>
                 {
                     tb.HasComment("list of message areas known by msg server");
                     tb.HasTrigger("TI_Log_Area_Setup");
@@ -25154,9 +24931,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<LogColour>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Log_Colo__3213E83F6F2C84F3");
+            entity.HasKey(e => e.Id).HasName("PK__Log_Colo__3213E83FCB39C66C");
 
-            entity.ToTable("Log_Colour", tb =>
+            entity.ToTable("Log_Colour", "PRDB", tb =>
                 {
                     tb.HasComment("assign a colour to a configured log/alarm");
                     tb.HasTrigger("TI_Log_Colour");
@@ -25196,9 +24973,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<LogDatum>(entity =>
         {
-            entity.HasKey(e => new { e.EntryId, e.Lang }).HasName("PK__Log_Data__FB605DAD0D60043D");
+            entity.HasKey(e => new { e.EntryId, e.Lang }).HasName("PK__Log_Data__FB605DAD47E1A849");
 
-            entity.ToTable("Log_Data", tb =>
+            entity.ToTable("Log_Data", "PRDB", tb =>
                 {
                     tb.HasComment("table which contains all logs/alarms stored by msg server");
                     tb.HasTrigger("TI_Log_Data");
@@ -25299,9 +25076,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<LogEmail>(entity =>
         {
-            entity.HasKey(e => new { e.Email, e.ReqLogs }).HasName("PK__Log_Emai__25C61D9B761004EC");
+            entity.HasKey(e => new { e.Email, e.ReqLogs }).HasName("PK__Log_Emai__25C61D9BA09EB1C4");
 
-            entity.ToTable("Log_Email", tb =>
+            entity.ToTable("Log_Email", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_Log_Email");
@@ -25350,9 +25127,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<LogFormat>(entity =>
         {
-            entity.HasKey(e => new { e.Id, e.Lang }).HasName("PK__Log_Form__185766474DFC434E");
+            entity.HasKey(e => new { e.Id, e.Lang }).HasName("PK__Log_Form__18576647CECF5010");
 
-            entity.ToTable("Log_Format", tb =>
+            entity.ToTable("Log_Format", "PRDB", tb =>
                 {
                     tb.HasComment("list of format definitions");
                     tb.HasTrigger("TI_Log_Format");
@@ -25404,9 +25181,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<LogGroup>(entity =>
         {
-            entity.HasKey(e => new { e.Id, e.LogGroup1 }).HasName("PK__Log_Grou__F17A5D31E70A7EE1");
+            entity.HasKey(e => new { e.Id, e.LogGroup1 }).HasName("PK__Log_Grou__F17A5D31BBA651B9");
 
-            entity.ToTable("Log_Group", tb =>
+            entity.ToTable("Log_Group", "PRDB", tb =>
                 {
                     tb.HasComment("each log/alarm belongs to one or more log groups");
                     tb.HasTrigger("TI_Log_Group");
@@ -25452,9 +25229,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<LogGroupSetup>(entity =>
         {
-            entity.HasKey(e => e.LogGroup).HasName("PK__Log_Grou__369B50EDC18B5995");
+            entity.HasKey(e => e.LogGroup).HasName("PK__Log_Grou__369B50ED3997D8BA");
 
-            entity.ToTable("Log_Group_Setup", tb =>
+            entity.ToTable("Log_Group_Setup", "PRDB", tb =>
                 {
                     tb.HasComment("list of log/alarm groups known by msg server");
                     tb.HasTrigger("TI_Log_Group_Setup");
@@ -25493,9 +25270,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<LogIndex>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Log_Inde__3213E83F00E2BAEB");
+            entity.HasKey(e => e.Id).HasName("PK__Log_Inde__3213E83F5DC1FAC4");
 
-            entity.ToTable("Log_Index", tb =>
+            entity.ToTable("Log_Index", "PRDB", tb =>
                 {
                     tb.HasComment("list of logs/alarms known by msg server");
                     tb.HasTrigger("TI_Log_Index");
@@ -25522,7 +25299,7 @@ public partial class PrdbContext : AbpDbContext
                 .HasComment("modifying process")
                 .HasColumnName("mop");
             entity.Property(e => e.NeedConfirm)
-                .HasDefaultValue(false)
+                .HasDefaultValueSql("(NULL)")
                 .HasComment("must alarm be confirmed (0: no, 1: yes)")
                 .HasColumnName("needConfirm");
             entity.Property(e => e.Severity)
@@ -25547,9 +25324,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<LogLanguageSetup>(entity =>
         {
-            entity.HasKey(e => e.Lang).HasName("PK__Log_Lang__A448E783072717BE");
+            entity.HasKey(e => e.Lang).HasName("PK__Log_Lang__A448E7836403180F");
 
-            entity.ToTable("Log_Language_Setup", tb =>
+            entity.ToTable("Log_Language_Setup", "PRDB", tb =>
                 {
                     tb.HasComment("list of languages known by msg server");
                     tb.HasTrigger("TI_Log_Language_Setup");
@@ -25589,9 +25366,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<LogSeveritySetup>(entity =>
         {
-            entity.HasKey(e => new { e.Severity, e.Lang }).HasName("PK__Log_Seve__A72A437570735FF7");
+            entity.HasKey(e => new { e.Severity, e.Lang }).HasName("PK__Log_Seve__A72A437523CEDD36");
 
-            entity.ToTable("Log_Severity_Setup", tb =>
+            entity.ToTable("Log_Severity_Setup", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_Log_Severity_Setup");
@@ -25644,9 +25421,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<Lp>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__LP__D3DB124AF5F22B4F");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__LP__D3DB124A474D14B4");
 
-            entity.ToTable("LP", tb =>
+            entity.ToTable("LP", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_LP");
@@ -25776,14 +25553,14 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.Lps)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__LP__3C00B29C");
+                .HasConstraintName("FK__LP__41B98BF2");
         });
 
         modelBuilder.Entity<Lppass>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.PassNo }).HasName("PK__LPPass__5DCFA6F9FAFE8AF4");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.PassNo }).HasName("PK__LPPass__5DCFA6F9B8C58DE2");
 
-            entity.ToTable("LPPass", tb =>
+            entity.ToTable("LPPass", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_LPPass");
@@ -25896,14 +25673,14 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.Lppasses)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__LPPass__57A8CD11");
+                .HasConstraintName("FK__LPPass__5D61A667");
         });
 
         modelBuilder.Entity<MatActComment>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Action }).HasName("PK__MatActCo__C6999B75FE19493D");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Action }).HasName("PK__MatActCo__C6999B757D2BA38E");
 
-            entity.ToTable(tb =>
+            entity.ToTable("MatActComments", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_MatActComments");
@@ -26009,14 +25786,14 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.MatActComments)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__MatActComments__6E8C3269");
+                .HasConstraintName("FK__MatActComments__74450BBF");
         });
 
         modelBuilder.Entity<MatCutInfo>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.CounterCuts }).HasName("PK__MatCutIn__D24AECC37A47E00D");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.CounterCuts }).HasName("PK__MatCutIn__D24AECC366477685");
 
-            entity.ToTable("MatCutInfo", tb =>
+            entity.ToTable("MatCutInfo", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_MatCutInfo");
@@ -26099,14 +25876,14 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.MatCutInfos)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__MatCutInfo__02932B16");
+                .HasConstraintName("FK__MatCutInfo__084C046C");
         });
 
         modelBuilder.Entity<MatDat>(entity =>
         {
-            entity.HasKey(e => e.AlloyCode).HasName("PK__MatDat__CE6D2C4909D48CDB");
+            entity.HasKey(e => e.AlloyCode).HasName("PK__MatDat__CE6D2C4930E3DC29");
 
-            entity.ToTable("MatDat", tb =>
+            entity.ToTable("MatDat", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_MatDat");
@@ -26589,9 +26366,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<MatExtId>(entity =>
         {
-            entity.HasKey(e => e.KeyT).HasName("PK__MatExtId__2B3B21F173ACB2A1");
+            entity.HasKey(e => e.KeyT).HasName("PK__MatExtId__2B3B21F1901E86D6");
 
-            entity.ToTable("MatExtId", tb =>
+            entity.ToTable("MatExtId", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_MatExtId");
@@ -26638,9 +26415,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<MatHeat>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Counter }).HasName("PK__MatHeat__57895FBD31FF6919");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Counter }).HasName("PK__MatHeat__57895FBDA1868439");
 
-            entity.ToTable("MatHeat", tb =>
+            entity.ToTable("MatHeat", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_MatHeat");
@@ -26693,14 +26470,14 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.MatHeats)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__MatHeat__1B29CEB6");
+                .HasConstraintName("FK__MatHeat__20E2A80C");
         });
 
         modelBuilder.Entity<MatInspPhyPro>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.ErrorCode }).HasName("PK__MatInspP__5DC4643058AA9CA1");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.ErrorCode }).HasName("PK__MatInspP__5DC46430E29351BB");
 
-            entity.ToTable("MatInspPhyPro", tb =>
+            entity.ToTable("MatInspPhyPro", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_MatInspPhyPro");
@@ -26836,14 +26613,14 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.MatInspPhyPros)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__MatInspPhyPro__35DDC4F2");
+                .HasConstraintName("FK__MatInspPhyPro__3B969E48");
         });
 
         modelBuilder.Entity<MaterialBreak>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.PosInOldMe }).HasName("PK__Material__0699FFA55B20D360");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.PosInOldMe }).HasName("PK__Material__0699FFA5ECE08AC8");
 
-            entity.ToTable("MaterialBreak", tb =>
+            entity.ToTable("MaterialBreak", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_MaterialBreak");
@@ -26901,9 +26678,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<Me>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator }).HasName("PK__Me__BEC8C9C31D44C36C");
+            entity.HasKey(e => new { e.MeId, e.MeCreator }).HasName("PK__Me__BEC8C9C337157EEF");
 
-            entity.ToTable("Me", tb =>
+            entity.ToTable("Me", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_Me");
@@ -26974,9 +26751,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<Me1>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId }).HasName("PK__Mes__97FBDCEFDFB2BE3D");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId }).HasName("PK__Mes__97FBDCEF0DE0549C");
 
-            entity.ToTable("Mes", tb =>
+            entity.ToTable("Mes", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_Mes");
@@ -27045,7 +26822,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<MillCasCutInfo>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__MillCasC__3213E83F31061F51");
+            entity.HasKey(e => e.Id).HasName("PK__MillCasC__3213E83F5CA089A5");
 
             entity.ToTable("MillCasCutInfo", "COMUSER", tb =>
                 {
@@ -27111,7 +26888,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<MillCasHeatStatus>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__MillCasH__3213E83F2F930D80");
+            entity.HasKey(e => e.Id).HasName("PK__MillCasH__3213E83F87F84A52");
 
             entity.ToTable("MillCasHeatStatus", "COMUSER", tb =>
                 {
@@ -27189,7 +26966,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<MillCasMinSpeed>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__MillCasM__3213E83FA365D7A2");
+            entity.HasKey(e => e.Id).HasName("PK__MillCasM__3213E83FAEA17835");
 
             entity.ToTable("MillCasMinSpeed", "COMUSER", tb =>
                 {
@@ -27225,7 +27002,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<MillCasPlanDatum>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__MillCasP__3213E83F2FC45059");
+            entity.HasKey(e => e.Id).HasName("PK__MillCasP__3213E83F8DAB61B1");
 
             entity.ToTable("MillCasPlanData", "COMUSER", tb =>
                 {
@@ -27297,7 +27074,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<MillCasSegmentDataDetail>(entity =>
         {
-            entity.HasKey(e => new { e.Id, e.MeasurmentName, e.SegmentNo }).HasName("PK__MillCasS__C7CC622F9C9A5310");
+            entity.HasKey(e => new { e.Id, e.MeasurmentName, e.SegmentNo }).HasName("PK__MillCasS__C7CC622F98E9AA32");
 
             entity.ToTable("MillCasSegmentDataDetail", "COMUSER", tb =>
                 {
@@ -27354,7 +27131,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<MillCasSegmentDatum>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__MillCasS__3213E83F08E987B9");
+            entity.HasKey(e => e.Id).HasName("PK__MillCasS__3213E83FA7DF6C82");
 
             entity.ToTable("MillCasSegmentData", "COMUSER", tb =>
                 {
@@ -27474,7 +27251,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<MillCasSpeedChange>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__MillCasS__3213E83F5A8412C3");
+            entity.HasKey(e => e.Id).HasName("PK__MillCasS__3213E83F57C4E238");
 
             entity.ToTable("MillCasSpeedChange", "COMUSER", tb =>
                 {
@@ -27518,7 +27295,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<MillCasWidthChange>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__MillCasW__3213E83FD5D31773");
+            entity.HasKey(e => e.Id).HasName("PK__MillCasW__3213E83F75DFCDFC");
 
             entity.ToTable("MillCasWidthChange", "COMUSER", tb =>
                 {
@@ -27570,9 +27347,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<MillOccupation>(entity =>
         {
-            entity.HasKey(e => e.RecNo).HasName("PK__MillOccu__1B431FB1C79E9032");
+            entity.HasKey(e => e.RecNo).HasName("PK__MillOccu__1B431FB1422930C0");
 
-            entity.ToTable("MillOccupation", tb =>
+            entity.ToTable("MillOccupation", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_MillOccupation");
@@ -27632,9 +27409,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<MillStrat>(entity =>
         {
-            entity.HasKey(e => new { e.RecordNo, e.PlantType, e.Source }).HasName("PK__MillStra__28F2A6A40F278CAD");
+            entity.HasKey(e => new { e.RecordNo, e.PlantType, e.Source }).HasName("PK__MillStra__28F2A6A40C75E402");
 
-            entity.ToTable("MillStrat", tb =>
+            entity.ToTable("MillStrat", "PRDB", tb =>
                 {
                     tb.HasComment("mill specific strategy data set");
                     tb.HasTrigger("TI_MillStrat");
@@ -27768,9 +27545,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<MillStratEdFurn>(entity =>
         {
-            entity.HasKey(e => new { e.RecordNo, e.PlantType, e.Source }).HasName("PK__MillStra__28F2A6A49A58858C");
+            entity.HasKey(e => new { e.RecordNo, e.PlantType, e.Source }).HasName("PK__MillStra__28F2A6A43994BA7C");
 
-            entity.ToTable("MillStratEdFurn", tb =>
+            entity.ToTable("MillStratEdFurn", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_MillStratEdFurn");
@@ -27892,9 +27669,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<MillStratStand>(entity =>
         {
-            entity.HasKey(e => new { e.RecordNo, e.PlantType, e.Stand, e.Source }).HasName("PK__MillStra__1577B5ADAE945866");
+            entity.HasKey(e => new { e.RecordNo, e.PlantType, e.Stand, e.Source }).HasName("PK__MillStra__1577B5ADCE0A6145");
 
-            entity.ToTable("MillStratStand", tb =>
+            entity.ToTable("MillStratStand", "PRDB", tb =>
                 {
                     tb.HasComment("mill specific strategy data set for stand");
                     tb.HasTrigger("TI_MillStratStand");
@@ -28023,9 +27800,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<MipResult>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId }).HasName("PK__MipResul__97FBDCEFD0FC97F6");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId }).HasName("PK__MipResul__97FBDCEFC5326C07");
 
-            entity.ToTable("MipResult", tb =>
+            entity.ToTable("MipResult", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_MipResult");
@@ -28274,14 +28051,14 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithOne(p => p.MipResult)
                 .HasForeignKey<MipResult>(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__MipResult__57FDD2CC");
+                .HasConstraintName("FK__MipResult__5DB6AC22");
         });
 
         modelBuilder.Entity<MorgOilFloat>(entity =>
         {
-            entity.HasKey(e => new { e.StandNo, e.PlantType }).HasName("PK__MorgOilF__F4BA79A31CA98C33");
+            entity.HasKey(e => new { e.StandNo, e.PlantType }).HasName("PK__MorgOilF__F4BA79A3ADBB1B7A");
 
-            entity.ToTable("MorgOilFloat", tb =>
+            entity.ToTable("MorgOilFloat", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_MorgOilFloat");
@@ -28329,9 +28106,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<MorgOilFloatAct>(entity =>
         {
-            entity.HasKey(e => new { e.StandNo, e.PlantType }).HasName("PK__MorgOilF__F4BA79A344EBBD30");
+            entity.HasKey(e => new { e.StandNo, e.PlantType }).HasName("PK__MorgOilF__F4BA79A3C46A8220");
 
-            entity.ToTable("MorgOilFloatAct", tb =>
+            entity.ToTable("MorgOilFloatAct", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_MorgOilFloatAct");
@@ -28379,9 +28156,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<MosParam>(entity =>
         {
-            entity.HasKey(e => new { e.ParamName, e.PlantType }).HasName("PK__MosParam__6E6D9C1FE953C4EB");
+            entity.HasKey(e => new { e.ParamName, e.PlantType }).HasName("PK__MosParam__6E6D9C1F20B6A080");
 
-            entity.ToTable("MosParam", tb =>
+            entity.ToTable("MosParam", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_MosParam");
@@ -28474,9 +28251,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<MosPqe>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId }).HasName("PK__MosPqe__97FBDCEF5D92B203");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId }).HasName("PK__MosPqe__97FBDCEF69B6BAF0");
 
-            entity.ToTable("MosPqe", tb =>
+            entity.ToTable("MosPqe", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_MosPqe");
@@ -28652,14 +28429,14 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithOne(p => p.MosPqe)
                 .HasForeignKey<MosPqe>(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__MosPqe__2AF6222B");
+                .HasConstraintName("FK__MosPqe__30AEFB81");
         });
 
         modelBuilder.Entity<MosSwitch>(entity =>
         {
-            entity.HasKey(e => new { e.RecNo, e.PlantType }).HasName("PK__MosSwitc__A99F7124744DCC90");
+            entity.HasKey(e => new { e.RecNo, e.PlantType }).HasName("PK__MosSwitc__A99F7124005A148D");
 
-            entity.ToTable(tb =>
+            entity.ToTable("MosSwitches", "PRDB", tb =>
                 {
                     tb.HasComment("MOS debug and strategy switches");
                     tb.HasTrigger("TI_MosSwitches");
@@ -28967,9 +28744,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<MsmDir>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__MsmDir__D3DB124AF74E5B26");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__MsmDir__D3DB124AE686DABB");
 
-            entity.ToTable("MsmDir", tb =>
+            entity.ToTable("MsmDir", "PRDB", tb =>
                 {
                     tb.HasComment("Material specific strategy Table with Effective (E), Manual (M) and original (X) lines for each material");
                     tb.HasTrigger("TI_MsmDir");
@@ -29073,14 +28850,14 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.MsmDirs)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__MsmDir__25FC62E4");
+                .HasConstraintName("FK__MsmDir__2BB53C3A");
         });
 
         modelBuilder.Entity<MtrImage>(entity =>
         {
-            entity.HasKey(e => e.Section).HasName("PK__MtrImage__6A2D6D9613D0F801");
+            entity.HasKey(e => e.Section).HasName("PK__MtrImage__6A2D6D96D0AEAFEC");
 
-            entity.ToTable("MtrImage", tb =>
+            entity.ToTable("MtrImage", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_MtrImage");
@@ -29114,9 +28891,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<MyDatum>(entity =>
         {
-            entity.HasKey(e => new { e.Lubrication, e.StandNo, e.PlantType, e.RollPropertyClass }).HasName("PK__MyData__19C05868A415AA31");
+            entity.HasKey(e => new { e.Lubrication, e.StandNo, e.PlantType, e.RollPropertyClass }).HasName("PK__MyData__19C05868EBED58E3");
 
-            entity.ToTable(tb =>
+            entity.ToTable("MyData", "PRDB", tb =>
                 {
                     tb.HasComment("Friction values");
                     tb.HasTrigger("TI_MyData");
@@ -29198,9 +28975,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<OperTime>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Status }).HasName("PK__OperTime__B4315966F4127EDE");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Status }).HasName("PK__OperTime__B431596681CDB5FA");
 
-            entity.ToTable("OperTime", tb =>
+            entity.ToTable("OperTime", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_OperTime");
@@ -29248,14 +29025,14 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.OperTimes)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__OperTime__4EFE7877");
+                .HasConstraintName("FK__OperTime__54B751CD");
         });
 
         modelBuilder.Entity<PapRcvTelegram>(entity =>
         {
-            entity.HasKey(e => new { e.SysTime, e.Counter, e.TableName }).HasName("PK__PapRcvTe__79A7C289A6014CEE");
+            entity.HasKey(e => new { e.SysTime, e.Counter, e.TableName }).HasName("PK__PapRcvTe__79A7C289DC647EC9");
 
-            entity.ToTable("PapRcvTelegram", tb =>
+            entity.ToTable("PapRcvTelegram", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_PapRcvTelegram");
@@ -29300,9 +29077,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<PapSndTelegram>(entity =>
         {
-            entity.HasKey(e => new { e.SysTime, e.Counter, e.ForceTel }).HasName("PK__PapSndTe__9C80250ECA0A68AF");
+            entity.HasKey(e => new { e.SysTime, e.Counter, e.ForceTel }).HasName("PK__PapSndTe__9C80250E7EFDAE91");
 
-            entity.ToTable("PapSndTelegram", tb =>
+            entity.ToTable("PapSndTelegram", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_PapSndTelegram");
@@ -29346,9 +29123,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<Pc>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__PC__D3DB124AF53AF066");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__PC__D3DB124AFC56BD93");
 
-            entity.ToTable("PC", tb =>
+            entity.ToTable("PC", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_PC");
@@ -29406,14 +29183,14 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.Pcs)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__PC__7247B4B4");
+                .HasConstraintName("FK__PC__78008E0A");
         });
 
         modelBuilder.Entity<Pcramp>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.RampNo }).HasName("PK__PCRamp__D9DDAEC3C7DE352E");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.RampNo }).HasName("PK__PCRamp__D9DDAEC3A89EE77F");
 
-            entity.ToTable("PCRamp", tb =>
+            entity.ToTable("PCRamp", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_PCRamp");
@@ -29482,14 +29259,14 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.Pcramps)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__PCRamp__037240B6");
+                .HasConstraintName("FK__PCRamp__092B1A0C");
         });
 
         modelBuilder.Entity<PfcReport>(entity =>
         {
-            entity.HasKey(e => new { e.ExtId, e.Calctime }).HasName("PK__PfcRepor__44DB573D8A3E5849");
+            entity.HasKey(e => new { e.ExtId, e.Calctime }).HasName("PK__PfcRepor__44DB573DCF2AA1D2");
 
-            entity.ToTable("PfcReport", tb =>
+            entity.ToTable("PfcReport", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_PfcReport");
@@ -31084,9 +30861,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<PlantLimit>(entity =>
         {
-            entity.HasKey(e => new { e.LimitName, e.PlantType }).HasName("PK__PlantLim__8A2C3C941EDB562D");
+            entity.HasKey(e => new { e.LimitName, e.PlantType }).HasName("PK__PlantLim__8A2C3C94E728C6A8");
 
-            entity.ToTable(tb =>
+            entity.ToTable("PlantLimits", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_PlantLimits");
@@ -31165,9 +30942,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<PlantMosMsg>(entity =>
         {
-            entity.HasKey(e => e.ErrNo).HasName("PK__PlantMos__7057DFA15AF130E8");
+            entity.HasKey(e => e.ErrNo).HasName("PK__PlantMos__7057DFA1008C46BA");
 
-            entity.ToTable("PlantMosMsg", tb =>
+            entity.ToTable("PlantMosMsg", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_PlantMosMsg");
@@ -31211,9 +30988,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<PlantParam>(entity =>
         {
-            entity.HasKey(e => new { e.ParamName, e.PlantType }).HasName("PK__PlantPar__6E6D9C1F17D196D5");
+            entity.HasKey(e => new { e.ParamName, e.PlantType }).HasName("PK__PlantPar__6E6D9C1F664C2611");
 
-            entity.ToTable("PlantParam", tb =>
+            entity.ToTable("PlantParam", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_PlantParam");
@@ -31306,9 +31083,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<PlantRef>(entity =>
         {
-            entity.HasKey(e => e.RecId).HasName("PK__PlantRef__1B434612A12087BF");
+            entity.HasKey(e => e.RecId).HasName("PK__PlantRef__1B434612D342AE1B");
 
-            entity.ToTable(tb =>
+            entity.ToTable("PlantRefs", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_PlantRefs");
@@ -31383,9 +31160,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<PlantRefsProcessArea>(entity =>
         {
-            entity.HasKey(e => new { e.RecId, e.ProcessArea }).HasName("PK__PlantRef__F22607616FEFDD31");
+            entity.HasKey(e => new { e.RecId, e.ProcessArea }).HasName("PK__PlantRef__F2260761458E6492");
 
-            entity.ToTable("PlantRefsProcessArea", tb =>
+            entity.ToTable("PlantRefsProcessArea", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_PlantRefsProcessArea");
@@ -31421,9 +31198,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<Ppdatum>(entity =>
         {
-            entity.HasKey(e => new { e.Name, e.SetId, e.RefName }).HasName("PK__PPData__874F56CC5DBE6ED3");
+            entity.HasKey(e => new { e.Name, e.SetId, e.RefName }).HasName("PK__PPData__874F56CC9F5EAB38");
 
-            entity.ToTable("PPData", tb =>
+            entity.ToTable("PPData", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_PPData");
@@ -31516,9 +31293,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<PrHrm>(entity =>
         {
-            entity.HasKey(e => e.SequenceNo).HasName("PK__PrHRM__53F460CCE2FD8762");
+            entity.HasKey(e => e.SequenceNo).HasName("PK__PrHRM__53F460CC68DCFCD6");
 
-            entity.ToTable("PrHRM", tb =>
+            entity.ToTable("PrHRM", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_PrHRM");
@@ -32000,9 +31777,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<PrLogPro>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__PrLogPro__D3DB124ADF00055A");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__PrLogPro__D3DB124A641E2C0B");
 
-            entity.ToTable("PrLogPro", tb =>
+            entity.ToTable("PrLogPro", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_PrLogPro");
@@ -32048,14 +31825,14 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.PrLogPros)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__PrLogPro__5D6C935F");
+                .HasConstraintName("FK__PrLogPro__63256CB5");
         });
 
         modelBuilder.Entity<PrOrdPro>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__PrOrdPro__D3DB124A51E6CFFD");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__PrOrdPro__D3DB124AF6250F6B");
 
-            entity.ToTable("PrOrdPro", tb =>
+            entity.ToTable("PrOrdPro", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_PrOrdPro");
@@ -33408,14 +33185,14 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.PrOrdPros)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__PrOrdPro__1AFFB184");
+                .HasConstraintName("FK__PrOrdPro__20B88ADA");
         });
 
         modelBuilder.Entity<PrOrdProStand>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.StandId }).HasName("PK__PrOrdPro__AD10542C7A7CD7C1");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.StandId }).HasName("PK__PrOrdPro__AD10542CB7C37583");
 
-            entity.ToTable("PrOrdProStand", tb =>
+            entity.ToTable("PrOrdProStand", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_PrOrdProStand");
@@ -33480,14 +33257,14 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.PrOrdProStands)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__PrOrdProStand__2B36194D");
+                .HasConstraintName("FK__PrOrdProStand__30EEF2A3");
         });
 
         modelBuilder.Entity<PrPhyPro>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__PrPhyPro__D3DB124A4B4579DA");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__PrPhyPro__D3DB124A48BA2F5D");
 
-            entity.ToTable("PrPhyPro", tb =>
+            entity.ToTable("PrPhyPro", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_PrPhyPro");
@@ -33639,14 +33416,14 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.PrPhyPros)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__PrPhyPro__4D8B3151");
+                .HasConstraintName("FK__PrPhyPro__53440AA7");
         });
 
         modelBuilder.Entity<PrRollDataPro>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.RollId }).HasName("PK__PrRollDa__23E470E638F9BCFE");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.RollId }).HasName("PK__PrRollDa__23E470E6D935E22B");
 
-            entity.ToTable("PrRollDataPro", tb =>
+            entity.ToTable("PrRollDataPro", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_PrRollDataPro");
@@ -33720,14 +33497,14 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.PrRollDataPros)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__PrRollDataPro__4E9F511B");
+                .HasConstraintName("FK__PrRollDataPro__54582A71");
         });
 
         modelBuilder.Entity<PrSignalPro>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.NameRef }).HasName("PK__PrSignal__FCB00F0E37D51821");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.NameRef }).HasName("PK__PrSignal__FCB00F0E5E03A9F4");
 
-            entity.ToTable("PrSignalPro", tb =>
+            entity.ToTable("PrSignalPro", "PRDB", tb =>
                 {
                     tb.HasComment("Record any cut to material");
                     tb.HasTrigger("TEXTID_PrSignalPro");
@@ -33838,14 +33615,14 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.PrSignalPros)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__PrSignalPro__685F231E");
+                .HasConstraintName("FK__PrSignalPro__6E17FC74");
         });
 
         modelBuilder.Entity<PrSignalSetup>(entity =>
         {
-            entity.HasKey(e => new { e.ActiveFlag, e.NameRef }).HasName("PK__PrSignal__B232FF78B7EF136F");
+            entity.HasKey(e => new { e.ActiveFlag, e.NameRef }).HasName("PK__PrSignal__B232FF78FF813F1C");
 
-            entity.ToTable("PrSignalSetup", tb =>
+            entity.ToTable("PrSignalSetup", "PRDB", tb =>
                 {
                     tb.HasComment("Production Setup of signals");
                     tb.HasTrigger("TI_PrSignalSetup");
@@ -33969,9 +33746,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<ProdDataCore>(entity =>
         {
-            entity.HasKey(e => new { e.CoilId, e.BasId, e.MeId }).HasName("PK__ProdData__94319BC909E51F52");
+            entity.HasKey(e => new { e.CoilId, e.BasId, e.MeId }).HasName("PK__ProdData__94319BC9F9B4EC87");
 
-            entity.ToTable("ProdDataCore", tb =>
+            entity.ToTable("ProdDataCore", "PRDB", tb =>
                 {
                     tb.HasComment("Core post-production dataset");
                     tb.HasTrigger("TI_ProdDataCore");
@@ -35423,9 +35200,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<ProdMe>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId }).HasName("PK__ProdMe__97FBDCEF2F6156F7");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId }).HasName("PK__ProdMe__97FBDCEF5C022873");
 
-            entity.ToTable("ProdMe", tb =>
+            entity.ToTable("ProdMe", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_ProdMe");
@@ -35495,14 +35272,14 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithOne(p => p.ProdMe)
                 .HasForeignKey<ProdMe>(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__ProdMe__1EF03DF9");
+                .HasConstraintName("FK__ProdMe__24A9174F");
         });
 
         modelBuilder.Entity<ProdSchedule>(entity =>
         {
-            entity.HasKey(e => new { e.MajorNo, e.MinorNo, e.Source }).HasName("PK__ProdSche__46B8D354ADA97A2F");
+            entity.HasKey(e => new { e.MajorNo, e.MinorNo, e.Source }).HasName("PK__ProdSche__46B8D354AC934610");
 
-            entity.ToTable("ProdSchedule", tb =>
+            entity.ToTable("ProdSchedule", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_ProdSchedule");
@@ -35597,9 +35374,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<ProgParameter>(entity =>
         {
-            entity.HasKey(e => e.Param).HasName("PK__ProgPara__09E7039392A21B60");
+            entity.HasKey(e => e.Param).HasName("PK__ProgPara__09E703932B718761");
 
-            entity.ToTable("ProgParameter", tb =>
+            entity.ToTable("ProgParameter", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_ProgParameter");
@@ -35648,9 +35425,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<Qemea>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId }).HasName("PK__QEMeas__97FBDCEFCA7B2961");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId }).HasName("PK__QEMeas__97FBDCEF2E123841");
 
-            entity.ToTable("QEMeas", tb =>
+            entity.ToTable("QEMeas", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_QEMeas");
@@ -35772,14 +35549,14 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithOne(p => p.Qemea)
                 .HasForeignKey<Qemea>(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__QEMeas__1FAF5808");
+                .HasConstraintName("FK__QEMeas__2568315E");
         });
 
         modelBuilder.Entity<QemeasSeg>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.MeasValueName, e.SegNo }).HasName("PK__QEMeasSe__229264CB5D9C1A94");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.MeasValueName, e.SegNo }).HasName("PK__QEMeasSe__229264CB16156B9C");
 
-            entity.ToTable("QEMeasSeg", tb =>
+            entity.ToTable("QEMeasSeg", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_QEMeasSeg");
@@ -35856,14 +35633,14 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.QemeasSegs)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__QEMeasSeg__32C22C7C");
+                .HasConstraintName("FK__QEMeasSeg__387B05D2");
         });
 
         modelBuilder.Entity<Rcp>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__RCP__D3DB124AC9964C53");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__RCP__D3DB124A89E827CF");
 
-            entity.ToTable("RCP", tb =>
+            entity.ToTable("RCP", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_RCP");
@@ -35917,14 +35694,14 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.Rcps)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__RCP__401C279A");
+                .HasConstraintName("FK__RCP__45D500F0");
         });
 
         modelBuilder.Entity<Rcppass>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.PassNo }).HasName("PK__RCPPass__5DCFA6F98B4BB742");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.PassNo }).HasName("PK__RCPPass__5DCFA6F9D15C8D52");
 
-            entity.ToTable("RCPPass", tb =>
+            entity.ToTable("RCPPass", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_RCPPass");
@@ -36057,14 +35834,14 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.Rcppasses)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__RCPPass__6088F72C");
+                .HasConstraintName("FK__RCPPass__6641D082");
         });
 
         modelBuilder.Entity<Rglp>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__RGLP__D3DB124A4B094402");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__RGLP__D3DB124A958223D5");
 
-            entity.ToTable("RGLP", tb =>
+            entity.ToTable("RGLP", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_RGLP");
@@ -36118,14 +35895,14 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.Rglps)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__RGLP__6DE2F24A");
+                .HasConstraintName("FK__RGLP__739BCBA0");
         });
 
         modelBuilder.Entity<Rglppass>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.PassNo }).HasName("PK__RGLPPass__5DCFA6F94EE0789B");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.PassNo }).HasName("PK__RGLPPass__5DCFA6F9D406F824");
 
-            entity.ToTable("RGLPPass", tb =>
+            entity.ToTable("RGLPPass", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_RGLPPass");
@@ -36214,14 +35991,14 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.Rglppasses)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__RGLPPass__03D23369");
+                .HasConstraintName("FK__RGLPPass__098B0CBF");
         });
 
         modelBuilder.Entity<RmcalcResToMsm>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.StandUnitNo, e.PassNo, e.RmCalcType, e.StripPointId }).HasName("PK__RMCalcRe__C9A72CAA5659A27E");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.StandUnitNo, e.PassNo, e.RmCalcType, e.StripPointId }).HasName("PK__RMCalcRe__C9A72CAAF5763D00");
 
-            entity.ToTable("RMCalcResToMSM", tb =>
+            entity.ToTable("RMCalcResToMSM", "PRDB", tb =>
                 {
                     tb.HasComment("calc results roughing mill to MSM");
                     tb.HasTrigger("TEXTID_RMCalcResToMSM");
@@ -36356,14 +36133,14 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.RmcalcResToMsms)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__RMCalcResToMSM__25332734");
+                .HasConstraintName("FK__RMCalcResToMSM__2AEC008A");
         });
 
         modelBuilder.Entity<RollChamfer>(entity =>
         {
-            entity.HasKey(e => e.RollChamferClass).HasName("PK__RollCham__1A9AD6FDCCED5BA0");
+            entity.HasKey(e => e.RollChamferClass).HasName("PK__RollCham__1A9AD6FD0C728B38");
 
-            entity.ToTable("RollChamfer", tb =>
+            entity.ToTable("RollChamfer", "PRDB", tb =>
                 {
                     tb.HasComment("Roll chamfer");
                     tb.HasTrigger("TI_RollChamfer");
@@ -36433,9 +36210,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<RollClass>(entity =>
         {
-            entity.HasKey(e => e.RollClass1).HasName("PK__RollClas__310B12B06FAFF1CF");
+            entity.HasKey(e => e.RollClass1).HasName("PK__RollClas__310B12B088DBE157");
 
-            entity.ToTable("RollClass", tb =>
+            entity.ToTable("RollClass", "PRDB", tb =>
                 {
                     tb.HasComment("Roll class");
                     tb.HasTrigger("TI_RollClass");
@@ -36517,9 +36294,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<RollCoolCurve>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__RollCool__D3DB124ADF6C71AA");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__RollCool__D3DB124A5D31F4B5");
 
-            entity.ToTable("RollCoolCurve", tb =>
+            entity.ToTable("RollCoolCurve", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_RollCoolCurve");
@@ -36671,14 +36448,14 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.RollCoolCurves)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__RollCoolCurve__6CB9C3E7");
+                .HasConstraintName("FK__RollCoolCurve__72729D3D");
         });
 
         modelBuilder.Entity<RollDatum>(entity =>
         {
-            entity.HasKey(e => e.RollId).HasName("PK__RollData__FAC09AA048453D4E");
+            entity.HasKey(e => e.RollId).HasName("PK__RollData__FAC09AA09CEFD331");
 
-            entity.ToTable(tb =>
+            entity.ToTable("RollData", "PRDB", tb =>
                 {
                     tb.HasComment("Roll data");
                     tb.HasTrigger("TI_RollData");
@@ -36911,9 +36688,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<RollGrindCurveRollShop>(entity =>
         {
-            entity.HasKey(e => new { e.RollId, e.TimeStamp }).HasName("PK__RollGrin__A445EEFA30B9C547");
+            entity.HasKey(e => new { e.RollId, e.TimeStamp }).HasName("PK__RollGrin__A445EEFA79446C5B");
 
-            entity.ToTable("RollGrindCurveRollShop", tb =>
+            entity.ToTable("RollGrindCurveRollShop", "PRDB", tb =>
                 {
                     tb.HasComment("store measured roll shape before and after grinding");
                     tb.HasTrigger("TI_RollGrindCurveRollShop");
@@ -39001,9 +38778,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<RollProperty>(entity =>
         {
-            entity.HasKey(e => e.RollPropertyClass).HasName("PK__RollProp__A803E62D512939F0");
+            entity.HasKey(e => e.RollPropertyClass).HasName("PK__RollProp__A803E62D0D923B8B");
 
-            entity.ToTable("RollProperty", tb =>
+            entity.ToTable("RollProperty", "PRDB", tb =>
                 {
                     tb.HasComment("Roll property");
                     tb.HasTrigger("TI_RollProperty");
@@ -39155,9 +38932,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<RollShapeCoeff>(entity =>
         {
-            entity.HasKey(e => e.ShapeCode).HasName("PK__RollShap__53E7DB0D58DE3E04");
+            entity.HasKey(e => e.ShapeCode).HasName("PK__RollShap__53E7DB0D00F14DA9");
 
-            entity.ToTable("RollShapeCoeff", tb =>
+            entity.ToTable("RollShapeCoeff", "PRDB", tb =>
                 {
                     tb.HasComment("Shape coefficent of rolls");
                     tb.HasTrigger("TI_RollShapeCoeff");
@@ -39243,9 +39020,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<RollShapeCurveCustom>(entity =>
         {
-            entity.HasKey(e => e.ShapeCurveCode).HasName("PK__RollShap__0F46C11B51E40048");
+            entity.HasKey(e => e.ShapeCurveCode).HasName("PK__RollShap__0F46C11BE306BACE");
 
-            entity.ToTable("RollShapeCurveCustom", tb =>
+            entity.ToTable("RollShapeCurveCustom", "PRDB", tb =>
                 {
                     tb.HasComment("Shape curve by customer");
                     tb.HasTrigger("TI_RollShapeCurveCustom");
@@ -40785,9 +40562,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<RollUsage>(entity =>
         {
-            entity.HasKey(e => new { e.RollId, e.InstallCt }).HasName("PK__RollUsag__EFC5E29FDAFE89DC");
+            entity.HasKey(e => new { e.RollId, e.InstallCt }).HasName("PK__RollUsag__EFC5E29F29233C58");
 
-            entity.ToTable("RollUsage", tb =>
+            entity.ToTable("RollUsage", "PRDB", tb =>
                 {
                     tb.HasComment("Roll history");
                     tb.HasTrigger("TI_RollUsage");
@@ -41006,9 +40783,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<RollWear>(entity =>
         {
-            entity.HasKey(e => new { e.RollId, e.TimeStamp }).HasName("PK__RollWear__A445EEFAF6907F0A");
+            entity.HasKey(e => new { e.RollId, e.TimeStamp }).HasName("PK__RollWear__A445EEFAE3C3039D");
 
-            entity.ToTable("RollWear", tb =>
+            entity.ToTable("RollWear", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_RollWear");
@@ -43074,9 +42851,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<RollingSequence>(entity =>
         {
-            entity.HasKey(e => e.IndNr).HasName("PK__RollingS__1D0B59E4C88FCF2D");
+            entity.HasKey(e => e.IndNr).HasName("PK__RollingS__1D0B59E4BB859C9E");
 
-            entity.ToTable("RollingSequence", tb =>
+            entity.ToTable("RollingSequence", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_RollingSequence");
@@ -43115,9 +42892,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<RoughStripTemp>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId }).HasName("PK__RoughStr__97FBDCEFB53AB0E8");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId }).HasName("PK__RoughStr__97FBDCEFE6DB7820");
 
-            entity.ToTable("RoughStripTemp", tb =>
+            entity.ToTable("RoughStripTemp", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_RoughStripTemp");
@@ -43757,12 +43534,12 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithOne(p => p.RoughStripTemp)
                 .HasForeignKey<RoughStripTemp>(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__RoughStripTemp__69D3359B");
+                .HasConstraintName("FK__RoughStripTemp__6F8C0EF1");
         });
 
         modelBuilder.Entity<Rsl2rollDatum>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__RSL2Roll__3213E83F1A1C0798");
+            entity.HasKey(e => e.Id).HasName("PK__RSL2Roll__3213E83FE965A105");
 
             entity.ToTable("RSL2RollData", "COMUSER", tb =>
                 {
@@ -43894,1576 +43671,2094 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<Rsl2rollGrindDatum>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__RSL2Roll__3213E83F109E7C73");
+            entity.HasKey(e => e.Id).HasName("PK__RSL2Roll__3213E83FA4F69E75");
 
             entity.ToTable("RSL2RollGrindData", "COMUSER", tb =>
                 {
+                    tb.HasComment("");
                     tb.HasTrigger("TI_RSL2RollGrindData");
                     tb.HasTrigger("TU_RSL2RollGrindData");
                 });
 
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Id)
+                .HasComment("Plant type:HRM / HFM")
+                .HasColumnName("id");
             entity.Property(e => e.Diameter)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] diameter of roll")
                 .HasColumnName("diameter");
             entity.Property(e => e.Dx)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] Distance between data points")
                 .HasColumnName("dx");
             entity.Property(e => e.GrindFlag)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("0 - before grinding 1 - after grinding")
                 .HasColumnName("grindFlag");
             entity.Property(e => e.GrindTime)
                 .HasPrecision(3)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Time when roll got ground (secondary key)")
                 .HasColumnName("grindTime");
             entity.Property(e => e.MachineId)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] Grinding machine ID")
                 .HasColumnName("machineId");
             entity.Property(e => e.Mop)
                 .HasMaxLength(120)
                 .IsUnicode(false)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("modifying process")
                 .HasColumnName("mop");
             entity.Property(e => e.Offset)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] Offset of starting point to barrel edge")
                 .HasColumnName("offset");
             entity.Property(e => e.PlantType)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("0-RM, 1 - FM")
                 .HasColumnName("plantType");
             entity.Property(e => e.Position)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("0: Upper 1: Lower")
                 .HasColumnName("position");
             entity.Property(e => e.RollId)
                 .HasMaxLength(8)
                 .IsUnicode(false)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Roll ID (primary key)")
                 .HasColumnName("rollID");
             entity.Property(e => e.RollType)
                 .HasMaxLength(3)
                 .IsUnicode(false)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Roll type (_BUR_, _WKR_)")
                 .HasColumnName("rollType");
             entity.Property(e => e.StandId)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("HRM: 1,2,3; HFM:1,2,3,4,5")
                 .HasColumnName("standId");
             entity.Property(e => e.Toc)
                 .HasPrecision(3)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("time of creation")
                 .HasColumnName("toc");
             entity.Property(e => e.Tom)
                 .HasPrecision(3)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("time of modification")
                 .HasColumnName("tom");
             entity.Property(e => e.ValidPoints)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Number of valid points in recording")
                 .HasColumnName("validPoints");
             entity.Property(e => e.ValueInd0)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind0");
             entity.Property(e => e.ValueInd1)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind1");
             entity.Property(e => e.ValueInd10)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind10");
             entity.Property(e => e.ValueInd100)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind100");
             entity.Property(e => e.ValueInd101)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind101");
             entity.Property(e => e.ValueInd102)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind102");
             entity.Property(e => e.ValueInd103)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind103");
             entity.Property(e => e.ValueInd104)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind104");
             entity.Property(e => e.ValueInd105)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind105");
             entity.Property(e => e.ValueInd106)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind106");
             entity.Property(e => e.ValueInd107)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind107");
             entity.Property(e => e.ValueInd108)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind108");
             entity.Property(e => e.ValueInd109)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind109");
             entity.Property(e => e.ValueInd11)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind11");
             entity.Property(e => e.ValueInd110)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind110");
             entity.Property(e => e.ValueInd111)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind111");
             entity.Property(e => e.ValueInd112)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind112");
             entity.Property(e => e.ValueInd113)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind113");
             entity.Property(e => e.ValueInd114)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind114");
             entity.Property(e => e.ValueInd115)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind115");
             entity.Property(e => e.ValueInd116)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind116");
             entity.Property(e => e.ValueInd117)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind117");
             entity.Property(e => e.ValueInd118)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind118");
             entity.Property(e => e.ValueInd119)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind119");
             entity.Property(e => e.ValueInd12)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind12");
             entity.Property(e => e.ValueInd120)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind120");
             entity.Property(e => e.ValueInd121)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind121");
             entity.Property(e => e.ValueInd122)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind122");
             entity.Property(e => e.ValueInd123)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind123");
             entity.Property(e => e.ValueInd124)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind124");
             entity.Property(e => e.ValueInd125)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind125");
             entity.Property(e => e.ValueInd126)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind126");
             entity.Property(e => e.ValueInd127)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind127");
             entity.Property(e => e.ValueInd128)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind128");
             entity.Property(e => e.ValueInd129)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind129");
             entity.Property(e => e.ValueInd13)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind13");
             entity.Property(e => e.ValueInd130)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind130");
             entity.Property(e => e.ValueInd131)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind131");
             entity.Property(e => e.ValueInd132)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind132");
             entity.Property(e => e.ValueInd133)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind133");
             entity.Property(e => e.ValueInd134)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind134");
             entity.Property(e => e.ValueInd135)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind135");
             entity.Property(e => e.ValueInd136)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind136");
             entity.Property(e => e.ValueInd137)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind137");
             entity.Property(e => e.ValueInd138)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind138");
             entity.Property(e => e.ValueInd139)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind139");
             entity.Property(e => e.ValueInd14)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind14");
             entity.Property(e => e.ValueInd140)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind140");
             entity.Property(e => e.ValueInd141)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind141");
             entity.Property(e => e.ValueInd142)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind142");
             entity.Property(e => e.ValueInd143)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind143");
             entity.Property(e => e.ValueInd144)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind144");
             entity.Property(e => e.ValueInd145)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind145");
             entity.Property(e => e.ValueInd146)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind146");
             entity.Property(e => e.ValueInd147)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind147");
             entity.Property(e => e.ValueInd148)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind148");
             entity.Property(e => e.ValueInd149)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind149");
             entity.Property(e => e.ValueInd15)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind15");
             entity.Property(e => e.ValueInd150)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind150");
             entity.Property(e => e.ValueInd151)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind151");
             entity.Property(e => e.ValueInd152)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind152");
             entity.Property(e => e.ValueInd153)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind153");
             entity.Property(e => e.ValueInd154)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind154");
             entity.Property(e => e.ValueInd155)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind155");
             entity.Property(e => e.ValueInd156)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind156");
             entity.Property(e => e.ValueInd157)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind157");
             entity.Property(e => e.ValueInd158)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind158");
             entity.Property(e => e.ValueInd159)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind159");
             entity.Property(e => e.ValueInd16)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind16");
             entity.Property(e => e.ValueInd160)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind160");
             entity.Property(e => e.ValueInd161)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind161");
             entity.Property(e => e.ValueInd162)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind162");
             entity.Property(e => e.ValueInd163)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind163");
             entity.Property(e => e.ValueInd164)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind164");
             entity.Property(e => e.ValueInd165)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind165");
             entity.Property(e => e.ValueInd166)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind166");
             entity.Property(e => e.ValueInd167)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind167");
             entity.Property(e => e.ValueInd168)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind168");
             entity.Property(e => e.ValueInd169)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind169");
             entity.Property(e => e.ValueInd17)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind17");
             entity.Property(e => e.ValueInd170)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind170");
             entity.Property(e => e.ValueInd171)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind171");
             entity.Property(e => e.ValueInd172)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind172");
             entity.Property(e => e.ValueInd173)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind173");
             entity.Property(e => e.ValueInd174)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind174");
             entity.Property(e => e.ValueInd175)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind175");
             entity.Property(e => e.ValueInd176)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind176");
             entity.Property(e => e.ValueInd177)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind177");
             entity.Property(e => e.ValueInd178)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind178");
             entity.Property(e => e.ValueInd179)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind179");
             entity.Property(e => e.ValueInd18)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind18");
             entity.Property(e => e.ValueInd180)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind180");
             entity.Property(e => e.ValueInd181)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind181");
             entity.Property(e => e.ValueInd182)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind182");
             entity.Property(e => e.ValueInd183)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind183");
             entity.Property(e => e.ValueInd184)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind184");
             entity.Property(e => e.ValueInd185)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind185");
             entity.Property(e => e.ValueInd186)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind186");
             entity.Property(e => e.ValueInd187)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind187");
             entity.Property(e => e.ValueInd188)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind188");
             entity.Property(e => e.ValueInd189)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind189");
             entity.Property(e => e.ValueInd19)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind19");
             entity.Property(e => e.ValueInd190)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind190");
             entity.Property(e => e.ValueInd191)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind191");
             entity.Property(e => e.ValueInd192)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind192");
             entity.Property(e => e.ValueInd193)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind193");
             entity.Property(e => e.ValueInd194)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind194");
             entity.Property(e => e.ValueInd195)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind195");
             entity.Property(e => e.ValueInd196)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind196");
             entity.Property(e => e.ValueInd197)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind197");
             entity.Property(e => e.ValueInd198)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind198");
             entity.Property(e => e.ValueInd199)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind199");
             entity.Property(e => e.ValueInd2)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind2");
             entity.Property(e => e.ValueInd20)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind20");
             entity.Property(e => e.ValueInd200)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind200");
             entity.Property(e => e.ValueInd201)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind201");
             entity.Property(e => e.ValueInd202)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind202");
             entity.Property(e => e.ValueInd203)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind203");
             entity.Property(e => e.ValueInd204)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind204");
             entity.Property(e => e.ValueInd205)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind205");
             entity.Property(e => e.ValueInd206)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind206");
             entity.Property(e => e.ValueInd207)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind207");
             entity.Property(e => e.ValueInd208)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind208");
             entity.Property(e => e.ValueInd209)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind209");
             entity.Property(e => e.ValueInd21)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind21");
             entity.Property(e => e.ValueInd210)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind210");
             entity.Property(e => e.ValueInd211)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind211");
             entity.Property(e => e.ValueInd212)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind212");
             entity.Property(e => e.ValueInd213)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind213");
             entity.Property(e => e.ValueInd214)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind214");
             entity.Property(e => e.ValueInd215)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind215");
             entity.Property(e => e.ValueInd216)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind216");
             entity.Property(e => e.ValueInd217)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind217");
             entity.Property(e => e.ValueInd218)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind218");
             entity.Property(e => e.ValueInd219)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind219");
             entity.Property(e => e.ValueInd22)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind22");
             entity.Property(e => e.ValueInd220)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind220");
             entity.Property(e => e.ValueInd221)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind221");
             entity.Property(e => e.ValueInd222)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind222");
             entity.Property(e => e.ValueInd223)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind223");
             entity.Property(e => e.ValueInd224)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind224");
             entity.Property(e => e.ValueInd225)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind225");
             entity.Property(e => e.ValueInd226)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind226");
             entity.Property(e => e.ValueInd227)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind227");
             entity.Property(e => e.ValueInd228)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind228");
             entity.Property(e => e.ValueInd229)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind229");
             entity.Property(e => e.ValueInd23)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind23");
             entity.Property(e => e.ValueInd230)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind230");
             entity.Property(e => e.ValueInd231)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind231");
             entity.Property(e => e.ValueInd232)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind232");
             entity.Property(e => e.ValueInd233)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind233");
             entity.Property(e => e.ValueInd234)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind234");
             entity.Property(e => e.ValueInd235)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind235");
             entity.Property(e => e.ValueInd236)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind236");
             entity.Property(e => e.ValueInd237)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind237");
             entity.Property(e => e.ValueInd238)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind238");
             entity.Property(e => e.ValueInd239)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind239");
             entity.Property(e => e.ValueInd24)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind24");
             entity.Property(e => e.ValueInd240)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind240");
             entity.Property(e => e.ValueInd241)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind241");
             entity.Property(e => e.ValueInd242)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind242");
             entity.Property(e => e.ValueInd243)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind243");
             entity.Property(e => e.ValueInd244)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind244");
             entity.Property(e => e.ValueInd245)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind245");
             entity.Property(e => e.ValueInd246)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind246");
             entity.Property(e => e.ValueInd247)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind247");
             entity.Property(e => e.ValueInd248)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind248");
             entity.Property(e => e.ValueInd249)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind249");
             entity.Property(e => e.ValueInd25)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind25");
             entity.Property(e => e.ValueInd250)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind250");
             entity.Property(e => e.ValueInd251)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind251");
             entity.Property(e => e.ValueInd252)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind252");
             entity.Property(e => e.ValueInd253)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind253");
             entity.Property(e => e.ValueInd254)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind254");
             entity.Property(e => e.ValueInd255)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind255");
             entity.Property(e => e.ValueInd256)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind256");
             entity.Property(e => e.ValueInd257)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind257");
             entity.Property(e => e.ValueInd258)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind258");
             entity.Property(e => e.ValueInd259)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind259");
             entity.Property(e => e.ValueInd26)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind26");
             entity.Property(e => e.ValueInd260)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind260");
             entity.Property(e => e.ValueInd261)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind261");
             entity.Property(e => e.ValueInd262)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind262");
             entity.Property(e => e.ValueInd263)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind263");
             entity.Property(e => e.ValueInd264)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind264");
             entity.Property(e => e.ValueInd265)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind265");
             entity.Property(e => e.ValueInd266)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind266");
             entity.Property(e => e.ValueInd267)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind267");
             entity.Property(e => e.ValueInd268)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind268");
             entity.Property(e => e.ValueInd269)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind269");
             entity.Property(e => e.ValueInd27)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind27");
             entity.Property(e => e.ValueInd270)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind270");
             entity.Property(e => e.ValueInd271)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind271");
             entity.Property(e => e.ValueInd272)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind272");
             entity.Property(e => e.ValueInd273)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind273");
             entity.Property(e => e.ValueInd274)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind274");
             entity.Property(e => e.ValueInd275)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind275");
             entity.Property(e => e.ValueInd276)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind276");
             entity.Property(e => e.ValueInd277)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind277");
             entity.Property(e => e.ValueInd278)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind278");
             entity.Property(e => e.ValueInd279)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind279");
             entity.Property(e => e.ValueInd28)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind28");
             entity.Property(e => e.ValueInd280)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind280");
             entity.Property(e => e.ValueInd281)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind281");
             entity.Property(e => e.ValueInd282)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind282");
             entity.Property(e => e.ValueInd283)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind283");
             entity.Property(e => e.ValueInd284)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind284");
             entity.Property(e => e.ValueInd285)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind285");
             entity.Property(e => e.ValueInd286)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind286");
             entity.Property(e => e.ValueInd287)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind287");
             entity.Property(e => e.ValueInd288)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind288");
             entity.Property(e => e.ValueInd289)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind289");
             entity.Property(e => e.ValueInd29)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind29");
             entity.Property(e => e.ValueInd290)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind290");
             entity.Property(e => e.ValueInd291)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind291");
             entity.Property(e => e.ValueInd292)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind292");
             entity.Property(e => e.ValueInd293)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind293");
             entity.Property(e => e.ValueInd294)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind294");
             entity.Property(e => e.ValueInd295)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind295");
             entity.Property(e => e.ValueInd296)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind296");
             entity.Property(e => e.ValueInd297)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind297");
             entity.Property(e => e.ValueInd298)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind298");
             entity.Property(e => e.ValueInd299)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind299");
             entity.Property(e => e.ValueInd3)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind3");
             entity.Property(e => e.ValueInd30)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind30");
             entity.Property(e => e.ValueInd300)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind300");
             entity.Property(e => e.ValueInd301)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind301");
             entity.Property(e => e.ValueInd302)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind302");
             entity.Property(e => e.ValueInd303)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind303");
             entity.Property(e => e.ValueInd304)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind304");
             entity.Property(e => e.ValueInd305)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind305");
             entity.Property(e => e.ValueInd306)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind306");
             entity.Property(e => e.ValueInd307)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind307");
             entity.Property(e => e.ValueInd308)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind308");
             entity.Property(e => e.ValueInd309)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind309");
             entity.Property(e => e.ValueInd31)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind31");
             entity.Property(e => e.ValueInd310)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind310");
             entity.Property(e => e.ValueInd311)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind311");
             entity.Property(e => e.ValueInd312)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind312");
             entity.Property(e => e.ValueInd313)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind313");
             entity.Property(e => e.ValueInd314)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind314");
             entity.Property(e => e.ValueInd315)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind315");
             entity.Property(e => e.ValueInd316)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind316");
             entity.Property(e => e.ValueInd317)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind317");
             entity.Property(e => e.ValueInd318)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind318");
             entity.Property(e => e.ValueInd319)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind319");
             entity.Property(e => e.ValueInd32)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind32");
             entity.Property(e => e.ValueInd320)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind320");
             entity.Property(e => e.ValueInd321)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind321");
             entity.Property(e => e.ValueInd322)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind322");
             entity.Property(e => e.ValueInd323)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind323");
             entity.Property(e => e.ValueInd324)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind324");
             entity.Property(e => e.ValueInd325)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind325");
             entity.Property(e => e.ValueInd326)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind326");
             entity.Property(e => e.ValueInd327)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind327");
             entity.Property(e => e.ValueInd328)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind328");
             entity.Property(e => e.ValueInd329)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind329");
             entity.Property(e => e.ValueInd33)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind33");
             entity.Property(e => e.ValueInd330)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind330");
             entity.Property(e => e.ValueInd331)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind331");
             entity.Property(e => e.ValueInd332)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind332");
             entity.Property(e => e.ValueInd333)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind333");
             entity.Property(e => e.ValueInd334)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind334");
             entity.Property(e => e.ValueInd335)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind335");
             entity.Property(e => e.ValueInd336)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind336");
             entity.Property(e => e.ValueInd337)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind337");
             entity.Property(e => e.ValueInd338)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind338");
             entity.Property(e => e.ValueInd339)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind339");
             entity.Property(e => e.ValueInd34)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind34");
             entity.Property(e => e.ValueInd340)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind340");
             entity.Property(e => e.ValueInd341)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind341");
             entity.Property(e => e.ValueInd342)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind342");
             entity.Property(e => e.ValueInd343)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind343");
             entity.Property(e => e.ValueInd344)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind344");
             entity.Property(e => e.ValueInd345)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind345");
             entity.Property(e => e.ValueInd346)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind346");
             entity.Property(e => e.ValueInd347)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind347");
             entity.Property(e => e.ValueInd348)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind348");
             entity.Property(e => e.ValueInd349)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind349");
             entity.Property(e => e.ValueInd35)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind35");
             entity.Property(e => e.ValueInd350)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind350");
             entity.Property(e => e.ValueInd351)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind351");
             entity.Property(e => e.ValueInd352)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind352");
             entity.Property(e => e.ValueInd353)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind353");
             entity.Property(e => e.ValueInd354)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind354");
             entity.Property(e => e.ValueInd355)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind355");
             entity.Property(e => e.ValueInd356)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind356");
             entity.Property(e => e.ValueInd357)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind357");
             entity.Property(e => e.ValueInd358)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind358");
             entity.Property(e => e.ValueInd359)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind359");
             entity.Property(e => e.ValueInd36)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind36");
             entity.Property(e => e.ValueInd360)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind360");
             entity.Property(e => e.ValueInd361)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind361");
             entity.Property(e => e.ValueInd362)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind362");
             entity.Property(e => e.ValueInd363)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind363");
             entity.Property(e => e.ValueInd364)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind364");
             entity.Property(e => e.ValueInd365)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind365");
             entity.Property(e => e.ValueInd366)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind366");
             entity.Property(e => e.ValueInd367)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind367");
             entity.Property(e => e.ValueInd368)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind368");
             entity.Property(e => e.ValueInd369)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind369");
             entity.Property(e => e.ValueInd37)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind37");
             entity.Property(e => e.ValueInd370)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind370");
             entity.Property(e => e.ValueInd371)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind371");
             entity.Property(e => e.ValueInd372)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind372");
             entity.Property(e => e.ValueInd373)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind373");
             entity.Property(e => e.ValueInd374)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind374");
             entity.Property(e => e.ValueInd375)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind375");
             entity.Property(e => e.ValueInd376)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind376");
             entity.Property(e => e.ValueInd377)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind377");
             entity.Property(e => e.ValueInd378)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind378");
             entity.Property(e => e.ValueInd379)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind379");
             entity.Property(e => e.ValueInd38)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind38");
             entity.Property(e => e.ValueInd380)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind380");
             entity.Property(e => e.ValueInd381)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind381");
             entity.Property(e => e.ValueInd382)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind382");
             entity.Property(e => e.ValueInd383)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind383");
             entity.Property(e => e.ValueInd384)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind384");
             entity.Property(e => e.ValueInd385)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind385");
             entity.Property(e => e.ValueInd386)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind386");
             entity.Property(e => e.ValueInd387)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind387");
             entity.Property(e => e.ValueInd388)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind388");
             entity.Property(e => e.ValueInd389)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind389");
             entity.Property(e => e.ValueInd39)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind39");
             entity.Property(e => e.ValueInd390)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind390");
             entity.Property(e => e.ValueInd391)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind391");
             entity.Property(e => e.ValueInd392)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind392");
             entity.Property(e => e.ValueInd393)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind393");
             entity.Property(e => e.ValueInd394)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind394");
             entity.Property(e => e.ValueInd395)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind395");
             entity.Property(e => e.ValueInd396)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind396");
             entity.Property(e => e.ValueInd397)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind397");
             entity.Property(e => e.ValueInd398)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind398");
             entity.Property(e => e.ValueInd399)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind399");
             entity.Property(e => e.ValueInd4)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind4");
             entity.Property(e => e.ValueInd40)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind40");
             entity.Property(e => e.ValueInd400)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind400");
             entity.Property(e => e.ValueInd401)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind401");
             entity.Property(e => e.ValueInd402)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind402");
             entity.Property(e => e.ValueInd403)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind403");
             entity.Property(e => e.ValueInd404)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind404");
             entity.Property(e => e.ValueInd405)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind405");
             entity.Property(e => e.ValueInd406)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind406");
             entity.Property(e => e.ValueInd407)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind407");
             entity.Property(e => e.ValueInd408)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind408");
             entity.Property(e => e.ValueInd409)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind409");
             entity.Property(e => e.ValueInd41)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind41");
             entity.Property(e => e.ValueInd410)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind410");
             entity.Property(e => e.ValueInd411)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind411");
             entity.Property(e => e.ValueInd412)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind412");
             entity.Property(e => e.ValueInd413)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind413");
             entity.Property(e => e.ValueInd414)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind414");
             entity.Property(e => e.ValueInd415)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind415");
             entity.Property(e => e.ValueInd416)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind416");
             entity.Property(e => e.ValueInd417)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind417");
             entity.Property(e => e.ValueInd418)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind418");
             entity.Property(e => e.ValueInd419)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind419");
             entity.Property(e => e.ValueInd42)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind42");
             entity.Property(e => e.ValueInd420)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind420");
             entity.Property(e => e.ValueInd421)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind421");
             entity.Property(e => e.ValueInd422)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind422");
             entity.Property(e => e.ValueInd423)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind423");
             entity.Property(e => e.ValueInd424)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind424");
             entity.Property(e => e.ValueInd425)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind425");
             entity.Property(e => e.ValueInd426)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind426");
             entity.Property(e => e.ValueInd427)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind427");
             entity.Property(e => e.ValueInd428)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind428");
             entity.Property(e => e.ValueInd429)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind429");
             entity.Property(e => e.ValueInd43)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind43");
             entity.Property(e => e.ValueInd430)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind430");
             entity.Property(e => e.ValueInd431)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind431");
             entity.Property(e => e.ValueInd432)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind432");
             entity.Property(e => e.ValueInd433)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind433");
             entity.Property(e => e.ValueInd434)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind434");
             entity.Property(e => e.ValueInd435)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind435");
             entity.Property(e => e.ValueInd436)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind436");
             entity.Property(e => e.ValueInd437)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind437");
             entity.Property(e => e.ValueInd438)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind438");
             entity.Property(e => e.ValueInd439)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind439");
             entity.Property(e => e.ValueInd44)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind44");
             entity.Property(e => e.ValueInd440)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind440");
             entity.Property(e => e.ValueInd441)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind441");
             entity.Property(e => e.ValueInd442)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind442");
             entity.Property(e => e.ValueInd443)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind443");
             entity.Property(e => e.ValueInd444)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind444");
             entity.Property(e => e.ValueInd445)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind445");
             entity.Property(e => e.ValueInd446)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind446");
             entity.Property(e => e.ValueInd447)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind447");
             entity.Property(e => e.ValueInd448)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind448");
             entity.Property(e => e.ValueInd449)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind449");
             entity.Property(e => e.ValueInd45)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind45");
             entity.Property(e => e.ValueInd450)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind450");
             entity.Property(e => e.ValueInd451)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind451");
             entity.Property(e => e.ValueInd452)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind452");
             entity.Property(e => e.ValueInd453)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind453");
             entity.Property(e => e.ValueInd454)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind454");
             entity.Property(e => e.ValueInd455)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind455");
             entity.Property(e => e.ValueInd456)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind456");
             entity.Property(e => e.ValueInd457)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind457");
             entity.Property(e => e.ValueInd458)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind458");
             entity.Property(e => e.ValueInd459)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind459");
             entity.Property(e => e.ValueInd46)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind46");
             entity.Property(e => e.ValueInd460)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind460");
             entity.Property(e => e.ValueInd461)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind461");
             entity.Property(e => e.ValueInd462)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind462");
             entity.Property(e => e.ValueInd463)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind463");
             entity.Property(e => e.ValueInd464)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind464");
             entity.Property(e => e.ValueInd465)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind465");
             entity.Property(e => e.ValueInd466)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind466");
             entity.Property(e => e.ValueInd467)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind467");
             entity.Property(e => e.ValueInd468)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind468");
             entity.Property(e => e.ValueInd469)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind469");
             entity.Property(e => e.ValueInd47)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind47");
             entity.Property(e => e.ValueInd470)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind470");
             entity.Property(e => e.ValueInd471)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind471");
             entity.Property(e => e.ValueInd472)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind472");
             entity.Property(e => e.ValueInd473)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind473");
             entity.Property(e => e.ValueInd474)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind474");
             entity.Property(e => e.ValueInd475)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind475");
             entity.Property(e => e.ValueInd476)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind476");
             entity.Property(e => e.ValueInd477)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind477");
             entity.Property(e => e.ValueInd478)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind478");
             entity.Property(e => e.ValueInd479)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind479");
             entity.Property(e => e.ValueInd48)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind48");
             entity.Property(e => e.ValueInd480)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind480");
             entity.Property(e => e.ValueInd481)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind481");
             entity.Property(e => e.ValueInd482)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind482");
             entity.Property(e => e.ValueInd483)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind483");
             entity.Property(e => e.ValueInd484)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind484");
             entity.Property(e => e.ValueInd485)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind485");
             entity.Property(e => e.ValueInd486)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind486");
             entity.Property(e => e.ValueInd487)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind487");
             entity.Property(e => e.ValueInd488)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind488");
             entity.Property(e => e.ValueInd489)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind489");
             entity.Property(e => e.ValueInd49)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind49");
             entity.Property(e => e.ValueInd490)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind490");
             entity.Property(e => e.ValueInd491)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind491");
             entity.Property(e => e.ValueInd492)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind492");
             entity.Property(e => e.ValueInd493)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind493");
             entity.Property(e => e.ValueInd494)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind494");
             entity.Property(e => e.ValueInd495)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind495");
             entity.Property(e => e.ValueInd496)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind496");
             entity.Property(e => e.ValueInd497)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind497");
             entity.Property(e => e.ValueInd498)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind498");
             entity.Property(e => e.ValueInd499)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind499");
             entity.Property(e => e.ValueInd5)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind5");
             entity.Property(e => e.ValueInd50)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind50");
             entity.Property(e => e.ValueInd51)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind51");
             entity.Property(e => e.ValueInd52)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind52");
             entity.Property(e => e.ValueInd53)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind53");
             entity.Property(e => e.ValueInd54)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind54");
             entity.Property(e => e.ValueInd55)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind55");
             entity.Property(e => e.ValueInd56)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind56");
             entity.Property(e => e.ValueInd57)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind57");
             entity.Property(e => e.ValueInd58)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind58");
             entity.Property(e => e.ValueInd59)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind59");
             entity.Property(e => e.ValueInd6)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind6");
             entity.Property(e => e.ValueInd60)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind60");
             entity.Property(e => e.ValueInd61)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind61");
             entity.Property(e => e.ValueInd62)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind62");
             entity.Property(e => e.ValueInd63)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind63");
             entity.Property(e => e.ValueInd64)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind64");
             entity.Property(e => e.ValueInd65)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind65");
             entity.Property(e => e.ValueInd66)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind66");
             entity.Property(e => e.ValueInd67)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind67");
             entity.Property(e => e.ValueInd68)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind68");
             entity.Property(e => e.ValueInd69)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind69");
             entity.Property(e => e.ValueInd7)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind7");
             entity.Property(e => e.ValueInd70)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind70");
             entity.Property(e => e.ValueInd71)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind71");
             entity.Property(e => e.ValueInd72)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind72");
             entity.Property(e => e.ValueInd73)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind73");
             entity.Property(e => e.ValueInd74)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind74");
             entity.Property(e => e.ValueInd75)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind75");
             entity.Property(e => e.ValueInd76)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind76");
             entity.Property(e => e.ValueInd77)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind77");
             entity.Property(e => e.ValueInd78)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind78");
             entity.Property(e => e.ValueInd79)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind79");
             entity.Property(e => e.ValueInd8)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind8");
             entity.Property(e => e.ValueInd80)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind80");
             entity.Property(e => e.ValueInd81)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind81");
             entity.Property(e => e.ValueInd82)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind82");
             entity.Property(e => e.ValueInd83)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind83");
             entity.Property(e => e.ValueInd84)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind84");
             entity.Property(e => e.ValueInd85)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind85");
             entity.Property(e => e.ValueInd86)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind86");
             entity.Property(e => e.ValueInd87)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind87");
             entity.Property(e => e.ValueInd88)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind88");
             entity.Property(e => e.ValueInd89)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind89");
             entity.Property(e => e.ValueInd9)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind9");
             entity.Property(e => e.ValueInd90)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind90");
             entity.Property(e => e.ValueInd91)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind91");
             entity.Property(e => e.ValueInd92)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind92");
             entity.Property(e => e.ValueInd93)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind93");
             entity.Property(e => e.ValueInd94)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind94");
             entity.Property(e => e.ValueInd95)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind95");
             entity.Property(e => e.ValueInd96)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind96");
             entity.Property(e => e.ValueInd97)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind97");
             entity.Property(e => e.ValueInd98)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind98");
             entity.Property(e => e.ValueInd99)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] measurement diameter")
                 .HasColumnName("value_ind99");
         });
 
         modelBuilder.Entity<ScrapCut>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.CutTime }).HasName("PK__ScrapCut__CA20C434809E9EE6");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.CutTime }).HasName("PK__ScrapCut__CA20C434107EFB5E");
 
-            entity.ToTable("ScrapCut", tb =>
+            entity.ToTable("ScrapCut", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_ScrapCut");
@@ -45528,14 +45823,14 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.ScrapCuts)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__ScrapCut__7A099D64");
+                .HasConstraintName("FK__ScrapCut__7FC276BA");
         });
 
         modelBuilder.Entity<SegDefPc1>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId }).HasName("PK__SegDefPc__97FBDCEFC1EE3310");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId }).HasName("PK__SegDefPc__97FBDCEF72B2F9F0");
 
-            entity.ToTable("SegDefPc1", tb =>
+            entity.ToTable("SegDefPc1", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_SegDefPc1");
@@ -46679,14 +46974,14 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithOne(p => p.SegDefPc1)
                 .HasForeignKey<SegDefPc1>(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__SegDefPc1__0BBE394B");
+                .HasConstraintName("FK__SegDefPc1__117712A1");
         });
 
         modelBuilder.Entity<SegDefPc2>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId }).HasName("PK__SegDefPc__97FBDCEF64AD4DF4");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId }).HasName("PK__SegDefPc__97FBDCEFA071436F");
 
-            entity.ToTable("SegDefPc2", tb =>
+            entity.ToTable("SegDefPc2", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_SegDefPc2");
@@ -47826,14 +48121,14 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithOne(p => p.SegDefPc2)
                 .HasForeignKey<SegDefPc2>(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__SegDefPc2__1C7EB0F9");
+                .HasConstraintName("FK__SegDefPc2__22378A4F");
         });
 
         modelBuilder.Entity<SegInfoTranslate>(entity =>
         {
-            entity.HasKey(e => e.Description).HasName("PK__SegInfoT__489B0D962DED87A1");
+            entity.HasKey(e => e.Description).HasName("PK__SegInfoT__489B0D960281E564");
 
-            entity.ToTable("SegInfoTranslate", tb =>
+            entity.ToTable("SegInfoTranslate", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_SegInfoTranslate");
@@ -47870,9 +48165,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<SequenceStartEnd>(entity =>
         {
-            entity.HasKey(e => new { e.RecTime, e.Counter }).HasName("PK__Sequence__6360008427824D8D");
+            entity.HasKey(e => new { e.RecTime, e.Counter }).HasName("PK__Sequence__63600084EB24BB5E");
 
-            entity.ToTable("SequenceStartEnd", tb =>
+            entity.ToTable("SequenceStartEnd", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_SequenceStartEnd");
@@ -47947,9 +48242,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<SetupColour>(entity =>
         {
-            entity.HasKey(e => e.Colour).HasName("PK__Setup_Co__03FE59870A839BB9");
+            entity.HasKey(e => e.Colour).HasName("PK__Setup_Co__03FE59875D53232B");
 
-            entity.ToTable("Setup_Colour", tb =>
+            entity.ToTable("Setup_Colour", "PRDB", tb =>
                 {
                     tb.HasComment("defines different colours with name and colour (number)");
                     tb.HasTrigger("TI_Setup_Colour");
@@ -47986,9 +48281,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<Shift>(entity =>
         {
-            entity.HasKey(e => new { e.ProdDay, e.ShiftNo }).HasName("PK__Shift__3D5D1514A3E3EF24");
+            entity.HasKey(e => new { e.ProdDay, e.ShiftNo }).HasName("PK__Shift__3D5D15140131982B");
 
-            entity.ToTable("Shift", tb =>
+            entity.ToTable("Shift", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_Shift");
@@ -48082,9 +48377,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<ShiftParam>(entity =>
         {
-            entity.HasKey(e => e.No).HasName("PK__ShiftPar__3213D0808156D84E");
+            entity.HasKey(e => e.No).HasName("PK__ShiftPar__3213D0806C8F94B2");
 
-            entity.ToTable(tb =>
+            entity.ToTable("ShiftParams", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_ShiftParams");
@@ -48151,9 +48446,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<ShiftSum>(entity =>
         {
-            entity.HasKey(e => e.ShiftStartTime).HasName("PK__ShiftSum__B60D3AD5651F2C32");
+            entity.HasKey(e => e.ShiftStartTime).HasName("PK__ShiftSum__B60D3AD54706D80C");
 
-            entity.ToTable("ShiftSum", tb =>
+            entity.ToTable("ShiftSum", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_ShiftSum");
@@ -48283,9 +48578,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<SpLogEnt>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.ThickHead }).HasName("PK__SpLogEnt__3EFAB4C21B3F50D3");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.ThickHead }).HasName("PK__SpLogEnt__3EFAB4C224BAA3E5");
 
-            entity.ToTable("SpLogEnt", tb =>
+            entity.ToTable("SpLogEnt", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_SpLogEnt");
@@ -48510,14 +48805,14 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.SpLogEnts)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__SpLogEnt__37F1C144");
+                .HasConstraintName("FK__SpLogEnt__3DAA9A9A");
         });
 
         modelBuilder.Entity<SpOrd1PcStand>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.ThickHead, e.StandId }).HasName("PK__SpOrd1Pc__591600A40809C909");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.ThickHead, e.StandId }).HasName("PK__SpOrd1Pc__591600A40D1F106F");
 
-            entity.ToTable("SpOrd1PcStand", tb =>
+            entity.ToTable("SpOrd1PcStand", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_SpOrd1PcStand");
@@ -48569,14 +48864,14 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.SpOrd1PcStands)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__SpOrd1PcStand__454BBC62");
+                .HasConstraintName("FK__SpOrd1PcStand__4B0495B8");
         });
 
         modelBuilder.Entity<SpOrd2Pc>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.ThickHead }).HasName("PK__SpOrd2Pc__3EFAB4C2EE1C2C06");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.ThickHead }).HasName("PK__SpOrd2Pc__3EFAB4C28DB956B6");
 
-            entity.ToTable("SpOrd2Pc", tb =>
+            entity.ToTable("SpOrd2Pc", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_SpOrd2Pc");
@@ -49943,14 +50238,14 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.SpOrd2Pcs)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__SpOrd2Pc__0A7FFC4F");
+                .HasConstraintName("FK__SpOrd2Pc__1038D5A5");
         });
 
         modelBuilder.Entity<SpOrd2PcStand>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.ThickHead, e.StandId }).HasName("PK__SpOrd2Pc__591600A495FC3165");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.ThickHead, e.StandId }).HasName("PK__SpOrd2Pc__591600A442355E9F");
 
-            entity.ToTable("SpOrd2PcStand", tb =>
+            entity.ToTable("SpOrd2PcStand", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_SpOrd2PcStand");
@@ -50681,7 +50976,10 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[Nm] rolling torque (wedge target/ next strip)")
                 .HasColumnName("msWT");
-            entity.Property(e => e.PfcShapeType).HasColumnName("pfcShapeType");
+            entity.Property(e => e.PfcShapeType)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("shape type for PFC")
+                .HasColumnName("pfcShapeType");
             entity.Property(e => e.PositionWrs)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[m] work roll shifting position")
@@ -50863,14 +51161,14 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.SpOrd2PcStands)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__SpOrd2PcStand__64E4634C");
+                .HasConstraintName("FK__SpOrd2PcStand__6B9160DB");
         });
 
         modelBuilder.Entity<SpOrdEnt>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.ThickHead }).HasName("PK__SpOrdEnt__3EFAB4C2CEC33080");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.ThickHead }).HasName("PK__SpOrdEnt__3EFAB4C289258F6E");
 
-            entity.ToTable("SpOrdEnt", tb =>
+            entity.ToTable("SpOrdEnt", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_SpOrdEnt");
@@ -51021,14 +51319,14 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.SpOrdEnts)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__SpOrdEnt__082D9F89");
+                .HasConstraintName("FK__SpOrdEnt__0EDA9D18");
         });
 
         modelBuilder.Entity<SpPhyEnt>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.ThickHead }).HasName("PK__SpPhyEnt__3EFAB4C2AAB07D15");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.ThickHead }).HasName("PK__SpPhyEnt__3EFAB4C2D884BB7A");
 
-            entity.ToTable("SpPhyEnt", tb =>
+            entity.ToTable("SpPhyEnt", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_SpPhyEnt");
@@ -51139,14 +51437,14 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.SpPhyEnts)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__SpPhyEnt__20F94D53");
+                .HasConstraintName("FK__SpPhyEnt__27A64AE2");
         });
 
         modelBuilder.Entity<Srp>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__SRP__D3DB124A12F64715");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__SRP__D3DB124A01FBDAE5");
 
-            entity.ToTable("SRP", tb =>
+            entity.ToTable("SRP", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_SRP");
@@ -51200,14 +51498,14 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.Srps)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__SRP__2E534871");
+                .HasConstraintName("FK__SRP__35004600");
         });
 
         modelBuilder.Entity<Srppass>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.PassNo }).HasName("PK__SRPPass__5DCFA6F94309CDE7");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.PassNo }).HasName("PK__SRPPass__5DCFA6F941E4CC7C");
 
-            entity.ToTable("SRPPass", tb =>
+            entity.ToTable("SRPPass", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_SRPPass");
@@ -51264,14 +51562,14 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.Srppasses)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__SRPPass__3CA167C8");
+                .HasConstraintName("FK__SRPPass__434E6557");
         });
 
         modelBuilder.Entity<StatCsCoilTempOffset>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__Stat_CsC__D3DB124A016643DB");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__Stat_CsC__D3DB124A7449320B");
 
-            entity.ToTable("Stat_CsCoilTempOffset", tb =>
+            entity.ToTable("Stat_CsCoilTempOffset", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_Stat_CsCoilTempOffset");
@@ -51338,9 +51636,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StatCsCr>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__Stat_CsC__D3DB124ADFE796A2");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__Stat_CsC__D3DB124AF39B4B88");
 
-            entity.ToTable("Stat_CsCrs", tb =>
+            entity.ToTable("Stat_CsCrs", "PRDB", tb =>
                 {
                     tb.HasComment("Material specific strategy Table with Effective (E), Manual (M) and original (X) lines for each material");
                     tb.HasTrigger("TI_Stat_CsCrs");
@@ -51567,9 +51865,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StatCsPerf>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__Stat_CsP__D3DB124AAEED9496");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__Stat_CsP__D3DB124AABEEAECF");
 
-            entity.ToTable("Stat_CsPerf", tb =>
+            entity.ToTable("Stat_CsPerf", "PRDB", tb =>
                 {
                     tb.HasComment("Material specific strategy Table with Effective (E), Manual (M) and original (X) lines for each material");
                     tb.HasTrigger("TI_Stat_CsPerf");
@@ -51660,9 +51958,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StatCsProfile>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__Stat_CsP__D3DB124AEA310811");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__Stat_CsP__D3DB124AB4C98A76");
 
-            entity.ToTable("Stat_CsProfile", tb =>
+            entity.ToTable("Stat_CsProfile", "PRDB", tb =>
                 {
                     tb.HasComment("Material specific strategy Table with Effective (E), Manual (M) and original (X) lines for each material");
                     tb.HasTrigger("TI_Stat_CsProfile");
@@ -51757,9 +52055,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StatCsRtCooling>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__Stat_CsR__D3DB124A020A3A98");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__Stat_CsR__D3DB124AA3DCF9DC");
 
-            entity.ToTable("Stat_CsRtCooling", tb =>
+            entity.ToTable("Stat_CsRtCooling", "PRDB", tb =>
                 {
                     tb.HasComment("Material specific strategy Table with Effective (E), Manual (M) and original (X) lines for each material");
                     tb.HasTrigger("TI_Stat_CsRtCooling");
@@ -51890,9 +52188,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StatCsStrategy>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__Stat_CsS__D3DB124A5F33A230");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__Stat_CsS__D3DB124A1B97D458");
 
-            entity.ToTable("Stat_CsStrategy", tb =>
+            entity.ToTable("Stat_CsStrategy", "PRDB", tb =>
                 {
                     tb.HasComment("Material specific strategy Table with Effective (E), Manual (M) and original (X) lines for each material");
                     tb.HasTrigger("TI_Stat_CsStrategy");
@@ -52158,9 +52456,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StatDirFmPfcCycShiftP>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__Stat_Dir__D3DB124A4FDB6E62");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__Stat_Dir__D3DB124A39A79B7F");
 
-            entity.ToTable("Stat_DirFmPfcCycShiftP", tb =>
+            entity.ToTable("Stat_DirFmPfcCycShiftP", "PRDB", tb =>
                 {
                     tb.HasComment("Material related strategy value: cyclic shifting");
                     tb.HasTrigger("TEXTID_Stat_DirFmPfcCycShiftP");
@@ -52230,9 +52528,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StatDirFmPfcCycShiftPpass>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.PassNo }).HasName("PK__Stat_Dir__5DCFA6F96E1BBD31");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.PassNo }).HasName("PK__Stat_Dir__5DCFA6F9AAD39401");
 
-            entity.ToTable("Stat_DirFmPfcCycShiftPPass", tb =>
+            entity.ToTable("Stat_DirFmPfcCycShiftPPass", "PRDB", tb =>
                 {
                     tb.HasComment("Material related strategy value: cyclic shifting pass");
                     tb.HasTrigger("TEXTID_Stat_DirFmPfcCycShiftPPass");
@@ -52337,9 +52635,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StatDirFmPfcParaP>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__Stat_Dir__D3DB124A2E46CD5B");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__Stat_Dir__D3DB124A1D994EC1");
 
-            entity.ToTable("Stat_DirFmPfcParaP", tb =>
+            entity.ToTable("Stat_DirFmPfcParaP", "PRDB", tb =>
                 {
                     tb.HasComment("Material related strategy value: flatness");
                     tb.HasTrigger("TEXTID_Stat_DirFmPfcParaP");
@@ -52417,9 +52715,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StatDirFmPfcParaPpass>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.PassNo }).HasName("PK__Stat_Dir__5DCFA6F9BE09C682");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.PassNo }).HasName("PK__Stat_Dir__5DCFA6F9EE8DB7FD");
 
-            entity.ToTable("Stat_DirFmPfcParaPPass", tb =>
+            entity.ToTable("Stat_DirFmPfcParaPPass", "PRDB", tb =>
                 {
                     tb.HasComment("Material related strategy value: flatness pass");
                     tb.HasTrigger("TEXTID_Stat_DirFmPfcParaPPass");
@@ -52528,9 +52826,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StatMsmDir>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__Stat_Msm__D3DB124A7D5CA251");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__Stat_Msm__D3DB124AF8BE83C9");
 
-            entity.ToTable("Stat_MsmDir", tb =>
+            entity.ToTable("Stat_MsmDir", "PRDB", tb =>
                 {
                     tb.HasComment("Material specific strategy Table with Effective (E), Manual (M) and original (X) lines for each material");
                     tb.HasTrigger("TI_Stat_MsmDir");
@@ -52632,14 +52930,14 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.StatMsmDirs)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__Stat_MsmDir__0D30B51A");
+                .HasConstraintName("FK__Stat_MsmDir__12E98E70");
         });
 
         modelBuilder.Entity<StdAop>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdAOP__171BDFC5561E6728");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdAOP__171BDFC52D328066");
 
-            entity.ToTable("StdAOP", tb =>
+            entity.ToTable("StdAOP", "PRDB", tb =>
                 {
                     tb.HasComment("Standard anit-peeling and anti-oxidation plan");
                     tb.HasTrigger("TI_StdAOP");
@@ -52674,9 +52972,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdAoppass>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag, e.PassNo }).HasName("PK__StdAOPPa__461E4FDD533A3E96");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag, e.PassNo }).HasName("PK__StdAOPPa__461E4FDDC18B3C14");
 
-            entity.ToTable("StdAOPPass", tb =>
+            entity.ToTable("StdAOPPass", "PRDB", tb =>
                 {
                     tb.HasComment("Standard anti-peeling and anti-oxidation plan pass");
                     tb.HasTrigger("TI_StdAOPPass");
@@ -52736,9 +53034,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdCompPlan>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdCompP__52AAFC5331CCF1E6");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdCompP__52AAFC531F18F007");
 
-            entity.ToTable("StdCompPlan", tb =>
+            entity.ToTable("StdCompPlan", "PRDB", tb =>
                 {
                     tb.HasComment("Standard compensation plan");
                     tb.HasTrigger("TI_StdCompPlan");
@@ -52999,9 +53297,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdCsCoilTempOffset>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdCsCoi__52AAFC53BA2E943C");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdCsCoi__52AAFC53821B6F63");
 
-            entity.ToTable("StdCsCoilTempOffset", tb =>
+            entity.ToTable("StdCsCoilTempOffset", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_StdCsCoilTempOffset");
@@ -53044,9 +53342,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdCsCr>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdCsCrs__52AAFC5311293B0F");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdCsCrs__52AAFC53C2C7A811");
 
-            entity.ToTable(tb =>
+            entity.ToTable("StdCsCrs", "PRDB", tb =>
                 {
                     tb.HasComment("Standard strategy Table for APS plan");
                     tb.HasTrigger("TI_StdCsCrs");
@@ -53249,9 +53547,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdCsPerf>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdCsPer__52AAFC530BBC5038");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdCsPer__52AAFC53FFD848F8");
 
-            entity.ToTable("StdCsPerf", tb =>
+            entity.ToTable("StdCsPerf", "PRDB", tb =>
                 {
                     tb.HasComment("Standard strategy Table for APS plan");
                     tb.HasTrigger("TI_StdCsPerf");
@@ -53318,9 +53616,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdCsProfile>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdCsPro__52AAFC53D335AD9B");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdCsPro__52AAFC536D4F4972");
 
-            entity.ToTable("StdCsProfile", tb =>
+            entity.ToTable("StdCsProfile", "PRDB", tb =>
                 {
                     tb.HasComment("Standard strategy Table for APS plan");
                     tb.HasTrigger("TI_StdCsProfile");
@@ -53391,9 +53689,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdCsRtCooling>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdCsRtC__52AAFC5388441734");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdCsRtC__52AAFC5374ECB9DB");
 
-            entity.ToTable("StdCsRtCooling", tb =>
+            entity.ToTable("StdCsRtCooling", "PRDB", tb =>
                 {
                     tb.HasComment("Standard strategy Table for APS plan");
                     tb.HasTrigger("TI_StdCsRtCooling");
@@ -53500,9 +53798,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdCsStrategy>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdCsStr__52AAFC539DCAE11A");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdCsStr__52AAFC5307EF9A93");
 
-            entity.ToTable("StdCsStrategy", tb =>
+            entity.ToTable("StdCsStrategy", "PRDB", tb =>
                 {
                     tb.HasComment("Standard strategy Table for APS plan");
                     tb.HasTrigger("TI_StdCsStrategy");
@@ -53744,9 +54042,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdDirFmPfcCycShiftP>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdDirFm__52AAFC537B927164");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdDirFm__52AAFC530AFC7937");
 
-            entity.ToTable("StdDirFmPfcCycShiftP", tb =>
+            entity.ToTable("StdDirFmPfcCycShiftP", "PRDB", tb =>
                 {
                     tb.HasComment("Standard plan cyclic shifting");
                     tb.HasTrigger("TI_StdDirFmPfcCycShiftP");
@@ -53789,9 +54087,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdDirFmPfcCycShiftPpass>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag, e.PassNo }).HasName("PK__StdDirFm__461E4FDD7B259BDD");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag, e.PassNo }).HasName("PK__StdDirFm__461E4FDD6F3D684E");
 
-            entity.ToTable("StdDirFmPfcCycShiftPPass", tb =>
+            entity.ToTable("StdDirFmPfcCycShiftPPass", "PRDB", tb =>
                 {
                     tb.HasComment("Standard plan cyclic shifting pass");
                     tb.HasTrigger("TI_StdDirFmPfcCycShiftPPass");
@@ -53869,9 +54167,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdDirFmPfcParaP>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdDirFm__52AAFC5390EEA96B");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdDirFm__52AAFC534243AD83");
 
-            entity.ToTable("StdDirFmPfcParaP", tb =>
+            entity.ToTable("StdDirFmPfcParaP", "PRDB", tb =>
                 {
                     tb.HasComment("Standard flatness plan");
                     tb.HasTrigger("TI_StdDirFmPfcParaP");
@@ -53924,9 +54222,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdDirFmPfcParaPpass>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag, e.PassNo }).HasName("PK__StdDirFm__461E4FDD14CBEE78");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag, e.PassNo }).HasName("PK__StdDirFm__461E4FDD4F9738DA");
 
-            entity.ToTable("StdDirFmPfcParaPPass", tb =>
+            entity.ToTable("StdDirFmPfcParaPPass", "PRDB", tb =>
                 {
                     tb.HasComment("Standard flatness plan pass");
                     tb.HasTrigger("TI_StdDirFmPfcParaPPass");
@@ -54010,9 +54308,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdDpfm>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdDPFM__52AAFC536D9C4682");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdDPFM__52AAFC53CD69E9B8");
 
-            entity.ToTable("StdDPFM", tb =>
+            entity.ToTable("StdDPFM", "PRDB", tb =>
                 {
                     tb.HasComment("Standard descaler plan FM");
                     tb.HasTrigger("TI_StdDPFM");
@@ -54053,9 +54351,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdDphrm>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdDPHRM__52AAFC53BC5D773D");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdDPHRM__52AAFC532A024577");
 
-            entity.ToTable("StdDPHRM", tb =>
+            entity.ToTable("StdDPHRM", "PRDB", tb =>
                 {
                     tb.HasComment("Standard descaler plan HRM");
                     tb.HasTrigger("TI_StdDPHRM");
@@ -54096,9 +54394,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdDprampFm>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag, e.RampNo }).HasName("PK__StdDPRam__54167559DAA027A2");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag, e.RampNo }).HasName("PK__StdDPRam__541675596C310F3C");
 
-            entity.ToTable("StdDPRampFM", tb =>
+            entity.ToTable("StdDPRampFM", "PRDB", tb =>
                 {
                     tb.HasComment("Standard descaler plan ramp FM");
                     tb.HasTrigger("TI_StdDPRampFM");
@@ -54150,9 +54448,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdDprampHrm>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag, e.RampNo }).HasName("PK__StdDPRam__5416755999C86093");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag, e.RampNo }).HasName("PK__StdDPRam__54167559DCA83FA2");
 
-            entity.ToTable("StdDPRampHRM", tb =>
+            entity.ToTable("StdDPRampHRM", "PRDB", tb =>
                 {
                     tb.HasComment("Standard descaler plan ramp HRM");
                     tb.HasTrigger("TI_StdDPRampHRM");
@@ -54204,9 +54502,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdEnco>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdEnco__52AAFC53533A613B");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdEnco__52AAFC535728426E");
 
-            entity.ToTable("StdEnco", tb =>
+            entity.ToTable("StdEnco", "PRDB", tb =>
                 {
                     tb.HasComment("enco panels");
                     tb.HasTrigger("TI_StdEnco");
@@ -54443,9 +54741,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdIhp>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdIHP__52AAFC5386D41A0A");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdIHP__52AAFC53DF1DE914");
 
-            entity.ToTable("StdIHP", tb =>
+            entity.ToTable("StdIHP", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_StdIHP");
@@ -54482,9 +54780,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdIscp>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdISCP__52AAFC53238D7F4C");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdISCP__52AAFC534C86A05C");
 
-            entity.ToTable("StdISCP", tb =>
+            entity.ToTable("StdISCP", "PRDB", tb =>
                 {
                     tb.HasComment("Standard interstand cooling plan");
                     tb.HasTrigger("TI_StdISCP");
@@ -54521,106 +54819,139 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdIscppass>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag, e.PassNo }).HasName("PK__StdISCPP__461E4FDDAD68D8C8");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag, e.PassNo }).HasName("PK__StdISCPP__461E4FDD7AAEDBC8");
 
-            entity.ToTable("StdISCPPass", tb =>
+            entity.ToTable("StdISCPPass", "PRDB", tb =>
                 {
+                    tb.HasComment("Standard interstand cooling plan pass");
                     tb.HasTrigger("TI_StdISCPPass");
                     tb.HasTrigger("TU_StdISCPPass");
                 });
 
-            entity.Property(e => e.PlanNo).HasColumnName("planNo");
-            entity.Property(e => e.ActiveFlag).HasColumnName("activeFlag");
-            entity.Property(e => e.PassNo).HasColumnName("passNo");
+            entity.Property(e => e.PlanNo)
+                .HasComment("Unit[0...999] i s c p number")
+                .HasColumnName("planNo");
+            entity.Property(e => e.ActiveFlag)
+                .HasComment("active flag")
+                .HasColumnName("activeFlag");
+            entity.Property(e => e.PassNo)
+                .HasComment("pass number")
+                .HasColumnName("passNo");
             entity.Property(e => e.DescalerAuto)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0..1] descaler auto AUTO = 0 MAN = 1")
                 .HasColumnName("descalerAuto");
             entity.Property(e => e.DescalerState)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0 / 1] descaler state: ON=0, OFF=1")
                 .HasColumnName("descalerState");
             entity.Property(e => e.DescalerVolume)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0...1] descaler factor from maximum cooling flow")
                 .HasColumnName("descalerVolume");
             entity.Property(e => e.FumeSuppSprayBefor)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0...1] fume (dust) suppresion spray")
                 .HasColumnName("fumeSuppSprayBefor");
             entity.Property(e => e.FumeSuppSprayBehind)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0...1] fume (dust) suppresion spray")
                 .HasColumnName("fumeSuppSprayBehind");
             entity.Property(e => e.IntermBeamCool)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0...1] intermediate beam cooling")
                 .HasColumnName("intermBeamCool");
             entity.Property(e => e.IscAuto)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0 / 1] ISC automatic mode: AUTO=0, MAN=1")
                 .HasColumnName("iscAuto");
             entity.Property(e => e.IscMaxVolumeInd0)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0...1] ISC maximum volume factor from maximum cooling flow (plant par). [0]= isc 0, [1]= isc 1, [2]= mill stand power cooling")
                 .HasColumnName("iscMaxVolume_ind0");
             entity.Property(e => e.IscMaxVolumeInd1)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0...1] ISC maximum volume factor from maximum cooling flow (plant par). [0]= isc 0, [1]= isc 1, [2]= mill stand power cooling")
                 .HasColumnName("iscMaxVolume_ind1");
             entity.Property(e => e.IscMaxVolumeInd2)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0...1] ISC maximum volume factor from maximum cooling flow (plant par). [0]= isc 0, [1]= isc 1, [2]= mill stand power cooling")
                 .HasColumnName("iscMaxVolume_ind2");
             entity.Property(e => e.IscMinVolumeInd0)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0...1] ISC minimum volume factor from maximum cooling flow (plant par). [0]= isc 0, [1]= isc 1, [2]= mill stand power cooling")
                 .HasColumnName("iscMinVolume_ind0");
             entity.Property(e => e.IscMinVolumeInd1)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0...1] ISC minimum volume factor from maximum cooling flow (plant par). [0]= isc 0, [1]= isc 1, [2]= mill stand power cooling")
                 .HasColumnName("iscMinVolume_ind1");
             entity.Property(e => e.IscMinVolumeInd2)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0...1] ISC minimum volume factor from maximum cooling flow (plant par). [0]= isc 0, [1]= isc 1, [2]= mill stand power cooling")
                 .HasColumnName("iscMinVolume_ind2");
             entity.Property(e => e.IscState)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0 / 1] ISC state: ON=0, OFF=1")
                 .HasColumnName("iscState");
             entity.Property(e => e.IscVolumeInd0)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0...1] ISC volume factor from maximum cooling flow (plant par). [0]= isc 0, [1]= isc 1, [2]= mill stand power cooling")
                 .HasColumnName("iscVolume_ind0");
             entity.Property(e => e.IscVolumeInd1)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0...1] ISC volume factor from maximum cooling flow (plant par). [0]= isc 0, [1]= isc 1, [2]= mill stand power cooling")
                 .HasColumnName("iscVolume_ind1");
             entity.Property(e => e.IscVolumeInd2)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0...1] ISC volume factor from maximum cooling flow (plant par). [0]= isc 0, [1]= isc 1, [2]= mill stand power cooling")
                 .HasColumnName("iscVolume_ind2");
             entity.Property(e => e.LooperCool)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0...1] looper cooling")
                 .HasColumnName("looperCool");
             entity.Property(e => e.Mop)
                 .HasMaxLength(120)
                 .IsUnicode(false)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("modifying process")
                 .HasColumnName("mop");
             entity.Property(e => e.PrioDescaler)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0 .... n] behind pass X, priority: -1: do not switch, 0,1,2,3,.....: lowest number is switched on first and switched off last")
                 .HasColumnName("prioDescaler");
             entity.Property(e => e.PrioIsc)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0 ..... n] ISC, priority: -1: do not switch, 0,1,2,3,.....: lowest number is switched on first and switched off last")
                 .HasColumnName("prioIsc");
             entity.Property(e => e.RollGapSpray)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0...1] special spray, before pass X, roll gap spray")
                 .HasColumnName("rollGapSpray");
             entity.Property(e => e.StripSprayBefor)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0...1] strip spraying")
                 .HasColumnName("stripSprayBefor");
             entity.Property(e => e.StripSprayBehind)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0...1] strip spraying")
                 .HasColumnName("stripSprayBehind");
             entity.Property(e => e.Toc)
                 .HasPrecision(3)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("time of creation")
                 .HasColumnName("toc");
             entity.Property(e => e.Tom)
                 .HasPrecision(3)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("time of modification")
                 .HasColumnName("tom");
         });
 
         modelBuilder.Entity<StdLp>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdLP__52AAFC53EC0FDE00");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdLP__52AAFC533FAC7720");
 
-            entity.ToTable("StdLP", tb =>
+            entity.ToTable("StdLP", "PRDB", tb =>
                 {
                     tb.HasComment("Standard loading plan");
                     tb.HasTrigger("TI_StdLP");
@@ -54733,9 +55064,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdLppass>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag, e.PassNo }).HasName("PK__StdLPPas__461E4FDDABD72281");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag, e.PassNo }).HasName("PK__StdLPPas__461E4FDD61DA0D30");
 
-            entity.ToTable("StdLPPass", tb =>
+            entity.ToTable("StdLPPass", "PRDB", tb =>
                 {
                     tb.HasComment("Standard loading plan pass");
                     tb.HasTrigger("TI_StdLPPass");
@@ -54831,9 +55162,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdMsmDir>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdMsmDi__52AAFC53F149C458");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdMsmDi__52AAFC535BA03800");
 
-            entity.ToTable("StdMsmDir", tb =>
+            entity.ToTable("StdMsmDir", "PRDB", tb =>
                 {
                     tb.HasComment("Standard strategy Table for APS plan");
                     tb.HasTrigger("TI_StdMsmDir");
@@ -54916,9 +55247,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdPc>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdPC__52AAFC5331C04ACC");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdPC__52AAFC539DBDF7BD");
 
-            entity.ToTable("StdPC", tb =>
+            entity.ToTable("StdPC", "PRDB", tb =>
                 {
                     tb.HasComment("Standard Power Cooling plan");
                     tb.HasTrigger("TI_StdPC");
@@ -54959,9 +55290,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdPcramp>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag, e.RampNo }).HasName("PK__StdPCRam__541675591C53546B");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag, e.RampNo }).HasName("PK__StdPCRam__5416755957EF37CD");
 
-            entity.ToTable("StdPCRamp", tb =>
+            entity.ToTable("StdPCRamp", "PRDB", tb =>
                 {
                     tb.HasComment("Standard PowerCooling Plan Ramp");
                     tb.HasTrigger("TI_StdPCRamp");
@@ -55013,9 +55344,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdRcp>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdRCP__52AAFC538DB5CB7F");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdRCP__52AAFC5337427A99");
 
-            entity.ToTable("StdRCP", tb =>
+            entity.ToTable("StdRCP", "PRDB", tb =>
                 {
                     tb.HasComment("Standard roll cooling plan");
                     tb.HasTrigger("TI_StdRCP");
@@ -55052,9 +55383,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdRcppass>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag, e.PassNo }).HasName("PK__StdRCPPa__461E4FDDBEC470CA");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag, e.PassNo }).HasName("PK__StdRCPPa__461E4FDD32949FCF");
 
-            entity.ToTable("StdRCPPass", tb =>
+            entity.ToTable("StdRCPPass", "PRDB", tb =>
                 {
                     tb.HasComment("Standard roll cooling plan pass");
                     tb.HasTrigger("TI_StdRCPPass");
@@ -55170,9 +55501,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdRglp>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdRGLP__52AAFC53FBFD99C1");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdRGLP__52AAFC53CCAC489A");
 
-            entity.ToTable("StdRGLP", tb =>
+            entity.ToTable("StdRGLP", "PRDB", tb =>
                 {
                     tb.HasComment("Standard roll gap lubrication plan");
                     tb.HasTrigger("TI_StdRGLP");
@@ -55209,9 +55540,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdRglppass>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag, e.PassNo }).HasName("PK__StdRGLPP__461E4FDD81057A99");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag, e.PassNo }).HasName("PK__StdRGLPP__461E4FDD6D30D55A");
 
-            entity.ToTable("StdRGLPPass", tb =>
+            entity.ToTable("StdRGLPPass", "PRDB", tb =>
                 {
                     tb.HasComment("Standard roll gap lubrication plan pass");
                     tb.HasTrigger("TI_StdRGLPPass");
@@ -55283,9 +55614,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdRollCoolCurve>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdRollC__52AAFC53AD148259");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdRollC__52AAFC53221BB0E6");
 
-            entity.ToTable("StdRollCoolCurve", tb =>
+            entity.ToTable("StdRollCoolCurve", "PRDB", tb =>
                 {
                     tb.HasComment("Standard roll cool curves");
                     tb.HasTrigger("TI_StdRollCoolCurve");
@@ -55420,9 +55751,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdSrp>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdSRP__52AAFC532A76219E");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdSRP__52AAFC53A7623F0C");
 
-            entity.ToTable("StdSRP", tb =>
+            entity.ToTable("StdSRP", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_StdSRP");
@@ -55459,9 +55790,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdSrppass>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag, e.PassNo }).HasName("PK__StdSRPPa__03AF6C4B8FAB03CD");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag, e.PassNo }).HasName("PK__StdSRPPa__03AF6C4BB809F8E7");
 
-            entity.ToTable("StdSRPPass", tb =>
+            entity.ToTable("StdSRPPass", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_StdSRPPass");
@@ -55499,9 +55830,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdTp>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdTP__52AAFC5358F9FFB6");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdTP__52AAFC5383B9E786");
 
-            entity.ToTable("StdTP", tb =>
+            entity.ToTable("StdTP", "PRDB", tb =>
                 {
                     tb.HasComment("Standard tension plan");
                     tb.HasTrigger("TI_StdTP");
@@ -55554,9 +55885,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdTppass>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag, e.PassNo }).HasName("PK__StdTPPas__461E4FDD4AFE8244");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag, e.PassNo }).HasName("PK__StdTPPas__461E4FDD8217DFEE");
 
-            entity.ToTable("StdTPPass", tb =>
+            entity.ToTable("StdTPPass", "PRDB", tb =>
                 {
                     tb.HasComment("Standard tension plan pass");
                     tb.HasTrigger("TI_StdTPPass");
@@ -55612,9 +55943,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdTxt>(entity =>
         {
-            entity.HasKey(e => new { e.StdTextKey, e.ParameterText, e.Lang }).HasName("PK__StdTxt__BF65BBEF1763E612");
+            entity.HasKey(e => new { e.StdTextKey, e.ParameterText, e.Lang }).HasName("PK__StdTxt__BF65BBEFFBCAA027");
 
-            entity.ToTable("StdTxt", tb =>
+            entity.ToTable("StdTxt", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_StdTxt");
@@ -55709,9 +56040,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdWmp>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdWMP__52AAFC53A1605255");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdWMP__52AAFC5368E5971C");
 
-            entity.ToTable("StdWMP", tb =>
+            entity.ToTable("StdWMP", "PRDB", tb =>
                 {
                     tb.HasComment("Standard wear model plan");
                     tb.HasTrigger("TI_StdWMP");
@@ -55748,9 +56079,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdWmppass>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag, e.PassNo }).HasName("PK__StdWMPPa__03AF6C4B322C9241");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag, e.PassNo }).HasName("PK__StdWMPPa__03AF6C4BDDCD5CF5");
 
-            entity.ToTable("StdWMPPass", tb =>
+            entity.ToTable("StdWMPPass", "PRDB", tb =>
                 {
                     tb.HasComment("Standard wear model plan pass");
                     tb.HasTrigger("TI_StdWMPPass");
@@ -55788,9 +56119,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdYieldCoiler>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdYield__52AAFC53C34C6705");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdYield__52AAFC5386CEBA0C");
 
-            entity.ToTable("StdYieldCoiler", tb =>
+            entity.ToTable("StdYieldCoiler", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_StdYieldCoiler");
@@ -55863,9 +56194,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<Tabrep>(entity =>
         {
-            entity.HasKey(e => new { e.DataId, e.MajNo, e.MinNo }).HasName("PK__Tabrep__96E3F4DA19BA69C1");
+            entity.HasKey(e => new { e.DataId, e.MajNo, e.MinNo }).HasName("PK__Tabrep__96E3F4DAEC95929F");
 
-            entity.ToTable("Tabrep", tb =>
+            entity.ToTable("Tabrep", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_Tabrep");
@@ -56074,9 +56405,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<ThickMatId>(entity =>
         {
-            entity.HasKey(e => e.AlloyCode).HasName("PK__ThickMat__CE6D2C49E8189AA1");
+            entity.HasKey(e => e.AlloyCode).HasName("PK__ThickMat__CE6D2C4909A49986");
 
-            entity.ToTable("ThickMatId", tb =>
+            entity.ToTable("ThickMatId", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_ThickMatId");
@@ -56113,9 +56444,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<Tp>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__TP__D3DB124A7C679903");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__TP__D3DB124A04B96930");
 
-            entity.ToTable("TP", tb =>
+            entity.ToTable("TP", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_TP");
@@ -56185,14 +56516,14 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.Tps)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__TP__02E9C77F");
+                .HasConstraintName("FK__TP__0F4F9E64");
         });
 
         modelBuilder.Entity<Tppass>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.PassNo }).HasName("PK__TPPass__5DCFA6F9CB79AD06");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.PassNo }).HasName("PK__TPPass__5DCFA6F9CE21C349");
 
-            entity.ToTable("TPPass", tb =>
+            entity.ToTable("TPPass", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_TPPass");
@@ -56265,14 +56596,14 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.Tppasses)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__TPPass__150877BA");
+                .HasConstraintName("FK__TPPass__216E4E9F");
         });
 
         modelBuilder.Entity<TrackingAreaDesc>(entity =>
         {
-            entity.HasKey(e => e.AreaId).HasName("PK__Tracking__52936C372ABEF0CF");
+            entity.HasKey(e => e.AreaId).HasName("PK__Tracking__52936C37E2BA2712");
 
-            entity.ToTable("TrackingAreaDesc", tb =>
+            entity.ToTable("TrackingAreaDesc", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_TrackingAreaDesc");
@@ -56293,7 +56624,7 @@ public partial class PrdbContext : AbpDbContext
                 .HasComment("area description")
                 .HasColumnName("areaDesc");
             entity.Property(e => e.FixedAreaLength)
-                .HasDefaultValue(false)
+                .HasDefaultValueSql("(NULL)")
                 .HasComment("has this area a fixed length")
                 .HasColumnName("fixedAreaLength");
             entity.Property(e => e.Length)
@@ -56320,9 +56651,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<TrackingAreaDev>(entity =>
         {
-            entity.HasKey(e => e.Sid).HasName("PK__Tracking__CA195970B154D9BC");
+            entity.HasKey(e => e.Sid).HasName("PK__Tracking__CA195970C81EC2A0");
 
-            entity.ToTable("TrackingAreaDev", tb =>
+            entity.ToTable("TrackingAreaDev", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_TrackingAreaDev");
@@ -56381,9 +56712,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<UisecHost>(entity =>
         {
-            entity.HasKey(e => e.Name).HasName("PK__UISec_Ho__72E12F1AEE11F86F");
+            entity.HasKey(e => e.Name).HasName("PK__UISec_Ho__72E12F1AAE1FBFCC");
 
-            entity.ToTable("UISec_Host", tb =>
+            entity.ToTable("UISec_Host", "PRDB", tb =>
                 {
                     tb.HasComment("configuration of the hosts");
                     tb.HasTrigger("TI_UISec_Host");
@@ -56408,7 +56739,7 @@ public partial class PrdbContext : AbpDbContext
                 .HasComment("name of host for display purpose")
                 .HasColumnName("fullName");
             entity.Property(e => e.GrantPrivileges)
-                .HasDefaultValue(false)
+                .HasDefaultValueSql("(NULL)")
                 .HasComment("0 = UISec_Right.denyPriv evaluated, 1 = UISec_Right.denyPriv ignored")
                 .HasColumnName("grantPrivileges");
             entity.Property(e => e.Location)
@@ -56437,7 +56768,7 @@ public partial class PrdbContext : AbpDbContext
                 .HasComment("(not used)")
                 .HasColumnName("startInfo");
             entity.Property(e => e.Status)
-                .HasDefaultValue(false)
+                .HasDefaultValueSql("(NULL)")
                 .HasComment("0 = ignored, 1 = used")
                 .HasColumnName("status");
             entity.Property(e => e.Toc)
@@ -56454,9 +56785,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<UisecHostGroup>(entity =>
         {
-            entity.HasKey(e => e.Name).HasName("PK__UISec_Ho__72E12F1A9EC3D0CF");
+            entity.HasKey(e => e.Name).HasName("PK__UISec_Ho__72E12F1AC25240ED");
 
-            entity.ToTable("UISec_HostGroup", tb =>
+            entity.ToTable("UISec_HostGroup", "PRDB", tb =>
                 {
                     tb.HasComment("definition of host groups");
                     tb.HasTrigger("TI_UISec_HostGroup");
@@ -56488,7 +56819,7 @@ public partial class PrdbContext : AbpDbContext
                 .HasComment("note")
                 .HasColumnName("remark");
             entity.Property(e => e.Status)
-                .HasDefaultValue(false)
+                .HasDefaultValueSql("(NULL)")
                 .HasComment("0 = ignored, 1 = used")
                 .HasColumnName("status");
             entity.Property(e => e.Toc)
@@ -56505,9 +56836,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<UisecHostInHostGroup>(entity =>
         {
-            entity.HasKey(e => new { e.HostGroupName, e.HostName }).HasName("PK__UISec_Ho__97B402F5DE735F8C");
+            entity.HasKey(e => new { e.HostGroupName, e.HostName }).HasName("PK__UISec_Ho__97B402F5D87CBF73");
 
-            entity.ToTable("UISec_HostInHostGroup", tb =>
+            entity.ToTable("UISec_HostInHostGroup", "PRDB", tb =>
                 {
                     tb.HasComment("assignment of hosts to host groups");
                     tb.HasTrigger("TI_UISec_HostInHostGroup");
@@ -56556,9 +56887,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<UisecPrivilege>(entity =>
         {
-            entity.HasKey(e => e.Privilege).HasName("PK__UISec_Pr__BBB7063CFCD676E5");
+            entity.HasKey(e => e.Privilege).HasName("PK__UISec_Pr__BBB7063C19FB2837");
 
-            entity.ToTable("UISec_Privilege", tb =>
+            entity.ToTable("UISec_Privilege", "PRDB", tb =>
                 {
                     tb.HasComment("definition of privileges");
                     tb.HasTrigger("TI_UISec_Privilege");
@@ -56597,9 +56928,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<UisecPrivilegeText>(entity =>
         {
-            entity.HasKey(e => new { e.Privilege, e.Lang }).HasName("PK__UISec_Pr__91F38844C2B08A09");
+            entity.HasKey(e => new { e.Privilege, e.Lang }).HasName("PK__UISec_Pr__91F38844B72752D3");
 
-            entity.ToTable("UISec_PrivilegeText", tb =>
+            entity.ToTable("UISec_PrivilegeText", "PRDB", tb =>
                 {
                     tb.HasComment("language specific texts for privileges");
                     tb.HasTrigger("TI_UISec_PrivilegeText");
@@ -56649,9 +56980,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<UisecRight>(entity =>
         {
-            entity.HasKey(e => new { e.UserGroupName, e.HostGroupName, e.Facility, e.DenyPriv, e.Privilege }).HasName("PK__UISec_Ri__EAD0238C35932442");
+            entity.HasKey(e => new { e.UserGroupName, e.HostGroupName, e.Facility, e.DenyPriv, e.Privilege }).HasName("PK__UISec_Ri__EAD0238CFDCFB811");
 
-            entity.ToTable("UISec_Right", tb =>
+            entity.ToTable("UISec_Right", "PRDB", tb =>
                 {
                     tb.HasComment("assignment of privileges to user and host groups");
                     tb.HasTrigger("TI_UISec_Right");
@@ -56723,9 +57054,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<UisecSetup>(entity =>
         {
-            entity.HasKey(e => e.ApplName).HasName("PK__UISec_Se__C231FA12085E3AB1");
+            entity.HasKey(e => e.ApplName).HasName("PK__UISec_Se__C231FA120A7A4318");
 
-            entity.ToTable("UISec_Setup", tb =>
+            entity.ToTable("UISec_Setup", "PRDB", tb =>
                 {
                     tb.HasComment("general rules for security management");
                     tb.HasTrigger("TI_UISec_Setup");
@@ -56767,24 +57098,24 @@ public partial class PrdbContext : AbpDbContext
                 .HasComment("time of modification")
                 .HasColumnName("tom");
             entity.Property(e => e.UseHostRights)
-                .HasDefaultValue(false)
+                .HasDefaultValueSql("(NULL)")
                 .HasComment("(stronger than normal rights)")
                 .HasColumnName("useHostRights");
             entity.Property(e => e.UseSuperRights)
-                .HasDefaultValue(false)
+                .HasDefaultValueSql("(NULL)")
                 .HasComment("combination of user rights and host rights (stronger than user rights)")
                 .HasColumnName("useSuperRights");
             entity.Property(e => e.UseUserRights)
-                .HasDefaultValue(false)
+                .HasDefaultValueSql("(NULL)")
                 .HasComment("(stronger than host rights)")
                 .HasColumnName("useUserRights");
         });
 
         modelBuilder.Entity<UisecUser>(entity =>
         {
-            entity.HasKey(e => e.Name).HasName("PK__UISec_Us__72E12F1A4320F810");
+            entity.HasKey(e => e.Name).HasName("PK__UISec_Us__72E12F1AF3FB738B");
 
-            entity.ToTable("UISec_User", tb =>
+            entity.ToTable("UISec_User", "PRDB", tb =>
                 {
                     tb.HasComment("configuration of the users");
                     tb.HasTrigger("TI_UISec_User");
@@ -56809,7 +57140,7 @@ public partial class PrdbContext : AbpDbContext
                 .HasComment("name of user for display purpose")
                 .HasColumnName("fullName");
             entity.Property(e => e.GrantPrivileges)
-                .HasDefaultValue(false)
+                .HasDefaultValueSql("(NULL)")
                 .HasComment("0 = UISec_Right.denyPriv evaluated, 1 = UISec_Right.denyPriv ignored")
                 .HasColumnName("grantPrivileges");
             entity.Property(e => e.Mop)
@@ -56838,7 +57169,7 @@ public partial class PrdbContext : AbpDbContext
                 .HasComment("(not used)")
                 .HasColumnName("startInfo");
             entity.Property(e => e.Status)
-                .HasDefaultValue(false)
+                .HasDefaultValueSql("(NULL)")
                 .HasComment("0 = ignored, 1 = used")
                 .HasColumnName("status");
             entity.Property(e => e.Toc)
@@ -56855,9 +57186,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<UisecUserGroup>(entity =>
         {
-            entity.HasKey(e => e.Name).HasName("PK__UISec_Us__72E12F1ACFB6C657");
+            entity.HasKey(e => e.Name).HasName("PK__UISec_Us__72E12F1A9E23E068");
 
-            entity.ToTable("UISec_UserGroup", tb =>
+            entity.ToTable("UISec_UserGroup", "PRDB", tb =>
                 {
                     tb.HasComment("definition of the user groups");
                     tb.HasTrigger("TI_UISec_UserGroup");
@@ -56890,7 +57221,7 @@ public partial class PrdbContext : AbpDbContext
                 .HasComment("note")
                 .HasColumnName("remark");
             entity.Property(e => e.Status)
-                .HasDefaultValue(false)
+                .HasDefaultValueSql("(NULL)")
                 .HasComment("0 = ignored, 1 = used")
                 .HasColumnName("status");
             entity.Property(e => e.Toc)
@@ -56907,9 +57238,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<UisecUsersInUserGroup>(entity =>
         {
-            entity.HasKey(e => new { e.UserGroupName, e.UserName }).HasName("PK__UISec_Us__D3D6EC81229979C6");
+            entity.HasKey(e => new { e.UserGroupName, e.UserName }).HasName("PK__UISec_Us__D3D6EC8178CF48A1");
 
-            entity.ToTable("UISec_UsersInUserGroup", tb =>
+            entity.ToTable("UISec_UsersInUserGroup", "PRDB", tb =>
                 {
                     tb.HasComment("assignment of users to use");
                     tb.HasTrigger("TI_UISec_UsersInUserGroup");
@@ -56958,9 +57289,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<UserMessage>(entity =>
         {
-            entity.HasKey(e => new { e.Time, e.No }).HasName("PK__UserMess__1D58864A95889CCA");
+            entity.HasKey(e => new { e.Time, e.No }).HasName("PK__UserMess__1D58864AD34DE55D");
 
-            entity.ToTable("UserMessage", tb =>
+            entity.ToTable("UserMessage", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_UserMessage");
@@ -57062,7 +57393,7 @@ public partial class PrdbContext : AbpDbContext
         {
             entity
                 .HasNoKey()
-                .ToView("V_INPUT_PQE");
+                .ToView("V_INPUT_PQE", "PRDB");
 
             entity.Property(e => e.Aimheatid)
                 .HasMaxLength(20)
@@ -57158,98 +57489,11 @@ public partial class PrdbContext : AbpDbContext
             entity.Property(e => e.Yieldstress).HasColumnName("yieldstress");
         });
 
-        modelBuilder.Entity<VMatStructComplete>(entity =>
-        {
-            entity
-                .HasNoKey()
-                .ToView("V_MAT_STRUCT_COMPLETE");
-
-            entity.Property(e => e.Enlocreator)
-                .IsRequired()
-                .HasMaxLength(2)
-                .IsUnicode(false)
-                .HasColumnName("ENLOCREATOR");
-            entity.Property(e => e.Enloenphmesid).HasColumnName("ENLOENPHMESID");
-            entity.Property(e => e.Enlomeid).HasColumnName("ENLOMEID");
-            entity.Property(e => e.Enlomesid)
-                .IsRequired()
-                .HasMaxLength(20)
-                .IsUnicode(false)
-                .HasColumnName("ENLOMESID");
-            entity.Property(e => e.Enlometype)
-                .IsRequired()
-                .HasMaxLength(2)
-                .IsUnicode(false)
-                .HasColumnName("ENLOMETYPE");
-            entity.Property(e => e.Enorcreator)
-                .IsRequired()
-                .HasMaxLength(2)
-                .IsUnicode(false)
-                .HasColumnName("ENORCREATOR");
-            entity.Property(e => e.Enorcurmesid).HasColumnName("ENORCURMESID");
-            entity.Property(e => e.Enorenlomesid).HasColumnName("ENORENLOMESID");
-            entity.Property(e => e.Enorexlomesid).HasColumnName("ENOREXLOMESID");
-            entity.Property(e => e.Enorextid)
-                .IsRequired()
-                .HasMaxLength(20)
-                .IsUnicode(false)
-                .HasColumnName("ENOREXTID");
-            entity.Property(e => e.Enormeid).HasColumnName("ENORMEID");
-            entity.Property(e => e.Enormetype)
-                .IsRequired()
-                .HasMaxLength(2)
-                .IsUnicode(false)
-                .HasColumnName("ENORMETYPE");
-            entity.Property(e => e.Enphcreator)
-                .IsRequired()
-                .HasMaxLength(2)
-                .IsUnicode(false)
-                .HasColumnName("ENPHCREATOR");
-            entity.Property(e => e.Enphextid)
-                .IsRequired()
-                .HasMaxLength(20)
-                .IsUnicode(false)
-                .HasColumnName("ENPHEXTID");
-            entity.Property(e => e.Enphmeid).HasColumnName("ENPHMEID");
-            entity.Property(e => e.Enphmetype)
-                .IsRequired()
-                .HasMaxLength(2)
-                .IsUnicode(false)
-                .HasColumnName("ENPHMETYPE");
-            entity.Property(e => e.Exlocreator)
-                .HasMaxLength(2)
-                .IsUnicode(false)
-                .HasColumnName("EXLOCREATOR");
-            entity.Property(e => e.Exloexitid)
-                .HasMaxLength(20)
-                .IsUnicode(false)
-                .HasColumnName("EXLOEXITID");
-            entity.Property(e => e.Exlomeid).HasColumnName("EXLOMEID");
-            entity.Property(e => e.Exlometype)
-                .HasMaxLength(2)
-                .IsUnicode(false)
-                .HasColumnName("EXLOMETYPE");
-            entity.Property(e => e.Exphcreator)
-                .HasMaxLength(2)
-                .IsUnicode(false)
-                .HasColumnName("EXPHCREATOR");
-            entity.Property(e => e.Exphextid)
-                .HasMaxLength(20)
-                .IsUnicode(false)
-                .HasColumnName("EXPHEXTID");
-            entity.Property(e => e.Exphmeid).HasColumnName("EXPHMEID");
-            entity.Property(e => e.Exphmetype)
-                .HasMaxLength(2)
-                .IsUnicode(false)
-                .HasColumnName("EXPHMETYPE");
-            entity.Property(e => e.Mesid).HasColumnName("MESID");
-        });
-
         modelBuilder.Entity<VMatStructEntry>(entity =>
         {
             entity
                 .HasNoKey()
-                .ToView("V_MAT_STRUCT_ENTRY");
+                .ToView("V_MAT_STRUCT_ENTRY", "PRDB");
 
             entity.Property(e => e.EnLoCreator)
                 .IsRequired()
@@ -57296,9 +57540,9 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<Wmp>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__WMP__D3DB124A0E287921");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__WMP__D3DB124A24F09936");
 
-            entity.ToTable("WMP", tb =>
+            entity.ToTable("WMP", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_WMP");
@@ -57352,14 +57596,14 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.Wmps)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__WMP__3FBDCB95");
+                .HasConstraintName("FK__WMP__4C23A27A");
         });
 
         modelBuilder.Entity<Wmppass>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.PassNo }).HasName("PK__WMPPass__5DCFA6F980A9B375");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.PassNo }).HasName("PK__WMPPass__5DCFA6F900F91179");
 
-            entity.ToTable("WMPPass", tb =>
+            entity.ToTable("WMPPass", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_WMPPass");
@@ -57416,14 +57660,14 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.Wmppasses)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__WMPPass__4E0BEAEC");
+                .HasConstraintName("FK__WMPPass__5A71C1D1");
         });
 
         modelBuilder.Entity<YearSum>(entity =>
         {
-            entity.HasKey(e => e.Year).HasName("PK__YearSum__809A238A7E832B02");
+            entity.HasKey(e => e.Year).HasName("PK__YearSum__809A238A86AF001A");
 
-            entity.ToTable("YearSum", tb =>
+            entity.ToTable("YearSum", "PRDB", tb =>
                 {
                     tb.HasComment("");
                     tb.HasTrigger("TI_YearSum");
@@ -57545,23 +57789,23 @@ public partial class PrdbContext : AbpDbContext
                 .HasComment("time of modification")
                 .HasColumnName("tom");
         });
-        modelBuilder.HasSequence("basid")
+        modelBuilder.HasSequence("basid", "PRDB")
             .StartsAt(10L)
             .IncrementsBy(10)
             .HasMin(10L)
             .HasMax(32750L)
             .IsCyclic();
-        modelBuilder.HasSequence("meid")
+        modelBuilder.HasSequence("meid", "PRDB")
             .StartsAt(10000L)
             .HasMin(1L)
             .HasMax(1000000000L)
             .IsCyclic();
-        modelBuilder.HasSequence("TRANSFERID")
+        modelBuilder.HasSequence("transferid", "COMUSER")
             .StartsAt(10000L)
             .HasMin(1L)
             .HasMax(2000000000L)
             .IsCyclic();
-        modelBuilder.HasSequence("vprunit")
+        modelBuilder.HasSequence("vprunit", "PRDB")
             .HasMin(1L)
             .HasMax(32750L)
             .IsCyclic();

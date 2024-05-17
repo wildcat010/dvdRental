@@ -7,6 +7,9 @@ public partial class AdpResult
 {
     public int CalcTime { get; set; }
 
+    /// <summary>
+    /// name
+    /// </summary>
     public string Name { get; set; }
 
     public float? AdaCrInd0 { get; set; }
@@ -179,16 +182,34 @@ public partial class AdpResult
 
     public float? ThickHrmEx { get; set; }
 
+    /// <summary>
+    /// Unit[m] 
+    /// </summary>
     public float? ThicknessInd0 { get; set; }
 
+    /// <summary>
+    /// Unit[m] 
+    /// </summary>
     public float? ThicknessInd1 { get; set; }
 
+    /// <summary>
+    /// Unit[m] 
+    /// </summary>
     public float? ThicknessInd2 { get; set; }
 
+    /// <summary>
+    /// Unit[m] 
+    /// </summary>
     public float? ThicknessInd3 { get; set; }
 
+    /// <summary>
+    /// Unit[m] 
+    /// </summary>
     public float? ThicknessInd4 { get; set; }
 
+    /// <summary>
+    /// Unit[m] 
+    /// </summary>
     public float? ThicknessInd5 { get; set; }
 
     public float? V { get; set; }
@@ -215,11 +236,23 @@ public partial class AdpResult
 
     public float? WearInd4 { get; set; }
 
+    /// <summary>
+    /// Unit[m] 
+    /// </summary>
     public float? Width { get; set; }
 
+    /// <summary>
+    /// modifying process
+    /// </summary>
     public string Mop { get; set; }
 
+    /// <summary>
+    /// time of creation
+    /// </summary>
     public DateTime? Toc { get; set; }
 
+    /// <summary>
+    /// time of modification
+    /// </summary>
     public DateTime? Tom { get; set; }
 }

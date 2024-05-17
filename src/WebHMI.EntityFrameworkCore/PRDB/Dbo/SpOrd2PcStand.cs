@@ -901,6 +901,11 @@ public partial class SpOrd2PcStand
     public float? MsWt { get; set; }
 
     /// <summary>
+    /// shape type for PFC
+    /// </summary>
+    public short? PfcShapeType { get; set; }
+
+    /// <summary>
     /// Unit[m] work roll shifting position
     /// </summary>
     public float? PositionWrs { get; set; }
@@ -1124,8 +1129,6 @@ public partial class SpOrd2PcStand
     /// time of modification
     /// </summary>
     public DateTime? Tom { get; set; }
-
-    public short? PfcShapeType { get; set; }
 
     public virtual Me1 Me1 { get; set; }
 }
