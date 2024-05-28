@@ -23,6 +23,8 @@ using WebHMI.Notification;
 using WebHMI.PRDB;
 using WebHMI.PRDB.Dbo;
 
+#pragma warning disable RS0030
+
 namespace WebHMI.Services
 {
     public class RollAppService : ApplicationServiceBase
@@ -612,7 +614,7 @@ namespace WebHMI.Services
                     Logger.Info($"Roll {rollData.RollId} has been Planned for next roll change.");
                 }
 
-                await CurrentUnitOfWork.SaveChangesAsync();
+                await _prdbContext.SaveChangesAsync();
 
                 if (_cooldownTimerRefresh.Enabled)
                 {

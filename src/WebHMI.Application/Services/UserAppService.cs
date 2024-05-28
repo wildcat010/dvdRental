@@ -25,6 +25,8 @@ using WebHMI.WebHMI.Dbo;
 using WebHMI.Filters;
 using WebHMI.Helpers;
 
+#pragma warning disable RS0030
+
 namespace WebHMI.Services
 {
 	/// <summary>

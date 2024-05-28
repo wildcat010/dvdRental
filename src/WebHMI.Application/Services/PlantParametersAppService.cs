@@ -18,6 +18,8 @@ using WebHMI.L2Adapter.Senders;
 using WebHMI.PRDB;
 using WebHMI.PRDB.Dbo;
 
+#pragma warning disable RS0030
+
 namespace WebHMI.Services
 {
     [AbpAuthorize(Permissions.Pages_Parameters)]

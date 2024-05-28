@@ -13,6 +13,8 @@ using WebHMI.MultiTenancy;
 using WebHMI.Authorization.Roles;
 using WebHMI.WebHMI.Dbo;
 
+#pragma warning disable RS0030
+
 namespace WebHMI.Authorization.Users
 {
 	public class UserRegistrationManager : DomainService

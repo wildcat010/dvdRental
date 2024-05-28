@@ -18,6 +18,8 @@ using WebHMI.L2Adapter.Senders;
 using WebHMI.PRDB;
 using WebHMI.PRDB.Dbo;
 
+#pragma warning disable RS0030
+
 namespace WebHMI.Services
 {
     [AbpAuthorize(Permissions.Pages_Parameters)]
@@ -69,6 +71,7 @@ namespace WebHMI.Services
         {
             var parameter = ObjectMapper.Map<MosParam>(limitDto);
             _prdbContext.MosParams.Add(parameter);
+
             await CurrentUnitOfWork.SaveChangesAsync();
 
             //_l2Sender.SendProcessParametersUpdated(XIDL.HmiParamCategory.ModelParameter, limitDto.Planttype);
