@@ -1,1 +1,3 @@
 P:System.DateTime.Now; Use 'DateTime.UtcNow' instead, as the server-side time should only be in UTC format
+P:Abp.AbpServiceBase.UnitOfWorkManager; Use own 'DbContext' class directly, instead
+P:Abp.AbpServiceBase.CurrentUnitOfWork; Use own 'DbContext' class directly, instead

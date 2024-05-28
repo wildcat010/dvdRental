@@ -12,12 +12,12 @@ namespace WebHMI.PRDB
 	{
 		public static void Configure(DbContextOptionsBuilder<PrdbContext> builder, string connectionString)
 		{
-			builder.UseSqlServer(connectionString);
+			builder.UseSqlServer(connectionString).EnableSensitiveDataLogging();
 		}
 
 		public static void Configure(DbContextOptionsBuilder<PrdbContext> builder, DbConnection connection)
 		{
-			builder.UseSqlServer(connection);
+			builder.UseSqlServer(connection).EnableSensitiveDataLogging();
 		}
 	}
 }

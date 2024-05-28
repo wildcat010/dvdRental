@@ -17,13 +17,11 @@ namespace WebHMI.PRDB
 		{
 			TreatDatabaseDateAsUtc(modelBuilder);
 
-			// You can modify generated entities here, example:
-
-			//modelBuilder.Entity<LogDatum>(entity =>
-			//{
-			//	entity.HasKey(e => e.Entryid);
-			//});
-		}
+            modelBuilder.Entity<Lppass>(entity =>
+            {
+                entity.Property(e => e.PassNo).ValueGeneratedNever();
+            });
+        }
 
 		public override async Task<int> SaveChangesAsync(CancellationToken ct = default)
 		{
