@@ -21,14 +21,14 @@ namespace WebHMI.L2Adapter.Senders
 
 			try
 			{
-				_logger.Debug($"Initializing {nameof(IHmiPaStub)}...");
+				_logger.Info($"Initializing {nameof(IHmiPaStub)}...");
 
 				if (_paStub is null)
 				{
 					//var request = new Request("AppHmilWeb", "hmilWeb", "HsmCommon", "IHmilWeb", "hsmHmi");
 					//_paStub = new IHmiPaStub(request);
 
-					_logger.Debug($"{nameof(IHmiPaStub)} initialized");
+					_logger.Info($"{nameof(IHmiPaStub)} initialized");
 				}
 			}
 			catch (System.Exception ex)
@@ -39,7 +39,7 @@ namespace WebHMI.L2Adapter.Senders
 
 		public void SendTestMessage(string msg)
 		{
-			_logger.Debug($"Sending message '{msg}' to L2...");
+			_logger.Info($"Sending message '{msg}' to L2...");
 			//_paStub.MsgRefresh(msg);
 		}
 

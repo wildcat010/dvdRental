@@ -1,6 +1,5 @@
 ﻿using Abp;
 using Abp.Dependency;
-using Abp.Logging;
 using Castle.Core.Logging;
 using System;
 using System.Collections.Generic;
@@ -9,15 +8,19 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using WebHMI.L2Adapter.Listeners;
+using WebHMI.L2Adapter.Senders;
 using XIDL;
 
 namespace WebHMI.L2Adapter.ConnectionManagers
 {
-    public class ConnectionManager : IConnectionManager, IDisposable
+    internal class ConnectionManager : IConnectionManager, IDisposable
     {
         private readonly ILogger _logger;
         private readonly PlatformListener _platformListener;
         private readonly AlarmListener _alarmListener;
+        private bool _disposed = false;
+
+        public static bool IsL2CommunicationRunning { get; private set; }
 
         public ConnectionManager(
             ILogger logger,
@@ -28,23 +31,40 @@ namespace WebHMI.L2Adapter.ConnectionManagers
             _platformListener = platformListener;
             _alarmListener = alarmListener;
 
-            _logger.Info($"Starting {nameof(ConnectionManager)}...");
-
-            Task.Run(StartL2CommunicationLoop).ContinueWith(t => 
-            {
-               _logger.Error(t.Exception.Message);
-            }, 
-            TaskContinuationOptions.OnlyOnFaulted);
+            StartL2ReconnectionLoop();
         }
 
-        private void StartL2CommunicationLoop()
+        private void StartL2ReconnectionLoop()
         {
-            _logger.Info($"{nameof(StartL2CommunicationLoop)} started");
+            Task.Factory.StartNew(async () =>
+            {
+                while (!_disposed)
+                {
+                    await Task.Delay(TimeSpan.FromSeconds(5)); // Wait before attempting connection/reconnection
+
+                    StartL2Communication();
+
+                    if (!_disposed)
+                        _logger.Warn("L2 connection problem ocurred, trying to reconnect...");
+                }
+                _logger.Info("L2 communication disposed, exiting reconnection task...");
+            }, TaskCreationOptions.LongRunning)
+                .ContinueWith(t =>
+                {
+                    foreach (var innerException in t.Exception.Flatten().InnerExceptions)
+                        _logger.Error("Exception occured while running L2 communication", innerException);
+                }, TaskContinuationOptions.OnlyOnFaulted);
+        }
+
+        private void StartL2Communication()
+        {
+            _logger.Info($"{nameof(StartL2Communication)} started");
 
             try
             {
                 int result = EventLoop.Run("AppHmiServer", InitL2Objects, 0);
-                _logger.Warn($"{nameof(EventLoop.Run)} returned: {result}");
+                IsL2CommunicationRunning = false;
+                _logger.Info($"{nameof(EventLoop.Run)} returned: {result}");
             }
             catch (System.Exception ex)
             {
@@ -69,7 +89,11 @@ namespace WebHMI.L2Adapter.ConnectionManagers
                 var alarmListenerSkeleton = new IAlarmListenerSkeleton(_alarmListener);
                 new Servant("alarmListener", alarmListenerSkeleton);
 
+                // Initialize stubs
+                IocManager.Instance.Resolve<IL2Sender>();
+
                 _logger.Info($"L2 Communication items created");
+                IsL2CommunicationRunning = true;
             }
             catch (System.Exception e)
             {
@@ -79,8 +103,13 @@ namespace WebHMI.L2Adapter.ConnectionManagers
 
         public void Dispose()
         {
+            if (_disposed)
+                return;
+
             _logger.Info("Disposing L2 communication");
             EventLoop.Stop();
+
+            _disposed = true;
         }
     }
 }
