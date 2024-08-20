@@ -13,6 +13,8 @@ using WebHMI.Authentication.JwtBearer;
 using WebHMI.Configuration;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Abp;
+using Abp.Threading.BackgroundWorkers;
+using WebHMI.API.BackgroundTask;
 
 namespace WebHMI
 {
@@ -72,8 +74,12 @@ namespace WebHMI
         {
             IocManager.Resolve<ApplicationPartManager>()
                 .AddApplicationPartsIfNotAddedBefore(typeof(WebHMIWebCoreModule).Assembly);
-        }
-    }
+
+			var workManager = IocManager.Resolve<IBackgroundWorkerManager>();
+
+			workManager.Add(IocManager.Resolve<ClenaupBackgroundWorker>());
+		}
+	}
 }
 
 
