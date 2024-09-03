@@ -19,7 +19,8 @@ namespace WebHMI.Services
 				{
 					Version = AppVersionHelper.Version,
 					ReleaseDate = AppVersionHelper.ReleaseDate,
-					Features = new Dictionary<string, bool>()
+					Features = new Dictionary<string, bool>(),
+                    RepositoryName = AppVersionHelper.RepositoryName,
 				}
 			};
 

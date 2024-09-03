@@ -142,7 +142,8 @@ namespace WebHMI.Web.Host.Startup
 				options.SwaggerDoc(_apiVersion, new OpenApiInfo
 				{
 					Version = _apiVersion,
-					Title = "WebHMI API"
+					Title = "WebHMI API",
+                    Description = AppVersionHelper.RepositoryName,
 				});
 				options.DocInclusionPredicate((docName, description) => true);
 

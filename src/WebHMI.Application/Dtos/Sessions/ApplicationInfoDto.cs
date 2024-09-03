@@ -10,6 +10,7 @@ namespace WebHMI.Dtos.Sessions
 		public DateTime ReleaseDate { get; set; }
 
 		public Dictionary<string, bool> Features { get; set; }
+        public string RepositoryName { get; set; }
 	}
 }
 

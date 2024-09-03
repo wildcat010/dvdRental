@@ -22,7 +22,9 @@ namespace WebHMI
         public static DateTime ReleaseDate => LzyReleaseDate.Value;
 
         private static readonly Lazy<DateTime> LzyReleaseDate = new Lazy<DateTime>(() => new FileInfo(typeof(AppVersionHelper).GetAssembly().Location).LastWriteTime);
-    }
+
+		public const string RepositoryName = "API.ESP.Standard";
+	}
 }
 
 
