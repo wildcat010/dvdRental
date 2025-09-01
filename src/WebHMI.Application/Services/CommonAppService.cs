@@ -95,6 +95,7 @@ namespace WebHMI.Services
                         Status = item.EnPhStatus,
                         MeId = item.EnOrMeId,
                         MatType = "OR",
+                        MesId = 1,
                         ExtId = item.EnOrExtId
                     },
                 };

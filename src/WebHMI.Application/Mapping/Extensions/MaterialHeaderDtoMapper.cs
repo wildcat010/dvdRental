@@ -40,31 +40,6 @@ namespace WebHMI.Mapping.Extensions
 			result.Data.EnPhStatus.S = sourceS?.EnPhStatus;
 			result.Data.EnPhStatus.E = sourceE?.EnPhStatus;
 
-			result.Data.EnOrMeId.L = sourceL?.EnOrMeId;
-			result.Data.EnOrMeId.M = sourceM?.EnOrMeId;
-			result.Data.EnOrMeId.S = sourceS?.EnOrMeId;
-			result.Data.EnOrMeId.E = sourceE?.EnOrMeId;
-
-			result.Data.EnOrExtId.L = sourceL?.EnOrExtId;
-			result.Data.EnOrExtId.M = sourceM?.EnOrExtId;
-			result.Data.EnOrExtId.S = sourceS?.EnOrExtId;
-			result.Data.EnOrExtId.E = sourceE?.EnOrExtId;
-
-			result.Data.EnOrMeType.L = sourceL?.EnOrMeType;
-			result.Data.EnOrMeType.M = sourceM?.EnOrMeType;
-			result.Data.EnOrMeType.S = sourceS?.EnOrMeType;
-			result.Data.EnOrMeType.E = sourceE?.EnOrMeType;
-
-			result.Data.EnOrMesId.L = sourceL?.EnOrMesId;
-			result.Data.EnOrMesId.M = sourceM?.EnOrMesId;
-			result.Data.EnOrMesId.S = sourceS?.EnOrMesId;
-			result.Data.EnOrMesId.E = sourceE?.EnOrMesId;
-
-			result.Data.EnOrCreator.L = sourceL?.EnOrCreator;
-			result.Data.EnOrCreator.M = sourceM?.EnOrCreator;
-			result.Data.EnOrCreator.S = sourceS?.EnOrCreator;
-			result.Data.EnOrCreator.E = sourceE?.EnOrCreator;
-
 			result.Data.EdOrSrc.L = sourceL?.EdOrSrc;
 			result.Data.EdOrSrc.M = sourceM?.EdOrSrc;
 			result.Data.EdOrSrc.S = sourceS?.EdOrSrc;

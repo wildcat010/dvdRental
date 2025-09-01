@@ -18,11 +18,6 @@ namespace WebHMI.Dtos.Common
 		public SourceSet<int?> EnPhMeId { get; set; } = new();
 		public SourceSet<string> EdPhySrc { get; set; } = new();
 		public SourceSet<short?> EnPhStatus { get; set; } = new();
-		public SourceSet<int?> EnOrMeId { get; set; } = new();
-		public SourceSet<string> EnOrExtId { get; set; } = new();
-		public SourceSet<string> EnOrMeType { get; set; } = new();
-		public SourceSet<short?> EnOrMesId { get; set; } = new();
-		public SourceSet<string> EnOrCreator { get; set; } = new();
 		public SourceSet<string> EdOrSrc { get; set; } = new();
 		public SourceSet<int?> EnLoMeId { get; set; } = new();
 		public SourceSet<string> EdLoSrc { get; set; } = new();
