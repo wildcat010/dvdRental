@@ -43,7 +43,7 @@ namespace WebHMI.Helpers
 
 			var totalCount = query.Count();
 
-			query = ApplyPaging(query, input);
+			query = ApplyPaging(query, input, totalCount);
 
 			var entities = await query.ToListAsync();
 
@@ -60,7 +60,7 @@ namespace WebHMI.Helpers
 
 			var totalCount = await query.CountAsync();
 
-			query = ApplyPaging(query, input);
+			query = ApplyPaging(query, input, totalCount);
 
 			var entities = await query.ToListAsync();
 
@@ -84,7 +84,7 @@ namespace WebHMI.Helpers
 
             var totalCount = query.Count();
 
-            query = ApplyPaging(query, input);
+            query = ApplyPaging(query, input, totalCount);
 
             var entities = query.ToList();
 
@@ -156,13 +156,14 @@ namespace WebHMI.Helpers
 			return query;
 		}
 
-		private static IQueryable<TEntity> ApplyPaging<TEntity>(IQueryable<TEntity> query, FilteredRequestDto input)
+		private static IQueryable<TEntity> ApplyPaging<TEntity>(IQueryable<TEntity> query, FilteredRequestDto input, int totalCount)
 		{
 			//Try to use paging if available
 			var pagedInput = input as IPagedResultRequest;
 			if (pagedInput != null)
 			{
-				return query.PageBy(pagedInput);
+                pagedInput.MaxResultCount = pagedInput.MaxResultCount == 0 ? totalCount : pagedInput.MaxResultCount;
+                return query.PageBy(pagedInput);
 			}
 
 			//Try to limit query result if available
