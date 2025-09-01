@@ -15,5 +15,6 @@ namespace WebHMI.Dtos
 		public TSourceType S { get; set; }
 
 		public short? Status { get; set; }
-	}
+		public string DbSource { get; set; }
+    }
 }

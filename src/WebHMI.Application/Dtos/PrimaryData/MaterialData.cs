@@ -10,8 +10,10 @@ namespace WebHMI.Dtos.PrimaryData
 		public SourceSet<float?> SlabWidth { get; set; } = new();
 		public SourceSet<float?> SlabLength { get; set; } = new();
 		public SourceSet<float?> SlabWeight { get; set; } = new();
-		public SourceSet<string> AlloyCodeCustomer { get; set; } = new();
-		public SourceSet<float?> SlabWidthHead { get; set; } = new();
+        public SourceSet<string> AlloyCode { get; set; } = new();
+        public SourceSet<string> AlloyCodeCustomer { get; set; } = new();
+        public SourceSet<int?> FlagBatchRolling { get; set; } = new();
+        public SourceSet<float?> SlabWidthHead { get; set; } = new();
 		public SourceSet<float?> SlabWidthTail { get; set; } = new();
 		public SourceSet<int?> WidthChangeFlag { get; set; } = new();
 		public SourceSet<float?> WidthChangePosStart { get; set; } = new();
@@ -22,8 +24,7 @@ namespace WebHMI.Dtos.PrimaryData
 		public SourceSet<int?> PlateProductionFlag { get; set; } = new();
 		public SourceSet<int?> SimulationFlag { get; set; } = new();
 		public SourceSet<float?> FMExitThicknessCustomer { get; set; } = new();
-		public SourceSet<float?> FMExitWidthCustomer { get; set; } = new();
-		public SourceSet<int?> FlagBatchRolling { get; set; } = new();
+		public SourceSet<float?> FMExitWidthCustomer { get; set; } = new(); // to be removed? 
 		public SourceSet<float?> AlloyCompensation { get; set; } = new();
 		public SourceSet<float?> CastSpeed { get; set; } = new();
 		public SourceSet<float?> MinCastSpeed { get; set; } = new();
@@ -41,25 +42,17 @@ namespace WebHMI.Dtos.PrimaryData
 		public SourceSet<float?> FMExitTempDeltaMin { get; set; } = new();
 		public SourceSet<float?> FMExitTempDeltaMax { get; set; } = new();
 		public SourceSet<int?> DestinationFlag { get; set; } = new();
-		public SourceSet<float?> WedgeDeltaMin { get; set; } = new();
-		public SourceSet<float?> WedgeDeltaMax { get; set; } = new();
 		public SourceSet<float?> CoilerTemp { get; set; } = new();
 		public SourceSet<float?> CoilerTempDeltaMin { get; set; } = new();
 		public SourceSet<float?> CoilerTempDeltaMax { get; set; } = new();
 		public SourceSet<float?> CoolingRateTop { get; set; } = new();
 		public SourceSet<float?> CoolingRateBottom { get; set; } = new();
-		public SourceSet<short?> StartingValveTop { get; set; } = new();
-		public SourceSet<short?> StartingValveBottom { get; set; } = new();
-		public SourceSet<float?> UncooledLengthHead { get; set; } = new();
-		public SourceSet<float?> UncooledLengthTail { get; set; } = new();
 		public SourceSet<int?> CoolingStrategyFlag { get; set; } = new();
-		public SourceSet<int?> DualPhaseCoolingFlag { get; set; } = new();
-		public SourceSet<float?> HoldTemp { get; set; } = new();
-		public SourceSet<float?> HoldTime { get; set; } = new();
-		public SourceSet<short?> AmountBindings { get; set; } = new();
-		public SourceSet<int?> InspectionCode { get; set; } = new();
-		public SourceSet<int?> DilatometerCurve { get; set; } = new();
 		public SourceSet<short?> CoolingStrategyMode { get; set; } = new();
-		public SourceSet<string> AlloyCode { get; set; } = new();
-	}
+		public SourceSet<float?> ClassWedgeDeltaMin { get; set; } = new();
+		public SourceSet<float?> ClassWedgeDeltaMax { get; set; } = new();
+        public SourceSet<float?> ClassFlatDeltaMin { get; set; } = new();
+        public SourceSet<float?> ClassFlatDeltaMax { get; set; } = new();
+
+    }
 }

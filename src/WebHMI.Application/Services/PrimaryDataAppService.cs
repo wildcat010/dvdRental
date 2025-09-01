@@ -93,24 +93,16 @@ namespace WebHMI.Services
             edordentM.TClassMinDelta = input.Data.FMExitTempDeltaMin.M;
             edordentM.TClassMaxDelta = input.Data.FMExitTempDeltaMax.M;
             edordentM.Destination = input.Data.DestinationFlag.M;
-            edordentM.ClassMaxFlatDeltaSym = input.Data.WedgeDeltaMin.M;
-            edordentM.ClassMaxFlatDeltaAsym = input.Data.WedgeDeltaMax.M;
+            edordentM.ClassMaxFlatDeltaSym = input.Data.ClassFlatDeltaMin.M;
+            edordentM.ClassMaxFlatDeltaAsym = input.Data.ClassFlatDeltaMax.M;
+            edordentM.ClassMaxWedgeDelta = input.Data.ClassWedgeDeltaMax.M;
+            edordentM.ClassMinWedgeDelta = input.Data.ClassWedgeDeltaMin.M;
             edordentM.CoilTemp = input.Data.CoilerTemp.M;
             edordentM.CoilTempMinTol = input.Data.CoilerTempDeltaMin.M;
             edordentM.CoilTempMaxTol = input.Data.CoilerTempDeltaMax.M;
             edordentM.CoolRateTop = input.Data.CoolingRateTop.M;
             edordentM.CoolRateBot = input.Data.CoolingRateBottom.M;
-            edordentM.StartValveTop = input.Data.StartingValveTop.M;
-            edordentM.StartValveBot = input.Data.StartingValveBottom.M;
-            edordentM.LengthUncooledHead = input.Data.UncooledLengthHead.M;
-            edordentM.LengthUncooledTail = input.Data.UncooledLengthTail.M;
             edordentM.CoolStrategy = input.Data.CoolingStrategyFlag.M;
-            edordentM.FlagDualPhase = input.Data.DualPhaseCoolingFlag.M;
-            edordentM.HoldTemp = input.Data.HoldTemp.M;
-            edordentM.HoldTime = input.Data.HoldTime.M;
-            edordentM.AmountBindings = input.Data.AmountBindings.M;
-            edordentM.InspectionCode = input.Data.InspectionCode.M;
-            edordentM.DilatometerCurve = input.Data.DilatometerCurve.M;
             edordentM.CoolingStrategyModeSelection = input.Data.CoolingStrategyMode.M;
 
             var edlogentM = await _prdbContext.EdLogEnts.FirstOrDefaultAsync(x => x.MeId == entryMatStruct.EnLoMeId && x.Source == "M");
