@@ -16,6 +16,7 @@ using WebHMI.Dtos.Limit;
 using WebHMI.Filters;
 using WebHMI.Helpers;
 using WebHMI.L2Adapter.Senders;
+using WebHMI.Mapping.Extensions;
 using WebHMI.PRDB;
 using WebHMI.PRDB.Dbo;
 
@@ -49,27 +50,67 @@ namespace WebHMI.Services
         {
             var result = await ApplyFilter<PlantLimit, LimitDto>(
                 _prdbContext.PlantLimits.OrderByDescending(t => t.Toc),
-                input);
+                input, LimitMapper.MapToDto);
 
             return result;
         }
 
+        /////// <summary>
+        /////// Function to get single limit by given Id
+        /////// </summary>
+        /////// <param name="id"></param>
+        /////// <returns></returns>
+        ////[AbpAuthorize(Permissions.Pages_Limits)]
+        ////public async Task<List<LimitDto>> GetByIds(List<LimitKeyDto> ids)
+        ////{
+        ////    LimitKeyDto[] x = ids.ToArray();
+        ////    var limit = await _cache.GetAsync(x,
+        ////         async (key) =>
+        ////            ObjectMapper.Map<LimitDto>(await _prdbContext.PlantLimits
+        ////            .FirstOrDefaultAsync(x => x.LimitName == key.Limitname && x.PlantType == key.Planttype.ToString()))
+        ////        );
+
+        ////    return limit.ToList();
+        ////}
         /// <summary>
         /// Function to get single limit by given Id
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [AbpAuthorize(Permissions.Pages_Limits)]
-        public async Task<List<LimitDto>> GetByIds(List<LimitKeyDto> ids)
-        {
-            LimitKeyDto[] x = ids.ToArray();
-            var limit = await _cache.GetAsync(x,
-                 async (key) =>
-                    ObjectMapper.Map<LimitDto>(await _prdbContext.PlantLimits
-                    .FirstOrDefaultAsync(x => x.LimitName == key.Limitname && x.PlantType == key.Planttype.ToString()))
-                );
+        /// 
 
-            return limit.ToList();
+
+        [AbpAuthorize(Permissions.Pages_Limits)]
+        public async Task<List<LimitDto>> GetByIds(List<string> limitNames, List<string> plantTypes)
+        {
+            if (limitNames.Count != plantTypes.Count)
+                throw new Abp.UI.UserFriendlyException("All parameters must be provided.");
+
+            var context = _prdbContextProvider.GetDbContext();
+            var cacheKeys = new List<string>();
+            var result = new List<LimitDto>();
+
+            for (int i = 0; i < limitNames.Count; i++)
+            {
+                var cacheKey = new LimitKeyDto(limitNames[i], plantTypes[i]);
+                var limitName = limitNames[i];
+                var plantType = plantTypes[i];
+
+                var item = await _cache.GetAsync(cacheKey,
+                    async () =>
+                    {
+                        var limit = await context.PlantLimits
+                            .Where(x => x.LimitName == limitNames[i] && x.PlantType == plantTypes[i])
+                            .FirstOrDefaultAsync();
+
+                        return limit?.MapToDto();
+                    });
+
+                if (item != null)
+                    result.Add(item);
+            }
+
+            return result;
         }
 
         /// <summary>
@@ -80,15 +121,15 @@ namespace WebHMI.Services
         [UnitOfWork]
         [Audited]
         [AbpAuthorize(Permissions.Pages_Limits_Edit)]
-        public async Task<LimitDto> CreateAsync(CreateLimitDto limitDto)
+        public async Task<LimitDto> CreateAsync(LimitDto limitDto)
         {
-            var plantlimit = ObjectMapper.Map<PlantLimit>(limitDto);
+            var plantlimit = limitDto.MapToDbo();
             _prdbContext.PlantLimits.Add(plantlimit);
             await CurrentUnitOfWork.SaveChangesAsync();
 
             //_l2Sender.SendProcessParametersUpdated(XIDL.HmiParamCategory.Limit, limitDto.Planttype);
 
-            return ObjectMapper.Map<LimitDto>(plantlimit);
+            return plantlimit.MapToDto();
         }
 
         /// <summary>
@@ -101,12 +142,21 @@ namespace WebHMI.Services
         [AbpAuthorize(Permissions.Pages_Limits_Edit)]
         public async Task<LimitDto> UpdateAsync(LimitDto input)
         {
-            var cacheKey = new LimitKeyDto(input.Limitname, input.Planttype);
+            var cacheKey = new LimitKeyDto(input.LimitName, input.PlantType);
             _cache.Remove(cacheKey);
-            var plantlimit = ObjectMapper.Map<PlantLimit>(input);
-            var limitDto = ObjectMapper.Map<LimitDto>(plantlimit);
+
+            var plantLimit = await _prdbContext.PlantLimits.FirstOrDefaultAsync(x => x.LimitName == input.LimitName && x.PlantType == input.PlantType);
+
+            plantLimit.CType = input.CType;
+            plantLimit.Description = input.Description;
+            plantLimit.LowerLimit = input.LowerLimit;
+            plantLimit.Moddescr = input.Moddescr;
+            plantLimit.SortOrder = input.SortOrder;
+            plantLimit.Unit = input.Unit;
+            plantLimit.UpperLimit = input.UpperLimit;
+
+            var limitDto = plantLimit.MapToDto();
             await _cache.SetAsync(cacheKey, limitDto);
-            await CurrentUnitOfWork.SaveChangesAsync();
 
             //_l2Sender.SendProcessParametersUpdated(XIDL.HmiParamCategory.Limit, input.Planttype);
 
@@ -129,7 +179,7 @@ namespace WebHMI.Services
             _prdbContext.PlantLimits.RemoveRange(limits);
             await CurrentUnitOfWork.SaveChangesAsync();
 
-            //_l2Sender.SendProcessParametersUpdated(XIDL.HmiParamCategory.Limit, input.Planttype);
+           // _l2Sender.SendProcessParametersUpdated(XIDL.HmiParamCategory.Limit, input.Planttype);
         }
     }
 }
