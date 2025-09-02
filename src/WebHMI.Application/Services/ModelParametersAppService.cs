@@ -52,7 +52,8 @@ namespace WebHMI.Services
         /// </summary>
         public async Task<ParameterDto> Get(ParameterKeyDto input)
         {
-            var parameter = await _prdbContext.MosParams.FirstOrDefaultAsync(x => x.ParamName == input.Paramname && x.PlantType == input.Planttype.ToString());
+            var parameter = await _prdbContext.MosParams
+                .FirstOrDefaultAsync(x => x.ParamName == input.ParamName && x.PlantType == input.PlantType.ToString());
 
             if (parameter == null)
             {
@@ -86,7 +87,7 @@ namespace WebHMI.Services
         [AbpAuthorize(Permissions.Pages_Parameters_Edit)]
         public async Task<ParameterDto> UpdateAsync(ParameterDto input)
         {
-            var parameter = await _prdbContext.MosParams.FirstOrDefaultAsync(x => x.ParamName == input.Paramname && x.PlantType == input.Planttype);
+            var parameter = await _prdbContext.MosParams.FirstOrDefaultAsync(x => x.ParamName == input.ParamName && x.PlantType == input.PlantType);
 
             if (parameter is null)
                 throw new EntityNotFoundException("Model param not found");
@@ -106,7 +107,7 @@ namespace WebHMI.Services
         [AbpAuthorize(Permissions.Pages_Parameters_Edit)]
         public async Task DeleteAsync(ParameterKeyDto input)
         {
-            var parameters = _prdbContext.MosParams.Where(x => x.ParamName == input.Paramname && x.PlantType == input.Planttype.ToString());
+            var parameters = _prdbContext.MosParams.Where(x => x.ParamName == input.ParamName && x.PlantType == input.PlantType.ToString());
             _prdbContext.MosParams.RemoveRange(parameters);
             await CurrentUnitOfWork.SaveChangesAsync();
 

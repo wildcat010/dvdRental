@@ -1,6 +1,7 @@
 ﻿using Abp.Application.Services.Dto;
 using Abp.Auditing;
 using Abp.Authorization;
+using Abp.AutoMapper;
 using Abp.Domain.Entities;
 using Abp.Domain.Repositories;
 using Abp.EntityFrameworkCore;
@@ -15,6 +16,7 @@ using WebHMI.Dtos.Parameters;
 using WebHMI.Filters;
 using WebHMI.Helpers;
 using WebHMI.L2Adapter.Senders;
+using WebHMI.Mapping.Extensions;
 using WebHMI.PRDB;
 using WebHMI.PRDB.Dbo;
 
@@ -44,7 +46,7 @@ namespace WebHMI.Services
         public async Task<PagedResultDto<ParameterDto>> GetAll(FilteredRequestDto input)
         {
             return await ApplyFilter<PlantParam, ParameterDto>(_prdbContext.PlantParams
-                                    .OrderByDescending(t => t.Toc), input);
+                                    .OrderByDescending(t => t.Toc), input, PlantParameterMapper.MapToDto);
         }
 
         /// <summary>
@@ -52,14 +54,11 @@ namespace WebHMI.Services
         /// </summary>
         public async Task<ParameterDto> Get(ParameterKeyDto input)
         {
-            var parameter = await _prdbContext.PlantParams.FirstOrDefaultAsync(x => x.ParamName == input.Paramname && x.PlantType == input.Planttype.ToString());
+            var parameter = await _prdbContext.PlantParams
+                .FirstOrDefaultAsync(x => x.ParamName == input.ParamName && x.PlantType == input.PlantType.ToString())
+                ?? throw new EntityNotFoundException(typeof(ParameterKeyDto), input);
 
-            if (parameter == null)
-            {
-                throw new EntityNotFoundException(typeof(ParameterDto), input);
-            }
-
-            return MapToEntityDto<PlantParam, ParameterDto>(parameter);
+            return parameter.MapToDto();
         }
 
         /// <summary>
@@ -69,13 +68,13 @@ namespace WebHMI.Services
         [AbpAuthorize(Permissions.Pages_Parameters_Edit)]
         public async Task<ParameterDto> CreateAsync(ParameterDto input)
         {
-            var parameter = ObjectMapper.Map<PlantParam>(input);
+            var parameter = input.MapToDbo();
             _prdbContext.PlantParams.Add(parameter);
             await CurrentUnitOfWork.SaveChangesAsync();
 
             //_l2Sender.SendProcessParametersUpdated(XIDL.HmiParamCategory.PlantParameter, input.Planttype);
 
-            return MapToEntityDto<PlantParam, ParameterDto>(parameter);
+            return parameter.MapToDto();
         }
 
         /// <summary>
@@ -85,17 +84,22 @@ namespace WebHMI.Services
         [AbpAuthorize(Permissions.Pages_Parameters_Edit)]
         public async Task<ParameterDto> UpdateAsync(ParameterDto input)
         {
-            var parameter = await _prdbContext.PlantParams.FirstOrDefaultAsync(x => x.ParamName == input.Paramname && x.PlantType == input.Planttype);
+            var parameter = await _prdbContext.PlantParams
+                .FirstOrDefaultAsync(x => x.ParamName == input.ParamName && x.PlantType == input.PlantType)
+                ?? throw new EntityNotFoundException("Plant parameter not found");
 
-            if (parameter is null)
-                throw new EntityNotFoundException("Plant param not found");
+            parameter.CType = input.CType;
+            parameter.CurValC = input.CurValC;
+            parameter.CurValN = (float)input.CurValN;
+            parameter.Description = input.Description;
+            parameter.Moddescr = input.Moddescr;
+            parameter.Unit = input.Unit;
 
-            parameter = ObjectMapper.Map<PlantParam>(input);
             await CurrentUnitOfWork.SaveChangesAsync();
 
             //_l2Sender.SendProcessParametersUpdated(XIDL.HmiParamCategory.PlantParameter, input.Planttype);
 
-            return MapToEntityDto<PlantParam, ParameterDto>(parameter);
+            return parameter.MapToDto() ;
         }
 
         /// <summary>
@@ -105,8 +109,12 @@ namespace WebHMI.Services
         [AbpAuthorize(Permissions.Pages_Parameters_Edit)]
         public async Task DeleteAsync(ParameterKeyDto input)
         {
-            var parameters = _prdbContext.PlantParams.Where(x => x.ParamName == input.Paramname && x.PlantType == input.Planttype.ToString());
+            var parameters = await _prdbContext.PlantParams
+                .Where(x => x.ParamName == input.ParamName && x.PlantType == input.PlantType.ToString())
+                .ToListAsync();
+
             _prdbContext.PlantParams.RemoveRange(parameters);
+
             await CurrentUnitOfWork.SaveChangesAsync();
 
             //_l2Sender.SendProcessParametersUpdated(XIDL.HmiParamCategory.PlantParameter, input.Planttype);

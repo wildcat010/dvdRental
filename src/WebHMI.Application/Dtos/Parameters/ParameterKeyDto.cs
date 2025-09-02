@@ -8,7 +8,7 @@ namespace WebHMI.Dtos.Parameters
 {
     public class ParameterKeyDto
     {
-        public string Paramname { get; set; }
-        public string Planttype { get; set; }
+        public string ParamName { get; set; }
+        public string PlantType { get; set; }
     }
 }
