@@ -21,7 +21,6 @@ namespace WebHMI.Dtos.Roll
         public int? Grinding { get; set; }
         public double? RolledWeight { get; set; }
         public double? RolledLength { get; set; }
-        public int? RolledCoils { get; set; }
         public string RelatedRollid { get; set; }
         public int? ResonId { get; set; }
         public string Remarks { get; set; }

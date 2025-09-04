@@ -54,7 +54,7 @@ namespace WebHMI.Services
             bool rollDataExist = await _prdbContext.RollData.AsNoTracking().AnyAsync(x => x.RollId == rollDto.Rollid && x.PlantType == rollDto.Planttype.ToString());
 
             if (rollDataExist)
-                throw new UserFriendlyException("Die Walze existiert bereits. Bitte verwenden Sie einen eindeutigen Namen.");
+                throw new UserFriendlyException("The roller already exists. Please use a unique name.");
 
             if (rollDto.Rollid.Length < 6)
                 throw new UserFriendlyException("Invalid parameter 'Rollid' (min. 6 characters required)");
@@ -69,7 +69,7 @@ namespace WebHMI.Services
             catch (Exception ex)
             {
                 Logger.Error($"[RollData] Exception while Roll creation:", ex);
-                throw new UserFriendlyException("Bei der Erzeugung / Beim Speichern von Walzendaten in der Datenbank ist ein Fehler aufgetreten." + ex.Message);
+                throw new UserFriendlyException("An error occurred while generating/saving roll data in the database." + ex.Message);
             }
 
             return await GetRollDetailsById(rollDto.Rollid, rollDto.Planttype);
@@ -141,7 +141,7 @@ namespace WebHMI.Services
         {
             var rollData = await _prdbContext.RollData.FirstOrDefaultAsync(x => x.RollId == rollDto.Rollid && x.PlantType == rollDto.Planttype.ToString());
             if (rollData is not null && rollData.Stat == "I")
-                throw new UserFriendlyException("Es ist nicht erlaubt, die Eigenschaften von installierten Walze zu ändern.");
+                throw new UserFriendlyException("It is not permitted to change the properties of installed rollers.");
 
             rollData.MapRollDetailsEntity(rollDto);
 
@@ -164,7 +164,7 @@ namespace WebHMI.Services
         {
             var rollData = await _prdbContext.RollData.FirstOrDefaultAsync(x => x.RollId == rollId && x.PlantType == planttype.ToString());
             if (rollData is not null && rollData.Stat == "I")
-                throw new UserFriendlyException("Es ist nicht erlaubt, die Eigenschaften von installierten Walze zu loeschen.");
+                throw new UserFriendlyException("It is not permitted to delete the properties of installed rollers.");
 
             try
             {
@@ -174,7 +174,7 @@ namespace WebHMI.Services
             catch (Exception ex)
             {
                 Logger.Error($"[RollData] Exception while deleting roll:", ex);
-                throw new UserFriendlyException($"Bei der Erstellung von Zylinderdaten in der Datenbank ist eine Ausnahme aufgetreten. {ex.Message}");
+                throw new UserFriendlyException($"An exception occurred while creating roll data in the database. {ex.Message}");
             }
 
             return true;
@@ -192,10 +192,10 @@ namespace WebHMI.Services
             bool rollClassExist = await _prdbContext.RollClasses.AnyAsync(t => t.RollClass1 == rollClassDto.RollClass);
 
             if (rollClassExist)
-                throw new UserFriendlyException("Die angegebene ID ist bereits in Gebrauch");
+                throw new UserFriendlyException("The specified ID is already in use.");
 
             if (rollClassDto.Description.Length < 3)
-                throw new UserFriendlyException("Die Beschreibung muss mindestens 3 Zeichen lang sein");
+                throw new UserFriendlyException("The description must be at least 3 characters long.");
 
             var rollClass = rollClassDto.ToRollClassEntity();
             _prdbContext.RollClasses.Add(rollClass);
@@ -239,7 +239,7 @@ namespace WebHMI.Services
         public async Task<RollClassDto> UpdateRollClass(RollClassDto rollClassDto)
         {
             if (rollClassDto.Description.Length < 3)
-                throw new UserFriendlyException("Die Beschreibung muss mindestens 3 Zeichen lang sein");
+                throw new UserFriendlyException("The description must be at least 3 characters long.");
 
             var rollClass = await _prdbContext.RollClasses.FirstOrDefaultAsync(x => x.RollClass1 == rollClassDto.RollClass);
 
@@ -268,7 +268,7 @@ namespace WebHMI.Services
             var rollData = await _prdbContext.RollClasses.Where(x => x.RollClass1 == input).ToListAsync();
 
             if (!rollData.Any())
-                throw new UserFriendlyException("Die gegebene Klasse ist mit einer bestehenden Walzen verbunden und kann nicht gelöscht werden.");
+                throw new UserFriendlyException("The given class is linked to an existing roller and cannot be deleted.");
 
             _prdbContext.RollClasses.RemoveRange(rollData);
         }
@@ -285,7 +285,7 @@ namespace WebHMI.Services
             bool rollChamferExist = await _prdbContext.RollChamfers.AnyAsync(t => t.RollChamferClass == rollChamferDto.Rollchamferclass);
 
             if (rollChamferExist)
-                throw new UserFriendlyException("Die angegebene ID ist bereits in Gebrauch");
+                throw new UserFriendlyException("The specified ID is already in use.");
 
             var rollChamfer = rollChamferDto.ToRollChamferEntity();
             _prdbContext.RollChamfers.Add(rollChamfer);
@@ -354,7 +354,7 @@ namespace WebHMI.Services
             var rollData = await _prdbContext.RollChamfers.Where(x => x.RollChamferClass == id).ToListAsync();
 
             if (!rollData.Any())
-                throw new UserFriendlyException("Die gegebene Klasse ist mit einer bestehenden Walzen verbunden und kann nicht gelöscht werden.");
+                throw new UserFriendlyException("The given class is linked to an existing roller and cannot be deleted.");
 
             _prdbContext.RollChamfers.RemoveRange(rollData);
         }
@@ -370,7 +370,7 @@ namespace WebHMI.Services
             var rollProperty = await _prdbContext.RollProperties.FirstOrDefaultAsync(t => t.RollPropertyClass == rollPropertyClassDto.RollPropertyClass);
 
             if (rollProperty is not null)
-                throw new UserFriendlyException("Given id no already in use");
+                throw new UserFriendlyException("Given id is already in use");
 
             if (rollPropertyClassDto.RollType is not null && rollPropertyClassDto.RollType.Length > 3)
                 throw new UserFriendlyException("RollType can have maximum 3 characters");
@@ -486,7 +486,7 @@ namespace WebHMI.Services
         public async Task<SingleRollDataCoreDto> GetRollDataByPosition(string plantType, int standId, string rollType, string rollPos, string rollStatus)
         {
             if (plantType is null || rollType is null || rollPos is null)
-                throw new UserFriendlyException("Die Parameter 'standId', 'plantType', 'rollType', 'rollStatus' und 'rollPos' müssen angegeben werden");
+                throw new UserFriendlyException("All parameters 'standId', 'plantType', 'rollType', 'rollStatus' und 'rollPos' must be provided.");
 
             SingleRollDataCoreDto result = new SingleRollDataCoreDto();
             try
@@ -516,7 +516,7 @@ namespace WebHMI.Services
         public Task<PagedResultDto<SingleRollDataCoreDto>> GetAvailableRolls(FilteredRequestDto input, bool onlyPlannedByRS, string plantType, string rollType, int? standId, string rollPos)
         {
             if (onlyPlannedByRS == true && (standId is null || rollPos == string.Empty || rollPos is null))
-                throw new UserFriendlyException($"Wenn der Parameter '{nameof(onlyPlannedByRS)}' true ist, dann müssen auch '{nameof(standId)}' und '{nameof(rollPos)}' angegeben werden");
+                throw new UserFriendlyException($"When parameter '{nameof(onlyPlannedByRS)}' true is, parameters '{nameof(standId)}' and '{nameof(rollPos)}' must be provided.");
 
             List<SingleRollDataCoreDto> dto = new List<SingleRollDataCoreDto>();
             try
@@ -579,10 +579,10 @@ namespace WebHMI.Services
         public async Task<SingleRollDataCoreDto> ScheduleRollForRollNextChange(string rollId, [FromQuery] PlantType plantType, int standId, string rollType, string rollPos, float? diameter, float? shimm)
         {
             if ((rollType != "BUR" && rollType != "WKR" && rollType != "EWR") || rollType is null)
-                throw new UserFriendlyException("Der Parameter 'rollType' ist ungültig.");
+                throw new UserFriendlyException("The “rollType” parameter is invalid.");
 
             if ((rollPos != "U" && rollPos != "L" && rollPos != "O" && rollPos != "D") || rollPos is null)
-                throw new UserFriendlyException("Der Parameter 'rollPos' ist ungültig.");
+                throw new UserFriendlyException("The “rollPos” parameter is invalid.");
 
             try
             {
@@ -598,10 +598,10 @@ namespace WebHMI.Services
                 {
                     var rollData = await _prdbContext.RollData.FirstOrDefaultAsync(x => x.RollId == rollId && x.PlantType == plantType.ToString());
                     if (rollData is null)
-                        throw new UserFriendlyException("Unbekannte Walze.");
+                        throw new UserFriendlyException("Unknown roller.");
 
                     if (rollData.Stat == "I")
-                        throw new UserFriendlyException("Es ist nicht erlaubt, die Eigenschaften von installierten Walze zu ändern.");
+                        throw new UserFriendlyException("It is not permitted to change the properties of installed rollers.");
 
                     rollData.Stat = "P";
                     rollData.StandId = standId;
@@ -664,17 +664,17 @@ namespace WebHMI.Services
         {
             int[] validStands = { 0, 1, 2, 3, 4, 5, 6, 100 };
             if (plantType != "HRM" && plantType != "HFM" && !(plantType is null || plantType == String.Empty))
-                throw new UserFriendlyException("Bitte geben Sie einen gültigen Parameter 'plantType' an. Muss 'FM' oder 'RM' sein oder leer bleiben.");
+                throw new UserFriendlyException("Please specify a valid ‘plantType’ parameter. Must be ‘FM’ or ‘RM’ or left blank.");
 
             if (rollType != "WKR" && rollType != "BUR" && rollType != "EWR" && !(rollType is null || rollType == String.Empty))
-                throw new UserFriendlyException("Bitte geben Sie einen gültigen Parameter 'rollType' an. Muss 'WKR', 'BUR', 'EWR' sein oder leer bleiben.");
+                throw new UserFriendlyException("Please enter a valid ‘rollType’ parameter. Must be ‘WKR’, ‘BUR’, ‘EWR’ or left blank.");
 
             if (standId is not null && !validStands.Contains(standId ?? 0))
                 //if (standId <0 || standId > 7 )
-                throw new UserFriendlyException("Bitte geben Sie einen gültigen Parameter 'standId' an. Muss ein Wert zwischen 0 und 7 oder 100 sein oder leer bleiben.");
+                throw new UserFriendlyException("Please enter a valid ‘standId’ parameter. Must be a value between 0 and 7 or 100, or left blank.");
 
             if (rollPosition != "L" && rollPosition != "U" && rollPosition != "D" && rollPosition != "O" && !(rollPosition is null || rollType == String.Empty))
-                throw new UserFriendlyException("Bitte geben Sie einen gültigen Parameter 'rollPosition' an. Muss den Wert 'L','U','D','O' haben oder leer bleiben.");
+                throw new UserFriendlyException("Please specify a valid ‘rollPosition’ parameter. Must have the value ‘L’, ‘U’, ‘D’, ‘O’ or left blank.");
 
             throw new NotImplementedException("L2 call not implemented");
             //_l2Sender.RollDataRequest(rollId, standId, rollType, rollPosition, plantType, connectionId);

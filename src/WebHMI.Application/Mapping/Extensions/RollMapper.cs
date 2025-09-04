@@ -20,6 +20,8 @@ namespace WebHMI.Mapping.Extensions
             RollClass = entity.RollClass1,
             CaliberDiaDiff = entity.CaliberDiaDiff,
             CaliberLength = entity.CaliberLength,
+            CheckerHeight = entity.CheckerHeight,
+            CheckerRoll = entity.CheckerRoll,
             DNeck = entity.DNeck,
             Description = entity.Description,
             LNeck = entity.LNeck,
@@ -27,6 +29,8 @@ namespace WebHMI.Mapping.Extensions
             PlantType = entity.PlantType,
             RollType = entity.RollType,
             StandRange = entity.StandRange,
+            Toc = entity.Toc,
+            Tom = entity.Tom,
         };
 
         public static void MapRollClassEntity(this RollClass entity, RollClassDto dto)
@@ -34,6 +38,8 @@ namespace WebHMI.Mapping.Extensions
             entity.RollClass1 = dto.RollClass;
             entity.CaliberDiaDiff = dto.CaliberDiaDiff;
             entity.CaliberLength = dto.CaliberLength;
+            entity.CheckerHeight = dto.CheckerHeight;
+            entity.CheckerRoll = dto.CheckerRoll;
             entity.DNeck = dto.DNeck;
             entity.Description = dto.Description;
             entity.LNeck = dto.LNeck;
@@ -223,6 +229,11 @@ namespace WebHMI.Mapping.Extensions
             TNeckMax = entity.TNeckMax,
             WEffBotRoll = entity.WEffBotRoll,
             WEffTopRoll = entity.WEffTopRoll,
+            YieldPolynomCInd0 = entity.YieldPolynomCInd0,
+            YieldPolynomCInd1 = entity.YieldPolynomCInd1,
+            YieldPolynomCInd2 = entity.YieldPolynomCInd2,
+            YieldPolynomCInd3 = entity.YieldPolynomCInd3,
+            YieldStress = entity.YieldStress,
             Mop = entity.Mop,
             Toc = entity.Toc,
             Tom = entity.Tom,
@@ -259,6 +270,11 @@ namespace WebHMI.Mapping.Extensions
             entity.TNeckMax = dto.TNeckMax;
             entity.WEffBotRoll = dto.WEffBotRoll;
             entity.WEffTopRoll = dto.WEffTopRoll;
+            entity.YieldPolynomCInd0 = dto.YieldPolynomCInd0;
+            entity.YieldPolynomCInd1 = dto.YieldPolynomCInd1;
+            entity.YieldPolynomCInd2 = dto.YieldPolynomCInd2;
+            entity.YieldPolynomCInd3 = dto.YieldPolynomCInd3;
+            entity.YieldStress = dto.YieldStress;
         }
     }
 }

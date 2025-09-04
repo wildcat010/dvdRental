@@ -27,6 +27,11 @@ namespace WebHMI.Dtos.Roll
         public double? TNeckMax { get; set; }
         public double? WEffBotRoll { get; set; }
         public double? WEffTopRoll { get; set; }
+        public double? YieldPolynomCInd0 { get; set; }
+        public double? YieldPolynomCInd1 { get; set; }
+        public double? YieldPolynomCInd2 { get; set; }
+        public double? YieldPolynomCInd3 { get; set; }
+        public double? YieldStress { get; set; }
         public string Mop { get; set; }
         public DateTime? Toc { get; set; }
         public DateTime? Tom { get; set; }
