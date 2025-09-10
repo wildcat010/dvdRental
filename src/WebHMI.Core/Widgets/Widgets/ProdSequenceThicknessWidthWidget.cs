@@ -53,14 +53,30 @@ namespace WebHMI.Core.Widget.Widgets
 
 		protected override long GetRefreshPeriodInSeconds() => 60;
 
-		private async Task ReadData()
+        public async Task<string> GetActualSequenceId()
+        {
+            var context = _dbContextProvider.GetDbContext();
+
+            var seq = (await context.HmiVProdsequences
+                .Select(x => new { x.SequenceId, x.Next })
+                .FirstOrDefaultAsync(x => x.Next == 1));
+
+            if (seq is null)
+                return "-1";
+
+            return seq.SequenceId;
+        }
+
+        private async Task ReadData()
 		{
 			var context = _dbContextProvider.GetDbContext();
-			var prodSequences = context.HmiVProdsequences
-				.OrderBy(x => x.SequenceId)
-				.AsEnumerable()
-				.SkipWhile(x => x.Next != 1)
-				.Take(20);
+
+            var actualSeqId = await GetActualSequenceId();
+
+            var prodSequences = context.HmiVProdsequences
+                .OrderBy(x => x.SequenceId)
+                .AsEnumerable()
+                .Where(x => x.SequenceId == actualSeqId);
 
 			var result = new List<KeyValuePair<string, SingleProdSequenceThicknessWidth>>();
 
@@ -72,8 +88,9 @@ namespace WebHMI.Core.Widget.Widgets
 					{
 						EntryThickness = el.HEntry,
 						ExitThickness = el.HExit,
-						Width = el.WExit
-					}));
+						Width = el.WExit,
+						HeatId = el.HeatId
+                    }));
 			}
 
 			Data.ProductionDistributionData = result;

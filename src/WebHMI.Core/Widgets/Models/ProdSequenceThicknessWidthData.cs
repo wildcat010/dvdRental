@@ -12,6 +12,7 @@ namespace WebHMI.Core.Widget.Models
 		public double? EntryThickness {get; set; }
 		public double? ExitThickness {get; set; }
 		public double? Width {get; set; }
+		public string HeatId {get; set; }
 
-	}
+    }
 }
