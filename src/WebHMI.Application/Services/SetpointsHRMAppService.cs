@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Abp.Auditing;
@@ -35,6 +36,27 @@ namespace WebHMI.Services
             _prdbContextProvider = prdbContextProvider;
             _l2Sender = l2Sender;
         }
+
+        
+
+        [AbpAuthorize(Permissions.Pages_Setpoints_RM)]
+        public async Task<HRMMaterialOverviewDto> GetMaterialOverviewHRM(int meid, string matType)
+        {
+            var result = new HRMMaterialOverviewDto();
+            var hmiVEntryMatStruct = await _matStructEntryService.GetMaterialEntryStruct(meid, matType);
+
+            string[] sources = ["L", "M", "S", "E"];
+
+            var spord2pcs = await _prdbContext.SpOrd2Pcs.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync();
+            var edordents = await _prdbContext.EdOrdEnts.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync();
+            var edphyents = await _prdbContext.EdPhyEnts.Where(x => x.MeId == hmiVEntryMatStruct.EnPhMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync();
+                
+            result.MeCode = hmiVEntryMatStruct.ToMeCodeDto();
+            result.MapOverview(spord2pcs, edordents, edphyents);
+
+            return result;
+        }
+
 
         [AbpAuthorize(Permissions.Pages_Setpoints_RM)]
         public async Task<SetpointsHRMDto> GetPassScheduleHRM(int meid, string matType)

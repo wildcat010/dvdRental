@@ -1,12 +1,80 @@
+using AutoMapper;
+using System.Collections.Generic;
 using System.Linq;
 using WebHMI.DataBlobs;
 using WebHMI.Dtos.SetpointsHRM;
 using WebHMI.Dtos.SetpointsRM;
+using WebHMI.PRDB.Dbo;
 
 namespace WebHMI.Mapping.Extensions
 {
     public static class SetpointsHRMMapper
     {
+
+        public static HRMMaterialOverviewDto MapOverview(this HRMMaterialOverviewDto result,List<SpOrd2Pc> spOrd2Pcs, List<EdOrdEnt> edOrdEnts, List<EdPhyEnt> edPhyEnts)
+        {
+            var spOrd2PcL = spOrd2Pcs.Where(x => x.Source == "L").FirstOrDefault();
+            var spOrd2PcM = spOrd2Pcs.Where(x => x.Source == "M").FirstOrDefault();
+            var spOrd2PcS = spOrd2Pcs.Where(x => x.Source == "S").FirstOrDefault();
+            var spOrd2PcE = spOrd2Pcs.Where(x => x.Source == "E").FirstOrDefault();
+
+            var edOrdEntL = edOrdEnts.Where(x => x.Source == "L").FirstOrDefault();
+            var edOrdEntM = edOrdEnts.Where(x => x.Source == "M").FirstOrDefault();
+            var edOrdEntS = edOrdEnts.Where(x => x.Source == "S").FirstOrDefault();
+            var edOrdEntE = edOrdEnts.Where(x => x.Source == "E").FirstOrDefault();
+
+            var edPhyEntL = edPhyEnts.Where(x => x.Source == "L").FirstOrDefault();
+            var edPhyEntM = edPhyEnts.Where(x => x.Source == "M").FirstOrDefault();
+            var edPhyEntS = edPhyEnts.Where(x => x.Source == "S").FirstOrDefault();
+            var edPhyEntE = edPhyEnts.Where(x => x.Source == "E").FirstOrDefault();
+
+            result.WEntry.L = edPhyEntL?.WidthExitCustomer;
+            result.WEntry.E = edPhyEntE?.WidthExitCustomer;
+            result.WEntry.M = edPhyEntM?.WidthExitCustomer;
+            result.WEntry.S = edPhyEntS?.WidthExitCustomer;
+            result.WEntry.DbSource = "EdPhyEnt.WidthExitCustomer";
+
+            result.HEntry.L = edPhyEntL?.HEntry;
+            result.HEntry.E = edPhyEntE?.HEntry;
+            result.HEntry.M = edPhyEntM?.HEntry;
+            result.HEntry.S = edPhyEntS?.HEntry;
+            result.HEntry.DbSource = "EdPhyEnt.HEntry";
+
+            result.TEntry.L = edPhyEntL?.TEntry;
+            result.TEntry.E = edPhyEntE?.TEntry;
+            result.TEntry.M = edPhyEntM?.TEntry;
+            result.TEntry.S = edPhyEntS?.TEntry;
+            result.TEntry.DbSource = "EdPhyEnt.TEntry";
+
+            result.LEntry.L = edPhyEntL?.LEntryFm;
+            result.LEntry.E = edPhyEntE?.LEntryFm;
+            result.LEntry.M = edPhyEntM?.LEntryFm;
+            result.LEntry.S = edPhyEntS?.LEntryFm;
+            result.LEntry.DbSource = "EdPhyEnt.LEntryFm";
+
+            result.WExitRM.L = edOrdEntL?.HIntermediate;
+            result.WExitRM.E = edOrdEntE?.HIntermediate;
+            result.WExitRM.M = edOrdEntM?.HIntermediate;
+            result.WExitRM.S = edOrdEntS?.HIntermediate;
+            result.WExitRM.DbSource = "EdOrdEnt.HIntermediate";
+
+            result.WExitRMOrd.E = spOrd2PcE?.WEntryColdFm;
+            result.WExitRMOrd.DbSource = "SpOrd2Pc.WEntryColdFm";
+
+            result.HExitRM.E = spOrd2PcE?.HEntryColdFm;
+            result.HExitRM.DbSource = "SpOrd2Pc.HEntryColdFm";
+
+            result.TExitRM.E = spOrd2PcE?.TEntry;
+            result.TExitRM.DbSource = "SpOrd2PcE.TEntry";
+
+            result.ProfileCalc.E = spOrd2PcE?.ProfexcalcHrm;
+            result.ProfileCalc.DbSource = "SpOrd2PcE.ProfexcalcHrm";
+
+            result.ProfileTarget.E = spOrd2PcE?.ProfextargetHrm;
+            result.ProfileTarget.DbSource = "SpOrd2PcE.ProfextargetHrm";
+
+            return result;
+        }
         public static SetpointsHRMDto MapData(this SetpointsHRMDto result, SetpointsHRMDataBlob dataBlob)
         { 
 
@@ -190,9 +258,6 @@ namespace WebHMI.Mapping.Extensions
         
         public static SetpointsHRMDto MapStandData(this SetpointsHRMDto result, SetpointsHRMDataBlob dataBlob, short standCount)
         {
-
-            
-
             for (short i = 0; i < standCount; i++)
             {
                 var srpPassesL = dataBlob.Srppasses.Where(x => x.Source == "L" && x.PassNo == i).FirstOrDefault();
