@@ -78,4 +78,12 @@ public partial class HmiVMatInfoShort
     public DateTime? ProdEndTime { get; set; }
 
     public float? LExit { get; set; }
+
+    public float? HExitHrm { get; set; }
+
+    public float? HExitHrmcalc { get; set; }
+
+    public float? ProfileHrm { get; set; }
+
+    public string OrderNo { get; set; }
 }

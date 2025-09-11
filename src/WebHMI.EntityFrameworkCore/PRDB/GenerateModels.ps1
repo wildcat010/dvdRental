@@ -1,10 +1,12 @@
 Write-Host "This is a PowerShell script to generate DB entities and context for PRDB database" -ForegroundColor Green
 
+$Env:PROJPATH =''
+$Env:projectDir =''
 # Path where the powershell script is located
 $LocalPath = gl
 
 # Path where the models classes should be written
-$PathModels = $LocalPath.ToString() + '\Dbo\'
+$PathModels = $LocalPath.ToString() + '\Dbo'
 
 # Path to location where PRDB context file is located
 $PathContext = $LocalPath.ToString()
@@ -13,10 +15,10 @@ $PathContext = $LocalPath.ToString()
 $DBConnString = 'Server=ESPSTDNCTR\PRDB;Database=PRDB;User Id=sa;Password=X.admin1;TrustServerCertificate=True;'
 
 # The path to the EntityFrameworkCore.csproj file
-$ProjectPath = $LocalPath.ToString() + '\..\'
+$ProjectPath = Split-Path $LocalPath -Parent
 
 # Delete old models
-$PathModelsToDelete = $PathModels.ToString() + '*.cs'
+$PathModelsToDelete = $PathModels.ToString() + '\*.cs'
 Write-Host 'Deleting old models from ' $PathModelsToDelete.ToString()
 DEL $PathModelsToDelete
 
@@ -33,6 +35,7 @@ dotnet ef dbcontext scaffold $DBConnString Microsoft.EntityFrameworkCore.SqlServ
 --force `
 --no-build `
 --no-onconfiguring `
+
 
 # Change base class from DbContext to AbpDbContext
 Write-Host 'Adjusting PrdbContext file to project requirements...'
