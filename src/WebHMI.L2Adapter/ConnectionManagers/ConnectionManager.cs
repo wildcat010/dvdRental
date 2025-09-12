@@ -9,6 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using WebHMI.L2Adapter.Listeners;
 using WebHMI.L2Adapter.Senders;
+using WebHMI.L2Adapter.Watchdogs;
 using XIDL;
 
 namespace WebHMI.L2Adapter.ConnectionManagers
@@ -91,6 +92,7 @@ namespace WebHMI.L2Adapter.ConnectionManagers
 
                 // Initialize stubs
                 IocManager.Instance.Resolve<IL2Sender>();
+                IocManager.Instance.Resolve<WatchdogStatusService>().InitializeWatchdogs();
 
                 _logger.Info($"L2 Communication items created");
                 IsL2CommunicationRunning = true;

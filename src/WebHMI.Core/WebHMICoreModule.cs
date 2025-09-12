@@ -5,9 +5,11 @@ using Abp.Runtime.Security;
 using Abp.Timing;
 using Abp.Zero;
 using Abp.Zero.Configuration;
+using System.Threading.Tasks;
 using WebHMI.Authorization.Roles;
 using WebHMI.Configuration;
 using WebHMI.Localization;
+using WebHMI.Status;
 using WebHMI.Timing;
 using WebHMI.WebHMI.Dbo;
 
@@ -51,6 +53,9 @@ namespace WebHMI
         public override void PostInitialize()
         {
             IocManager.Resolve<AppTimes>().StartupTime = Clock.Now;
+
+            var statusService = IocManager.Resolve<StatusManager>();
+            Task.Run(statusService.Initialize);
         }
     }
 }

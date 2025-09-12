@@ -8,6 +8,8 @@
 
 		public const string Pages_Audit = "Pages.Audit";
 
+        public const string Pages_SystemStatus = "Pages.SystemStatus";
+
         public const string Pages_RollData = "Pages.RollData";
         public const string Pages_RollData_Edit = "Pages.RollData.Edit";
         public const string Pages_RollData_Delete = "Pages.RollData.Delete";
