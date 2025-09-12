@@ -14,6 +14,8 @@ namespace WebHMI
 
             context.CreatePermission(Permissions.Pages_Audit);
 
+            context.CreatePermission(Permissions.Pages_SystemStatus);
+
             var rollData = context.CreatePermission(Permissions.Pages_RollData);
             rollData.CreateChildPermission(Permissions.Pages_RollData_Edit);
             rollData.CreateChildPermission(Permissions.Pages_RollData_Delete);
