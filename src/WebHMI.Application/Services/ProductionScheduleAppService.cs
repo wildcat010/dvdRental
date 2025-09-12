@@ -1,4 +1,5 @@
 ﻿using Abp.Application.Services.Dto;
+using Abp.Authorization;
 using Abp.Domain.Entities;
 using Abp.EntityFrameworkCore;
 using Abp.UI;
@@ -16,7 +17,9 @@ using WebHMI.PRDB;
 
 namespace WebHMI.Services
 {
-	public class ProductionScheduleAppService : ApplicationServiceBase
+
+    [AbpAuthorize(Permissions.Pages_ProductionSchedule)]
+    public class ProductionScheduleAppService : ApplicationServiceBase
 	{
 		private readonly IDbContextProvider<PrdbContext> _prdbContextProvider;
 		private readonly CommonAppService _commonAppService;

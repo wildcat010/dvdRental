@@ -70,4 +70,12 @@ public partial class HmiVProdsequence
     public int? FlagBatchRolling { get; set; }
 
     public int? PlateProduction { get; set; }
+
+    public float? HExitHrm { get; set; }
+
+    public float? HExitHrmcalc { get; set; }
+
+    public float? ProfileHrm { get; set; }
+
+    public string OrderNo { get; set; }
 }

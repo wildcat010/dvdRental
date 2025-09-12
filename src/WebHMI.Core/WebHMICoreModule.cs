@@ -8,6 +8,7 @@ using Abp.Zero.Configuration;
 using System.Threading.Tasks;
 using WebHMI.Authorization.Roles;
 using WebHMI.Configuration;
+using WebHMI.Core.Widget;
 using WebHMI.Localization;
 using WebHMI.Status;
 using WebHMI.Timing;
@@ -56,6 +57,9 @@ namespace WebHMI
 
             var statusService = IocManager.Resolve<StatusManager>();
             Task.Run(statusService.Initialize);
+
+            var widgetRegistry = IocManager.Resolve<WidgetRegistry>();
+            Task.Run(widgetRegistry.InitializeWidgets);
         }
     }
 }

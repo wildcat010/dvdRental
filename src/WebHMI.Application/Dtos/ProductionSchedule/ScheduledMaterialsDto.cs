@@ -12,7 +12,12 @@ namespace WebHMI.Dtos.ProductionSchedule
 		public MeCodeDto EnLogMeCode { get; set; }
 		public MeCodeDto EnPhMeCode { get; set; }
 
-		public long? Position { get; set; }
+        public double? HExitHrm {  get; set; } 
+        public double? HExitHrmCalc {  get; set; }
+        public double? ProfileHRM {  get; set; }
+        public string OrderNo {  get; set; }
+
+        public long? Position { get; set; }
 
 		public short? Next { get; set; }
 

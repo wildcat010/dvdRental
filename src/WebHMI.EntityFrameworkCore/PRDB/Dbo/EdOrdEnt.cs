@@ -1055,5 +1055,7 @@ public partial class EdOrdEnt
     /// </summary>
     public DateTime? Tom { get; set; }
 
+    public string OrderNo { get; set; }
+
     public virtual Me1 Me1 { get; set; }
 }

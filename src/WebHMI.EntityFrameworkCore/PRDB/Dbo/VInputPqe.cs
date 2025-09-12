@@ -69,6 +69,8 @@ public partial class VInputPqe
 
     public int Meid { get; set; }
 
+    public string MeCreator { get; set; }
+
     public int Productmode { get; set; }
 
     public short? Seqfstlst { get; set; }
@@ -132,4 +134,6 @@ public partial class VInputPqe
     public short? Taperedslab { get; set; }
 
     public float? Vcast { get; set; }
+
+    public float? Sd6 { get; set; }
 }
