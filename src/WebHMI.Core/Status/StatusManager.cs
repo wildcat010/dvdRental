@@ -1,4 +1,5 @@
-﻿using Castle.Core.Logging;
+﻿using Abp.Dependency;
+using Castle.Core.Logging;
 using System;
 using System.Collections.Concurrent;
 using System.Linq;
@@ -7,7 +8,7 @@ using WebHMI.Notification;
 
 namespace WebHMI.Status
 {
-    public class StatusManager
+    public class StatusManager : ISingletonDependency
     {
         public ILogger Logger { get; set; }
 
