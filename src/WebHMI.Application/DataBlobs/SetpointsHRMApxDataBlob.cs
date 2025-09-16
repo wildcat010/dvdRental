@@ -3,7 +3,7 @@ using WebHMI.PRDB.Dbo;
 
 namespace WebHMI.DataBlobs
 {
-    public class SetpointsHRMApxDataBlob
+    public class SetpointsHFMApxDataBlob
     {
         public List<SpOrd2Pc> Spord2pcs { get; set; } = new();
         public List<EdOrdEnt> Edordents { get; set; } = new();

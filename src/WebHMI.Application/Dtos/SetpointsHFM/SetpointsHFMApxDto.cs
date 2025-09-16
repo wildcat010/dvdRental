@@ -1,0 +1,36 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace WebHMI.Dtos.SetpointsHRM
+{
+    public class SetpointsHFMApxDto
+    {
+        public MeCodeDto MeCode { get; set; } = new();
+        public SourceSet<string> ApsKey { get; set; } = new();
+        public SourceSet<string> AlloyCode { get; set; } = new();
+        public SourceSet<short?> SetPointSfmOk { get; set; } = new();
+        public SourceSet<int?> OkAll { get; set; } = new();
+        public SourceSet<float?> HExit { get; set; } = new();
+        public SourceSet<float?> WidthExit { get; set; } = new();
+        public SourceSet<float?> ExitCrownC25 { get; set; } = new();
+        public SourceSet<float?> HEntryColdFm { get; set; } = new();
+        public SourceSet<double?> ProfileCorr { get; set; } = new();
+        public SourceSet<float?> HExitCold { get; set; } = new();
+        public SourceSet<float?> WExitCold { get; set; } = new();
+        public SourceSet<float?> ClassMinCrownDelta { get; set; } = new();
+        public SourceSet<float?> ProfExCalc { get; set; } = new();
+        public SourceSet<double?> ClassMaxCrownDelta { get; set; } = new();
+        public SourceSet<int?> DirFmPfcParaPlanNo { get; set; } = new();
+        public SourceSet<string> DirFmPfcParaDescription { get; set; } = new();
+        public SourceSet<int?> DirFmPfcCycShiftPlanNo { get; set; } = new();
+        public SourceSet<string> DirFmPfcCycShiftDescription { get; set; } = new();
+        public SourceSet<int?> InherPfc { get; set; } = new();
+        public SourceSet<string> InherPfcId { get; set; } = new();
+        public SourceSet<DateTime?> Tom { get; set; } = new();
+        public List<SingleHRMApxStandData> StandDataDtos { get; set; } = new();
+        
+    }
+}
