@@ -65,13 +65,15 @@ namespace WebHMI.Mapping.Extensions
             result.HExitRM.DbSource = "SpOrd2Pc.HEntryColdFm";
 
             result.TExitRM.E = spOrd2PcE?.TEntry;
-            result.TExitRM.DbSource = "SpOrd2PcE.TEntry";
+            result.TExitRM.DbSource = "SpOrd2Pc.TEntry";
 
             result.ProfileCalc.E = spOrd2PcE?.ProfexcalcHrm;
-            result.ProfileCalc.DbSource = "SpOrd2PcE.ProfexcalcHrm";
+            result.ProfileCalc.M = spOrd2PcM?.ProfexcalcHrm;
+            result.ProfileCalc.DbSource = "SpOrd2Pc.ProfexcalcHrm";
 
             result.ProfileTarget.E = spOrd2PcE?.ProfextargetHrm;
-            result.ProfileTarget.DbSource = "SpOrd2PcE.ProfextargetHrm";
+            result.ProfileTarget.M = spOrd2PcM?.ProfextargetHrm;
+            result.ProfileTarget.DbSource = "SpOrd2Pc.ProfextargetHrm";
 
             return result;
         }

@@ -9,16 +9,16 @@ namespace WebHMI.Dtos.SetpointsHRM
     public class HRMMaterialOverviewDto
     {
         public MeCodeDto MeCode { get; set; } = new();
-        public SourceSet<double?> WEntry { get; set; } = new();
-        public SourceSet<double?> HEntry { get; set; } = new();
-        public SourceSet<double?> TEntry { get; set; } = new();
-        public SourceSet<double?> LEntry { get; set; } = new();
-        public SourceSet<double?> HExitRM { get; set; } = new();
-        public SourceSet<double?> WExitRM { get; set; } = new();
-        public SourceSet<double?> WExitRMOrd { get; set; } = new();
-        public SourceSet<double?> TExitRM { get; set; } = new();
-        public SourceSet<double?> ProfileTarget { get; set; } = new();
-        public SourceSet<double?> ProfileCalc { get; set; } = new();
+        public SourceSet<float?> WEntry { get; set; } = new();
+        public SourceSet<float?> HEntry { get; set; } = new();
+        public SourceSet<float?> TEntry { get; set; } = new();
+        public SourceSet<float?> LEntry { get; set; } = new();
+        public SourceSet<float?> HExitRM { get; set; } = new();
+        public SourceSet<float?> WExitRM { get; set; } = new();
+        public SourceSet<float?> WExitRMOrd { get; set; } = new();
+        public SourceSet<float?> TExitRM { get; set; } = new();
+        public SourceSet<float?> ProfileTarget { get; set; } = new();
+        public SourceSet<float?> ProfileCalc { get; set; } = new();
 
     }
 }

@@ -15,6 +15,7 @@ using WebHMI.L2Adapter.Senders;
 using WebHMI.Mapping.Extensions;
 using WebHMI.PRDB;
 using WebHMI.PRDB.Dbo;
+using WebHMI.WebHMI.Migrations;
 
 namespace WebHMI.Services
 {
@@ -57,6 +58,32 @@ namespace WebHMI.Services
             return result;
         }
 
+        [AbpAuthorize(Permissions.Pages_Setpoints_RM_Edit)]
+        public async Task UpdateMaterialOverviewHRM(HRMMaterialOverviewDto input)
+        {
+            var context = _prdbContextProvider.GetDbContext();
+
+            var vMatStructEntryOr = await _matStructEntryService.GetMaterialEntryStruct(input.MeCode.MeId, "OR");
+            var vMatStructEntryPh = await _matStructEntryService.GetMaterialEntryStruct(vMatStructEntryOr.EnPhMeId, "PH");
+
+            var edPhyEntM = await context.EdPhyEnts.FirstOrDefaultAsync(x => x.MeId == vMatStructEntryPh.EnPhMeId && x.Source == "M");
+            edPhyEntM = context.InsertIfNull(edPhyEntM, vMatStructEntryPh);
+            edPhyEntM.WidthExitCustomer = input.WEntry?.M;
+            edPhyEntM.HEntry = input.HEntry?.M;
+            edPhyEntM.TEntry = input.TEntry?.M;
+            edPhyEntM.LEntryFm = input.LEntry?.M;
+
+            var edOrdEntM = await context.EdOrdEnts.FirstOrDefaultAsync(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M");
+            edOrdEntM = context.InsertIfNull(edOrdEntM, vMatStructEntryOr);
+            edOrdEntM.HIntermediate = input.HExitRM?.M;
+
+            var spOrd2PcMM = await context.SpOrd2Pcs.FirstOrDefaultAsync(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M");
+            spOrd2PcMM = context.InsertIfNull(spOrd2PcMM, vMatStructEntryOr);
+            spOrd2PcMM.ProfexcalcHrm = input.ProfileCalc?.M;
+            spOrd2PcMM.ProfextargetHrm = input.ProfileTarget?.M;
+
+            await context.SaveChangesAsync();
+        }
 
         [AbpAuthorize(Permissions.Pages_Setpoints_RM)]
         public async Task<SetpointsHRMDto> GetPassScheduleHRM(int meid, string matType)
