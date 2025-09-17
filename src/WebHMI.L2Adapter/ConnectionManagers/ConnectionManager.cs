@@ -37,18 +37,23 @@ namespace WebHMI.L2Adapter.ConnectionManagers
 
         private void StartL2ReconnectionLoop()
         {
-            Task.Factory.StartNew(async () =>
+            Task.Factory.StartNew(() =>
             {
-                while (!_disposed)
+                if (_disposed)
                 {
-                    await Task.Delay(TimeSpan.FromSeconds(5)); // Wait before attempting connection/reconnection
-
-                    StartL2Communication();
-
-                    if (!_disposed)
-                        _logger.Warn("L2 connection problem ocurred, trying to reconnect...");
+                    _logger.Info("[CAPPA] Skipped L2 communication initialization, because it was disposed");
+                    return;
                 }
-                _logger.Info("L2 communication disposed, exiting reconnection task...");
+
+                StartL2Communication();
+
+                if (!_disposed)
+                {
+                    _logger.Warn("[CAPPA] L2 communication failed, but it was not diposed");
+                    return;
+                }
+
+                _logger.Info("[CAPPA] L2 communication disposed, exiting connection task...");
             }, TaskCreationOptions.LongRunning)
                 .ContinueWith(t =>
                 {
@@ -63,7 +68,7 @@ namespace WebHMI.L2Adapter.ConnectionManagers
 
             try
             {
-                int result = EventLoop.Run("AppHmiServer", InitL2Objects, 0);
+                int result = EventLoop.Run("AppHmiServer2", InitL2Objects, 0);
                 IsL2CommunicationRunning = false;
                 _logger.Info($"{nameof(EventLoop.Run)} returned: {result}");
             }
