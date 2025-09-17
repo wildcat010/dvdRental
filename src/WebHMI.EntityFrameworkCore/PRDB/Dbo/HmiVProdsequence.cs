@@ -33,13 +33,15 @@ public partial class HmiVProdsequence
 
     public float? HExit { get; set; }
 
+    public float? WExit { get; set; }
+
     public float? WEntry { get; set; }
 
     public float? WeightEntry { get; set; }
 
     public float? LEntry { get; set; }
 
-    public float? WExit { get; set; }
+    public float? LExit { get; set; }
 
     public string SequenceId { get; set; }
 
@@ -67,13 +69,11 @@ public partial class HmiVProdsequence
 
     public string HeatId { get; set; }
 
-    public int? FlagBatchRolling { get; set; }
+    public string FlagBatchRolling { get; set; }
 
     public int? PlateProduction { get; set; }
 
     public float? HExitHrm { get; set; }
-
-    public float? HExitHrmcalc { get; set; }
 
     public float? ProfileHrm { get; set; }
 

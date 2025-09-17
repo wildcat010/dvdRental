@@ -67,6 +67,12 @@ public partial class HmiVMatInfoShort
 
     public float? CoilTemp { get; set; }
 
+    public float? CsCoilTempSetp { get; set; }
+
+    public float? HExitCold { get; set; }
+
+    public float? WExitCold { get; set; }
+
     public string HeatId { get; set; }
 
     public int? FlagBatchRolling { get; set; }

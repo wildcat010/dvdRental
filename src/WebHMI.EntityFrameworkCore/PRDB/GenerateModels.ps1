@@ -36,7 +36,6 @@ dotnet ef dbcontext scaffold $DBConnString Microsoft.EntityFrameworkCore.SqlServ
 --no-build `
 --no-onconfiguring `
 
-
 # Change base class from DbContext to AbpDbContext
 Write-Host 'Adjusting PrdbContext file to project requirements...'
 

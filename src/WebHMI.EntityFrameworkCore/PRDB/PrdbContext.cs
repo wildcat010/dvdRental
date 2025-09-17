@@ -13628,6 +13628,7 @@ public partial class PrdbContext : AbpDbContext
                 .IsUnicode(false)
                 .HasColumnName("apsKey");
             entity.Property(e => e.CoilTemp).HasColumnName("coilTemp");
+            entity.Property(e => e.CsCoilTempSetp).HasColumnName("csCoilTempSetp");
             entity.Property(e => e.EdLoSrc)
                 .IsRequired()
                 .HasMaxLength(2)
@@ -13663,6 +13664,7 @@ public partial class PrdbContext : AbpDbContext
             entity.Property(e => e.FlagBatchRolling).HasColumnName("flagBatchRolling");
             entity.Property(e => e.HEntry).HasColumnName("hEntry");
             entity.Property(e => e.HExit).HasColumnName("hExit");
+            entity.Property(e => e.HExitCold).HasColumnName("hExitCold");
             entity.Property(e => e.HExitHrm).HasColumnName("hExitHRM");
             entity.Property(e => e.HExitHrmcalc).HasColumnName("hExitHRMCalc");
             entity.Property(e => e.HeatId)
@@ -13697,6 +13699,7 @@ public partial class PrdbContext : AbpDbContext
             entity.Property(e => e.TExitFm).HasColumnName("tExitFM");
             entity.Property(e => e.WEntry).HasColumnName("wEntry");
             entity.Property(e => e.WExit).HasColumnName("wExit");
+            entity.Property(e => e.WExitCold).HasColumnName("wExitCold");
             entity.Property(e => e.WeightEntry).HasColumnName("weightEntry");
         });
 
@@ -13870,18 +13873,22 @@ public partial class PrdbContext : AbpDbContext
                 .HasMaxLength(20)
                 .IsUnicode(false);
             entity.Property(e => e.EnPhMeId).HasColumnName("EnPhMeID");
-            entity.Property(e => e.FlagBatchRolling).HasColumnName("flagBatchRolling");
+            entity.Property(e => e.FlagBatchRolling)
+                .IsRequired()
+                .HasMaxLength(7)
+                .IsUnicode(false)
+                .HasColumnName("flagBatchRolling");
             entity.Property(e => e.HEntry).HasColumnName("hEntry");
             entity.Property(e => e.HExit).HasColumnName("hExit");
             entity.Property(e => e.HExitHrm).HasColumnName("hExitHRM");
-            entity.Property(e => e.HExitHrmcalc).HasColumnName("hExitHRMcalc");
             entity.Property(e => e.HeatId)
                 .HasMaxLength(20)
                 .IsUnicode(false)
                 .HasColumnName("heatId");
             entity.Property(e => e.LEntry).HasColumnName("lEntry");
+            entity.Property(e => e.LExit).HasColumnName("lExit");
             entity.Property(e => e.LastCalc).HasPrecision(3);
-            entity.Property(e => e.Next).HasColumnName("next");
+            entity.Property(e => e.Next).HasColumnName("NEXT");
             entity.Property(e => e.OrderNo)
                 .HasMaxLength(20)
                 .IsUnicode(false)

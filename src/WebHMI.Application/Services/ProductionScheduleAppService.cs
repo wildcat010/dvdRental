@@ -1,4 +1,5 @@
 ﻿using Abp.Application.Services.Dto;
+using Abp.Auditing;
 using Abp.Authorization;
 using Abp.Domain.Entities;
 using Abp.EntityFrameworkCore;
@@ -6,6 +7,7 @@ using Abp.UI;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -70,6 +72,141 @@ namespace WebHMI.Services
                 ProductionScheduleMapper.ToRemovedMaterialsDto);
         }
 
+        [AbpAuthorize(Permissions.Pages_ProductionSchedule_Delete)]
+        [Audited]
+        public async Task DeleteMaterial(string connectionId, int enPhMeId)
+        {
+            //var context = _prdbContextProvider.GetDbContext();
+            //var enPhExtId = await context.HmiVMatInfoShorts.Where(x => x.EnPhMeId == enPhMeId).Select(x => x.EnPhExtId).FirstOrDefaultAsync();
+
+            //HmiReturn hmiReturn = HmiReturnFactory.CreateHmiReturn(connectionId, "deleteMatFromSeq", "psm");
+            //var arguments = VariantArgumentFactory.GetProdScheduleArguments(enPhExtId, hmiReturn);
+
+            //try
+            //{
+            //    Logger.Info("[Production Schedule] Requesting deleting slab from production sequence on module PSM");
+            //    _l2CommunicationTask.SendTelegram(L2Process.psm, hmiReturn.functionName, arguments);
+            //    Logger.Info("[Production Schedule] Operation executed and passed to L2");
+            //}
+            //catch (System.Exception ex)
+            //{
+            //    Logger.Error("Exception thrown when calling L2 Process", ex);
+            //    throw new UserFriendlyException("Exception thrown when calling L2 Process");
+            //}
+        }
+
+        [AbpAuthorize(Permissions.Pages_ProductionSchedule_Edit)]
+        [Audited]
+        public async Task SyncL1(string connectionId, int enPhMeId)
+        {
+            //var context = _dbContextProvider.GetDbContext();
+            //var enPhExtId = await context.HmiVMatInfoShorts.Where(x => x.EnPhMeId == enPhMeId).Select(x => x.EnPhExtId).FirstOrDefaultAsync();
+
+            //HmiReturn hmiReturn = HmiReturnFactory.CreateHmiReturn(connectionId, "addMatToSeq", "psm");
+            //var arguments = VariantArgumentFactory.GetProdScheduleArguments(enPhExtId, hmiReturn);
+
+            //try
+            //{
+            //    Logger.Info("[Production Schedule] Requesting appending a slab to production sequence on module PSM");
+            //    _l2CommunicationTask.SendTelegram(L2Process.psm, hmiReturn.functionName, arguments);
+            //    Logger.Info("[Production Schedule] Operation executed and passed to L2");
+            //}
+            //catch (System.Exception ex)
+            //{
+            //    Logger.Error("Exception thrown when calling L2 Process", ex);
+            //    throw new UserFriendlyException("Exception thrown when calling L2 Process");
+            //}
+        }
+
+        [Audited]
+        public async Task RejectMaterial(int enPhMeId, string connectionId)
+        {
+            //HmiReturn hmiReturn = HmiReturnFactory.CreateHmiReturn(connectionId, "sendCoilRequest", "crm");
+            //var arguments = VariantArgumentFactory.GetProdScheduleArguments(enPhExtId, hmiReturn);
+
+            //try
+            //{
+            //    Logger.Info($"[Production Schedule] Requesting coil from production sequence on module CRM");
+            //    _l2CommunicationTask.SendTelegram(L2Process.crm, hmiReturn.functionName, arguments);
+            //    Logger.Info($"[Production Schedule] Operation executed and passed to L2");
+            //}
+            //catch (System.Exception ex)
+            //{
+            //    Logger.Error("Exception thrown when calling L2 Process", ex);
+            //    throw new UserFriendlyException("Exception thrown when calling L2 Process");
+            //}
+        }
+
+        [AbpAuthorize(Permissions.Pages_ProductionSchedule_Edit)]
+        [Audited]
+        public async Task MoveMaterialUp(string connectionId, int enPhMeId)
+        {
+           // var context = _prdbContextProvider.GetDbContext();
+            //var enPhExtId = await context.HmiVMatInfoShorts.Where(x => x.EnPhMeId == enPhMeId).Select(x => x.EnPhExtId).FirstOrDefaultAsync();
+            // move up/down functions intentionally swapped
+            //HmiReturn hmiReturn = HmiReturnFactory.CreateHmiReturn(connectionId, "moveMatDown", "psm");
+            //var arguments = VariantArgumentFactory.GetProdScheduleArguments(enPhExtId, hmiReturn);
+
+            //try
+            //{
+            //    Logger.Info($"[Production Schedule] Requesting moving material down from production sequence on module PSM");
+            //    _l2CommunicationTask.SendTelegram(L2Process.psm, hmiReturn.functionName, arguments);
+            //    Logger.Info($"[Production Schedule] Operation executed and passed to L2");
+            //}
+            //catch (System.Exception ex)
+            //{
+            //    Logger.Error("Exception thrown when calling L2 Process", ex);
+            //    throw new UserFriendlyException("Exception thrown when calling L2 Process");
+            //}
+        }
+
+        [AbpAuthorize(Permissions.Pages_ProductionSchedule_Edit)]
+        [Audited]
+        public async Task MoveMaterialDown(string connectionId, int enPhMeId)
+        {
+            //var context = _prdbContextProvider.GetDbContext();
+            //var enPhExtId = await context.HmiVMatInfoShorts.Where(x => x.EnPhMeId == enPhMeId).Select(x => x.EnPhExtId).FirstOrDefaultAsync();
+            //// move up/down functions intentionally swapped
+            //HmiReturn hmiReturn = HmiReturnFactory.CreateHmiReturn(connectionId, "moveMatUp", "psm");
+            //var arguments = VariantArgumentFactory.GetProdScheduleArguments(enPhExtId, hmiReturn);
+
+            //try
+            //{
+            //    Logger.Info($"[Production Schedule] Requesting moving material up from production sequence on module PSM");
+            //    _l2CommunicationTask.SendTelegram(L2Process.psm, hmiReturn.functionName, arguments);
+            //    Logger.Info($"[Production Schedule] Operation executed and passed to L2");
+            //}
+            //catch (System.Exception ex)
+            //{
+            //    Logger.Error("Exception thrown when calling L2 Process", ex);
+            //    throw new UserFriendlyException("Exception thrown when calling L2 Process");
+            //}
+        }
+
+        [AbpAuthorize(Permissions.Pages_ProductionSchedule_Edit)]
+        [Audited]
+        public async Task MoveMatInSeq(string connectionId, int enPhMeId1, int enPhMeId2)
+        {
+            //var context = _prdbContextProvider.GetDbContext();
+
+            //var enPhExtId1 = await context.HmiVMatInfoShorts.Where(x => x.EnPhMeId == enPhMeId1).Select(x => x.EnPhExtId).FirstOrDefaultAsync();
+            //var enPhExtId2 = await context.HmiVMatInfoShorts.Where(x => x.EnPhMeId == enPhMeId2).Select(x => x.EnPhExtId).FirstOrDefaultAsync();
+
+            //HmiReturn hmiReturn = HmiReturnFactory.CreateHmiReturn(connectionId, "moveMatInSeq", "psm");
+            //var arguments = VariantArgumentFactory.GetProdScheduleArguments(enPhExtId1, enPhExtId2, hmiReturn);
+
+            //try
+            //{
+            //    Logger.Info($"[Production Schedule] Requesting moving material in sequence from production sequence on module PSM");
+            //    _l2CommunicationTask.SendTelegram(L2Process.psm, hmiReturn.functionName, arguments);
+            //    Logger.Info($"[Production Schedule] Operation executed and passed to L2");
+            //}
+            //catch (System.Exception ex)
+            //{
+            //    Logger.Error("Exception thrown when calling L2 Process", ex);
+            //    throw new UserFriendlyException("Exception thrown when calling L2 Process");
+            //}
+        }
         /// <summary>
         /// Returns aggregated sequence overview data.
         /// </summary>

@@ -30,7 +30,7 @@ namespace WebHMI.Mapping.Extensions
 				Status = dbo.EnPhStatus,
 			},
             HExitHrm = dbo.HExitHrm,
-            HExitHrmCalc = dbo.HExitHrmcalc,
+          //  HExitHrmCalc = dbo.HExitHrmcalc,
             ProfileHRM = dbo.ProfileHrm,
             OrderNo = dbo.OrderNo,
             Position = dbo.Position,
