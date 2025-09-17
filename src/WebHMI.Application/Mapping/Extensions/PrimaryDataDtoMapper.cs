@@ -126,11 +126,11 @@ namespace WebHMI.Mapping.Extensions
 			result.Data.FMExitWidthCustomer.E = dataBlob.EdPhyEnts.FirstOrDefault(x => x.Source == "E")?.WidthExitCustomer;
             result.Data.FMExitWidthCustomer.DbSource = "EdPhyEnt.WidthExitCustomer";
 
-            //result.Data.OrderNo.L = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "L")?.OrderNo;
-            //result.Data.OrderNo.M = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "M")?.OrderNo;
-            //result.Data.OrderNo.S = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "S")?.OrderNo;
-            //result.Data.OrderNo.E = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "E")?.OrderNo;
-            //result.Data.OrderNo.DbSource = "EdOrdEnt.OrderNo";
+            result.Data.OrderNo.L = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "L")?.OrderNo;
+            result.Data.OrderNo.M = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "M")?.OrderNo;
+            result.Data.OrderNo.S = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "S")?.OrderNo;
+            result.Data.OrderNo.E = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "E")?.OrderNo;
+            result.Data.OrderNo.DbSource = "EdOrdEnt.OrderNo";
 
             result.Data.FlagBatchRolling.L = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "L")?.FlagBatchRolling;
 			result.Data.FlagBatchRolling.M = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "M")?.FlagBatchRolling;

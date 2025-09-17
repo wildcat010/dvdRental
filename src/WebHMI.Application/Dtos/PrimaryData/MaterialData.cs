@@ -4,8 +4,9 @@ namespace WebHMI.Dtos.PrimaryData
 {
 	public class MaterialData
 	{
+		public SourceSet<string> OrderNo { get; set; } = new();
 		public SourceSet<string> SequenceId { get; set; } = new();
-		public SourceSet<string> HeatId { get; set; } = new();
+        public SourceSet<string> HeatId { get; set; } = new();
 		public SourceSet<float?> SlabThickness { get; set; } = new();
 		public SourceSet<float?> SlabWidth { get; set; } = new();
 		public SourceSet<float?> SlabLength { get; set; } = new();

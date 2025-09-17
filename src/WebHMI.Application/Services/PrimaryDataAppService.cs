@@ -104,6 +104,7 @@ namespace WebHMI.Services
             edordentM.CoolRateBot = input.Data.CoolingRateBottom.M;
             edordentM.CoolStrategy = input.Data.CoolingStrategyFlag.M;
             edordentM.CoolingStrategyModeSelection = input.Data.CoolingStrategyMode.M;
+            edordentM.OrderNo = input.Data.OrderNo.M;
 
             var edlogentM = await _prdbContext.EdLogEnts.FirstOrDefaultAsync(x => x.MeId == entryMatStruct.EnLoMeId && x.Source == "M");
             edlogentM = _prdbContext.InsertIfNull(edlogentM, entryMatStruct);
