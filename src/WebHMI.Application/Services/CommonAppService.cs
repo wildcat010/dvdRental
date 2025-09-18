@@ -173,43 +173,6 @@ namespace WebHMI.Services
             return result;
         }
 
-        public async Task SendTestRefresh(string refreshKey, int? meId, string matType)
-        {
-            MeCodeDto meCodeDto = null;
-            if (meId != null && matType != null)
-            {
-                //create MeCode parameter
-                Me me = await _prdbContext.Mes.FirstOrDefaultAsync(x => x.MeId == meId && x.MeTyp == matType);
-                if (me != null)
-                {
-                    meCodeDto = new MeCodeDto();
-                    meCodeDto.ExtId = me.ExtId;
-                    meCodeDto.MeId = me.MeId;
-                    meCodeDto.MesId = me.CurMesId ?? 1;
-                    meCodeDto.MatType = me.MeTyp;
-                    meCodeDto.Status = me.Status;
-                    meCodeDto.MeCreator = me.MeCreator;
-
-                }
-                else
-                {
-                    throw new Abp.UI.UserFriendlyException("Unknown material");
-                }
-            }
-
-            Logger.Info($"Sending Test HMI refresh with key '{refreshKey}'");
-
-            var dto = new HmiRefreshDto();
-            dto.MeCode = meCodeDto;
-            dto.LocationId = 0;
-            dto.LocationName = "";
-            dto.EventKey = new List<string> { refreshKey };
-
-            var eventData = new EventWrapper<HmiRefreshDto>(dto);
-            _eventBus.Trigger(eventData);
-            await _signalRNotifier.BroadcastToAllClientsAsync(eventData, "HmiRefreshData");
-        }
-
         public async Task<string> GetActualSequenceId()
         {
             var seq = (await _prdbContext.HmiVProdsequences
