@@ -1,16 +1,21 @@
 ﻿using Abp;
 using Abp.Dependency;
+using Abp.Events.Bus.Handlers;
 using Abp.Json;
 using Abp.RealTime;
 using Castle.Core.Logging;
 using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Threading.Tasks;
+using WebHMI.Dtos.Events;
+using WebHMI.EventBus;
+using WebHMI.L2Adapter.Watchdogs.Dto;
 
 
 namespace WebHMI.Notification
 {
-	public class SignalRNotifier : ITransientDependency, ISignalRNotifier
+	public class SignalRNotifier : ITransientDependency, IEventHandler<EventWrapper<HmiRefreshDto>>,
+        IEventHandler<EventWrapper<(DateTime, string)>>, IEventHandler<EventWrapper<WatchdogDto>>, ISignalRNotifier
 	{
 		public ILogger Logger { get; set; }
 
@@ -97,6 +102,21 @@ namespace WebHMI.Notification
 				Logger.Error("Could not send notification to hmiClientId: " + hmiClientId, ex);
 			}
 		}
-	}
+        public void HandleEvent(EventWrapper<HmiRefreshDto> eventData)
+        {
+            Logger.Debug(eventData.Data.EventKey[0]);
+            BroadcastToAllClientsAsync(eventData.Data, "HmiRefreshData");
+        }
+
+        public void HandleEvent(EventWrapper<(DateTime, string)> eventData)
+        {
+            BroadcastToAllClientsAsync(DateTime.UtcNow, "L2WatchdogStatusRefresh");
+        }
+
+        public void HandleEvent(EventWrapper<WatchdogDto> eventData)
+        {
+            BroadcastToAllClientsAsync(eventData.Data, "SystemStatusUpdate");
+        }
+    }
 }
 
