@@ -19,6 +19,8 @@ namespace WebHMI.DataBlobs
         public List<Tp> Tps { get; set; } = new();
         public List<Rcp> Rcps { get; set; } = new();
         public List<Dphrm> Dphrms { get; set; } = new();
+        public List<Dpfm> DpFms { get; set; } = new();
+        public List<DprampFm> Dprampfms { get; set; } = new();
         public List<Lp> Lps { get; set; } = new();
         public List<SpOrd2Pc> Spord2pcs { get; set; } = new();
         public List<EdOrdEnt> Edordents { get; set; } = new();
@@ -26,6 +28,7 @@ namespace WebHMI.DataBlobs
         public List<EdLogEnt> Edlogents { get; set; } = new();
         public List<Me> Mes { get; set; } = new();
         public List<DirFmPfcParaP> DirFmPfcParaPs { get; set; } = new();
+        public List<DirFmPfcParaPpass> DirFmPfcParapPasses { get; set; } = new();
 
 
     }

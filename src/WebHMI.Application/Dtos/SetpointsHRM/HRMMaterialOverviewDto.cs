@@ -9,16 +9,25 @@ namespace WebHMI.Dtos.SetpointsHRM
     public class HRMMaterialOverviewDto
     {
         public MeCodeDto MeCode { get; set; } = new();
-        public SourceSet<float?> WEntry { get; set; } = new();
-        public SourceSet<float?> HEntry { get; set; } = new();
+        public SourceSet<float?> AimsLabThickness { get; set; } = new();
+        public SourceSet<float?> SlabWidth { get; set; } = new();
         public SourceSet<float?> TEntry { get; set; } = new();
-        public SourceSet<float?> LEntry { get; set; } = new();
-        public SourceSet<float?> HExitRM { get; set; } = new();
-        public SourceSet<float?> WExitRM { get; set; } = new();
-        public SourceSet<float?> WExitRMOrd { get; set; } = new();
-        public SourceSet<float?> TExitRM { get; set; } = new();
-        public SourceSet<float?> ProfileTarget { get; set; } = new();
-        public SourceSet<float?> ProfileCalc { get; set; } = new();
+        public SourceSet<float?> SlabLength { get; set; } = new();
+        public SourceSet<float?> HIntermediate { get; set; } = new();
+        public SourceSet<double?> HEntryColdFm { get; set; } = new();
+        public SourceSet<double?> WEntryColdFm { get; set; } = new();
+        public SourceSet<float?> TValue { get; set; } = new();
+        public SourceSet<float?> ProfExTargetHrm { get; set; } = new();
+        public SourceSet<float?> ProfExCalcHrm { get; set; } = new();
+        public SourceSet<double?> ProfileCorr { get; set; } = new();
+        public SourceSet<string> RedDistHrmFm { get; set; } = new();
+        public SourceSet<int?> LpPlanNo { get; set; } = new();
+        public SourceSet<int?> DpHrmPlanNo { get; set; } = new();
+        public SourceSet<int?> RcpPlanNo { get; set; } = new();
+        public SourceSet<int?> TpPlanNo { get; set; } = new();
+        public SourceSet<int?> RglpPlanNo { get; set; } = new();
+        public SourceSet<int?> IscpPlanNo { get; set; } = new();
+        public SourceSet<int?> DirFmPfcCycShiftPlanNo { get; set; } = new();
 
     }
 }
