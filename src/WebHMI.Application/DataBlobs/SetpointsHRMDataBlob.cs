@@ -18,9 +18,8 @@ namespace WebHMI.DataBlobs
         public List<Rglp> Rglps { get; set; } = new();
         public List<Tp> Tps { get; set; } = new();
         public List<Rcp> Rcps { get; set; } = new();
-        public List<Dphrm> Dphrms { get; set; } = new();
-        public List<Dpfm> DpFms { get; set; } = new();
-        public List<DprampFm> Dprampfms { get; set; } = new();
+        public List<Dphrm> DpRms { get; set; } = new();
+        public List<DprampHrm> Dpramprms { get; set; } = new();
         public List<Lp> Lps { get; set; } = new();
         public List<SpOrd2Pc> Spord2pcs { get; set; } = new();
         public List<EdOrdEnt> Edordents { get; set; } = new();

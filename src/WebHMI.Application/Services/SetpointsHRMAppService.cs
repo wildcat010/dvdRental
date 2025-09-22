@@ -308,39 +308,39 @@ namespace WebHMI.Services
         {
             var context = _prdbContextProvider.GetDbContext();
 
-            var dpfmM = await context.Dpfms.Where(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M").FirstOrDefaultAsync();
+            var dprmM = await context.Dphrms.Where(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M").FirstOrDefaultAsync();
 
-            if (dpfmM == null)
+            if (dprmM == null)
             {
-                dpfmM = new Dpfm()
+                dprmM = new Dphrm()
                 {
                     MeCreator = vMatStructEntryOr.EnOrCreator,
                     MeId = vMatStructEntryOr.EnOrMeId,
                     MesId = (short)vMatStructEntryOr.EnOrMesId,
                     Source = "M",
                 };
-                context.Dpfms.Add(dpfmM);
+                context.Dphrms.Add(dprmM);
             }
 
-            dpfmM.PlanNo = input.Descaling?.PlanNo.M;
+            dprmM.PlanNo = input.Descaling?.PlanNo.M;
 
-            var dprampfmM = await context.DprampFms.Where(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M").FirstOrDefaultAsync();
+            var dpramprmM = await context.DprampHrms.Where(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M").FirstOrDefaultAsync();
 
-            if (dprampfmM == null)
+            if (dpramprmM == null)
             {
-                dprampfmM = new DprampFm()
+                dpramprmM = new DprampHrm()
                 {
                     MeCreator = vMatStructEntryOr.EnOrCreator,
                     MeId = vMatStructEntryOr.EnOrMeId,
                     MesId = (short)vMatStructEntryOr.EnOrMesId,
                     Source = "M",
                 };
-                context.DprampFms.Add(dprampfmM);
+                context.DprampHrms.Add(dpramprmM);
             }
 
-            dprampfmM.DescRampAuto = input.Descaling?.DescrampAuto.M;
-            dprampfmM.DescRampState = input.Descaling?.DescrampState.M;
-            dprampfmM.DescRampVolume = input.Descaling?.DescrampVolume.M;
+            dpramprmM.DescRampAuto = input.Descaling?.DescrampAuto.M;
+            dpramprmM.DescRampState = input.Descaling?.DescrampState.M;
+            dpramprmM.DescRampVolume = input.Descaling?.DescrampVolume.M;
 
             await context.SaveChangesAsync();
 
@@ -616,7 +616,6 @@ namespace WebHMI.Services
                 Rglps = await _prdbContext.Rglps.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
                 Tps = await _prdbContext.Tps.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
                 Rcps = await _prdbContext.Rcps.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
-                Dphrms = await _prdbContext.Dphrms.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
                 Lps = await _prdbContext.Lps.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
                 Spord2pcs = await _prdbContext.SpOrd2Pcs.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
                 Edordents = await _prdbContext.EdOrdEnts.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
@@ -625,8 +624,8 @@ namespace WebHMI.Services
                 Mes = await _prdbContext.Mes.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId).AsNoTracking().ToListAsync(),
                 DirFmPfcParaPs = await _prdbContext.DirFmPfcParaPs.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
                 DirFmPfcParapPasses = await _prdbContext.DirFmPfcParaPpasses.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
-                DpFms = await _prdbContext.Dpfms.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
-                Dprampfms = await _prdbContext.DprampFms.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync()
+                DpRms = await _prdbContext.Dphrms.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
+                Dpramprms = await _prdbContext.DprampHrms.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync()
             };
 
             return setpointsHRMBlob;

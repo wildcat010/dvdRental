@@ -33,10 +33,10 @@ namespace WebHMI.Mapping.Extensions
             var rcpS = dataBlob.Rcps.Where(x => x.Source == "S").FirstOrDefault();
             var rcpE = dataBlob.Rcps.Where(x => x.Source == "E").FirstOrDefault();
 
-            var dphrmL = dataBlob.Dphrms.Where(x => x.Source == "L").FirstOrDefault();
-            var dphrmM = dataBlob.Dphrms.Where(x => x.Source == "M").FirstOrDefault();
-            var dphrmS = dataBlob.Dphrms.Where(x => x.Source == "S").FirstOrDefault();
-            var dphrmE = dataBlob.Dphrms.Where(x => x.Source == "E").FirstOrDefault();
+            var dphrmL = dataBlob.DpRms.Where(x => x.Source == "L").FirstOrDefault();
+            var dphrmM = dataBlob.DpRms.Where(x => x.Source == "M").FirstOrDefault();
+            var dphrmS = dataBlob.DpRms.Where(x => x.Source == "S").FirstOrDefault();
+            var dphrmE = dataBlob.DpRms.Where(x => x.Source == "E").FirstOrDefault();
 
             var lpL = dataBlob.Lps.Where(x => x.Source == "L").FirstOrDefault();
             var lpM = dataBlob.Lps.Where(x => x.Source == "M").FirstOrDefault();
@@ -385,35 +385,35 @@ namespace WebHMI.Mapping.Extensions
 
         public static SetpointsHRMDto MapDescaling(this SetpointsHRMDto result, SetpointsHRMDataBlob dataBlob)
         {
-            var dpfmL = dataBlob.DpFms.Where(x => x.Source == "L").FirstOrDefault();
-            var dpfmM = dataBlob.DpFms.Where(x => x.Source == "M").FirstOrDefault();
-            var dpfmS = dataBlob.DpFms.Where(x => x.Source == "S").FirstOrDefault();
-            var dpfmE = dataBlob.DpFms.Where(x => x.Source == "E").FirstOrDefault();
+            var dprmL = dataBlob.DpRms.Where(x => x.Source == "L").FirstOrDefault();
+            var dprmM = dataBlob.DpRms.Where(x => x.Source == "M").FirstOrDefault();
+            var dprmS = dataBlob.DpRms.Where(x => x.Source == "S").FirstOrDefault();
+            var dprmE = dataBlob.DpRms.Where(x => x.Source == "E").FirstOrDefault();
 
-            var dprampfmL = dataBlob.Dprampfms.Where(x => x.Source == "L").FirstOrDefault();
-            var dprampfmM = dataBlob.Dprampfms.Where(x => x.Source == "M").FirstOrDefault();
-            var dprampfmS = dataBlob.Dprampfms.Where(x => x.Source == "S").FirstOrDefault();
-            var dprampfmE = dataBlob.Dprampfms.Where(x => x.Source == "E").FirstOrDefault();
+            var dpramprmL = dataBlob.Dpramprms.Where(x => x.Source == "L").FirstOrDefault();
+            var dpramprmM = dataBlob.Dpramprms.Where(x => x.Source == "M").FirstOrDefault();
+            var dpramprmS = dataBlob.Dpramprms.Where(x => x.Source == "S").FirstOrDefault();
+            var dpramprmE = dataBlob.Dpramprms.Where(x => x.Source == "E").FirstOrDefault();
 
-            result.Descaling.PlanNo.L = dpfmL?.PlanNo;
-            result.Descaling.PlanNo.E = dpfmE?.PlanNo;
-            result.Descaling.PlanNo.M = dpfmM?.PlanNo;
-            result.Descaling.PlanNo.DbSource = "Dpfm.PlanNo";
+            result.Descaling.PlanNo.L = dprmL?.PlanNo;
+            result.Descaling.PlanNo.E = dprmE?.PlanNo;
+            result.Descaling.PlanNo.M = dprmM?.PlanNo;
+            result.Descaling.PlanNo.DbSource = "Dprm.PlanNo";
 
-            result.Descaling.DescrampAuto.L = dprampfmL?.DescRampAuto;
-            result.Descaling.DescrampAuto.E = dprampfmE?.DescRampAuto;
-            result.Descaling.DescrampAuto.M = dprampfmM?.DescRampAuto;
-            result.Descaling.DescrampAuto.DbSource = "Dprampfm.DescRampAuto";
+            result.Descaling.DescrampAuto.L = dpramprmL?.DescRampAuto;
+            result.Descaling.DescrampAuto.E = dpramprmE?.DescRampAuto;
+            result.Descaling.DescrampAuto.M = dpramprmM?.DescRampAuto;
+            result.Descaling.DescrampAuto.DbSource = "Dpramprm.DescRampAuto";
 
-            result.Descaling.DescrampState.L = dprampfmL?.DescRampState;
-            result.Descaling.DescrampState.E = dprampfmE?.DescRampState;
-            result.Descaling.DescrampState.M = dprampfmM?.DescRampState;
-            result.Descaling.DescrampState.DbSource = "Dprampfm.DescrampState";
+            result.Descaling.DescrampState.L = dpramprmL?.DescRampState;
+            result.Descaling.DescrampState.E = dpramprmE?.DescRampState;
+            result.Descaling.DescrampState.M = dpramprmM?.DescRampState;
+            result.Descaling.DescrampState.DbSource = "Dpramprm.DescrampState";
 
-            result.Descaling.DescrampVolume.L = dprampfmL?.DescRampVolume;
-            result.Descaling.DescrampVolume.E = dprampfmE?.DescRampVolume;
-            result.Descaling.DescrampVolume.M = dprampfmM?.DescRampVolume;
-            result.Descaling.DescrampVolume.DbSource = "Dpfm.DescrampVolume";
+            result.Descaling.DescrampVolume.L = dpramprmL?.DescRampVolume;
+            result.Descaling.DescrampVolume.E = dpramprmE?.DescRampVolume;
+            result.Descaling.DescrampVolume.M = dpramprmM?.DescRampVolume;
+            result.Descaling.DescrampVolume.DbSource = "Dprm.DescrampVolume";
 
             return result;
         }
