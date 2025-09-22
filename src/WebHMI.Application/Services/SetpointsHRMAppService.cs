@@ -48,10 +48,6 @@ namespace WebHMI.Services
 
             string[] sources = ["L", "M", "S", "E"];
 
-            var spord2pcs = await _prdbContext.SpOrd2Pcs.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync();
-            var edordents = await _prdbContext.EdOrdEnts.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync();
-            var edphyents = await _prdbContext.EdPhyEnts.Where(x => x.MeId == hmiVEntryMatStruct.EnPhMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync();
-
             var dataBlob = await GetHrmDataBlob(hmiVEntryMatStruct);
 
             result.MeCode = hmiVEntryMatStruct.ToMeCodeDto();

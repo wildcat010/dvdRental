@@ -12,22 +12,27 @@ namespace WebHMI.DataBlobs
         public List<Rcppass> Rcppasses { get; set; } = new();
         public List<Lppass> Lppasses { get; set; } = new();
         public List<Tppass> Tppasses { get; set; } = new();
+        public List<Rglppass> Rglppasses { get; set; } = new();
         public List<DirFmPfcCycShiftPpass> Dirfmpfccycshiftppasses { get; set; } = new();
         public List<DirFmPfcCycShiftP> Dirfmpfccycshiftps { get; set; } = new();
         public List<Iscp> Iscps { get; set; } = new();
         public List<Rglp> Rglps { get; set; } = new();
         public List<Tp> Tps { get; set; } = new();
+        public List<Rcp> Rcps { get; set; } = new();
+        public List<Dphrm> Dphrms { get; set; } = new();
+        public List<Dpfm> DpFms { get; set; } = new();
+        public List<DprampFm> Dprampfms { get; set; } = new();
+        public List<Lp> Lps { get; set; } = new();
         public List<Srp> Srps { get; set; } = new();
         public List<Ihp> Ihps { get; set; } = new();
-        public List<Rcp> Rcps { get; set; } = new();
         public List<Dpfm> Dpfms { get; set; } = new();
-        public List<Lp> Lps { get; set; } = new();
         public List<SpOrd2Pc> Spord2pcs { get; set; } = new();
         public List<EdOrdEnt> Edordents { get; set; } = new();
         public List<EdPhyEnt> Edphyents { get; set; } = new();
         public List<EdLogEnt> Edlogents { get; set; } = new();
         public List<Me> Mes { get; set; } = new();
         public List<DirFmPfcParaP> DirFmPfcParaPs { get; set; } = new();
+        public List<DirFmPfcParaPpass> DirFmPfcParapPasses { get; set; } = new();
 
 
     }

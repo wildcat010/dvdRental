@@ -425,16 +425,6 @@ namespace WebHMI.Mapping.Extensions
             var aopS = dataBlob.Aoppasses.Where(x => x.Source == "S").FirstOrDefault();
             var aopE = dataBlob.Aoppasses.Where(x => x.Source == "E").FirstOrDefault();
 
-            var iscpL = dataBlob.Iscpasses.Where(x => x.Source == "L").FirstOrDefault();
-            var iscpM = dataBlob.Iscpasses.Where(x => x.Source == "M").FirstOrDefault();
-            var iscpS = dataBlob.Iscpasses.Where(x => x.Source == "S").FirstOrDefault();
-            var iscpE = dataBlob.Iscpasses.Where(x => x.Source == "E").FirstOrDefault();
-
-            var rcpL = dataBlob.Rcppasses.Where(x => x.Source == "L").FirstOrDefault();
-            var rcpM = dataBlob.Rcppasses.Where(x => x.Source == "M").FirstOrDefault();
-            var rcpS = dataBlob.Rcppasses.Where(x => x.Source == "S").FirstOrDefault();
-            var rcpE = dataBlob.Rcppasses.Where(x => x.Source == "E").FirstOrDefault();
-
             for (short i = 0; i < standCount; i++)
             {
 
@@ -442,16 +432,6 @@ namespace WebHMI.Mapping.Extensions
                 var aopPassM = dataBlob.Aoppasses.Where(x => x.Source == "M" && x.PassNo == i).FirstOrDefault();
                 var aopPassS = dataBlob.Aoppasses.Where(x => x.Source == "S" && x.PassNo == i).FirstOrDefault();
                 var aopPassE = dataBlob.Aoppasses.Where(x => x.Source == "E" && x.PassNo == i).FirstOrDefault();
-
-                var iscpPassL = dataBlob.Iscpasses.Where(x => x.Source == "L" && x.PassNo == i).FirstOrDefault();
-                var iscpPassM = dataBlob.Iscpasses.Where(x => x.Source == "M" && x.PassNo == i).FirstOrDefault();
-                var iscpPassS = dataBlob.Iscpasses.Where(x => x.Source == "S" && x.PassNo == i).FirstOrDefault();
-                var iscpPassE = dataBlob.Iscpasses.Where(x => x.Source == "E" && x.PassNo == i).FirstOrDefault();
-
-                var rcpPassL = dataBlob.Rcppasses.Where(x => x.Source == "L" && x.PassNo == i).FirstOrDefault();
-                var rcpPassM = dataBlob.Rcppasses.Where(x => x.Source == "M" && x.PassNo == i).FirstOrDefault();
-                var rcpPassS = dataBlob.Rcppasses.Where(x => x.Source == "S" && x.PassNo == i).FirstOrDefault();
-                var rcpPassE = dataBlob.Rcppasses.Where(x => x.Source == "E" && x.PassNo == i).FirstOrDefault();
 
                 var stand = new AntiPeelingDto();
 

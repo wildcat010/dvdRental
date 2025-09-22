@@ -13,7 +13,7 @@ namespace WebHMI.Dtos.SetpointsHRM
         public SourceSet<double?> Red { get; set; } = new();
         public SourceSet<double?> LoadingValue { get; set; } = new();
         public SourceSet<double?> LoadingValueCorrection { get; set; } = new();
-        public SourceSet<double?> Fb { get; set; } = new();
+        public SourceSet<float?> Fb { get; set; } = new();
         public SourceSet<float?> PositionWRS { get; set; } = new();
         public SourceSet<double?> Model { get; set; } = new();
         public SourceSet<double?> SpecifFoTension { get; set; } = new();
@@ -31,6 +31,8 @@ namespace WebHMI.Dtos.SetpointsHRM
         public SourceSet<float?> Ms { get; set; } = new();
         public SourceSet<float?> RPower { get; set; } = new();
         public SourceSet<float?> CalcFlat { get; set; } = new();
-        
+        public SourceSet<string> SptlFaultFm { get; set; } = new();
+
+
     }
 }

@@ -10,31 +10,14 @@ namespace WebHMI.Dtos.SetpointsHRM
     public class SetpointsHFMDto
     {
         public MeCodeDto MeCode { get; set; }
-        public SourceSet<string> ApsKey { get; set; } = new();
-        public SourceSet<string> AlloyCode { get; set; } = new();
-        public SourceSet<int?> SetpointsHFMOk { get; set; } = new();
-        public SourceSet<int?> OkAll { get; set; } = new();
-        public SourceSet<float?> HExit { get; set; } = new();
-        public SourceSet<float?> WidthExit { get; set; } = new();
-        public SourceSet<float?> TExit { get; set; } = new();
-        public SourceSet<float?> ExitCrownc25 { get; set; } = new();
-        public SourceSet<float?> HEntryColdFm { get; set; } = new();
-        public SourceSet<float?> TiHx { get; set; } = new();
-        public SourceSet<float?> HExitCold { get; set; } = new();
-        public SourceSet<float?> WExitCold { get; set; } = new();
-        public SourceSet<float?> T0MhHRM { get; set; } = new();
-        public SourceSet<float?> TValue { get; set; } = new();
-        public SourceSet<float?> ProfExCalc { get; set; } = new();
-        public SourceSet<double?> ProfileCorr { get; set; } = new();
-        public SourceSet<string> RedDistHrmFm { get; set; } = new();
-        public SourceSet<int?> LpPlanNo { get; set; } = new();
-        public SourceSet<int?> DpHfmPlanNo { get; set; } = new();
-        public SourceSet<int?> RcpPlanNo { get; set; } = new();
-        public SourceSet<int?> TpPlanNo { get; set; } = new();
-        public SourceSet<int?> RglpPlanNo { get; set; } = new();
-        public SourceSet<int?> IscpPlanNo { get; set; } = new();
-        public SourceSet<int?> SrpPlanNo { get; set; } = new();
-        public SourceSet<float?> Temperature { get; set; } = new();
-        public List<SingleHFMStandDataDto> StandDataDtos { get; set; } = new();  
+        public List<PassScheduleDto> PassScheduleDtos { get; set; } = new();
+        public List<LoadingDto> LoadingDtos { get; set; } = new();
+        public List<AntiPeelingDto> AntiPeelingDtos { get; set; } = new();
+        public List<WorkCoolingDto> WorkCoolingDtos { get; set; } = new();
+        public List<TensionDto> TensionDtos { get; set; } = new();
+        public List<TaperShiftingDto> TaperShiftingDtos { get; set; } = new();
+        public List<LubricationDto> LubricationDtos { get; set; } = new();
+
+        public DescalingDto Descaling { get; set; } = new();
     }
 }
