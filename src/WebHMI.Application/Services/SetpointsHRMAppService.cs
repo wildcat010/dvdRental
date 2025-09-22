@@ -124,11 +124,11 @@ namespace WebHMI.Services
             result.MapPassSchedule(dataBlob, _standCount);
             result.MapLubrication(dataBlob);
             result.MapDescaling(dataBlob);
-            result.MapLoading(dataBlob, _standCount);
             result.MapAntiPeeling(dataBlob, _standCount);
             result.MapWorkCooling(dataBlob, _standCount);
             result.MapTension(dataBlob, _standCount);
             result.MapTaperShifting(dataBlob, _standCount);
+            result.MapLoading(dataBlob, _standCount);
 
             return result;
         }

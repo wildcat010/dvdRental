@@ -375,6 +375,9 @@ namespace WebHMI.Mapping.Extensions
                 stand.BendingForce.E = lpPassE?.BendingForce;
                 stand.BendingForce.M = lpPassM?.BendingForce;
                 stand.BendingForce.DbSource = "LpPass.BendingForce";
+
+                result.LoadingDtos.Add(stand);
+
             }
 
             return result;
