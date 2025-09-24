@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WebHMI.Dtos.SetpointsHRM
+namespace WebHMI.Dtos.Setpoints.CommonDtos
 {
-    public class TaperShiftingDto
+    public class TensionDto
     {
         public short PassNo { get; set; }
         public SourceSet<int?> PlanNo { get; set; } = new();
-        public SourceSet<double?> Model { get; set; } = new();
+        public SourceSet<double?> SpeciffoTension { get; set; } = new();
+        public SourceSet<double?> LooperStripLen { get; set; } = new();
 
     }
 }

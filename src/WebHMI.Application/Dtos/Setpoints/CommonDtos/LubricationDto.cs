@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WebHMI.Dtos.SetpointsHRM
+namespace WebHMI.Dtos.Setpoints.CommonDtos
 {
     public class LubricationDto
     {

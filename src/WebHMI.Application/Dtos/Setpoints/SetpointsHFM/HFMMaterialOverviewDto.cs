@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WebHMI.Dtos.SetpointsHFM
+namespace WebHMI.Dtos.Setpoints.SetpointsHFM
 {
     public class HFMMaterialOverviewDto
     {

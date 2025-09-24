@@ -2,15 +2,16 @@ using AutoMapper;
 using System.Collections.Generic;
 using System.Linq;
 using WebHMI.DataBlobs;
-using WebHMI.Dtos.SetpointsHRM;
-using WebHMI.Dtos.SetpointsRM;
+using WebHMI.Dtos.Setpoints.CommonDtos;
+using WebHMI.Dtos.Setpoints.CommonDtos.ApxDtos;
+using WebHMI.Dtos.Setpoints.SetpointsHRM;
 using WebHMI.PRDB.Dbo;
 
 namespace WebHMI.Mapping.Extensions
 {
     public static class SetpointsHRMMapper
     {
-
+   
         public static HRMMaterialOverviewDto MapOverview(this HRMMaterialOverviewDto result,  SetpointsHRMDataBlob dataBlob)
         {
             var iscpL = dataBlob.Iscps.Where(x => x.Source == "L").FirstOrDefault();
@@ -610,5 +611,263 @@ namespace WebHMI.Mapping.Extensions
             return result;
         }
 
+        public static SetpointsHRMApxDto MapApxPassSchedule(this SetpointsHRMApxDto result, SetpointsHRMApxDataBlob dataBlob, short standCount)
+        {
+            for (short i = 0; i < standCount; i++)
+            {
+                var srpPassesL = dataBlob.Srppasses.Where(x => x.Source == "L" && x.PassNo == i).FirstOrDefault();
+                var srpPassesM = dataBlob.Srppasses.Where(x => x.Source == "M" && x.PassNo == i).FirstOrDefault();
+                var srpPassesS = dataBlob.Srppasses.Where(x => x.Source == "S" && x.PassNo == i).FirstOrDefault();
+                var srpPassesE = dataBlob.Srppasses.Where(x => x.Source == "E" && x.PassNo == i).FirstOrDefault();
+
+                var wmppassesL = dataBlob.Wmppasses.Where(x => x.Source == "L" && x.PassNo == i).FirstOrDefault();
+                var wmppassesM = dataBlob.Wmppasses.Where(x => x.Source == "M" && x.PassNo == i).FirstOrDefault();
+                var wmppassesS = dataBlob.Wmppasses.Where(x => x.Source == "S" && x.PassNo == i).FirstOrDefault();
+                var wmppassesE = dataBlob.Wmppasses.Where(x => x.Source == "E" && x.PassNo == i).FirstOrDefault();
+
+                var spOrd2PcStandL = dataBlob.Spord2pcstands.Where(x => x.Source == "L" && x.StandId == i).FirstOrDefault();
+                var spOrd2PcStandM = dataBlob.Spord2pcstands.Where(x => x.Source == "M" && x.StandId == i).FirstOrDefault();
+                var spOrd2PcStandS = dataBlob.Spord2pcstands.Where(x => x.Source == "S" && x.StandId == i).FirstOrDefault();
+                var spOrd2PcStandE = dataBlob.Spord2pcstands.Where(x => x.Source == "E" && x.StandId == i).FirstOrDefault();
+
+                var lpPassL = dataBlob.Lppasses.Where(x => x.Source == "L" && x.PassNo == i).FirstOrDefault();
+                var lpPassM = dataBlob.Lppasses.Where(x => x.Source == "M" && x.PassNo == i).FirstOrDefault();
+                var lpPassS = dataBlob.Lppasses.Where(x => x.Source == "S" && x.PassNo == i).FirstOrDefault();
+                var lpPassE = dataBlob.Lppasses.Where(x => x.Source == "E" && x.PassNo == i).FirstOrDefault();
+
+                var dirFmPfcCycShiftPassL = dataBlob.Dirfmpfccycshiftppasses.Where(x => x.Source == "L" && x.PassNo == i).FirstOrDefault();
+                var dirFmPfcCycShiftPassM = dataBlob.Dirfmpfccycshiftppasses.Where(x => x.Source == "M" && x.PassNo == i).FirstOrDefault();
+                var dirFmPfcCycShiftPassS = dataBlob.Dirfmpfccycshiftppasses.Where(x => x.Source == "S" && x.PassNo == i).FirstOrDefault();
+                var dirFmPfcCycShiftPassE = dataBlob.Dirfmpfccycshiftppasses.Where(x => x.Source == "E" && x.PassNo == i).FirstOrDefault();
+
+                var dirFmPfcParaPassesL = dataBlob.DirFmPfcParaPasses.Where(x => x.Source == "L" && x.PassNo == i).FirstOrDefault();
+                var dirFmPfcParaPassesM = dataBlob.DirFmPfcParaPasses.Where(x => x.Source == "M" && x.PassNo == i).FirstOrDefault();
+                var dirFmPfcParaPassesS = dataBlob.DirFmPfcParaPasses.Where(x => x.Source == "S" && x.PassNo == i).FirstOrDefault();
+                var dirFmPfcParaPassesE = dataBlob.DirFmPfcParaPasses.Where(x => x.Source == "E" && x.PassNo == i).FirstOrDefault();
+
+                var spOrd2PcL = dataBlob.Spord2pcs.Where(x => x.Source == "L").FirstOrDefault();
+                var spOrd2PcM = dataBlob.Spord2pcs.Where(x => x.Source == "M").FirstOrDefault();
+                var spOrd2PcS = dataBlob.Spord2pcs.Where(x => x.Source == "S").FirstOrDefault();
+                var spOrd2PcE = dataBlob.Spord2pcs.Where(x => x.Source == "E").FirstOrDefault();
+
+                var stand = new ApxPassScheduleDto();
+
+                stand.PassNo = i;
+
+                stand.BendingForce.L = lpPassL?.BendingForce;
+                stand.BendingForce.E = lpPassE?.BendingForce;
+                stand.BendingForce.M = lpPassM?.BendingForce;
+                stand.BendingForce.DbSource = $"LpPass.BendingForce({i})";
+
+                stand.Fbul.L = dirFmPfcParaPassesL?.FbUl;
+                stand.Fbul.E = dirFmPfcParaPassesE?.FbUl;
+                stand.Fbul.M = dirFmPfcParaPassesM?.FbUl;
+                stand.Fbul.DbSource = $"DirFmPfcParaPasses.FbUl({i})";
+
+                stand.Fbll.L = dirFmPfcParaPassesL?.FbLl;
+                stand.Fbll.E = dirFmPfcParaPassesE?.FbLl;
+                stand.Fbll.M = dirFmPfcParaPassesM?.FbLl;
+                stand.Fbll.DbSource = $"DirFmPfcParaPasses.FbLl({i})";
+
+                stand.Srul.L = dirFmPfcParaPassesL?.SrUl;
+                stand.Srul.E = dirFmPfcParaPassesE?.SrUl;
+                stand.Srul.E = dirFmPfcParaPassesM?.SrUl;
+                stand.Srul.DbSource = $"DirFmPfcParaPasses.SrUl({i})";
+
+                stand.Srll.L = dirFmPfcParaPassesL?.SrLl;
+                stand.Srll.E = dirFmPfcParaPassesE?.SrLl;
+                stand.Srll.E = dirFmPfcParaPassesM?.SrLl;
+                stand.Srll.DbSource = $"DirFmPfcParaPasses.SrLl({i})";
+
+                stand.ObservedFlat.L = dirFmPfcParaPassesL?.ObservedFlat;
+                stand.ObservedFlat.E = dirFmPfcParaPassesE?.ObservedFlat;
+                stand.ObservedFlat.E = dirFmPfcParaPassesM?.ObservedFlat;
+                stand.ObservedFlat.DbSource = $"DirFmPfcParaPasses.ObservedFlat({i})";
+
+                stand.Fr.L = spOrd2PcStandL?.Fr;
+                stand.Fr.E = spOrd2PcStandE?.Fr;
+                stand.Fr.DbSource = $"SpOrd2PcStand.Fr({i})";
+
+                stand.Fb.L = spOrd2PcStandL?.Fb;
+                stand.Fb.E = spOrd2PcStandE?.Fb;
+                stand.Fb.DbSource = $"SpOrd2PcStand.Fb({i})";
+
+                stand.PositionWrs.L = spOrd2PcStandL?.PositionWrs;
+                stand.PositionWrs.E = spOrd2PcStandE?.PositionWrs;
+                stand.PositionWrs.DbSource = $"SpOrd2PcStand.PositionWrs({i})";
+
+                stand.RelProfile.L = spOrd2PcStandL?.RelProfile;
+                stand.RelProfile.E = spOrd2PcStandE?.RelProfile;
+                stand.RelProfile.DbSource = $"SpOrd2PcStand.RelProfile({i})";
+
+                stand.Profile.L = spOrd2PcStandL?.Profile;
+                stand.Profile.E = spOrd2PcStandE?.Profile;
+                stand.Profile.DbSource = $"SpOrd2PcStand.Profile({i})";
+
+                stand.WrCrownEff.L = spOrd2PcStandL?.WrCrownEff;
+                stand.WrCrownEff.E = spOrd2PcStandE?.WrCrownEff;
+                stand.WrCrownEff.DbSource = $"SpOrd2PcStand.WrCrownEff({i})";
+
+                stand.ThermCrown.L = spOrd2PcStandL?.ThermCrown;
+                stand.ThermCrown.E = spOrd2PcStandE?.ThermCrown;
+                stand.ThermCrown.DbSource = $"SpOrd2PcStand.ThermCrown({i})";
+
+                stand.Wear.L = spOrd2PcStandL?.Wear;
+                stand.Wear.E = spOrd2PcStandE?.Wear;
+                stand.Wear.DbSource = $"SpOrd2PcStand.Wear({i})";
+
+                stand.Troll.L = spOrd2PcStandL?.TRoll;
+                stand.Troll.E = spOrd2PcStandE?.TRoll;
+                stand.Troll.DbSource = $"SpOrd2PcStand.TRoll({i})";
+
+                stand.SptlFaultFm.L = spOrd2PcL?.SptlFaultFm;
+                stand.SptlFaultFm.E = spOrd2PcE?.SptlFaultFm;
+                stand.SptlFaultFm.DbSource = $"SpOrd2Pc.SptlFaultFm({i})";
+
+                stand.WmpModel.L = wmppassesL?.Model;
+                stand.WmpModel.E = wmppassesE?.Model;
+                stand.WmpModel.DbSource = $"Wmppasses.Model({i})";
+
+                stand.SrpModel.L = srpPassesL?.Model;
+                stand.SrpModel.E = srpPassesL?.Model;
+                stand.SrpModel.DbSource = $"SrpPasses.Model({i})";
+
+                stand.CsMaxLimit.L = dirFmPfcCycShiftPassL?.CSmaxLimit;
+                stand.CsMaxLimit.E = dirFmPfcCycShiftPassE?.CSmaxLimit;
+                stand.CsMaxLimit.DbSource = $"DirFmPfcCycShiftPass.CSmaxLimit({i})";
+
+                stand.CsMinLimit.L = dirFmPfcCycShiftPassL?.CSminLimit;
+                stand.CsMinLimit.E = dirFmPfcCycShiftPassE?.CSminLimit;
+                stand.CsMinLimit.DbSource = $"DirFmPfcCycShiftPass.CSminLimit({i})";
+
+                result.PassScheduleDtos.Add(stand);
+            }
+
+            return result;
+        }
+
+        public static SetpointsHRMApxDto MapShifting(this SetpointsHRMApxDto result, SetpointsHRMApxDataBlob dataBlob, short standCount)
+        {
+            var dirFmPfcCycShiftL = dataBlob.Dirfmpfccycshiftps.Where(x => x.Source == "L").FirstOrDefault();
+            var dirFmPfcCycShiftM = dataBlob.Dirfmpfccycshiftps.Where(x => x.Source == "M").FirstOrDefault();
+            var dirFmPfcCycShiftS = dataBlob.Dirfmpfccycshiftps.Where(x => x.Source == "S").FirstOrDefault();
+            var dirFmPfcCycShiftE = dataBlob.Dirfmpfccycshiftps.Where(x => x.Source == "E").FirstOrDefault();
+
+            for (short i = 0; i < standCount; i++)
+            {
+
+                var dirFmPfcCycShiftPassL = dataBlob.Dirfmpfccycshiftppasses.Where(x => x.Source == "L" && x.PassNo == i).FirstOrDefault();
+                var dirFmPfcCycShiftPassM = dataBlob.Dirfmpfccycshiftppasses.Where(x => x.Source == "M" && x.PassNo == i).FirstOrDefault();
+                var dirFmPfcCycShiftPassS = dataBlob.Dirfmpfccycshiftppasses.Where(x => x.Source == "S" && x.PassNo == i).FirstOrDefault();
+                var dirFmPfcCycShiftPassE = dataBlob.Dirfmpfccycshiftppasses.Where(x => x.Source == "E" && x.PassNo == i).FirstOrDefault();
+
+                var stand = new ApxShiftingDto();
+
+                stand.PassNo = i;
+
+                stand.PlanNo.L = dirFmPfcCycShiftL?.PlanNo;
+                stand.PlanNo.E = dirFmPfcCycShiftE?.PlanNo;
+                stand.PlanNo.DbSource = "DirFmPfcCycShift.PlanNo";
+
+                stand.CsMaxLimit.L = dirFmPfcCycShiftPassL?.CSmaxLimit;
+                stand.CsMaxLimit.E = dirFmPfcCycShiftPassE?.CSmaxLimit;
+                stand.CsMaxLimit.M = dirFmPfcCycShiftPassM?.CSmaxLimit;
+                stand.CsMaxLimit.DbSource = $"DirFmPfcCycShiftPass.CSmaxLimit({i})";
+
+                stand.CsMinLimit.L = dirFmPfcCycShiftPassL?.CSminLimit;
+                stand.CsMinLimit.E = dirFmPfcCycShiftPassE?.CSminLimit;
+                stand.CsMinLimit.M = dirFmPfcCycShiftPassM?.CSminLimit;
+                stand.CsMinLimit.DbSource = $"DirFmPfcCycShiftPass.CSminLimit({i})";
+
+                stand.CsStartPos.L = dirFmPfcCycShiftPassL?.CSstartPos;
+                stand.CsStartPos.E = dirFmPfcCycShiftPassE?.CSstartPos;
+                stand.CsStartPos.M = dirFmPfcCycShiftPassM?.CSstartPos;
+                stand.CsStartPos.DbSource = $"DirFmPfcCycShiftPass.CSstartPos({i})";
+
+                stand.CsShiftDir.L = dirFmPfcCycShiftPassL?.CSshiftDir;
+                stand.CsShiftDir.E = dirFmPfcCycShiftPassE?.CSshiftDir;
+                stand.CsShiftDir.M = dirFmPfcCycShiftPassM?.CSshiftDir;
+                stand.CsShiftDir.DbSource = $"DirFmPfcCycShiftPass.CSshiftDir({i})";
+
+                stand.CsShiftStep1.L = dirFmPfcCycShiftPassL?.CSshiftStep1;
+                stand.CsShiftStep1.E = dirFmPfcCycShiftPassE?.CSshiftStep1;
+                stand.CsShiftStep1.M = dirFmPfcCycShiftPassM?.CSshiftStep1;
+                stand.CsShiftStep1.DbSource = $"DirFmPfcCycShiftPass.CSshiftStep1({i})";
+
+                stand.CsShiftStep2.L = dirFmPfcCycShiftPassL?.CSshiftStep2;
+                stand.CsShiftStep2.E = dirFmPfcCycShiftPassE?.CSshiftStep2;
+                stand.CsShiftStep2.M = dirFmPfcCycShiftPassM?.CSshiftStep2;
+                stand.CsShiftStep2.DbSource = $"DirFmPfcCycShiftPass.CSshiftStep2({i})";
+
+                stand.CsShiftStep3.L = dirFmPfcCycShiftPassL?.CSshiftStep3;
+                stand.CsShiftStep3.E = dirFmPfcCycShiftPassE?.CSshiftStep3;
+                stand.CsShiftStep3.M = dirFmPfcCycShiftPassM?.CSshiftStep3;
+                stand.CsShiftStep3.DbSource = $"DirFmPfcCycShiftPass.CSshiftStep3({i})";
+
+                result.ShiftingDtos.Add(stand);
+            }
+
+            return result;
+        }
+
+        public static SetpointsHRMApxDto MapFlatness(this SetpointsHRMApxDto result, SetpointsHRMApxDataBlob dataBlob, short standCount)
+        {
+            var dirFmPfcParaL = dataBlob.DirFmPfcParaPs.Where(x => x.Source == "L").FirstOrDefault();
+            var dirFmPfcParaM = dataBlob.DirFmPfcParaPs.Where(x => x.Source == "M").FirstOrDefault();
+            var dirFmPfcParaS = dataBlob.DirFmPfcParaPs.Where(x => x.Source == "S").FirstOrDefault();
+            var dirFmPfcParaE = dataBlob.DirFmPfcParaPs.Where(x => x.Source == "E").FirstOrDefault();
+
+            for (short i = 0; i < standCount; i++)
+            {
+
+                var dirFmPfcParaPassesL = dataBlob.DirFmPfcParaPasses.Where(x => x.Source == "L" && x.PassNo == i).FirstOrDefault();
+                var dirFmPfcParaPassesM = dataBlob.DirFmPfcParaPasses.Where(x => x.Source == "M" && x.PassNo == i).FirstOrDefault();
+                var dirFmPfcParaPassesS = dataBlob.DirFmPfcParaPasses.Where(x => x.Source == "S" && x.PassNo == i).FirstOrDefault();
+                var dirFmPfcParaPassesE = dataBlob.DirFmPfcParaPasses.Where(x => x.Source == "E" && x.PassNo == i).FirstOrDefault();
+
+                var stand = new ApxFlatnessDto();
+
+                stand.PassNo = i;
+
+                stand.PlanNo.L = dirFmPfcParaL?.PlanNo;
+                stand.PlanNo.E = dirFmPfcParaE?.PlanNo;
+                stand.PlanNo.M = dirFmPfcParaM?.PlanNo;
+                stand.PlanNo.DbSource = "DirFmPfcParaP.PlanNo";
+
+                stand.Fbul.L = dirFmPfcParaPassesL?.FbUl;
+                stand.Fbul.E = dirFmPfcParaPassesE?.FbUl;
+                stand.Fbul.M = dirFmPfcParaPassesM?.FbUl;
+                stand.Fbul.DbSource = $"DirFmPfcParaPasses.FbUl({i})";
+
+                stand.Fbll.L = dirFmPfcParaPassesL?.FbLl;
+                stand.Fbll.E = dirFmPfcParaPassesE?.FbLl;
+                stand.Fbll.M = dirFmPfcParaPassesM?.FbLl;
+                stand.Fbll.DbSource = $"DirFmPfcParaPasses.FbLl({i})";
+
+                stand.Srul.L = dirFmPfcParaPassesL?.SrUl;
+                stand.Srul.E = dirFmPfcParaPassesE?.SrUl;
+                stand.Srul.E = dirFmPfcParaPassesM?.SrUl;
+                stand.Srul.DbSource = $"DirFmPfcParaPasses.SrUl({i})";
+
+                stand.Srll.L = dirFmPfcParaPassesL?.SrLl;
+                stand.Srll.E = dirFmPfcParaPassesE?.SrLl;
+                stand.Srll.E = dirFmPfcParaPassesM?.SrLl;
+                stand.Srll.DbSource = $"DirFmPfcParaPasses.SrLl({i})";
+
+                stand.Facdfbdfr.L = dirFmPfcParaPassesL?.FacDfbDfr;
+                stand.Facdfbdfr.E = dirFmPfcParaPassesE?.FacDfbDfr;
+                stand.Facdfbdfr.E = dirFmPfcParaPassesM?.FacDfbDfr;
+                stand.Facdfbdfr.DbSource = $"DirFmPfcParaPasses.FacDfbDfr({i})";
+
+                stand.Facdfbdiu.L = dirFmPfcParaPassesL?.FacDfbDiu;
+                stand.Facdfbdiu.E = dirFmPfcParaPassesE?.FacDfbDiu;
+                stand.Facdfbdiu.E = dirFmPfcParaPassesM?.FacDfbDiu;
+                stand.Facdfbdiu.DbSource = $"DirFmPfcParaPasses.FacDfbDiu({i})";
+
+                result.FlatnessDtos.Add(stand);
+            }
+
+            return result;
+        }
     }
 }
