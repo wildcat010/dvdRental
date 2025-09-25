@@ -11,6 +11,7 @@ namespace WebHMI.Dtos.Setpoints.SetpointsHRM
         public MeCodeDto MeCode { get; set; } = new();
         public SourceSet<float?> AimsLabThickness { get; set; } = new();
         public SourceSet<float?> SlabWidth { get; set; } = new();
+        public SourceSet<float?> ExitCrownC25 { get; set; } = new();
         public SourceSet<float?> TEntry { get; set; } = new();
         public SourceSet<float?> SlabLength { get; set; } = new();
         public SourceSet<float?> HIntermediate { get; set; } = new();

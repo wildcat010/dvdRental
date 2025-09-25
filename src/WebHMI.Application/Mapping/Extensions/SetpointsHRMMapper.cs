@@ -123,6 +123,11 @@ namespace WebHMI.Mapping.Extensions
             result.HIntermediate.M = edOrdEntM?.HIntermediate;
             result.HIntermediate.DbSource = "EdOrdEnt.HIntermediate";
 
+            result.ExitCrownC25.L = edOrdEntL?.ExitCrownC25;
+            result.ExitCrownC25.E = edOrdEntE?.ExitCrownC25;
+            result.ExitCrownC25.M = edOrdEntM?.ExitCrownC25;
+            result.ExitCrownC25.DbSource = "EdOrdEnt.ExitCrownC25";
+
             //Add ADORD2PC profile
 
             result.ProfileCorr.L = dirFmPfcParaPL?.ProfileCorr;
