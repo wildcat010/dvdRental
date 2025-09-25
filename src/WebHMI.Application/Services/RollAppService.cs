@@ -438,27 +438,120 @@ namespace WebHMI.Services
 
         #endregion
 
-        #region Roll Shape Code
+        #region Roll Shape Coeff
 
-        [AbpAuthorize(Permissions.Pages_RollData)]
-        public async Task<ShapeCodeDto> GetShapeCodeById(int id)
+        [Audited]
+        [AbpAuthorize(Permissions.Pages_RollData_Edit)]
+        public async Task<RollShapeCoeffDto> CreateRollShapeCoeff(RollShapeCoeffDto dto)
         {
-            var shape = await _prdbContext.RollShapeCoeffs.FirstOrDefaultAsync(x => x.ShapeCode == id);
+            var context = _prdbContextProvider.GetDbContext();
 
-            if (shape is null)
-                throw new EntityNotFoundException(typeof(RollShapeCoeff), id);
+            bool exist = await context.RollShapeCoeffs.AnyAsync(x => x.ShapeCode == dto.ShapeCode);
 
-            return shape.ToShapeCodeDto();
+            if (exist)
+                throw new UserFriendlyException($"Roll shape coeff with shape code = '{dto.ShapeCode}' already exist");
+
+            var rollcoeff = dto.ToRollShapeCoeffEntity();
+
+            await context.RollShapeCoeffs.AddAsync(rollcoeff);
+
+            return rollcoeff.ToRollShapeCoeffDto();
         }
 
         [AbpAuthorize(Permissions.Pages_RollData)]
-        public async Task<PagedResultDto<ShapeCodeDto>> GetShapeCodeAll(FilteredRequestDto input)
+        public async Task<RollShapeCoeffDto> GetRollShapeCoeff(int shapeCode)
         {
+            var context = _prdbContextProvider.GetDbContext();
+
+            var shape = await context.RollShapeCoeffs
+                .FirstOrDefaultAsync(x => x.ShapeCode == shapeCode)
+                ?? throw new EntityNotFoundException($"Roll shape coeff with shape code = '{shapeCode}' doesn't exist");
+
+            return shape.ToRollShapeCoeffDto();
+        }
+
+        [AbpAuthorize(Permissions.Pages_RollData)]
+        public async Task<PagedResultDto<RollShapeCoeffDto>> GetAllRollShapeCoeff(FilteredRequestDto input)
+        {
+            var context = _prdbContextProvider.GetDbContext();
+
             return await ApplyFilter(
-                _prdbContext.RollShapeCoeffs
+                context.RollShapeCoeffs
                     .OrderBy(t => t.ShapeCode),
                 input,
-                RollMapper.ToShapeCodeDto);
+                RollMapper.ToRollShapeCoeffDto);
+        }
+
+        [Audited]
+        [AbpAuthorize(Permissions.Pages_RollData_Edit)]
+        public async Task<RollShapeCoeffDto> UpdateRollShapeCoeff(RollShapeCoeffDto dto)
+        {
+            var context = _prdbContextProvider.GetDbContext();
+
+            var entity = await context.RollShapeCoeffs
+                .FirstOrDefaultAsync(x => x.ShapeCode == dto.ShapeCode);
+
+            if (entity is null)
+                throw new EntityNotFoundException($"Roll shape coeff with shape code = '{dto.ShapeCode}' doesn't exist");
+
+            entity.Description = dto.Description;
+            entity.ShapeType = dto.ShapeType;
+            entity.ShapeX1 = dto.ShapeX1;
+            entity.ShapeX2 = dto.ShapeX2;
+            entity.ShapeX3 = dto.ShapeX3;
+            entity.ShapeX4 = dto.ShapeX4;
+            entity.ShapeX5 = dto.ShapeX5;
+            entity.ShapeX6 = dto.ShapeX6;
+            entity.ShapeX7 = dto.ShapeX7;
+            entity.ShapeX8 = dto.ShapeX8;
+            entity.ShapeX9 = dto.ShapeX9;
+            entity.StandRange = dto.StandRange;
+            entity.ShapeCurveCode = dto.ShapeCurveCode;
+
+            return entity.ToRollShapeCoeffDto();
+        }
+
+        [Audited]
+        [AbpAuthorize(Permissions.Pages_RollData_Delete)]
+        public async Task DeleteRollShapeCoeff(int shapeCode)
+        {
+            var context = _prdbContextProvider.GetDbContext();
+
+            var shape = await context.RollShapeCoeffs
+                .FirstOrDefaultAsync(x => x.ShapeCode == shapeCode)
+                ?? throw new EntityNotFoundException($"Roll shape coeff with shape code = '{shapeCode}' doesn't exist");
+
+            context.RollShapeCoeffs.Remove(shape);
+        }
+
+        #endregion
+
+        #region Custom Roll Shape Curve
+
+        [AbpAuthorize(Permissions.Pages_RollData)]
+        public async Task<CustomRollShapeCurveDto> GetCustomRollShapeCurve(int shapeCurveCode)
+        {
+            var context = _prdbContextProvider.GetDbContext();
+
+            var entity = await context.RollShapeCurveCustoms
+                .FirstOrDefaultAsync(x => x.ShapeCurveCode == shapeCurveCode);
+
+            if (entity is null)
+                throw new EntityNotFoundException($"Custom roll shape curve with shape curve code = '{shapeCurveCode}' doesn't exist");
+
+            return entity.ToCustomRollShapeCurve();
+        }
+
+        [AbpAuthorize(Permissions.Pages_RollData)]
+        public async Task<PagedResultDto<CustomRollShapeCurveItem>> GetCustomRollShapeCurveList(FilteredRequestDto input)
+        {
+            var context = _prdbContextProvider.GetDbContext();
+
+            return await ApplyFilter(
+                context.RollShapeCurveCustoms
+                .OrderBy(x => x.ShapeCurveCode),
+                input,
+                RollMapper.ToCustomRollShapeCurveItem);
         }
 
         #endregion

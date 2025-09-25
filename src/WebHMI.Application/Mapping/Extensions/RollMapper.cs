@@ -276,5 +276,83 @@ namespace WebHMI.Mapping.Extensions
             entity.YieldPolynomCInd3 = dto.YieldPolynomCInd3;
             entity.YieldStress = dto.YieldStress;
         }
+
+        public static RollShapeCoeffDto ToRollShapeCoeffDto(this RollShapeCoeff entity)
+        {
+            var dto = new RollShapeCoeffDto();
+            dto.ShapeCode = entity.ShapeCode;
+            dto.Description = entity.Description;
+            dto.ShapeType = entity.ShapeType;
+            dto.ShapeX1 = entity.ShapeX1;
+            dto.ShapeX2 = entity.ShapeX2;
+            dto.ShapeX3 = entity.ShapeX3;
+            dto.ShapeX4 = entity.ShapeX4;
+            dto.ShapeX5 = entity.ShapeX5;
+            dto.ShapeX6 = entity.ShapeX6;
+            dto.ShapeX7 = entity.ShapeX7;
+            dto.ShapeX8 = entity.ShapeX8;
+            dto.ShapeX9 = entity.ShapeX9;
+            dto.StandRange = entity.StandRange;
+            dto.ShapeCurveCode = entity.ShapeCurveCode;
+
+            return dto;
+        }
+
+        public static RollShapeCoeff ToRollShapeCoeffEntity(this RollShapeCoeffDto dto)
+        {
+            var entity = new RollShapeCoeff();
+            entity.ShapeCode = dto.ShapeCode;
+            entity.Description = dto.Description;
+            entity.ShapeType = dto.ShapeType;
+            entity.ShapeX1 = dto.ShapeX1;
+            entity.ShapeX2 = dto.ShapeX2;
+            entity.ShapeX3 = dto.ShapeX3;
+            entity.ShapeX4 = dto.ShapeX4;
+            entity.ShapeX5 = dto.ShapeX5;
+            entity.ShapeX6 = dto.ShapeX6;
+            entity.ShapeX7 = dto.ShapeX7;
+            entity.ShapeX8 = dto.ShapeX8;
+            entity.ShapeX9 = dto.ShapeX9;
+            entity.StandRange = dto.StandRange;
+            entity.ShapeCurveCode = dto.ShapeCurveCode;
+
+            return entity;
+        }
+
+        public static CustomRollShapeCurveDto ToCustomRollShapeCurve(this RollShapeCurveCustom entity)
+        {
+            var dto = new CustomRollShapeCurveDto();
+
+            dto.Shapecurvecode = entity.ShapeCurveCode;
+            dto.Description = entity.Description;
+            dto.Validpoints = entity.ValidPoints;
+            dto.Values = ToCustomRollShapeCurveValues(entity);
+
+            return dto;
+        }
+
+        private static List<double> ToCustomRollShapeCurveValues(RollShapeCurveCustom entity)
+        {
+            return entity.GetType()
+                .GetProperties()
+                .Where(prop => prop.Name.StartsWith("ValueInd", StringComparison.OrdinalIgnoreCase))
+                .Select(prop => new { Number = int.Parse(prop.Name["ValueInd".Length..]), Value = (double)prop.GetValue(entity) })
+                .OrderBy(x => x.Number)
+                .Select(x => x.Value)
+                .ToList();
+        }
+
+        public static CustomRollShapeCurveItem ToCustomRollShapeCurveItem(this RollShapeCurveCustom entity)
+        {
+            var curveItem = new CustomRollShapeCurveItem();
+
+            curveItem.ShapeCurveCode = entity.ShapeCurveCode;
+            curveItem.ValidPoints = entity.ValidPoints;
+            curveItem.Description = entity.Description;
+
+            return curveItem;
+        }
+
+
     }
 }
