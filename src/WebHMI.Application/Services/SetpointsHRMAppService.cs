@@ -491,6 +491,62 @@ namespace WebHMI.Services
         }
 
         [AbpAuthorize(Permissions.Pages_Setpoints_RM)]
+        public async Task<HRMApxMaterialOverviewDto> GetApxMaterialOverview(int meid, string matType)
+        {
+            var result = new HRMApxMaterialOverviewDto();
+            var hmiVEntryMatStruct = await _matStructEntryService.GetMaterialEntryStruct(meid, matType);
+
+            var dataBlob = await GetApxPassScheduleHrmDataBlob(hmiVEntryMatStruct);
+
+            result.MeCode = hmiVEntryMatStruct.ToMeCodeDto();
+            result.MapApxOverview(dataBlob);
+
+            return result;
+        }
+
+        [AbpAuthorize(Permissions.Pages_Setpoints_RM)]
+        public async Task UpdateApxMaterialOverview(HRMApxMaterialOverviewDto input)
+        {
+            var context = _prdbContextProvider.GetDbContext();
+            var vMatStructEntry = await _matStructEntryService.GetMaterialEntryStruct(input.MeCode.MeId, "OR");
+
+            var edPhyEntM = await context.EdPhyEnts.FirstOrDefaultAsync(x => x.MeId == vMatStructEntry.EnPhMeId && x.Source == "M");
+            edPhyEntM = context.InsertIfNull(edPhyEntM, vMatStructEntry);
+            edPhyEntM.AimSlabThickness = input.AimsLabThickness?.M;
+            edPhyEntM.SlabWidth = input.SlabWidth?.M;
+            edPhyEntM.TEntry = input.TEntry?.M;
+            edPhyEntM.SlabLength = input.SlabLength?.M;
+
+            var edLogEntM = await context.EdLogEnts.FirstOrDefaultAsync(x => x.MeId == vMatStructEntry.EnLoMeId && x.Source == "M");
+            edLogEntM = context.InsertIfNull(edLogEntM, vMatStructEntry);
+
+            var edOrdEntM = await context.EdOrdEnts.FirstOrDefaultAsync(x => x.MeId == vMatStructEntry.EnOrMeId && x.Source == "M");
+            edOrdEntM = context.InsertIfNull(edOrdEntM, vMatStructEntry);
+            edOrdEntM.HIntermediate = input.HIntermediate?.M;
+            edOrdEntM.ExitCrownC25 = input.ExitCrownC25?.M;
+
+            var dirFmPfcParapM = await context.DirFmPfcParaPs.FirstOrDefaultAsync(x => x.MeId == vMatStructEntry.EnOrMeId && x.Source == "M");
+            dirFmPfcParapM = context.InsertIfNull(dirFmPfcParapM, vMatStructEntry);
+            dirFmPfcParapM.PlanNo = input.DirFmPfcParaPlanNo?.M;
+            dirFmPfcParapM.ProfileCorr = input.ProfileCorr?.M;
+
+            var dirFmPfcShiftM = await context.DirFmPfcCycShiftPs.FirstOrDefaultAsync(x => x.MeId == vMatStructEntry.EnOrMeId && x.Source == "M");
+            dirFmPfcShiftM = context.InsertIfNull(dirFmPfcShiftM, vMatStructEntry);
+            dirFmPfcShiftM.PlanNo = input.DirFmPfcParaPlanNo?.M;
+
+            var spord2pcM = await context.SpOrd2Pcs.FirstOrDefaultAsync(x => x.MeId == vMatStructEntry.EnOrMeId && x.Source == "M");
+            spord2pcM = context.InsertIfNull(spord2pcM, vMatStructEntry);
+            spord2pcM.HEntryColdFm = input.HEntryColdFm?.M;
+            spord2pcM.WEntryColdFm = input.WEntryColdFm?.M;
+            spord2pcM.ProfexcalcHrm = input.ProfExCalcHrm?.M;
+            spord2pcM.ProfextargetHrm = input.ProfExTargetHrm?.M;
+            spord2pcM.InherPfc = input.InherPfc?.M;
+            spord2pcM.InherPfcId = input.InherPfcId?.M;
+
+            await context.SaveChangesAsync();
+        }
+
+        [AbpAuthorize(Permissions.Pages_Setpoints_RM)]
         public async Task<SetpointsHRMApxDto> GetApxPassScheduleHRM(int meid, string matType)
         {
             var result = new SetpointsHRMApxDto();

@@ -8,6 +8,7 @@ using Abp.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using WebHMI.DataBlobs;
 using WebHMI.Dtos.Setpoints.SetpointsHFM;
+using WebHMI.Dtos.Setpoints.SetpointsHRM;
 using WebHMI.Helpers;
 using WebHMI.L2Adapter.Senders;
 using WebHMI.Mapping.Extensions;
@@ -508,6 +509,63 @@ namespace WebHMI.Services
 
         }
 
+        [AbpAuthorize(Permissions.Pages_Setpoints_FM)]
+        public async Task<HFMApxMaterialOverviewDto> GetApxMaterialOverview(int meid, string matType)
+        {
+            var result = new HFMApxMaterialOverviewDto();
+            var hmiVEntryMatStruct = await _matStructEntryService.GetMaterialEntryStruct(meid, matType);
+
+            var dataBlob = await GetApxPassScheduleHfmDataBlob(hmiVEntryMatStruct);
+
+            result.MeCode = hmiVEntryMatStruct.ToMeCodeDto();
+            result.MapApxOverview(dataBlob);
+
+            return result;
+        }
+
+        [AbpAuthorize(Permissions.Pages_Setpoints_FM_Edit)]
+        public async Task UpdateApxMaterialOverview(HFMApxMaterialOverviewDto input)
+        {
+            var context = _prdbContextProvider.GetDbContext();
+            var vMatStructEntryOr = await _matStructEntryService.GetMaterialEntryStruct(input.MeCode.MeId, "OR");
+
+            var edOrdEntM = await context.EdOrdEnts.FirstOrDefaultAsync(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M");
+            edOrdEntM = context.InsertIfNull(edOrdEntM, vMatStructEntryOr);
+            edOrdEntM.HExit = input.HExit?.M;
+            edOrdEntM.WidthExit = input.WidthExit?.M;
+            edOrdEntM.TExit = input.TExit?.M;
+            edOrdEntM.ExitCrownC25 = input.ExitCrownC25?.M;
+
+            var edLogEntM = await context.EdLogEnts.FirstOrDefaultAsync(x => x.MeId == vMatStructEntryOr.EnLoMeId && x.Source == "M");
+            edLogEntM = context.InsertIfNull(edLogEntM, vMatStructEntryOr);
+
+            var edPhyEntM = await context.EdPhyEnts.FirstOrDefaultAsync(x => x.MeId == vMatStructEntryOr.EnPhMeId && x.Source == "M");
+            edPhyEntM = context.InsertIfNull(edPhyEntM, vMatStructEntryOr);
+
+            var dirFmPfcParapM = await context.DirFmPfcParaPs.FirstOrDefaultAsync(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M");
+            dirFmPfcParapM = context.InsertIfNull(dirFmPfcParapM, vMatStructEntryOr);
+            dirFmPfcParapM.PlanNo = input.DirFmPfcParaPlanNo?.M;
+            dirFmPfcParapM.ProfileCorr = input.ProfileCorr?.M;
+
+            var lpM = await context.Lps.FirstOrDefaultAsync(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M");
+            lpM = context.InsertIfNull(lpM, vMatStructEntryOr);
+            //lpM.REDDISTHRMHFM = input.RedDistHrmFm?.M;
+
+            var spord2pcM = await context.SpOrd2Pcs.FirstOrDefaultAsync(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M");
+            spord2pcM = context.InsertIfNull(spord2pcM, vMatStructEntryOr);
+            spord2pcM.LExit = input.LExit?.M;
+            spord2pcM.TIhx = input.TiHx?.M;
+            spord2pcM.InherPfc = input.InherPfc?.M;
+            spord2pcM.InherPfcId = input.InherPfcId?.M;
+            spord2pcM.HExitCold = input.HExitCold?.M;
+            spord2pcM.WExitCold = input.WExitCold?.M;
+            spord2pcM.T = input.TValue?.M;
+            spord2pcM.Profexcalc = input.ProfExCalc?.M;
+            spord2pcM.HEntryColdFm = input.HEntryColdFm?.M;
+            spord2pcM.WEntryColdFm = input.WEntryColdFm?.M;
+
+            await context.SaveChangesAsync();
+        }
 
         [AbpAuthorize(Permissions.Pages_Setpoints_FM)]
         public async Task<SetpointsHFMApxDto> GetApxPassScheduleHFM(int meid, string matType)

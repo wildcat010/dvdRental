@@ -611,6 +611,126 @@ namespace WebHMI.Mapping.Extensions
             return result;
         }
 
+        public static HRMApxMaterialOverviewDto MapApxOverview(this HRMApxMaterialOverviewDto result, SetpointsHRMApxDataBlob dataBlob) 
+        {
+            var spOrd2PcL = dataBlob.Spord2pcs.Where(x => x.Source == "L").FirstOrDefault();
+            var spOrd2PcM = dataBlob.Spord2pcs.Where(x => x.Source == "M").FirstOrDefault();
+            var spOrd2PcS = dataBlob.Spord2pcs.Where(x => x.Source == "S").FirstOrDefault();
+            var spOrd2PcE = dataBlob.Spord2pcs.Where(x => x.Source == "E").FirstOrDefault();
+
+            var edOrdEntL = dataBlob.Edordents.Where(x => x.Source == "L").FirstOrDefault();
+            var edOrdEntM = dataBlob.Edordents.Where(x => x.Source == "M").FirstOrDefault();
+            var edOrdEntS = dataBlob.Edordents.Where(x => x.Source == "S").FirstOrDefault();
+            var edOrdEntE = dataBlob.Edordents.Where(x => x.Source == "E").FirstOrDefault();
+
+            var edPhyEntL = dataBlob.Edphyents.Where(x => x.Source == "L").FirstOrDefault();
+            var edPhyEntM = dataBlob.Edphyents.Where(x => x.Source == "M").FirstOrDefault();
+            var edPhyEntS = dataBlob.Edphyents.Where(x => x.Source == "S").FirstOrDefault();
+            var edPhyEntE = dataBlob.Edphyents.Where(x => x.Source == "E").FirstOrDefault();
+
+            var edLogEntL = dataBlob.Edlogents.Where(x => x.Source == "L").FirstOrDefault();
+            var edLogEntM = dataBlob.Edlogents.Where(x => x.Source == "M").FirstOrDefault();
+            var edLogEntS = dataBlob.Edlogents.Where(x => x.Source == "S").FirstOrDefault();
+            var edLogEntE = dataBlob.Edlogents.Where(x => x.Source == "E").FirstOrDefault();
+
+            var dirFmPfcParaPL = dataBlob.DirFmPfcParaPs.Where(x => x.Source == "L").FirstOrDefault();
+            var dirFmPfcParaPM = dataBlob.DirFmPfcParaPs.Where(x => x.Source == "M").FirstOrDefault();
+            var dirFmPfcParaPS = dataBlob.DirFmPfcParaPs.Where(x => x.Source == "S").FirstOrDefault();
+            var dirFmPfcParaPE = dataBlob.DirFmPfcParaPs.Where(x => x.Source == "E").FirstOrDefault();
+
+            var dirFmPfcCycShiftL = dataBlob.Dirfmpfccycshiftps.Where(x => x.Source == "L").FirstOrDefault();
+            var dirFmPfcCycShiftM = dataBlob.Dirfmpfccycshiftps.Where(x => x.Source == "M").FirstOrDefault();
+            var dirFmPfcCycShiftS = dataBlob.Dirfmpfccycshiftps.Where(x => x.Source == "S").FirstOrDefault();
+            var dirFmPfcCycShiftE = dataBlob.Dirfmpfccycshiftps.Where(x => x.Source == "E").FirstOrDefault();
+
+            result.HEntryColdFm.L = spOrd2PcL?.HEntryColdFm;
+            result.HEntryColdFm.E = spOrd2PcE?.HEntryColdFm;
+            result.HEntryColdFm.M = spOrd2PcM?.HEntryColdFm;
+            result.HEntryColdFm.DbSource = "SpOrd2Pc.HEntryColdFm";
+
+            result.WEntryColdFm.L = spOrd2PcL?.WEntryColdFm;
+            result.WEntryColdFm.E = spOrd2PcE?.WEntryColdFm;
+            result.WEntryColdFm.M = spOrd2PcM?.WEntryColdFm;
+            result.WEntryColdFm.DbSource = "SpOrd2Pc.WEntryColdFm";
+
+            result.ProfExTargetHrm.L = spOrd2PcL?.ProfextargetHrm;
+            result.ProfExTargetHrm.E = spOrd2PcE?.ProfextargetHrm;
+            result.ProfExTargetHrm.M = spOrd2PcM?.ProfextargetHrm;
+            result.ProfExTargetHrm.DbSource = "SpOrd2Pc.ProfextargetHrm";
+
+            result.ProfExCalcHrm.L = spOrd2PcL?.ProfexcalcHrm;
+            result.ProfExCalcHrm.E = spOrd2PcE?.ProfexcalcHrm;
+            result.ProfExCalcHrm.M = spOrd2PcM?.ProfexcalcHrm;
+            result.ProfExCalcHrm.DbSource = "SpOrd2Pc.ProfExCalcHrm";
+
+            //Add ADORD2PC Hexit
+
+            result.AimsLabThickness.L = edPhyEntL?.AimSlabThickness;
+            result.AimsLabThickness.E = edPhyEntE?.AimSlabThickness;
+            result.AimsLabThickness.M = edPhyEntM?.AimSlabThickness;
+            result.AimsLabThickness.DbSource = "EdPhyEnt.AimSlabThickness";
+
+            //Add ADORD2PC WExit
+
+            result.SlabWidth.L = edPhyEntL?.SlabWidth;
+            result.SlabWidth.E = edPhyEntE?.SlabWidth;
+            result.SlabWidth.M = edPhyEntM?.SlabWidth;
+            result.SlabWidth.DbSource = "EdPhyEnt.SlabWidth";
+
+            result.TEntry.L = edPhyEntL?.TEntry;
+            result.TEntry.E = edPhyEntE?.TEntry;
+            result.TEntry.M = edPhyEntM?.TEntry;
+            result.TEntry.DbSource = "EdPhyEnt.TEntry";
+
+            result.SlabLength.L = edPhyEntL?.SlabLength;
+            result.SlabLength.E = edPhyEntE?.SlabLength;
+            result.SlabLength.M = edPhyEntM?.SlabLength;
+            result.SlabLength.DbSource = "EdPhyEnt.SlabLength";
+
+            result.ExitCrownC25.L = edOrdEntL?.ExitCrownC25;
+            result.ExitCrownC25.E = edOrdEntE?.ExitCrownC25;
+            result.ExitCrownC25.M = edOrdEntM?.ExitCrownC25;
+            result.ExitCrownC25.DbSource = "EdOrdEnt.ExitCrownC25";
+
+            result.HIntermediate.L = edOrdEntL?.HIntermediate;
+            result.HIntermediate.E = edOrdEntE?.HIntermediate;
+            result.HIntermediate.M = edOrdEntM?.HIntermediate;
+            result.HIntermediate.DbSource = "EdOrdEnt.HIntermediate";
+            //Add ADORD2PC profile
+
+            result.ProfileCorr.L = dirFmPfcParaPL?.ProfileCorr;
+            result.ProfileCorr.E = dirFmPfcParaPE?.ProfileCorr;
+            result.ProfileCorr.M = dirFmPfcParaPM?.ProfileCorr;
+            result.ProfileCorr.DbSource = "DirFmPfcParaP.ProfileCorr";
+
+            //result.RedDistHrmFm.L = lpL?.RedDistHrmFm;
+            //result.RedDistHrmFm.E = lpE?.RedDistHrmFm;
+            //result.RedDistHrmFm.M = lpM?.RedDistHrmFm;
+            //result.RedDistHrmFm.DbSource = "LP.RedDistHrmFm";
+
+            result.DirFmPfcCycShiftPlanNo.L = dirFmPfcCycShiftL?.PlanNo;
+            result.DirFmPfcCycShiftPlanNo.E = dirFmPfcCycShiftE?.PlanNo;
+            result.DirFmPfcCycShiftPlanNo.M = dirFmPfcCycShiftM?.PlanNo;
+            result.DirFmPfcCycShiftPlanNo.DbSource = "DirFmPfcCycShiftPass.PlanNo";
+
+            result.DirFmPfcParaPlanNo.L = dirFmPfcParaPL?.PlanNo;
+            result.DirFmPfcParaPlanNo.E = dirFmPfcParaPE?.PlanNo;
+            result.DirFmPfcParaPlanNo.M = dirFmPfcParaPM?.PlanNo;
+            result.DirFmPfcParaPlanNo.DbSource = "DirFmPfcParaP.PlanNo";
+
+            result.InherPfc.L = spOrd2PcL?.InherPfc;
+            result.InherPfc.E = spOrd2PcE?.InherPfc;
+            result.InherPfc.M = spOrd2PcM?.InherPfc;
+            result.InherPfc.DbSource = "SpOrd2Pc.InherPfc";
+
+            result.InherPfcId.L = spOrd2PcL?.InherPfcId;
+            result.InherPfcId.E = spOrd2PcE?.InherPfcId;
+            result.InherPfcId.M = spOrd2PcM?.InherPfcId;
+            result.InherPfcId.DbSource = "SpOrd2Pc.InherPfcId";
+
+            return result;
+        }
+
         public static SetpointsHRMApxDto MapApxPassSchedule(this SetpointsHRMApxDto result, SetpointsHRMApxDataBlob dataBlob, short standCount)
         {
             for (short i = 0; i < standCount; i++)
