@@ -39,6 +39,10 @@ namespace WebHMI
             productionSchedule.CreateChildPermission(Permissions.Pages_ProductionSchedule_Edit);
             productionSchedule.CreateChildPermission(Permissions.Pages_ProductionSchedule_Delete);
 
+            var strategies = context.CreatePermission(Permissions.Pages_Strategies);
+            strategies.CreateChildPermission(Permissions.Pages_Strategies_Edit);
+            strategies.CreateChildPermission(Permissions.Pages_Strategies_Delete);
+
         }
     }
 }

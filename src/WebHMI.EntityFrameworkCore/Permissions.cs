@@ -32,6 +32,11 @@
         public const string Pages_ProductionSchedule = "Pages.ProductionSchedule";
         public const string Pages_ProductionSchedule_Edit = "Pages.ProductionSchedule.Edit";
         public const string Pages_ProductionSchedule_Delete = "Pages.ProductionSchedule.Delete";
+
+        public const string Pages_Strategies = "Pages.Strategies";
+        public const string Pages_Strategies_Edit = "Pages.Strategies.Edit";
+        public const string Pages_Strategies_Delete = "Pages.Strategies.Delete";
+        
     }
 }
 
