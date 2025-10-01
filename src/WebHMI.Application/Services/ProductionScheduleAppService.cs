@@ -35,38 +35,39 @@ namespace WebHMI.Services
             _commonAppService = commonAppService;
         }
 
-        public async Task<PagedResultDto<ScheduledMaterialsDto>> GetScheduledMaterials(FilteredRequestDto input)
+        public async Task<PagedResultDto<ScheduledMaterialsDto>> GetScheduledMaterials(FilteredRequestDto input, string seqID)
         {
             return await ApplyFilter(
-                _prdbContext.HmiVProdsequences, 
+                _prdbContext.HmiVProdsequences
+                .Where(x => x.SequenceId == seqID), 
                 input, 
                 ProductionScheduleMapper.ToScheduledMaterialsDto);
         }
 
-        public async Task<PagedResultDto<GhostDischargedMaterialsDto>> GetGhostMaterials(FilteredRequestDto input)
+        public async Task<PagedResultDto<GhostDischargedMaterialsDto>> GetGhostMaterials(FilteredRequestDto input, string seqID)
         {
             return await ApplyFilter(
                 _prdbContext.HmiVMatInfoShorts
-                    .Where(x => x.SimMat == 1),
+                    .Where(x => x.SimMat == 1 && x.SequenceId == seqID),
                 input,
                 ProductionScheduleMapper.ToGhostDischargedMaterialsDto);
         }
 
-        public async Task<PagedResultDto<GhostDischargedMaterialsDto>> GetDischargedSlabs(FilteredRequestDto input)
+        public async Task<PagedResultDto<GhostDischargedMaterialsDto>> GetDischargedSlabs(FilteredRequestDto input, string seqID)
         {
             return await ApplyFilter(
                 _prdbContext.HmiVMatInfoShorts
-                    .Where(x => x.SimMat == 1 && x.EnPhStatus >= 1)
+                    .Where(x => x.SimMat == 1 && x.EnPhStatus >= 1 && x.SequenceId == seqID) 
                     .OrderByDescending(x => x.ProdStartTime),
                 input,
                 ProductionScheduleMapper.ToGhostDischargedMaterialsDto);
         }
         
-        public async Task<PagedResultDto<RemovedMaterialsDto>> GetRemovedMaterials(FilteredRequestDto input)
+        public async Task<PagedResultDto<RemovedMaterialsDto>> GetRemovedMaterials(FilteredRequestDto input, string seqID)
         {
             return await ApplyFilter(
                 _prdbContext.HmiVRemovedMaterials
-                    .Where(x => x.SimMat == 0)
+                    .Where(x => x.SimMat == 0 && x.SequenceId == seqID)
                     .OrderByDescending(x => x.RejectTime),
                 input,
                 ProductionScheduleMapper.ToRemovedMaterialsDto);
