@@ -70,8 +70,8 @@ namespace WebHMI.Services.StrategyServices
         public async Task<TDto> Get(int planNo)
         {
             var context = _dbContextProvider.GetDbContext();
-            var entity = await context.Set<TEntity>().SingleOrDefaultAsync(x =>
-                x.PlanNo == planNo);
+            var entity = await context.Set<TEntity>().FirstOrDefaultAsync(x =>
+                x.PlanNo == planNo && x.ActiveFlag == 1);
 
             if (entity is null)
                 throw new EntityNotFoundException("Std for given key not found");
@@ -162,8 +162,8 @@ namespace WebHMI.Services.StrategyServices
                 throw new EntityNotFoundException("Plan number cannot have value 0");
 
             var context = _dbContextProvider.GetDbContext();
-            var entity = await context.Set<TEntity>().SingleOrDefaultAsync(x =>
-                x.PlanNo == dto.PlanNo);
+            var entity = await context.Set<TEntity>().FirstOrDefaultAsync(x =>
+                x.PlanNo == dto.PlanNo && x.ActiveFlag == 1);
 
             if (entity is null)
                 throw new EntityNotFoundException("Std for given key not found");
@@ -195,8 +195,8 @@ namespace WebHMI.Services.StrategyServices
                 //    .Where(entity => keys.Any(key => entity.Planno == key.PlanNo && entity.Activeflag == key.ActiveFlag))
                 //    .ToListAsync();
 
-                var entity = await context.Set<TEntity>().SingleOrDefaultAsync(x =>
-                    x.PlanNo == dto.PlanNo);
+                var entity = await context.Set<TEntity>().FirstOrDefaultAsync(x =>
+                    x.PlanNo == dto.PlanNo && x.ActiveFlag == 1);
 
                 if (entity is null)
                 {
@@ -222,8 +222,8 @@ namespace WebHMI.Services.StrategyServices
                 throw new EntityNotFoundException("Cannot delete strategy with plan number 0");
 
             var context = _dbContextProvider.GetDbContext();
-            var entity = await context.Set<TEntity>().SingleOrDefaultAsync(x =>
-                x.PlanNo == planNo);
+            var entity = await context.Set<TEntity>().FirstOrDefaultAsync(x =>
+                x.PlanNo == planNo && x.ActiveFlag == 1);
 
             if (entity is null)
                 throw new EntityNotFoundException("Std for given key not found");

@@ -104,7 +104,7 @@ namespace WebHMI.Services.StrategyServices
         {
             var context = _dbContextProvider.GetDbContext();
             var passes = await context.Set<TPassEntity>().Where(x =>
-                x.PlanNo == planNo && x.PlanNo != 0)
+                x.PlanNo == planNo && x.PlanNo != 0 && x.ActiveFlag == 1)
                 .ToListAsync();
 
             return new StdPassSetsDto<TDto, TPassDto>()
@@ -183,7 +183,7 @@ namespace WebHMI.Services.StrategyServices
 
             var context = _dbContextProvider.GetDbContext();
             context.Set<TPassEntity>().RemoveRange(context.Set<TPassEntity>().Where(x =>
-                x.PlanNo == input.PassSets.PlanNo).ToList());
+                x.PlanNo == input.PassSets.PlanNo && x.ActiveFlag == 1).ToList());
 
             await context.SaveChangesAsync();
 
@@ -231,7 +231,7 @@ namespace WebHMI.Services.StrategyServices
                 ValidateInput(input);
 
                 context.Set<TPassEntity>().RemoveRange(context.Set<TPassEntity>().Where(x =>
-                    x.PlanNo == input.PassSets.PlanNo).ToList());
+                    x.PlanNo == input.PassSets.PlanNo && x.ActiveFlag == 1).ToList());
 
                 var passes = new List<TPassEntity>();
 
@@ -273,7 +273,7 @@ namespace WebHMI.Services.StrategyServices
             await _stdService.Delete(planNo);
 
             context.Set<TPassEntity>().RemoveRange(context.Set<TPassEntity>().Where(x =>
-                x.PlanNo == planNo).ToList());
+                x.PlanNo == planNo && x.ActiveFlag == 1).ToList());
 
             await context.SaveChangesAsync();
         }
