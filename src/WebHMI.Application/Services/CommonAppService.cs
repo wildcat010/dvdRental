@@ -220,5 +220,18 @@ namespace WebHMI.Services
 
             return sequences[++actualIndex];
         }
+
+        public async Task<List<string>> GetAllSequenceIds()
+        {
+            var sequences = await _prdbContext.EdPhyEnts
+                .Where(x => x.Source == "E")
+                .Select(x => x.SequenceId)
+                .Distinct()
+                .OrderBy(x => x)
+                .ToListAsync();
+
+            return sequences;
+            
+        }
     }
 }
