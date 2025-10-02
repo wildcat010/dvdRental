@@ -1,6 +1,4 @@
-﻿using WebHMI.Dtos;
-using WebHMI.Dtos.Strategies;
-using WebHMI.Dtos.Strategy.StdDtos.StdSingleDtos;
+﻿using WebHMI.Dtos.Strategy.StdDtos.StdSingleDtos;
 using WebHMI.Mapping.Extensions;
 using WebHMI.Mapping.Extensions.Strategy;
 using WebHMI.PRDB.Dbo;
@@ -21,24 +19,29 @@ namespace WebHMI.Services.StrategyServices
         { }
     }
 
-    // ??
-    public class StdDpFmService : StdService<
-    StdDpfm, StdDpFmDto>
-    {
-        public override string AggregateName => "FmDescalerPlan";
-
-        public StdDpFmService() : base(
-            StdDpFmMapper.ToDto,
-            StdDpFmMapper.MapEntity)
-        { }
-    }
-
-    public class StdDrampFmService : StdService<
-   StdDprampFm, StdDprampFmDto>
+    public class StdDrampHrmService : StdRampService<
+    StdDphrm, StdDpRmDto,
+    StdDprampHrm, StdDprampHrmDto>
     {
         public override string AggregateName => "RmDescalerPlan";
 
+        public StdDrampHrmService() : base(
+            StdDpHrmMapper.ToDto,
+            StdDpHrmMapper.MapEntity,
+            StdDrampHrmMapper.ToDto,
+            StdDrampHrmMapper.MapEntity)
+        { }
+    }
+
+    public class StdDrampFmService : StdRampService<
+    StdDpfm, StdDpFmDto,
+    StdDprampFm, StdDprampFmDto>
+    {
+        public override string AggregateName => "FmDescalerPlan";
+
         public StdDrampFmService() : base(
+            StdDpFmMapper.ToDto,
+            StdDpFmMapper.MapEntity,
             StdDrampFmMapper.ToDto,
             StdDrampFmMapper.MapEntity)
         { }

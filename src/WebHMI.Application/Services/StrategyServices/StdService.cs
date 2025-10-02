@@ -11,7 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebHMI.Dtos.Strategies;
+using WebHMI.Dtos.Strategy;
 using WebHMI.Dtos.Strategy.StdDtos;
 using WebHMI.Helpers;
 using WebHMI.PRDB;

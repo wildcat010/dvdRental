@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using WebHMI.Dtos.Strategies;
 
-namespace WebHMI.Dtos.Strategy.Dtos
+namespace WebHMI.Dtos.Strategy
 {
     public class StdPassKeySetDto<TDto, TPassDto>
     {

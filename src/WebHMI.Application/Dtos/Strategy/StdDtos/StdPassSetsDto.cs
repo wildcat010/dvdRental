@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WebHMI.Dtos.Strategies
+namespace WebHMI.Dtos.Strategy
 {
     public class StdPassSetsDto<TDto, TPassDto>
     {

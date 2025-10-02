@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WebHMI.Dtos.Strategy.StdDtos.StdSingleDtos
 {
-    public class StdDprampFmDto : StdItemDto
+    public class StdDprampFmDto : StdRampDto
     {
         public int? DescrampAuto { get; set; }
         public int? DescrampState { get; set; }

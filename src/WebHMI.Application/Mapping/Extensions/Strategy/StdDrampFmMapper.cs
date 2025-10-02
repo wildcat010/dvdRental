@@ -14,6 +14,7 @@ namespace WebHMI.Mapping.Extensions.Strategy
         {
             entity.PlanNo = dto.PlanNo;
             entity.ActiveFlag = dto.ActiveFlag;
+            entity.RampNo = dto.RampNo;
             //entity.Description = dto.Description;
             entity.DescRampAuto = dto.DescrampAuto;
             entity.DescRampState = dto.DescrampState;
@@ -24,6 +25,7 @@ namespace WebHMI.Mapping.Extensions.Strategy
         {
             PlanNo = entity.PlanNo,
             ActiveFlag = entity.ActiveFlag,
+            RampNo = entity.RampNo,
             //Description = entity.Description
             DescrampAuto = entity.DescRampAuto,
             DescrampState = entity.DescRampState,
