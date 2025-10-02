@@ -53,26 +53,6 @@ namespace WebHMI.Services
                 ProductionScheduleMapper.ToGhostDischargedMaterialsDto);
         }
 
-        public async Task<PagedResultDto<GhostDischargedMaterialsDto>> GetDischargedSlabs(FilteredRequestDto input, string seqID)
-        {
-            return await ApplyFilter(
-                _prdbContext.HmiVMatInfoShorts
-                    .Where(x => x.SimMat == 1 && x.EnPhStatus >= 1 && x.SequenceId == seqID) 
-                    .OrderByDescending(x => x.ProdStartTime),
-                input,
-                ProductionScheduleMapper.ToGhostDischargedMaterialsDto);
-        }
-        
-        public async Task<PagedResultDto<RemovedMaterialsDto>> GetRemovedMaterials(FilteredRequestDto input, string seqID)
-        {
-            return await ApplyFilter(
-                _prdbContext.HmiVRemovedMaterials
-                    .Where(x => x.SimMat == 0 && x.SequenceId == seqID)
-                    .OrderByDescending(x => x.RejectTime),
-                input,
-                ProductionScheduleMapper.ToRemovedMaterialsDto);
-        }
-
         [AbpAuthorize(Permissions.Pages_ProductionSchedule_Delete)]
         [Audited]
         public async Task DeleteMaterial(string connectionId, int enPhMeId)
