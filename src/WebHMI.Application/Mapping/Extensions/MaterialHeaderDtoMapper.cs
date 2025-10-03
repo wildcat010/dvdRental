@@ -177,5 +177,74 @@ namespace WebHMI.Mapping.Extensions
 
             return result;
 		}
-	}
+
+        public static MaterialHeaderDto MapToDto(this HmiVMatInfoShort matInfo)
+        {
+            var result = new MaterialHeaderDto();
+
+            result.Data.EnPhExtId.E = matInfo?.EnPhExtId;
+
+            result.Data.EnPhMeId.E = matInfo?.EnPhMeId;
+
+            result.Data.EdPhySrc.E = matInfo?.EdPhySrc;
+
+            result.Data.EnPhStatus.E = matInfo?.EnPhStatus;
+
+            result.Data.EdOrSrc.E = matInfo?.EdOrSrc;
+
+            result.Data.EnLoMeId.E = matInfo?.EnLoMeId;
+
+            result.Data.EdLoSrc.E = matInfo?.EdLoSrc;
+
+            result.Data.AlloyCode.E = matInfo?.AlloyCode;
+
+            result.Data.HEntry.E = matInfo?.HEntry;
+
+            result.Data.HExit.E = matInfo?.HExit;
+
+            result.Data.WEntry.E = matInfo?.WEntry;
+
+            result.Data.WeightEntry.E = matInfo?.WeightEntry;
+
+            result.Data.LEntry.E = matInfo?.LEntry;
+
+            result.Data.WExit.E = matInfo?.WExit;
+
+            result.Data.SequenceId.E = matInfo?.SequenceId;
+
+            result.Data.PdiStatus.E = matInfo?.PdiStatus;
+
+            result.Data.SetpointsPc2Ok.E = matInfo?.SetpointsPc2Ok;
+
+            result.Data.Sbaz.E = matInfo?.Sbaz;
+
+            result.Data.LastCalc.E = matInfo?.LastCalc;
+
+            result.Data.ApsKey.E = matInfo?.ApsKey;
+
+            result.Data.SimMat.E = matInfo?.SimMat;
+
+            result.Data.SetpointsCsOk.E = matInfo?.SetpointsCsOk;
+
+            result.Data.TEntryFm.E = matInfo?.TEntryFm;
+
+            result.Data.TExitFm.E = matInfo?.TExitFm;
+
+            result.Data.TExitCaster.E = matInfo?.TExitCaster;
+
+            result.Data.CoilTemp.E = matInfo?.CoilTemp;
+
+            result.Data.HeatId.E = matInfo?.HeatId;
+
+            result.Data.FlagBatchRolling.E = matInfo?.FlagBatchRolling;
+
+            result.Data.ProductType.E = matInfo?.PlateProduction;
+
+            result.Data.ProdStartTime.E = matInfo?.ProdStartTime;
+
+            result.Data.ProdEndTime.E = matInfo?.ProdEndTime;
+
+            return result;
+        }
+    }
 }

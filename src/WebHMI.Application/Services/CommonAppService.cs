@@ -81,31 +81,37 @@ namespace WebHMI.Services
             return await ApplyFilter(_prdbContext.HmiVInlineMaterials.AsQueryable(), input, TrackingDataMapper.ToDto);
         }
 
+        //public async Task<PagedResultDto<MaterialHeaderDto>> GetMaterialHeaderList(FilteredRequestDto input)
+        //{
+        //    var query = await ApplyFilterWithoutMapping(_prdbContext.HmiVMatInfoShorts.Where(x => x.EdOrSrc == "E" && x.EdLoSrc == "E" && x.EdPhySrc == "E"), input);
+        //    var result = new List<MaterialHeaderDto>();
+
+        //    foreach (var item in query.Items.DistinctBy(x => x.EnOrMeId))
+        //    {
+        //        var dto = new MaterialHeaderDto()
+        //        {
+        //            MeCode = new MeCodeDto()
+        //            {
+        //                Status = item.EnPhStatus,
+        //                MeId = item.EnOrMeId,
+        //                MatType = "OR",
+        //                MesId = 1,
+        //                ExtId = item.EnOrExtId
+        //            },
+        //        };
+
+        //        dto.MapData([item]);
+
+        //        result.Add(dto);
+        //    }
+
+        //    return new PagedResultDto<MaterialHeaderDto>(query.Items.Count, result.ToList());
+        //}
+
         public async Task<PagedResultDto<MaterialHeaderDto>> GetMaterialHeaderList(FilteredRequestDto input)
         {
-            var query = await ApplyFilterWithoutMapping(_prdbContext.HmiVMatInfoShorts.Where(x => x.EdOrSrc == "E" && x.EdLoSrc == "E" && x.EdPhySrc == "E"), input);
-            var result = new List<MaterialHeaderDto>();
-
-            foreach (var item in query.Items.DistinctBy(x => x.EnOrMeId))
-            {
-                var dto = new MaterialHeaderDto()
-                {
-                    MeCode = new MeCodeDto()
-                    {
-                        Status = item.EnPhStatus,
-                        MeId = item.EnOrMeId,
-                        MatType = "OR",
-                        MesId = 1,
-                        ExtId = item.EnOrExtId
-                    },
-                };
-
-                dto.MapData([item]);
-
-                result.Add(dto);
-            }
-
-            return new PagedResultDto<MaterialHeaderDto>(result.Count, result.ToList());
+            return await ApplyFilter(_prdbContext.HmiVMatInfoShorts
+                .Where(x => x.EdOrSrc == "E" && x.EdLoSrc == "E" && x.EdPhySrc == "E"), input, MaterialHeaderDtoMapper.MapToDto);
         }
 
         public async Task<MeCodeDto> GetNextMaterial(int meid, string matType)
