@@ -182,6 +182,15 @@ namespace WebHMI.Mapping.Extensions
         {
             var result = new MaterialHeaderDto();
 
+            result.MeCode = new MeCodeDto()
+            {
+                Status = matInfo.EnPhStatus,
+                MeId = matInfo.EnOrMeId,
+                MatType = "OR",
+                MesId = 1,
+                ExtId = matInfo.EnOrExtId
+            };
+
             result.Data.EnPhExtId.E = matInfo?.EnPhExtId;
 
             result.Data.EnPhMeId.E = matInfo?.EnPhMeId;
