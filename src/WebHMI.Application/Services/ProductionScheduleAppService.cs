@@ -16,6 +16,7 @@ using WebHMI.Filters;
 using WebHMI.Helpers;
 using WebHMI.Mapping.Extensions;
 using WebHMI.PRDB;
+using WebHMI.PRDB.Dbo;
 
 namespace WebHMI.Services
 {
@@ -37,11 +38,10 @@ namespace WebHMI.Services
 
         public async Task<PagedResultDto<ScheduledMaterialsDto>> GetScheduledMaterials(FilteredRequestDto input, string seqID)
         {
-            return await ApplyFilter(
-                _prdbContext.HmiVProdsequences
+            return await ApplyFilter<HmiVProdsequenceComplete, ScheduledMaterialsDto>(
+                _prdbContext.HmiVProdsequenceCompletes
                 .Where(x => x.SequenceId == seqID), 
-                input, 
-                ProductionScheduleMapper.ToScheduledMaterialsDto);
+                input, ProductionScheduleMapper.ToScheduledMaterialsDto);
         }
 
         public async Task<PagedResultDto<GhostDischargedMaterialsDto>> GetGhostMaterials(FilteredRequestDto input, string seqID)

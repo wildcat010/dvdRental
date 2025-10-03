@@ -207,7 +207,11 @@ public partial class PrdbContext : AbpDbContext
 
     public virtual DbSet<HmiVMeids2> HmiVMeids2s { get; set; }
 
+    public virtual DbSet<HmiVNotInProdsequence> HmiVNotInProdsequences { get; set; }
+
     public virtual DbSet<HmiVProdsequence> HmiVProdsequences { get; set; }
+
+    public virtual DbSet<HmiVProdsequenceComplete> HmiVProdsequenceCompletes { get; set; }
 
     public virtual DbSet<HmiVRemovedMaterial> HmiVRemovedMaterials { get; set; }
 
@@ -13641,7 +13645,19 @@ public partial class PrdbContext : AbpDbContext
                 .IsRequired()
                 .HasMaxLength(2)
                 .IsUnicode(false);
+            entity.Property(e => e.EnLoCreator)
+                .IsRequired()
+                .HasMaxLength(2)
+                .IsUnicode(false);
+            entity.Property(e => e.EnLoExtId)
+                .IsRequired()
+                .HasMaxLength(20)
+                .IsUnicode(false);
             entity.Property(e => e.EnLoMeId).HasColumnName("EnLoMeID");
+            entity.Property(e => e.EnLoMeType)
+                .IsRequired()
+                .HasMaxLength(2)
+                .IsUnicode(false);
             entity.Property(e => e.EnOrCreator)
                 .IsRequired()
                 .HasMaxLength(2)
@@ -13656,11 +13672,19 @@ public partial class PrdbContext : AbpDbContext
                 .IsRequired()
                 .HasMaxLength(2)
                 .IsUnicode(false);
+            entity.Property(e => e.EnPhCreator)
+                .IsRequired()
+                .HasMaxLength(2)
+                .IsUnicode(false);
             entity.Property(e => e.EnPhExtId)
                 .IsRequired()
                 .HasMaxLength(20)
                 .IsUnicode(false);
             entity.Property(e => e.EnPhMeId).HasColumnName("EnPhMeID");
+            entity.Property(e => e.EnPhMeType)
+                .IsRequired()
+                .HasMaxLength(2)
+                .IsUnicode(false);
             entity.Property(e => e.FlagBatchRolling).HasColumnName("flagBatchRolling");
             entity.Property(e => e.HEntry).HasColumnName("hEntry");
             entity.Property(e => e.HExit).HasColumnName("hExit");
@@ -13834,6 +13858,83 @@ public partial class PrdbContext : AbpDbContext
             entity.Property(e => e.PhyStatus).HasColumnName("phyStatus");
         });
 
+        modelBuilder.Entity<HmiVNotInProdsequence>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("HMI_V_NOT_IN_PRODSEQUENCE", "PRDB");
+
+            entity.Property(e => e.AlloyCode)
+                .HasMaxLength(30)
+                .IsUnicode(false)
+                .HasColumnName("alloyCode");
+            entity.Property(e => e.ApsKey)
+                .HasMaxLength(6)
+                .IsUnicode(false)
+                .HasColumnName("apsKey");
+            entity.Property(e => e.CoilTemp).HasColumnName("coilTemp");
+            entity.Property(e => e.EdOrSrc)
+                .IsRequired()
+                .HasMaxLength(2)
+                .IsUnicode(false);
+            entity.Property(e => e.EdPhySrc)
+                .IsRequired()
+                .HasMaxLength(2)
+                .IsUnicode(false);
+            entity.Property(e => e.EnLoMeId).HasColumnName("EnLoMeID");
+            entity.Property(e => e.EnOrExtId)
+                .IsRequired()
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("EnOrExtID");
+            entity.Property(e => e.EnOrMeId).HasColumnName("EnOrMeID");
+            entity.Property(e => e.EnOrMeType)
+                .IsRequired()
+                .HasMaxLength(2)
+                .IsUnicode(false);
+            entity.Property(e => e.EnPhExtId)
+                .IsRequired()
+                .HasMaxLength(20)
+                .IsUnicode(false);
+            entity.Property(e => e.EnPhMeId).HasColumnName("EnPhMeID");
+            entity.Property(e => e.FlagBatchRolling)
+                .IsRequired()
+                .HasMaxLength(7)
+                .IsUnicode(false)
+                .HasColumnName("flagBatchRolling");
+            entity.Property(e => e.HEntry).HasColumnName("hEntry");
+            entity.Property(e => e.HExit).HasColumnName("hExit");
+            entity.Property(e => e.HExitHrm).HasColumnName("hExitHRM");
+            entity.Property(e => e.HeatId)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("heatId");
+            entity.Property(e => e.LEntry).HasColumnName("lEntry");
+            entity.Property(e => e.LExit).HasColumnName("lExit");
+            entity.Property(e => e.LastCalc).HasPrecision(3);
+            entity.Property(e => e.Next).HasColumnName("NEXT");
+            entity.Property(e => e.OrderNo)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("orderNo");
+            entity.Property(e => e.PlateProduction).HasColumnName("plateProduction");
+            entity.Property(e => e.ProfileHrm).HasColumnName("profileHRM");
+            entity.Property(e => e.Sbaz).HasColumnName("sbaz");
+            entity.Property(e => e.SequenceId)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("sequenceId");
+            entity.Property(e => e.SetpointsCsOk).HasColumnName("setpointsCsOk");
+            entity.Property(e => e.SetpointsPc2Ok).HasColumnName("setpointsPc2Ok");
+            entity.Property(e => e.SimMat).HasColumnName("simMat");
+            entity.Property(e => e.TEntryFm).HasColumnName("tEntryFM");
+            entity.Property(e => e.TExitCaster).HasColumnName("tExitCaster");
+            entity.Property(e => e.TExitFm).HasColumnName("tExitFM");
+            entity.Property(e => e.WEntry).HasColumnName("wEntry");
+            entity.Property(e => e.WExit).HasColumnName("wExit");
+            entity.Property(e => e.WeightEntry).HasColumnName("weightEntry");
+        });
+
         modelBuilder.Entity<HmiVProdsequence>(entity =>
         {
             entity
@@ -13888,6 +13989,85 @@ public partial class PrdbContext : AbpDbContext
             entity.Property(e => e.LEntry).HasColumnName("lEntry");
             entity.Property(e => e.LExit).HasColumnName("lExit");
             entity.Property(e => e.LastCalc).HasPrecision(3);
+            entity.Property(e => e.Next).HasColumnName("NEXT");
+            entity.Property(e => e.OrderNo)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("orderNo");
+            entity.Property(e => e.PlateProduction).HasColumnName("plateProduction");
+            entity.Property(e => e.ProfileHrm).HasColumnName("profileHRM");
+            entity.Property(e => e.Sbaz).HasColumnName("sbaz");
+            entity.Property(e => e.SequenceId)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("sequenceId");
+            entity.Property(e => e.SetpointsCsOk).HasColumnName("setpointsCsOk");
+            entity.Property(e => e.SetpointsPc2Ok).HasColumnName("setpointsPc2Ok");
+            entity.Property(e => e.SimMat).HasColumnName("simMat");
+            entity.Property(e => e.TEntryFm).HasColumnName("tEntryFM");
+            entity.Property(e => e.TExitCaster).HasColumnName("tExitCaster");
+            entity.Property(e => e.TExitFm).HasColumnName("tExitFM");
+            entity.Property(e => e.WEntry).HasColumnName("wEntry");
+            entity.Property(e => e.WExit).HasColumnName("wExit");
+            entity.Property(e => e.WeightEntry).HasColumnName("weightEntry");
+        });
+
+        modelBuilder.Entity<HmiVProdsequenceComplete>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("HMI_V_PRODSEQUENCE_COMPLETE", "PRDB");
+
+            entity.Property(e => e.AlloyCode)
+                .HasMaxLength(30)
+                .IsUnicode(false)
+                .HasColumnName("alloyCode");
+            entity.Property(e => e.ApsKey)
+                .HasMaxLength(6)
+                .IsUnicode(false)
+                .HasColumnName("apsKey");
+            entity.Property(e => e.CoilTemp).HasColumnName("coilTemp");
+            entity.Property(e => e.EdOrSrc)
+                .IsRequired()
+                .HasMaxLength(2)
+                .IsUnicode(false);
+            entity.Property(e => e.EdPhySrc)
+                .IsRequired()
+                .HasMaxLength(2)
+                .IsUnicode(false);
+            entity.Property(e => e.EnLoMeId).HasColumnName("EnLoMeID");
+            entity.Property(e => e.EnOrExtId)
+                .IsRequired()
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("EnOrExtID");
+            entity.Property(e => e.EnOrMeId).HasColumnName("EnOrMeID");
+            entity.Property(e => e.EnOrMeType)
+                .IsRequired()
+                .HasMaxLength(2)
+                .IsUnicode(false);
+            entity.Property(e => e.EnPhExtId)
+                .IsRequired()
+                .HasMaxLength(20)
+                .IsUnicode(false);
+            entity.Property(e => e.EnPhMeId).HasColumnName("EnPhMeID");
+            entity.Property(e => e.FlagBatchRolling)
+                .IsRequired()
+                .HasMaxLength(7)
+                .IsUnicode(false)
+                .HasColumnName("flagBatchRolling");
+            entity.Property(e => e.HEntry).HasColumnName("hEntry");
+            entity.Property(e => e.HExit).HasColumnName("hExit");
+            entity.Property(e => e.HExitHrm).HasColumnName("hExitHRM");
+            entity.Property(e => e.HeatId)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("heatId");
+            entity.Property(e => e.LEntry).HasColumnName("lEntry");
+            entity.Property(e => e.LExit).HasColumnName("lExit");
+            entity.Property(e => e.LastCalc).HasPrecision(3);
+            entity.Property(e => e.Majorno).HasColumnName("majorno");
+            entity.Property(e => e.Minorno).HasColumnName("minorno");
             entity.Property(e => e.Next).HasColumnName("NEXT");
             entity.Property(e => e.OrderNo)
                 .HasMaxLength(20)

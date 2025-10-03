@@ -92,4 +92,22 @@ public partial class HmiVMatInfoShort
     public float? ProfileHrm { get; set; }
 
     public string OrderNo { get; set; }
+
+    public string EnLoExtId { get; set; }
+
+    public short? EnLoMesid { get; set; }
+
+    public string EnLoMeType { get; set; }
+
+    public string EnPhMeType { get; set; }
+
+    public short? EnPhMesId { get; set; }
+
+    public short? EnOrStatus { get; set; }
+
+    public short? EnLoStatus { get; set; }
+
+    public string EnPhCreator { get; set; }
+
+    public string EnLoCreator { get; set; }
 }

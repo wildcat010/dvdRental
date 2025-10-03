@@ -9,7 +9,7 @@ namespace WebHMI.Mapping.Extensions
 {
 	internal class ProductionScheduleMapper
 	{
-        internal static ScheduledMaterialsDto ToScheduledMaterialsDto(HmiVProdsequence dbo) => new()
+        internal static ScheduledMaterialsDto ToScheduledMaterialsDto(HmiVProdsequenceComplete dbo) => new()
 		{
 			EnOrMeCode = new MeCodeDto
 			{
