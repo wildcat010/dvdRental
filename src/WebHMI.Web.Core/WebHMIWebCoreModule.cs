@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Abp.Threading.BackgroundWorkers;
 using WebHMI.API.BackgroundTask;
 using WebHMI.BackgroundTask;
+using WebHMI.WebCore.BackgroundTask;
 
 namespace WebHMI
 {
@@ -79,6 +80,7 @@ namespace WebHMI
 
 			workManager.Add(IocManager.Resolve<ClenaupBackgroundWorker>());
             workManager.Add(IocManager.Resolve<WatchDogStatusTask>());
+            workManager.Add(IocManager.Resolve<WidgetUpdaterTask>());
         }
 	}
 }
