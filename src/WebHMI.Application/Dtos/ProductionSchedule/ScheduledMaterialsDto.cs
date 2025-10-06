@@ -58,8 +58,9 @@ namespace WebHMI.Dtos.ProductionSchedule
 		public float? TExitCaster { get; set; }
 
 		public float? CoilTemp { get; set; }
+		public float? CoolStrategy { get; set; }
 
-		public string HeatId { get; set; }
+        public string HeatId { get; set; }
 
 		public string FlagBatchRolling { get; set; }
 		public string EdPhySrc { get; internal set; }

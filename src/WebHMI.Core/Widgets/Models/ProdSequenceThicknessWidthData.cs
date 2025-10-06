@@ -5,7 +5,9 @@ namespace WebHMI.Core.Widget.Models
 	public class ProdSequenceThicknessWidthData : BaseWidgetData
 	{
 		public List<KeyValuePair<string, SingleProdSequenceThicknessWidth>> ProductionDistributionData { get; set; }
-	}
+
+        public ProdSequenceThicknessWidthData() { }
+    }
 
 	public class SingleProdSequenceThicknessWidth()
 	{ 
@@ -13,6 +15,7 @@ namespace WebHMI.Core.Widget.Models
 		public double? ExitThickness {get; set; }
 		public double? Width {get; set; }
 		public string HeatId {get; set; }
+		public string SeqId {get; set; }
 
     }
 }

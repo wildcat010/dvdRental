@@ -13632,6 +13632,7 @@ public partial class PrdbContext : AbpDbContext
                 .IsUnicode(false)
                 .HasColumnName("apsKey");
             entity.Property(e => e.CoilTemp).HasColumnName("coilTemp");
+            entity.Property(e => e.CoolStrategy).HasColumnName("coolStrategy");
             entity.Property(e => e.CsCoilTempSetp).HasColumnName("csCoilTempSetp");
             entity.Property(e => e.EdLoSrc)
                 .IsRequired()
@@ -13950,6 +13951,7 @@ public partial class PrdbContext : AbpDbContext
                 .IsUnicode(false)
                 .HasColumnName("apsKey");
             entity.Property(e => e.CoilTemp).HasColumnName("coilTemp");
+            entity.Property(e => e.CoolStrategy).HasColumnName("coolStrategy");
             entity.Property(e => e.EdOrSrc)
                 .IsRequired()
                 .HasMaxLength(2)
@@ -14027,6 +14029,7 @@ public partial class PrdbContext : AbpDbContext
                 .IsUnicode(false)
                 .HasColumnName("apsKey");
             entity.Property(e => e.CoilTemp).HasColumnName("coilTemp");
+            entity.Property(e => e.CoolStrategy).HasColumnName("coolStrategy");
             entity.Property(e => e.EdOrSrc)
                 .IsRequired()
                 .HasMaxLength(2)

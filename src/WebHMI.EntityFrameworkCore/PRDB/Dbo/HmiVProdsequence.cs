@@ -65,6 +65,8 @@ public partial class HmiVProdsequence
 
     public float? TExitCaster { get; set; }
 
+    public int? CoolStrategy { get; set; }
+
     public float? CoilTemp { get; set; }
 
     public string HeatId { get; set; }

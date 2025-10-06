@@ -67,6 +67,8 @@ public partial class HmiVMatInfoShort
 
     public float? CoilTemp { get; set; }
 
+    public int? CoolStrategy { get; set; }
+
     public float? CsCoilTempSetp { get; set; }
 
     public float? HExitCold { get; set; }

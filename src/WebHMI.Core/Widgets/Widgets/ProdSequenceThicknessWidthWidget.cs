@@ -71,12 +71,12 @@ namespace WebHMI.Core.Widget.Widgets
 		{
 			var context = _dbContextProvider.GetDbContext();
 
-            var actualSeqId = await GetActualSequenceId();
+            //var actualSeqId = await GetActualSequenceId();
 
-            var prodSequences = context.HmiVProdsequences
+            var prodSequences = context.HmiVProdsequenceCompletes
                 .OrderBy(x => x.SequenceId)
-                .AsEnumerable()
-                .Where(x => x.SequenceId == actualSeqId);
+                .AsEnumerable();
+               // .Where(x => x.SequenceId == actualSeqId);
 
 			var result = new List<KeyValuePair<string, SingleProdSequenceThicknessWidth>>();
 
@@ -89,7 +89,8 @@ namespace WebHMI.Core.Widget.Widgets
 						EntryThickness = el.HEntry,
 						ExitThickness = el.HExit,
 						Width = el.WExit,
-						HeatId = el.HeatId
+						HeatId = el.HeatId,
+						SeqId = el.SequenceId
                     }));
 			}
 
