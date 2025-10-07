@@ -13991,6 +13991,8 @@ public partial class PrdbContext : AbpDbContext
             entity.Property(e => e.LEntry).HasColumnName("lEntry");
             entity.Property(e => e.LExit).HasColumnName("lExit");
             entity.Property(e => e.LastCalc).HasPrecision(3);
+            entity.Property(e => e.Majorno).HasColumnName("majorno");
+            entity.Property(e => e.Minorno).HasColumnName("minorno");
             entity.Property(e => e.Next).HasColumnName("NEXT");
             entity.Property(e => e.OrderNo)
                 .HasMaxLength(20)

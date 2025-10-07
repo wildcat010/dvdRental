@@ -74,7 +74,9 @@ namespace WebHMI.Core.Widget.Widgets
             //var actualSeqId = await GetActualSequenceId();
 
             var prodSequences = context.HmiVProdsequenceCompletes
-                .OrderBy(x => x.Position)
+                .OrderBy(x => x.Majorno)
+                .ThenBy(x => x.Minorno)
+                .ThenBy(x => x.Position)
                 .AsEnumerable();
                // .Where(x => x.SequenceId == actualSeqId);
 
@@ -90,7 +92,9 @@ namespace WebHMI.Core.Widget.Widgets
 						ExitThickness = el.HExit,
 						Width = el.WExit,
 						HeatId = el.HeatId,
-						SeqId = el.SequenceId
+						SeqId = el.SequenceId,
+						FlagNext = el.Next,
+						Status = el.EnOrStatus,
                     }));
 			}
 

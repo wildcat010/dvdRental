@@ -53,7 +53,7 @@ namespace WebHMI.Dtos.ProductionSchedule
 
         public string HeatId { get; set; }
 
-        public int? FlagBatchRolling { get; set; }
+        public string FlagBatchRolling { get; set; }
 
         public int? PlateProduction { get; set; }
 

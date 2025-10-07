@@ -66,15 +66,13 @@ namespace WebHMI.Mapping.Extensions
             ProductType = dbo.PlateProduction
         };
 
-        internal static GhostDischargedMaterialsDto ToGhostDischargedMaterialsDto(HmiVMatInfoShort dbo) => new()
+        internal static GhostDischargedMaterialsDto ToGhostDischargedMaterialsDto(HmiVProdsequenceComplete dbo) => new()
         {
             EnOrMeCode = new MeCodeDto
             {
                 MeId = dbo.EnOrMeId,
                 MatType = "OR",
                 ExtId = dbo.EnOrExtId,
-                MeCreator = dbo.EnOrCreator,
-                MesId = dbo.EnOrMesId ?? -1,
                 Status = dbo.EnOrStatus,
             },
             EnLogMeCode = new MeCodeDto
@@ -113,9 +111,7 @@ namespace WebHMI.Mapping.Extensions
             CoolStrategy = dbo.CoolStrategy,
             HeatId = dbo.HeatId,
             FlagBatchRolling = dbo.FlagBatchRolling,
-            PlateProduction = dbo.PlateProduction,
-            ProdStartTime = dbo.ProdStartTime,
-            ProdEndTime = dbo.ProdEndTime,
+            PlateProduction = dbo.PlateProduction
         };
 
     }

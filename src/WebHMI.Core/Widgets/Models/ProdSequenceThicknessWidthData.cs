@@ -16,6 +16,8 @@ namespace WebHMI.Core.Widget.Models
 		public double? Width {get; set; }
 		public string HeatId {get; set; }
 		public string SeqId {get; set; }
+		public short? FlagNext {get; set; }
+		public int? Status {get; set; }
 
     }
 }

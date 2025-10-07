@@ -7,6 +7,10 @@ public partial class HmiVProdsequence
 {
     public long? Position { get; set; }
 
+    public int Majorno { get; set; }
+
+    public int Minorno { get; set; }
+
     public short? Next { get; set; }
 
     public string EnPhExtId { get; set; }

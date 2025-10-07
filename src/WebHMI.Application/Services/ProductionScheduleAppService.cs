@@ -41,16 +41,20 @@ namespace WebHMI.Services
             return await ApplyFilter<HmiVProdsequenceComplete, ScheduledMaterialsDto>(
                 _prdbContext.HmiVProdsequenceCompletes
                 .Where(x => x.SequenceId == seqID)
-                .OrderBy(x => x.Position), 
+                .OrderBy(x => x.Majorno)
+                .ThenBy(x => x.Minorno)
+                .ThenBy(x => x.Position),
                 input, ProductionScheduleMapper.ToScheduledMaterialsDto);
         }
 
         public async Task<PagedResultDto<GhostDischargedMaterialsDto>> GetGhostMaterials(FilteredRequestDto input, string seqID)
         {
-            return await ApplyFilter(
-                _prdbContext.HmiVMatInfoShorts
+            return await ApplyFilter<HmiVProdsequenceComplete, GhostDischargedMaterialsDto>(
+                _prdbContext.HmiVProdsequenceCompletes
                     .Where(x => x.SimMat == 1 && x.SequenceId == seqID)
-                    .OrderBy(x => x.SequenceId),
+                    .OrderBy(x => x.Majorno)
+                    .ThenBy(x => x.Minorno)
+                    .ThenBy(x => x.Position),
                 input,
                 ProductionScheduleMapper.ToGhostDischargedMaterialsDto);
         }
