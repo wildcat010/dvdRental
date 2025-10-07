@@ -40,7 +40,8 @@ namespace WebHMI.Services
         {
             return await ApplyFilter<HmiVProdsequenceComplete, ScheduledMaterialsDto>(
                 _prdbContext.HmiVProdsequenceCompletes
-                .Where(x => x.SequenceId == seqID), 
+                .Where(x => x.SequenceId == seqID)
+                .OrderBy(x => x.Position), 
                 input, ProductionScheduleMapper.ToScheduledMaterialsDto);
         }
 
@@ -48,7 +49,8 @@ namespace WebHMI.Services
         {
             return await ApplyFilter(
                 _prdbContext.HmiVMatInfoShorts
-                    .Where(x => x.SimMat == 1 && x.SequenceId == seqID),
+                    .Where(x => x.SimMat == 1 && x.SequenceId == seqID)
+                    .OrderBy(x => x.SequenceId),
                 input,
                 ProductionScheduleMapper.ToGhostDischargedMaterialsDto);
         }

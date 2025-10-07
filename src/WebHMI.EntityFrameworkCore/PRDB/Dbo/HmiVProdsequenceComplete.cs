@@ -29,7 +29,13 @@ public partial class HmiVProdsequenceComplete
 
     public string EnOrMeType { get; set; }
 
+    public short? EnOrStatus { get; set; }
+
     public int EnLoMeId { get; set; }
+
+    public string EnLoExtId { get; set; }
+
+    public short? EnLoStatus { get; set; }
 
     public string AlloyCode { get; set; }
 

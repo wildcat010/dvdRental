@@ -15,13 +15,17 @@ namespace WebHMI.Mapping.Extensions
 			{
 				MeId = dbo.EnOrMeId,
 				MatType = "OR",
-				ExtId = dbo.EnOrExtId
-			},
+				ExtId = dbo.EnOrExtId,
+                Status = dbo.EnOrStatus,
+
+            },
 			EnLogMeCode = new MeCodeDto
 			{
 				MeId = dbo.EnLoMeId,
 				MatType = "LO",
-			},
+				ExtId = dbo.EnLoExtId,
+                Status = dbo.EnLoStatus,
+            },
 			EnPhMeCode = new MeCodeDto
 			{
 				MeId = dbo.EnPhMeId,
@@ -71,11 +75,14 @@ namespace WebHMI.Mapping.Extensions
                 ExtId = dbo.EnOrExtId,
                 MeCreator = dbo.EnOrCreator,
                 MesId = dbo.EnOrMesId ?? -1,
+                Status = dbo.EnOrStatus,
             },
             EnLogMeCode = new MeCodeDto
             {
                 MeId = dbo.EnLoMeId,
                 MatType = "LO",
+                ExtId = dbo.EnLoExtId,
+                Status = dbo.EnLoStatus,
             },
             EnPhMeCode = new MeCodeDto
             {

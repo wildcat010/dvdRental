@@ -74,7 +74,7 @@ namespace WebHMI.Core.Widget.Widgets
             //var actualSeqId = await GetActualSequenceId();
 
             var prodSequences = context.HmiVProdsequenceCompletes
-                .OrderBy(x => x.SequenceId)
+                .OrderBy(x => x.Position)
                 .AsEnumerable();
                // .Where(x => x.SequenceId == actualSeqId);
 
