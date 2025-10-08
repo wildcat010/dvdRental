@@ -1,4 +1,5 @@
-﻿using Abp.Domain.Entities;
+﻿using Abp.Auditing;
+using Abp.Domain.Entities;
 using Abp.EntityFrameworkCore;
 using Abp.UI;
 using Microsoft.EntityFrameworkCore;
@@ -47,7 +48,8 @@ namespace WebHMI.Services
 			return result;
 		}
 
-		public async Task UpdateAsync(PrimaryDataDto input)
+        [Audited]
+        public async Task UpdateAsync(PrimaryDataDto input)
 		{
 			var entryMatStruct = await _matStructEntryService.GetMaterialEntryStruct(input.MeCode.MeId, input.MeCode.MatType);
 

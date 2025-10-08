@@ -52,6 +52,7 @@ namespace WebHMI.Services
             return result;
         }
 
+        [Audited]
         [AbpAuthorize(Permissions.Pages_Setpoints_FM_Edit)]
         public async Task UpdateMaterialOverviewHFM(HFMMaterialOverviewDto input)
         {

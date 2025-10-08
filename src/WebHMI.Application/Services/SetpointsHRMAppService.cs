@@ -54,6 +54,7 @@ namespace WebHMI.Services
             return result;
         }
 
+        [Audited]
         [AbpAuthorize(Permissions.Pages_Setpoints_RM_Edit)]
         public async Task UpdateMaterialOverviewHRM(HRMMaterialOverviewDto input)
         {
@@ -505,6 +506,7 @@ namespace WebHMI.Services
             return result;
         }
 
+        [Audited]
         [AbpAuthorize(Permissions.Pages_Setpoints_RM)]
         public async Task UpdateApxMaterialOverview(HRMApxMaterialOverviewDto input)
         {
