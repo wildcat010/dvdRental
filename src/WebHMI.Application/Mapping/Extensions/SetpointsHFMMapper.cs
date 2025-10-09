@@ -195,14 +195,14 @@ namespace WebHMI.Mapping.Extensions
             return result;
         }
 
-        public static SetpointsHFMDto MapPassSchedule(this SetpointsHFMDto result, SetpointsHFMDataBlob dataBlob, int standCount)
+        public static SetpointsHFMDto MapPassSchedule(this SetpointsHFMDto result, SetpointsHFMDataBlob dataBlob, short standCount, short standStartIdx)
         {
             var spOrd2PcL = dataBlob.Spord2pcs.Where(x => x.Source == "L").FirstOrDefault();
             var spOrd2PcM = dataBlob.Spord2pcs.Where(x => x.Source == "M").FirstOrDefault();
             var spOrd2PcS = dataBlob.Spord2pcs.Where(x => x.Source == "S").FirstOrDefault();
             var spOrd2PcE = dataBlob.Spord2pcs.Where(x => x.Source == "E").FirstOrDefault();
 
-            for (short i = 0; i < standCount; i++)
+            for (short i = standStartIdx; i < standCount; i++)
             {
                 var srpPassesL = dataBlob.Srppasses.Where(x => x.Source == "L" && x.PassNo == i).FirstOrDefault();
                 var srpPassesM = dataBlob.Srppasses.Where(x => x.Source == "M" && x.PassNo == i).FirstOrDefault();
@@ -364,7 +364,7 @@ namespace WebHMI.Mapping.Extensions
             return result;
         }
 
-        public static SetpointsHFMDto MapLoading(this SetpointsHFMDto result, SetpointsHFMDataBlob dataBlob, int standCount)
+        public static SetpointsHFMDto MapLoading(this SetpointsHFMDto result, SetpointsHFMDataBlob dataBlob, short standCount, short standStartIdx)
         {
 
             var lpL = dataBlob.Lps.Where(x => x.Source == "L").FirstOrDefault();
@@ -372,7 +372,7 @@ namespace WebHMI.Mapping.Extensions
             var lpS = dataBlob.Lps.Where(x => x.Source == "S").FirstOrDefault();
             var lpE = dataBlob.Lps.Where(x => x.Source == "E").FirstOrDefault();
 
-            for (short i = 0; i < standCount; i++)
+            for (short i = standStartIdx; i < standCount; i++)
             {
                 var lpPassL = dataBlob.Lppasses.Where(x => x.Source == "L" && x.PassNo == i).FirstOrDefault();
                 var lpPassM = dataBlob.Lppasses.Where(x => x.Source == "M" && x.PassNo == i).FirstOrDefault();
@@ -450,14 +450,14 @@ namespace WebHMI.Mapping.Extensions
             return result;
         }
 
-        public static SetpointsHFMDto MapAntiPeeling(this SetpointsHFMDto result, SetpointsHFMDataBlob dataBlob, int standCount)
+        public static SetpointsHFMDto MapAntiPeeling(this SetpointsHFMDto result, SetpointsHFMDataBlob dataBlob, short standCount, short standStartIdx)
         {
             var aopL = dataBlob.Aoppasses.Where(x => x.Source == "L").FirstOrDefault();
             var aopM = dataBlob.Aoppasses.Where(x => x.Source == "M").FirstOrDefault();
             var aopS = dataBlob.Aoppasses.Where(x => x.Source == "S").FirstOrDefault();
             var aopE = dataBlob.Aoppasses.Where(x => x.Source == "E").FirstOrDefault();
 
-            for (short i = 0; i < standCount; i++)
+            for (short i = standStartIdx; i < standCount; i++)
             {
 
                 var aopPassL = dataBlob.Aoppasses.Where(x => x.Source == "L" && x.PassNo == i).FirstOrDefault();
@@ -510,7 +510,7 @@ namespace WebHMI.Mapping.Extensions
             return result;
         }
 
-        public static SetpointsHFMDto MapWorkCooling(this SetpointsHFMDto result, SetpointsHFMDataBlob dataBlob, int standCount)
+        public static SetpointsHFMDto MapWorkCooling(this SetpointsHFMDto result, SetpointsHFMDataBlob dataBlob, short standCount,short standStartIdx)
         {
             var iscpL = dataBlob.Iscpasses.Where(x => x.Source == "L").FirstOrDefault();
             var iscpM = dataBlob.Iscpasses.Where(x => x.Source == "M").FirstOrDefault();
@@ -522,7 +522,7 @@ namespace WebHMI.Mapping.Extensions
             var rcpS = dataBlob.Rcppasses.Where(x => x.Source == "S").FirstOrDefault();
             var rcpE = dataBlob.Rcppasses.Where(x => x.Source == "E").FirstOrDefault();
 
-            for (short i = 0; i < standCount; i++)
+            for (short i = standStartIdx; i < standCount; i++)
             {
                 var iscpPassL = dataBlob.Iscpasses.Where(x => x.Source == "L" && x.PassNo == i).FirstOrDefault();
                 var iscpPassM = dataBlob.Iscpasses.Where(x => x.Source == "M" && x.PassNo == i).FirstOrDefault();
@@ -604,7 +604,7 @@ namespace WebHMI.Mapping.Extensions
             return result;
         }
 
-        public static SetpointsHFMDto MapTension(this SetpointsHFMDto result, SetpointsHFMDataBlob dataBlob, int standCount)
+        public static SetpointsHFMDto MapTension(this SetpointsHFMDto result, SetpointsHFMDataBlob dataBlob, short standCount, short standStartIdx)
         {
 
             var tpL = dataBlob.Tps.Where(x => x.Source == "L").FirstOrDefault();
@@ -612,7 +612,7 @@ namespace WebHMI.Mapping.Extensions
             var tpS = dataBlob.Tps.Where(x => x.Source == "S").FirstOrDefault();
             var tpE = dataBlob.Tps.Where(x => x.Source == "E").FirstOrDefault();
 
-            for (short i = 0; i < standCount; i++)
+            for (short i = standStartIdx; i < standCount; i++)
             {
                 var tpPassL = dataBlob.Tppasses.Where(x => x.Source == "L" && x.PassNo == i).FirstOrDefault();
                 var tpPassM = dataBlob.Tppasses.Where(x => x.Source == "M" && x.PassNo == i).FirstOrDefault();
@@ -644,14 +644,14 @@ namespace WebHMI.Mapping.Extensions
             return result;
         }
 
-        public static SetpointsHFMDto MapLubrication(this SetpointsHFMDto result, SetpointsHFMDataBlob dataBlob, int standCount)
+        public static SetpointsHFMDto MapLubrication(this SetpointsHFMDto result, SetpointsHFMDataBlob dataBlob, short standCount, short standStartIdx)
         {
             var rglpL = dataBlob.Rglps.Where(x => x.Source == "L").FirstOrDefault();
             var rglpM = dataBlob.Rglps.Where(x => x.Source == "M").FirstOrDefault();
             var rglpS = dataBlob.Rglps.Where(x => x.Source == "S").FirstOrDefault();
             var rglpE = dataBlob.Rglps.Where(x => x.Source == "E").FirstOrDefault();
 
-            for (short i = 0; i < standCount; i++)
+            for (short i = standStartIdx; i < standCount; i++)
             {
                 var rglpPassL = dataBlob.Rglppasses.Where(x => x.Source == "L" && x.PassNo == i).FirstOrDefault();
                 var rglpPassM = dataBlob.Rglppasses.Where(x => x.Source == "M" && x.PassNo == i).FirstOrDefault();
@@ -703,7 +703,7 @@ namespace WebHMI.Mapping.Extensions
             return result;
         }
 
-        public static SetpointsHFMDto MapTaperShifting(this SetpointsHFMDto result, SetpointsHFMDataBlob dataBlob, int standCount)
+        public static SetpointsHFMDto MapTaperShifting(this SetpointsHFMDto result, SetpointsHFMDataBlob dataBlob, short standCount, short standStartIdx)
         {
 
             var srpL = dataBlob.Srps.Where(x => x.Source == "L").FirstOrDefault();
@@ -711,7 +711,7 @@ namespace WebHMI.Mapping.Extensions
             var srpS = dataBlob.Srps.Where(x => x.Source == "S").FirstOrDefault();
             var srpE = dataBlob.Srps.Where(x => x.Source == "E").FirstOrDefault();
 
-            for (short i = 0; i < standCount; i++)
+            for (short i = standStartIdx; i < standCount; i++)
             {
                 var srpPassesL = dataBlob.Srppasses.Where(x => x.Source == "L" && x.PassNo == i).FirstOrDefault();
                 var srpPassesM = dataBlob.Srppasses.Where(x => x.Source == "M" && x.PassNo == i).FirstOrDefault();
@@ -868,9 +868,9 @@ namespace WebHMI.Mapping.Extensions
 
             return result;
         }
-        public static SetpointsHFMApxDto MapApxPassSchedule(this SetpointsHFMApxDto result, SetpointsHFMApxDataBlob dataBlob, short standCount)
+        public static SetpointsHFMApxDto MapApxPassSchedule(this SetpointsHFMApxDto result, SetpointsHFMApxDataBlob dataBlob, short standCount, short standStartIdx)
         {
-            for (short i = 0; i < standCount; i++)
+            for (short i = standStartIdx; i < standCount; i++)
             {
                 var srpPassesL = dataBlob.Srppasses.Where(x => x.Source == "L" && x.PassNo == i).FirstOrDefault();
                 var srpPassesM = dataBlob.Srppasses.Where(x => x.Source == "M" && x.PassNo == i).FirstOrDefault();
@@ -1003,14 +1003,14 @@ namespace WebHMI.Mapping.Extensions
             return result;
         }
 
-        public static SetpointsHFMApxDto MapShifting(this SetpointsHFMApxDto result, SetpointsHFMApxDataBlob dataBlob, short standCount)
+        public static SetpointsHFMApxDto MapShifting(this SetpointsHFMApxDto result, SetpointsHFMApxDataBlob dataBlob, short standCount, short standStartIdx)
         {
             var dirFmPfcCycShiftL = dataBlob.Dirfmpfccycshiftps.Where(x => x.Source == "L").FirstOrDefault();
             var dirFmPfcCycShiftM = dataBlob.Dirfmpfccycshiftps.Where(x => x.Source == "M").FirstOrDefault();
             var dirFmPfcCycShiftS = dataBlob.Dirfmpfccycshiftps.Where(x => x.Source == "S").FirstOrDefault();
             var dirFmPfcCycShiftE = dataBlob.Dirfmpfccycshiftps.Where(x => x.Source == "E").FirstOrDefault();
 
-            for (short i = 0; i < standCount; i++)
+            for (short i = standStartIdx; i < standCount; i++)
             {
 
                 var dirFmPfcCycShiftPassL = dataBlob.Dirfmpfccycshiftppasses.Where(x => x.Source == "L" && x.PassNo == i).FirstOrDefault();
@@ -1067,14 +1067,14 @@ namespace WebHMI.Mapping.Extensions
             return result;
         }
 
-        public static SetpointsHFMApxDto MapFlatness(this SetpointsHFMApxDto result, SetpointsHFMApxDataBlob dataBlob, short standCount)
+        public static SetpointsHFMApxDto MapFlatness(this SetpointsHFMApxDto result, SetpointsHFMApxDataBlob dataBlob, short standCount, short standStartIdx)
         {
             var dirFmPfcParaL = dataBlob.DirFmPfcParaPs.Where(x => x.Source == "L").FirstOrDefault();
             var dirFmPfcParaM = dataBlob.DirFmPfcParaPs.Where(x => x.Source == "M").FirstOrDefault();
             var dirFmPfcParaS = dataBlob.DirFmPfcParaPs.Where(x => x.Source == "S").FirstOrDefault();
             var dirFmPfcParaE = dataBlob.DirFmPfcParaPs.Where(x => x.Source == "E").FirstOrDefault();
 
-            for (short i = 0; i < standCount; i++)
+            for (short i = standStartIdx; i < standCount; i++)
             {
 
                 var dirFmPfcParaPassesL = dataBlob.DirFmPfcParaPasses.Where(x => x.Source == "L" && x.PassNo == i).FirstOrDefault();

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -5,7 +6,9 @@ using Abp.Auditing;
 using Abp.Authorization;
 using Abp.Domain.Uow;
 using Abp.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using WebHMI.DataBlobs;
 using WebHMI.Dtos.Setpoints.SetpointsHFM;
 using WebHMI.Dtos.Setpoints.SetpointsHRM;
@@ -23,6 +26,7 @@ namespace WebHMI.Services
         private readonly IDbContextProvider<PrdbContext> _prdbContextProvider;
         private readonly IL2Sender _l2Sender;
         private readonly short _standCount = 9;
+        private readonly short _standStartIdx = 4;
 
         private PrdbContext _prdbContext => _prdbContextProvider.GetDbContext();
 
@@ -125,14 +129,14 @@ namespace WebHMI.Services
             var dataBlob = await GetPassScheduleHfmDataBlob(hmiVEntryMatStruct);
             
             result.MeCode = hmiVEntryMatStruct.ToMeCodeDto();
-            result.MapPassSchedule(dataBlob, _standCount);
-            result.MapLubrication(dataBlob, _standCount);
+            result.MapPassSchedule(dataBlob, _standCount, _standStartIdx);
+            result.MapLubrication(dataBlob, _standCount, _standStartIdx);
             result.MapDescaling(dataBlob);
-            result.MapAntiPeeling(dataBlob, _standCount);
-            result.MapWorkCooling(dataBlob, _standCount);
-            result.MapTension(dataBlob, _standCount);
-            result.MapTaperShifting(dataBlob, _standCount);
-            result.MapLoading(dataBlob, _standCount);
+            result.MapAntiPeeling(dataBlob, _standCount, _standStartIdx);
+            result.MapWorkCooling(dataBlob, _standCount, _standStartIdx);
+            result.MapTension(dataBlob, _standCount, _standStartIdx);
+            result.MapTaperShifting(dataBlob, _standCount, _standStartIdx);
+            result.MapLoading(dataBlob, _standCount, _standStartIdx);
 
             return result;
         }
@@ -141,6 +145,9 @@ namespace WebHMI.Services
         [AbpAuthorize(Permissions.Pages_Setpoints_FM_Edit)]
         public async Task UpdatePassScheduleHFM(SetpointsHFMDto input)
         {
+            var json = JsonConvert.SerializeObject(input);
+            Console.WriteLine("Received JSON: " + json);
+
             var context = _prdbContextProvider.GetDbContext();
             var vMatStructEntry = await _matStructEntryService.GetMaterialEntryStruct(input.MeCode.MeId, "OR");
             //pass schedule
@@ -153,7 +160,7 @@ namespace WebHMI.Services
             await UpdateDescalingTab(input, vMatStructEntry);
             await UpdateWorkCoolingTab(input, vMatStructEntry);
             await UpdateTensionTab(input, vMatStructEntry);
-            await UpdateTaperShiftingTab(input, vMatStructEntry);
+            //await UpdateTaperShiftingTab(input, vMatStructEntry);
             await UpdateAntiPeelingTab(input, vMatStructEntry);
 
         }
@@ -220,6 +227,8 @@ namespace WebHMI.Services
         {
             var context = _prdbContextProvider.GetDbContext();
 
+            var srpManual = await context.Srps.Where(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "E").FirstOrDefaultAsync();
+
             var srpPassManuals = await context.Srppasses.Where(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M").ToListAsync();
 
             foreach (var pass in input.PassScheduleDtos.OrderByDescending(x => x.PassNo))
@@ -237,7 +246,7 @@ namespace WebHMI.Services
                     };
                     context.Srppasses.Add(srpPassM);
                 }
-                srpPassM.PassNo = pass.PassNo;
+                srpPassM.PlanNo = srpManual?.PlanNo;
                 srpPassM.Model = pass.Model?.M;
 
                 await context.SaveChangesAsync();
@@ -304,8 +313,8 @@ namespace WebHMI.Services
                     };
                     context.Lppasses.Add(lpPassM);
                 }
-                lpPassM.LoadingType = pass.LoadingType?.M;
-                lpPassM.LoadingValue = pass.LoadingValue?.M;
+                //lpPassM.LoadingType = pass.LoadingType?.M;
+                //lpPassM.LoadingValue = pass.LoadingValue?.M;
                 lpPassM.CircumSpeedCorrection = pass.CircumSpeedCorrection?.M;
                 lpPassM.BendingForce = pass.BendingForce?.M;
 
@@ -471,7 +480,7 @@ namespace WebHMI.Services
                     };
                     context.Tppasses.Add(tpPassM);
                 }
-                tpPassM.SpecifFoTension = pass.SpeciffoTension?.M;
+                //tpPassM.SpecifFoTension = pass.SpeciffoTension?.M;
                 tpPassM.LooperStripLen = pass.LooperStripLen?.M;
 
                 await context.SaveChangesAsync();
@@ -480,35 +489,38 @@ namespace WebHMI.Services
             await context.SaveChangesAsync();
 
         }
-        private async Task UpdateTaperShiftingTab(SetpointsHFMDto input, VMatStructEntry vMatStructEntryOr)
-        {
-            var context = _prdbContextProvider.GetDbContext();
+        //private async Task UpdateTaperShiftingTab(SetpointsHFMDto input, VMatStructEntry vMatStructEntryOr)
+        //{
+        //    var context = _prdbContextProvider.GetDbContext();
 
-            var srpPassManuals = await context.Srppasses.Where(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M").ToListAsync();
+        //    var srpManual = await context.Srps.Where(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "E").FirstOrDefaultAsync();
 
-            foreach (var pass in input.TaperShiftingDtos.OrderByDescending(x => x.PassNo))
-            {
-                var srpPassM = srpPassManuals.FirstOrDefault(x => x.PassNo == pass.PassNo);
-                if (srpPassM == null)
-                {
-                    srpPassM = new Srppass()
-                    {
-                        MeCreator = vMatStructEntryOr.EnOrCreator,
-                        MeId = vMatStructEntryOr.EnOrMeId,
-                        MesId = (short)vMatStructEntryOr.EnOrMesId,
-                        PassNo = pass.PassNo,
-                        Source = "M",
-                    };
-                    context.Srppasses.Add(srpPassM);
-                }
-                srpPassM.Model = pass.Model?.M;
+        //    var srpPassManuals = await context.Srppasses.Where(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M").ToListAsync();
 
-                await context.SaveChangesAsync();
-            }
+        //    foreach (var pass in input.TaperShiftingDtos.OrderByDescending(x => x.PassNo))
+        //    {
+        //        var srpPassM = srpPassManuals.FirstOrDefault(x => x.PassNo == pass.PassNo);
+        //        if (srpPassM == null)
+        //        {
+        //            srpPassM = new Srppass()
+        //            {
+        //                MeCreator = vMatStructEntryOr.EnOrCreator,
+        //                MeId = vMatStructEntryOr.EnOrMeId,
+        //                MesId = (short)vMatStructEntryOr.EnOrMesId,
+        //                PassNo = pass.PassNo,
+        //                Source = "M",
+        //            };
+        //            context.Srppasses.Add(srpPassM);
+        //        }
+        //        srpPassM.PlanNo = srpManual?.PlanNo;
+        //       //srpPassM.Model = pass.Model?.M;
 
-            await context.SaveChangesAsync();
+        //        await context.SaveChangesAsync();
+        //    }
 
-        }
+        //    await context.SaveChangesAsync();
+
+        //}
 
         [AbpAuthorize(Permissions.Pages_Setpoints_FM)]
         public async Task<HFMApxMaterialOverviewDto> GetApxMaterialOverview(int meid, string matType)
@@ -577,9 +589,9 @@ namespace WebHMI.Services
             var dataBlob = await GetApxPassScheduleHfmDataBlob(hmiVEntryMatStruct);
 
             result.MeCode = hmiVEntryMatStruct.ToMeCodeDto();
-            result.MapApxPassSchedule(dataBlob, _standCount);
-            result.MapShifting(dataBlob, _standCount);
-            result.MapFlatness(dataBlob, _standCount);
+            result.MapApxPassSchedule(dataBlob, _standCount, _standStartIdx);
+            result.MapShifting(dataBlob, _standCount, _standStartIdx);
+            result.MapFlatness(dataBlob, _standCount, _standStartIdx);
 
             return result;
         }

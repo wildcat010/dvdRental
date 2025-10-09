@@ -22,7 +22,7 @@ namespace WebHMI.Services
         private readonly MatStructEntryService _matStructEntryService;
         private readonly IDbContextProvider<PrdbContext> _prdbContextProvider;
         private readonly IL2Sender _l2Sender;
-        private readonly short _standCount = 9;
+        private readonly short _standCount = 4;
 
         private PrdbContext _prdbContext => _prdbContextProvider.GetDbContext();
 
@@ -145,7 +145,7 @@ namespace WebHMI.Services
             await UpdateDescalingTab(input, vMatStructEntry);
             await UpdateWorkCoolingTab(input, vMatStructEntry);
             await UpdateTensionTab(input, vMatStructEntry);
-            await UpdateTaperShiftingTab(input, vMatStructEntry);
+            //await UpdateTaperShiftingTab(input, vMatStructEntry);
             await UpdateAntiPeelingTab(input, vMatStructEntry);
 
         }
@@ -212,6 +212,8 @@ namespace WebHMI.Services
         {
             var context = _prdbContextProvider.GetDbContext();
 
+            var srpManual = await context.Srps.Where(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "E").FirstOrDefaultAsync();
+
             var srpPassManuals = await context.Srppasses.Where(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M").ToListAsync();
 
             foreach (var pass in input.PassScheduleDtos.OrderByDescending(x => x.PassNo))
@@ -229,7 +231,8 @@ namespace WebHMI.Services
                     };
                     context.Srppasses.Add(srpPassM);
                 }
-                srpPassM.PassNo = pass.PassNo;
+
+                srpPassM.PlanNo = srpManual?.PlanNo;
                 srpPassM.Model = pass.Model?.M;
 
                 await context.SaveChangesAsync();
@@ -295,8 +298,8 @@ namespace WebHMI.Services
                     };
                     context.Lppasses.Add(lpPassM);
                 }
-                lpPassM.LoadingType = pass.LoadingType?.M;
-                lpPassM.LoadingValue = pass.LoadingValue?.M;
+                //lpPassM.LoadingType = pass.LoadingType?.M;
+                //lpPassM.LoadingValue = pass.LoadingValue?.M;
                 lpPassM.CircumSpeedCorrection = pass.CircumSpeedCorrection?.M;
                 lpPassM.BendingForce = pass.BendingForce?.M;
 
@@ -453,7 +456,7 @@ namespace WebHMI.Services
                     };
                     context.Tppasses.Add(tpPassM);
                 }
-                tpPassM.SpecifFoTension = pass.SpeciffoTension?.M;
+                //tpPassM.SpecifFoTension = pass.SpeciffoTension?.M;
                 tpPassM.LooperStripLen = pass.LooperStripLen?.M;
 
                 await context.SaveChangesAsync();
@@ -462,35 +465,37 @@ namespace WebHMI.Services
             await context.SaveChangesAsync();
 
         }
-        private async Task UpdateTaperShiftingTab(SetpointsHRMDto input, VMatStructEntry vMatStructEntryOr)
-        {
-            var context = _prdbContextProvider.GetDbContext();
+        //private async Task UpdateTaperShiftingTab(SetpointsHRMDto input, VMatStructEntry vMatStructEntryOr)
+        //{
+        //    var context = _prdbContextProvider.GetDbContext();
+        //    var srpManual = await context.Srps.Where(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "E").FirstOrDefaultAsync();
 
-            var srpPassManuals = await context.Srppasses.Where(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M").ToListAsync();
+        //    var srpPassManuals = await context.Srppasses.Where(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M").ToListAsync();
 
-            foreach (var pass in input.TaperShiftingDtos.OrderByDescending(x => x.PassNo))
-            {
-                var srpPassM = srpPassManuals.FirstOrDefault(x => x.PassNo == pass.PassNo);
-                if (srpPassM == null)
-                {
-                    srpPassM = new Srppass()
-                    {
-                        MeCreator = vMatStructEntryOr.EnOrCreator,
-                        MeId = vMatStructEntryOr.EnOrMeId,
-                        MesId = (short)vMatStructEntryOr.EnOrMesId,
-                        PassNo = pass.PassNo,
-                        Source = "M",
-                    };
-                    context.Srppasses.Add(srpPassM);
-                }
-                srpPassM.Model = pass.Model?.M;
+        //    foreach (var pass in input.TaperShiftingDtos.OrderByDescending(x => x.PassNo))
+        //    {
+        //        var srpPassM = srpPassManuals.FirstOrDefault(x => x.PassNo == pass.PassNo);
+        //        if (srpPassM == null)
+        //        {
+        //            srpPassM = new Srppass()
+        //            {
+        //                MeCreator = vMatStructEntryOr.EnOrCreator,
+        //                MeId = vMatStructEntryOr.EnOrMeId,
+        //                MesId = (short)vMatStructEntryOr.EnOrMesId,
+        //                PassNo = pass.PassNo,
+        //                Source = "M",
+        //            };
+        //            context.Srppasses.Add(srpPassM);
+        //        }
+        //        srpPassM.PlanNo = srpManual?.PlanNo;
+        //        //srpPassM.Model = pass.Model?.M;
 
-                await context.SaveChangesAsync();
-            }
+        //        await context.SaveChangesAsync();
+        //    }
 
-            await context.SaveChangesAsync();
+        //    await context.SaveChangesAsync();
 
-        }
+        //}
 
         [AbpAuthorize(Permissions.Pages_Setpoints_RM)]
         public async Task<HRMApxMaterialOverviewDto> GetApxMaterialOverview(int meid, string matType)
