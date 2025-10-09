@@ -172,7 +172,7 @@ namespace WebHMI.Services
 
         [AbpAuthorize(Permissions.Pages_ProductionSchedule_Edit)]
         [Audited]
-        public async Task MoveMatInSeq(string connectionId, int enPhMeId1, int enPhMeId2)
+        public async Task MoveMatInSeq(string connectionId, int enOrMeid1, int enOrMeid2, int location)
         {
             //var context = _prdbContextProvider.GetDbContext();
 
