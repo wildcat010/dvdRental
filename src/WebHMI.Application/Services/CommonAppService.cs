@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 using WebHMI.Dtos;
@@ -227,28 +228,15 @@ namespace WebHMI.Services
             return sequences[++actualIndex];
         }
 
-        //public async Task<List<string>> GetAllSequenceIds()
-        //{
-        //    var sequences = await _prdbContext.EdPhyEnts
-        //        .Where(x => x.Source == "E")
-        //        .Select(x => x.SequenceId)
-        //        .Distinct()
-        //        .OrderBy(x => x)
-        //        .ToListAsync();
-
-        //    return sequences;
-
-        //}
-
-        public async Task<PagedResultDto<string>> GetAllSequenceIds(FilteredRequestDto input)
+        public async Task<PagedResultDto<SequenceIdDto>> GetAllSequenceIds(FilteredRequestDto input)
         {
             var context = _prdbContextProvider.GetDbContext();
 
-            return await ApplyFilterWithoutMapping<string>(context.EdPhyEnts
+            return await ApplyFilter<string,SequenceIdDto>(context.EdPhyEnts
                 .Where(x => x.Source == "E")
                 .Select(x => x.SequenceId)
-                .Distinct(), input);
+                .Distinct(), input, (u) => { return new SequenceIdDto() { Key = u }; });
         }
-        
+
     }
 }
