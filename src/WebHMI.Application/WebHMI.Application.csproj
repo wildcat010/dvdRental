@@ -12,6 +12,9 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="PDFsharp" Version="6.2.2" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\WebHMI.Core\WebHMI.Core.csproj" />
     <ProjectReference Include="..\WebHMI.EntityFrameworkCore\WebHMI.EntityFrameworkCore.csproj" />
     <ProjectReference Include="..\WebHMI.L2Adapter\WebHMI.L2Adapter.csproj" />
