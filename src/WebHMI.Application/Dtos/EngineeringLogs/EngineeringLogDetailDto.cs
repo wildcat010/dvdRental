@@ -9,8 +9,10 @@ namespace WebHMI.Dtos.EngineeringLogs
     public class EngineeringLogDetailDto
     {
         public string Name { get; set; }
-        //public int CalcId { get; set; }
+        public string CoilId { get; set; }
+        public string PreCalc { get; set; }
+        public string CalcType { get; set; }
+        public string PreCalcNumber { get; set; }
         public DateTime? CreationTime { get; set; }
-        //public int LogId { get; set; }
     }
 }
