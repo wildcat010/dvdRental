@@ -90,8 +90,8 @@ namespace WebHMI.Application.Services
             detailDto.CreationTime = fileData.Toc;
             detailDto.CoilId = dataChunks[0] + '_' + dataChunks[1];
             detailDto.CalcType = dataChunks[3];
-            detailDto.PreCalc = !string.IsNullOrEmpty(dataChunks[5]) ? string.Concat(Regex.Matches(dataChunks[5], @"\d+")) : null;
-            detailDto.PreCalcNumber = !string.IsNullOrEmpty(dataChunks[6]) ? string.Concat(Regex.Matches(dataChunks[6], @"\d+")) : null;
+            detailDto.PreCalc = !string.IsNullOrEmpty(dataChunks[5]) ? string.Concat(Regex.Matches(dataChunks[5], @"\d+")) : "";
+            detailDto.PreCalcNumber = !string.IsNullOrEmpty(dataChunks[6]) ? string.Concat(Regex.Matches(dataChunks[6], @"\d+")) : "";
             
             return detailDto;
         }
