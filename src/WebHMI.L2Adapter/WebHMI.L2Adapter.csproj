@@ -16,6 +16,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\WebHMI.Core\WebHMI.Core.csproj" />
+    <ProjectReference Include="..\WebHMI.API.CappaItems\WebHMI.API.CappaItems.csproj" />
+
   </ItemGroup>
 
 </Project>

@@ -7,7 +7,7 @@ using Castle.Core.Logging;
 using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Threading.Tasks;
-using WebHMI.Dtos.Events;
+using WebHMI.Dtos;
 using WebHMI.EventBus;
 using WebHMI.L2Adapter.Watchdogs.Dto;
 

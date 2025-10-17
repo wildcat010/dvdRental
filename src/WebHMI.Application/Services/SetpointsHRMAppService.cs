@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using WebHMI.DataBlobs;
 using WebHMI.Dtos.Setpoints.SetpointsHRM;
 using WebHMI.Helpers;
+using WebHMI.L2Adapter.Common;
 using WebHMI.L2Adapter.Senders;
 using WebHMI.Mapping.Extensions;
 using WebHMI.PRDB;
@@ -21,15 +22,15 @@ namespace WebHMI.Services
     {
         private readonly MatStructEntryService _matStructEntryService;
         private readonly IDbContextProvider<PrdbContext> _prdbContextProvider;
-        private readonly IL2Sender _l2Sender;
+        private readonly IL2CommunicationHandler _l2Sender;
         private readonly short _standCount = 4;
 
         private PrdbContext _prdbContext => _prdbContextProvider.GetDbContext();
 
         public SetpointsHRMAppService(
             MatStructEntryService matStructEntryService, 
-            IDbContextProvider<PrdbContext> prdbContextProvider, 
-            IL2Sender l2Sender)
+            IDbContextProvider<PrdbContext> prdbContextProvider,
+            IL2CommunicationHandler l2Sender)
         {
             _matStructEntryService = matStructEntryService;
             _prdbContextProvider = prdbContextProvider;

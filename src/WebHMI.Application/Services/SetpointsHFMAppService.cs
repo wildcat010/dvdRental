@@ -24,7 +24,7 @@ namespace WebHMI.Services
     {
         private readonly MatStructEntryService _matStructEntryService;
         private readonly IDbContextProvider<PrdbContext> _prdbContextProvider;
-        private readonly IL2Sender _l2Sender;
+        //private readonly IL2Sender _l2Sender;
         private readonly short _standCount = 9;
         private readonly short _standStartIdx = 4;
 
@@ -32,12 +32,13 @@ namespace WebHMI.Services
 
         public SetpointsHFMAppService(
             MatStructEntryService matStructEntryService, 
-            IDbContextProvider<PrdbContext> prdbContextProvider, 
-            IL2Sender l2Sender)
+            IDbContextProvider<PrdbContext> prdbContextProvider
+            //IL2Sender l2Sender
+            )
         {
             _matStructEntryService = matStructEntryService;
             _prdbContextProvider = prdbContextProvider;
-            _l2Sender = l2Sender;
+            //_l2Sender = l2Sender;
         }
 
         [AbpAuthorize(Permissions.Pages_Setpoints_FM)]

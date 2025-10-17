@@ -14,7 +14,11 @@ namespace WebHMI.EventBus
 			Data = data;
 		}
 
-		public T Data { get; set; }
+        public EventWrapper()
+        {
+        }
+
+        public T Data { get; set; }
 		public DateTime EventTime { get; set; } = DateTime.UtcNow;
 		public object EventSource { get; set; }
 	}

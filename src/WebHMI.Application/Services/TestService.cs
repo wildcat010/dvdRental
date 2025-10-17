@@ -10,7 +10,6 @@ using System.Text;
 using System.Threading.Tasks;
 using WebHMI.Dtos;
 using WebHMI.Dtos.Common;
-using WebHMI.Dtos.Events;
 using WebHMI.EventBus;
 using WebHMI.Filters;
 using WebHMI.Helpers;

@@ -1,7 +1,9 @@
-﻿using Abp.Modules;
+﻿using Abp.Dependency;
+using Abp.Modules;
 using Abp.Reflection.Extensions;
 using Castle.Core.Logging;
 using Microsoft.Extensions.Configuration;
+using WebHMI.L2Adapter.Common;
 using WebHMI.L2Adapter.ConnectionManagers;
 using WebHMI.L2Adapter.Senders;
 
@@ -36,12 +38,12 @@ namespace WebHMI.L2Adapter
 
             if (_l2CommunicationConfiguration.IsEnabled)
             {
-                IocManager.Register<IL2Sender, L2Sender>();
-                IocManager.Register<IConnectionManager, ConnectionManager>();
+                IocManager.Register<IL2CommunicationHandler, L2CappaCommunicationHandler>(DependencyLifeStyle.Singleton);
+                IocManager.Register<IConnectionManager, ConnectionManager>(DependencyLifeStyle.Singleton);
             }
             else
             {
-                IocManager.Register<IL2Sender, NullL2Sender>();
+                IocManager.Register<IL2CommunicationHandler, NullCommunicationHandler>();
                 IocManager.Register<IConnectionManager, NullConnectionManager>();
             }
         }

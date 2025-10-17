@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WebHMI.L2Adapter.Common;
+using WebHMI.PRDB.Dbo;
+using XIDL;
 
 namespace WebHMI.L2Adapter.Senders
 {
 	/// <summary>
 	/// Null object pattern for L2 communication sender to disable it for example for development.
 	/// </summary>
-	internal class NullL2Sender : IL2Sender
+	internal class NullCommunicationHandler : IL2CommunicationHandler
 	{
-		public void SendTestMessage(string msg)
-		{
-		}
-
-        public void UpdateSetpointsRm(string extId, int meId, short mesId, string meCreator, string connectionId)
+        public void EntryDataChange(VMatStructEntry matStruct, string connectionId) 
         {
+
         }
     }
 }

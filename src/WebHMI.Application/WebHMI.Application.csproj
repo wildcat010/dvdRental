@@ -19,5 +19,8 @@
     <ProjectReference Include="..\WebHMI.EntityFrameworkCore\WebHMI.EntityFrameworkCore.csproj" />
     <ProjectReference Include="..\WebHMI.L2Adapter\WebHMI.L2Adapter.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Dtos\Events\" />
+  </ItemGroup>
 </Project>
 

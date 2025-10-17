@@ -17,6 +17,7 @@ using WebHMI.Dtos;
 using WebHMI.Dtos.Roll;
 using WebHMI.Filters;
 using WebHMI.Helpers;
+using WebHMI.L2Adapter.Common;
 using WebHMI.L2Adapter.Senders;
 using WebHMI.Mapping.Extensions;
 using WebHMI.Notification;
@@ -32,12 +33,12 @@ namespace WebHMI.Services
         private static readonly Timer _cooldownTimerRefresh = new(500);
         private readonly IDbContextProvider<PrdbContext> _prdbContextProvider;
         private PrdbContext _prdbContext => _prdbContextProvider.GetDbContext();
-        private readonly IL2Sender _l2Sender;
+        private readonly IL2CommunicationHandler _l2Sender;
         private readonly ISignalRNotifier _signalRNotifier;
 
         public RollAppService(
             IDbContextProvider<PrdbContext> prdbContextProvider,
-            IL2Sender l2Sender,
+            IL2CommunicationHandler l2Sender,
             ISignalRNotifier signalRNotifier)
         {
             _prdbContextProvider = prdbContextProvider;

@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using WebHMI.Dtos.Parameters;
 using WebHMI.Filters;
 using WebHMI.Helpers;
+using WebHMI.L2Adapter.Common;
 using WebHMI.L2Adapter.Senders;
 using WebHMI.Mapping.Extensions;
 using WebHMI.PRDB;
@@ -29,10 +30,10 @@ namespace WebHMI.Services
     {
         private readonly IDbContextProvider<PrdbContext> _prdbContextProvider;
         private PrdbContext _prdbContext => _prdbContextProvider.GetDbContext();
-        private readonly IL2Sender _l2Sender;
+        private readonly IL2CommunicationHandler _l2Sender;
 
         public PlantParametersAppService(
-            IL2Sender l2Sender,
+            IL2CommunicationHandler l2Sender,
             IDbContextProvider<PrdbContext> prdbContextProvider)
         {
             _l2Sender = l2Sender;

@@ -13,6 +13,7 @@ using WebHMI.DataBlobs;
 using WebHMI.Dtos;
 using WebHMI.Dtos.PrimaryData;
 using WebHMI.Helpers;
+using WebHMI.L2Adapter.Common;
 using WebHMI.Mapping.Extensions;
 using WebHMI.PRDB;
 using WebHMI.PRDB.Dbo;
@@ -23,15 +24,18 @@ namespace WebHMI.Services
 	{
 		private readonly IDbContextProvider<PrdbContext> _prdbContextProvider;
 		private readonly MatStructEntryService _matStructEntryService;
+		private readonly IL2CommunicationHandler _l2CommunicationHandler;
 
-		private PrdbContext _prdbContext => _prdbContextProvider.GetDbContext();
+        private PrdbContext _prdbContext => _prdbContextProvider.GetDbContext();
 
 		public PrimaryDataAppService(
 			IDbContextProvider<PrdbContext> prdbContextProvider,
-			MatStructEntryService matStructEntryService)
+			MatStructEntryService matStructEntryService,
+            IL2CommunicationHandler l2CommunicationHandler)
 		{
 			_prdbContextProvider = prdbContextProvider;
 			_matStructEntryService = matStructEntryService;
+            _l2CommunicationHandler = l2CommunicationHandler;
 		}
 
 		public async Task<PrimaryDataDto> GetPrimaryDataById(int meid, string matType)
@@ -49,7 +53,7 @@ namespace WebHMI.Services
 		}
 
         [Audited]
-        public async Task UpdateAsync(PrimaryDataDto input)
+        public async Task UpdateAsync(PrimaryDataDto input, string connectionid)
 		{
 			var entryMatStruct = await _matStructEntryService.GetMaterialEntryStruct(input.MeCode.MeId, input.MeCode.MatType);
 
@@ -112,6 +116,10 @@ namespace WebHMI.Services
             edlogentM = _prdbContext.InsertIfNull(edlogentM, entryMatStruct);
             edlogentM.AlloyCode = input.Data.AlloyCode.M;
             await UpdateChemistry(input, edlogentM, entryMatStruct);
+
+            await _prdbContext.SaveChangesAsync();
+
+            _l2CommunicationHandler.EntryDataChange(entryMatStruct,connectionid);
         }
 
 		private async Task UpdateChemistry(PrimaryDataDto input, EdLogEnt edlogentManual, VMatStructEntry entryMatStruct)

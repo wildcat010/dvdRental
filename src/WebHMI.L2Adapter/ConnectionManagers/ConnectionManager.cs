@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using WebHMI.L2Adapter.Common;
 using WebHMI.L2Adapter.Listeners;
 using WebHMI.L2Adapter.Senders;
 using WebHMI.L2Adapter.Watchdogs;
@@ -96,7 +97,7 @@ namespace WebHMI.L2Adapter.ConnectionManagers
                 new Servant("alarmListener", alarmListenerSkeleton);
 
                 // Initialize stubs
-                IocManager.Instance.Resolve<IL2Sender>();
+                IocManager.Instance.Resolve<IL2CommunicationHandler>();
                 IocManager.Instance.Resolve<WatchdogStatusService>().InitializeWatchdogs();
 
                 _logger.Info($"L2 Communication items created");

@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using WebHMI.Dtos.Limit;
 using WebHMI.Filters;
 using WebHMI.Helpers;
+using WebHMI.L2Adapter.Common;
 using WebHMI.L2Adapter.Senders;
 using WebHMI.Mapping.Extensions;
 using WebHMI.PRDB;
@@ -29,11 +30,11 @@ namespace WebHMI.Services
         private readonly IDbContextProvider<PrdbContext> _prdbContextProvider;
         private PrdbContext _prdbContext => _prdbContextProvider.GetDbContext();
         private readonly ITypedCache<LimitKeyDto, LimitDto> _cache;
-        private readonly IL2Sender _l2Sender;
+        private readonly IL2CommunicationHandler _l2Sender;
 
         public LimitAppService(
             ICacheManager cacheManager,
-            IL2Sender l2CommunicationHandler,
+            IL2CommunicationHandler l2CommunicationHandler,
             IDbContextProvider<PrdbContext> prdbContextProvider)
         {
             _cache = cacheManager.GetCache<LimitKeyDto, LimitDto>(nameof(LimitDto));
