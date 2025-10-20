@@ -274,14 +274,17 @@ namespace WebHMI.Mapping.Extensions
 
                 stand.Fb.L = spOrd2PcStandL?.Fb;
                 stand.Fb.E = spOrd2PcStandE?.Fb;
+                stand.Fb.M = spOrd2PcStandM?.Fb;
                 stand.Fb.DbSource = $"SpOrd2PcStand.Fb({i})";
 
                 stand.PositionWRS.L = spOrd2PcStandL?.PositionWrs;
                 stand.PositionWRS.E = spOrd2PcStandE?.PositionWrs;
+                stand.PositionWRS.M = spOrd2PcStandM?.PositionWrs;
                 stand.PositionWRS.DbSource = $"SpOrd2PcStand.PositionWrs({i})";
 
                 stand.Model.L = srpPassesL?.Model;
                 stand.Model.E = srpPassesE?.Model;
+                stand.Model.M = srpPassesM?.Model;
                 stand.Model.DbSource = $"SrpPasses.Model({i})";
 
                 stand.SpecifFoTension.L = tpPassL?.SpecifFoTension;

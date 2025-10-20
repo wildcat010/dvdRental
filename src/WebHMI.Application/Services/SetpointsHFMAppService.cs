@@ -161,6 +161,7 @@ namespace WebHMI.Services
             await UpdateDescalingTab(input, vMatStructEntry);
             await UpdateWorkCoolingTab(input, vMatStructEntry);
             await UpdateTensionTab(input, vMatStructEntry);
+            await UpdateLubricationTab(input, vMatStructEntry);
             //await UpdateTaperShiftingTab(input, vMatStructEntry);
             await UpdateAntiPeelingTab(input, vMatStructEntry);
 
@@ -288,6 +289,7 @@ namespace WebHMI.Services
                 spOrd2PcStandM.Ms = pass.Ms?.M;
                 spOrd2PcStandM.RPower = pass.RPower?.M;
                 spOrd2PcStandM.CalcFlat = pass.CalcFlat?.M;
+                spOrd2PcStandM.PositionWrs = pass.PositionWRS?.M;
 
                 await context.SaveChangesAsync();
             }
@@ -489,6 +491,42 @@ namespace WebHMI.Services
 
             await context.SaveChangesAsync();
 
+        }
+
+        private async Task UpdateLubricationTab(SetpointsHFMDto input, VMatStructEntry vMatStructEntryOr)
+        {
+            var context = _prdbContextProvider.GetDbContext();
+
+            var rglpManual = await context.Rglps.Where(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "E").FirstOrDefaultAsync();
+
+            var rglpPassManuals = await context.Rglppasses.Where(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M").ToListAsync();
+
+            foreach (var pass in input.LubricationDtos.OrderByDescending(x => x.PassNo))
+            {
+                var rglpPassM = rglpPassManuals.FirstOrDefault(x => x.PassNo == pass.PassNo);
+                if (rglpPassM == null)
+                {
+                    rglpPassM = new Rglppass()
+                    {
+                        MeCreator = vMatStructEntryOr.EnOrCreator,
+                        MeId = vMatStructEntryOr.EnOrMeId,
+                        MesId = (short)vMatStructEntryOr.EnOrMesId,
+                        PassNo = pass.PassNo,
+                        Source = "M",
+                    };
+                    context.Rglppasses.Add(rglpPassM);
+                }
+
+                rglpPassM.PlanNo = rglpManual?.PlanNo;
+                rglpPassM.RollGapLubState = pass.RollGapLubState?.M;
+                rglpPassM.RollGapLubRampTimeStart = pass.RollGapLubRampTimeStart?.M;
+                rglpPassM.RollGapLubRampTimeStop = pass.RollGapLubRampTimeStop?.M;
+                rglpPassM.RollGapLubSwitchLength = pass.RollGapLubSwitchLength?.M;
+                rglpPassM.RollGapLubOilFlowTop = pass.RollGapLubOilFlowTop?.M;
+                rglpPassM.RollGapLubOilFlowBot = pass.RollGapLubOilFlowBot?.M;
+
+                await context.SaveChangesAsync();
+            }
         }
         //private async Task UpdateTaperShiftingTab(SetpointsHFMDto input, VMatStructEntry vMatStructEntryOr)
         //{
