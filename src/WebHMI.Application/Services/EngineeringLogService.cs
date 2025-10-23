@@ -1,13 +1,6 @@
 ﻿using Abp.Application.Services.Dto;
-using Abp.EntityFrameworkCore;
-using Abp.Linq.Extensions;
 using Abp.UI;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using PdfSharp.Drawing;
-using PdfSharp.Drawing.Layout;
-using PdfSharp.Pdf;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,15 +8,9 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using WebHMI.Application.Dtos.EngineeringLogs;
-using WebHMI.Dtos.Common;
 using WebHMI.Dtos.EngineeringLogs;
 using WebHMI.Filters;
 using WebHMI.Helpers;
-using WebHMI.PRDB;
-using WebHMI.PRDB.Dbo;
-using static System.Net.Mime.MediaTypeNames;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-
 namespace WebHMI.Application.Services
 {
     public class EngineeringLogService : ApplicationServiceBase
@@ -31,6 +18,7 @@ namespace WebHMI.Application.Services
         private readonly IConfiguration _configuration;
 
         private readonly string _filePath;
+        private readonly string _csFilePath;
         private readonly string _domain;
         private readonly string _username;
         private readonly string _password;
@@ -43,9 +31,10 @@ namespace WebHMI.Application.Services
             _username = config["Username"];
             _password = config["Password"];
             _filePath = config["Path"];
+            _csFilePath = config["PathCS"];
         }
 
-        private List<(string Name, DateTime Toc)> GetFileInfo() 
+        private List<(string Name, DateTime Toc)> GetFileInfo(string filePath) 
         {
             List<(string Name, DateTime Toc)> filesData = new List<(string, DateTime)>();
 
@@ -55,7 +44,7 @@ namespace WebHMI.Application.Services
                 string[] files = Array.Empty<string>();
                 try
                 {
-                    files = Directory.GetFiles(_filePath);
+                    files = Directory.GetFiles(filePath);
 
                 }
                 catch (Exception ex)
@@ -78,119 +67,110 @@ namespace WebHMI.Application.Services
             return filesData;
         }
 
-        private EngineeringLogDetailDto SplitFileData((string Name, DateTime Toc) fileData)
-        {
-            string[] dataChunks = new string[7];
-            string[] dataSplitted = fileData.Name.Split('_');
-            var detailDto = new EngineeringLogDetailDto();
-            
-            Array.Copy(dataSplitted, dataChunks, Math.Min(dataChunks.Length, dataSplitted.Length));
-            
-            detailDto.Name = fileData.Name;
-            detailDto.CreationTime = fileData.Toc;
-            detailDto.CoilId = dataChunks[0] + '_' + dataChunks[1];
-            detailDto.CalcType = dataChunks[3];
-            detailDto.PreCalc = !string.IsNullOrEmpty(dataChunks[5]) ? string.Concat(Regex.Matches(dataChunks[5], @"\d+")) : "";
-            detailDto.PreCalcNumber = !string.IsNullOrEmpty(dataChunks[6]) ? string.Concat(Regex.Matches(dataChunks[6], @"\d+")) : "";
-            
-            return detailDto;
+        private List<EngineeringLogDetailDto> GetAllLogs(string path, Func<(string Name, DateTime Toc), EngineeringLogDetailDto> parser)
+            {
+                var filesData = GetFileInfo(path);
+                return filesData.Select(parser).ToList();
         }
-
         public async Task<PagedResultDto<EngineeringLogDetailDto>> GetAllData(FilteredRequestDto input)
         {
-            var filesData = GetFileInfo();
-            var result = new List<EngineeringLogDetailDto>();
+            var result = GetAllLogs(_filePath, SplitFileData);
 
-            foreach (var file in filesData) 
-            {
-                result.Add(SplitFileData(file));
-            }
+            return ApplyFilter<EngineeringLogDetailDto,EngineeringLogDetailDto>(result.AsEnumerable(), input, u => u);
+        }
 
-            return ApplyFilter<EngineeringLogDetailDto, EngineeringLogDetailDto>(result.AsEnumerable()
-                , input, (u) => {
-                    return new EngineeringLogDetailDto()
-                    {
-                        Name = u.Name,
-                        CreationTime = u.CreationTime,
-                        CoilId = u.CoilId,
-                        CalcType = u.CalcType,
-                        PreCalc = u.PreCalc,
-                        PreCalcNumber = u.PreCalcNumber
-                    }; });
+        public async Task<PagedResultDto<EngineeringLogDetailDto>> GetAllDataCS(FilteredRequestDto input)
+        {
+            var result = GetAllLogs(_csFilePath, SplitFileDataCS);
+            return ApplyFilter<EngineeringLogDetailDto, EngineeringLogDetailDto>(result.AsEnumerable(), input, u => u);
 
         }
 
-        //public async Task<EngineeringLogDetailDto> GetDataById(string enOrExtId)
-        //{
-        //    var result = new EngineeringLogDetailDto();
-
-        //    ImpersonationHelper.Run(_domain, _username, _password, () =>
-        //    {
-        //        string[] files = Array.Empty<string>();
-
-        //        try
-        //        {
-        //            files = Directory.GetFiles(_filePath);
-
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            throw new UserFriendlyException("Error during reading files from directory. ", ex);
-        //        }
-
-        //        result = files
-        //                .Where(file => Path.GetFileName(file).Contains(enOrExtId, StringComparison.OrdinalIgnoreCase))
-        //                .Select(file =>
-        //                {
-        //                    var fileInfo = new FileInfo(file);
-        //                    return new EngineeringLogDetailDto
-        //                    {
-        //                        Name = fileInfo.Name,
-        //                        CreationTime = fileInfo.CreationTimeUtc,
-        //                    };
-        //                })
-        //                .FirstOrDefault();
-
-        //    });
-
-        //    return result;
-        //}
-
-        public async Task<EngineeringLogItemDto> GetLogItem(string fileName)
+        private EngineeringLogItemDto GetSingleLog(string path, string fileName, Func<(string Name, DateTime Toc), EngineeringLogDetailDto> parser)
         {
-            var result = new EngineeringLogItemDto();
+            EngineeringLogItemDto result = null;
 
             ImpersonationHelper.Run(_domain, _username, _password, () =>
             {
-
-                string[] files = Array.Empty<string>();
-
                 try
                 {
-                    files = Directory.GetFiles(_filePath);
+                    var file = Directory.GetFiles(path)
+                        .FirstOrDefault(f => Path.GetFileName(f)
+                        .Contains(fileName, StringComparison.OrdinalIgnoreCase));
 
+                    if (file == null) return;
+
+                    var fileInfo = new FileInfo(file);
+                    result = new EngineeringLogItemDto
+                    {
+                        Data = File.ReadAllText(file),
+                        Details = parser((fileInfo.Name, fileInfo.CreationTimeUtc))
+                    };
                 }
                 catch (Exception ex)
                 {
-                    throw new UserFriendlyException("Error during reading files from directory. ", ex.Message);
+                    throw new UserFriendlyException($"Error during reading file '{fileName}'.", ex.Message);
                 }
-
-                result = files
-                            .Where(file => Path.GetFileName(file).Contains(fileName, StringComparison.OrdinalIgnoreCase))
-                            .Select(file =>
-                            {
-                                var fileInfo = new FileInfo(file);
-                                return new EngineeringLogItemDto
-                                {
-                                    Data = File.ReadAllText(file),
-                                    Details = SplitFileData((fileInfo.Name, fileInfo.CreationTime))
-                                };
-                            })
-                            .FirstOrDefault();
-
             });
 
             return result;
         }
+
+        public EngineeringLogItemDto GetLogItem(string fileName)
+        {
+            return GetSingleLog(_filePath, fileName, SplitFileData);
+        }
+
+        public EngineeringLogItemDto GetLogItemCS(string fileName)
+        {
+            return GetSingleLog(_csFilePath, fileName, SplitFileDataCS);
+        }
+
+        //private EngineeringLogDetailDto SplitFileData((string Name, DateTime Toc) fileData)
+        //{
+        //    string[] dataChunks = new string[7];
+        //    string[] dataSplitted = fileData.Name.Split('_');
+        //    var detailDto = new EngineeringLogDetailDto();
+            
+        //    Array.Copy(dataSplitted, dataChunks, Math.Min(dataChunks.Length, dataSplitted.Length));
+            
+        //    detailDto.Name = fileData.Name;
+        //    detailDto.CreationTime = fileData.Toc;
+        //    detailDto.CoilId = dataChunks[0] + '_' + dataChunks[1];
+        //    detailDto.CalcType = dataChunks[3];
+        //    detailDto.PreCalc = !string.IsNullOrEmpty(dataChunks[5]) ? string.Concat(Regex.Matches(dataChunks[5], @"\d+")) : "";
+        //    detailDto.PreCalcNumber = !string.IsNullOrEmpty(dataChunks[6]) ? string.Concat(Regex.Matches(dataChunks[6], @"\d+")) : "";
+            
+        //    return detailDto;
+        //}
+
+        private EngineeringLogDetailDto SplitFileData((string Name, DateTime Toc) fileData)
+        {
+            var chunks = fileData.Name.Split('_');
+            var dto = new EngineeringLogDetailDto
+            {
+                Name = fileData.Name,
+                CreationTime = fileData.Toc,
+                CoilId = chunks.ElementAtOrDefault(0) + "_" + chunks.ElementAtOrDefault(1),
+                CalcType = chunks.ElementAtOrDefault(3),
+                PreCalc = Regex.Match(chunks.ElementAtOrDefault(5) ?? "", @"\d+").Value,
+                PreCalcNumber = Regex.Match(chunks.ElementAtOrDefault(6) ?? "", @"\d+").Value
+            };
+            return dto;
+        }
+
+     
+        private EngineeringLogDetailDto SplitFileDataCS((string Name, DateTime Toc) fileData)
+        {
+            var chunks = fileData.Name.Split('_', '.');
+            var dto = new EngineeringLogDetailDto
+            {
+                Name = fileData.Name,
+                CreationTime = fileData.Toc,
+                CoilId = chunks.ElementAtOrDefault(1) + "_" + chunks.ElementAtOrDefault(2),
+            };
+            return dto;
+        }
+
     }
 }
