@@ -23,6 +23,7 @@ namespace WebHMI.Dtos.ProductionSchedule
         public float? WeightEntry { get; set; }
 
         public float? LEntry { get; set; }
+        public float? LExit { get; set; }
 
         public float? WExit { get; set; }
 

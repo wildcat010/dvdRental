@@ -126,24 +126,6 @@ namespace WebHMI.Application.Services
             return GetSingleLog(_csFilePath, fileName, SplitFileDataCS);
         }
 
-        //private EngineeringLogDetailDto SplitFileData((string Name, DateTime Toc) fileData)
-        //{
-        //    string[] dataChunks = new string[7];
-        //    string[] dataSplitted = fileData.Name.Split('_');
-        //    var detailDto = new EngineeringLogDetailDto();
-            
-        //    Array.Copy(dataSplitted, dataChunks, Math.Min(dataChunks.Length, dataSplitted.Length));
-            
-        //    detailDto.Name = fileData.Name;
-        //    detailDto.CreationTime = fileData.Toc;
-        //    detailDto.CoilId = dataChunks[0] + '_' + dataChunks[1];
-        //    detailDto.CalcType = dataChunks[3];
-        //    detailDto.PreCalc = !string.IsNullOrEmpty(dataChunks[5]) ? string.Concat(Regex.Matches(dataChunks[5], @"\d+")) : "";
-        //    detailDto.PreCalcNumber = !string.IsNullOrEmpty(dataChunks[6]) ? string.Concat(Regex.Matches(dataChunks[6], @"\d+")) : "";
-            
-        //    return detailDto;
-        //}
-
         private EngineeringLogDetailDto SplitFileData((string Name, DateTime Toc) fileData)
         {
             var chunks = fileData.Name.Split('_');
@@ -159,7 +141,6 @@ namespace WebHMI.Application.Services
             return dto;
         }
 
-     
         private EngineeringLogDetailDto SplitFileDataCS((string Name, DateTime Toc) fileData)
         {
             var chunks = fileData.Name.Split('_', '.');
