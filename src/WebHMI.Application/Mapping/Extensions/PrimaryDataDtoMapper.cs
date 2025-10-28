@@ -264,47 +264,47 @@ namespace WebHMI.Mapping.Extensions
             result.Data.ClassFlatDeltaMax.E = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "E")?.ClassMaxFlatDeltaAsym;
             result.Data.ClassFlatDeltaMax.DbSource = "EdOrdEnt.ClassMaxFlatDeltaAsym";
 
-            result.Data.CoilerTemp.L = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "L")?.CoilTemp;
-			result.Data.CoilerTemp.M = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "M")?.CoilTemp;
-			result.Data.CoilerTemp.S = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "S")?.CoilTemp;
-			result.Data.CoilerTemp.E = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "E")?.CoilTemp;
-            result.Data.CoilerTemp.DbSource = "EdOrdEnt.CoilTemp";
+   //         result.Data.CoilerTemp.L = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "L")?.CoilTemp;
+			//result.Data.CoilerTemp.M = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "M")?.CoilTemp;
+			//result.Data.CoilerTemp.S = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "S")?.CoilTemp;
+			//result.Data.CoilerTemp.E = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "E")?.CoilTemp;
+   //         result.Data.CoilerTemp.DbSource = "EdOrdEnt.CoilTemp";
 
-            result.Data.CoilerTempDeltaMin.L = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "L")?.CoilTempMinTol;
-			result.Data.CoilerTempDeltaMin.M = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "M")?.CoilTempMinTol;
-			result.Data.CoilerTempDeltaMin.S = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "S")?.CoilTempMinTol;
-			result.Data.CoilerTempDeltaMin.E = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "E")?.CoilTempMinTol;
-            result.Data.CoilerTempDeltaMin.DbSource = "EdOrdEnt.CoilTempMinTol";
+   //         result.Data.CoilerTempDeltaMin.L = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "L")?.CoilTempMinTol;
+			//result.Data.CoilerTempDeltaMin.M = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "M")?.CoilTempMinTol;
+			//result.Data.CoilerTempDeltaMin.S = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "S")?.CoilTempMinTol;
+			//result.Data.CoilerTempDeltaMin.E = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "E")?.CoilTempMinTol;
+   //         result.Data.CoilerTempDeltaMin.DbSource = "EdOrdEnt.CoilTempMinTol";
 
-            result.Data.CoilerTempDeltaMax.L = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "L")?.CoilTempMaxTol;
-			result.Data.CoilerTempDeltaMax.M = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "M")?.CoilTempMaxTol;
-			result.Data.CoilerTempDeltaMax.S = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "S")?.CoilTempMaxTol;
-			result.Data.CoilerTempDeltaMax.E = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "E")?.CoilTempMaxTol;
-            result.Data.CoilerTempDeltaMax.DbSource = "EdOrdEnt.CoilTempMaxTol";
+   //         result.Data.CoilerTempDeltaMax.L = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "L")?.CoilTempMaxTol;
+			//result.Data.CoilerTempDeltaMax.M = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "M")?.CoilTempMaxTol;
+			//result.Data.CoilerTempDeltaMax.S = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "S")?.CoilTempMaxTol;
+			//result.Data.CoilerTempDeltaMax.E = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "E")?.CoilTempMaxTol;
+   //         result.Data.CoilerTempDeltaMax.DbSource = "EdOrdEnt.CoilTempMaxTol";
 
-            result.Data.CoolingRateTop.L = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "L")?.CoolRateTop;
-			result.Data.CoolingRateTop.M = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "M")?.CoolRateTop;
-			result.Data.CoolingRateTop.S = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "S")?.CoolRateTop;
-			result.Data.CoolingRateTop.E = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "E")?.CoolRateTop;
-            result.Data.CoolingRateTop.DbSource = "EdOrdEnt.CoolRateTop";
+   //         result.Data.CoolingRateTop.L = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "L")?.CoolRateTop;
+			//result.Data.CoolingRateTop.M = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "M")?.CoolRateTop;
+			//result.Data.CoolingRateTop.S = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "S")?.CoolRateTop;
+			//result.Data.CoolingRateTop.E = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "E")?.CoolRateTop;
+   //         result.Data.CoolingRateTop.DbSource = "EdOrdEnt.CoolRateTop";
 
-            result.Data.CoolingRateBottom.L = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "L")?.CoolRateBot;
-			result.Data.CoolingRateBottom.M = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "M")?.CoolRateBot;
-			result.Data.CoolingRateBottom.S = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "S")?.CoolRateBot;
-			result.Data.CoolingRateBottom.E = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "E")?.CoolRateBot;
-            result.Data.CoolingRateBottom.DbSource = "EdOrdEnt.CoolRateBot";
+   //         result.Data.CoolingRateBottom.L = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "L")?.CoolRateBot;
+			//result.Data.CoolingRateBottom.M = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "M")?.CoolRateBot;
+			//result.Data.CoolingRateBottom.S = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "S")?.CoolRateBot;
+			//result.Data.CoolingRateBottom.E = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "E")?.CoolRateBot;
+   //         result.Data.CoolingRateBottom.DbSource = "EdOrdEnt.CoolRateBot";
 
-			result.Data.CoolingStrategyFlag.L = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "L")?.CoolStrategy;
-			result.Data.CoolingStrategyFlag.M = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "M")?.CoolStrategy;
-			result.Data.CoolingStrategyFlag.S = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "S")?.CoolStrategy;
-			result.Data.CoolingStrategyFlag.E = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "E")?.CoolStrategy;
-            result.Data.CoolingStrategyFlag.DbSource = "EdOrdEnt.CoolStrategy";
+			//result.Data.CoolingStrategyFlag.L = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "L")?.CoolStrategy;
+			//result.Data.CoolingStrategyFlag.M = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "M")?.CoolStrategy;
+			//result.Data.CoolingStrategyFlag.S = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "S")?.CoolStrategy;
+			//result.Data.CoolingStrategyFlag.E = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "E")?.CoolStrategy;
+   //         result.Data.CoolingStrategyFlag.DbSource = "EdOrdEnt.CoolStrategy";
 
-			result.Data.CoolingStrategyMode.L = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "L")?.CoolingStrategyModeSelection;
-			result.Data.CoolingStrategyMode.M = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "M")?.CoolingStrategyModeSelection;
-			result.Data.CoolingStrategyMode.S = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "S")?.CoolingStrategyModeSelection;
-			result.Data.CoolingStrategyMode.E = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "E")?.CoolingStrategyModeSelection;
-            result.Data.CoolingStrategyMode.DbSource = "EdOrdEnt.CoolingStrategyModeSelection";
+			//result.Data.CoolingStrategyMode.L = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "L")?.CoolingStrategyModeSelection;
+			//result.Data.CoolingStrategyMode.M = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "M")?.CoolingStrategyModeSelection;
+			//result.Data.CoolingStrategyMode.S = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "S")?.CoolingStrategyModeSelection;
+			//result.Data.CoolingStrategyMode.E = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "E")?.CoolingStrategyModeSelection;
+            //result.Data.CoolingStrategyMode.DbSource = "EdOrdEnt.CoolingStrategyModeSelection";
 
             result.Data.AlloyCode.L = dataBlob.EdLogEnts.FirstOrDefault(x => x.Source == "L")?.AlloyCode;
 			result.Data.AlloyCode.M = dataBlob.EdLogEnts.FirstOrDefault(x => x.Source == "M")?.AlloyCode;
@@ -315,6 +315,55 @@ namespace WebHMI.Mapping.Extensions
             return result;
 		}
 
+        public static PrimaryDataDto MapCSData(this PrimaryDataDto result, PrimaryDataDataBlob dataBlob)
+        {
+            var edOrdEntL = dataBlob.EdOrdEnts.Where(x => x.Source == "L").FirstOrDefault();
+            var edOrdEntM = dataBlob.EdOrdEnts.Where(x => x.Source == "M").FirstOrDefault();
+            var edOrdEntS = dataBlob.EdOrdEnts.Where(x => x.Source == "S").FirstOrDefault();
+            var edOrdEntE = dataBlob.EdOrdEnts.Where(x => x.Source == "E").FirstOrDefault();
+
+            var edPhyEntL = dataBlob.EdPhyEnts.Where(x => x.Source == "L").FirstOrDefault();
+            var edPhyEntM = dataBlob.EdPhyEnts.Where(x => x.Source == "M").FirstOrDefault();
+            var edPhyEntS = dataBlob.EdPhyEnts.Where(x => x.Source == "S").FirstOrDefault();
+            var edPhyEntE = dataBlob.EdPhyEnts.Where(x => x.Source == "E").FirstOrDefault();
+
+            var edLogEntL = dataBlob.EdLogEnts.Where(x => x.Source == "L").FirstOrDefault();
+            var edLogEntM = dataBlob.EdLogEnts.Where(x => x.Source == "M").FirstOrDefault();
+            var edLogEntS = dataBlob.EdLogEnts.Where(x => x.Source == "S").FirstOrDefault();
+            var edLogEntE = dataBlob.EdLogEnts.Where(x => x.Source == "E").FirstOrDefault();
+
+            result.CSData.CoilTemp.L = edOrdEntL?.CoilTemp;
+            result.CSData.CoilTemp.M = edOrdEntM?.CoilTemp;
+            result.CSData.CoilTemp.S = edOrdEntS?.CoilTemp;
+            result.CSData.CoilTemp.E = edOrdEntE?.CoilTemp;
+            result.CSData.CoilTemp.DbSource = "EdOrdEnt.CoilTemp";
+
+            result.CSData.CoilTempMax.L = edOrdEntL?.CoilTempMaxTol;
+            result.CSData.CoilTempMax.M = edOrdEntM?.CoilTempMaxTol;
+            result.CSData.CoilTempMax.S = edOrdEntS?.CoilTempMaxTol;
+            result.CSData.CoilTempMax.E = edOrdEntE?.CoilTempMaxTol;
+            result.CSData.CoilTempMax.DbSource = "EdOrdEnt.CoilTempMaxTol";
+
+            result.CSData.CoilTempMax.L = edOrdEntL?.CoilTempMinTol;
+            result.CSData.CoilTempMax.M = edOrdEntM?.CoilTempMinTol;
+            result.CSData.CoilTempMax.S = edOrdEntS?.CoilTempMinTol;
+            result.CSData.CoilTempMax.E = edOrdEntE?.CoilTempMinTol;
+            result.CSData.CoilTempMax.DbSource = "EdOrdEnt.CoilTempMinTol";
+
+            result.CSData.CoolMode.L = edOrdEntL?.CoolStrategy;
+            result.CSData.CoolMode.M = edOrdEntM?.CoolStrategy;
+            result.CSData.CoolMode.S = edOrdEntS?.CoolStrategy;
+            result.CSData.CoolMode.E = edOrdEntE?.CoolStrategy;
+            result.CSData.CoolMode.DbSource = "EdOrdEnt.CoolStrategy";
+
+            result.CSData.CoolModeSource.L = edOrdEntL?.CoolingStrategyModeSelection;
+            result.CSData.CoolModeSource.M = edOrdEntM?.CoolingStrategyModeSelection;
+            result.CSData.CoolModeSource.S = edOrdEntS?.CoolingStrategyModeSelection;
+            result.CSData.CoolModeSource.E = edOrdEntE?.CoolingStrategyModeSelection;
+            result.CSData.CoolModeSource.DbSource = "EdOrdEnt.CoolingStrategyModeSelection";
+
+            return result;
+        }
 		public static PrimaryDataDto MapChemistryElements(this PrimaryDataDto result, PrimaryDataDataBlob dataBlob)
 		{
 			foreach (var edlogent in dataBlob.EdLogEnts)

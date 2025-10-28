@@ -10,6 +10,7 @@ namespace WebHMI.Dtos.PrimaryData
 	{
 		public MeCodeDto MeCode { get; set; } = new();
 		public MaterialData Data { get; set; } = new();
-		public List<ChemistryElement> ChemistryElements { get; set; } = [];
+        public CSDataDto CSData { get; set; } = new();
+        public List<ChemistryElement> ChemistryElements { get; set; } = [];
 	}
 }

@@ -48,8 +48,9 @@ namespace WebHMI.Services
 			result.MeCode = entryMatStruct.ToMeCodeDto();
 			result.MapData(dataBlob);
 			result.MapChemistryElements(dataBlob);
+			result.MapCSData(dataBlob);
 
-			return result;
+            return result;
 		}
 
         [Audited]
@@ -103,14 +104,22 @@ namespace WebHMI.Services
             edordentM.ClassMaxFlatDeltaAsym = input.Data.ClassFlatDeltaMax.M;
             edordentM.ClassMaxWedgeDelta = input.Data.ClassWedgeDeltaMax.M;
             edordentM.ClassMinWedgeDelta = input.Data.ClassWedgeDeltaMin.M;
-            edordentM.CoilTemp = input.Data.CoilerTemp.M;
-            edordentM.CoilTempMinTol = input.Data.CoilerTempDeltaMin.M;
-            edordentM.CoilTempMaxTol = input.Data.CoilerTempDeltaMax.M;
-            edordentM.CoolRateTop = input.Data.CoolingRateTop.M;
-            edordentM.CoolRateBot = input.Data.CoolingRateBottom.M;
-            edordentM.CoolStrategy = input.Data.CoolingStrategyFlag.M;
-            edordentM.CoolingStrategyModeSelection = input.Data.CoolingStrategyMode.M;
+            //edordentM.CoilTemp = input.Data.CoilerTemp.M;
+            //edordentM.CoilTempMinTol = input.Data.CoilerTempDeltaMin.M;
+            //edordentM.CoilTempMaxTol = input.Data.CoilerTempDeltaMax.M;
+            //edordentM.CoolRateTop = input.Data.CoolingRateTop.M;
+            //edordentM.CoolRateBot = input.Data.CoolingRateBottom.M;
+            //edordentM.CoolStrategy = input.Data.CoolingStrategyFlag.M;
+            //edordentM.CoolingStrategyModeSelection = input.Data.CoolingStrategyMode.M;
             edordentM.OrderNo = input.Data.OrderNo.M;
+
+            //CSSection
+
+            edordentM.CoilTemp = input.CSData.CoilTemp.M;
+            edordentM.CoilTempMaxTol = input.CSData.CoilTempMax.M;
+            edordentM.CoilTempMinTol = input.CSData.CoilTempMin.M;
+            edordentM.CoolStrategy = input.CSData.CoolMode.M;
+            edordentM.CoolingStrategyModeSelection = input.CSData.CoolModeSource.M;
 
             var edlogentM = await _prdbContext.EdLogEnts.FirstOrDefaultAsync(x => x.MeId == entryMatStruct.EnLoMeId && x.Source == "M");
             edlogentM = _prdbContext.InsertIfNull(edlogentM, entryMatStruct);
