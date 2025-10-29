@@ -144,7 +144,21 @@ namespace WebHMI.Services
             if (rollData is not null && rollData.Stat == "I")
                 throw new UserFriendlyException("It is not permitted to change the properties of installed rollers.");
 
-            rollData.MapRollDetailsEntity(rollDto);
+            rollData.RollId = rollDto.Rollid;
+            rollData.RollType = rollDto.Rolltype;
+            rollData.PlantType = rollDto.Planttype;
+            rollData.Diameter = rollDto.Diameter;
+            rollData.RollClass = rollDto.Rollclass;
+            rollData.RollPropertyClass = rollDto.RollPropertyClass;
+            rollData.Roughness = rollDto.Roughness;
+            rollData.RollShapeCode = rollDto.ShapeCode;
+            rollData.Grinding = rollDto.Grinding;
+            rollData.RollPos = rollDto.Rollpos;
+            rollData.RollChamferCode = rollDto.RollChamferClassId;
+            rollData.Stat = rollDto.Stat;
+            rollData.Shimm = rollDto.Shimm;
+            //rollData.DismountTime = dto.Dismounttime;
+            rollData.RelatedRollId = rollDto.RelatedRollid;
 
             try
             {
@@ -472,7 +486,7 @@ namespace WebHMI.Services
         }
 
         [AbpAuthorize(Permissions.Pages_RollData)]
-        public async Task<PagedResultDto<RollShapeCoeffDto>> GetAllRollShapeCoeff(FilteredRequestDto input)
+        public async Task<PagedResultDto<RollShapeCoeffDto>> GetShapeCodeAll(FilteredRequestDto input)
         {
             var context = _prdbContextProvider.GetDbContext();
 

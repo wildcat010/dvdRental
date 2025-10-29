@@ -15,6 +15,8 @@ public partial class HmiVRollInventory
 
     public string Stat { get; set; }
 
+    public float? InitTemp { get; set; }
+
     public int RollClass { get; set; }
 
     public string Rollclassdesc { get; set; }

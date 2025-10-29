@@ -12,6 +12,7 @@ namespace WebHMI.Dtos.Roll
         public string Stat { get; set; }
         public string Rollpos { get; set; }
         public float Diameter { get; set; }
+        public float? InitTemp { get; set; }
         public float? Shimm { get; set; }
         public int? Rollclass { get; set; }
         public string RollClassName { get; set; }

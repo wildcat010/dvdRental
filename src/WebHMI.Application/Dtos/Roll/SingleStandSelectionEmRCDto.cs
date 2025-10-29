@@ -11,5 +11,7 @@ namespace WebHMI.Dtos.Roll
         public short BottomWorkRollRoll { get; set; }
         public short Bottomshortermediateoll { get; set; }
         public short BottomBackupRoll { get; set; }
+        public int? ReasonId { get; set; }
+        public string Comment { get; set; }
     }
 }

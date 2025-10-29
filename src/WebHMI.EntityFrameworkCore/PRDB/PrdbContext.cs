@@ -14190,6 +14190,7 @@ public partial class PrdbContext : AbpDbContext
                 .HasPrecision(3)
                 .HasColumnName("dismountTime");
             entity.Property(e => e.Grinding).HasColumnName("grinding");
+            entity.Property(e => e.InitTemp).HasColumnName("initTemp");
             entity.Property(e => e.MountTime)
                 .HasPrecision(3)
                 .HasColumnName("mountTime");

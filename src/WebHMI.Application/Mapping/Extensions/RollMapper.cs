@@ -97,6 +97,7 @@ namespace WebHMI.Mapping.Extensions
             Planttype = entity.PlantType,
             Rolltype = entity.RollType,
             Diameter = entity.Diameter,
+            InitTemp = entity.InitTemp,
             Stat = entity.Stat,
             Rollclass = entity.RollClass,
             RollClassName = entity.Rollclassdesc,
