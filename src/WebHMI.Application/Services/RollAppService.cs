@@ -891,5 +891,86 @@ namespace WebHMI.Services
                 Position = position
             });
         }
+
+        [AbpAuthorize(Permissions.Pages_RollData_Edit)]
+        [Audited]
+        public async Task<bool> TakeOverCalibrationCurve(int standId)
+        {
+            //read actual calibration data
+            var context = _prdbContextProvider.GetDbContext();
+
+            List<CalDssAct> actCalData = await context.CalDssActs
+                .Where(x => x.StandNo == standId)
+                .OrderBy(o => o.DssNumber)
+                .ToListAsync();
+
+            if (actCalData == null || actCalData.Count == 0)
+            {
+                throw new Abp.UI.UserFriendlyException("No valid calibration data available for the transfer.");
+            }
+
+            List<CalPadeAct> actCalPade = await context.CalPadeActs
+                .Where(x => x.StandNo == standId)
+                .ToListAsync();
+
+            if (actCalPade == null || actCalPade.Count == 0)
+            {
+                throw new Abp.UI.UserFriendlyException($"No CalPadeAct for standId:{standId}");
+            }
+
+            var calPadesToRemove = await context.CalPades
+                .Where(x => x.StandNo == standId)
+                .ToListAsync();
+
+            context.CalPades.RemoveRange(calPadesToRemove);
+
+            List<CalPade> newCalPades = new();
+
+            foreach (var el in actCalPade)
+            {
+                newCalPades.Add(new CalPade()
+                {
+                    StandNo = el.StandNo,
+                    PadeA0 = el.PadeA0,
+                    PadeA1 = el.PadeA1,
+                    PadeA2 = el.PadeA2,
+                    PadeB1 = el.PadeB1,
+                    Mop = el.Mop,
+                    PlantType = el.PlantType,
+                    Toc = el.Toc,
+                    Tom = el.Tom,
+                });
+            }
+
+            await context.CalPades.AddRangeAsync(newCalPades);
+
+            var calDssToRemove = await context.CalDsses
+                .Where(x => x.StandNo == standId)
+                .ToListAsync();
+
+            context.CalDsses.RemoveRange(calDssToRemove);
+
+            List<CalDss> newCalDsses = new ();
+
+            foreach (CalDssAct el in actCalData)
+            {
+                newCalDsses.Add(new CalDss()
+                {
+                    StandNo = el.StandNo,
+                    DsFrame = el.DsFrame,
+                    Dss = el.Dss,
+                    DssNumber = el.DssNumber,
+                    Fr = el.Fr,
+                    Mop = el.Mop,
+                    PlantType = el.PlantType,
+                    Toc = el.Toc,
+                    Tom = el.Tom,
+                });
+            }
+
+            await context.CalDsses.AddRangeAsync(newCalDsses);
+
+            return true;
+        }
     }
 }
