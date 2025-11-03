@@ -35,6 +35,10 @@ namespace WebHMI
             setpointsFm.CreateChildPermission(Permissions.Pages_Setpoints_FM_Edit);
             setpointsFm.CreateChildPermission(Permissions.Pages_Setpoints_FM_Delete);
 
+            var setpointsCs = context.CreatePermission(Permissions.Pages_Setpoints_CS);
+            setpointsCs.CreateChildPermission(Permissions.Pages_Setpoints_CS_Edit);
+            setpointsCs.CreateChildPermission(Permissions.Pages_Setpoints_CS_Delete);
+
             var productionSchedule = context.CreatePermission(Permissions.Pages_ProductionSchedule);
             productionSchedule.CreateChildPermission(Permissions.Pages_ProductionSchedule_Edit);
             productionSchedule.CreateChildPermission(Permissions.Pages_ProductionSchedule_Delete);

@@ -29,6 +29,10 @@
         public const string Pages_Setpoints_FM_Edit = "Pages.Setpoints.FM.Edit";
         public const string Pages_Setpoints_FM_Delete = "Pages.Setpoints.FM.Delete";
 
+        public const string Pages_Setpoints_CS = "Pages.Setpoints.CS";
+        public const string Pages_Setpoints_CS_Edit = "Pages.Setpoints.CS.Edit";
+        public const string Pages_Setpoints_CS_Delete = "Pages.Setpoints.CS.Delete";
+
         public const string Pages_ProductionSchedule = "Pages.ProductionSchedule";
         public const string Pages_ProductionSchedule_Edit = "Pages.ProductionSchedule.Edit";
         public const string Pages_ProductionSchedule_Delete = "Pages.ProductionSchedule.Delete";
