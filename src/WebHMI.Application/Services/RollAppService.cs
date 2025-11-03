@@ -622,58 +622,19 @@ namespace WebHMI.Services
         }
 
         [AbpAuthorize(Permissions.Pages_RollData)]
-        public Task<PagedResultDto<SingleRollDataCoreDto>> GetAvailableRolls(FilteredRequestDto input, bool onlyPlannedByRS, string plantType, string rollType, int? standId, string rollPos)
+        public Task<PagedResultDto<SingleRollDataCoreDto>> GetAvailableRolls(FilteredRequestDto input, string plantType, string rollType)
         {
-            if (onlyPlannedByRS == true && (standId is null || rollPos == string.Empty || rollPos is null))
-                throw new UserFriendlyException($"When parameter '{nameof(onlyPlannedByRS)}' true is, parameters '{nameof(standId)}' and '{nameof(rollPos)}' must be provided.");
-
             List<SingleRollDataCoreDto> dto = new List<SingleRollDataCoreDto>();
             try
             {
-                if (onlyPlannedByRS == false)
-                {
-                    return ApplyFilter(
-                        _prdbContext.HmiVRollInventories
-                           .Where(z => z.PlantType == plantType && z.RollType == rollType && (z.Stat == null || z.Stat == "R"))
-                           .OrderByDescending(t => t.RollId),
-                       input,
-                       RollMapper.ToRollDataCoreDto);
 
-                    //if (availableRolls is not null)
-                    //{
-                    //    foreach (HmiVRollInventory roll in availableRolls)
-                    //    {
-                    //        SingleRollDataCoreDto oneRollDto = new SingleRollDataCoreDto();
-                    //        ObjectMapper.Map(roll, oneRollDto);
-                    //        dto.Add(oneRollDto);
-                    //    }
-                    //}
-                    //return Task.FromResult(dto);
-                }
-                else
-                {
-                    return ApplyFilter(
-                        _prdbContext.HmiVRollInventories
-                            .Where(z => z.PlantType == plantType && z.RollType == rollType && (z.Stat == null || z.Stat == "R") && z.PlannedRollPos == rollPos && z.PlannedStandId == standId)
-                            .OrderByDescending(t => t.RollId),
-                        input,
-                        RollMapper.ToRollDataCoreDto);
+                return ApplyFilter(
+                    _prdbContext.HmiVRollInventories
+                       .Where(z => z.PlantType == plantType && z.RollType == rollType && z.Stat != "I")
+                       .OrderByDescending(t => t.RollId),
+                   input,
+                   RollMapper.ToRollDataCoreDto);
 
-                    //List<HmiVRollInventory> availableRolls = _rollInventory
-                    //       .GetAll().Where(z => z.Planttype == plantType && z.Rolltype == rollType && (z.Stat is null || z.Stat == "R") && z.Plannedrollpos == rollPos && z.Plannedstandid == standId)
-                    //       .OrderBy(t => t.Rollid).ToList();
-
-                    //if (availableRolls is not null)
-                    //{
-                    //    foreach (HmiVRollInventory roll in availableRolls)
-                    //    {
-                    //        SingleRollDataCoreDto oneRollDto = new SingleRollDataCoreDto();
-                    //        ObjectMapper.Map(roll, oneRollDto);
-                    //        dto.Add(oneRollDto);
-                    //    }
-                    //}
-                    //return Task.FromResult(dto);
-                }
             }
             catch (Exception ex)
             {

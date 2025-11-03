@@ -25,5 +25,8 @@ namespace WebHMI.Dtos.Roll
         public int? ResonId { get; set; }
         public string Remarks { get; set; }
         public short RollChamferClassId { get; set; }
+        public DateTime? PlannedInstallTime { get; set; } = new();
+        public short RollShapeCode { get; set; }
+        public int? RollShapeType { get; set; }
     }
 }

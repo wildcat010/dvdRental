@@ -187,7 +187,10 @@ namespace WebHMI.Mapping.Extensions
             ResonId = entity.RemoveReason,
             Remarks = entity.Remarks,
             RollChamferClassId = entity.RollChamferCode,
-            Shimm = entity.Shimm
+            Shimm = entity.Shimm,
+            PlannedInstallTime = entity.PlannedInstallTime,
+            RollShapeCode = entity.Shapecode,
+            RollShapeType = entity.ShapeType
         };
 
         public static ShapeCodeDto ToShapeCodeDto(this RollShapeCoeff entity) => new()

@@ -14194,6 +14194,9 @@ public partial class PrdbContext : AbpDbContext
             entity.Property(e => e.MountTime)
                 .HasPrecision(3)
                 .HasColumnName("mountTime");
+            entity.Property(e => e.PlannedInstallTime)
+                .HasPrecision(3)
+                .HasColumnName("plannedInstallTime");
             entity.Property(e => e.PlannedRollPos)
                 .HasMaxLength(1)
                 .IsUnicode(false)
@@ -14241,6 +14244,7 @@ public partial class PrdbContext : AbpDbContext
                 .IsUnicode(false)
                 .HasColumnName("ROLLPROPERTYDESC");
             entity.Property(e => e.Roughness).HasColumnName("roughness");
+            entity.Property(e => e.ShapeType).HasColumnName("shapeType");
             entity.Property(e => e.Shapecode).HasColumnName("SHAPECODE");
             entity.Property(e => e.Shimm).HasColumnName("shimm");
             entity.Property(e => e.StandId).HasColumnName("standId");

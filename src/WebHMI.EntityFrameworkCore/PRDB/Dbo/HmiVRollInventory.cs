@@ -23,6 +23,10 @@ public partial class HmiVRollInventory
 
     public short Shapecode { get; set; }
 
+    public int? ShapeType { get; set; }
+
+    public DateTime? PlannedInstallTime { get; set; }
+
     public DateTime? MountTime { get; set; }
 
     public DateTime? DismountTime { get; set; }
