@@ -13,6 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
+using WebHMI.Application.Dtos.Roll;
 using WebHMI.Dtos;
 using WebHMI.Dtos.Roll;
 using WebHMI.Filters;
@@ -812,6 +813,83 @@ namespace WebHMI.Services
         {
             _cooldownTimerRefresh.Stop();
             _cooldownTimerRefresh.Elapsed -= CooldownTimer;
+        }
+
+        [AbpAuthorize(Permissions.Pages_RollData)]
+        public async Task<CalCurveDataDto> GetCalibrationCurves(int standId)
+        {
+            var context = _prdbContextProvider.GetDbContext();
+            var result = new CalCurveDataDto
+            {
+                CalCurvesDataSet = new Dictionary<int, SingleCurveDataDto>()
+            };
+
+            // Reference curves
+            var refCalData = await context.CalDsses
+                .Where(x => x.StandNo == standId)
+                .OrderBy(o => o.DssNumber)
+                .ToListAsync();
+
+            var refStandStretch = CreateCurve("Stand Stretch Reference");
+            var refTotalStretch = CreateCurve("Total Stretch Reference");
+
+            result.CalCurvesDataSet.Add(1, refStandStretch);
+            result.CalCurvesDataSet.Add(2, refTotalStretch);
+
+            if (refCalData?.Any() == true)
+            {
+                foreach (var el in refCalData)
+                {
+                    AddMeasuredValue(refStandStretch, el.Tom, el.DssNumber, el.Fr ?? 0.0, el.DsFrame);
+                    AddMeasuredValue(refTotalStretch, el.Tom, el.DssNumber, el.Fr ?? 0.0, el.Dss);
+                }
+            }
+
+            // Actual curves
+            var actCalData = await context.CalDssActs
+                .Where(x => x.StandNo == standId)
+                .OrderBy(o => o.DssNumber)
+                .ToListAsync();
+
+            var actStandStretch = CreateCurve("Stand Stretch Actual");
+            var actTotalStretch = CreateCurve("Total Stretch Actual");
+
+            result.CalCurvesDataSet.Add(3, actStandStretch);
+            result.CalCurvesDataSet.Add(4, actTotalStretch);
+
+            if (actCalData?.Any() == true)
+            {
+                foreach (var el in actCalData)
+                {
+                    AddMeasuredValue(actStandStretch, el.Tom, el.DssNumber, el.Fr ?? 0.0, el.DsFrame);
+                    AddMeasuredValue(actTotalStretch, el.Tom, el.DssNumber, el.Fr ?? 0.0, el.Dss);
+                }
+            }
+
+            return result;
+        }
+
+        private SingleCurveDataDto CreateCurve(string name)
+        {
+            return new SingleCurveDataDto
+            {
+                CurveData = new MeasuredValueSetDto
+                {
+                    MVName = name,
+                    MVArray = new List<MeasValElementDto>()
+                }
+            };
+        }
+
+        private void AddMeasuredValue(SingleCurveDataDto curve, DateTime? calibrationDate, int sampleId, double measuredValue, double? position)
+        {
+            curve.CalibrationDatetime = calibrationDate;
+            curve.CurveData.MVArray.Add(new MeasValElementDto
+            {
+                SampleId = sampleId,
+                MeasuredValue = measuredValue,
+                Position = position
+            });
         }
     }
 }
