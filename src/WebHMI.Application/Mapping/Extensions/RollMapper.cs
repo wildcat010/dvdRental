@@ -176,7 +176,7 @@ namespace WebHMI.Mapping.Extensions
             Rollpos = entity.RollPos,
             Diameter = entity.Diameter,
             Rollclass = entity.RollClass,
-            RollClassName = entity.Rollclassdesc,
+            RollClassDesc = entity.Rollclassdesc,
             RollPropertyClass = entity.RollPropertyClass,
             RollPropertyClassName = entity.Rollpropertydesc,
             Mounttime = entity.MountTime,

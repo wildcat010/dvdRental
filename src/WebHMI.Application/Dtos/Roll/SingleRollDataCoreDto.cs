@@ -13,7 +13,7 @@ namespace WebHMI.Dtos.Roll
         public double Diameter { get; set; }
         public double? Shimm { get; set; }
         public int? Rollclass { get; set; }
-        public string RollClassName { get; set; }
+        public string RollClassDesc { get; set; }
         public int? RollPropertyClass { get; set; }
         public string RollPropertyClassName { get; set; }
         public DateTime? Mounttime { get; set; }
