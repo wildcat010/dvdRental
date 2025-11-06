@@ -118,6 +118,7 @@ namespace WebHMI.Mapping.Extensions
             RollChamferClassId = entity.RollChamferCode,
             Shimm = entity.Shimm,
             Roughness = entity.Roughness,
+            StandRange = entity.StandRange
         };
 
         public static SingleRollDataCoreDto ToRollDataCoreDto(this RollDatum entity) => new()
@@ -190,7 +191,8 @@ namespace WebHMI.Mapping.Extensions
             Shimm = entity.Shimm,
             PlannedInstallTime = entity.PlannedInstallTime,
             RollShapeCode = entity.Shapecode,
-            RollShapeType = entity.ShapeType
+            RollShapeType = entity.ShapeType,
+            Tom = entity.Tom
         };
 
         public static ShapeCodeDto ToShapeCodeDto(this RollShapeCoeff entity) => new()

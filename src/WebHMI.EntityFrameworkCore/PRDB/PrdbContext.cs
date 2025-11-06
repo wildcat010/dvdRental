@@ -14248,10 +14248,17 @@ public partial class PrdbContext : AbpDbContext
             entity.Property(e => e.Shapecode).HasColumnName("SHAPECODE");
             entity.Property(e => e.Shimm).HasColumnName("shimm");
             entity.Property(e => e.StandId).HasColumnName("standId");
+            entity.Property(e => e.StandRange)
+                .HasMaxLength(7)
+                .IsUnicode(false)
+                .HasColumnName("standRange");
             entity.Property(e => e.Stat)
                 .HasMaxLength(1)
                 .IsUnicode(false)
                 .HasColumnName("stat");
+            entity.Property(e => e.Tom)
+                .HasPrecision(3)
+                .HasColumnName("tom");
         });
 
         modelBuilder.Entity<HmiVRollclass>(entity =>

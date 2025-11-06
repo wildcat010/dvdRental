@@ -28,5 +28,6 @@ namespace WebHMI.Dtos.Roll
         public DateTime? PlannedInstallTime { get; set; } = new();
         public short RollShapeCode { get; set; }
         public int? RollShapeType { get; set; }
+        public DateTime? Tom { get; set; }
     }
 }

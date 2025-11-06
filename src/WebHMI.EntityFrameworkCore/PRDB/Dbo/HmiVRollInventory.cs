@@ -25,6 +25,10 @@ public partial class HmiVRollInventory
 
     public int? ShapeType { get; set; }
 
+    public string StandRange { get; set; }
+
+    public DateTime? Tom { get; set; }
+
     public DateTime? PlannedInstallTime { get; set; }
 
     public DateTime? MountTime { get; set; }

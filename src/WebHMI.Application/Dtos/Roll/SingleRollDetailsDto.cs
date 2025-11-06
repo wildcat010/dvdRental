@@ -35,5 +35,6 @@ namespace WebHMI.Dtos.Roll
         public int? ReasonId { get; internal set; }
         public string PlannedRollPos { get; internal set; }
         public int? PlannedStandId { get; internal set; }
+        public string StandRange { get; internal set; }
     }
 }
