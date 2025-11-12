@@ -919,6 +919,11 @@ namespace WebHMI.Mapping.Extensions
                 stand.BendingForce.M = lpPassM?.BendingForce;
                 stand.BendingForce.DbSource = $"LpPass.BendingForce({i})";
 
+                stand.CvcShifting.L = lpPassL?.CVcshifting;
+                stand.CvcShifting.E = lpPassE?.CVcshifting;
+                stand.CvcShifting.M = lpPassM?.CVcshifting;
+                stand.CvcShifting.DbSource = $"LpPass.CvcShifting({i})";
+
                 stand.Fbul.L = dirFmPfcParaPassesL?.FbUl;
                 stand.Fbul.E = dirFmPfcParaPassesE?.FbUl;
                 stand.Fbul.M = dirFmPfcParaPassesM?.FbUl;
@@ -1000,6 +1005,7 @@ namespace WebHMI.Mapping.Extensions
                 stand.CsMinLimit.E = dirFmPfcCycShiftPassE?.CSminLimit;
                 stand.CsMinLimit.DbSource = $"DirFmPfcCycShiftPass.CSminLimit({i})";
 
+              
                 result.PassScheduleDtos.Add(stand);
             }
 

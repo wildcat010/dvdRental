@@ -29,5 +29,6 @@ namespace WebHMI.Dtos.Setpoints.CommonDtos.ApxDtos
         public SourceSet<string> SptlFaultFm { get; set; } = new();
         public SourceSet<double?> WmpModel { get; set; } = new();
         public SourceSet<double?> SrpModel { get; set; } = new();
+        public SourceSet<double?> CvcShifting { get; set; } = new();
     }
 }

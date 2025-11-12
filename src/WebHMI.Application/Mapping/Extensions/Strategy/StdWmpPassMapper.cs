@@ -16,6 +16,8 @@ namespace WebHMI.Mapping.Extensions.Strategy
             entity.ActiveFlag = dto.ActiveFlag;
             entity.PassNo = dto.PassNo;
             //entity.Description = dto.Description;
+            entity.Model = dto.Model;
+
 
         }
 

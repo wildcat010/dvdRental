@@ -621,6 +621,7 @@ namespace WebHMI.Services
                 }
 
                 lpPassM.BendingForce = pass.BendingForce?.M;
+                lpPassM.CVcshifting = pass.CvcShifting?.M;
 
                 await context.SaveChangesAsync();
 
