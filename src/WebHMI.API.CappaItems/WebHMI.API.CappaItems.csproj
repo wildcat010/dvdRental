@@ -13,6 +13,12 @@
         <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspNonControl\*_glue_xidl.cs">
             <Link>Glue\%(Filename)%(Extension)</Link>
         </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspControl\*_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspControl\*_glue_xidl.cs">
+            <Link>Glue\%(Filename)%(Extension)</Link>
+        </Compile>
         <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\*_type_xidl.cs">
             <Link>Type\%(Filename)%(Extension)</Link>
         </Compile>
