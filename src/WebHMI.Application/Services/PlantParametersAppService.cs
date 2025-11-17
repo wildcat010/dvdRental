@@ -16,6 +16,7 @@ using WebHMI.Dtos.Parameters;
 using WebHMI.Filters;
 using WebHMI.Helpers;
 using WebHMI.L2Adapter.Common;
+using WebHMI.L2Adapter.Dtos;
 using WebHMI.L2Adapter.Senders;
 using WebHMI.Mapping.Extensions;
 using WebHMI.PRDB;
@@ -89,6 +90,18 @@ namespace WebHMI.Services
                 .FirstOrDefaultAsync(x => x.ParamName == input.ParamName && x.PlantType == input.PlantType)
                 ?? throw new EntityNotFoundException("Plant parameter not found");
 
+            var callArguments = new ParamsDto()
+            {
+                PlantType = input.PlantType,
+                Name = input.ParamName,
+                DisplayName = input.ParamName,
+                UserName = "user",
+                OldUValue = parameter.CurValN?.ToString() ?? parameter.CurValC,
+                OldLValue = "",
+                NewUValue = input.CurValN?.ToString() ?? input.CurValC,
+                NewLValue = ""
+            };
+
             parameter.CType = input.CType;
             parameter.CurValC = input.CurValC;
             parameter.CurValN = (float)input.CurValN;
@@ -98,7 +111,7 @@ namespace WebHMI.Services
 
             await CurrentUnitOfWork.SaveChangesAsync();
 
-            //_l2Sender.SendProcessParametersUpdated(XIDL.HmiParamCategory.PlantParameter, input.Planttype);
+            _l2Sender.SendProcessParametersUpdated(callArguments);
 
             return parameter.MapToDto() ;
         }

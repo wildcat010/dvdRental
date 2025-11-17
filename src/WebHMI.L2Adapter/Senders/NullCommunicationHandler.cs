@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WebHMI.L2Adapter.Common;
+using WebHMI.L2Adapter.Dtos;
 using WebHMI.PRDB.Dbo;
 using XIDL;
 
@@ -15,6 +16,21 @@ namespace WebHMI.L2Adapter.Senders
 	internal class NullCommunicationHandler : IL2CommunicationHandler
 	{
         public void EntryDataChange(VMatStructEntry matStruct, string connectionId) 
+        {
+
+        }
+
+        public void SendProcessParametersUpdated(ParamsDto arguments)
+        {
+
+        }
+
+        public void SendProcessParametersCreated(ParamsDto arguments)
+        {
+
+        }
+
+        public void SendProcessParametersDeleted(ParamsDto arguments)
         {
 
         }

@@ -16,6 +16,7 @@ using WebHMI.Dtos.Limit;
 using WebHMI.Filters;
 using WebHMI.Helpers;
 using WebHMI.L2Adapter.Common;
+using WebHMI.L2Adapter.Dtos;
 using WebHMI.L2Adapter.Senders;
 using WebHMI.Mapping.Extensions;
 using WebHMI.PRDB;
@@ -148,6 +149,18 @@ namespace WebHMI.Services
 
             var plantLimit = await _prdbContext.PlantLimits.FirstOrDefaultAsync(x => x.LimitName == input.LimitName && x.PlantType == input.PlantType);
 
+            var callArguments = new ParamsDto() 
+            {
+                PlantType = input.PlantType,
+                Name = input.LimitName,
+                DisplayName = input.LimitName,
+                UserName = "user",
+                OldUValue = plantLimit.UpperLimit.ToString(),
+                OldLValue = plantLimit.LowerLimit.ToString(),
+                NewUValue = input.UpperLimit.ToString(),
+                NewLValue = input.LowerLimit.ToString()
+            };
+
             plantLimit.CType = input.CType;
             plantLimit.Description = input.Description;
             plantLimit.LowerLimit = input.LowerLimit;
@@ -159,7 +172,7 @@ namespace WebHMI.Services
             var limitDto = plantLimit.MapToDto();
             await _cache.SetAsync(cacheKey, limitDto);
 
-            //_l2Sender.SendProcessParametersUpdated(XIDL.HmiParamCategory.Limit, input.Planttype);
+            _l2Sender.SendProcessParametersUpdated(callArguments);
 
             return limitDto;
         }

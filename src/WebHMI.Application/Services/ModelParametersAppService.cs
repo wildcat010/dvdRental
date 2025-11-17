@@ -15,6 +15,7 @@ using WebHMI.Dtos.Parameters;
 using WebHMI.Filters;
 using WebHMI.Helpers;
 using WebHMI.L2Adapter.Common;
+using WebHMI.L2Adapter.Dtos;
 using WebHMI.L2Adapter.Senders;
 using WebHMI.PRDB;
 using WebHMI.PRDB.Dbo;
@@ -93,10 +94,22 @@ namespace WebHMI.Services
             if (parameter is null)
                 throw new EntityNotFoundException("Model param not found");
 
+            var callArguments = new ParamsDto()
+            {
+                PlantType = input.PlantType,
+                Name = input.ParamName,
+                DisplayName = input.ParamName,
+                UserName = "user",
+                OldUValue = parameter.CurValN?.ToString() ?? parameter.CurValC,
+                OldLValue = "",
+                NewUValue = input.CurValN?.ToString() ?? input.CurValC,
+                NewLValue = ""
+            };
+
             parameter = ObjectMapper.Map<MosParam>(input);
             await CurrentUnitOfWork.SaveChangesAsync();
 
-            //_l2Sender.SendProcessParametersUpdated(XIDL.HmiParamCategory.ModelParameter, input.Planttype);
+            _l2Sender.SendProcessParametersUpdated(callArguments);
 
             return MapToEntityDto<MosParam, ParameterDto>(parameter);
         }

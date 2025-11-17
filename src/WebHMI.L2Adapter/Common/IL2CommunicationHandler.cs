@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WebHMI.L2Adapter.Dtos;
 using WebHMI.PRDB.Dbo;
 
 namespace WebHMI.L2Adapter.Common
@@ -23,5 +25,9 @@ namespace WebHMI.L2Adapter.Common
         //void RemoveMaterial(VMatStructEntry entryMatStruct, string operatorComment, int reasonId, string connectionId);
         //void RequestPrimaryData(short eventId, string coilId, string slabId, string scheduleName, double param1, string connectionId);
         void EntryDataChange(VMatStructEntry matStruct, string connectionId);
+        void SendProcessParametersUpdated(ParamsDto arguments);
+        //void SendProcessParametersCreated(ParamsDto arguments);
+        //void SendProcessParametersDeleted(ParamsDto arguments);
+
     }
 }

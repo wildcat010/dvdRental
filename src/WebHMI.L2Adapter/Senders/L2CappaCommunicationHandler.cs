@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WebHMI.L2Adapter.Common;
 using WebHMI.L2Adapter.ConnectionManagers;
+using WebHMI.L2Adapter.Dtos;
 using WebHMI.Message;
 using WebHMI.PRDB.Dbo;
 using XIDL;
@@ -19,12 +20,15 @@ namespace WebHMI.L2Adapter.Senders
 		private readonly ILogger _logger;
         private readonly int _timeoutMs = 90;
         private IPdhStub _pdhStub;
+        private XIDL.IOdaDbStub _dbStub;
 
         public L2CappaCommunicationHandler(ILogger logger)
 		{
 			_logger = logger;
             _pdhStub = CreateStub();
-		}
+            _dbStub = CreateStubOdaDb();
+
+        }
         public void EntryDataChange(VMatStructEntry matStruct, string connectionId)
         {
             ME_CODE meCode = ToL2MeCode(matStruct);
@@ -38,6 +42,28 @@ namespace WebHMI.L2Adapter.Senders
                 _pdhStub.entryDataChange_async(null, _timeoutMs, meCode,2, hmiReturn) //meType = kind of material type 0 = physical 1 = logical, 2 = order
             );
         }
+
+        public void SendProcessParametersUpdated(ParamsDto arguments)
+        {
+            HandleL2Call(() =>
+                _dbStub.doParamLimitChange_async(null, _timeoutMs, arguments.PlantType, arguments.Name,arguments.OldUValue, arguments.OldLValue, arguments.NewUValue, arguments.NewLValue,arguments.DisplayName, arguments.UserName)
+            );
+        }
+
+        public void SendProcessParametersCreated(ParamsDto arguments)
+        {
+            HandleL2Call(() =>
+                _dbStub.doParamLimitChange_async(null, _timeoutMs, arguments.PlantType, arguments.Name, arguments.OldUValue, arguments.OldLValue, arguments.NewUValue, arguments.NewLValue, arguments.DisplayName, arguments.UserName)
+            );
+        }
+
+        public void SendProcessParametersDeleted(ParamsDto arguments)
+        {
+            HandleL2Call(() =>
+                _dbStub.doParamLimitChange_async(null, _timeoutMs, arguments.PlantType, arguments.Name, arguments.OldUValue, arguments.OldLValue, arguments.NewUValue, arguments.NewLValue, arguments.DisplayName, arguments.UserName)
+            );
+        }
+
         private ME_CODE ToL2MeCode(VMatStructEntry entryMatStruct)
         {
             ME_STRUCT meStruct = new()
@@ -87,6 +113,14 @@ namespace WebHMI.L2Adapter.Senders
             var request = new Request("AppPdh", "pdh", "EspNonControl", "IPdh", "hsmHmi");
             var stubHmiWeb = new IPdhStub(request);
             _logger.Info($"[CAPPA] {nameof(IPdhStub)} initialized");
+            return stubHmiWeb;
+        }
+
+        private IOdaDbStub CreateStubOdaDb()
+        {
+            var request = new Request("AppOdaDb", "odaDb", "EspNonControl", "IOdaDb", "hsmHmi");
+            var stubHmiWeb = new IOdaDbStub(request);
+            _logger.Info($"[CAPPA] {nameof(IOdaDbStub)} initialized");
             return stubHmiWeb;
         }
     }
