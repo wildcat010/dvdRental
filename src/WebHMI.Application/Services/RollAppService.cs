@@ -730,24 +730,58 @@ namespace WebHMI.Services
 
         [Audited]
         [AbpAuthorize(Permissions.Pages_RollData_Edit)]
-        public async Task SendRollDataRequest(string connectionId, string rollId, string rollType, string plantType, string rollPosition, int? standId)
+        public async Task SendRollDataRequest(string connectionId, string rollId, string rollType, string plantType, string mode)
         {
-            int[] validStands = { 0, 1, 2, 3, 4, 5, 6, 100 };
-            if (plantType != "HRM" && plantType != "HFM" && !(plantType is null || plantType == String.Empty))
-                throw new UserFriendlyException("Please specify a valid ‘plantType’ parameter. Must be ‘FM’ or ‘RM’ or left blank.");
-
-            if (rollType != "WKR" && rollType != "BUR" && rollType != "EWR" && !(rollType is null || rollType == String.Empty))
-                throw new UserFriendlyException("Please enter a valid ‘rollType’ parameter. Must be ‘WKR’, ‘BUR’, ‘EWR’ or left blank.");
-
-            if (standId is not null && !validStands.Contains(standId ?? 0))
-                //if (standId <0 || standId > 7 )
-                throw new UserFriendlyException("Please enter a valid ‘standId’ parameter. Must be a value between 0 and 7 or 100, or left blank.");
-
-            if (rollPosition != "L" && rollPosition != "U" && rollPosition != "D" && rollPosition != "O" && !(rollPosition is null || rollType == String.Empty))
-                throw new UserFriendlyException("Please specify a valid ‘rollPosition’ parameter. Must have the value ‘L’, ‘U’, ‘D’, ‘O’ or left blank.");
-
             throw new NotImplementedException("L2 call not implemented");
             //_l2Sender.RollDataRequest(rollId, standId, rollType, rollPosition, plantType, connectionId);
+        }
+
+        [Audited]
+        [AbpAuthorize(Permissions.Pages_RollData_Edit)]
+        [UnitOfWork]
+        public async Task SetRollChangeReason(string plantType, RollChangeReasonsDto input)
+        {
+            var context = _prdbContextProvider.GetDbContext();
+
+            if (plantType != "HRM" && plantType != "HFM" && !(plantType is null || plantType == String.Empty))
+                throw new UserFriendlyException("Specify valid parameter 'plantType'. Must be 'HFM' or 'HRM'.");
+
+            if (input.Stands is null)
+                throw new UserFriendlyException("Specify valid parameter (not null)");
+
+            try
+            {
+                foreach (var stand in input.Stands)
+                {
+                    bool isValid = stand.StandId >= 0
+                                   && stand.RollPos is { Length: 1 };
+
+                    if (!isValid)
+                        continue;
+
+                    var rdRec = await context.RollData.FirstOrDefaultAsync(f =>
+                        f.StandId == stand.StandId &&
+                        f.RollPos == stand.RollPos &&
+                        f.Stat == "I" &&
+                        f.RollType == stand.RollType &&
+                        f.PlantType == plantType);
+
+                    if (rdRec is null)
+                        continue;
+
+                    rdRec.RemoveReason = input.ReasonId;
+                    rdRec.Remarks = input.OperatorRemarks;
+                }
+
+                await context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("[SetRollChangeReason] Exception while setting roll change reasons:", ex);
+                throw new UserFriendlyException($"Exception occured during setting roll change reasons. {ex.Message}");
+            }
+
+            return;
         }
 
         /// <summary>
