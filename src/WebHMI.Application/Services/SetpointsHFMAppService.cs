@@ -13,10 +13,13 @@ using WebHMI.DataBlobs;
 using WebHMI.Dtos.Setpoints.SetpointsHFM;
 using WebHMI.Dtos.Setpoints.SetpointsHRM;
 using WebHMI.Helpers;
+using WebHMI.L2Adapter.Common;
 using WebHMI.L2Adapter.Senders;
 using WebHMI.Mapping.Extensions;
 using WebHMI.PRDB;
 using WebHMI.PRDB.Dbo;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+using XIDL;
 
 namespace WebHMI.Services
 {
@@ -24,7 +27,7 @@ namespace WebHMI.Services
     {
         private readonly MatStructEntryService _matStructEntryService;
         private readonly IDbContextProvider<PrdbContext> _prdbContextProvider;
-        //private readonly IL2Sender _l2Sender;
+        private readonly IL2CommunicationHandler _l2Sender;
         private readonly short _standCount = 9;
         private readonly short _standStartIdx = 4;
 
@@ -32,13 +35,13 @@ namespace WebHMI.Services
 
         public SetpointsHFMAppService(
             MatStructEntryService matStructEntryService, 
-            IDbContextProvider<PrdbContext> prdbContextProvider
-            //IL2Sender l2Sender
+            IDbContextProvider<PrdbContext> prdbContextProvider,
+            IL2CommunicationHandler l2Sender
             )
         {
             _matStructEntryService = matStructEntryService;
             _prdbContextProvider = prdbContextProvider;
-            //_l2Sender = l2Sender;
+            _l2Sender = l2Sender;
         }
 
         [AbpAuthorize(Permissions.Pages_Setpoints_FM)]
@@ -144,7 +147,7 @@ namespace WebHMI.Services
 
         [Audited]
         [AbpAuthorize(Permissions.Pages_Setpoints_FM_Edit)]
-        public async Task UpdatePassScheduleHFM(SetpointsHFMDto input)
+        public async Task UpdatePassScheduleHFM(SetpointsHFMDto input, string connectionId)
         {
             var json = JsonConvert.SerializeObject(input);
             Console.WriteLine("Received JSON: " + json);
@@ -166,6 +169,7 @@ namespace WebHMI.Services
             await UpdateTaperShiftingTab(input, vMatStructEntry);
             await UpdateAntiPeelingTab(input, vMatStructEntry);
 
+            _l2Sender.SetpointsCalculationHMI(vMatStructEntry, "HFM", connectionId);
         }
 
         private async Task UpdateLpPasses(SetpointsHFMDto input, VMatStructEntry vMatStructEntryOr)
@@ -605,7 +609,7 @@ namespace WebHMI.Services
         }
 
         [AbpAuthorize(Permissions.Pages_Setpoints_FM_Edit)]
-        public async Task UpdateApxMaterialOverview(HFMApxMaterialOverviewDto input)
+        public async Task UpdateApxMaterialOverview(HFMApxMaterialOverviewDto input,string connectionId)
         {
             var context = _prdbContextProvider.GetDbContext();
             var vMatStructEntryOr = await _matStructEntryService.GetMaterialEntryStruct(input.MeCode.MeId, "OR");
@@ -646,6 +650,9 @@ namespace WebHMI.Services
             spord2pcM.WEntryColdFm = input.WEntryColdFm?.M;
 
             await context.SaveChangesAsync();
+
+            _l2Sender.SetpointsCalculationHMI(vMatStructEntryOr, "HFM", connectionId);
+
         }
 
         [AbpAuthorize(Permissions.Pages_Setpoints_FM)]

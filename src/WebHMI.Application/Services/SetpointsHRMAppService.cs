@@ -16,6 +16,7 @@ using WebHMI.Mapping.Extensions;
 using WebHMI.PRDB;
 using WebHMI.PRDB.Dbo;
 using WebHMI.WebHMI.Migrations;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace WebHMI.Services
 {
@@ -133,7 +134,7 @@ namespace WebHMI.Services
 
         [Audited]
         [AbpAuthorize(Permissions.Pages_Setpoints_RM_Edit)]
-        public async Task UpdatePassScheduleHRM(SetpointsHRMDto input)
+        public async Task UpdatePassScheduleHRM(SetpointsHRMDto input, string connectionId)
         {
             var context = _prdbContextProvider.GetDbContext();
             var vMatStructEntry = await _matStructEntryService.GetMaterialEntryStruct(input.MeCode.MeId, "OR");
@@ -150,6 +151,8 @@ namespace WebHMI.Services
             await UpdateTensionTab(input, vMatStructEntry);
             await UpdateTaperShiftingTab(input, vMatStructEntry);
             await UpdateAntiPeelingTab(input, vMatStructEntry);
+
+            _l2Sender.SetpointsCalculationHMI(vMatStructEntry, "HFM", connectionId);
 
         }
 
@@ -603,7 +606,7 @@ namespace WebHMI.Services
 
         [Audited]
         [AbpAuthorize(Permissions.Pages_Setpoints_RM_Edit)]
-        public async Task UpdateApxPassScheduleHRM(SetpointsHRMApxDto input)
+        public async Task UpdateApxPassScheduleHRM(SetpointsHRMApxDto input, string connectionId)
         {
             var context = _prdbContextProvider.GetDbContext();
             var vMatStructEntryOr = await _matStructEntryService.GetMaterialEntryStruct(input.MeCode.MeId, "OR");
@@ -624,6 +627,9 @@ namespace WebHMI.Services
 
             await UpdateShifting(input, vMatStructEntryOr);
             await UpdateFlatness(input, vMatStructEntryOr);
+
+            _l2Sender.SetpointsCalculationHMI(vMatStructEntryOr, "HFM", connectionId);
+
         }
 
         private async Task UpdateLpSrpWmpPass(SetpointsHRMApxDto input, VMatStructEntry vMatStructEntryOr)

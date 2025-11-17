@@ -15,7 +15,6 @@ namespace WebHMI.L2Adapter.Services.OdaDbStub
         : base(logger, stubFactory)
         {
         }
-
         public void SendProcessParametersUpdated(ParamsDto arguments)
         {
             HandleL2Call(() =>

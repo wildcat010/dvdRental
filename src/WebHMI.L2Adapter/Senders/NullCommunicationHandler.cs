@@ -17,22 +17,33 @@ namespace WebHMI.L2Adapter.Senders
 	{
         public void EntryDataChange(VMatStructEntry matStruct, string connectionId) 
         {
+            throw new NotImplementedException();
 
+        }
+        public void MoveMaterialInSequence(VMatStructEntry matStructSrc, VMatStructEntry matStructDest, short location, string connectionId)
+        {
+            throw new NotImplementedException();
         }
 
         public void SendProcessParametersUpdated(ParamsDto arguments)
         {
+            throw new NotImplementedException();
 
         }
 
-        public void SendProcessParametersCreated(ParamsDto arguments)
+        public void SetNextMaterialInSchedule(VMatStructEntry matStruct, string connectionId)
         {
-
+            throw new NotImplementedException();
         }
 
-        public void SendProcessParametersDeleted(ParamsDto arguments)
+        public void SetpointsCalculationHMI(VMatStructEntry matStruct, string aggregate, string connectionId)
         {
+            throw new NotImplementedException();
+        }
 
+        public void TakeoverActual4RevCurve(short standNo)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -25,7 +25,11 @@ namespace WebHMI.L2Adapter.Common
         //void RemoveMaterial(VMatStructEntry entryMatStruct, string operatorComment, int reasonId, string connectionId);
         //void RequestPrimaryData(short eventId, string coilId, string slabId, string scheduleName, double param1, string connectionId);
         void EntryDataChange(VMatStructEntry matStruct, string connectionId);
+        void SetNextMaterialInSchedule(VMatStructEntry matStruct, string connectionId);
+        void MoveMaterialInSequence(VMatStructEntry matStructSrc, VMatStructEntry matStructDest, short location, string connectionId);
         void SendProcessParametersUpdated(ParamsDto arguments);
+        void TakeoverActual4RevCurve(short standNo);
+        void SetpointsCalculationHMI(VMatStructEntry matStruct, string aggregate, string connectionId);
         //void SendProcessParametersCreated(ParamsDto arguments);
         //void SendProcessParametersDeleted(ParamsDto arguments);
 

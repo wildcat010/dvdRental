@@ -8,8 +8,10 @@ using WebHMI.L2Adapter.Common;
 using WebHMI.L2Adapter.ConnectionManagers;
 using WebHMI.L2Adapter.Dtos;
 using WebHMI.L2Adapter.Senders;
+using WebHMI.L2Adapter.Services.MosRcStub;
 using WebHMI.L2Adapter.Services.OdaDbStub;
 using WebHMI.L2Adapter.Services.PdhStub;
+using WebHMI.L2Adapter.Services.StaStub;
 using XIDL;
 
 namespace WebHMI.L2Adapter
@@ -62,9 +64,25 @@ namespace WebHMI.L2Adapter
                 );
 
                 IocManager.Register<IOdaDbStubService, OdaDbStubService>(DependencyLifeStyle.Transient);
+
+                IocManager.IocContainer.Register(
+                    Component.For<Func<IMosRcStub>>()
+                             .UsingFactoryMethod(() =>
+                                 new Func<IMosRcStub>(() => new IMosRcStub(new Request("AppMosRcFm", "mosRc", "EspControl", "IMosRc", "hsmHmi"))))
+                             .LifestyleTransient()
+                );
+                IocManager.Register<IMosRcStubService, MosRcStubService>(DependencyLifeStyle.Transient);
+
+                IocManager.IocContainer.Register(
+                    Component.For<Func<IStaStub>>()
+                             .UsingFactoryMethod(() =>
+                                 new Func<IStaStub>(() => new IStaStub(new Request("AppStaPc2", "sta", "EspControl", "ISta", "hsmHmi"))))
+                             .LifestyleTransient()
+                );
+                IocManager.Register<IStaStubService, StaStubService>(DependencyLifeStyle.Transient);
+
                 //new handler
                 IocManager.Register<IL2CommunicationHandler, L2CommunicationHandler>(DependencyLifeStyle.Singleton);
-
                 //IocManager.Register<IL2CommunicationHandler, L2CappaCommunicationHandler>(DependencyLifeStyle.Singleton);
                 IocManager.Register<IConnectionManager, ConnectionManager>(DependencyLifeStyle.Singleton);
             }

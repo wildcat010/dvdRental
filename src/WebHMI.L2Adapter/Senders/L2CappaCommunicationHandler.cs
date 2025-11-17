@@ -50,18 +50,19 @@ namespace WebHMI.L2Adapter.Senders
             );
         }
 
-        public void SendProcessParametersCreated(ParamsDto arguments)
+        public void SetNextMaterialInSchedule(VMatStructEntry matStruct, string connectionId)
         {
-            HandleL2Call(() =>
-                _dbStub.doParamLimitChange_async(null, _timeoutMs, arguments.PlantType, arguments.Name, arguments.OldUValue, arguments.OldLValue, arguments.NewUValue, arguments.NewLValue, arguments.DisplayName, arguments.UserName)
-            );
+            throw new NotImplementedException();
         }
 
-        public void SendProcessParametersDeleted(ParamsDto arguments)
+        public void MoveMaterialInSequence(VMatStructEntry matStructSrc, VMatStructEntry matStructDest, short location, string connectionId)
         {
-            HandleL2Call(() =>
-                _dbStub.doParamLimitChange_async(null, _timeoutMs, arguments.PlantType, arguments.Name, arguments.OldUValue, arguments.OldLValue, arguments.NewUValue, arguments.NewLValue, arguments.DisplayName, arguments.UserName)
-            );
+            throw new NotImplementedException();
+        }
+
+        public void TakeoverActual4RevCurve(short standNo)
+        {
+            throw new NotImplementedException();
         }
 
         private ME_CODE ToL2MeCode(VMatStructEntry entryMatStruct)
@@ -122,6 +123,11 @@ namespace WebHMI.L2Adapter.Senders
             var stubHmiWeb = new IOdaDbStub(request);
             _logger.Info($"[CAPPA] {nameof(IOdaDbStub)} initialized");
             return stubHmiWeb;
+        }
+
+        public void SetpointsCalculationHMI(VMatStructEntry matStruct, string aggregate, string connectionId)
+        {
+            throw new NotImplementedException();
         }
     }
 }

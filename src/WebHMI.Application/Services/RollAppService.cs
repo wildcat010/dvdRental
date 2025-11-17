@@ -713,7 +713,7 @@ namespace WebHMI.Services
             if (input?.PlantItemsToRollChange is null || input.PlantItemsToRollChange.Count == 0)
                 throw new UserFriendlyException("Request is empty. Please provide valid input arguments");
 
-            throw new NotImplementedException("L2 call not implemented");
+            //throw new NotImplementedException("L2 call not implemented");
 
             //foreach (var plantItem in input.PlantItemsToRollChange)
             //    _l2Sender.DoEmergencyRollChange(input.PlantType, plantItem, connectionId);
@@ -723,7 +723,7 @@ namespace WebHMI.Services
         [AbpAuthorize(Permissions.Pages_RollData_Edit)]
         public async Task SendActualStandData(string connectionId, SendActualStandDataDto input, short rollType)//rollType 0: installed ,rollType 1:planned
         {
-            throw new NotImplementedException("L2 call not implemented");
+            //throw new NotImplementedException("L2 call not implemented");
             //foreach (var plantItem in input.PlantItemsToSend.Where(x => x.Status == 1))
             //    _l2Sender.SendActualStandData(input.PlantType, plantItem, rollType, connectionId);
         }
@@ -732,7 +732,7 @@ namespace WebHMI.Services
         [AbpAuthorize(Permissions.Pages_RollData_Edit)]
         public async Task SendRollDataRequest(string connectionId, string rollId, string rollType, string plantType, string mode)
         {
-            throw new NotImplementedException("L2 call not implemented");
+            //throw new NotImplementedException("L2 call not implemented");
             //_l2Sender.RollDataRequest(rollId, standId, rollType, rollPosition, plantType, connectionId);
         }
 
@@ -889,7 +889,7 @@ namespace WebHMI.Services
 
         [AbpAuthorize(Permissions.Pages_RollData_Edit)]
         [Audited]
-        public async Task<bool> TakeOverCalibrationCurve(int standId)
+        public async Task<bool> TakeOverCalibrationCurve(short standId)
         {
             //read actual calibration data
             var context = _prdbContextProvider.GetDbContext();
@@ -964,6 +964,8 @@ namespace WebHMI.Services
             }
 
             await context.CalDsses.AddRangeAsync(newCalDsses);
+
+            _l2Sender.TakeoverActual4RevCurve(standId);
 
             return true;
         }
