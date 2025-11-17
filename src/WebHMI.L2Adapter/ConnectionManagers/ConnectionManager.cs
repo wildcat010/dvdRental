@@ -69,7 +69,7 @@ namespace WebHMI.L2Adapter.ConnectionManagers
 
             try
             {
-                int result = EventLoop.Run("AppHmiServer2", InitL2Objects, 0);
+                int result = EventLoop.Run("AppHmiServer", InitL2Objects, 0);
                 IsL2CommunicationRunning = false;
                 _logger.Info($"{nameof(EventLoop.Run)} returned: {result}");
             }
