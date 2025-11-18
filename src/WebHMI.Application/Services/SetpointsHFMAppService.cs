@@ -62,7 +62,7 @@ namespace WebHMI.Services
 
         [Audited]
         [AbpAuthorize(Permissions.Pages_Setpoints_FM_Edit)]
-        public async Task UpdateMaterialOverviewHFM(HFMMaterialOverviewDto input)
+        public async Task UpdateMaterialOverviewHFM(HFMMaterialOverviewDto input,string connectionId)
         {
             var context = _prdbContextProvider.GetDbContext();
             var vMatStructEntryOr = await _matStructEntryService.GetMaterialEntryStruct(input.MeCode.MeId, "OR");
@@ -122,6 +122,9 @@ namespace WebHMI.Services
             spord2pcM.LExit = input.LExit?.M;
 
             await context.SaveChangesAsync();
+
+            _l2Sender.EntryDataChange(vMatStructEntryOr, connectionId);
+
         }
 
         [AbpAuthorize(Permissions.Pages_Setpoints_FM)]
@@ -609,7 +612,7 @@ namespace WebHMI.Services
         }
 
         [AbpAuthorize(Permissions.Pages_Setpoints_FM_Edit)]
-        public async Task UpdateApxMaterialOverview(HFMApxMaterialOverviewDto input,string connectionId)
+        public async Task UpdateApxMaterialOverview(HFMApxMaterialOverviewDto input, string connectionId)
         {
             var context = _prdbContextProvider.GetDbContext();
             var vMatStructEntryOr = await _matStructEntryService.GetMaterialEntryStruct(input.MeCode.MeId, "OR");
@@ -651,7 +654,7 @@ namespace WebHMI.Services
 
             await context.SaveChangesAsync();
 
-            _l2Sender.SetpointsCalculationHMI(vMatStructEntryOr, "HFM", connectionId);
+            _l2Sender.EntryDataChange(vMatStructEntryOr, connectionId);
 
         }
 
@@ -673,7 +676,7 @@ namespace WebHMI.Services
 
         [Audited]
         [AbpAuthorize(Permissions.Pages_Setpoints_FM_Edit)]
-        public async Task UpdateApxPassScheduleHFM(SetpointsHFMApxDto input)
+        public async Task UpdateApxPassScheduleHFM(SetpointsHFMApxDto input, string connectionId)
         {
             var context = _prdbContextProvider.GetDbContext();
             var vMatStructEntryOr = await _matStructEntryService.GetMaterialEntryStruct(input.MeCode.MeId, "OR");
@@ -694,6 +697,9 @@ namespace WebHMI.Services
 
             await UpdateShifting(input, vMatStructEntryOr);
             await UpdateFlatness(input, vMatStructEntryOr);
+
+            _l2Sender.SetpointsCalculationHMI(vMatStructEntryOr, "HFM", connectionId);
+
         }
 
         private async Task UpdateLpSrpWmpPass(SetpointsHFMApxDto input, VMatStructEntry vMatStructEntryOr)

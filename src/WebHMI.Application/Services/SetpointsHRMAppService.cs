@@ -59,7 +59,7 @@ namespace WebHMI.Services
 
         [Audited]
         [AbpAuthorize(Permissions.Pages_Setpoints_RM_Edit)]
-        public async Task UpdateMaterialOverviewHRM(HRMMaterialOverviewDto input)
+        public async Task UpdateMaterialOverviewHRM(HRMMaterialOverviewDto input, string connectionId)
         {
             var context = _prdbContextProvider.GetDbContext();
             var vMatStructEntry = await _matStructEntryService.GetMaterialEntryStruct(input.MeCode.MeId, "OR");
@@ -109,6 +109,9 @@ namespace WebHMI.Services
             iscpM.PlanNo = input.IscpPlanNo?.M;
 
             await context.SaveChangesAsync();
+
+            _l2Sender.EntryDataChange(vMatStructEntry, connectionId);
+
         }
 
         [AbpAuthorize(Permissions.Pages_Setpoints_RM)]
@@ -547,7 +550,7 @@ namespace WebHMI.Services
 
         [Audited]
         [AbpAuthorize(Permissions.Pages_Setpoints_RM)]
-        public async Task UpdateApxMaterialOverview(HRMApxMaterialOverviewDto input)
+        public async Task UpdateApxMaterialOverview(HRMApxMaterialOverviewDto input, string connectionId)
         {
             var context = _prdbContextProvider.GetDbContext();
             var vMatStructEntry = await _matStructEntryService.GetMaterialEntryStruct(input.MeCode.MeId, "OR");
@@ -586,6 +589,9 @@ namespace WebHMI.Services
             spord2pcM.InherPfcId = input.InherPfcId?.M;
 
             await context.SaveChangesAsync();
+
+            _l2Sender.EntryDataChange(vMatStructEntry, connectionId);
+
         }
 
         [AbpAuthorize(Permissions.Pages_Setpoints_RM)]

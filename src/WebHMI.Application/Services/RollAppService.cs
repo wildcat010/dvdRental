@@ -19,6 +19,7 @@ using WebHMI.Dtos.Roll;
 using WebHMI.Filters;
 using WebHMI.Helpers;
 using WebHMI.L2Adapter.Common;
+using WebHMI.L2Adapter.Dtos;
 using WebHMI.L2Adapter.Senders;
 using WebHMI.Mapping.Extensions;
 using WebHMI.Notification;
@@ -708,24 +709,38 @@ namespace WebHMI.Services
 
         [Audited]
         [AbpAuthorize(Permissions.Pages_RollData_Edit)]
-        public async Task DoEmergencyRollChange(string connectionId, EmergencyRollChangeDto input)
+        public async Task DoEmergencyRollChange(string connectionId, EmergencyRollChangeBaseDto input)
         {
-            if (input?.PlantItemsToRollChange is null || input.PlantItemsToRollChange.Count == 0)
+            if (input?.RollChangeDtos is null || input.RollChangeDtos.Count == 0)
                 throw new UserFriendlyException("Request is empty. Please provide valid input arguments");
 
-            //throw new NotImplementedException("L2 call not implemented");
+            foreach (var dto in input.RollChangeDtos)
+            {
+                var l2Item = new RollChangeDto
+                {
+                    PlantType = input.PlantType,
+                    StandNo = dto.StandNo,
+                    ChangeWKR = dto.ChangeWKR,
+                    ChangeBURu = dto.ChangeBURTop,
+                    ChangeBURl = dto.ChangeBURBot,
+                    ChangeIMR = 0,
+                    ChangeEWR = 0,
+                    ChangeSPT = 0,
+                    ChangeZR0 = 0,
+                    ChangeZR1 = 0,
+                    SendL1 = 0
+                };
 
-            //foreach (var plantItem in input.PlantItemsToRollChange)
-            //    _l2Sender.DoEmergencyRollChange(input.PlantType, plantItem, connectionId);
+                _l2Sender.RollChange(l2Item);
+            }
         }
 
         [Audited]
         [AbpAuthorize(Permissions.Pages_RollData_Edit)]
-        public async Task SendActualStandData(string connectionId, SendActualStandDataDto input, short rollType)//rollType 0: installed ,rollType 1:planned
+        public async Task SendActualStandData(SendActualStandDataDto input)
         {
-            //throw new NotImplementedException("L2 call not implemented");
-            //foreach (var plantItem in input.PlantItemsToSend.Where(x => x.Status == 1))
-            //    _l2Sender.SendActualStandData(input.PlantType, plantItem, rollType, connectionId);
+            foreach (var id in input.StandIds)
+                _l2Sender.SendRollData(input.PlantType, id);
         }
 
         [Audited]
@@ -783,6 +798,7 @@ namespace WebHMI.Services
 
             return;
         }
+
 
         /// <summary>
         /// Send roll refresh event to UI with cooldown timers

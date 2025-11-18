@@ -8,9 +8,12 @@ using WebHMI.L2Adapter.Common;
 using WebHMI.L2Adapter.ConnectionManagers;
 using WebHMI.L2Adapter.Dtos;
 using WebHMI.L2Adapter.Senders;
+using WebHMI.L2Adapter.Services;
 using WebHMI.L2Adapter.Services.MosRcStub;
 using WebHMI.L2Adapter.Services.OdaDbStub;
+using WebHMI.L2Adapter.Services.PapRcvStub;
 using WebHMI.L2Adapter.Services.PdhStub;
+using WebHMI.L2Adapter.Services.RollChangeStub;
 using WebHMI.L2Adapter.Services.StaStub;
 using XIDL;
 
@@ -38,8 +41,7 @@ namespace WebHMI.L2Adapter
 			_l2CommunicationConfiguration = IocManager.Resolve<L2CommunicationConfiguration>();
 			_configuration.Bind("L2Communication", _l2CommunicationConfiguration);
 
-
-		}
+        }
 
         public override void Initialize()
         {
@@ -47,6 +49,7 @@ namespace WebHMI.L2Adapter
 
             if (_l2CommunicationConfiguration.IsEnabled)
             {
+
                 IocManager.IocContainer.Register(
                     Component.For<Func<IPdhStub>>()
                              .UsingFactoryMethod(() =>
@@ -66,6 +69,15 @@ namespace WebHMI.L2Adapter
                 IocManager.Register<IOdaDbStubService, OdaDbStubService>(DependencyLifeStyle.Transient);
 
                 IocManager.IocContainer.Register(
+                    Component.For<Func<IRollChangeStub>>()
+                             .UsingFactoryMethod(() =>
+                                 new Func<IRollChangeStub>(() => new IRollChangeStub(new Request("AppOdaDb", "odaDb", "EspNonControl", "IOdaDb", "hsmHmi"))))
+                             .LifestyleTransient()
+                );
+
+                IocManager.Register<IRollChangeStubService, RollChangeStubService>(DependencyLifeStyle.Transient);
+
+                IocManager.IocContainer.Register(
                     Component.For<Func<IMosRcStub>>()
                              .UsingFactoryMethod(() =>
                                  new Func<IMosRcStub>(() => new IMosRcStub(new Request("AppMosRcFm", "mosRc", "EspControl", "IMosRc", "hsmHmi"))))
@@ -80,6 +92,16 @@ namespace WebHMI.L2Adapter
                              .LifestyleTransient()
                 );
                 IocManager.Register<IStaStubService, StaStubService>(DependencyLifeStyle.Transient);
+
+                IocManager.IocContainer.Register(
+                    Component.For<Func<IPapRcvStub>>()
+                             .UsingFactoryMethod(() =>
+                                 new Func<IPapRcvStub>(() => new IPapRcvStub(new Request("AppPapRcv", "papRcv", "EspNonControl", "IPapRcv", "hsmHmi"))))
+                             .LifestyleTransient()
+                );
+                IocManager.Register<IPapRcvStubService, PapRcvStubService>(DependencyLifeStyle.Transient);
+
+                IocManager.Register<IServiceFactory, ServiceFactory>(DependencyLifeStyle.Singleton);
 
                 //new handler
                 IocManager.Register<IL2CommunicationHandler, L2CommunicationHandler>(DependencyLifeStyle.Singleton);

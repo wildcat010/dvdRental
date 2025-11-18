@@ -129,5 +129,20 @@ namespace WebHMI.L2Adapter.Senders
         {
             throw new NotImplementedException();
         }
+
+        public void PrimdCopyHMI(VMatStructEntry matStruct, string newExtId, short isTestMat)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RollChange(RollChangeDto dto)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SendRollData(string plantType, short standId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -26,13 +26,18 @@ namespace WebHMI.L2Adapter.Services
 
             _stubFactory = stubFactory ?? throw new ArgumentNullException(nameof(stubFactory));
 
-            _stub = CreateStub();
-            _logger.Info($"[CAPPA] {_stub.GetType().Name} initialized");
+            //_stub = CreateStub();
+            //_logger.Info($"[CAPPA] {_stub.GetType().Name} initialized");
         }
+
+        //lazy init
+        protected TStub Stub => _stub ??= CreateStub();
 
         protected TStub CreateStub()
         {
-            return _stubFactory();
+            var stub = _stubFactory();
+            _logger.Info($"[CAPPA]{stub.GetType().Name} initialized");
+            return stub;
         }
 
         protected ME_CODE ToL2MeCode(VMatStructEntry entryMatStruct)
@@ -75,6 +80,8 @@ namespace WebHMI.L2Adapter.Services
             catch (System.Exception ex)
             {
                 _logger.Error($"[{method}] Error occured while sending L2 message", ex);
+                _logger.Info($"[{method}] Error occured while sending L2 message", ex);
+
                 throw new UserFriendlyException("Exception thrown when calling L2 Process");
             }
         }

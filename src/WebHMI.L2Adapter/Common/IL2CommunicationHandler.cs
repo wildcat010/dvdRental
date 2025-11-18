@@ -30,6 +30,9 @@ namespace WebHMI.L2Adapter.Common
         void SendProcessParametersUpdated(ParamsDto arguments);
         void TakeoverActual4RevCurve(short standNo);
         void SetpointsCalculationHMI(VMatStructEntry matStruct, string aggregate, string connectionId);
+        void PrimdCopyHMI(VMatStructEntry matStruct, string newExtId, short isTestMat);
+        void RollChange(RollChangeDto dto);
+        void SendRollData(string plantType, short standId);
         //void SendProcessParametersCreated(ParamsDto arguments);
         //void SendProcessParametersDeleted(ParamsDto arguments);
 

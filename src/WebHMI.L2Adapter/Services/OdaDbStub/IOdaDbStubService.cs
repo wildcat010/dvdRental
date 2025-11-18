@@ -9,9 +9,7 @@ namespace WebHMI.L2Adapter.Services.OdaDbStub
 {
     public interface IOdaDbStubService
     {
-        void SendProcessParametersUpdated(ParamsDto arguments)
-        {
-
-        }
+        void SendProcessParametersUpdated(ParamsDto arguments);
+        void SendRollData(string plantType, short standId);
     }
 }

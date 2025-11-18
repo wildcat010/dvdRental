@@ -17,6 +17,7 @@ using WebHMI.L2Adapter.Common;
 using WebHMI.Mapping.Extensions;
 using WebHMI.PRDB;
 using WebHMI.PRDB.Dbo;
+using XIDL;
 
 namespace WebHMI.Services
 {
@@ -169,6 +170,21 @@ namespace WebHMI.Services
 				valuePropertyInfo.SetValue(edlogentManual, sentValue);
 			}
 		}
+
+        public async Task CopyMaterial(int meid, string matType, string newExtId, short isTestMat)
+        {
+            var entryMatStruct = await _matStructEntryService.GetMaterialEntryStruct(meid, matType);
+
+            try
+            {
+                _l2CommunicationHandler.PrimdCopyHMI(entryMatStruct, newExtId, isTestMat);
+            }
+            catch (System.Exception ex)
+            {
+                Logger.Error($"[PrimaryData] Cannot execute CopyMaterial method:", ex);
+                throw new UserFriendlyException($"Cannot execute. {ex.Message}");
+            }
+        }
 
 		private async Task<PrimaryDataDataBlob> GetDataBlob(VMatStructEntry entryMatStruct)
 		{

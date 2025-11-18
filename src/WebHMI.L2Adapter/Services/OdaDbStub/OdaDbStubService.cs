@@ -17,9 +17,18 @@ namespace WebHMI.L2Adapter.Services.OdaDbStub
         }
         public void SendProcessParametersUpdated(ParamsDto arguments)
         {
+       
             HandleL2Call(() =>
                 _stub.doParamLimitChange_async(null, _timeoutMs, arguments.PlantType, arguments.Name, arguments.OldUValue, arguments.OldLValue, arguments.NewUValue, arguments.NewLValue, arguments.DisplayName, arguments.UserName)
             );
         }
+
+        public void SendRollData(string plantType, short standId)
+        {
+            HandleL2Call(() =>
+                _stub.sendRollData_async(null, _timeoutMs, plantType, standId)
+            );
+        }
+
     }
 }
