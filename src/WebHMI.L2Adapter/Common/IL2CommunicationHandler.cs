@@ -33,6 +33,9 @@ namespace WebHMI.L2Adapter.Common
         void PrimdCopyHMI(VMatStructEntry matStruct, string newExtId, short isTestMat);
         void RollChange(RollChangeDto dto);
         void SendRollData(string plantType, short standId);
+        void RequestRollData(string plantType, string rollId, short standNo, string rollType);
+        void NewHeatSimulation(string heatId, string sequenceId, short heatStart, float length);
+        void NewHeatOperation(string heatId, string sequenceId, short heatStart, float length);
         //void SendProcessParametersCreated(ParamsDto arguments);
         //void SendProcessParametersDeleted(ParamsDto arguments);
 

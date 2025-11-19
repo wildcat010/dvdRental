@@ -16,6 +16,9 @@ using XIDL;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using WebHMI.L2Adapter.Services.PapRcvStub;
 using WebHMI.L2Adapter.Services.RollChangeStub;
+using WebHMI.L2Adapter.Services.PapSndStub;
+using Microsoft.VisualBasic;
+using WebHMI.L2Adapter.Services.PdhCusStub;
 
 namespace WebHMI.L2Adapter.Senders
 {
@@ -127,6 +130,30 @@ namespace WebHMI.L2Adapter.Senders
             try { rollChangeService.RollChange(dto); }
             finally { _factory.Release(rollChangeService); }
 
+        }
+
+        //PAPSND
+
+        public void RequestRollData(string plantType, string rollId, short standNo, string rollType)
+        {
+            var papSndService = _factory.Create<IPapSndStubService>();
+            try { papSndService.RequestRollData(plantType, rollId, standNo, rollType); }
+            finally { _factory.Release(papSndService); }
+        }
+
+        //PDHCUS
+
+        public void NewHeatSimulation(string heatId, string sequenceId, short heatStart, float length)
+        {
+            var pdhCusService = _factory.Create<IPdhCusStubService>();
+            try { pdhCusService.NewHeatSimulation(heatId, sequenceId, heatStart, length); }
+            finally { _factory.Release(pdhCusService); }
+        }
+        public void NewHeatOperation(string heatId, string sequenceId, short heatStart, float length)
+        {
+            var pdhCusService = _factory.Create<IPdhCusStubService>();
+            try { pdhCusService.NewHeatOperation(heatId, sequenceId, heatStart, length); }
+            finally { _factory.Release(pdhCusService); }
         }
 
     }

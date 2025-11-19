@@ -9,11 +9,13 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Linq.Dynamic.Core;
 using System.Text;
 using System.Threading.Tasks;
 using WebHMI.Dtos.ProductionSchedule;
 using WebHMI.Filters;
 using WebHMI.Helpers;
+using WebHMI.L2Adapter.Common;
 using WebHMI.Mapping.Extensions;
 using WebHMI.PRDB;
 using WebHMI.PRDB.Dbo;
@@ -26,14 +28,21 @@ namespace WebHMI.Services
 	{
 		private readonly IDbContextProvider<PrdbContext> _prdbContextProvider;
 		private readonly CommonAppService _commonAppService;
-		private PrdbContext _prdbContext => _prdbContextProvider.GetDbContext();
+		private readonly MatStructEntryService _matStructEntryService;
+        
+        private readonly IL2CommunicationHandler _l2Sender;
+        private PrdbContext _prdbContext => _prdbContextProvider.GetDbContext();
 
         public ProductionScheduleAppService(
             IDbContextProvider<PrdbContext> prdbContextProvider, 
-            CommonAppService commonAppService)
+            CommonAppService commonAppService,
+            IL2CommunicationHandler l2Sender,
+            MatStructEntryService matStructEntryService)
         {
             _prdbContextProvider = prdbContextProvider;
             _commonAppService = commonAppService;
+            _l2Sender = l2Sender;
+            _matStructEntryService = matStructEntryService;
         }
 
         public async Task<PagedResultDto<ScheduledMaterialsDto>> GetScheduledMaterials(FilteredRequestDto input, string seqID)
@@ -84,25 +93,13 @@ namespace WebHMI.Services
 
         [AbpAuthorize(Permissions.Pages_ProductionSchedule_Edit)]
         [Audited]
-        public async Task SyncL1(string connectionId, int enPhMeId)
+        public async Task SyncL1(string heatId, string sequenceId)
         {
-            //var context = _dbContextProvider.GetDbContext();
-            //var enPhExtId = await context.HmiVMatInfoShorts.Where(x => x.EnPhMeId == enPhMeId).Select(x => x.EnPhExtId).FirstOrDefaultAsync();
+            var context = _prdbContextProvider.GetDbContext();
 
-            //HmiReturn hmiReturn = HmiReturnFactory.CreateHmiReturn(connectionId, "addMatToSeq", "psm");
-            //var arguments = VariantArgumentFactory.GetProdScheduleArguments(enPhExtId, hmiReturn);
+            var length = context.HmiVProdsequenceCompletes.Where(x => x.HeatId == heatId && x.SequenceId == sequenceId).Sum(x=> x.LExit) ?? 0.0f;
 
-            //try
-            //{
-            //    Logger.Info("[Production Schedule] Requesting appending a slab to production sequence on module PSM");
-            //    _l2CommunicationTask.SendTelegram(L2Process.psm, hmiReturn.functionName, arguments);
-            //    Logger.Info("[Production Schedule] Operation executed and passed to L2");
-            //}
-            //catch (System.Exception ex)
-            //{
-            //    Logger.Error("Exception thrown when calling L2 Process", ex);
-            //    throw new UserFriendlyException("Exception thrown when calling L2 Process");
-            //}
+            _l2Sender.NewHeatOperation(heatId, sequenceId, 1, length);
         }
 
         [Audited]
@@ -172,28 +169,25 @@ namespace WebHMI.Services
 
         [AbpAuthorize(Permissions.Pages_ProductionSchedule_Edit)]
         [Audited]
-        public async Task MoveMatInSeq(string connectionId, string enOrExtId1, string enOrExtId2, int location)
+        public async Task MoveMatInSeq(string connectionId, int enPhMeId1, int enPhMeId2, short location)
         {
-            //var context = _prdbContextProvider.GetDbContext();
+			var vMatStructSrc = await _matStructEntryService.GetMaterialEntryStruct(enPhMeId1, "PH");
+			var vMatStructDest = await _matStructEntryService.GetMaterialEntryStruct(enPhMeId2, "PH");
 
-            //var enPhExtId1 = await context.HmiVMatInfoShorts.Where(x => x.EnPhMeId == enPhMeId1).Select(x => x.EnPhExtId).FirstOrDefaultAsync();
-            //var enPhExtId2 = await context.HmiVMatInfoShorts.Where(x => x.EnPhMeId == enPhMeId2).Select(x => x.EnPhExtId).FirstOrDefaultAsync();
-
-            //HmiReturn hmiReturn = HmiReturnFactory.CreateHmiReturn(connectionId, "moveMatInSeq", "psm");
-            //var arguments = VariantArgumentFactory.GetProdScheduleArguments(enPhExtId1, enPhExtId2, hmiReturn);
-
-            //try
-            //{
-            //    Logger.Info($"[Production Schedule] Requesting moving material in sequence from production sequence on module PSM");
-            //    _l2CommunicationTask.SendTelegram(L2Process.psm, hmiReturn.functionName, arguments);
-            //    Logger.Info($"[Production Schedule] Operation executed and passed to L2");
-            //}
-            //catch (System.Exception ex)
-            //{
-            //    Logger.Error("Exception thrown when calling L2 Process", ex);
-            //    throw new UserFriendlyException("Exception thrown when calling L2 Process");
-            //}
+            _l2Sender.MoveMaterialInSequence(vMatStructSrc, vMatStructDest, location,connectionId);
+            
         }
+
+        [AbpAuthorize(Permissions.Pages_ProductionSchedule_Edit)]
+        [Audited]
+        public async Task SetNextMatInSchedule(string connectionId, int enPhMeId)
+        {
+            var vMatStruct = await _matStructEntryService.GetMaterialEntryStruct(enPhMeId, "PH");
+
+            _l2Sender.SetNextMaterialInSchedule(vMatStruct, connectionId);
+
+        }
+
         /// <summary>
         /// Returns aggregated sequence overview data.
         /// </summary>

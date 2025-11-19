@@ -25,7 +25,22 @@ namespace WebHMI.L2Adapter.Senders
             throw new NotImplementedException();
         }
 
+        public void NewHeatOperation(string heatId, string sequenceId, short heatStart, float length)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void NewHeatSimulation(string heatId, string sequenceId, short heatStart, float length)
+        {
+            throw new NotImplementedException();
+        }
+
         public void PrimdCopyHMI(VMatStructEntry matStruct, string newExtId, short isTestMat)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RequestRollData(string plantType, string rollId, short standNo, string rollType)
         {
             throw new NotImplementedException();
         }

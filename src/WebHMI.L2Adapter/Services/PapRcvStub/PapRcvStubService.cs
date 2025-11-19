@@ -16,7 +16,6 @@ namespace WebHMI.L2Adapter.Services.PapRcvStub
         : base(logger, stubFactory)
         {
         }
-
         public void PrimdCopyHMI(VMatStructEntry matStruct, string newExtId, short isTestMat) 
         {
             ME_CODE meCode = ToL2MeCode(matStruct);

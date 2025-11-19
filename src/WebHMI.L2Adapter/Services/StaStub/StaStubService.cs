@@ -16,7 +16,7 @@ namespace WebHMI.L2Adapter.Services.StaStub
         : base(logger, stubFactory)
         {
         }
-
+       
         public void SetpointsCalculationHMI(VMatStructEntry matStruct, string aggregate, string connectionId)
         {
             ME_CODE meCode = ToL2MeCode(matStruct);

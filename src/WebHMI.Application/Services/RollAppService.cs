@@ -745,10 +745,9 @@ namespace WebHMI.Services
 
         [Audited]
         [AbpAuthorize(Permissions.Pages_RollData_Edit)]
-        public async Task SendRollDataRequest(string connectionId, string rollId, string rollType, string plantType, string mode)
-        {
-            //throw new NotImplementedException("L2 call not implemented");
-            //_l2Sender.RollDataRequest(rollId, standId, rollType, rollPosition, plantType, connectionId);
+        public async Task SendRollDataRequest(string rollId, string rollType, string plantType)
+        { 
+            _l2Sender.RequestRollData(plantType, rollId, -1, rollType);
         }
 
         [Audited]

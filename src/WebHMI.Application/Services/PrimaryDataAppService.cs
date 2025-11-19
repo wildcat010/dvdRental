@@ -175,15 +175,10 @@ namespace WebHMI.Services
         {
             var entryMatStruct = await _matStructEntryService.GetMaterialEntryStruct(meid, matType);
 
-            try
-            {
-                _l2CommunicationHandler.PrimdCopyHMI(entryMatStruct, newExtId, isTestMat);
-            }
-            catch (System.Exception ex)
-            {
-                Logger.Error($"[PrimaryData] Cannot execute CopyMaterial method:", ex);
-                throw new UserFriendlyException($"Cannot execute. {ex.Message}");
-            }
+            if (entryMatStruct is null ) throw new UserFriendlyException("Material not found.");
+
+            _l2CommunicationHandler.PrimdCopyHMI(entryMatStruct, newExtId, isTestMat);
+
         }
 
 		private async Task<PrimaryDataDataBlob> GetDataBlob(VMatStructEntry entryMatStruct)
