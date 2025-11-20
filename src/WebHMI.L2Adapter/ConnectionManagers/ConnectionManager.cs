@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using WebHMI.L2Adapter.Common;
 using WebHMI.L2Adapter.Listeners;
 using WebHMI.L2Adapter.Senders;
+using WebHMI.L2Adapter.Services.EspHmi;
 using WebHMI.L2Adapter.Watchdogs;
 using XIDL;
 
@@ -20,6 +21,8 @@ namespace WebHMI.L2Adapter.ConnectionManagers
         private readonly ILogger _logger;
         private readonly PlatformListener _platformListener;
         private readonly AlarmListener _alarmListener;
+        private readonly EspHmi _espHmi;
+
         private bool _disposed = false;
 
         public static bool IsL2CommunicationRunning { get; private set; }
@@ -27,11 +30,13 @@ namespace WebHMI.L2Adapter.ConnectionManagers
         public ConnectionManager(
             ILogger logger,
             PlatformListener platformListener,
+            EspHmi espHmi,
             AlarmListener alarmListener)
         {
             _logger = logger;
             _platformListener = platformListener;
             _alarmListener = alarmListener;
+            _espHmi = espHmi;
 
             StartL2ReconnectionLoop();
         }
@@ -92,6 +97,9 @@ namespace WebHMI.L2Adapter.ConnectionManagers
             {
                 var hmiPaSkeleton = new IHmiPaSkeleton(_platformListener);
                 new Servant("hmiPa", hmiPaSkeleton);
+
+                var espHmiSkeleton = new IEspHmiSkeleton(_espHmi);
+                new Servant("espHmi", espHmiSkeleton);
 
                 var alarmListenerSkeleton = new IAlarmListenerSkeleton(_alarmListener);
                 new Servant("alarmListener", alarmListenerSkeleton);
