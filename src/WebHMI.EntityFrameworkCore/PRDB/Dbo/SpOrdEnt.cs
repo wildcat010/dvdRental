@@ -165,5 +165,10 @@ public partial class SpOrdEnt
     /// </summary>
     public DateTime? Tom { get; set; }
 
+    /// <summary>
+    /// amount of bindings radial
+    /// </summary>
+    public short? AmountBindingsR { get; set; }
+
     public virtual Me1 Me1 { get; set; }
 }

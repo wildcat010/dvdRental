@@ -182,16 +182,20 @@ namespace WebHMI.Mapping.Extensions
             Mounttime = entity.MountTime,
             Dismounttime = entity.DismountTime,
             Grinding = entity.Grinding,
+            GrindingTime = entity.GrindingTime,
             RolledWeight = entity.Rolledweight,
             RolledLength = entity.Rolledlength,
             RelatedRollid = entity.RelatedRollId,
             ResonId = entity.RemoveReason,
             Remarks = entity.Remarks,
             RollChamferClassId = entity.RollChamferCode,
+            RollChamferDesc = entity.RollChamferDesc,
             Shimm = entity.Shimm,
             PlannedInstallTime = entity.PlannedInstallTime,
             RollShapeCode = entity.Shapecode,
             RollShapeType = entity.ShapeType,
+            RolledStrips = entity.RolledStrips,
+            RolledTime = entity.RolledTime,
             Tom = entity.Tom
         };
 

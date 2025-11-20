@@ -1130,5 +1130,10 @@ public partial class SpOrd2PcStand
     /// </summary>
     public DateTime? Tom { get; set; }
 
+    /// <summary>
+    /// Unit[N/m] delta bending force to delta shifiting position (efficiency)
+    /// </summary>
+    public double? DfbDsr { get; set; }
+
     public virtual Me1 Me1 { get; set; }
 }

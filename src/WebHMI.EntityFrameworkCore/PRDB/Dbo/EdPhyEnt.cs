@@ -245,5 +245,35 @@ public partial class EdPhyEnt
     /// </summary>
     public DateTime? Tom { get; set; }
 
+    /// <summary>
+    /// Unit[0, 1] 1 - width change telegram sent to Caster
+    /// </summary>
+    public short? WidthChangeSent { get; set; }
+
+    /// <summary>
+    /// heat plan identification from L3
+    /// </summary>
+    public string HeatPlanId { get; set; }
+
+    /// <summary>
+    /// heat identification assigned by L3
+    /// </summary>
+    public string HeatIdL3 { get; set; }
+
+    /// <summary>
+    /// operation flag from L3
+    /// </summary>
+    public int? OperationFlag { get; set; }
+
+    /// <summary>
+    /// Sequence identifier from L3
+    /// </summary>
+    public int? HeatPos { get; set; }
+
+    /// <summary>
+    /// Row order identifier from L3
+    /// </summary>
+    public int? MatPos { get; set; }
+
     public virtual Me1 Me1 { get; set; }
 }

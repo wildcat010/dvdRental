@@ -145,5 +145,15 @@ public partial class Lp
     /// </summary>
     public DateTime? Tom { get; set; }
 
+    /// <summary>
+    /// description field
+    /// </summary>
+    public string Description { get; set; }
+
+    /// <summary>
+    /// reduction distribution between HRM and HFM
+    /// </summary>
+    public double? RedDistHrmHfm { get; set; }
+
     public virtual Me1 Me1 { get; set; }
 }

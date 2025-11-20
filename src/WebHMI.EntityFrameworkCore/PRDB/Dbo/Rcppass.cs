@@ -150,5 +150,10 @@ public partial class Rcppass
     /// </summary>
     public DateTime? Tom { get; set; }
 
+    /// <summary>
+    /// description field
+    /// </summary>
+    public string Description { get; set; }
+
     public virtual Me1 Me1 { get; set; }
 }

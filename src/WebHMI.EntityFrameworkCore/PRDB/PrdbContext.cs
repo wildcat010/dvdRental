@@ -71,6 +71,8 @@ public partial class PrdbContext : AbpDbContext
 
     public virtual DbSet<CastSlabStartPo> CastSlabStartPos { get; set; }
 
+    public virtual DbSet<CastSlabStartPosL1> CastSlabStartPosL1s { get; set; }
+
     public virtual DbSet<CasterSndRequest> CasterSndRequests { get; set; }
 
     public virtual DbSet<ComInterfaceLog> ComInterfaceLogs { get; set; }
@@ -2267,6 +2269,12 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValue("-")
                 .HasComment("owner")
                 .HasColumnName("owner");
+            entity.Property(e => e.Description)
+                .HasMaxLength(80)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("description field")
+                .HasColumnName("description");
             entity.Property(e => e.Dummy)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[m] dummy for mosDm")
@@ -2355,6 +2363,12 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[0/1] anti-peeling pass state: 0-AUTO, 1-MANUAL")
                 .HasColumnName("antiPeelingState");
+            entity.Property(e => e.Description)
+                .HasMaxLength(80)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("description field")
+                .HasColumnName("description");
             entity.Property(e => e.Mop)
                 .HasMaxLength(120)
                 .IsUnicode(false)
@@ -2410,6 +2424,12 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[Unit] Comment")
                 .HasColumnName("apsKey");
+            entity.Property(e => e.Description)
+                .HasMaxLength(80)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("description field")
+                .HasColumnName("description");
             entity.Property(e => e.Mop)
                 .HasMaxLength(120)
                 .IsUnicode(false)
@@ -4667,6 +4687,80 @@ public partial class PrdbContext : AbpDbContext
                 .HasConstraintName("FK__CastSlabStartPos__65570293");
         });
 
+        modelBuilder.Entity<CastSlabStartPosL1>(entity =>
+        {
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId }).HasName("PK__CastSlab__97FBDCEFBD758F16");
+
+            entity.ToTable("CastSlabStartPosL1", "PRDB", tb =>
+                {
+                    tb.HasComment("");
+                    tb.HasTrigger("TI_CastSlabStartPosL1");
+                    tb.HasTrigger("TU_CastSlabStartPosL1");
+                });
+
+            entity.Property(e => e.MeId)
+                .HasDefaultValue(1)
+                .HasComment("Material idendification number")
+                .HasColumnName("meId");
+            entity.Property(e => e.MeCreator)
+                .HasMaxLength(2)
+                .IsUnicode(false)
+                .HasDefaultValue("")
+                .HasComment("Material owner")
+                .HasColumnName("meCreator");
+            entity.Property(e => e.MesId)
+                .HasDefaultValue((short)1)
+                .HasComment("Line status")
+                .HasColumnName("mesId");
+            entity.Property(e => e.ExtId)
+                .IsRequired()
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasDefaultValue("-")
+                .HasComment("external material identification")
+                .HasColumnName("extId");
+            entity.Property(e => e.HeatId)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("")
+                .HasColumnName("heatId");
+            entity.Property(e => e.MoldWidth)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] casted width at startPos")
+                .HasColumnName("moldWidth");
+            entity.Property(e => e.Mop)
+                .HasMaxLength(120)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("modifying process")
+                .HasColumnName("mop");
+            entity.Property(e => e.SequenceId)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("")
+                .HasColumnName("sequenceId");
+            entity.Property(e => e.StartPos)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] start position of slab in cast")
+                .HasColumnName("startPos");
+            entity.Property(e => e.Toc)
+                .HasPrecision(3)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("time of creation")
+                .HasColumnName("toc");
+            entity.Property(e => e.Tom)
+                .HasPrecision(3)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("time of modification")
+                .HasColumnName("tom");
+
+            entity.HasOne(d => d.Me1).WithOne(p => p.CastSlabStartPosL1)
+                .HasForeignKey<CastSlabStartPosL1>(d => new { d.MeId, d.MeCreator, d.MesId })
+                .HasConstraintName("FK__CastSlabStartPos__7ACA4E21");
+        });
+
         modelBuilder.Entity<CasterSndRequest>(entity =>
         {
             entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.SeqNum }).HasName("PK__CasterSn__6D0E24889B14AE7D");
@@ -4883,6 +4977,7 @@ public partial class PrdbContext : AbpDbContext
             entity.ToTable("CsCrs", "PRDB", tb =>
                 {
                     tb.HasComment("Material specific strategy Table with Effective (E), Manual (M) and original (X) lines for each material");
+                    tb.HasTrigger("TEXTID_CsCrs");
                     tb.HasTrigger("TI_CsCrs");
                     tb.HasTrigger("TU_CsCrs");
                 });
@@ -5091,6 +5186,12 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[0...999] plan number")
                 .HasColumnName("planNo");
+            entity.Property(e => e.ToExtId)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("External material ID")
+                .HasColumnName("toExtID");
             entity.Property(e => e.Toc)
                 .HasPrecision(3)
                 .HasDefaultValueSql("(NULL)")
@@ -5599,6 +5700,7 @@ public partial class PrdbContext : AbpDbContext
             entity.ToTable("CsPerf", "PRDB", tb =>
                 {
                     tb.HasComment("Material specific strategy Table with Effective (E), Manual (M) and original (X) lines for each material");
+                    tb.HasTrigger("TEXTID_CsPerf");
                     tb.HasTrigger("TI_CsPerf");
                     tb.HasTrigger("TU_CsPerf");
                 });
@@ -5671,6 +5773,12 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[0...999] plan number")
                 .HasColumnName("planNo");
+            entity.Property(e => e.ToExtId)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("External material ID")
+                .HasColumnName("toExtID");
             entity.Property(e => e.Toc)
                 .HasPrecision(3)
                 .HasDefaultValueSql("(NULL)")
@@ -5694,6 +5802,7 @@ public partial class PrdbContext : AbpDbContext
             entity.ToTable("CsProfile", "PRDB", tb =>
                 {
                     tb.HasComment("Material specific strategy Table with Effective (E), Manual (M) and original (X) lines for each material");
+                    tb.HasTrigger("TEXTID_CsProfile");
                     tb.HasTrigger("TI_CsProfile");
                     tb.HasTrigger("TU_CsProfile");
                 });
@@ -5770,6 +5879,12 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[0...999] plan number")
                 .HasColumnName("planNo");
+            entity.Property(e => e.ToExtId)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("External material ID")
+                .HasColumnName("toExtID");
             entity.Property(e => e.Toc)
                 .HasPrecision(3)
                 .HasDefaultValueSql("(NULL)")
@@ -7647,161 +7762,220 @@ public partial class PrdbContext : AbpDbContext
 
             entity.ToTable("CsStrategy", "PRDB", tb =>
                 {
+                    tb.HasComment("Material specific strategy Table with Effective (E), Manual (M) and original (X) lines for each material");
+                    tb.HasTrigger("TEXTID_CsStrategy");
                     tb.HasTrigger("TI_CsStrategy");
                     tb.HasTrigger("TU_CsStrategy");
                 });
 
             entity.Property(e => e.MeId)
                 .HasDefaultValue(1)
+                .HasComment("Material idendification number")
                 .HasColumnName("meId");
             entity.Property(e => e.MeCreator)
                 .HasMaxLength(2)
                 .IsUnicode(false)
                 .HasDefaultValue("")
+                .HasComment("Material owner")
                 .HasColumnName("meCreator");
             entity.Property(e => e.MesId)
                 .HasDefaultValue((short)1)
+                .HasComment("Line status")
                 .HasColumnName("mesId");
             entity.Property(e => e.Source)
                 .HasMaxLength(5)
                 .IsUnicode(false)
                 .HasDefaultValue("-")
+                .HasComment("L: L3 PDI, E Effective, M Manual")
                 .HasColumnName("source");
             entity.Property(e => e.AdaptationFm)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("FM in bar adaption on (1), off (2)")
                 .HasColumnName("adaptationFM");
             entity.Property(e => e.AdaptationInd0)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("dynamic control in bar adaption on (1), off (2)")
                 .HasColumnName("adaptation_ind0");
             entity.Property(e => e.AdaptationInd1)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("dynamic control in bar adaption on (1), off (2)")
                 .HasColumnName("adaptation_ind1");
             entity.Property(e => e.AutoSplineTempTransition)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[degC] dynamic control auto spline transition temperature")
                 .HasColumnName("autoSplineTempTransition");
             entity.Property(e => e.AutoSplineValueLowBot)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0..1] dynamic control auto spline low value (cool rate) bottom valves; in HMI in [%]")
                 .HasColumnName("autoSplineValueLowBot");
             entity.Property(e => e.AutoSplineValueLowTop)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0..1] dynamic control auto spline low value (cool rate) top valves; in HMI in [%]")
                 .HasColumnName("autoSplineValueLowTop");
             entity.Property(e => e.CoolRateBotInd0)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("dynamic control cool rate(s) bot")
                 .HasColumnName("coolRateBot_ind0");
             entity.Property(e => e.CoolRateBotInd1)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("dynamic control cool rate(s) bot")
                 .HasColumnName("coolRateBot_ind1");
             entity.Property(e => e.CoolRateTopInd0)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("dynamic control cool rate(s) top")
                 .HasColumnName("coolRateTop_ind0");
             entity.Property(e => e.CoolRateTopInd1)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("dynamic control cool rate(s) top")
                 .HasColumnName("coolRateTop_ind1");
             entity.Property(e => e.CoolingStrategy)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("cooling strategy, as defined in enum CoolingStrategy of CS_CoolingCourse.h")
                 .HasColumnName("coolingStrategy");
             entity.Property(e => e.Description)
                 .HasMaxLength(80)
                 .IsUnicode(false)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Common data of CsStrategy and StdCsStrategy")
                 .HasColumnName("description");
             entity.Property(e => e.FtzLoad)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0..1] fine tuning zone; in HMI in [%]")
                 .HasColumnName("ftzLoad");
             entity.Property(e => e.HoldTime)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[s] dynamic control hold time(s)")
                 .HasColumnName("holdTime");
             entity.Property(e => e.LeadingPyroIndexInd0)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[idx] dynamic control leading pyrometers indexe(s); also in HMI the undexe(s) are displayed")
                 .HasColumnName("leadingPyroIndex_ind0");
             entity.Property(e => e.LeadingPyroIndexInd1)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[idx] dynamic control leading pyrometers indexe(s); also in HMI the undexe(s) are displayed")
                 .HasColumnName("leadingPyroIndex_ind1");
             entity.Property(e => e.ManInt)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("manual intervention in plan")
                 .HasColumnName("manInt");
             entity.Property(e => e.Mop)
                 .HasMaxLength(120)
                 .IsUnicode(false)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("modifying process")
                 .HasColumnName("mop");
             entity.Property(e => e.PlanNo)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0...999] plan number")
                 .HasColumnName("planNo");
             entity.Property(e => e.StartValveNumberBotInd0)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[1..999] dynamic control bot start valve(s) number of controller(s); also in HMI the first valve has number 1")
                 .HasColumnName("startValveNumberBot_ind0");
             entity.Property(e => e.StartValveNumberBotInd1)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[1..999] dynamic control bot start valve(s) number of controller(s); also in HMI the first valve has number 1")
                 .HasColumnName("startValveNumberBot_ind1");
             entity.Property(e => e.StartValveNumberTopInd0)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[1..999] dynamic control top start valve(s) number of controller(s); also in HMI the first valve has number 1")
                 .HasColumnName("startValveNumberTop_ind0");
             entity.Property(e => e.StartValveNumberTopInd1)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[1..999] dynamic control top start valve(s) number of controller(s); also in HMI the first valve has number 1")
                 .HasColumnName("startValveNumberTop_ind1");
             entity.Property(e => e.TargetF4tInd0)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0..1] dynamic control target F4T(s); in HMI in [%]")
                 .HasColumnName("targetF4t_ind0");
             entity.Property(e => e.TargetF4tInd1)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0..1] dynamic control target F4T(s); in HMI in [%]")
                 .HasColumnName("targetF4t_ind1");
             entity.Property(e => e.TargetTempInd0)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[degC] dynamic control target temperature(s)")
                 .HasColumnName("targetTemp_ind0");
             entity.Property(e => e.TargetTempInd1)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[degC] dynamic control target temperature(s)")
                 .HasColumnName("targetTemp_ind1");
             entity.Property(e => e.TempGradInd0)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("temperature gradient for first phase")
                 .HasColumnName("tempGrad_ind0");
             entity.Property(e => e.TempGradInd1)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("temperature gradient for first phase")
                 .HasColumnName("tempGrad_ind1");
             entity.Property(e => e.TempOffsetAInd0)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[degC] dynamic control target temperature offset(s) A (head)")
                 .HasColumnName("tempOffsetA_ind0");
             entity.Property(e => e.TempOffsetAInd1)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[degC] dynamic control target temperature offset(s) A (head)")
                 .HasColumnName("tempOffsetA_ind1");
             entity.Property(e => e.TempOffsetBInd0)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[degC] dynamic control target temperature offset(s) B (tail)")
                 .HasColumnName("tempOffsetB_ind0");
             entity.Property(e => e.TempOffsetBInd1)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[degC] dynamic control target temperature offset(s) B (tail)")
                 .HasColumnName("tempOffsetB_ind1");
             entity.Property(e => e.TempOffsetFmA)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[degC] FM target temperature offset(s) A (head)")
                 .HasColumnName("tempOffsetFmA");
             entity.Property(e => e.TempOffsetFmB)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[degC] FM target temperature offset(s) B (tail)")
                 .HasColumnName("tempOffsetFmB");
+            entity.Property(e => e.ToExtId)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("External material ID")
+                .HasColumnName("toExtID");
             entity.Property(e => e.Toc)
                 .HasPrecision(3)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("time of creation")
                 .HasColumnName("toc");
             entity.Property(e => e.Tom)
                 .HasPrecision(3)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("time of modification")
                 .HasColumnName("tom");
             entity.Property(e => e.UseTempGradSelectionInd0)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("NULL: tempGrad part invisible, 0: use coolrate (tempGrad calculated from coolrate for reference), 1: use tempGrad (coolRate is calculated from desired tempGrad at strip head and gets read only)")
                 .HasColumnName("useTempGradSelection_ind0");
             entity.Property(e => e.UseTempGradSelectionInd1)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("NULL: tempGrad part invisible, 0: use coolrate (tempGrad calculated from coolrate for reference), 1: use tempGrad (coolRate is calculated from desired tempGrad at strip head and gets read only)")
                 .HasColumnName("useTempGradSelection_ind1");
             entity.Property(e => e.ValveRatioBotInd0)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Example: behaves like 2 to 3 (top to bottom)")
                 .HasColumnName("valveRatioBot_ind0");
             entity.Property(e => e.ValveRatioBotInd1)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Example: behaves like 2 to 3 (top to bottom)")
                 .HasColumnName("valveRatioBot_ind1");
             entity.Property(e => e.ValveRatioTopInd0)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Example: behaves like 2 to 3 (top to bottom)")
                 .HasColumnName("valveRatioTop_ind0");
             entity.Property(e => e.ValveRatioTopInd1)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Example: behaves like 2 to 3 (top to bottom)")
                 .HasColumnName("valveRatioTop_ind1");
+            entity.Property(e => e.ValveSequenceIndexCus)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("[0..x] valveSequence index for direct reference of a customer specific ValveSequenceClusterDcCus_xx (optional)")
+                .HasColumnName("valveSequenceIndexCus");
 
             entity.HasOne(d => d.Me1).WithMany(p => p.CsStrategies)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
@@ -8901,6 +9075,12 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[m] delay length for descaler switch ON")
                 .HasColumnName("delayLength");
+            entity.Property(e => e.Description)
+                .HasMaxLength(80)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("description field")
+                .HasColumnName("description");
             entity.Property(e => e.Mop)
                 .HasMaxLength(120)
                 .IsUnicode(false)
@@ -8966,6 +9146,12 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[m] delay length for descaler switch ON")
                 .HasColumnName("delayLength");
+            entity.Property(e => e.Description)
+                .HasMaxLength(80)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("description field")
+                .HasColumnName("description");
             entity.Property(e => e.Mop)
                 .HasMaxLength(120)
                 .IsUnicode(false)
@@ -9089,6 +9275,12 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[0...1] descaler ramp volume flow factor from max flow")
                 .HasColumnName("descRampVolume");
+            entity.Property(e => e.Description)
+                .HasMaxLength(80)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("description field")
+                .HasColumnName("description");
             entity.Property(e => e.Mop)
                 .HasMaxLength(120)
                 .IsUnicode(false)
@@ -9165,6 +9357,12 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[0...1] descaler ramp volume flow factor from max flow")
                 .HasColumnName("descRampVolume");
+            entity.Property(e => e.Description)
+                .HasMaxLength(80)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("description field")
+                .HasColumnName("description");
             entity.Property(e => e.Mop)
                 .HasMaxLength(120)
                 .IsUnicode(false)
@@ -9737,6 +9935,14 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[_C] Cooling Section: Coil target temperature for body of strip")
                 .HasColumnName("coilTemp");
+            entity.Property(e => e.CoilTempLimitMaxCust)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] Customer limit for maximum coil temp")
+                .HasColumnName("coilTempLimitMaxCust");
+            entity.Property(e => e.CoilTempLimitMinCust)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] Customer limit for minimum coil temp")
+                .HasColumnName("coilTempLimitMinCust");
             entity.Property(e => e.CoilTempMaxTol)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[_C] CoolingSection: Max cooling section exit strip temperature delta")
@@ -9857,6 +10063,10 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[s] time of slab in furnace (if available)")
                 .HasColumnName("duration");
+            entity.Property(e => e.EdgeMask)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] ")
+                .HasColumnName("edgeMask");
             entity.Property(e => e.ExitCrownC25)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[m] Finished strip crown C25")
@@ -9905,6 +10115,14 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("(Arvedi not available)  stainless steel")
                 .HasColumnName("flagStainless");
+            entity.Property(e => e.FmTempLimitMaxCust)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] Customer limit for maximum fm exit temp")
+                .HasColumnName("fmTempLimitMaxCust");
+            entity.Property(e => e.FmTempLimitMinCust)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] Customer limit for minimum fm exit temp")
+                .HasColumnName("fmTempLimitMinCust");
             entity.Property(e => e.FractionForTransition)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("CoolingSection: fraction for transition: desired fraction of non-austenitic material at coiler for high carbon steels")
@@ -10011,6 +10229,12 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("identification, material data OK = 1")
                 .HasColumnName("ok");
+            entity.Property(e => e.OperationFlag)
+                .HasMaxLength(1)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("D or I or U")
+                .HasColumnName("operationFlag");
             entity.Property(e => e.OrderNo)
                 .HasMaxLength(20)
                 .IsUnicode(false)
@@ -10059,10 +10283,26 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("(Arvedi not available)parent original workstep (before divide)")
                 .HasColumnName("parentOriMesId");
+            entity.Property(e => e.PartNum)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("part number of material")
+                .HasColumnName("partNum");
             entity.Property(e => e.PlannedDivision)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[%] (Arvedi not available)percent of slab length planned for the first strip")
                 .HasColumnName("plannedDivision");
+            entity.Property(e => e.ProdType)
+                .HasMaxLength(40)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("")
+                .HasColumnName("prodType");
+            entity.Property(e => e.ProductionOrderId)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("")
+                .HasColumnName("productionOrderId");
             entity.Property(e => e.RMtargProfile)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("target profile for HRM exit, 1 = 1prz")
@@ -10489,6 +10729,14 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[_C/s] CoolingSection: (not used for Arvedi) critical temperature")
                 .HasColumnName("tempGrad");
+            entity.Property(e => e.ThickLimitMaxCust)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] Customer limit for maximum thickness")
+                .HasColumnName("thickLimitMaxCust");
+            entity.Property(e => e.ThickLimitMinCust)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] Customer limit for minimum thickness")
+                .HasColumnName("thickLimitMinCust");
             entity.Property(e => e.Toc)
                 .HasPrecision(3)
                 .HasDefaultValueSql("(NULL)")
@@ -10519,6 +10767,14 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Finishing strip width (only for marking device)")
                 .HasColumnName("widthExitCus");
+            entity.Property(e => e.WidthLimitMaxCust)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] Customer limit for maximum width")
+                .HasColumnName("widthLimitMaxCust");
+            entity.Property(e => e.WidthLimitMinCust)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] Customer limit for minimum width")
+                .HasColumnName("widthLimitMinCust");
 
             entity.HasOne(d => d.Me1).WithMany(p => p.EdOrdEnts)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
@@ -10614,10 +10870,30 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("heat identification")
                 .HasColumnName("heatId");
+            entity.Property(e => e.HeatIdL3)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("heat identification assigned by L3")
+                .HasColumnName("heatIdL3");
+            entity.Property(e => e.HeatPlanId)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("heat plan identification from L3")
+                .HasColumnName("heatPlanId");
+            entity.Property(e => e.HeatPos)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Sequence identifier from L3")
+                .HasColumnName("heatPos");
             entity.Property(e => e.LEntryFm)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Entry length FM")
                 .HasColumnName("lEntryFM");
+            entity.Property(e => e.MatPos)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Row order identifier from L3")
+                .HasColumnName("matPos");
             entity.Property(e => e.MaxSlabLength)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[m] maximum slab length (used as cutting limit)")
@@ -10648,6 +10924,10 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("identification, all material data OK = 1")
                 .HasColumnName("okAll");
+            entity.Property(e => e.OperationFlag)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("operation flag from L3")
+                .HasColumnName("operationFlag");
             entity.Property(e => e.PlanId)
                 .HasMaxLength(6)
                 .IsUnicode(false)
@@ -10740,6 +11020,10 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("width change over entire coil")
                 .HasColumnName("widthChangeFlag");
+            entity.Property(e => e.WidthChangeSent)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0, 1] 1 - width change telegram sent to Caster")
+                .HasColumnName("widthChangeSent");
             entity.Property(e => e.WidthExitCustomer)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[m] width exit orderd by customer")
@@ -14190,6 +14474,7 @@ public partial class PrdbContext : AbpDbContext
                 .HasPrecision(3)
                 .HasColumnName("dismountTime");
             entity.Property(e => e.Grinding).HasColumnName("grinding");
+            entity.Property(e => e.GrindingTime).HasColumnType("datetime");
             entity.Property(e => e.InitTemp).HasColumnName("initTemp");
             entity.Property(e => e.MountTime)
                 .HasPrecision(3)
@@ -14217,6 +14502,9 @@ public partial class PrdbContext : AbpDbContext
                 .HasColumnName("remarks");
             entity.Property(e => e.RemoveReason).HasColumnName("removeReason");
             entity.Property(e => e.RollChamferCode).HasColumnName("rollChamferCode");
+            entity.Property(e => e.RollChamferDesc)
+                .HasMaxLength(80)
+                .IsUnicode(false);
             entity.Property(e => e.RollClass).HasColumnName("rollClass");
             entity.Property(e => e.RollId)
                 .IsRequired()
@@ -14237,6 +14525,7 @@ public partial class PrdbContext : AbpDbContext
                 .HasMaxLength(80)
                 .IsUnicode(false)
                 .HasColumnName("ROLLCLASSDESC");
+            entity.Property(e => e.RolledStrips).HasColumnName("rolledStrips");
             entity.Property(e => e.Rolledlength).HasColumnName("rolledlength");
             entity.Property(e => e.Rolledweight).HasColumnName("rolledweight");
             entity.Property(e => e.Rollpropertydesc)
@@ -14681,6 +14970,12 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValue("-")
                 .HasComment("")
                 .HasColumnName("source");
+            entity.Property(e => e.Description)
+                .HasMaxLength(80)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("description field")
+                .HasColumnName("description");
             entity.Property(e => e.Mop)
                 .HasMaxLength(120)
                 .IsUnicode(false)
@@ -16072,6 +16367,12 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValue("-")
                 .HasComment("owner")
                 .HasColumnName("source");
+            entity.Property(e => e.Description)
+                .HasMaxLength(80)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("description field")
+                .HasColumnName("description");
             entity.Property(e => e.Dummy)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[m] dummy for mosDm")
@@ -16148,6 +16449,12 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[0...1] descaler factor from maximum cooling flow")
                 .HasColumnName("descalerVolume");
+            entity.Property(e => e.Description)
+                .HasMaxLength(80)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("description field")
+                .HasColumnName("description");
             entity.Property(e => e.FumeSuppSprayBefor)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[0...1] fume (dust) suppresion spray")
@@ -16176,6 +16483,10 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[0...1] ISC maximum volume factor from maximum cooling flow (plant par). [0]= isc 0, [1]= isc 1, [2]= mill stand power cooling")
                 .HasColumnName("iscMaxVolume_ind2");
+            entity.Property(e => e.IscMaxVolumeInd3)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0...1] ISC maximum volume factor from maximum cooling flow (plant par). [0]= isc 0, [1]= isc 1, [2]= mill stand power cooling")
+                .HasColumnName("iscMaxVolume_ind3");
             entity.Property(e => e.IscMinVolumeInd0)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[0...1] ISC minimum volume factor from maximum cooling flow (plant par). [0]= isc 0, [1]= isc 1, [2]= mill stand power cooling")
@@ -16188,6 +16499,10 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[0...1] ISC minimum volume factor from maximum cooling flow (plant par). [0]= isc 0, [1]= isc 1, [2]= mill stand power cooling")
                 .HasColumnName("iscMinVolume_ind2");
+            entity.Property(e => e.IscMinVolumeInd3)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0...1] ISC minimum volume factor from maximum cooling flow (plant par). [0]= isc 0, [1]= isc 1, [2]= mill stand power cooling")
+                .HasColumnName("iscMinVolume_ind3");
             entity.Property(e => e.IscState)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[0 / 1] ISC state: ON=0, OFF=1")
@@ -16204,6 +16519,10 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[0...1] ISC volume factor from maximum cooling flow (plant par). [0]= isc 0, [1]= isc 1, [2]= mill stand power cooling")
                 .HasColumnName("iscVolume_ind2");
+            entity.Property(e => e.IscVolumeInd3)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0...1] ISC volume factor from maximum cooling flow (plant par). [0]= isc 0, [1]= isc 1, [2]= mill stand power cooling")
+                .HasColumnName("iscVolume_ind3");
             entity.Property(e => e.LooperCool)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[0...1] looper cooling")
@@ -26027,6 +26346,12 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValue("-")
                 .HasComment("owner")
                 .HasColumnName("source");
+            entity.Property(e => e.Description)
+                .HasMaxLength(80)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("description field")
+                .HasColumnName("description");
             entity.Property(e => e.FactorThickHead)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("factor thick head ( h_exit X faktor = h_exit thick head )")
@@ -26061,6 +26386,10 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("power speed up state: 0=off, 1=on")
                 .HasColumnName("powerSpeedUpState");
+            entity.Property(e => e.RedDistHrmHfm)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("reduction distribution between HRM and HFM")
+                .HasColumnName("redDistHrmHfm");
             entity.Property(e => e.RollSpeed)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[m/s] normal speed during rolling (strip speed exit fm target rolling)")
@@ -26179,6 +26508,12 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[-1 ... +1] circum speed correction")
                 .HasColumnName("circumSpeedCorrection");
+            entity.Property(e => e.Description)
+                .HasMaxLength(80)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("description field")
+                .HasColumnName("description");
             entity.Property(e => e.LoadingType)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("loading type defined in scDef.h")
@@ -36279,6 +36614,12 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValue("-")
                 .HasComment("owner")
                 .HasColumnName("source");
+            entity.Property(e => e.Description)
+                .HasMaxLength(80)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("description field")
+                .HasColumnName("description");
             entity.Property(e => e.Dummy)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[m] dummy for mosDm")
@@ -36347,6 +36688,12 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[s] delay time for roll cooling")
                 .HasColumnName("delayTime");
+            entity.Property(e => e.Description)
+                .HasMaxLength(80)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("description field")
+                .HasColumnName("description");
             entity.Property(e => e.FlowBrIdleInd0)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[0..1] area back up roll, factor flow back up roll cooling idle")
@@ -36480,6 +36827,12 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValue("-")
                 .HasComment("owner")
                 .HasColumnName("source");
+            entity.Property(e => e.Description)
+                .HasMaxLength(80)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("description field")
+                .HasColumnName("description");
             entity.Property(e => e.Dummy)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[m] dummy for mosDm")
@@ -36544,6 +36897,12 @@ public partial class PrdbContext : AbpDbContext
             entity.Property(e => e.PassNo)
                 .HasComment("pass number")
                 .HasColumnName("passNo");
+            entity.Property(e => e.Description)
+                .HasMaxLength(80)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("description field")
+                .HasColumnName("description");
             entity.Property(e => e.Mop)
                 .HasMaxLength(120)
                 .IsUnicode(false)
@@ -51378,6 +51737,10 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[N/N] delta bending force  to delta roll force (efficency)")
                 .HasColumnName("dfbDfr");
+            entity.Property(e => e.DfbDsr)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[N/m] delta bending force to delta shifiting position (efficiency)")
+                .HasColumnName("dfbDsr");
             entity.Property(e => e.DfbDt)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[N/s] gradient bending force change to compensate thermal crown dFB/dt - to reach constant gap profile")
@@ -51814,6 +52177,10 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("amount of bindings circumferential")
                 .HasColumnName("amountBindings");
+            entity.Property(e => e.AmountBindingsR)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("amount of bindings radial")
+                .HasColumnName("amountBindingsR");
             entity.Property(e => e.ApsKey)
                 .HasMaxLength(6)
                 .IsUnicode(false)
@@ -52253,6 +52620,7 @@ public partial class PrdbContext : AbpDbContext
             entity.ToTable("Stat_CsCrs", "PRDB", tb =>
                 {
                     tb.HasComment("Material specific strategy Table with Effective (E), Manual (M) and original (X) lines for each material");
+                    tb.HasTrigger("TEXTID_Stat_CsCrs");
                     tb.HasTrigger("TI_Stat_CsCrs");
                     tb.HasTrigger("TU_Stat_CsCrs");
                 });
@@ -52459,6 +52827,12 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("plan number")
                 .HasColumnName("planNo");
+            entity.Property(e => e.ToExtId)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("External material ID")
+                .HasColumnName("toExtID");
             entity.Property(e => e.Toc)
                 .HasPrecision(3)
                 .HasDefaultValueSql("(NULL)")
@@ -52482,6 +52856,7 @@ public partial class PrdbContext : AbpDbContext
             entity.ToTable("Stat_CsPerf", "PRDB", tb =>
                 {
                     tb.HasComment("Material specific strategy Table with Effective (E), Manual (M) and original (X) lines for each material");
+                    tb.HasTrigger("TEXTID_Stat_CsPerf");
                     tb.HasTrigger("TI_Stat_CsPerf");
                     tb.HasTrigger("TU_Stat_CsPerf");
                 });
@@ -52552,6 +52927,12 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("plan number")
                 .HasColumnName("planNo");
+            entity.Property(e => e.ToExtId)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("External material ID")
+                .HasColumnName("toExtID");
             entity.Property(e => e.Toc)
                 .HasPrecision(3)
                 .HasDefaultValueSql("(NULL)")
@@ -52575,6 +52956,7 @@ public partial class PrdbContext : AbpDbContext
             entity.ToTable("Stat_CsProfile", "PRDB", tb =>
                 {
                     tb.HasComment("Material specific strategy Table with Effective (E), Manual (M) and original (X) lines for each material");
+                    tb.HasTrigger("TEXTID_Stat_CsProfile");
                     tb.HasTrigger("TI_Stat_CsProfile");
                     tb.HasTrigger("TU_Stat_CsProfile");
                 });
@@ -52649,6 +53031,12 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("plan number")
                 .HasColumnName("planNo");
+            entity.Property(e => e.ToExtId)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("External material ID")
+                .HasColumnName("toExtID");
             entity.Property(e => e.Toc)
                 .HasPrecision(3)
                 .HasDefaultValueSql("(NULL)")
@@ -52829,206 +53217,70 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValue("-")
                 .HasComment("L: L3 PDI, E Effective, M Manual")
                 .HasColumnName("source");
-            entity.Property(e => e.Aft)
+            entity.Property(e => e.AdaptationFm)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("FM in bar adaption on (1), off (2)")
-                .HasColumnName("aft");
+                .HasColumnName("adaptationFM");
+            entity.Property(e => e.AdaptationInd0)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("dynamic control in bar adaption on (1), off (2)")
+                .HasColumnName("adaptation_ind0");
+            entity.Property(e => e.AdaptationInd1)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("dynamic control in bar adaption on (1), off (2)")
+                .HasColumnName("adaptation_ind1");
+            entity.Property(e => e.AutoSplineTempTransition)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("dynamic control auto spline transition temperature")
+                .HasColumnName("autoSplineTempTransition");
+            entity.Property(e => e.AutoSplineValueLowBot)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("dynamic control auto spline low value (cool rate) bottom valves; in HMI in [%]")
+                .HasColumnName("autoSplineValueLowBot");
+            entity.Property(e => e.AutoSplineValueLowTop)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("dynamic control auto spline low value (cool rate) top valves; in HMI in [%]")
+                .HasColumnName("autoSplineValueLowTop");
+            entity.Property(e => e.CoolRateBotInd0)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("dynamic control cool rate(s) bot")
+                .HasColumnName("coolRateBot_ind0");
+            entity.Property(e => e.CoolRateBotInd1)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("dynamic control cool rate(s) bot")
+                .HasColumnName("coolRateBot_ind1");
+            entity.Property(e => e.CoolRateTopInd0)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("dynamic control cool rate(s) top")
+                .HasColumnName("coolRateTop_ind0");
+            entity.Property(e => e.CoolRateTopInd1)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("dynamic control cool rate(s) top")
+                .HasColumnName("coolRateTop_ind1");
             entity.Property(e => e.CoolingStrategy)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("cooling strategy, as defined in enum CoolingStrategy of CS_CoolingCourse.h")
                 .HasColumnName("coolingStrategy");
-            entity.Property(e => e.DcAdaptationInd0)
-                .HasDefaultValueSql("(NULL)")
-                .HasComment("dynamic control in bar adaption on (1), off (2)")
-                .HasColumnName("dcAdaptation_ind0");
-            entity.Property(e => e.DcAdaptationInd1)
-                .HasDefaultValueSql("(NULL)")
-                .HasComment("dynamic control in bar adaption on (1), off (2)")
-                .HasColumnName("dcAdaptation_ind1");
-            entity.Property(e => e.DcAdaptationInd2)
-                .HasDefaultValueSql("(NULL)")
-                .HasComment("dynamic control in bar adaption on (1), off (2)")
-                .HasColumnName("dcAdaptation_ind2");
-            entity.Property(e => e.DcAdaptationInd3)
-                .HasDefaultValueSql("(NULL)")
-                .HasComment("dynamic control in bar adaption on (1), off (2)")
-                .HasColumnName("dcAdaptation_ind3");
-            entity.Property(e => e.DcAutoSplineTempTransition)
-                .HasDefaultValueSql("(NULL)")
-                .HasComment("dynamic control auto spline transition temperature")
-                .HasColumnName("dcAutoSplineTempTransition");
-            entity.Property(e => e.DcAutoSplineValueLowBot)
-                .HasDefaultValueSql("(NULL)")
-                .HasComment("dynamic control auto spline low value (cool rate) bottom valves")
-                .HasColumnName("dcAutoSplineValueLowBot");
-            entity.Property(e => e.DcAutoSplineValueLowTop)
-                .HasDefaultValueSql("(NULL)")
-                .HasComment("dynamic control auto spline low value (cool rate) top valves")
-                .HasColumnName("dcAutoSplineValueLowTop");
-            entity.Property(e => e.DcCoolRateBotInd0)
-                .HasDefaultValueSql("(NULL)")
-                .HasComment("dynamic control cool rate(s) bot")
-                .HasColumnName("dcCoolRateBot_ind0");
-            entity.Property(e => e.DcCoolRateBotInd1)
-                .HasDefaultValueSql("(NULL)")
-                .HasComment("dynamic control cool rate(s) bot")
-                .HasColumnName("dcCoolRateBot_ind1");
-            entity.Property(e => e.DcCoolRateBotInd2)
-                .HasDefaultValueSql("(NULL)")
-                .HasComment("dynamic control cool rate(s) bot")
-                .HasColumnName("dcCoolRateBot_ind2");
-            entity.Property(e => e.DcCoolRateBotInd3)
-                .HasDefaultValueSql("(NULL)")
-                .HasComment("dynamic control cool rate(s) bot")
-                .HasColumnName("dcCoolRateBot_ind3");
-            entity.Property(e => e.DcCoolRateTopInd0)
-                .HasDefaultValueSql("(NULL)")
-                .HasComment("dynamic control cool rate(s) top")
-                .HasColumnName("dcCoolRateTop_ind0");
-            entity.Property(e => e.DcCoolRateTopInd1)
-                .HasDefaultValueSql("(NULL)")
-                .HasComment("dynamic control cool rate(s) top")
-                .HasColumnName("dcCoolRateTop_ind1");
-            entity.Property(e => e.DcCoolRateTopInd2)
-                .HasDefaultValueSql("(NULL)")
-                .HasComment("dynamic control cool rate(s) top")
-                .HasColumnName("dcCoolRateTop_ind2");
-            entity.Property(e => e.DcCoolRateTopInd3)
-                .HasDefaultValueSql("(NULL)")
-                .HasComment("dynamic control cool rate(s) top")
-                .HasColumnName("dcCoolRateTop_ind3");
-            entity.Property(e => e.DcHoldTimeInd0)
-                .HasDefaultValueSql("(NULL)")
-                .HasComment("dynamic control hold time(s)")
-                .HasColumnName("dcHoldTime_ind0");
-            entity.Property(e => e.DcHoldTimeInd1)
-                .HasDefaultValueSql("(NULL)")
-                .HasComment("dynamic control hold time(s)")
-                .HasColumnName("dcHoldTime_ind1");
-            entity.Property(e => e.DcHoldTimeInd2)
-                .HasDefaultValueSql("(NULL)")
-                .HasComment("dynamic control hold time(s)")
-                .HasColumnName("dcHoldTime_ind2");
-            entity.Property(e => e.DcLeadingPyroInd0)
-                .HasDefaultValueSql("(NULL)")
-                .HasComment("dynamic control leading pyrometers indexe(s)")
-                .HasColumnName("dcLeadingPyro_ind0");
-            entity.Property(e => e.DcLeadingPyroInd1)
-                .HasDefaultValueSql("(NULL)")
-                .HasComment("dynamic control leading pyrometers indexe(s)")
-                .HasColumnName("dcLeadingPyro_ind1");
-            entity.Property(e => e.DcLeadingPyroInd2)
-                .HasDefaultValueSql("(NULL)")
-                .HasComment("dynamic control leading pyrometers indexe(s)")
-                .HasColumnName("dcLeadingPyro_ind2");
-            entity.Property(e => e.DcLeadingPyroInd3)
-                .HasDefaultValueSql("(NULL)")
-                .HasComment("dynamic control leading pyrometers indexe(s)")
-                .HasColumnName("dcLeadingPyro_ind3");
-            entity.Property(e => e.DcMode)
-                .HasDefaultValueSql("(NULL)")
-                .HasComment("dynamic control cool mode (for single phase only), target is on intermerdiate place (0) or coiler (1)")
-                .HasColumnName("dcMode");
-            entity.Property(e => e.DcStartPosInd0)
-                .HasDefaultValueSql("(NULL)")
-                .HasComment("dynamic control start valve(s) of controller(s)")
-                .HasColumnName("dcStartPos_ind0");
-            entity.Property(e => e.DcStartPosInd1)
-                .HasDefaultValueSql("(NULL)")
-                .HasComment("dynamic control start valve(s) of controller(s)")
-                .HasColumnName("dcStartPos_ind1");
-            entity.Property(e => e.DcStartPosInd2)
-                .HasDefaultValueSql("(NULL)")
-                .HasComment("dynamic control start valve(s) of controller(s)")
-                .HasColumnName("dcStartPos_ind2");
-            entity.Property(e => e.DcStartPosInd3)
-                .HasDefaultValueSql("(NULL)")
-                .HasComment("dynamic control start valve(s) of controller(s)")
-                .HasColumnName("dcStartPos_ind3");
-            entity.Property(e => e.DcTargetF4tInd0)
-                .HasDefaultValueSql("(NULL)")
-                .HasComment("dynamic control target F4T(s)")
-                .HasColumnName("dcTargetF4t_ind0");
-            entity.Property(e => e.DcTargetF4tInd1)
-                .HasDefaultValueSql("(NULL)")
-                .HasComment("dynamic control target F4T(s)")
-                .HasColumnName("dcTargetF4t_ind1");
-            entity.Property(e => e.DcTargetF4tInd2)
-                .HasDefaultValueSql("(NULL)")
-                .HasComment("dynamic control target F4T(s)")
-                .HasColumnName("dcTargetF4t_ind2");
-            entity.Property(e => e.DcTargetF4tInd3)
-                .HasDefaultValueSql("(NULL)")
-                .HasComment("dynamic control target F4T(s)")
-                .HasColumnName("dcTargetF4t_ind3");
-            entity.Property(e => e.DcTargetTempInd0)
-                .HasDefaultValueSql("(NULL)")
-                .HasComment("dynamic control target temperature(s)")
-                .HasColumnName("dcTargetTemp_ind0");
-            entity.Property(e => e.DcTargetTempInd1)
-                .HasDefaultValueSql("(NULL)")
-                .HasComment("dynamic control target temperature(s)")
-                .HasColumnName("dcTargetTemp_ind1");
-            entity.Property(e => e.DcTargetTempInd2)
-                .HasDefaultValueSql("(NULL)")
-                .HasComment("dynamic control target temperature(s)")
-                .HasColumnName("dcTargetTemp_ind2");
-            entity.Property(e => e.DcTargetTempInd3)
-                .HasDefaultValueSql("(NULL)")
-                .HasComment("dynamic control target temperature(s)")
-                .HasColumnName("dcTargetTemp_ind3");
-            entity.Property(e => e.DcTempOffsetBInd0)
-                .HasDefaultValueSql("(NULL)")
-                .HasComment("dynamic control target temperature offset(s) B (tail)")
-                .HasColumnName("dcTempOffsetB_ind0");
-            entity.Property(e => e.DcTempOffsetBInd1)
-                .HasDefaultValueSql("(NULL)")
-                .HasComment("dynamic control target temperature offset(s) B (tail)")
-                .HasColumnName("dcTempOffsetB_ind1");
-            entity.Property(e => e.DcTempOffsetBInd2)
-                .HasDefaultValueSql("(NULL)")
-                .HasComment("dynamic control target temperature offset(s) B (tail)")
-                .HasColumnName("dcTempOffsetB_ind2");
-            entity.Property(e => e.DcTempOffsetBInd3)
-                .HasDefaultValueSql("(NULL)")
-                .HasComment("dynamic control target temperature offset(s) B (tail)")
-                .HasColumnName("dcTempOffsetB_ind3");
-            entity.Property(e => e.DcTempOffsetFm)
-                .HasDefaultValueSql("(NULL)")
-                .HasComment("FM target temperature offset(s) A (head)")
-                .HasColumnName("dcTempOffsetFm");
-            entity.Property(e => e.DcTempOffsetFmB)
-                .HasDefaultValueSql("(NULL)")
-                .HasComment("FM target temperature offset(s) B (tail)")
-                .HasColumnName("dcTempOffsetFmB");
-            entity.Property(e => e.DcTempOffsetInd0)
-                .HasDefaultValueSql("(NULL)")
-                .HasComment("dynamic control target temperature offset(s) A (head)")
-                .HasColumnName("dcTempOffset_ind0");
-            entity.Property(e => e.DcTempOffsetInd1)
-                .HasDefaultValueSql("(NULL)")
-                .HasComment("dynamic control target temperature offset(s) A (head)")
-                .HasColumnName("dcTempOffset_ind1");
-            entity.Property(e => e.DcTempOffsetInd2)
-                .HasDefaultValueSql("(NULL)")
-                .HasComment("dynamic control target temperature offset(s) A (head)")
-                .HasColumnName("dcTempOffset_ind2");
-            entity.Property(e => e.DcTempOffsetInd3)
-                .HasDefaultValueSql("(NULL)")
-                .HasComment("dynamic control target temperature offset(s) A (head)")
-                .HasColumnName("dcTempOffset_ind3");
             entity.Property(e => e.Description)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Cool rate bot for first phase water amount [0..1]")
+                .HasComment("Common data of CsStrategy and StdCsStrategy")
                 .HasColumnName("description");
             entity.Property(e => e.FtzLoad)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("fine tuning zone")
+                .HasComment("fine tuning zone; in HMI in [%]")
                 .HasColumnName("ftzLoad");
-            entity.Property(e => e.FurnaceNo)
+            entity.Property(e => e.HoldTime)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Furnace no")
-                .HasColumnName("furnaceNo");
+                .HasComment("dynamic control hold time(s)")
+                .HasColumnName("holdTime");
+            entity.Property(e => e.LeadingPyroIndexInd0)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("dynamic control leading pyrometers indexe(s); also in HMI the undexe(s) are displayed")
+                .HasColumnName("leadingPyroIndex_ind0");
+            entity.Property(e => e.LeadingPyroIndexInd1)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("dynamic control leading pyrometers indexe(s); also in HMI the undexe(s) are displayed")
+                .HasColumnName("leadingPyroIndex_ind1");
             entity.Property(e => e.ManInt)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("manual intervention in plan")
@@ -53043,10 +53295,76 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("plan number")
                 .HasColumnName("planNo");
-            entity.Property(e => e.TempGrad)
+            entity.Property(e => e.StartValveNumberBotInd0)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("dynamic control bot start valve(s) number of controller(s); also in HMI the first valve has number 1")
+                .HasColumnName("startValveNumberBot_ind0");
+            entity.Property(e => e.StartValveNumberBotInd1)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("dynamic control bot start valve(s) number of controller(s); also in HMI the first valve has number 1")
+                .HasColumnName("startValveNumberBot_ind1");
+            entity.Property(e => e.StartValveNumberTopInd0)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("dynamic control top start valve(s) number of controller(s); also in HMI the first valve has number 1")
+                .HasColumnName("startValveNumberTop_ind0");
+            entity.Property(e => e.StartValveNumberTopInd1)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("dynamic control top start valve(s) number of controller(s); also in HMI the first valve has number 1")
+                .HasColumnName("startValveNumberTop_ind1");
+            entity.Property(e => e.TargetF4tInd0)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("dynamic control target F4T(s); in HMI in [%]")
+                .HasColumnName("targetF4t_ind0");
+            entity.Property(e => e.TargetF4tInd1)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("dynamic control target F4T(s); in HMI in [%]")
+                .HasColumnName("targetF4t_ind1");
+            entity.Property(e => e.TargetTempInd0)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("dynamic control target temperature(s)")
+                .HasColumnName("targetTemp_ind0");
+            entity.Property(e => e.TargetTempInd1)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("dynamic control target temperature(s)")
+                .HasColumnName("targetTemp_ind1");
+            entity.Property(e => e.TempGradInd0)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("temperature gradient for first phase")
-                .HasColumnName("tempGrad");
+                .HasColumnName("tempGrad_ind0");
+            entity.Property(e => e.TempGradInd1)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("temperature gradient for first phase")
+                .HasColumnName("tempGrad_ind1");
+            entity.Property(e => e.TempOffsetAInd0)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("dynamic control target temperature offset(s) A (head)")
+                .HasColumnName("tempOffsetA_ind0");
+            entity.Property(e => e.TempOffsetAInd1)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("dynamic control target temperature offset(s) A (head)")
+                .HasColumnName("tempOffsetA_ind1");
+            entity.Property(e => e.TempOffsetBInd0)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("dynamic control target temperature offset(s) B (tail)")
+                .HasColumnName("tempOffsetB_ind0");
+            entity.Property(e => e.TempOffsetBInd1)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("dynamic control target temperature offset(s) B (tail)")
+                .HasColumnName("tempOffsetB_ind1");
+            entity.Property(e => e.TempOffsetFmA)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("FM target temperature offset(s) A (head)")
+                .HasColumnName("tempOffsetFmA");
+            entity.Property(e => e.TempOffsetFmB)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("FM target temperature offset(s) B (tail)")
+                .HasColumnName("tempOffsetFmB");
+            entity.Property(e => e.ToExtId)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("External material ID")
+                .HasColumnName("toExtID");
             entity.Property(e => e.Toc)
                 .HasPrecision(3)
                 .HasDefaultValueSql("(NULL)")
@@ -53057,9 +53375,34 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("time of modification")
                 .HasColumnName("tom");
-            entity.Property(e => e.ValveRatio)
+            entity.Property(e => e.UseTempGradSelectionInd0)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Used in case of valid input of TempGrad for first phase");
+                .HasComment("NULL: tempGrad part invisible, 0: use coolrate (tempGrad calculated from coolrate for reference), 1: use tempGrad (coolRate is calculated from desired tempGrad at strip head and gets read only)")
+                .HasColumnName("useTempGradSelection_ind0");
+            entity.Property(e => e.UseTempGradSelectionInd1)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("NULL: tempGrad part invisible, 0: use coolrate (tempGrad calculated from coolrate for reference), 1: use tempGrad (coolRate is calculated from desired tempGrad at strip head and gets read only)")
+                .HasColumnName("useTempGradSelection_ind1");
+            entity.Property(e => e.ValveRatioBotInd0)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Example: behaves like 2 to 3 (top to bottom)")
+                .HasColumnName("valveRatioBot_ind0");
+            entity.Property(e => e.ValveRatioBotInd1)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Example: behaves like 2 to 3 (top to bottom)")
+                .HasColumnName("valveRatioBot_ind1");
+            entity.Property(e => e.ValveRatioTopInd0)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Example: behaves like 2 to 3 (top to bottom)")
+                .HasColumnName("valveRatioTop_ind0");
+            entity.Property(e => e.ValveRatioTopInd1)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Example: behaves like 2 to 3 (top to bottom)")
+                .HasColumnName("valveRatioTop_ind1");
+            entity.Property(e => e.ValveSequenceIndexCus)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("[0..x] valveSequence index for direct reference of a customer specific ValveSequenceClusterDcCus_xx (optional)")
+                .HasColumnName("valveSequenceIndexCus");
 
             entity.HasOne(d => d.Me1).WithMany(p => p.StatCsStrategies)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
@@ -56974,6 +57317,12 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[N/m2] decoiler tension")
                 .HasColumnName("decoilerTension");
+            entity.Property(e => e.Description)
+                .HasMaxLength(80)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("description field")
+                .HasColumnName("description");
             entity.Property(e => e.Mop)
                 .HasMaxLength(120)
                 .IsUnicode(false)
@@ -57046,6 +57395,12 @@ public partial class PrdbContext : AbpDbContext
             entity.Property(e => e.PassNo)
                 .HasComment("pass number")
                 .HasColumnName("passNo");
+            entity.Property(e => e.Description)
+                .HasMaxLength(80)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("description field")
+                .HasColumnName("description");
             entity.Property(e => e.LooperAngle)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[deg] looper angle")

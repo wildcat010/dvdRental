@@ -165,5 +165,25 @@ public partial class Iscppass
     /// </summary>
     public DateTime? Tom { get; set; }
 
+    /// <summary>
+    /// description field
+    /// </summary>
+    public string Description { get; set; }
+
+    /// <summary>
+    /// Unit[0...1] ISC volume factor from maximum cooling flow (plant par). [0]= isc 0, [1]= isc 1, [2]= mill stand power cooling
+    /// </summary>
+    public double? IscVolumeInd3 { get; set; }
+
+    /// <summary>
+    /// Unit[0...1] ISC minimum volume factor from maximum cooling flow (plant par). [0]= isc 0, [1]= isc 1, [2]= mill stand power cooling
+    /// </summary>
+    public double? IscMinVolumeInd3 { get; set; }
+
+    /// <summary>
+    /// Unit[0...1] ISC maximum volume factor from maximum cooling flow (plant par). [0]= isc 0, [1]= isc 1, [2]= mill stand power cooling
+    /// </summary>
+    public double? IscMaxVolumeInd3 { get; set; }
+
     public virtual Me1 Me1 { get; set; }
 }

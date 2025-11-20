@@ -61,6 +61,8 @@ public partial class Me1
 
     public virtual CastSlabStartPo CastSlabStartPo { get; set; }
 
+    public virtual CastSlabStartPosL1 CastSlabStartPosL1 { get; set; }
+
     public virtual ICollection<CasterSndRequest> CasterSndRequests { get; set; } = new List<CasterSndRequest>();
 
     public virtual ICollection<CsCoilTempOffset> CsCoilTempOffsets { get; set; } = new List<CsCoilTempOffset>();

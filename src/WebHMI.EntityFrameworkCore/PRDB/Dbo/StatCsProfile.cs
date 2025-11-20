@@ -71,5 +71,10 @@ public partial class StatCsProfile
     /// </summary>
     public DateTime? Tom { get; set; }
 
+    /// <summary>
+    /// External material ID
+    /// </summary>
+    public string ToExtId { get; set; }
+
     public virtual Me1 Me1 { get; set; }
 }

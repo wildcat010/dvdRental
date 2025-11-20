@@ -1057,5 +1057,64 @@ public partial class EdOrdEnt
 
     public string OrderNo { get; set; }
 
+    /// <summary>
+    /// D or I or U
+    /// </summary>
+    public string OperationFlag { get; set; }
+
+    public string ProductionOrderId { get; set; }
+
+    /// <summary>
+    /// Unit[m] Customer limit for minimum thickness
+    /// </summary>
+    public double? ThickLimitMinCust { get; set; }
+
+    /// <summary>
+    /// Unit[m] Customer limit for maximum thickness
+    /// </summary>
+    public double? ThickLimitMaxCust { get; set; }
+
+    /// <summary>
+    /// Unit[m] Customer limit for minimum width
+    /// </summary>
+    public double? WidthLimitMinCust { get; set; }
+
+    /// <summary>
+    /// Unit[m] Customer limit for maximum width
+    /// </summary>
+    public double? WidthLimitMaxCust { get; set; }
+
+    /// <summary>
+    /// Unit[m] Customer limit for minimum fm exit temp
+    /// </summary>
+    public double? FmTempLimitMinCust { get; set; }
+
+    /// <summary>
+    /// Unit[m] Customer limit for maximum fm exit temp
+    /// </summary>
+    public double? FmTempLimitMaxCust { get; set; }
+
+    /// <summary>
+    /// Unit[m] Customer limit for minimum coil temp
+    /// </summary>
+    public double? CoilTempLimitMinCust { get; set; }
+
+    /// <summary>
+    /// Unit[m] Customer limit for maximum coil temp
+    /// </summary>
+    public double? CoilTempLimitMaxCust { get; set; }
+
+    /// <summary>
+    /// part number of material
+    /// </summary>
+    public int? PartNum { get; set; }
+
+    public string ProdType { get; set; }
+
+    /// <summary>
+    /// Unit[m] 
+    /// </summary>
+    public double? EdgeMask { get; set; }
+
     public virtual Me1 Me1 { get; set; }
 }

@@ -27,8 +27,6 @@ public partial class HmiVRollInventory
 
     public string StandRange { get; set; }
 
-    public DateTime? Tom { get; set; }
-
     public DateTime? PlannedInstallTime { get; set; }
 
     public DateTime? MountTime { get; set; }
@@ -49,6 +47,8 @@ public partial class HmiVRollInventory
 
     public int? Grinding { get; set; }
 
+    public DateTime GrindingTime { get; set; }
+
     public string RelatedRollId { get; set; }
 
     public int? PlannedStandId { get; set; }
@@ -61,7 +61,15 @@ public partial class HmiVRollInventory
 
     public short RollChamferCode { get; set; }
 
+    public string RollChamferDesc { get; set; }
+
     public float? Shimm { get; set; }
 
     public float? Roughness { get; set; }
+
+    public int? RolledStrips { get; set; }
+
+    public int? RolledTime { get; set; }
+
+    public DateTime? Tom { get; set; }
 }
