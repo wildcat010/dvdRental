@@ -31,7 +31,7 @@ namespace WebHMI.L2Adapter.Listeners
 		{
             try
             {
-                _logger.Info($"{nameof(HmiRefresh)} received data with event keys: [{string.Join(", ", eventKey)}]");
+                _logger.Info($"{nameof(HmiRefresh)} received data with event keys: [{string.Join(", ", eventKey)}], MECODE: [{meCode.ExtIdField}], [{meCode.ActualField.MeIdField}],[{meCode.MeTypField}]");
 
                 var eventData = new EventWrapper<HmiRefreshDto>()
                 {
