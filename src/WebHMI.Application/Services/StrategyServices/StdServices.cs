@@ -1,6 +1,8 @@
-﻿using WebHMI.Dtos.Strategy.StdDtos.StdSingleDtos;
+﻿using WebHMI.Dtos.Strategy.StdDtos.StdCSDtos;
+using WebHMI.Dtos.Strategy.StdDtos.StdSingleDtos;
 using WebHMI.Mapping.Extensions;
 using WebHMI.Mapping.Extensions.Strategy;
+using WebHMI.Mapping.Extensions.Strategy.CSMappers;
 using WebHMI.PRDB.Dbo;
 
 namespace WebHMI.Services.StrategyServices
@@ -193,4 +195,85 @@ namespace WebHMI.Services.StrategyServices
             StdSrpPassMapper.MapEntity)
         { }
     }
+
+    public class StdCsStrategyService : StdService<StdCsStrategy, StdStrategyCsDto>
+    {
+        public override string AggregateName => "CsStrategySelection";
+
+        public StdCsStrategyService() : base(
+            StdStrategyCsMapper.ToDto,
+            StdStrategyCsMapper.MapEntity)
+        { }
+    }
+
+    public class StdCsProfileService : StdService<StdCsProfile, StdProfileCsDto>
+    {
+        public override string AggregateName => "CsProfileSelection";
+
+        public StdCsProfileService() : base(
+            StdProfileCsMapper.ToDto,
+            StdProfileCsMapper.MapEntity)
+        { }
+    }
+
+    public class StdCsRtCoolingService : StdService<StdCsRtCooling, StdRtCoolingCsDto>
+    {
+        public override string AggregateName => "CsRtcSelection";
+
+        public StdCsRtCoolingService() : base(
+            StdRtCoolingCsMapper.ToDto,
+            StdRtCoolingCsMapper.MapEntity)
+        { }
+    }
+
+    public class StdCscrService : StdService<StdCsCr, StdCrCsDto>
+    {
+        public override string AggregateName => "CsCrsSelection";
+
+        public StdCscrService() : base(
+            StdCrCsMapper.ToDto,
+            StdCrCsMapper.MapEntity)
+        { }
+    }
+
+    public class StdCsCoilTempOffsetService : StdService<StdCsCoilTempOffset, StdCsCoilTempOffsetDto>
+    {
+        public override string AggregateName => "CsCoilTempOffsetSelection";
+
+        public StdCsCoilTempOffsetService() : base(
+            StdCsCoilTempOffsetMapper.ToDto,
+            StdCsCoilTempOffsetMapper.MapEntity)
+        { }
+    }
+
+    public class StdCsPerfService : StdService<StdCsPerf, StdCsPerfDto>
+    {
+        public override string AggregateName => "CsPerfSelection";
+
+        public StdCsPerfService() : base(
+            StdCsPerfMapper.ToDto,
+            StdCsPerfMapper.MapEntity)
+        { }
+    }
+
+    //public class StdcsedgemaskingService : StdService<STD, StdcsedgemaskingDto>
+    //{
+    //    public override string AggregateName => "CsEdgeMaskingSelection";
+
+    //    public StdcsedgemaskingService() : base(
+    //        StdcsedgemaskingMapper.ToDto,
+    //        StdcsedgemaskingMapper.MapEntity)
+    //    { }
+    //}
+
+    //+default chemistry
+    //public class DefaultChemistryService : StdService<MatDat, DefaultChemistryDto>
+    //{
+    //    public override string AggregateName => "CsEdgeMaskingSelection";
+
+    //    public StdcsedgemaskingService() : base(
+    //        StdcsedgemaskingMapper.ToDto,
+    //        StdcsedgemaskingMapper.MapEntity)
+    //    { }
+    //}
 }

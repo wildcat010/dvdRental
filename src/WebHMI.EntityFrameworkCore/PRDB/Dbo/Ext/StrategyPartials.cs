@@ -29,4 +29,10 @@ namespace WebHMI.PRDB.Dbo
     public partial class StdWmppass : IPassStd { }
     public partial class StdSrp : IStd { }
     public partial class StdSrppass : IPassStd { }
+    public partial class StdCsStrategy : IStd { }
+    public partial class StdCsProfile : IStd { }
+    public partial class StdCsRtCooling : IStd { }
+    public partial class StdCsCr : IStd { }
+    public partial class StdCsCoilTempOffset : IStd { }
+    public partial class StdCsPerf : IStd { }
 }
