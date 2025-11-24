@@ -304,9 +304,9 @@ namespace WebHMI.Mapping.Extensions
                 stand.TRoll.E = spOrd2PcStandE?.TRoll;
                 stand.TRoll.DbSource = $"SpOrd2PcStand.TRoll({i})";
 
-                //stand.DeltaSdPos.L = spOrd2PcStandL?.DeltaSdPos;
-                //stand.DeltaSdPos.E = spOrd2PcStandE?.DeltaSdPos;
-                //stand.DeltaSdPos.DbSource = $"SpOrd2PcStand.DeltaSdPos({i})";
+                stand.DeltaSdPos.L = spOrd2PcStandL?.SdCorr;
+                stand.DeltaSdPos.E = spOrd2PcStandE?.SdCorr;
+                stand.DeltaSdPos.DbSource = $"SpOrd2PcStand.SdCorr({i})";
 
                 stand.RelProfile.L = spOrd2PcStandL?.RelProfile;
                 stand.RelProfile.E = spOrd2PcStandE?.RelProfile;
