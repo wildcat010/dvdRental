@@ -266,14 +266,4 @@ namespace WebHMI.Services.StrategyServices
     //    { }
     //}
 
-    //+default chemistry
-    //public class DefaultChemistryService : StdService<MatDat, DefaultChemistryDto>
-    //{
-    //    public override string AggregateName => "CsEdgeMaskingSelection";
-
-    //    public StdcsedgemaskingService() : base(
-    //        StdcsedgemaskingMapper.ToDto,
-    //        StdcsedgemaskingMapper.MapEntity)
-    //    { }
-    //}
 }
