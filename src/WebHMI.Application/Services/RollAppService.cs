@@ -54,7 +54,7 @@ namespace WebHMI.Services
         [AbpAuthorize(Permissions.Pages_RollData_Edit)]
         public async Task<SingleRollDetailsDto> CreateRoll(SingleRollDetailsDto rollDto)
         {
-            bool rollDataExist = await _prdbContext.RollData.AsNoTracking().AnyAsync(x => x.RollId == rollDto.Rollid && x.PlantType == rollDto.Planttype.ToString());
+            bool rollDataExist = await _prdbContext.RollData.AsNoTracking().AnyAsync(x => x.RollId == rollDto.Rollid && x.PlantType == rollDto.Planttype);
 
             if (rollDataExist)
                 throw new UserFriendlyException("The roller already exists. Please use a unique name.");
