@@ -72,4 +72,14 @@ public partial class RollChamfer
     /// time of modification
     /// </summary>
     public DateTime? Tom { get; set; }
+
+    /// <summary>
+    /// Unit[m] Distance from roll neck to cone (operator side)
+    /// </summary>
+    public double? ConeRadiusOs { get; set; }
+
+    /// <summary>
+    /// Unit[m] Distance from roll neck to cone (drive side)
+    /// </summary>
+    public double? ConeRadiusDs { get; set; }
 }

@@ -555,6 +555,16 @@ public partial class PrdbContext : AbpDbContext
 
     public virtual DbSet<StatMsmDir> StatMsmDirs { get; set; }
 
+    public virtual DbSet<StatSpLogEnt> StatSpLogEnts { get; set; }
+
+    public virtual DbSet<StatSpOrd2Pc> StatSpOrd2Pcs { get; set; }
+
+    public virtual DbSet<StatSpOrd2PcStand> StatSpOrd2PcStands { get; set; }
+
+    public virtual DbSet<StatSpOrdEnt> StatSpOrdEnts { get; set; }
+
+    public virtual DbSet<StatSpPhyEnt> StatSpPhyEnts { get; set; }
+
     public virtual DbSet<StdAop> StdAops { get; set; }
 
     public virtual DbSet<StdAoppass> StdAoppasses { get; set; }
@@ -23954,268 +23964,504 @@ public partial class PrdbContext : AbpDbContext
             entity.Property(e => e.Id)
                 .HasComment("unique communication ID")
                 .HasColumnName("id");
+            entity.Property(e => e.AnalysisAlAim)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[%] Target value for Aluminium")
+                .HasColumnName("analysisAlAim");
+            entity.Property(e => e.AnalysisAlIaim)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[%] Target value for Aluminium (Al) (INSOL)")
+                .HasColumnName("analysisAl_IAim");
+            entity.Property(e => e.AnalysisAlImax)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[%] Maximum value of Aluminium (Al) (INSOL)")
+                .HasColumnName("analysisAl_IMax");
+            entity.Property(e => e.AnalysisAlImin)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[%] Minimum value of Aluminium (Al) (INSOL)")
+                .HasColumnName("analysisAl_IMin");
             entity.Property(e => e.AnalysisAlMax)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] look comment of Carbon")
+                .HasComment("Unit[%] Maximum value of Aluminium")
                 .HasColumnName("analysisAlMax");
             entity.Property(e => e.AnalysisAlMin)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] look comment of Carbon")
+                .HasComment("Unit[%] Minimum value of Aluminium")
                 .HasColumnName("analysisAlMin");
+            entity.Property(e => e.AnalysisAlSaim1)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[%] Target value for Aluminium (Al) (TOTAL)")
+                .HasColumnName("analysisAl_SAim");
+            entity.Property(e => e.AnalysisAlSmax1)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[%] Maximum value of Aluminium (Al) (TOTAL)")
+                .HasColumnName("analysisAl_SMax");
+            entity.Property(e => e.AnalysisAlSmin1)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[%] Minimum value of Aluminium (Al) (TOTAL)")
+                .HasColumnName("analysisAl_SMin");
+            entity.Property(e => e.AnalysisAlsAim)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[%] Target S measurement for Aluminium s")
+                .HasColumnName("analysisAlsAim");
             entity.Property(e => e.AnalysisAlsMax)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] look comment of Carbon")
+                .HasComment("Unit[%] Maximum S measurement for Aluminium s")
                 .HasColumnName("analysisAlsMax");
             entity.Property(e => e.AnalysisAlsMin)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] look comment of Carbon")
+                .HasComment("Unit[%] Minimum S measurement for Aluminium s")
                 .HasColumnName("analysisAlsMin");
+            entity.Property(e => e.AnalysisAsAim)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[%] Target value for Arsenic")
+                .HasColumnName("analysisAsAim");
             entity.Property(e => e.AnalysisAsMax)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] look comment of Carbon")
+                .HasComment("Unit[%] Maximum value of Arsenic")
                 .HasColumnName("analysisAsMax");
             entity.Property(e => e.AnalysisAsMin)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] look comment of Carbon")
+                .HasComment("Unit[%] Minimum value of Arsenic")
                 .HasColumnName("analysisAsMin");
+            entity.Property(e => e.AnalysisBaim)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[%] Target value for Boron")
+                .HasColumnName("analysisBAim");
+            entity.Property(e => e.AnalysisBiAim)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[%] Target value for Bismuth")
+                .HasColumnName("analysisBiAim");
             entity.Property(e => e.AnalysisBiMax)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] look comment of Carbon")
+                .HasComment("Unit[%] Maximum value of Bismuth")
                 .HasColumnName("analysisBiMax");
             entity.Property(e => e.AnalysisBiMin)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] look comment of Carbon")
+                .HasComment("Unit[%] Minimum value of Bismuth")
                 .HasColumnName("analysisBiMin");
             entity.Property(e => e.AnalysisBmax)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] look comment of Carbon")
+                .HasComment("Unit[%] Maximum value of Boron")
                 .HasColumnName("analysisBMax");
             entity.Property(e => e.AnalysisBmin)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] look comment of Carbon")
+                .HasComment("Unit[%] Minimum value of Boron")
                 .HasColumnName("analysisBMin");
+            entity.Property(e => e.AnalysisCaAim)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[%] Target value for Calcium")
+                .HasColumnName("analysisCaAim");
+            entity.Property(e => e.AnalysisCaIaim)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[%] Target value for Calcium (Ca) (INSOL)")
+                .HasColumnName("analysisCa_IAim");
+            entity.Property(e => e.AnalysisCaImax)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[%] Maximum value of Calcium (Ca) (INSOL)")
+                .HasColumnName("analysisCa_IMax");
+            entity.Property(e => e.AnalysisCaImin)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[%] Minimum value of Calcium (Ca) (INSOL)")
+                .HasColumnName("analysisCa_IMin");
             entity.Property(e => e.AnalysisCaMax)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] look comment of Carbon")
+                .HasComment("Unit[%] Maximum value of Calcium")
                 .HasColumnName("analysisCaMax");
             entity.Property(e => e.AnalysisCaMin)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] look comment of Carbon")
+                .HasComment("Unit[%] Minimum value of Calcium")
                 .HasColumnName("analysisCaMin");
+            entity.Property(e => e.AnalysisCaSaim)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[%] Target value for Calcium (Ca) (TOTAL)")
+                .HasColumnName("analysisCa_SAim");
+            entity.Property(e => e.AnalysisCaSmax)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[%] Maximum value of Calcium (Ca) (TOTAL)")
+                .HasColumnName("analysisCa_SMax");
+            entity.Property(e => e.AnalysisCaSmin)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[%] Minimum value of Calcium (Ca) (TOTAL)")
+                .HasColumnName("analysisCa_SMin");
+            entity.Property(e => e.AnalysisCaim)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[%] Target value for Carbon")
+                .HasColumnName("analysisCAim");
+            entity.Property(e => e.AnalysisCeAim)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[%] Target value for Cerium")
+                .HasColumnName("analysisCeAim");
             entity.Property(e => e.AnalysisCeMax)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] look comment of Carbon")
+                .HasComment("Unit[%] Maximum value of Cerium")
                 .HasColumnName("analysisCeMax");
             entity.Property(e => e.AnalysisCeMin)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] look comment of Carbon")
+                .HasComment("Unit[%] Minimum value of Cerium")
                 .HasColumnName("analysisCeMin");
             entity.Property(e => e.AnalysisCmax)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] maximum value of Carbon")
+                .HasComment("Unit[%] Maximum value of Carbon")
                 .HasColumnName("analysisCMax");
             entity.Property(e => e.AnalysisCmin)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] minimum value of Carbon")
+                .HasComment("Unit[%] Minimum value of Carbon")
                 .HasColumnName("analysisCMin");
+            entity.Property(e => e.AnalysisCoAim)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[%] Target value for Cobalt")
+                .HasColumnName("analysisCoAim");
             entity.Property(e => e.AnalysisCoMax)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] look comment of Carbon")
+                .HasComment("Unit[%] Maximum value of Cobalt")
                 .HasColumnName("analysisCoMax");
             entity.Property(e => e.AnalysisCoMin)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] look comment of Carbon")
+                .HasComment("Unit[%] Minimum value of Cobalt")
                 .HasColumnName("analysisCoMin");
+            entity.Property(e => e.AnalysisCrAim)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[%] Target value for Chromium")
+                .HasColumnName("analysisCrAim");
             entity.Property(e => e.AnalysisCrMax)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] look comment of Carbon")
+                .HasComment("Unit[%] Maximum value of Chromium")
                 .HasColumnName("analysisCrMax");
             entity.Property(e => e.AnalysisCrMin)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] look comment of Carbon")
+                .HasComment("Unit[%] Minimum value of Chromium")
                 .HasColumnName("analysisCrMin");
+            entity.Property(e => e.AnalysisCuAim)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[%] Target value for Copper")
+                .HasColumnName("analysisCuAim");
             entity.Property(e => e.AnalysisCuMax)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] look comment of Carbon")
+                .HasComment("Unit[%] Maximum value of Copper")
                 .HasColumnName("analysisCuMax");
             entity.Property(e => e.AnalysisCuMin)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] look comment of Carbon")
+                .HasComment("Unit[%] Minimum value of Copper")
                 .HasColumnName("analysisCuMin");
+            entity.Property(e => e.AnalysisHaim)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[%] Target value for Hydrogen")
+                .HasColumnName("analysisHAim");
             entity.Property(e => e.AnalysisHmax)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] look comment of Carbon")
+                .HasComment("Unit[%] Maximum value of Hydrogen")
                 .HasColumnName("analysisHMax");
             entity.Property(e => e.AnalysisHmin)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] look comment of Carbon")
+                .HasComment("Unit[%] Minimum value of Hydrogen")
                 .HasColumnName("analysisHMin");
+            entity.Property(e => e.AnalysisMgAim)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[%] Target value for Magnesium")
+                .HasColumnName("analysisMgAim");
             entity.Property(e => e.AnalysisMgMax)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] look comment of Carbon")
+                .HasComment("Unit[%] Maximum value of Magnesium")
                 .HasColumnName("analysisMgMax");
             entity.Property(e => e.AnalysisMgMin)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] look comment of Carbon")
+                .HasComment("Unit[%] Minimum value of Magnesium")
                 .HasColumnName("analysisMgMin");
+            entity.Property(e => e.AnalysisMnAim)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[%] Target value for Manganese")
+                .HasColumnName("analysisMnAim");
             entity.Property(e => e.AnalysisMnMax)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] look comment of Carbon")
+                .HasComment("Unit[%] Maximum value of Manganese")
                 .HasColumnName("analysisMnMax");
             entity.Property(e => e.AnalysisMnMin)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] look comment of Carbon")
+                .HasComment("Unit[%] Minimum value of Manganese")
                 .HasColumnName("analysisMnMin");
+            entity.Property(e => e.AnalysisMoAim)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[%] Target value for Molybdenum")
+                .HasColumnName("analysisMoAim");
             entity.Property(e => e.AnalysisMoMax)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] look comment of Carbon")
+                .HasComment("Unit[%] Maximum value of Molybdenum")
                 .HasColumnName("analysisMoMax");
             entity.Property(e => e.AnalysisMoMin)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] look comment of Carbon")
+                .HasComment("Unit[%] Minimum value of Molybdenum")
                 .HasColumnName("analysisMoMin");
+            entity.Property(e => e.AnalysisNaim)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[%] Minimum value of Nitrogen")
+                .HasColumnName("analysisNAim");
+            entity.Property(e => e.AnalysisNbAim)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[%] Target value for Niobium")
+                .HasColumnName("analysisNbAim");
             entity.Property(e => e.AnalysisNbMax)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] look comment of Carbon")
+                .HasComment("Unit[%] Maximum value of Niobium")
                 .HasColumnName("analysisNbMax");
             entity.Property(e => e.AnalysisNbMin)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] look comment of Carbon")
+                .HasComment("Unit[%] Minimum value of Niobium")
                 .HasColumnName("analysisNbMin");
+            entity.Property(e => e.AnalysisNiAim)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[%] Target value for Nickel")
+                .HasColumnName("analysisNiAim");
             entity.Property(e => e.AnalysisNiMax)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] look comment of Carbon")
+                .HasComment("Unit[%] Maximum value of Nickel")
                 .HasColumnName("analysisNiMax");
             entity.Property(e => e.AnalysisNiMin)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] look comment of Carbon")
+                .HasComment("Unit[%] Minimum value of Nickel")
                 .HasColumnName("analysisNiMin");
             entity.Property(e => e.AnalysisNmax)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] look comment of Carbon")
+                .HasComment("Unit[%] Maximum value of Nitrogen")
                 .HasColumnName("analysisNMax");
             entity.Property(e => e.AnalysisNmin)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] look comment of Carbon")
+                .HasComment("Unit[%] Minimum value of Nitrogen")
                 .HasColumnName("analysisNMin");
+            entity.Property(e => e.AnalysisOSaim)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[%] Target value for Oxygen (O) (INSOL)")
+                .HasColumnName("analysisO_SAim");
+            entity.Property(e => e.AnalysisOSmax)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[%] Maximum value of Oxygen (O) (INSOL)")
+                .HasColumnName("analysisO_SMax");
+            entity.Property(e => e.AnalysisOSmin)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[%] Minimum value of Oxygen (O) (INSOL)")
+                .HasColumnName("analysisO_SMin");
+            entity.Property(e => e.AnalysisOTaim)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[%] Target value for Oxygen (O) (TOTAL)")
+                .HasColumnName("analysisO_TAim");
+            entity.Property(e => e.AnalysisOTmax)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[%] Maximum value of Oxygen (O) (TOTAL)")
+                .HasColumnName("analysisO_TMax");
+            entity.Property(e => e.AnalysisOTmin)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[%] Minimum value of Oxygen (O) (TOTAL)")
+                .HasColumnName("analysisO_TMin");
+            entity.Property(e => e.AnalysisOaim)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[%] Target value of Oxygen")
+                .HasColumnName("analysisOAim");
             entity.Property(e => e.AnalysisOmax)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] look comment of Carbon")
+                .HasComment("Unit[%] Maximum value of Oxygen")
                 .HasColumnName("analysisOMax");
             entity.Property(e => e.AnalysisOmin)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] look comment of Carbon")
+                .HasComment("Unit[%] Minimum value of Oxygen")
                 .HasColumnName("analysisOMin");
+            entity.Property(e => e.AnalysisPaim)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[%] Target value for Phosphorus")
+                .HasColumnName("analysisPAim");
+            entity.Property(e => e.AnalysisPbAim)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[%] Target value for Lead")
+                .HasColumnName("analysisPbAim");
             entity.Property(e => e.AnalysisPbMax)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] look comment of Carbon")
+                .HasComment("Unit[%] Maximum value of Lead")
                 .HasColumnName("analysisPbMax");
             entity.Property(e => e.AnalysisPbMin)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] look comment of Carbon")
+                .HasComment("Unit[%] Minimum value of Lead")
                 .HasColumnName("analysisPbMin");
             entity.Property(e => e.AnalysisPmax)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] look comment of Carbon")
+                .HasComment("Unit[%] Maximum value of Phosphorus")
                 .HasColumnName("analysisPMax");
             entity.Property(e => e.AnalysisPmin)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] look comment of Carbon")
+                .HasComment("Unit[%] Minimum value of Phosphorus")
                 .HasColumnName("analysisPMin");
+            entity.Property(e => e.AnalysisSaim)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[%] Target value for Sulfur")
+                .HasColumnName("analysisSAim");
+            entity.Property(e => e.AnalysisSbAim)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[%] Target value for Antimony")
+                .HasColumnName("analysisSbAim");
             entity.Property(e => e.AnalysisSbMax)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] look comment of Carbon")
+                .HasComment("Unit[%] Maximum value of Antimony")
                 .HasColumnName("analysisSbMax");
             entity.Property(e => e.AnalysisSbMin)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] look comment of Carbon")
+                .HasComment("Unit[%] Minimum value of Antimony")
                 .HasColumnName("analysisSbMin");
+            entity.Property(e => e.AnalysisSeAim)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[%] Target value of Selenium")
+                .HasColumnName("analysisSeAim");
             entity.Property(e => e.AnalysisSeMax)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] look comment of Carbon")
+                .HasComment("Unit[%] Maximum value of Selenium")
                 .HasColumnName("analysisSeMax");
             entity.Property(e => e.AnalysisSeMin)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] look comment of Carbon")
+                .HasComment("Unit[%] Minimum value of Selenium")
                 .HasColumnName("analysisSeMin");
+            entity.Property(e => e.AnalysisSiAim)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[%] Target value for Silicon")
+                .HasColumnName("analysisSiAim");
             entity.Property(e => e.AnalysisSiMax)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] look comment of Carbon")
+                .HasComment("Unit[%] Maximum value of Silicon")
                 .HasColumnName("analysisSiMax");
             entity.Property(e => e.AnalysisSiMin)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] look comment of Carbon")
+                .HasComment("Unit[%] Minimum value of Silicon")
                 .HasColumnName("analysisSiMin");
             entity.Property(e => e.AnalysisSmax)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] look comment of Carbon")
+                .HasComment("Unit[%] Maximum value of Sulfur")
                 .HasColumnName("analysisSMax");
             entity.Property(e => e.AnalysisSmin)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] look comment of Carbon")
+                .HasComment("Unit[%] Minimum value of Sulfur")
                 .HasColumnName("analysisSMin");
+            entity.Property(e => e.AnalysisSnAim)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[%] Target value for Tin")
+                .HasColumnName("analysisSnAim");
             entity.Property(e => e.AnalysisSnMax)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] look comment of Carbon")
+                .HasComment("Unit[%] Maximum value of Tin")
                 .HasColumnName("analysisSnMax");
             entity.Property(e => e.AnalysisSnMin)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] look comment of Carbon")
+                .HasComment("Unit[%] Minimum value of Tin")
                 .HasColumnName("analysisSnMin");
+            entity.Property(e => e.AnalysisTaAim)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[%] Target value of Tantalum")
+                .HasColumnName("analysisTaAim");
             entity.Property(e => e.AnalysisTaMax)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] look comment of Carbon")
+                .HasComment("Unit[%] Maximum value of Tantalum")
                 .HasColumnName("analysisTaMax");
             entity.Property(e => e.AnalysisTaMin)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] look comment of Carbon")
+                .HasComment("Unit[%] Minimum value of Tantalum")
                 .HasColumnName("analysisTaMin");
+            entity.Property(e => e.AnalysisTeAim)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[%] Target value of Tellurium")
+                .HasColumnName("analysisTeAim");
             entity.Property(e => e.AnalysisTeMax)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] look comment of Carbon")
+                .HasComment("Unit[%] Maximum value of Tellurium")
                 .HasColumnName("analysisTeMax");
             entity.Property(e => e.AnalysisTeMin)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] look comment of Carbon")
+                .HasComment("Unit[%] Minimum value of Tellurium")
                 .HasColumnName("analysisTeMin");
+            entity.Property(e => e.AnalysisTiAim)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[%] Target value for Titanium")
+                .HasColumnName("analysisTiAim");
+            entity.Property(e => e.AnalysisTiIaim)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[%] Target value for Titanium (Ti) (INSOL)")
+                .HasColumnName("analysisTi_IAim");
+            entity.Property(e => e.AnalysisTiImax)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[%] Maximum value of Titanium (Ti) (INSOL)")
+                .HasColumnName("analysisTi_IMax");
+            entity.Property(e => e.AnalysisTiImin)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[%] Minimum value of Titanium (Ti) (INSOL)")
+                .HasColumnName("analysisTi_IMin");
             entity.Property(e => e.AnalysisTiMax)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] look comment of Carbon")
+                .HasComment("Unit[%] Maximum value of Titanium")
                 .HasColumnName("analysisTiMax");
             entity.Property(e => e.AnalysisTiMin)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] look comment of Carbon")
+                .HasComment("Unit[%] Minimum value of Titanium")
                 .HasColumnName("analysisTiMin");
+            entity.Property(e => e.AnalysisTiSaim)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[%] Target value for Titanium (Ti) (TOTAL)")
+                .HasColumnName("analysisTi_SAim");
+            entity.Property(e => e.AnalysisTiSmax)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[%] Maximum value of Titanium (Ti) (TOTAL)")
+                .HasColumnName("analysisTi_SMax");
+            entity.Property(e => e.AnalysisTiSmin)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[%] Minimum value of Titanium (Ti) (TOTAL)")
+                .HasColumnName("analysisTi_SMin");
+            entity.Property(e => e.AnalysisVaim)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[%] Target value for Vanadium")
+                .HasColumnName("analysisVAim");
             entity.Property(e => e.AnalysisVmax)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] look comment of Carbon")
+                .HasComment("Unit[%] Maximum value of Vanadium")
                 .HasColumnName("analysisVMax");
             entity.Property(e => e.AnalysisVmin)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] look comment of Carbon")
+                .HasComment("Unit[%] Minimum value of Vanadium")
                 .HasColumnName("analysisVMin");
+            entity.Property(e => e.AnalysisWaim)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[%] Target value for Tungsten")
+                .HasColumnName("analysisWAim");
             entity.Property(e => e.AnalysisWmax)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] look comment of Carbon")
+                .HasComment("Unit[%] Maximum value of Tungsten")
                 .HasColumnName("analysisWMax");
             entity.Property(e => e.AnalysisWmin)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] look comment of Carbon")
+                .HasComment("Unit[%] Minimum value of Tungsten")
                 .HasColumnName("analysisWMin");
+            entity.Property(e => e.AnalysisZnAim)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[%] Target value for Zinc")
+                .HasColumnName("analysisZnAim");
+            entity.Property(e => e.AnalysisZnMax)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[%] Maximum value of Zinc")
+                .HasColumnName("analysisZnMax");
+            entity.Property(e => e.AnalysisZnMin)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[%] Minimum value of Zinc")
+                .HasColumnName("analysisZnMin");
+            entity.Property(e => e.AnalysisZrAim)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[%] Target value for Zirconium")
+                .HasColumnName("analysisZrAim");
             entity.Property(e => e.AnalysisZrMax)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] look comment of Carbon")
+                .HasComment("Unit[%] Maximum value of Zirconium")
                 .HasColumnName("analysisZrMax");
             entity.Property(e => e.AnalysisZrMin)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] look comment of Carbon")
+                .HasComment("Unit[%] Minimum value of Zirconium")
                 .HasColumnName("analysisZrMin");
-            entity.Property(e => e.DbFunction)
+            entity.Property(e => e.Functions)
                 .HasMaxLength(1)
                 .IsUnicode(false)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("I = insert, U = update, D = delete")
-                .HasColumnName("dbFunction");
+                .HasColumnName("functions");
             entity.Property(e => e.Gradegroup)
                 .HasMaxLength(40)
                 .IsUnicode(false)
@@ -24589,6 +24835,10 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Amount of bindings circumferential")
                 .HasColumnName("amountBindingsC");
+            entity.Property(e => e.AmountBindingsR)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Amount of bindings radial")
+                .HasColumnName("amountBindingsR");
             entity.Property(e => e.AnalysisAl)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[%] Analysis of Aluminium (total)")
@@ -24765,6 +25015,14 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[m] ")
                 .HasColumnName("checkerHeight");
+            entity.Property(e => e.CoilTempLimitMaxCust)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] Customer limit for maximum coil temp")
+                .HasColumnName("coilTempLimitMaxCust");
+            entity.Property(e => e.CoilTempLimitMinCust)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] Customer limit for minimum coil temp")
+                .HasColumnName("coilTempLimitMinCust");
             entity.Property(e => e.CrownClasMax)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[nm] Classif. maximal strip crown delta from aim C40")
@@ -24821,6 +25079,10 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("No. of dilatometer curve to be applied")
                 .HasColumnName("dilatometerCurve");
+            entity.Property(e => e.EdgeMask)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] ")
+                .HasColumnName("edgeMask");
             entity.Property(e => e.ExitCrownC25)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[nm] Finished strip crown C40")
@@ -24833,10 +25095,30 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[I-Unit] Classif. max. asymmetric strip flatness delta from 0")
                 .HasColumnName("flatAsymClasMax");
+            entity.Property(e => e.FlatSurfaceTextRow1)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("")
+                .HasColumnName("flat_surface_text_row_1");
+            entity.Property(e => e.FlatSurfaceTextRow2)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("")
+                .HasColumnName("flat_surface_text_row_2");
             entity.Property(e => e.FlatSymclasMax)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[I-Unit] Classif. max. symmetric strip flatness delta from 0")
                 .HasColumnName("flatSymclasMax");
+            entity.Property(e => e.FmTempLimitMaxCust)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] Customer limit for maximum fm exit temp")
+                .HasColumnName("fmTempLimitMaxCust");
+            entity.Property(e => e.FmTempLimitMinCust)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] Customer limit for minimum fm exit temp")
+                .HasColumnName("fmTempLimitMinCust");
             entity.Property(e => e.GhostSlab)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("0: real slab (sent by L3), 1: PD for ghost rolling (used for simulation)")
@@ -24906,16 +25188,94 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("modifying process")
                 .HasColumnName("mop");
+            entity.Property(e => e.OperationFlag)
+                .HasMaxLength(1)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("D or I or U")
+                .HasColumnName("operationFlag");
+            entity.Property(e => e.OuterWrapTextRow1)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("")
+                .HasColumnName("outer_wrap_text_row_1");
+            entity.Property(e => e.OuterWrapTextRow2)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("")
+                .HasColumnName("outer_wrap_text_row_2");
+            entity.Property(e => e.OuterWrapTextRow3)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("")
+                .HasColumnName("outer_wrap_text_row_3");
+            entity.Property(e => e.OuterWrapTextRow4)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("")
+                .HasColumnName("outer_wrap_text_row_4");
+            entity.Property(e => e.OuterWrapTextRow5)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("")
+                .HasColumnName("outer_wrap_text_row_5");
+            entity.Property(e => e.OuterWrapTextRow6)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("")
+                .HasColumnName("outer_wrap_text_row_6");
+            entity.Property(e => e.PartNum)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("part number of material")
+                .HasColumnName("partNum");
             entity.Property(e => e.PlateProduction)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("0: strip, 1: plate")
                 .HasColumnName("plateProduction");
+            entity.Property(e => e.ProdType)
+                .HasMaxLength(40)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("")
+                .HasColumnName("prodType");
+            entity.Property(e => e.ProductionOrderId)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("")
+                .HasColumnName("productionOrderId");
             entity.Property(e => e.SequenceId)
                 .HasMaxLength(20)
                 .IsUnicode(false)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("sequence identification")
                 .HasColumnName("sequenceId");
+            entity.Property(e => e.SpareFloat1)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[] ")
+                .HasColumnName("spare_float1");
+            entity.Property(e => e.SpareFloat2)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[] ")
+                .HasColumnName("spare_float2");
+            entity.Property(e => e.SpareString1)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("")
+                .HasColumnName("spare_string1");
+            entity.Property(e => e.SpareString2)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("")
+                .HasColumnName("spare_string2");
             entity.Property(e => e.SteelCustomer)
                 .HasMaxLength(20)
                 .IsUnicode(false)
@@ -24992,6 +25352,14 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[_C] Finished strip temperature")
                 .HasColumnName("tExit");
+            entity.Property(e => e.ThickLimitMaxCust)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] Customer limit for maximum thickness")
+                .HasColumnName("thickLimitMaxCust");
+            entity.Property(e => e.ThickLimitMinCust)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] Customer limit for minimum thickness")
+                .HasColumnName("thickLimitMinCust");
             entity.Property(e => e.Toc)
                 .HasPrecision(3)
                 .HasDefaultValueSql("(NULL)")
@@ -25030,6 +25398,14 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[1/10 mm] Finishing strip width (only for marking device )")
                 .HasColumnName("widthExitCustomer");
+            entity.Property(e => e.WidthLimitMaxCust)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] Customer limit for maximum width")
+                .HasColumnName("widthLimitMaxCust");
+            entity.Property(e => e.WidthLimitMinCust)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] Customer limit for minimum width")
+                .HasColumnName("widthLimitMinCust");
         });
 
         modelBuilder.Entity<L3l2rollingSeq>(entity =>
@@ -25058,6 +25434,18 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("modifying process")
                 .HasColumnName("mop");
+            entity.Property(e => e.OperationFlag)
+                .HasMaxLength(1)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("slab number 1")
+                .HasColumnName("operationFlag");
+            entity.Property(e => e.SequenceId)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("seq Id")
+                .HasColumnName("sequenceId");
             entity.Property(e => e.SlabId0)
                 .HasMaxLength(20)
                 .IsUnicode(false)
@@ -35200,6 +35588,11 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("oder length of the material")
                 .HasColumnName("orderLengthX");
+            entity.Property(e => e.OrderNo)
+                .HasMaxLength(4000)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("ED.orderNo, from PDI")
+                .HasColumnName("orderNo");
             entity.Property(e => e.PercentHeat1)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("percent from first heat ID")
@@ -37145,6 +37538,14 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[m] Cone length (operators side)")
                 .HasColumnName("coneLengthOS");
+            entity.Property(e => e.ConeRadiusDs)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] Distance from roll neck to cone (drive side)")
+                .HasColumnName("coneRadiusDS");
+            entity.Property(e => e.ConeRadiusOs)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] Distance from roll neck to cone (operator side)")
+                .HasColumnName("coneRadiusOS");
             entity.Property(e => e.ConeType)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Typ cone 1-linear, 2-quadratic, 5-taper, 7 - biquadratic, 8 - quadraticlinear")
@@ -44522,6 +44923,10 @@ public partial class PrdbContext : AbpDbContext
             entity.Property(e => e.Id)
                 .HasComment("unique communication ID")
                 .HasColumnName("id");
+            entity.Property(e => e.ChamferCode)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Identifier for the chamfer that is ground to the roll")
+                .HasColumnName("chamferCode");
             entity.Property(e => e.Diameter1)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[m] Actual diameter of first roll")
@@ -44584,7 +44989,7 @@ public partial class PrdbContext : AbpDbContext
                 .HasColumnName("rollId2");
             entity.Property(e => e.RollPropertyClass)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Roll property class. (physical description) ce, density, etc")
+                .HasComment("Roll property class. (physical description) cp, density, etc")
                 .HasColumnName("rollPropertyClass");
             entity.Property(e => e.RollType)
                 .HasMaxLength(3)
@@ -44598,7 +45003,7 @@ public partial class PrdbContext : AbpDbContext
                 .HasColumnName("roughness");
             entity.Property(e => e.ShapeCode)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Code for the shape parametersShape coefficient")
+                .HasComment("Identifier for the shape that is ground to the roll")
                 .HasColumnName("shapeCode");
             entity.Property(e => e.Shimm)
                 .HasDefaultValueSql("(NULL)")
@@ -53888,6 +54293,2793 @@ public partial class PrdbContext : AbpDbContext
                 .HasConstraintName("FK__Stat_MsmDir__12E98E70");
         });
 
+        modelBuilder.Entity<StatSpLogEnt>(entity =>
+        {
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.ThickHead }).HasName("PK__Stat_SpL__3EFAB4C24694CE0A");
+
+            entity.ToTable("Stat_SpLogEnt", "PRDB", tb =>
+                {
+                    tb.HasComment("");
+                    tb.HasTrigger("TI_Stat_SpLogEnt");
+                    tb.HasTrigger("TU_Stat_SpLogEnt");
+                });
+
+            entity.Property(e => e.MeId)
+                .HasDefaultValue(1)
+                .HasComment("Material idendification number")
+                .HasColumnName("meId");
+            entity.Property(e => e.MeCreator)
+                .HasMaxLength(2)
+                .IsUnicode(false)
+                .HasDefaultValue("")
+                .HasComment("Material owner")
+                .HasColumnName("meCreator");
+            entity.Property(e => e.MesId)
+                .HasDefaultValue((short)1)
+                .HasComment("Line status")
+                .HasColumnName("mesId");
+            entity.Property(e => e.Source)
+                .HasMaxLength(2)
+                .IsUnicode(false)
+                .HasDefaultValue("-")
+                .HasComment("owner")
+                .HasColumnName("source");
+            entity.Property(e => e.ThickHead)
+                .HasComment("thick head flag ( in HSM = 0)")
+                .HasColumnName("thickHead");
+            entity.Property(e => e.AlloyCode)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("material alloy code")
+                .HasColumnName("alloyCode");
+            entity.Property(e => e.AlloyValueInd0)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("chemical analysis elements")
+                .HasColumnName("alloyValue_ind0");
+            entity.Property(e => e.AlloyValueInd1)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("chemical analysis elements")
+                .HasColumnName("alloyValue_ind1");
+            entity.Property(e => e.AlloyValueInd10)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("chemical analysis elements")
+                .HasColumnName("alloyValue_ind10");
+            entity.Property(e => e.AlloyValueInd11)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("chemical analysis elements")
+                .HasColumnName("alloyValue_ind11");
+            entity.Property(e => e.AlloyValueInd12)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("chemical analysis elements")
+                .HasColumnName("alloyValue_ind12");
+            entity.Property(e => e.AlloyValueInd13)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("chemical analysis elements")
+                .HasColumnName("alloyValue_ind13");
+            entity.Property(e => e.AlloyValueInd14)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("chemical analysis elements")
+                .HasColumnName("alloyValue_ind14");
+            entity.Property(e => e.AlloyValueInd15)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("chemical analysis elements")
+                .HasColumnName("alloyValue_ind15");
+            entity.Property(e => e.AlloyValueInd16)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("chemical analysis elements")
+                .HasColumnName("alloyValue_ind16");
+            entity.Property(e => e.AlloyValueInd17)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("chemical analysis elements")
+                .HasColumnName("alloyValue_ind17");
+            entity.Property(e => e.AlloyValueInd18)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("chemical analysis elements")
+                .HasColumnName("alloyValue_ind18");
+            entity.Property(e => e.AlloyValueInd19)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("chemical analysis elements")
+                .HasColumnName("alloyValue_ind19");
+            entity.Property(e => e.AlloyValueInd2)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("chemical analysis elements")
+                .HasColumnName("alloyValue_ind2");
+            entity.Property(e => e.AlloyValueInd20)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("chemical analysis elements")
+                .HasColumnName("alloyValue_ind20");
+            entity.Property(e => e.AlloyValueInd21)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("chemical analysis elements")
+                .HasColumnName("alloyValue_ind21");
+            entity.Property(e => e.AlloyValueInd22)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("chemical analysis elements")
+                .HasColumnName("alloyValue_ind22");
+            entity.Property(e => e.AlloyValueInd23)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("chemical analysis elements")
+                .HasColumnName("alloyValue_ind23");
+            entity.Property(e => e.AlloyValueInd24)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("chemical analysis elements")
+                .HasColumnName("alloyValue_ind24");
+            entity.Property(e => e.AlloyValueInd25)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("chemical analysis elements")
+                .HasColumnName("alloyValue_ind25");
+            entity.Property(e => e.AlloyValueInd26)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("chemical analysis elements")
+                .HasColumnName("alloyValue_ind26");
+            entity.Property(e => e.AlloyValueInd27)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("chemical analysis elements")
+                .HasColumnName("alloyValue_ind27");
+            entity.Property(e => e.AlloyValueInd28)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("chemical analysis elements")
+                .HasColumnName("alloyValue_ind28");
+            entity.Property(e => e.AlloyValueInd29)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("chemical analysis elements")
+                .HasColumnName("alloyValue_ind29");
+            entity.Property(e => e.AlloyValueInd3)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("chemical analysis elements")
+                .HasColumnName("alloyValue_ind3");
+            entity.Property(e => e.AlloyValueInd30)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("chemical analysis elements")
+                .HasColumnName("alloyValue_ind30");
+            entity.Property(e => e.AlloyValueInd31)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("chemical analysis elements")
+                .HasColumnName("alloyValue_ind31");
+            entity.Property(e => e.AlloyValueInd32)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("chemical analysis elements")
+                .HasColumnName("alloyValue_ind32");
+            entity.Property(e => e.AlloyValueInd33)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("chemical analysis elements")
+                .HasColumnName("alloyValue_ind33");
+            entity.Property(e => e.AlloyValueInd34)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("chemical analysis elements")
+                .HasColumnName("alloyValue_ind34");
+            entity.Property(e => e.AlloyValueInd35)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("chemical analysis elements")
+                .HasColumnName("alloyValue_ind35");
+            entity.Property(e => e.AlloyValueInd36)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("chemical analysis elements")
+                .HasColumnName("alloyValue_ind36");
+            entity.Property(e => e.AlloyValueInd37)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("chemical analysis elements")
+                .HasColumnName("alloyValue_ind37");
+            entity.Property(e => e.AlloyValueInd38)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("chemical analysis elements")
+                .HasColumnName("alloyValue_ind38");
+            entity.Property(e => e.AlloyValueInd39)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("chemical analysis elements")
+                .HasColumnName("alloyValue_ind39");
+            entity.Property(e => e.AlloyValueInd4)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("chemical analysis elements")
+                .HasColumnName("alloyValue_ind4");
+            entity.Property(e => e.AlloyValueInd5)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("chemical analysis elements")
+                .HasColumnName("alloyValue_ind5");
+            entity.Property(e => e.AlloyValueInd6)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("chemical analysis elements")
+                .HasColumnName("alloyValue_ind6");
+            entity.Property(e => e.AlloyValueInd7)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("chemical analysis elements")
+                .HasColumnName("alloyValue_ind7");
+            entity.Property(e => e.AlloyValueInd8)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("chemical analysis elements")
+                .HasColumnName("alloyValue_ind8");
+            entity.Property(e => e.AlloyValueInd9)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("chemical analysis elements")
+                .HasColumnName("alloyValue_ind9");
+            entity.Property(e => e.CastingGradeCode)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Casting grade code for surface inspection gauge")
+                .HasColumnName("castingGradeCode");
+            entity.Property(e => e.Mop)
+                .HasMaxLength(120)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("modifying process")
+                .HasColumnName("mop");
+            entity.Property(e => e.SpecWeight)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("specific weight of material")
+                .HasColumnName("specWeight");
+            entity.Property(e => e.Toc)
+                .HasPrecision(3)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("time of creation")
+                .HasColumnName("toc");
+            entity.Property(e => e.Tom)
+                .HasPrecision(3)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("time of modification")
+                .HasColumnName("tom");
+
+            entity.HasOne(d => d.Me1).WithMany(p => p.StatSpLogEnts)
+                .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
+                .HasConstraintName("FK__Stat_SpLogEnt__72DF1396");
+        });
+
+        modelBuilder.Entity<StatSpOrd2Pc>(entity =>
+        {
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.ThickHead }).HasName("PK__Stat_SpO__3EFAB4C2CA610E7C");
+
+            entity.ToTable("Stat_SpOrd2Pc", "PRDB", tb =>
+                {
+                    tb.HasComment("");
+                    tb.HasTrigger("TI_Stat_SpOrd2Pc");
+                    tb.HasTrigger("TU_Stat_SpOrd2Pc");
+                });
+
+            entity.Property(e => e.MeId)
+                .HasDefaultValue(1)
+                .HasComment("Material idendification number")
+                .HasColumnName("meId");
+            entity.Property(e => e.MeCreator)
+                .HasMaxLength(2)
+                .IsUnicode(false)
+                .HasDefaultValue("")
+                .HasComment("Material owner")
+                .HasColumnName("meCreator");
+            entity.Property(e => e.MesId)
+                .HasDefaultValue((short)1)
+                .HasComment("Line status")
+                .HasColumnName("mesId");
+            entity.Property(e => e.Source)
+                .HasMaxLength(2)
+                .IsUnicode(false)
+                .HasDefaultValue("-")
+                .HasComment("owner")
+                .HasColumnName("source");
+            entity.Property(e => e.ThickHead)
+                .HasComment("thick head flag (in HSM =0)")
+                .HasColumnName("thickHead");
+            entity.Property(e => e.AbsCutInfo)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("1 = absolut cut at end of material (limitation)")
+                .HasColumnName("absCutInfo");
+            entity.Property(e => e.AccRateSdtail)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("power speed down for strip tail")
+                .HasColumnName("accRateSDTail");
+            entity.Property(e => e.BendMode)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Bending mode (00=FM,=HRM)")
+                .HasColumnName("bendMode");
+            entity.Property(e => e.CheckerFlag)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("0 = normal strip or plate,   1 = checker strip or plate")
+                .HasColumnName("checkerFlag");
+            entity.Property(e => e.CheckerHeight)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Checker height")
+                .HasColumnName("checkerHeight");
+            entity.Property(e => e.CsAustenite)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS:  percentage of autenite")
+                .HasColumnName("csAustenite");
+            entity.Property(e => e.CsBotValve)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS: bottom valve volume flow (0-100) , 44 laminar cooling valves")
+                .HasColumnName("csBotValve");
+            entity.Property(e => e.CsCementite)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS:  percentage of cementite")
+                .HasColumnName("csCementite");
+            entity.Property(e => e.CsCofaHeat)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS: correction factor heat transfer")
+                .HasColumnName("csCofaHeat");
+            entity.Property(e => e.CsCofaPhase)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS: cofa factor phase transformation")
+                .HasColumnName("csCofaPhase");
+            entity.Property(e => e.CsCoilTempCalc)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS: calculated coiler temperature")
+                .HasColumnName("csCoilTempCalc");
+            entity.Property(e => e.CsCoilTempSetp)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS: coil setpoint temperature")
+                .HasColumnName("csCoilTempSetp");
+            entity.Property(e => e.CsCrossSprayInd0)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS: longitudinal spray/ cross spray")
+                .HasColumnName("csCrossSpray_ind0");
+            entity.Property(e => e.CsCrossSprayInd1)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS: longitudinal spray/ cross spray")
+                .HasColumnName("csCrossSpray_ind1");
+            entity.Property(e => e.CsCrossSprayInd10)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS: longitudinal spray/ cross spray")
+                .HasColumnName("csCrossSpray_ind10");
+            entity.Property(e => e.CsCrossSprayInd11)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS: longitudinal spray/ cross spray")
+                .HasColumnName("csCrossSpray_ind11");
+            entity.Property(e => e.CsCrossSprayInd12)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS: longitudinal spray/ cross spray")
+                .HasColumnName("csCrossSpray_ind12");
+            entity.Property(e => e.CsCrossSprayInd13)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS: longitudinal spray/ cross spray")
+                .HasColumnName("csCrossSpray_ind13");
+            entity.Property(e => e.CsCrossSprayInd14)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS: longitudinal spray/ cross spray")
+                .HasColumnName("csCrossSpray_ind14");
+            entity.Property(e => e.CsCrossSprayInd15)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS: longitudinal spray/ cross spray")
+                .HasColumnName("csCrossSpray_ind15");
+            entity.Property(e => e.CsCrossSprayInd16)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS: longitudinal spray/ cross spray")
+                .HasColumnName("csCrossSpray_ind16");
+            entity.Property(e => e.CsCrossSprayInd17)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS: longitudinal spray/ cross spray")
+                .HasColumnName("csCrossSpray_ind17");
+            entity.Property(e => e.CsCrossSprayInd18)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS: longitudinal spray/ cross spray")
+                .HasColumnName("csCrossSpray_ind18");
+            entity.Property(e => e.CsCrossSprayInd19)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS: longitudinal spray/ cross spray")
+                .HasColumnName("csCrossSpray_ind19");
+            entity.Property(e => e.CsCrossSprayInd2)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS: longitudinal spray/ cross spray")
+                .HasColumnName("csCrossSpray_ind2");
+            entity.Property(e => e.CsCrossSprayInd20)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS: longitudinal spray/ cross spray")
+                .HasColumnName("csCrossSpray_ind20");
+            entity.Property(e => e.CsCrossSprayInd21)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS: longitudinal spray/ cross spray")
+                .HasColumnName("csCrossSpray_ind21");
+            entity.Property(e => e.CsCrossSprayInd22)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS: longitudinal spray/ cross spray")
+                .HasColumnName("csCrossSpray_ind22");
+            entity.Property(e => e.CsCrossSprayInd23)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS: longitudinal spray/ cross spray")
+                .HasColumnName("csCrossSpray_ind23");
+            entity.Property(e => e.CsCrossSprayInd24)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS: longitudinal spray/ cross spray")
+                .HasColumnName("csCrossSpray_ind24");
+            entity.Property(e => e.CsCrossSprayInd25)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS: longitudinal spray/ cross spray")
+                .HasColumnName("csCrossSpray_ind25");
+            entity.Property(e => e.CsCrossSprayInd26)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS: longitudinal spray/ cross spray")
+                .HasColumnName("csCrossSpray_ind26");
+            entity.Property(e => e.CsCrossSprayInd27)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS: longitudinal spray/ cross spray")
+                .HasColumnName("csCrossSpray_ind27");
+            entity.Property(e => e.CsCrossSprayInd28)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS: longitudinal spray/ cross spray")
+                .HasColumnName("csCrossSpray_ind28");
+            entity.Property(e => e.CsCrossSprayInd29)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS: longitudinal spray/ cross spray")
+                .HasColumnName("csCrossSpray_ind29");
+            entity.Property(e => e.CsCrossSprayInd3)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS: longitudinal spray/ cross spray")
+                .HasColumnName("csCrossSpray_ind3");
+            entity.Property(e => e.CsCrossSprayInd30)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS: longitudinal spray/ cross spray")
+                .HasColumnName("csCrossSpray_ind30");
+            entity.Property(e => e.CsCrossSprayInd31)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS: longitudinal spray/ cross spray")
+                .HasColumnName("csCrossSpray_ind31");
+            entity.Property(e => e.CsCrossSprayInd4)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS: longitudinal spray/ cross spray")
+                .HasColumnName("csCrossSpray_ind4");
+            entity.Property(e => e.CsCrossSprayInd5)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS: longitudinal spray/ cross spray")
+                .HasColumnName("csCrossSpray_ind5");
+            entity.Property(e => e.CsCrossSprayInd6)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS: longitudinal spray/ cross spray")
+                .HasColumnName("csCrossSpray_ind6");
+            entity.Property(e => e.CsCrossSprayInd7)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS: longitudinal spray/ cross spray")
+                .HasColumnName("csCrossSpray_ind7");
+            entity.Property(e => e.CsCrossSprayInd8)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS: longitudinal spray/ cross spray")
+                .HasColumnName("csCrossSpray_ind8");
+            entity.Property(e => e.CsCrossSprayInd9)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS: longitudinal spray/ cross spray")
+                .HasColumnName("csCrossSpray_ind9");
+            entity.Property(e => e.CsFerrite)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS: percentage of ferrite")
+                .HasColumnName("csFerrite");
+            entity.Property(e => e.CsPerlite)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS:  percentage of perlite")
+                .HasColumnName("csPerlite");
+            entity.Property(e => e.CsProfHeadLength)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS: profile head length")
+                .HasColumnName("csProfHeadLength");
+            entity.Property(e => e.CsProfHeadTemp)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS: profile head temperature")
+                .HasColumnName("csProfHeadTemp");
+            entity.Property(e => e.CsProfTailLength)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS:profile tail length")
+                .HasColumnName("csProfTailLength");
+            entity.Property(e => e.CsProfTailTemp)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS: profile tail temperature")
+                .HasColumnName("csProfTailTemp");
+            entity.Property(e => e.CsRollerTableInd0)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS: roll out table (bit mapped)")
+                .HasColumnName("csRollerTable_ind0");
+            entity.Property(e => e.CsRollerTableInd1)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS: roll out table (bit mapped)")
+                .HasColumnName("csRollerTable_ind1");
+            entity.Property(e => e.CsRollerTableInd10)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS: roll out table (bit mapped)")
+                .HasColumnName("csRollerTable_ind10");
+            entity.Property(e => e.CsRollerTableInd11)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS: roll out table (bit mapped)")
+                .HasColumnName("csRollerTable_ind11");
+            entity.Property(e => e.CsRollerTableInd12)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS: roll out table (bit mapped)")
+                .HasColumnName("csRollerTable_ind12");
+            entity.Property(e => e.CsRollerTableInd13)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS: roll out table (bit mapped)")
+                .HasColumnName("csRollerTable_ind13");
+            entity.Property(e => e.CsRollerTableInd14)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS: roll out table (bit mapped)")
+                .HasColumnName("csRollerTable_ind14");
+            entity.Property(e => e.CsRollerTableInd15)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS: roll out table (bit mapped)")
+                .HasColumnName("csRollerTable_ind15");
+            entity.Property(e => e.CsRollerTableInd2)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS: roll out table (bit mapped)")
+                .HasColumnName("csRollerTable_ind2");
+            entity.Property(e => e.CsRollerTableInd3)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS: roll out table (bit mapped)")
+                .HasColumnName("csRollerTable_ind3");
+            entity.Property(e => e.CsRollerTableInd4)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS: roll out table (bit mapped)")
+                .HasColumnName("csRollerTable_ind4");
+            entity.Property(e => e.CsRollerTableInd5)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS: roll out table (bit mapped)")
+                .HasColumnName("csRollerTable_ind5");
+            entity.Property(e => e.CsRollerTableInd6)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS: roll out table (bit mapped)")
+                .HasColumnName("csRollerTable_ind6");
+            entity.Property(e => e.CsRollerTableInd7)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS: roll out table (bit mapped)")
+                .HasColumnName("csRollerTable_ind7");
+            entity.Property(e => e.CsRollerTableInd8)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS: roll out table (bit mapped)")
+                .HasColumnName("csRollerTable_ind8");
+            entity.Property(e => e.CsRollerTableInd9)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS: roll out table (bit mapped)")
+                .HasColumnName("csRollerTable_ind9");
+            entity.Property(e => e.CsRollerTableMode)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS: roller table mode: 0 - auto, 1 - manual")
+                .HasColumnName("csRollerTableMode");
+            entity.Property(e => e.CsSbaz)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS: error code from MOS-CS")
+                .HasColumnName("csSbaz");
+            entity.Property(e => e.CsTopValve)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS: top valve volume flow (0-100)  , 44 laminar cooling valves")
+                .HasColumnName("csTopValve");
+            entity.Property(e => e.CsUncHeadLength)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS uncooled head length")
+                .HasColumnName("csUncHeadLength");
+            entity.Property(e => e.CsUncTailLength)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CS uncooled tail length")
+                .HasColumnName("csUncTailLength");
+            entity.Property(e => e.CutLen)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("cut length counted from actual material head, related to material thickness at shear position")
+                .HasColumnName("cutLen");
+            entity.Property(e => e.CutRule)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("0: cut at end of order, 1: no cut at end of order , 3:  cut according to length (cutValue), 10: cut at the end of the material")
+                .HasColumnName("cutRule");
+            entity.Property(e => e.CutShearId)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("shear for cut, 1: pendulum shear, 2: rotary shear, 3:  flying shear")
+                .HasColumnName("cutShearId");
+            entity.Property(e => e.DPrXdFb1Las1)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("flatness controll 1LAS/PR_1LAS")
+                .HasColumnName("dPrXdFb1LAS1");
+            entity.Property(e => e.DPrXdFb1Las2)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("spare")
+                .HasColumnName("dPrXdFb1LAS2");
+            entity.Property(e => e.DPrXdFb2Las1)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("flatness controll 2LAS/PR_2LAS")
+                .HasColumnName("dPrXdFb2LAS1");
+            entity.Property(e => e.DPrXdFb2Las2)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("flatness controll 3LAS/PR_2LAS")
+                .HasColumnName("dPrXdFb2LAS2");
+            entity.Property(e => e.DPrXdFb3Las1)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("flatness controll 3LAS/PR_3LAS")
+                .HasColumnName("dPrXdFb3LAS1");
+            entity.Property(e => e.DPrXdFb3Las2)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("flatness controll 4LAS/PR_4LAS")
+                .HasColumnName("dPrXdFb3LAS2");
+            entity.Property(e => e.DPrXdFb4Las1)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("flatness controll 4LAS/PR_4LAS")
+                .HasColumnName("dPrXdFb4LAS1");
+            entity.Property(e => e.DPrXdFb4Las2)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("flatness controll 5LAS/PR_4LAS")
+                .HasColumnName("dPrXdFb4LAS2");
+            entity.Property(e => e.DPrXdFb5Las1)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("flatness controll 5LAS/PR_5LAS")
+                .HasColumnName("dPrXdFb5LAS1");
+            entity.Property(e => e.DPrXdFb5Las2)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("flatness controll 6LAS/PR_5LAS")
+                .HasColumnName("dPrXdFb5LAS2");
+            entity.Property(e => e.DPrXdFb6Las1)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("flatness controll 6LAS/PR_6LAS")
+                .HasColumnName("dPrXdFb6LAS1");
+            entity.Property(e => e.DPrXdFb6Las2)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("flatness controll 7LAS/PR_6LAS")
+                .HasColumnName("dPrXdFb6LAS2");
+            entity.Property(e => e.DPrXdFb7Las1)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("flatness controll 7LAS/PR_7LAS")
+                .HasColumnName("dPrXdFb7LAS1");
+            entity.Property(e => e.DPrXdFb7Las2)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("flatness controll 7LAS/PR_6LAS")
+                .HasColumnName("dPrXdFb7LAS2");
+            entity.Property(e => e.DSpeedProp)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("poportional speed change (TC)")
+                .HasColumnName("dSpeedProp");
+            entity.Property(e => e.DescEntryFm)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("secondary descaler: entry top and bottom off/on (0/1)")
+                .HasColumnName("descEntryFM");
+            entity.Property(e => e.DescEntryHrm)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("primary descaler HRM: entry top and bottom off/on (0/1)")
+                .HasColumnName("descEntryHRM");
+            entity.Property(e => e.DescEntryHrmstat)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("only for HMI: primary descaler HRM: entry top and bottom off/on (0/1) status")
+                .HasColumnName("descEntryHRMStat");
+            entity.Property(e => e.DescEntryStatFm)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("only for HMI: secondary descaler: entry top and bottom off/on (0/1) status")
+                .HasColumnName("descEntryStatFM");
+            entity.Property(e => e.DescExitFm)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("secondary descaler: exit top and bottom off/on (0/1)")
+                .HasColumnName("descExitFM");
+            entity.Property(e => e.DescExitHrm)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("primary descaler HRM: exit top and bottom off/on (0/1)")
+                .HasColumnName("descExitHRM");
+            entity.Property(e => e.DescExitHrmstat)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("only for HMI: primary descaler HRM: exit top and bottom off/on (0/1)")
+                .HasColumnName("descExitHRMStat");
+            entity.Property(e => e.DescExitStatFm)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("only for HMI: secondary descaler: exit top and bottom off/on (0/1) status")
+                .HasColumnName("descExitStatFM");
+            entity.Property(e => e.DistanceE1)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("strip edge distance I")
+                .HasColumnName("distanceE1");
+            entity.Property(e => e.DistanceE2)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("strip edge distance II")
+                .HasColumnName("distanceE2");
+            entity.Property(e => e.DtIhInd0)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta temperature for coil x of inductive heater")
+                .HasColumnName("dtIH_ind0");
+            entity.Property(e => e.DtIhInd1)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta temperature for coil x of inductive heater")
+                .HasColumnName("dtIH_ind1");
+            entity.Property(e => e.DtIhInd10)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta temperature for coil x of inductive heater")
+                .HasColumnName("dtIH_ind10");
+            entity.Property(e => e.DtIhInd11)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta temperature for coil x of inductive heater")
+                .HasColumnName("dtIH_ind11");
+            entity.Property(e => e.DtIhInd12)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta temperature for coil x of inductive heater")
+                .HasColumnName("dtIH_ind12");
+            entity.Property(e => e.DtIhInd13)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta temperature for coil x of inductive heater")
+                .HasColumnName("dtIH_ind13");
+            entity.Property(e => e.DtIhInd2)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta temperature for coil x of inductive heater")
+                .HasColumnName("dtIH_ind2");
+            entity.Property(e => e.DtIhInd3)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta temperature for coil x of inductive heater")
+                .HasColumnName("dtIH_ind3");
+            entity.Property(e => e.DtIhInd4)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta temperature for coil x of inductive heater")
+                .HasColumnName("dtIH_ind4");
+            entity.Property(e => e.DtIhInd5)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta temperature for coil x of inductive heater")
+                .HasColumnName("dtIH_ind5");
+            entity.Property(e => e.DtIhInd6)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta temperature for coil x of inductive heater")
+                .HasColumnName("dtIH_ind6");
+            entity.Property(e => e.DtIhInd7)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta temperature for coil x of inductive heater")
+                .HasColumnName("dtIH_ind7");
+            entity.Property(e => e.DtIhInd8)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta temperature for coil x of inductive heater")
+                .HasColumnName("dtIH_ind8");
+            entity.Property(e => e.DtIhInd9)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta temperature for coil x of inductive heater")
+                .HasColumnName("dtIH_ind9");
+            entity.Property(e => e.DtIhtailInd0)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta temperature for coil x of inductive heater")
+                .HasColumnName("dtIHTail_ind0");
+            entity.Property(e => e.DtIhtailInd1)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta temperature for coil x of inductive heater")
+                .HasColumnName("dtIHTail_ind1");
+            entity.Property(e => e.DtIhtailInd10)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta temperature for coil x of inductive heater")
+                .HasColumnName("dtIHTail_ind10");
+            entity.Property(e => e.DtIhtailInd11)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta temperature for coil x of inductive heater")
+                .HasColumnName("dtIHTail_ind11");
+            entity.Property(e => e.DtIhtailInd12)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta temperature for coil x of inductive heater")
+                .HasColumnName("dtIHTail_ind12");
+            entity.Property(e => e.DtIhtailInd13)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta temperature for coil x of inductive heater")
+                .HasColumnName("dtIHTail_ind13");
+            entity.Property(e => e.DtIhtailInd2)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta temperature for coil x of inductive heater")
+                .HasColumnName("dtIHTail_ind2");
+            entity.Property(e => e.DtIhtailInd3)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta temperature for coil x of inductive heater")
+                .HasColumnName("dtIHTail_ind3");
+            entity.Property(e => e.DtIhtailInd4)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta temperature for coil x of inductive heater")
+                .HasColumnName("dtIHTail_ind4");
+            entity.Property(e => e.DtIhtailInd5)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta temperature for coil x of inductive heater")
+                .HasColumnName("dtIHTail_ind5");
+            entity.Property(e => e.DtIhtailInd6)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta temperature for coil x of inductive heater")
+                .HasColumnName("dtIHTail_ind6");
+            entity.Property(e => e.DtIhtailInd7)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta temperature for coil x of inductive heater")
+                .HasColumnName("dtIHTail_ind7");
+            entity.Property(e => e.DtIhtailInd8)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta temperature for coil x of inductive heater")
+                .HasColumnName("dtIHTail_ind8");
+            entity.Property(e => e.DtIhtailInd9)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta temperature for coil x of inductive heater")
+                .HasColumnName("dtIHTail_ind9");
+            entity.Property(e => e.EncoPanel1)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("enco panel 1 (0 - open, 1- closed)")
+                .HasColumnName("encoPanel1");
+            entity.Property(e => e.EncoPanel2)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("enco panel 2 (0 - open, 1- closed)")
+                .HasColumnName("encoPanel2");
+            entity.Property(e => e.EncoPanel3)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("enco panel 3 (0 - open, 1- closed)")
+                .HasColumnName("encoPanel3");
+            entity.Property(e => e.EncoPanel4)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("enco panel 4 (0 - open, 1- closed)")
+                .HasColumnName("encoPanel4");
+            entity.Property(e => e.FlatCurveNr)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("flatness curve number default=0")
+                .HasColumnName("flatCurveNr");
+            entity.Property(e => e.FlcAsymBlocked)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("")
+                .HasColumnName("flcAsymBlocked");
+            entity.Property(e => e.FlcSymBlocked)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("")
+                .HasColumnName("flcSymBlocked");
+            entity.Property(e => e.FlowDescEntryFm)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("secondary descaler: entry top and bottom flow")
+                .HasColumnName("flowDescEntryFM");
+            entity.Property(e => e.FlowDescEntryHrm)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("primary descaler HRM: entry top and bottom flow")
+                .HasColumnName("flowDescEntryHRM");
+            entity.Property(e => e.FlowDescExitFm)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("secondary descaler: exit top and bottom flow")
+                .HasColumnName("flowDescExitFM");
+            entity.Property(e => e.FlowDescExitHrm)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("primary descaler HRM: exit top and bottom flow")
+                .HasColumnName("flowDescExitHRM");
+            entity.Property(e => e.FlowPcEntryB)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment(" power cooling flow reference entry bottom")
+                .HasColumnName("flowPcEntryB");
+            entity.Property(e => e.FlowPcEntryT)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment(" power cooling flow reference entry top")
+                .HasColumnName("flowPcEntryT");
+            entity.Property(e => e.FlowPcExitB)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment(" power cooling flow reference exit bottom")
+                .HasColumnName("flowPcExitB");
+            entity.Property(e => e.FlowPcExitT)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment(" power cooling flow reference exit top")
+                .HasColumnName("flowPcExitT");
+            entity.Property(e => e.FrPrenFs)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("force pinch roll entry flying shear")
+                .HasColumnName("frPREnFS");
+            entity.Property(e => e.FrPrenIh)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("force pinch roll entry inductive heating furnace")
+                .HasColumnName("frPREnIH");
+            entity.Property(e => e.FrPrenPs)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("force pinch roll entry pendulum shear")
+                .HasColumnName("frPREnPS");
+            entity.Property(e => e.FrPrenRs)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("force pinch roll entry rotary shear")
+                .HasColumnName("frPREnRS");
+            entity.Property(e => e.FrPrexFs)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("force pinch roll exit flying shear")
+                .HasColumnName("frPRExFS");
+            entity.Property(e => e.FrPrexIh)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("force pinch roll exit inductive heating furnace")
+                .HasColumnName("frPRExIH");
+            entity.Property(e => e.FrPrexPs)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("force pinch roll exit pendulum shear")
+                .HasColumnName("frPRExPS");
+            entity.Property(e => e.FrPrexRs)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("force pinch roll exit rotary shear")
+                .HasColumnName("frPRExRS");
+            entity.Property(e => e.FtCoiler)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("tension reel/coiler: specific tension")
+                .HasColumnName("ftCoiler");
+            entity.Property(e => e.FtPrenFs)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("specific forward tension pinch roll entry flying shear")
+                .HasColumnName("ftPREnFS");
+            entity.Property(e => e.FtPrenIh)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("specific forward tension pinch roll entry inductive heating furnace")
+                .HasColumnName("ftPREnIH");
+            entity.Property(e => e.FtPrenPs)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("specific forward tension pinch roll entry pendulum shear")
+                .HasColumnName("ftPREnPS");
+            entity.Property(e => e.FtPrenRs)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("specific forward tension pinch roll entry rotary shear")
+                .HasColumnName("ftPREnRS");
+            entity.Property(e => e.FtPrexFs)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("specific forward tension pinch roll exit flying shear")
+                .HasColumnName("ftPRExFS");
+            entity.Property(e => e.FtPrexIh)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("specific forward tension pinch roll exit inductive heating furnace")
+                .HasColumnName("ftPRExIH");
+            entity.Property(e => e.FtPrexPs)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("specific forward tension pinch roll exit pendulum shear")
+                .HasColumnName("ftPRExPS");
+            entity.Property(e => e.FtPrexRs)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("specific forward tension pinch roll exit rotary shear")
+                .HasColumnName("ftPRExRS");
+            entity.Property(e => e.HCast)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("cast slab thickness (hot)")
+                .HasColumnName("hCast");
+            entity.Property(e => e.HCastCold)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("cast slab thickness cold")
+                .HasColumnName("hCastCold");
+            entity.Property(e => e.HCoiler)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("tension reel/coiler: strip thickness (hot)")
+                .HasColumnName("hCoiler");
+            entity.Property(e => e.HEntryColdFm)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("entry thickness (rough strip thickness cold)")
+                .HasColumnName("hEntryColdFM");
+            entity.Property(e => e.HEntryFm)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("entry thickness (rough strip thickness hot)")
+                .HasColumnName("hEntryFM");
+            entity.Property(e => e.HExitCold)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("strip thickness cold")
+                .HasColumnName("hExitCold");
+            entity.Property(e => e.HExitColdStat)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("only for HMI: Strip thickness cold status")
+                .HasColumnName("hExitColdStat");
+            entity.Property(e => e.IHtExit)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Required  Induction Heater exit temperature to reach HFM exit Temperature")
+                .HasColumnName("iHtExit");
+            entity.Property(e => e.IHtotalPower)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("ih total power")
+                .HasColumnName("iHTotalPower");
+            entity.Property(e => e.InherPfc)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Flag for inheritance, 0 = Long time, 2 = short time exact, 3 = short time similar")
+                .HasColumnName("inherPfc");
+            entity.Property(e => e.InherPfcId)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Material Id from short time inheritance")
+                .HasColumnName("inherPfcId");
+            entity.Property(e => e.LExit)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("length after FM")
+                .HasColumnName("lExit");
+            entity.Property(e => e.LPointRefInd0)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("related length for speed and temperature (for cooling model)")
+                .HasColumnName("lPointRef_ind0");
+            entity.Property(e => e.LPointRefInd1)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("related length for speed and temperature (for cooling model)")
+                .HasColumnName("lPointRef_ind1");
+            entity.Property(e => e.LPointRefInd2)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("related length for speed and temperature (for cooling model)")
+                .HasColumnName("lPointRef_ind2");
+            entity.Property(e => e.LPointRefInd3)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("related length for speed and temperature (for cooling model)")
+                .HasColumnName("lPointRef_ind3");
+            entity.Property(e => e.LPointRefInd4)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("related length for speed and temperature (for cooling model)")
+                .HasColumnName("lPointRef_ind4");
+            entity.Property(e => e.LPointRefInd5)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("related length for speed and temperature (for cooling model)")
+                .HasColumnName("lPointRef_ind5");
+            entity.Property(e => e.LPointRefInd6)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("related length for speed and temperature (for cooling model)")
+                .HasColumnName("lPointRef_ind6");
+            entity.Property(e => e.LPointRefInd7)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("related length for speed and temperature (for cooling model)")
+                .HasColumnName("lPointRef_ind7");
+            entity.Property(e => e.LPointRefInd8)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("related length for speed and temperature (for cooling model)")
+                .HasColumnName("lPointRef_ind8");
+            entity.Property(e => e.LPointRefInd9)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("related length for speed and temperature (for cooling model)")
+                .HasColumnName("lPointRef_ind9");
+            entity.Property(e => e.LRoughedStrip)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("roughed strip length (ONLY FOR SIMULATION!!!)")
+                .HasColumnName("lRoughedStrip");
+            entity.Property(e => e.LWedge)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("length of the wedge (slab related)")
+                .HasColumnName("lWedge");
+            entity.Property(e => e.LWedgeHrm)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("length of the wedge  HRM (slab related)")
+                .HasColumnName("lWedgeHRM");
+            entity.Property(e => e.LenTrBarAccel)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("length of transfer bar with acceleration")
+                .HasColumnName("lenTrBarAccel");
+            entity.Property(e => e.Length2Spup)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("length of transfer bar with which the speed up starts")
+                .HasColumnName("length2SPUP");
+            entity.Property(e => e.MandrelExpFac)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("mandrel expansion factor  0-1")
+                .HasColumnName("mandrelExpFac");
+            entity.Property(e => e.MinSpeedCas)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("minimum speed caster (for next material enter FM)")
+                .HasColumnName("minSpeedCas");
+            entity.Property(e => e.Mop)
+                .HasMaxLength(120)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("modifying process")
+                .HasColumnName("mop");
+            entity.Property(e => e.NoFas)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("first active stand number")
+                .HasColumnName("noFas");
+            entity.Property(e => e.NoFasHfm)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("first active stand number HFM")
+                .HasColumnName("noFasHFM");
+            entity.Property(e => e.NoLas)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("last active stand number")
+                .HasColumnName("noLas");
+            entity.Property(e => e.NoLasHrm)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("last active stand number HRM")
+                .HasColumnName("noLasHRM");
+            entity.Property(e => e.PIhInd0)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("active power inductive heater coil x")
+                .HasColumnName("pIH_ind0");
+            entity.Property(e => e.PIhInd1)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("active power inductive heater coil x")
+                .HasColumnName("pIH_ind1");
+            entity.Property(e => e.PIhInd10)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("active power inductive heater coil x")
+                .HasColumnName("pIH_ind10");
+            entity.Property(e => e.PIhInd11)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("active power inductive heater coil x")
+                .HasColumnName("pIH_ind11");
+            entity.Property(e => e.PIhInd12)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("active power inductive heater coil x")
+                .HasColumnName("pIH_ind12");
+            entity.Property(e => e.PIhInd13)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("active power inductive heater coil x")
+                .HasColumnName("pIH_ind13");
+            entity.Property(e => e.PIhInd2)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("active power inductive heater coil x")
+                .HasColumnName("pIH_ind2");
+            entity.Property(e => e.PIhInd3)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("active power inductive heater coil x")
+                .HasColumnName("pIH_ind3");
+            entity.Property(e => e.PIhInd4)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("active power inductive heater coil x")
+                .HasColumnName("pIH_ind4");
+            entity.Property(e => e.PIhInd5)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("active power inductive heater coil x")
+                .HasColumnName("pIH_ind5");
+            entity.Property(e => e.PIhInd6)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("active power inductive heater coil x")
+                .HasColumnName("pIH_ind6");
+            entity.Property(e => e.PIhInd7)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("active power inductive heater coil x")
+                .HasColumnName("pIH_ind7");
+            entity.Property(e => e.PIhInd8)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("active power inductive heater coil x")
+                .HasColumnName("pIH_ind8");
+            entity.Property(e => e.PIhInd9)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("active power inductive heater coil x")
+                .HasColumnName("pIH_ind9");
+            entity.Property(e => e.PIhtailInd0)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("active power tail inductive heater coil x")
+                .HasColumnName("pIHTail_ind0");
+            entity.Property(e => e.PIhtailInd1)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("active power tail inductive heater coil x")
+                .HasColumnName("pIHTail_ind1");
+            entity.Property(e => e.PIhtailInd10)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("active power tail inductive heater coil x")
+                .HasColumnName("pIHTail_ind10");
+            entity.Property(e => e.PIhtailInd11)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("active power tail inductive heater coil x")
+                .HasColumnName("pIHTail_ind11");
+            entity.Property(e => e.PIhtailInd12)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("active power tail inductive heater coil x")
+                .HasColumnName("pIHTail_ind12");
+            entity.Property(e => e.PIhtailInd13)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("active power tail inductive heater coil x")
+                .HasColumnName("pIHTail_ind13");
+            entity.Property(e => e.PIhtailInd2)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("active power tail inductive heater coil x")
+                .HasColumnName("pIHTail_ind2");
+            entity.Property(e => e.PIhtailInd3)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("active power tail inductive heater coil x")
+                .HasColumnName("pIHTail_ind3");
+            entity.Property(e => e.PIhtailInd4)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("active power tail inductive heater coil x")
+                .HasColumnName("pIHTail_ind4");
+            entity.Property(e => e.PIhtailInd5)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("active power tail inductive heater coil x")
+                .HasColumnName("pIHTail_ind5");
+            entity.Property(e => e.PIhtailInd6)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("active power tail inductive heater coil x")
+                .HasColumnName("pIHTail_ind6");
+            entity.Property(e => e.PIhtailInd7)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("active power tail inductive heater coil x")
+                .HasColumnName("pIHTail_ind7");
+            entity.Property(e => e.PIhtailInd8)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("active power tail inductive heater coil x")
+                .HasColumnName("pIHTail_ind8");
+            entity.Property(e => e.PIhtailInd9)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("active power tail inductive heater coil x")
+                .HasColumnName("pIHTail_ind9");
+            entity.Property(e => e.PSuValue)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("power speed up value")
+                .HasColumnName("pSuValue");
+            entity.Property(e => e.PSuValueStat)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("only for HMI: Power speedup value status")
+                .HasColumnName("pSuValueStat");
+            entity.Property(e => e.PosSpeedChangeEnd2)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("strip position for speed change end 1")
+                .HasColumnName("posSpeedChangeEnd2");
+            entity.Property(e => e.Profexcalc)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("calculated exit profile")
+                .HasColumnName("profexcalc");
+            entity.Property(e => e.ProfexcalcHrm)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("calculated(measured) profile of HRM")
+                .HasColumnName("profexcalcHRM");
+            entity.Property(e => e.ProfexcalcStat)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("only for HMI: calculated exit profile status")
+                .HasColumnName("profexcalcStat");
+            entity.Property(e => e.ProfextargetHrm)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("PFC target profile of HRM")
+                .HasColumnName("profextargetHRM");
+            entity.Property(e => e.ProfileMaxX)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("strip profile max")
+                .HasColumnName("profileMaxX");
+            entity.Property(e => e.ProfileMinX)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("strip profile min")
+                .HasColumnName("profileMinX");
+            entity.Property(e => e.ProfileX)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("strip profile")
+                .HasColumnName("profileX");
+            entity.Property(e => e.ProfileXstat)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("only for HMI: Calculated profile value status")
+                .HasColumnName("profileXStat");
+            entity.Property(e => e.Sbaz)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("error code from MOS-FM")
+                .HasColumnName("sbaz");
+            entity.Property(e => e.SdPrenIh)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("gap pinch roll entry flying shear")
+                .HasColumnName("sdPREnIH");
+            entity.Property(e => e.SdPrenPs)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("gap pinch roll entry pendulum shear")
+                .HasColumnName("sdPREnPS");
+            entity.Property(e => e.SdPrenRs)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("gap pinch roll entry rotary shear")
+                .HasColumnName("sdPREnRS");
+            entity.Property(e => e.SdPrenRs2)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("gap pinch roll entry flying shear")
+                .HasColumnName("sdPREnRS2");
+            entity.Property(e => e.SdPrexFs)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("gap pinch roll exit flying shear")
+                .HasColumnName("sdPRExFS");
+            entity.Property(e => e.SdPrexIh)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("gap pinch roll exit flying shear")
+                .HasColumnName("sdPRExIH");
+            entity.Property(e => e.SdPrexPs)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("gap pinch roll exit pendulum shear")
+                .HasColumnName("sdPRExPS");
+            entity.Property(e => e.SdPrexRs)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("gap pinch roll exit rotary shear")
+                .HasColumnName("sdPRExRS");
+            entity.Property(e => e.SetpointsCocOk)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Flag setpoints coiler ok: 1=setpoints are ok")
+                .HasColumnName("setpointsCocOk");
+            entity.Property(e => e.SetpointsCsOk)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Flag: 1=setpoints from MOS-CS are o.k., -1: last calculation not o.k., but setpoints available, -2: all calculations not o.k., no setpoints available")
+                .HasColumnName("setpointsCsOk");
+            entity.Property(e => e.SetpointsFmOk)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Flag: 1=setpoints from MOS-FM are o.k., -1: last calculation not o.k., but setpoints available, -2: all calculations not o.k., no setpoints available")
+                .HasColumnName("setpointsFmOk");
+            entity.Property(e => e.SetpointsHrmOk)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Flag: 1=setpoints from MOS-HRM are o.k., -1: last calculation not o.k., but setpoints available, -2: all calculations not o.k., no setpoints available")
+                .HasColumnName("setpointsHrmOK");
+            entity.Property(e => e.SetpointsPc2Ok)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Flag: 1=setpoints process area2 are o.k.")
+                .HasColumnName("setpointsPc2Ok");
+            entity.Property(e => e.SetpointsSstPc2Ok)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Flag: 1=setpoints from SST (process area 2) are o.k.")
+                .HasColumnName("setpointsSstPc2Ok");
+            entity.Property(e => e.SpeedChangeRate1)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Speed up rate for speed change 1 (after tail cut)")
+                .HasColumnName("speedChangeRate1");
+            entity.Property(e => e.SpeedChangeRate2)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Speed up rate for speed change 2")
+                .HasColumnName("speedChangeRate2");
+            entity.Property(e => e.SpeedupFlag)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("flag for speedup start selection:0=no speedup, 1=speedup with LAS loaded, 2=speedup with coiler loaded, 4 =speedup with time")
+                .HasColumnName("speedupFlag");
+            entity.Property(e => e.SpeedupFlagStat)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("only for HMI: flag for speedup start selection status")
+                .HasColumnName("speedupFlagStat");
+            entity.Property(e => e.SpeedupTime)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("time after which the speedup starts")
+                .HasColumnName("speedupTime");
+            entity.Property(e => e.SpeedupTimeStat)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("only for HMI: time after which the speedup starts status")
+                .HasColumnName("speedupTimeStat");
+            entity.Property(e => e.SptlFaultCs)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("ONLY FOR HMI: additional information from MOS-CS")
+                .HasColumnName("sptlFaultCS");
+            entity.Property(e => e.SptlFaultCsstat)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("ONLY FOR HMI: additional information from MOS-CS status")
+                .HasColumnName("sptlFaultCSStat");
+            entity.Property(e => e.SptlFaultFm)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("ONLY FOR HMI: additional information from MOS-FM")
+                .HasColumnName("sptlFaultFM");
+            entity.Property(e => e.SptlFaultFmstat)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("ONLY FOR HMI: additional information from MOS-FM status")
+                .HasColumnName("sptlFaultFMStat");
+            entity.Property(e => e.StandNoStartSpeedDown)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("standNo, from which speed down is driven")
+                .HasColumnName("standNoStartSpeedDown");
+            entity.Property(e => e.StartWedge)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Starting point of wedge,given as distance from tail end of the slab")
+                .HasColumnName("startWedge");
+            entity.Property(e => e.StartWedgeHrm)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Starting point of wedge HRM,given as distance from tail end of the slab")
+                .HasColumnName("startWedgeHRM");
+            entity.Property(e => e.T)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("strip temperature (exit finishing mill)")
+                .HasColumnName("t");
+            entity.Property(e => e.T0Mh)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("entry temperature under measuring house")
+                .HasColumnName("t0Mh");
+            entity.Property(e => e.T0MhHrm)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("temperature measuring house behind HRM")
+                .HasColumnName("t0MhHRM");
+            entity.Property(e => e.TAtLengthInd0)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("strip exit temperature at related length (for cooling model)")
+                .HasColumnName("tAtLength_ind0");
+            entity.Property(e => e.TAtLengthInd1)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("strip exit temperature at related length (for cooling model)")
+                .HasColumnName("tAtLength_ind1");
+            entity.Property(e => e.TAtLengthInd2)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("strip exit temperature at related length (for cooling model)")
+                .HasColumnName("tAtLength_ind2");
+            entity.Property(e => e.TAtLengthInd3)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("strip exit temperature at related length (for cooling model)")
+                .HasColumnName("tAtLength_ind3");
+            entity.Property(e => e.TAtLengthInd4)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("strip exit temperature at related length (for cooling model)")
+                .HasColumnName("tAtLength_ind4");
+            entity.Property(e => e.TAtLengthInd5)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("strip exit temperature at related length (for cooling model)")
+                .HasColumnName("tAtLength_ind5");
+            entity.Property(e => e.TAtLengthInd6)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("strip exit temperature at related length (for cooling model)")
+                .HasColumnName("tAtLength_ind6");
+            entity.Property(e => e.TAtLengthInd7)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("strip exit temperature at related length (for cooling model)")
+                .HasColumnName("tAtLength_ind7");
+            entity.Property(e => e.TAtLengthInd8)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("strip exit temperature at related length (for cooling model)")
+                .HasColumnName("tAtLength_ind8");
+            entity.Property(e => e.TAtLengthInd9)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("strip exit temperature at related length (for cooling model)")
+                .HasColumnName("tAtLength_ind9");
+            entity.Property(e => e.TEntry)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("entry transfer bar temperature (roughing mill exit temperature)")
+                .HasColumnName("tEntry");
+            entity.Property(e => e.TEntryFrRm)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("slab entry temperature  (from MOS-RM for IVI-FM)")
+                .HasColumnName("tEntryFrRM");
+            entity.Property(e => e.TIhx)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("surface temperature at exit of inductive heater")
+                .HasColumnName("tIHX");
+            entity.Property(e => e.TIhxtail)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("surface temperature at exit of inductive heater for tail end")
+                .HasColumnName("tIHXTail");
+            entity.Property(e => e.TStat)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("only for HMI: Strip temperature (exit finishing mill) status")
+                .HasColumnName("tStat");
+            entity.Property(e => e.TSuValue)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("temperature speed up value")
+                .HasColumnName("tSuValue");
+            entity.Property(e => e.TSuValueStat)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("only for HMI: Temperature speedup value status")
+                .HasColumnName("tSuValueStat");
+            entity.Property(e => e.TargetSpeed1)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("target speed for speed change 1  (after tail cut)")
+                .HasColumnName("targetSpeed1");
+            entity.Property(e => e.TargetSpeed2)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("target speed for speed change 2")
+                .HasColumnName("targetSpeed2");
+            entity.Property(e => e.TargetTempTailIh)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("target temperature for strip tail behind IH after speed up")
+                .HasColumnName("targetTempTailIH");
+            entity.Property(e => e.ThgCompGrade)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("thickness gauge grade compensation")
+                .HasColumnName("thgCompGrade");
+            entity.Property(e => e.ThreadInFlag)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("0 - endless strip, 1 - thread in to FM")
+                .HasColumnName("threadInFlag");
+            entity.Property(e => e.Toc)
+                .HasPrecision(3)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("time of creation")
+                .HasColumnName("toc");
+            entity.Property(e => e.Tom)
+                .HasPrecision(3)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("time of modification")
+                .HasColumnName("tom");
+            entity.Property(e => e.TotalHexit)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("total thickness of the floor plate for the coiler (base plate + ripple thickness)")
+                .HasColumnName("totalHExit");
+            entity.Property(e => e.VAtLengthInd0)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("strip exit speed at this length under the measuring location for mill exit temp ( for cooling model)")
+                .HasColumnName("vAtLength_ind0");
+            entity.Property(e => e.VAtLengthInd1)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("strip exit speed at this length under the measuring location for mill exit temp ( for cooling model)")
+                .HasColumnName("vAtLength_ind1");
+            entity.Property(e => e.VAtLengthInd2)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("strip exit speed at this length under the measuring location for mill exit temp ( for cooling model)")
+                .HasColumnName("vAtLength_ind2");
+            entity.Property(e => e.VAtLengthInd3)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("strip exit speed at this length under the measuring location for mill exit temp ( for cooling model)")
+                .HasColumnName("vAtLength_ind3");
+            entity.Property(e => e.VAtLengthInd4)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("strip exit speed at this length under the measuring location for mill exit temp ( for cooling model)")
+                .HasColumnName("vAtLength_ind4");
+            entity.Property(e => e.VAtLengthInd5)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("strip exit speed at this length under the measuring location for mill exit temp ( for cooling model)")
+                .HasColumnName("vAtLength_ind5");
+            entity.Property(e => e.VAtLengthInd6)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("strip exit speed at this length under the measuring location for mill exit temp ( for cooling model)")
+                .HasColumnName("vAtLength_ind6");
+            entity.Property(e => e.VAtLengthInd7)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("strip exit speed at this length under the measuring location for mill exit temp ( for cooling model)")
+                .HasColumnName("vAtLength_ind7");
+            entity.Property(e => e.VAtLengthInd8)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("strip exit speed at this length under the measuring location for mill exit temp ( for cooling model)")
+                .HasColumnName("vAtLength_ind8");
+            entity.Property(e => e.VAtLengthInd9)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("strip exit speed at this length under the measuring location for mill exit temp ( for cooling model)")
+                .HasColumnName("vAtLength_ind9");
+            entity.Property(e => e.VCrs)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("circumference roll speed F1 for reduced threadin speed F1")
+                .HasColumnName("vCrs");
+            entity.Property(e => e.VExitLas)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("tension reel/coiler: LAS speed")
+                .HasColumnName("vExitLas");
+            entity.Property(e => e.VExitLasStat)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("only for HMI: tension reel/coiler: LAS speed status")
+                .HasColumnName("vExitLasStat");
+            entity.Property(e => e.VExitTarg)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("target strip exit speed")
+                .HasColumnName("vExitTarg");
+            entity.Property(e => e.VExitTargMax)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Max target strip exit speed")
+                .HasColumnName("vExitTargMax");
+            entity.Property(e => e.VExitTargMaxStat)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("only for HMI: Max target strip exit speed status")
+                .HasColumnName("vExitTargMaxStat");
+            entity.Property(e => e.VExitTargStat)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("only for HMI: Target strip exit speed status")
+                .HasColumnName("vExitTargStat");
+            entity.Property(e => e.VTailOutFm)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("speed with which the tail has to leave the mill")
+                .HasColumnName("vTailOutFm");
+            entity.Property(e => e.VThrCoiler)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("strip thread in speed coiler")
+                .HasColumnName("vThrCoiler");
+            entity.Property(e => e.VThrCoilerStat)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("only for HMI: Strip thread speed coiler status")
+                .HasColumnName("vThrCoilerStat");
+            entity.Property(e => e.VTmcLas)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("target maximum circumference speed LAS threadin")
+                .HasColumnName("vTmcLas");
+            entity.Property(e => e.VTmcLasAc)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("target maximum circumference speed LAS after coiler threadin")
+                .HasColumnName("vTmcLasAc");
+            entity.Property(e => e.W2sideGuide)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("second part of strip for side guide")
+                .HasColumnName("w2sideGuide");
+            entity.Property(e => e.WCast)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("cast slab width hot")
+                .HasColumnName("wCast");
+            entity.Property(e => e.WCastCold)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("width caster cold")
+                .HasColumnName("wCastCold");
+            entity.Property(e => e.WChangeLength)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("length of width change")
+                .HasColumnName("wChangeLength");
+            entity.Property(e => e.WChangePos)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("position width change in front of F5")
+                .HasColumnName("wChangePos");
+            entity.Property(e => e.WCoiler)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("tension reel/coiler: strip width (hot)")
+                .HasColumnName("wCoiler");
+            entity.Property(e => e.WEntryColdFm)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("entry width hot (rough strip width cold)")
+                .HasColumnName("wEntryColdFM");
+            entity.Property(e => e.WEntryHot)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("entry width hot (rough strip width hot)")
+                .HasColumnName("wEntryHot");
+            entity.Property(e => e.WExitCold)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("strip width cold")
+                .HasColumnName("wExitCold");
+            entity.Property(e => e.WExitColdStat)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("only for HMI: Strip width cold status")
+                .HasColumnName("wExitColdStat");
+            entity.Property(e => e.WExitFmHot)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("width behind FM hot")
+                .HasColumnName("wExitFmHot");
+            entity.Property(e => e.WFgLiCoefC)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Reference Linear Coefficient Coiler")
+                .HasColumnName("W_FG_LiCoefC");
+            entity.Property(e => e.WFgLiCoefH)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Reference Linear Coefficient Head")
+                .HasColumnName("W_FG_LiCoefH");
+            entity.Property(e => e.WFgSqCoefC)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Reference Square Coefficient Coiler")
+                .HasColumnName("W_FG_SqCoefC");
+            entity.Property(e => e.WFgSqCoefH)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Reference Square Coefficient Head")
+                .HasColumnName("W_FG_SqCoefH");
+            entity.Property(e => e.WedgeMaxX)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("strip wedge max")
+                .HasColumnName("wedgeMaxX");
+            entity.Property(e => e.WedgeMinX)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("strip wedge min")
+                .HasColumnName("wedgeMinX");
+            entity.Property(e => e.WedgeX)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("strip wedge target")
+                .HasColumnName("wedgeX");
+            entity.Property(e => e.WpcAsymBlocked)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("")
+                .HasColumnName("wpcAsymBlocked");
+            entity.Property(e => e.WpcSymBlocked)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("")
+                .HasColumnName("wpcSymBlocked");
+            entity.Property(e => e.YieldStress)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("tension reel/coiler: high temperature yield")
+                .HasColumnName("yieldStress");
+
+            entity.HasOne(d => d.Me1).WithMany(p => p.StatSpOrd2Pcs)
+                .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
+                .HasConstraintName("FK__Stat_SpOrd2Pc__612A77AF");
+        });
+
+        modelBuilder.Entity<StatSpOrd2PcStand>(entity =>
+        {
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.ThickHead, e.StandId }).HasName("PK__Stat_SpO__591600A4AB17D4C8");
+
+            entity.ToTable("Stat_SpOrd2PcStand", "PRDB", tb =>
+                {
+                    tb.HasComment("");
+                    tb.HasTrigger("TI_Stat_SpOrd2PcStand");
+                    tb.HasTrigger("TU_Stat_SpOrd2PcStand");
+                });
+
+            entity.Property(e => e.MeId)
+                .HasDefaultValue(1)
+                .HasComment("Material idendification number")
+                .HasColumnName("meId");
+            entity.Property(e => e.MeCreator)
+                .HasMaxLength(2)
+                .IsUnicode(false)
+                .HasDefaultValue("")
+                .HasComment("Material owner")
+                .HasColumnName("meCreator");
+            entity.Property(e => e.MesId)
+                .HasDefaultValue((short)1)
+                .HasComment("Line status")
+                .HasColumnName("mesId");
+            entity.Property(e => e.Source)
+                .HasMaxLength(2)
+                .IsUnicode(false)
+                .HasDefaultValue("-")
+                .HasComment("owner")
+                .HasColumnName("source");
+            entity.Property(e => e.ThickHead)
+                .HasComment("thick head flag (in HSM = 0)")
+                .HasColumnName("thickHead");
+            entity.Property(e => e.StandId)
+                .HasComment("Stand Idendification")
+                .HasColumnName("standId");
+            entity.Property(e => e.AgcAmpliFact)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("AGC amplification factor")
+                .HasColumnName("agcAmpliFact");
+            entity.Property(e => e.AgcAmpliFactWt)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("AGC amplification factor  (wedge target/ next strip)")
+                .HasColumnName("agcAmpliFactWT");
+            entity.Property(e => e.AgcCompFact)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("AGC compensation factor")
+                .HasColumnName("agcCompFact");
+            entity.Property(e => e.AgcCompFactWt)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("AGC compensation factor (wedge target/ next strip)")
+                .HasColumnName("agcCompFactWT");
+            entity.Property(e => e.BenMode)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("bending mode")
+                .HasColumnName("benMode");
+            entity.Property(e => e.Bs)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("backward slip")
+                .HasColumnName("bs");
+            entity.Property(e => e.BsWt)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("backward slip (wedge target/ next strip)")
+                .HasColumnName("bsWT");
+            entity.Property(e => e.CVcgrindType)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("CVC grind type 0= no ,1=yes")
+                .HasColumnName("cVCgrindType");
+            entity.Property(e => e.CalGs0)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("calibration zero point")
+                .HasColumnName("calGS0");
+            entity.Property(e => e.CalcFlat)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Calculated flatness value")
+                .HasColumnName("calcFlat");
+            entity.Property(e => e.CalcFlatStat)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("only for HMI: Calculated flatness value status")
+                .HasColumnName("calcFlatStat");
+            entity.Property(e => e.CgA0)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("coefficient stand spring curve over all")
+                .HasColumnName("cgA0");
+            entity.Property(e => e.CgA0bend)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("coefficient stand spring curve bending")
+                .HasColumnName("cgA0Bend");
+            entity.Property(e => e.CgA0roll)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("coefficient stand spring curve roll")
+                .HasColumnName("cgA0Roll");
+            entity.Property(e => e.CgA0stand)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("coefficient stand spring curve stand")
+                .HasColumnName("cgA0Stand");
+            entity.Property(e => e.CgA1)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("coefficient stand spring curve over all")
+                .HasColumnName("cgA1");
+            entity.Property(e => e.CgA1bend)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("coefficient stand spring curve bending")
+                .HasColumnName("cgA1Bend");
+            entity.Property(e => e.CgA1roll)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("coefficient stand spring curve roll")
+                .HasColumnName("cgA1Roll");
+            entity.Property(e => e.CgA1stand)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("coefficient stand spring curve stand")
+                .HasColumnName("cgA1Stand");
+            entity.Property(e => e.CgA2)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("coefficient stand spring curve over all")
+                .HasColumnName("cgA2");
+            entity.Property(e => e.CgA2bend)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("coefficient stand spring curve bending")
+                .HasColumnName("cgA2Bend");
+            entity.Property(e => e.CgA2roll)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("coefficient stand spring curve roll")
+                .HasColumnName("cgA2Roll");
+            entity.Property(e => e.CgA2stand)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("coefficient stand spring curve stand")
+                .HasColumnName("cgA2Stand");
+            entity.Property(e => e.CgB0)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("coefficient stand spring curve over all")
+                .HasColumnName("cgB0");
+            entity.Property(e => e.CgB0bend)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("coefficient stand spring curve bending")
+                .HasColumnName("cgB0Bend");
+            entity.Property(e => e.CgB0roll)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("coefficient stand spring curve roll")
+                .HasColumnName("cgB0Roll");
+            entity.Property(e => e.CgB0stand)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("coefficient stand spring curve stand")
+                .HasColumnName("cgB0Stand");
+            entity.Property(e => e.CoIs)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("interstand cooling (0-1)")
+                .HasColumnName("coIs");
+            entity.Property(e => e.CoIsWt)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("interstand cooling (0-1) (wedge target/ next strip)")
+                .HasColumnName("coIsWT");
+            entity.Property(e => e.CoRollFlInd0)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("roll cooling array for all systems")
+                .HasColumnName("coRollFl_ind0");
+            entity.Property(e => e.CoRollFlInd1)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("roll cooling array for all systems")
+                .HasColumnName("coRollFl_ind1");
+            entity.Property(e => e.CoRollFlInd2)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("roll cooling array for all systems")
+                .HasColumnName("coRollFl_ind2");
+            entity.Property(e => e.CoRollFlInd3)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("roll cooling array for all systems")
+                .HasColumnName("coRollFl_ind3");
+            entity.Property(e => e.CoRollFlInd4)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("roll cooling array for all systems")
+                .HasColumnName("coRollFl_ind4");
+            entity.Property(e => e.CoRollFlInd5)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("roll cooling array for all systems")
+                .HasColumnName("coRollFl_ind5");
+            entity.Property(e => e.CoRollFlInd6)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("roll cooling array for all systems")
+                .HasColumnName("coRollFl_ind6");
+            entity.Property(e => e.CoRollFlInd7)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("roll cooling array for all systems")
+                .HasColumnName("coRollFl_ind7");
+            entity.Property(e => e.CoRollFlInd8)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("roll cooling array for all systems")
+                .HasColumnName("coRollFl_ind8");
+            entity.Property(e => e.CoRollFlInd9)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("roll cooling array for all systems")
+                .HasColumnName("coRollFl_ind9");
+            entity.Property(e => e.CoRollSbFlInd0)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("standby roll cooling array for all systems")
+                .HasColumnName("coRollSbFl_ind0");
+            entity.Property(e => e.CoRollSbFlInd1)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("standby roll cooling array for all systems")
+                .HasColumnName("coRollSbFl_ind1");
+            entity.Property(e => e.CoRollSbFlInd2)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("standby roll cooling array for all systems")
+                .HasColumnName("coRollSbFl_ind2");
+            entity.Property(e => e.CoRollSbFlInd3)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("standby roll cooling array for all systems")
+                .HasColumnName("coRollSbFl_ind3");
+            entity.Property(e => e.CoRollSbFlInd4)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("standby roll cooling array for all systems")
+                .HasColumnName("coRollSbFl_ind4");
+            entity.Property(e => e.CoRollSbFlInd5)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("standby roll cooling array for all systems")
+                .HasColumnName("coRollSbFl_ind5");
+            entity.Property(e => e.CoRollSbFlInd6)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("standby roll cooling array for all systems")
+                .HasColumnName("coRollSbFl_ind6");
+            entity.Property(e => e.CoRollSbFlInd7)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("standby roll cooling array for all systems")
+                .HasColumnName("coRollSbFl_ind7");
+            entity.Property(e => e.CoRollSbFlInd8)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("standby roll cooling array for all systems")
+                .HasColumnName("coRollSbFl_ind8");
+            entity.Property(e => e.CoRollSbFlInd9)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("standby roll cooling array for all systems")
+                .HasColumnName("coRollSbFl_ind9");
+            entity.Property(e => e.CoSegDvDflow)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta speed to delta flow for segmented work roll cooling")
+                .HasColumnName("coSegDvDflow");
+            entity.Property(e => e.CoSegFlowInd0)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("segmented cooling flow entry and exit bar")
+                .HasColumnName("coSegFlow_ind0");
+            entity.Property(e => e.CoSegFlowInd1)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("segmented cooling flow entry and exit bar")
+                .HasColumnName("coSegFlow_ind1");
+            entity.Property(e => e.CoSegFlowInd10)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("segmented cooling flow entry and exit bar")
+                .HasColumnName("coSegFlow_ind10");
+            entity.Property(e => e.CoSegFlowInd11)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("segmented cooling flow entry and exit bar")
+                .HasColumnName("coSegFlow_ind11");
+            entity.Property(e => e.CoSegFlowInd12)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("segmented cooling flow entry and exit bar")
+                .HasColumnName("coSegFlow_ind12");
+            entity.Property(e => e.CoSegFlowInd13)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("segmented cooling flow entry and exit bar")
+                .HasColumnName("coSegFlow_ind13");
+            entity.Property(e => e.CoSegFlowInd14)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("segmented cooling flow entry and exit bar")
+                .HasColumnName("coSegFlow_ind14");
+            entity.Property(e => e.CoSegFlowInd15)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("segmented cooling flow entry and exit bar")
+                .HasColumnName("coSegFlow_ind15");
+            entity.Property(e => e.CoSegFlowInd16)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("segmented cooling flow entry and exit bar")
+                .HasColumnName("coSegFlow_ind16");
+            entity.Property(e => e.CoSegFlowInd17)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("segmented cooling flow entry and exit bar")
+                .HasColumnName("coSegFlow_ind17");
+            entity.Property(e => e.CoSegFlowInd18)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("segmented cooling flow entry and exit bar")
+                .HasColumnName("coSegFlow_ind18");
+            entity.Property(e => e.CoSegFlowInd19)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("segmented cooling flow entry and exit bar")
+                .HasColumnName("coSegFlow_ind19");
+            entity.Property(e => e.CoSegFlowInd2)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("segmented cooling flow entry and exit bar")
+                .HasColumnName("coSegFlow_ind2");
+            entity.Property(e => e.CoSegFlowInd20)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("segmented cooling flow entry and exit bar")
+                .HasColumnName("coSegFlow_ind20");
+            entity.Property(e => e.CoSegFlowInd21)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("segmented cooling flow entry and exit bar")
+                .HasColumnName("coSegFlow_ind21");
+            entity.Property(e => e.CoSegFlowInd22)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("segmented cooling flow entry and exit bar")
+                .HasColumnName("coSegFlow_ind22");
+            entity.Property(e => e.CoSegFlowInd23)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("segmented cooling flow entry and exit bar")
+                .HasColumnName("coSegFlow_ind23");
+            entity.Property(e => e.CoSegFlowInd24)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("segmented cooling flow entry and exit bar")
+                .HasColumnName("coSegFlow_ind24");
+            entity.Property(e => e.CoSegFlowInd25)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("segmented cooling flow entry and exit bar")
+                .HasColumnName("coSegFlow_ind25");
+            entity.Property(e => e.CoSegFlowInd26)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("segmented cooling flow entry and exit bar")
+                .HasColumnName("coSegFlow_ind26");
+            entity.Property(e => e.CoSegFlowInd27)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("segmented cooling flow entry and exit bar")
+                .HasColumnName("coSegFlow_ind27");
+            entity.Property(e => e.CoSegFlowInd3)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("segmented cooling flow entry and exit bar")
+                .HasColumnName("coSegFlow_ind3");
+            entity.Property(e => e.CoSegFlowInd4)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("segmented cooling flow entry and exit bar")
+                .HasColumnName("coSegFlow_ind4");
+            entity.Property(e => e.CoSegFlowInd5)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("segmented cooling flow entry and exit bar")
+                .HasColumnName("coSegFlow_ind5");
+            entity.Property(e => e.CoSegFlowInd6)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("segmented cooling flow entry and exit bar")
+                .HasColumnName("coSegFlow_ind6");
+            entity.Property(e => e.CoSegFlowInd7)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("segmented cooling flow entry and exit bar")
+                .HasColumnName("coSegFlow_ind7");
+            entity.Property(e => e.CoSegFlowInd8)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("segmented cooling flow entry and exit bar")
+                .HasColumnName("coSegFlow_ind8");
+            entity.Property(e => e.CoSegFlowInd9)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("segmented cooling flow entry and exit bar")
+                .HasColumnName("coSegFlow_ind9");
+            entity.Property(e => e.CoSegFlowSbInd0)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta speed to delta flow for segmented work roll cooling")
+                .HasColumnName("coSegFlowSb_ind0");
+            entity.Property(e => e.CoSegFlowSbInd1)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta speed to delta flow for segmented work roll cooling")
+                .HasColumnName("coSegFlowSb_ind1");
+            entity.Property(e => e.CoSegFlowSbInd10)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta speed to delta flow for segmented work roll cooling")
+                .HasColumnName("coSegFlowSb_ind10");
+            entity.Property(e => e.CoSegFlowSbInd11)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta speed to delta flow for segmented work roll cooling")
+                .HasColumnName("coSegFlowSb_ind11");
+            entity.Property(e => e.CoSegFlowSbInd12)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta speed to delta flow for segmented work roll cooling")
+                .HasColumnName("coSegFlowSb_ind12");
+            entity.Property(e => e.CoSegFlowSbInd13)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta speed to delta flow for segmented work roll cooling")
+                .HasColumnName("coSegFlowSb_ind13");
+            entity.Property(e => e.CoSegFlowSbInd14)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta speed to delta flow for segmented work roll cooling")
+                .HasColumnName("coSegFlowSb_ind14");
+            entity.Property(e => e.CoSegFlowSbInd15)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta speed to delta flow for segmented work roll cooling")
+                .HasColumnName("coSegFlowSb_ind15");
+            entity.Property(e => e.CoSegFlowSbInd16)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta speed to delta flow for segmented work roll cooling")
+                .HasColumnName("coSegFlowSb_ind16");
+            entity.Property(e => e.CoSegFlowSbInd17)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta speed to delta flow for segmented work roll cooling")
+                .HasColumnName("coSegFlowSb_ind17");
+            entity.Property(e => e.CoSegFlowSbInd18)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta speed to delta flow for segmented work roll cooling")
+                .HasColumnName("coSegFlowSb_ind18");
+            entity.Property(e => e.CoSegFlowSbInd19)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta speed to delta flow for segmented work roll cooling")
+                .HasColumnName("coSegFlowSb_ind19");
+            entity.Property(e => e.CoSegFlowSbInd2)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta speed to delta flow for segmented work roll cooling")
+                .HasColumnName("coSegFlowSb_ind2");
+            entity.Property(e => e.CoSegFlowSbInd20)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta speed to delta flow for segmented work roll cooling")
+                .HasColumnName("coSegFlowSb_ind20");
+            entity.Property(e => e.CoSegFlowSbInd21)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta speed to delta flow for segmented work roll cooling")
+                .HasColumnName("coSegFlowSb_ind21");
+            entity.Property(e => e.CoSegFlowSbInd22)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta speed to delta flow for segmented work roll cooling")
+                .HasColumnName("coSegFlowSb_ind22");
+            entity.Property(e => e.CoSegFlowSbInd23)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta speed to delta flow for segmented work roll cooling")
+                .HasColumnName("coSegFlowSb_ind23");
+            entity.Property(e => e.CoSegFlowSbInd24)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta speed to delta flow for segmented work roll cooling")
+                .HasColumnName("coSegFlowSb_ind24");
+            entity.Property(e => e.CoSegFlowSbInd25)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta speed to delta flow for segmented work roll cooling")
+                .HasColumnName("coSegFlowSb_ind25");
+            entity.Property(e => e.CoSegFlowSbInd26)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta speed to delta flow for segmented work roll cooling")
+                .HasColumnName("coSegFlowSb_ind26");
+            entity.Property(e => e.CoSegFlowSbInd27)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta speed to delta flow for segmented work roll cooling")
+                .HasColumnName("coSegFlowSb_ind27");
+            entity.Property(e => e.CoSegFlowSbInd3)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta speed to delta flow for segmented work roll cooling")
+                .HasColumnName("coSegFlowSb_ind3");
+            entity.Property(e => e.CoSegFlowSbInd4)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta speed to delta flow for segmented work roll cooling")
+                .HasColumnName("coSegFlowSb_ind4");
+            entity.Property(e => e.CoSegFlowSbInd5)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta speed to delta flow for segmented work roll cooling")
+                .HasColumnName("coSegFlowSb_ind5");
+            entity.Property(e => e.CoSegFlowSbInd6)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta speed to delta flow for segmented work roll cooling")
+                .HasColumnName("coSegFlowSb_ind6");
+            entity.Property(e => e.CoSegFlowSbInd7)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta speed to delta flow for segmented work roll cooling")
+                .HasColumnName("coSegFlowSb_ind7");
+            entity.Property(e => e.CoSegFlowSbInd8)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta speed to delta flow for segmented work roll cooling")
+                .HasColumnName("coSegFlowSb_ind8");
+            entity.Property(e => e.CoSegFlowSbInd9)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta speed to delta flow for segmented work roll cooling")
+                .HasColumnName("coSegFlowSb_ind9");
+            entity.Property(e => e.CoSegMaxFlow)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("maximum flow for segmented work roll cooling")
+                .HasColumnName("coSegMaxFlow");
+            entity.Property(e => e.CoSegMinFlow)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("minimum flow for segmented work roll cooling")
+                .HasColumnName("coSegMinFlow");
+            entity.Property(e => e.CoSegSwitchCoolBar)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Switch main cooling bar: exit bar = 0, entry bar = 1")
+                .HasColumnName("coSegSwitchCoolBar");
+            entity.Property(e => e.CoWrSbDelay)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("workroll cooling delay time after tailout")
+                .HasColumnName("coWrSbDelay");
+            entity.Property(e => e.D2sbDfb2)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("2nd derivation of bending (incl.roll flattening.) rollpackages after technical bending force")
+                .HasColumnName("d2sbDFb2");
+            entity.Property(e => e.D2sbDfr2)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("2nd derivation of bending (incl.roll flattening.) rollpackages after technical rolling force")
+                .HasColumnName("d2sbDFr2");
+            entity.Property(e => e.D2sgDf2)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("2nd derivation of stand strain after roll force")
+                .HasColumnName("d2sgDF2");
+            entity.Property(e => e.DPrdFb)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("effectiveness profile on bending force at edge ( for profile monitor HRM )")
+                .HasColumnName("dPrdFb");
+            entity.Property(e => e.DTenDtx)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta entry temperature stand i+1 to delta exit temperature")
+                .HasColumnName("dTenDTx");
+            entity.Property(e => e.DTxDhe)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta exit temperature to delta entry thickness")
+                .HasColumnName("dTxDhe");
+            entity.Property(e => e.DTxDhx)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta exit temperature to delta exit thickness")
+                .HasColumnName("dTxDhx");
+            entity.Property(e => e.DTxDte)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta exit temp to delta entry temperature")
+                .HasColumnName("dTxDTe");
+            entity.Property(e => e.DTxDv)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta exit temp.to delta circumferential work roll")
+                .HasColumnName("dTxDv");
+            entity.Property(e => e.DcgDf)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("gradient of stand module in working point, factor dcg/drf")
+                .HasColumnName("dcgDf");
+            entity.Property(e => e.DcoIsDv)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta interstand cooling to delta speed")
+                .HasColumnName("dcoIsDv");
+            entity.Property(e => e.DfbDfr)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta bending force  to delta roll force (efficency)")
+                .HasColumnName("dfbDfr");
+            entity.Property(e => e.DfbDsr)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta bending force to delta shifiting position (efficiency)")
+                .HasColumnName("dfbDsr");
+            entity.Property(e => e.DfbDt)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("gradient bending force change to compensate thermal crown dFB/dt - to reach constant gap profile")
+                .HasColumnName("dfbDt");
+            entity.Property(e => e.DfbDtTau)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("time constant for bending gradient")
+                .HasColumnName("dfbDtTau");
+            entity.Property(e => e.DfrDhe)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta rollforce to delta entry thickness")
+                .HasColumnName("dfrDhe");
+            entity.Property(e => e.DfrDhx)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta rollforce to delta exit thickness")
+                .HasColumnName("dfrDhx");
+            entity.Property(e => e.DfrDsr)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta roll force to delta shifiting position (efficiency)")
+                .HasColumnName("dfrDsr");
+            entity.Property(e => e.DfrDte)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta rollforce to delta entry temperature")
+                .HasColumnName("dfrDTe");
+            entity.Property(e => e.DfrDv)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta roll force to delta circumferential work roll speed")
+                .HasColumnName("dfrDv");
+            entity.Property(e => e.DluDfb)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("effectiveness bending force on strip flatness dlUnit/dFb")
+                .HasColumnName("dluDfb");
+            entity.Property(e => e.DsDfb)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta screw down  to delta bending force (efficency)")
+                .HasColumnName("dsDfb");
+            entity.Property(e => e.DsDt)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("gradient screw down position change to compensate diameter changes dS/dt - to reach constant exit thickness at middle of strip")
+                .HasColumnName("dsDt");
+            entity.Property(e => e.DsDtTau)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("time constant for screw down gradient")
+                .HasColumnName("dsDtTau");
+            entity.Property(e => e.DsbDfb)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("derivation of bending (incl.roll flattening.) rollpackages after technical bending force")
+                .HasColumnName("dsbDFb");
+            entity.Property(e => e.DsbDfr)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("derivation of bending (incl.roll flattening.) rollpackages after technical rolling force")
+                .HasColumnName("dsbDFr");
+            entity.Property(e => e.DsbDsr)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("derivation of the loaded rolling gap after shift position")
+                .HasColumnName("dsbDsr");
+            entity.Property(e => e.Dsdsr)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("delta screw down to delta work roll shifting")
+                .HasColumnName("dsdsr");
+            entity.Property(e => e.DsgDf)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("derivation of stand strain after roll force")
+                .HasColumnName("dsgDF");
+            entity.Property(e => e.Dx2pDfb)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("effectiveness profile x2-part on bending force dx2P/dFB referring to gap profile")
+                .HasColumnName("dx2pDfb");
+            entity.Property(e => e.Dx2pDsr)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("effectiveness profile x2-part on work roll shifting dx2P/dSR referring to gap profile")
+                .HasColumnName("dx2pDsr");
+            entity.Property(e => e.Dx4pDfb)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("effectiveness profile x4-part on bending force dx4P/dFB referring to gap profile")
+                .HasColumnName("dx4pDfb");
+            entity.Property(e => e.Dx4pDsr)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("effectiveness profile x4-part on work roll shifting dx4P/dSR referring to gap profile")
+                .HasColumnName("dx4pDsr");
+            entity.Property(e => e.EntryLength)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("slablength entry ()")
+                .HasColumnName("entryLength");
+            entity.Property(e => e.Fb)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("total bending force")
+                .HasColumnName("fb");
+            entity.Property(e => e.FbStat)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("only for HMI: total bending force status")
+                .HasColumnName("fbStat");
+            entity.Property(e => e.FbWt)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("total bending force (wedge target/ next strip)")
+                .HasColumnName("fbWT");
+            entity.Property(e => e.FlowOwrlBot)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("setup value oil flow - WR lubrication (0-1) bottom")
+                .HasColumnName("flowOWrlBot");
+            entity.Property(e => e.FlowOwrlBotStat)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("only for HMI: setup value oil flow - WR lubrication (0-1) status bottom")
+                .HasColumnName("flowOWrlBotStat");
+            entity.Property(e => e.FlowOwrlTop)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("setup value oil flow - WR lubrication (0-1) top")
+                .HasColumnName("flowOWrlTop");
+            entity.Property(e => e.FlowOwrlTopStat)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("only for HMI: setup value oil flow - WR lubrication (0-1) status top")
+                .HasColumnName("flowOWrlTopStat");
+            entity.Property(e => e.Fr)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("total roll force")
+                .HasColumnName("fr");
+            entity.Property(e => e.FrStat)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("only for HMI: total roll force status")
+                .HasColumnName("frStat");
+            entity.Property(e => e.FrWt)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("total roll force (wedge target/ next strip)")
+                .HasColumnName("frWT");
+            entity.Property(e => e.Fs)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("forward slip")
+                .HasColumnName("fs");
+            entity.Property(e => e.FsWt)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("forward slip (wedge target/ next strip)")
+                .HasColumnName("fsWT");
+            entity.Property(e => e.Ft0)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("specific entry tension (specific backward tension)")
+                .HasColumnName("ft0");
+            entity.Property(e => e.Ft0Wt)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("specific entry tension (specific backward tension) (wedge target/ next strip)")
+                .HasColumnName("ft0WT");
+            entity.Property(e => e.H0)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("entry thickness  stand (hot)")
+                .HasColumnName("h0");
+            entity.Property(e => e.H0Stat)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("only for HMI: Entry thickness stand (hot) status")
+                .HasColumnName("h0Stat");
+            entity.Property(e => e.H0Wt)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("entry thickness  stand (hot) (wedge target/ next strip)")
+                .HasColumnName("h0WT");
+            entity.Property(e => e.H1)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("exit  thickness  stand (hot)")
+                .HasColumnName("h1");
+            entity.Property(e => e.H1Stat)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("only for HMI: Exit thickness stand (hot) status")
+                .HasColumnName("h1Stat");
+            entity.Property(e => e.H1Wt)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("exit  thickness  stand (hot)(wedge target/ next strip)")
+                .HasColumnName("h1WT");
+            entity.Property(e => e.LWedgeX)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("length of wedge behind stand")
+                .HasColumnName("lWedgeX");
+            entity.Property(e => e.LubRampTimeStart)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("duration of work roll lubrication start ramp")
+                .HasColumnName("lubRampTimeStart");
+            entity.Property(e => e.LubRampTimeStop)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("duration of work roll lubrication stop ramp")
+                .HasColumnName("lubRampTimeStop");
+            entity.Property(e => e.LubStartLen)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("start length for lubrication ( negative = before stand loaded, positive = after stand loaded)")
+                .HasColumnName("lubStartLen");
+            entity.Property(e => e.LubStartMod)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Start mode of lubrication (bit0=1: stand loaded, bit1=1:following stand loaded, bit2=1:start according to length,bit3=1:continuous)")
+                .HasColumnName("lubStartMod");
+            entity.Property(e => e.LubStopLen)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("stop length for lubrication")
+                .HasColumnName("lubStopLen");
+            entity.Property(e => e.MatModule)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("material module (CM) in working point")
+                .HasColumnName("matModule");
+            entity.Property(e => e.MatModuleWt)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("material module (CM) in working point (wedge target/ next strip)")
+                .HasColumnName("matModuleWT");
+            entity.Property(e => e.Mop)
+                .HasMaxLength(120)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("modifying process")
+                .HasColumnName("mop");
+            entity.Property(e => e.Ms)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("rolling torque")
+                .HasColumnName("ms");
+            entity.Property(e => e.MsWt)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("rolling torque (wedge target/ next strip)")
+                .HasColumnName("msWT");
+            entity.Property(e => e.PfcShapeType)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("shape type for PFC")
+                .HasColumnName("pfcShapeType");
+            entity.Property(e => e.PositionWrs)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("work roll shifting position")
+                .HasColumnName("positionWRS");
+            entity.Property(e => e.PositionWrsstat)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("only for HMI: work roll shifting position status")
+                .HasColumnName("positionWRSStat");
+            entity.Property(e => e.PositionWrswt)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("work roll shifting position (wedge target/ next strip)")
+                .HasColumnName("positionWRSWT");
+            entity.Property(e => e.Profile)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Calculated profile value")
+                .HasColumnName("profile");
+            entity.Property(e => e.ProfileStat)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("only for HMI: Strip profile status")
+                .HasColumnName("profileStat");
+            entity.Property(e => e.PropDspeed)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("proportional change of master speed during rolling of wedge")
+                .HasColumnName("propDSpeed");
+            entity.Property(e => e.RPower)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Rolling power")
+                .HasColumnName("rPower");
+            entity.Property(e => e.RPowerStat)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("only for HMI: Rolling power status")
+                .HasColumnName("rPowerStat");
+            entity.Property(e => e.RPowerWt)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Rolling power  (wedge target/ next strip)")
+                .HasColumnName("rPowerWT");
+            entity.Property(e => e.RacModulus)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("racModulus")
+                .HasColumnName("racModulus");
+            entity.Property(e => e.Red)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Reduction")
+                .HasColumnName("red");
+            entity.Property(e => e.RedStat)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("only for HMI: Reduction status")
+                .HasColumnName("redStat");
+            entity.Property(e => e.RelProfile)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("relative calculated profile for each stand from PFC")
+                .HasColumnName("relProfile");
+            entity.Property(e => e.RollDiaBur)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("back up roll diameter Top")
+                .HasColumnName("rollDiaBUR");
+            entity.Property(e => e.RollDiaBurbot)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("back up roll diameter Bottom")
+                .HasColumnName("rollDiaBURBot");
+            entity.Property(e => e.RollDiaWr)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("work roll diameter Top")
+                .HasColumnName("rollDiaWR");
+            entity.Property(e => e.RollDiaWrbot)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("work roll diameter Bottom")
+                .HasColumnName("rollDiaWRBot");
+            entity.Property(e => e.RollKissing)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("1 = roll kissing  (model calculated)")
+                .HasColumnName("rollKissing");
+            entity.Property(e => e.Sd)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("screw down")
+                .HasColumnName("sd");
+            entity.Property(e => e.SdCorr)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("screw down correction (model used for calculation)")
+                .HasColumnName("sdCorr");
+            entity.Property(e => e.SdFlag)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("status flags for screw down system (bit0:stand active, bit1:AGC absolute, bit2:DPC absolute)")
+                .HasColumnName("sdFlag");
+            entity.Property(e => e.SdStat)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("only for HMI: Screw down status")
+                .HasColumnName("sdStat");
+            entity.Property(e => e.SdWt)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("screwn down (wedge target/ next strip)")
+                .HasColumnName("sdWT");
+            entity.Property(e => e.SprayFlag)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("spray flag bit=1 is on (bit0:cross spray behind on, bit1:fume suppression spray on , bit2:roll gap spray on, bit3:looper cooling on , bit4: roll gap lubrication top on, bit5: roll gap lubrication bottom on, bit6: interstand descaling on, bit7: work roll cooling entry on, bit8: interstand cooling on, bit12: cross spray before on)")
+                .HasColumnName("sprayFlag");
+            entity.Property(e => e.SprayFlagStat)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("only for HMI: spray flag status")
+                .HasColumnName("sprayFlagStat");
+            entity.Property(e => e.StandModule)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("stand module (CG) in working point")
+                .HasColumnName("standModule");
+            entity.Property(e => e.StandModuleWt)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("stand module (CG) in working point  (wedge target/ next strip)")
+                .HasColumnName("standModuleWT");
+            entity.Property(e => e.StripStock)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("strip stock behind stand")
+                .HasColumnName("stripStock");
+            entity.Property(e => e.StripStockWt)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("strip stock behind stand  (wedge target/ next strip)")
+                .HasColumnName("stripStockWT");
+            entity.Property(e => e.T0)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("entry temperature for each stand")
+                .HasColumnName("t0");
+            entity.Property(e => e.T0Stat)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("only for HMI: entry temperature for each stand status")
+                .HasColumnName("t0Stat");
+            entity.Property(e => e.T1)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("exit average temperature")
+                .HasColumnName("t1");
+            entity.Property(e => e.TRoll)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Temperature of the roll")
+                .HasColumnName("tRoll");
+            entity.Property(e => e.TenSelect)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("flag that indicates which tension type has to be used with this strip in the basic automation 0=looper tension control, 1=minimum tension control")
+                .HasColumnName("tenSelect");
+            entity.Property(e => e.ThermCrown)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Thermal crown calculated value for roll barrel length")
+                .HasColumnName("thermCrown");
+            entity.Property(e => e.Toc)
+                .HasPrecision(3)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("time of creation")
+                .HasColumnName("toc");
+            entity.Property(e => e.Tom)
+                .HasPrecision(3)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("time of modification")
+                .HasColumnName("tom");
+            entity.Property(e => e.VCircum)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("workroll circumference speed")
+                .HasColumnName("vCircum");
+            entity.Property(e => e.VCircumStat)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("only for HMI: Workroll circumference speed status")
+                .HasColumnName("vCircumStat");
+            entity.Property(e => e.VCircumWt)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("workroll circumference speed (wedge target/ next strip)")
+                .HasColumnName("vCircumWT");
+            entity.Property(e => e.WarmStiff)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("warm stiffness of the stand (for looper control); yield stress of the strip")
+                .HasColumnName("warmStiff");
+            entity.Property(e => e.Wear)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("calculated wear")
+                .HasColumnName("wear");
+            entity.Property(e => e.WrCrownEff)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("effective work roll crown over barrel length")
+                .HasColumnName("wrCrownEff");
+            entity.Property(e => e.WrWrMinDistance)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("minimal distance between the work rolls  (model calculated)")
+                .HasColumnName("wrWrMinDistance");
+
+            entity.HasOne(d => d.Me1).WithMany(p => p.StatSpOrd2PcStands)
+                .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
+                .HasConstraintName("FK__Stat_SpOrd2PcSta__3D77271E");
+        });
+
+        modelBuilder.Entity<StatSpOrdEnt>(entity =>
+        {
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.ThickHead }).HasName("PK__Stat_SpO__3EFAB4C237FDCEF4");
+
+            entity.ToTable("Stat_SpOrdEnt", "PRDB", tb =>
+                {
+                    tb.HasComment("");
+                    tb.HasTrigger("TI_Stat_SpOrdEnt");
+                    tb.HasTrigger("TU_Stat_SpOrdEnt");
+                });
+
+            entity.Property(e => e.MeId)
+                .HasDefaultValue(1)
+                .HasComment("Material idendification number")
+                .HasColumnName("meId");
+            entity.Property(e => e.MeCreator)
+                .HasMaxLength(2)
+                .IsUnicode(false)
+                .HasDefaultValue("")
+                .HasComment("Material owner")
+                .HasColumnName("meCreator");
+            entity.Property(e => e.MesId)
+                .HasDefaultValue((short)1)
+                .HasComment("Line status")
+                .HasColumnName("mesId");
+            entity.Property(e => e.Source)
+                .HasMaxLength(2)
+                .IsUnicode(false)
+                .HasDefaultValue("-")
+                .HasComment("owner")
+                .HasColumnName("source");
+            entity.Property(e => e.ThickHead)
+                .HasComment("thick head flag ( in HSM = 0)")
+                .HasColumnName("thickHead");
+            entity.Property(e => e.AmountBindings)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("amount of bindings circumferential")
+                .HasColumnName("amountBindings");
+            entity.Property(e => e.AmountBindingsR)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("amount of bindings radial")
+                .HasColumnName("amountBindingsR");
+            entity.Property(e => e.ApsKey)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("only for HMI: technological material key")
+                .HasColumnName("apsKey");
+            entity.Property(e => e.DilatometerCurve)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("no. of dilatometer curve to be applied")
+                .HasColumnName("dilatometerCurve");
+            entity.Property(e => e.FlagPlateProd)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Flag for plate production:  0 = strip production, 1 = plate production")
+                .HasColumnName("flagPlateProd");
+            entity.Property(e => e.HExitCus)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("for marking")
+                .HasColumnName("hExitCus");
+            entity.Property(e => e.HExitM)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("strip thickness - tolerance - (delta)")
+                .HasColumnName("hExitM");
+            entity.Property(e => e.HExitP)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("strip thickness - tolerance + (delta)")
+                .HasColumnName("hExitP");
+            entity.Property(e => e.HExitSetp)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("planned finished strip thickness from L3")
+                .HasColumnName("hExitSetp");
+            entity.Property(e => e.IdRiga)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Row Order identifier from L3")
+                .HasColumnName("idRiga");
+            entity.Property(e => e.IdSeq)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Sequence identifier from L3")
+                .HasColumnName("idSeq");
+            entity.Property(e => e.InspectionCode)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Sampling/inspection code")
+                .HasColumnName("inspectionCode");
+            entity.Property(e => e.LengthOrder)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("length of order")
+                .HasColumnName("lengthOrder");
+            entity.Property(e => e.MarkingDataDiscLine)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Marking data for disc line")
+                .HasColumnName("markingDataDiscLine");
+            entity.Property(e => e.MatId)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("material identifier for measurement devices (from table ThickMatId)")
+                .HasColumnName("matId");
+            entity.Property(e => e.Mop)
+                .HasMaxLength(120)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("modifying process")
+                .HasColumnName("mop");
+            entity.Property(e => e.NoDil)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("dilatometercurve number")
+                .HasColumnName("noDil");
+            entity.Property(e => e.ProfileMax)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("strip profile upper tolerance")
+                .HasColumnName("profileMax");
+            entity.Property(e => e.ProfileMin)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("strip profile lower tolerance")
+                .HasColumnName("profileMin");
+            entity.Property(e => e.SetpointsEdOk)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Flag: 1=setpoints from Ed are o.k.")
+                .HasColumnName("setpointsEdOk");
+            entity.Property(e => e.SteelCus)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("for marking")
+                .HasColumnName("steelCus");
+            entity.Property(e => e.TCoiler)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("tension reel/coiler: coiling temperature")
+                .HasColumnName("tCoiler");
+            entity.Property(e => e.TExitSetp)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("planned exit temperature from L3")
+                .HasColumnName("tExitSetp");
+            entity.Property(e => e.Toc)
+                .HasPrecision(3)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("time of creation")
+                .HasColumnName("toc");
+            entity.Property(e => e.Tom)
+                .HasPrecision(3)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("time of modification")
+                .HasColumnName("tom");
+            entity.Property(e => e.WedgeMax)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("strip wedge - positive tolerance limit")
+                .HasColumnName("wedgeMax");
+            entity.Property(e => e.WedgeMin)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("strip wedge - negative tolerance limit")
+                .HasColumnName("wedgeMin");
+            entity.Property(e => e.WidthExitCus)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("for marking")
+                .HasColumnName("widthExitCus");
+
+            entity.HasOne(d => d.Me1).WithMany(p => p.StatSpOrdEnts)
+                .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
+                .HasConstraintName("FK__Stat_SpOrdEnt__171C740C");
+        });
+
+        modelBuilder.Entity<StatSpPhyEnt>(entity =>
+        {
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.ThickHead }).HasName("PK__Stat_SpP__3EFAB4C2755368DE");
+
+            entity.ToTable("Stat_SpPhyEnt", "PRDB", tb =>
+                {
+                    tb.HasComment("");
+                    tb.HasTrigger("TI_Stat_SpPhyEnt");
+                    tb.HasTrigger("TU_Stat_SpPhyEnt");
+                });
+
+            entity.Property(e => e.MeId)
+                .HasDefaultValue(1)
+                .HasComment("Material idendification number")
+                .HasColumnName("meId");
+            entity.Property(e => e.MeCreator)
+                .HasMaxLength(2)
+                .IsUnicode(false)
+                .HasDefaultValue("")
+                .HasComment("Material owner")
+                .HasColumnName("meCreator");
+            entity.Property(e => e.MesId)
+                .HasDefaultValue((short)1)
+                .HasComment("Line status")
+                .HasColumnName("mesId");
+            entity.Property(e => e.Source)
+                .HasMaxLength(2)
+                .IsUnicode(false)
+                .HasDefaultValue("-")
+                .HasComment("owner")
+                .HasColumnName("source");
+            entity.Property(e => e.ThickHead)
+                .HasComment("thick head flag ( in HSM = 0)")
+                .HasColumnName("thickHead");
+            entity.Property(e => e.BasisId)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("identifaction of material in basic automation")
+                .HasColumnName("basisId");
+            entity.Property(e => e.BendModeFlag)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("")
+                .HasColumnName("bendModeFlag");
+            entity.Property(e => e.CoilOutDia)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("coil outer diameter (only available for exit, measured value)")
+                .HasColumnName("coilOutDia");
+            entity.Property(e => e.HExitCustomer)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("thickness of coil customer")
+                .HasColumnName("hExitCustomer");
+            entity.Property(e => e.HeatId)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("heat identification")
+                .HasColumnName("heatId");
+            entity.Property(e => e.LenMarkingDataDiscLine)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Length string marking data disc line")
+                .HasColumnName("lenMarkingDataDiscLine");
+            entity.Property(e => e.LenMarkingDataShellLine1)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Length string marking data line 1")
+                .HasColumnName("lenMarkingDataShellLine1");
+            entity.Property(e => e.LenMarkingDataShellLine2)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Length string marking data shell line 2")
+                .HasColumnName("lenMarkingDataShellLine2");
+            entity.Property(e => e.MarkingDataShellLine1)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Marking data for shell line 1")
+                .HasColumnName("markingDataShellLine1");
+            entity.Property(e => e.MarkingDataShellLine2)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Marking data for shell line 2")
+                .HasColumnName("markingDataShellLine2");
+            entity.Property(e => e.Mop)
+                .HasMaxLength(120)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("modifying process")
+                .HasColumnName("mop");
+            entity.Property(e => e.SeqId)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("caster sequence Id")
+                .HasColumnName("seqId");
+            entity.Property(e => e.SteelCustomer)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("steelgrade customer")
+                .HasColumnName("steelCustomer");
+            entity.Property(e => e.Toc)
+                .HasPrecision(3)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("time of creation")
+                .HasColumnName("toc");
+            entity.Property(e => e.Tom)
+                .HasPrecision(3)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("time of modification")
+                .HasColumnName("tom");
+            entity.Property(e => e.WidthExitCustomer)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("width of coil customer")
+                .HasColumnName("widthExitCustomer");
+
+            entity.HasOne(d => d.Me1).WithMany(p => p.StatSpPhyEnts)
+                .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
+                .HasConstraintName("FK__Stat_SpPhyEnt__2FE821D6");
+        });
+
         modelBuilder.Entity<StdAop>(entity =>
         {
             entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdAOP__171BDFC52D328066");
@@ -56689,6 +59881,12 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[N/m2] decoiler tension")
                 .HasColumnName("decoilerTension");
+            entity.Property(e => e.Description)
+                .HasMaxLength(80)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("description field")
+                .HasColumnName("description");
             entity.Property(e => e.Mop)
                 .HasMaxLength(120)
                 .IsUnicode(false)

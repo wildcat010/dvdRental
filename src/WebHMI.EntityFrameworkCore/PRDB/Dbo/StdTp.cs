@@ -57,4 +57,9 @@ public partial class StdTp
     /// time of modification
     /// </summary>
     public DateTime? Tom { get; set; }
+
+    /// <summary>
+    /// description field
+    /// </summary>
+    public string Description { get; set; }
 }

@@ -1,0 +1,1677 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace WebHMI.PRDB.Dbo;
+
+public partial class StatSpOrd2Pc
+{
+    /// <summary>
+    /// Material owner
+    /// </summary>
+    public string MeCreator { get; set; }
+
+    /// <summary>
+    /// Material idendification number
+    /// </summary>
+    public int MeId { get; set; }
+
+    /// <summary>
+    /// Line status
+    /// </summary>
+    public short MesId { get; set; }
+
+    /// <summary>
+    /// owner
+    /// </summary>
+    public string Source { get; set; }
+
+    /// <summary>
+    /// thick head flag (in HSM =0)
+    /// </summary>
+    public short ThickHead { get; set; }
+
+    /// <summary>
+    /// Reference Linear Coefficient Coiler
+    /// </summary>
+    public short? WFgLiCoefC { get; set; }
+
+    /// <summary>
+    /// Reference Linear Coefficient Head
+    /// </summary>
+    public short? WFgLiCoefH { get; set; }
+
+    /// <summary>
+    /// Reference Square Coefficient Coiler
+    /// </summary>
+    public short? WFgSqCoefC { get; set; }
+
+    /// <summary>
+    /// Reference Square Coefficient Head
+    /// </summary>
+    public short? WFgSqCoefH { get; set; }
+
+    /// <summary>
+    /// 1 = absolut cut at end of material (limitation)
+    /// </summary>
+    public short? AbsCutInfo { get; set; }
+
+    /// <summary>
+    /// power speed down for strip tail
+    /// </summary>
+    public short? AccRateSdtail { get; set; }
+
+    /// <summary>
+    /// Bending mode (00=FM,=HRM)
+    /// </summary>
+    public short? BendMode { get; set; }
+
+    /// <summary>
+    /// 0 = normal strip or plate,   1 = checker strip or plate
+    /// </summary>
+    public short? CheckerFlag { get; set; }
+
+    /// <summary>
+    /// Checker height
+    /// </summary>
+    public short? CheckerHeight { get; set; }
+
+    /// <summary>
+    /// CS:  percentage of autenite
+    /// </summary>
+    public short? CsAustenite { get; set; }
+
+    /// <summary>
+    /// CS: bottom valve volume flow (0-100) , 44 laminar cooling valves
+    /// </summary>
+    public short? CsBotValve { get; set; }
+
+    /// <summary>
+    /// CS:  percentage of cementite
+    /// </summary>
+    public short? CsCementite { get; set; }
+
+    /// <summary>
+    /// CS: correction factor heat transfer
+    /// </summary>
+    public short? CsCofaHeat { get; set; }
+
+    /// <summary>
+    /// CS: cofa factor phase transformation
+    /// </summary>
+    public short? CsCofaPhase { get; set; }
+
+    /// <summary>
+    /// CS: calculated coiler temperature
+    /// </summary>
+    public short? CsCoilTempCalc { get; set; }
+
+    /// <summary>
+    /// CS: coil setpoint temperature
+    /// </summary>
+    public short? CsCoilTempSetp { get; set; }
+
+    /// <summary>
+    /// CS: longitudinal spray/ cross spray
+    /// </summary>
+    public short? CsCrossSprayInd0 { get; set; }
+
+    /// <summary>
+    /// CS: longitudinal spray/ cross spray
+    /// </summary>
+    public short? CsCrossSprayInd1 { get; set; }
+
+    /// <summary>
+    /// CS: longitudinal spray/ cross spray
+    /// </summary>
+    public short? CsCrossSprayInd10 { get; set; }
+
+    /// <summary>
+    /// CS: longitudinal spray/ cross spray
+    /// </summary>
+    public short? CsCrossSprayInd11 { get; set; }
+
+    /// <summary>
+    /// CS: longitudinal spray/ cross spray
+    /// </summary>
+    public short? CsCrossSprayInd12 { get; set; }
+
+    /// <summary>
+    /// CS: longitudinal spray/ cross spray
+    /// </summary>
+    public short? CsCrossSprayInd13 { get; set; }
+
+    /// <summary>
+    /// CS: longitudinal spray/ cross spray
+    /// </summary>
+    public short? CsCrossSprayInd14 { get; set; }
+
+    /// <summary>
+    /// CS: longitudinal spray/ cross spray
+    /// </summary>
+    public short? CsCrossSprayInd15 { get; set; }
+
+    /// <summary>
+    /// CS: longitudinal spray/ cross spray
+    /// </summary>
+    public short? CsCrossSprayInd16 { get; set; }
+
+    /// <summary>
+    /// CS: longitudinal spray/ cross spray
+    /// </summary>
+    public short? CsCrossSprayInd17 { get; set; }
+
+    /// <summary>
+    /// CS: longitudinal spray/ cross spray
+    /// </summary>
+    public short? CsCrossSprayInd18 { get; set; }
+
+    /// <summary>
+    /// CS: longitudinal spray/ cross spray
+    /// </summary>
+    public short? CsCrossSprayInd19 { get; set; }
+
+    /// <summary>
+    /// CS: longitudinal spray/ cross spray
+    /// </summary>
+    public short? CsCrossSprayInd2 { get; set; }
+
+    /// <summary>
+    /// CS: longitudinal spray/ cross spray
+    /// </summary>
+    public short? CsCrossSprayInd20 { get; set; }
+
+    /// <summary>
+    /// CS: longitudinal spray/ cross spray
+    /// </summary>
+    public short? CsCrossSprayInd21 { get; set; }
+
+    /// <summary>
+    /// CS: longitudinal spray/ cross spray
+    /// </summary>
+    public short? CsCrossSprayInd22 { get; set; }
+
+    /// <summary>
+    /// CS: longitudinal spray/ cross spray
+    /// </summary>
+    public short? CsCrossSprayInd23 { get; set; }
+
+    /// <summary>
+    /// CS: longitudinal spray/ cross spray
+    /// </summary>
+    public short? CsCrossSprayInd24 { get; set; }
+
+    /// <summary>
+    /// CS: longitudinal spray/ cross spray
+    /// </summary>
+    public short? CsCrossSprayInd25 { get; set; }
+
+    /// <summary>
+    /// CS: longitudinal spray/ cross spray
+    /// </summary>
+    public short? CsCrossSprayInd26 { get; set; }
+
+    /// <summary>
+    /// CS: longitudinal spray/ cross spray
+    /// </summary>
+    public short? CsCrossSprayInd27 { get; set; }
+
+    /// <summary>
+    /// CS: longitudinal spray/ cross spray
+    /// </summary>
+    public short? CsCrossSprayInd28 { get; set; }
+
+    /// <summary>
+    /// CS: longitudinal spray/ cross spray
+    /// </summary>
+    public short? CsCrossSprayInd29 { get; set; }
+
+    /// <summary>
+    /// CS: longitudinal spray/ cross spray
+    /// </summary>
+    public short? CsCrossSprayInd3 { get; set; }
+
+    /// <summary>
+    /// CS: longitudinal spray/ cross spray
+    /// </summary>
+    public short? CsCrossSprayInd30 { get; set; }
+
+    /// <summary>
+    /// CS: longitudinal spray/ cross spray
+    /// </summary>
+    public short? CsCrossSprayInd31 { get; set; }
+
+    /// <summary>
+    /// CS: longitudinal spray/ cross spray
+    /// </summary>
+    public short? CsCrossSprayInd4 { get; set; }
+
+    /// <summary>
+    /// CS: longitudinal spray/ cross spray
+    /// </summary>
+    public short? CsCrossSprayInd5 { get; set; }
+
+    /// <summary>
+    /// CS: longitudinal spray/ cross spray
+    /// </summary>
+    public short? CsCrossSprayInd6 { get; set; }
+
+    /// <summary>
+    /// CS: longitudinal spray/ cross spray
+    /// </summary>
+    public short? CsCrossSprayInd7 { get; set; }
+
+    /// <summary>
+    /// CS: longitudinal spray/ cross spray
+    /// </summary>
+    public short? CsCrossSprayInd8 { get; set; }
+
+    /// <summary>
+    /// CS: longitudinal spray/ cross spray
+    /// </summary>
+    public short? CsCrossSprayInd9 { get; set; }
+
+    /// <summary>
+    /// CS: percentage of ferrite
+    /// </summary>
+    public short? CsFerrite { get; set; }
+
+    /// <summary>
+    /// CS:  percentage of perlite
+    /// </summary>
+    public short? CsPerlite { get; set; }
+
+    /// <summary>
+    /// CS: profile head length
+    /// </summary>
+    public short? CsProfHeadLength { get; set; }
+
+    /// <summary>
+    /// CS: profile head temperature
+    /// </summary>
+    public short? CsProfHeadTemp { get; set; }
+
+    /// <summary>
+    /// CS:profile tail length
+    /// </summary>
+    public short? CsProfTailLength { get; set; }
+
+    /// <summary>
+    /// CS: profile tail temperature
+    /// </summary>
+    public short? CsProfTailTemp { get; set; }
+
+    /// <summary>
+    /// CS: roller table mode: 0 - auto, 1 - manual
+    /// </summary>
+    public short? CsRollerTableMode { get; set; }
+
+    /// <summary>
+    /// CS: roll out table (bit mapped)
+    /// </summary>
+    public short? CsRollerTableInd0 { get; set; }
+
+    /// <summary>
+    /// CS: roll out table (bit mapped)
+    /// </summary>
+    public short? CsRollerTableInd1 { get; set; }
+
+    /// <summary>
+    /// CS: roll out table (bit mapped)
+    /// </summary>
+    public short? CsRollerTableInd10 { get; set; }
+
+    /// <summary>
+    /// CS: roll out table (bit mapped)
+    /// </summary>
+    public short? CsRollerTableInd11 { get; set; }
+
+    /// <summary>
+    /// CS: roll out table (bit mapped)
+    /// </summary>
+    public short? CsRollerTableInd12 { get; set; }
+
+    /// <summary>
+    /// CS: roll out table (bit mapped)
+    /// </summary>
+    public short? CsRollerTableInd13 { get; set; }
+
+    /// <summary>
+    /// CS: roll out table (bit mapped)
+    /// </summary>
+    public short? CsRollerTableInd14 { get; set; }
+
+    /// <summary>
+    /// CS: roll out table (bit mapped)
+    /// </summary>
+    public short? CsRollerTableInd15 { get; set; }
+
+    /// <summary>
+    /// CS: roll out table (bit mapped)
+    /// </summary>
+    public short? CsRollerTableInd2 { get; set; }
+
+    /// <summary>
+    /// CS: roll out table (bit mapped)
+    /// </summary>
+    public short? CsRollerTableInd3 { get; set; }
+
+    /// <summary>
+    /// CS: roll out table (bit mapped)
+    /// </summary>
+    public short? CsRollerTableInd4 { get; set; }
+
+    /// <summary>
+    /// CS: roll out table (bit mapped)
+    /// </summary>
+    public short? CsRollerTableInd5 { get; set; }
+
+    /// <summary>
+    /// CS: roll out table (bit mapped)
+    /// </summary>
+    public short? CsRollerTableInd6 { get; set; }
+
+    /// <summary>
+    /// CS: roll out table (bit mapped)
+    /// </summary>
+    public short? CsRollerTableInd7 { get; set; }
+
+    /// <summary>
+    /// CS: roll out table (bit mapped)
+    /// </summary>
+    public short? CsRollerTableInd8 { get; set; }
+
+    /// <summary>
+    /// CS: roll out table (bit mapped)
+    /// </summary>
+    public short? CsRollerTableInd9 { get; set; }
+
+    /// <summary>
+    /// CS: error code from MOS-CS
+    /// </summary>
+    public short? CsSbaz { get; set; }
+
+    /// <summary>
+    /// CS: top valve volume flow (0-100)  , 44 laminar cooling valves
+    /// </summary>
+    public short? CsTopValve { get; set; }
+
+    /// <summary>
+    /// CS uncooled head length
+    /// </summary>
+    public short? CsUncHeadLength { get; set; }
+
+    /// <summary>
+    /// CS uncooled tail length
+    /// </summary>
+    public short? CsUncTailLength { get; set; }
+
+    /// <summary>
+    /// cut length counted from actual material head, related to material thickness at shear position
+    /// </summary>
+    public short? CutLen { get; set; }
+
+    /// <summary>
+    /// 0: cut at end of order, 1: no cut at end of order , 3:  cut according to length (cutValue), 10: cut at the end of the material
+    /// </summary>
+    public short? CutRule { get; set; }
+
+    /// <summary>
+    /// shear for cut, 1: pendulum shear, 2: rotary shear, 3:  flying shear
+    /// </summary>
+    public short? CutShearId { get; set; }
+
+    /// <summary>
+    /// flatness controll 1LAS/PR_1LAS
+    /// </summary>
+    public short? DPrXdFb1Las1 { get; set; }
+
+    /// <summary>
+    /// spare
+    /// </summary>
+    public short? DPrXdFb1Las2 { get; set; }
+
+    /// <summary>
+    /// flatness controll 2LAS/PR_2LAS
+    /// </summary>
+    public short? DPrXdFb2Las1 { get; set; }
+
+    /// <summary>
+    /// flatness controll 3LAS/PR_2LAS
+    /// </summary>
+    public short? DPrXdFb2Las2 { get; set; }
+
+    /// <summary>
+    /// flatness controll 3LAS/PR_3LAS
+    /// </summary>
+    public short? DPrXdFb3Las1 { get; set; }
+
+    /// <summary>
+    /// flatness controll 4LAS/PR_4LAS
+    /// </summary>
+    public short? DPrXdFb3Las2 { get; set; }
+
+    /// <summary>
+    /// flatness controll 4LAS/PR_4LAS
+    /// </summary>
+    public short? DPrXdFb4Las1 { get; set; }
+
+    /// <summary>
+    /// flatness controll 5LAS/PR_4LAS
+    /// </summary>
+    public short? DPrXdFb4Las2 { get; set; }
+
+    /// <summary>
+    /// flatness controll 5LAS/PR_5LAS
+    /// </summary>
+    public short? DPrXdFb5Las1 { get; set; }
+
+    /// <summary>
+    /// flatness controll 6LAS/PR_5LAS
+    /// </summary>
+    public short? DPrXdFb5Las2 { get; set; }
+
+    /// <summary>
+    /// flatness controll 6LAS/PR_6LAS
+    /// </summary>
+    public short? DPrXdFb6Las1 { get; set; }
+
+    /// <summary>
+    /// flatness controll 7LAS/PR_6LAS
+    /// </summary>
+    public short? DPrXdFb6Las2 { get; set; }
+
+    /// <summary>
+    /// flatness controll 7LAS/PR_7LAS
+    /// </summary>
+    public short? DPrXdFb7Las1 { get; set; }
+
+    /// <summary>
+    /// flatness controll 7LAS/PR_6LAS
+    /// </summary>
+    public short? DPrXdFb7Las2 { get; set; }
+
+    /// <summary>
+    /// poportional speed change (TC)
+    /// </summary>
+    public short? DSpeedProp { get; set; }
+
+    /// <summary>
+    /// secondary descaler: entry top and bottom off/on (0/1)
+    /// </summary>
+    public short? DescEntryFm { get; set; }
+
+    /// <summary>
+    /// primary descaler HRM: entry top and bottom off/on (0/1)
+    /// </summary>
+    public short? DescEntryHrm { get; set; }
+
+    /// <summary>
+    /// only for HMI: primary descaler HRM: entry top and bottom off/on (0/1) status
+    /// </summary>
+    public short? DescEntryHrmstat { get; set; }
+
+    /// <summary>
+    /// only for HMI: secondary descaler: entry top and bottom off/on (0/1) status
+    /// </summary>
+    public short? DescEntryStatFm { get; set; }
+
+    /// <summary>
+    /// secondary descaler: exit top and bottom off/on (0/1)
+    /// </summary>
+    public short? DescExitFm { get; set; }
+
+    /// <summary>
+    /// primary descaler HRM: exit top and bottom off/on (0/1)
+    /// </summary>
+    public short? DescExitHrm { get; set; }
+
+    /// <summary>
+    /// only for HMI: primary descaler HRM: exit top and bottom off/on (0/1)
+    /// </summary>
+    public short? DescExitHrmstat { get; set; }
+
+    /// <summary>
+    /// only for HMI: secondary descaler: exit top and bottom off/on (0/1) status
+    /// </summary>
+    public short? DescExitStatFm { get; set; }
+
+    /// <summary>
+    /// strip edge distance I
+    /// </summary>
+    public short? DistanceE1 { get; set; }
+
+    /// <summary>
+    /// strip edge distance II
+    /// </summary>
+    public short? DistanceE2 { get; set; }
+
+    /// <summary>
+    /// delta temperature for coil x of inductive heater
+    /// </summary>
+    public short? DtIhtailInd0 { get; set; }
+
+    /// <summary>
+    /// delta temperature for coil x of inductive heater
+    /// </summary>
+    public short? DtIhtailInd1 { get; set; }
+
+    /// <summary>
+    /// delta temperature for coil x of inductive heater
+    /// </summary>
+    public short? DtIhtailInd10 { get; set; }
+
+    /// <summary>
+    /// delta temperature for coil x of inductive heater
+    /// </summary>
+    public short? DtIhtailInd11 { get; set; }
+
+    /// <summary>
+    /// delta temperature for coil x of inductive heater
+    /// </summary>
+    public short? DtIhtailInd12 { get; set; }
+
+    /// <summary>
+    /// delta temperature for coil x of inductive heater
+    /// </summary>
+    public short? DtIhtailInd13 { get; set; }
+
+    /// <summary>
+    /// delta temperature for coil x of inductive heater
+    /// </summary>
+    public short? DtIhtailInd2 { get; set; }
+
+    /// <summary>
+    /// delta temperature for coil x of inductive heater
+    /// </summary>
+    public short? DtIhtailInd3 { get; set; }
+
+    /// <summary>
+    /// delta temperature for coil x of inductive heater
+    /// </summary>
+    public short? DtIhtailInd4 { get; set; }
+
+    /// <summary>
+    /// delta temperature for coil x of inductive heater
+    /// </summary>
+    public short? DtIhtailInd5 { get; set; }
+
+    /// <summary>
+    /// delta temperature for coil x of inductive heater
+    /// </summary>
+    public short? DtIhtailInd6 { get; set; }
+
+    /// <summary>
+    /// delta temperature for coil x of inductive heater
+    /// </summary>
+    public short? DtIhtailInd7 { get; set; }
+
+    /// <summary>
+    /// delta temperature for coil x of inductive heater
+    /// </summary>
+    public short? DtIhtailInd8 { get; set; }
+
+    /// <summary>
+    /// delta temperature for coil x of inductive heater
+    /// </summary>
+    public short? DtIhtailInd9 { get; set; }
+
+    /// <summary>
+    /// delta temperature for coil x of inductive heater
+    /// </summary>
+    public short? DtIhInd0 { get; set; }
+
+    /// <summary>
+    /// delta temperature for coil x of inductive heater
+    /// </summary>
+    public short? DtIhInd1 { get; set; }
+
+    /// <summary>
+    /// delta temperature for coil x of inductive heater
+    /// </summary>
+    public short? DtIhInd10 { get; set; }
+
+    /// <summary>
+    /// delta temperature for coil x of inductive heater
+    /// </summary>
+    public short? DtIhInd11 { get; set; }
+
+    /// <summary>
+    /// delta temperature for coil x of inductive heater
+    /// </summary>
+    public short? DtIhInd12 { get; set; }
+
+    /// <summary>
+    /// delta temperature for coil x of inductive heater
+    /// </summary>
+    public short? DtIhInd13 { get; set; }
+
+    /// <summary>
+    /// delta temperature for coil x of inductive heater
+    /// </summary>
+    public short? DtIhInd2 { get; set; }
+
+    /// <summary>
+    /// delta temperature for coil x of inductive heater
+    /// </summary>
+    public short? DtIhInd3 { get; set; }
+
+    /// <summary>
+    /// delta temperature for coil x of inductive heater
+    /// </summary>
+    public short? DtIhInd4 { get; set; }
+
+    /// <summary>
+    /// delta temperature for coil x of inductive heater
+    /// </summary>
+    public short? DtIhInd5 { get; set; }
+
+    /// <summary>
+    /// delta temperature for coil x of inductive heater
+    /// </summary>
+    public short? DtIhInd6 { get; set; }
+
+    /// <summary>
+    /// delta temperature for coil x of inductive heater
+    /// </summary>
+    public short? DtIhInd7 { get; set; }
+
+    /// <summary>
+    /// delta temperature for coil x of inductive heater
+    /// </summary>
+    public short? DtIhInd8 { get; set; }
+
+    /// <summary>
+    /// delta temperature for coil x of inductive heater
+    /// </summary>
+    public short? DtIhInd9 { get; set; }
+
+    /// <summary>
+    /// enco panel 1 (0 - open, 1- closed)
+    /// </summary>
+    public short? EncoPanel1 { get; set; }
+
+    /// <summary>
+    /// enco panel 2 (0 - open, 1- closed)
+    /// </summary>
+    public short? EncoPanel2 { get; set; }
+
+    /// <summary>
+    /// enco panel 3 (0 - open, 1- closed)
+    /// </summary>
+    public short? EncoPanel3 { get; set; }
+
+    /// <summary>
+    /// enco panel 4 (0 - open, 1- closed)
+    /// </summary>
+    public short? EncoPanel4 { get; set; }
+
+    /// <summary>
+    /// flatness curve number default=0
+    /// </summary>
+    public short? FlatCurveNr { get; set; }
+
+    public short? FlcAsymBlocked { get; set; }
+
+    public short? FlcSymBlocked { get; set; }
+
+    /// <summary>
+    /// secondary descaler: entry top and bottom flow
+    /// </summary>
+    public short? FlowDescEntryFm { get; set; }
+
+    /// <summary>
+    /// primary descaler HRM: entry top and bottom flow
+    /// </summary>
+    public short? FlowDescEntryHrm { get; set; }
+
+    /// <summary>
+    /// secondary descaler: exit top and bottom flow
+    /// </summary>
+    public short? FlowDescExitFm { get; set; }
+
+    /// <summary>
+    /// primary descaler HRM: exit top and bottom flow
+    /// </summary>
+    public short? FlowDescExitHrm { get; set; }
+
+    /// <summary>
+    ///  power cooling flow reference entry bottom
+    /// </summary>
+    public short? FlowPcEntryB { get; set; }
+
+    /// <summary>
+    ///  power cooling flow reference entry top
+    /// </summary>
+    public short? FlowPcEntryT { get; set; }
+
+    /// <summary>
+    ///  power cooling flow reference exit bottom
+    /// </summary>
+    public short? FlowPcExitB { get; set; }
+
+    /// <summary>
+    ///  power cooling flow reference exit top
+    /// </summary>
+    public short? FlowPcExitT { get; set; }
+
+    /// <summary>
+    /// force pinch roll entry flying shear
+    /// </summary>
+    public short? FrPrenFs { get; set; }
+
+    /// <summary>
+    /// force pinch roll entry inductive heating furnace
+    /// </summary>
+    public short? FrPrenIh { get; set; }
+
+    /// <summary>
+    /// force pinch roll entry pendulum shear
+    /// </summary>
+    public short? FrPrenPs { get; set; }
+
+    /// <summary>
+    /// force pinch roll entry rotary shear
+    /// </summary>
+    public short? FrPrenRs { get; set; }
+
+    /// <summary>
+    /// force pinch roll exit flying shear
+    /// </summary>
+    public short? FrPrexFs { get; set; }
+
+    /// <summary>
+    /// force pinch roll exit inductive heating furnace
+    /// </summary>
+    public short? FrPrexIh { get; set; }
+
+    /// <summary>
+    /// force pinch roll exit pendulum shear
+    /// </summary>
+    public short? FrPrexPs { get; set; }
+
+    /// <summary>
+    /// force pinch roll exit rotary shear
+    /// </summary>
+    public short? FrPrexRs { get; set; }
+
+    /// <summary>
+    /// tension reel/coiler: specific tension
+    /// </summary>
+    public short? FtCoiler { get; set; }
+
+    /// <summary>
+    /// specific forward tension pinch roll entry flying shear
+    /// </summary>
+    public short? FtPrenFs { get; set; }
+
+    /// <summary>
+    /// specific forward tension pinch roll entry inductive heating furnace
+    /// </summary>
+    public short? FtPrenIh { get; set; }
+
+    /// <summary>
+    /// specific forward tension pinch roll entry pendulum shear
+    /// </summary>
+    public short? FtPrenPs { get; set; }
+
+    /// <summary>
+    /// specific forward tension pinch roll entry rotary shear
+    /// </summary>
+    public short? FtPrenRs { get; set; }
+
+    /// <summary>
+    /// specific forward tension pinch roll exit flying shear
+    /// </summary>
+    public short? FtPrexFs { get; set; }
+
+    /// <summary>
+    /// specific forward tension pinch roll exit inductive heating furnace
+    /// </summary>
+    public short? FtPrexIh { get; set; }
+
+    /// <summary>
+    /// specific forward tension pinch roll exit pendulum shear
+    /// </summary>
+    public short? FtPrexPs { get; set; }
+
+    /// <summary>
+    /// specific forward tension pinch roll exit rotary shear
+    /// </summary>
+    public short? FtPrexRs { get; set; }
+
+    /// <summary>
+    /// cast slab thickness (hot)
+    /// </summary>
+    public short? HCast { get; set; }
+
+    /// <summary>
+    /// cast slab thickness cold
+    /// </summary>
+    public short? HCastCold { get; set; }
+
+    /// <summary>
+    /// tension reel/coiler: strip thickness (hot)
+    /// </summary>
+    public short? HCoiler { get; set; }
+
+    /// <summary>
+    /// entry thickness (rough strip thickness cold)
+    /// </summary>
+    public short? HEntryColdFm { get; set; }
+
+    /// <summary>
+    /// entry thickness (rough strip thickness hot)
+    /// </summary>
+    public short? HEntryFm { get; set; }
+
+    /// <summary>
+    /// strip thickness cold
+    /// </summary>
+    public short? HExitCold { get; set; }
+
+    /// <summary>
+    /// only for HMI: Strip thickness cold status
+    /// </summary>
+    public short? HExitColdStat { get; set; }
+
+    /// <summary>
+    /// ih total power
+    /// </summary>
+    public short? IHtotalPower { get; set; }
+
+    /// <summary>
+    /// Required  Induction Heater exit temperature to reach HFM exit Temperature
+    /// </summary>
+    public short? IHtExit { get; set; }
+
+    /// <summary>
+    /// Flag for inheritance, 0 = Long time, 2 = short time exact, 3 = short time similar
+    /// </summary>
+    public short? InherPfc { get; set; }
+
+    /// <summary>
+    /// Material Id from short time inheritance
+    /// </summary>
+    public short? InherPfcId { get; set; }
+
+    /// <summary>
+    /// length after FM
+    /// </summary>
+    public short? LExit { get; set; }
+
+    /// <summary>
+    /// related length for speed and temperature (for cooling model)
+    /// </summary>
+    public short? LPointRefInd0 { get; set; }
+
+    /// <summary>
+    /// related length for speed and temperature (for cooling model)
+    /// </summary>
+    public short? LPointRefInd1 { get; set; }
+
+    /// <summary>
+    /// related length for speed and temperature (for cooling model)
+    /// </summary>
+    public short? LPointRefInd2 { get; set; }
+
+    /// <summary>
+    /// related length for speed and temperature (for cooling model)
+    /// </summary>
+    public short? LPointRefInd3 { get; set; }
+
+    /// <summary>
+    /// related length for speed and temperature (for cooling model)
+    /// </summary>
+    public short? LPointRefInd4 { get; set; }
+
+    /// <summary>
+    /// related length for speed and temperature (for cooling model)
+    /// </summary>
+    public short? LPointRefInd5 { get; set; }
+
+    /// <summary>
+    /// related length for speed and temperature (for cooling model)
+    /// </summary>
+    public short? LPointRefInd6 { get; set; }
+
+    /// <summary>
+    /// related length for speed and temperature (for cooling model)
+    /// </summary>
+    public short? LPointRefInd7 { get; set; }
+
+    /// <summary>
+    /// related length for speed and temperature (for cooling model)
+    /// </summary>
+    public short? LPointRefInd8 { get; set; }
+
+    /// <summary>
+    /// related length for speed and temperature (for cooling model)
+    /// </summary>
+    public short? LPointRefInd9 { get; set; }
+
+    /// <summary>
+    /// roughed strip length (ONLY FOR SIMULATION!!!)
+    /// </summary>
+    public short? LRoughedStrip { get; set; }
+
+    /// <summary>
+    /// length of the wedge (slab related)
+    /// </summary>
+    public short? LWedge { get; set; }
+
+    /// <summary>
+    /// length of the wedge  HRM (slab related)
+    /// </summary>
+    public short? LWedgeHrm { get; set; }
+
+    /// <summary>
+    /// length of transfer bar with acceleration
+    /// </summary>
+    public short? LenTrBarAccel { get; set; }
+
+    /// <summary>
+    /// length of transfer bar with which the speed up starts
+    /// </summary>
+    public short? Length2Spup { get; set; }
+
+    /// <summary>
+    /// mandrel expansion factor  0-1
+    /// </summary>
+    public short? MandrelExpFac { get; set; }
+
+    /// <summary>
+    /// minimum speed caster (for next material enter FM)
+    /// </summary>
+    public short? MinSpeedCas { get; set; }
+
+    /// <summary>
+    /// first active stand number
+    /// </summary>
+    public short? NoFas { get; set; }
+
+    /// <summary>
+    /// first active stand number HFM
+    /// </summary>
+    public short? NoFasHfm { get; set; }
+
+    /// <summary>
+    /// last active stand number
+    /// </summary>
+    public short? NoLas { get; set; }
+
+    /// <summary>
+    /// last active stand number HRM
+    /// </summary>
+    public short? NoLasHrm { get; set; }
+
+    /// <summary>
+    /// active power tail inductive heater coil x
+    /// </summary>
+    public short? PIhtailInd0 { get; set; }
+
+    /// <summary>
+    /// active power tail inductive heater coil x
+    /// </summary>
+    public short? PIhtailInd1 { get; set; }
+
+    /// <summary>
+    /// active power tail inductive heater coil x
+    /// </summary>
+    public short? PIhtailInd10 { get; set; }
+
+    /// <summary>
+    /// active power tail inductive heater coil x
+    /// </summary>
+    public short? PIhtailInd11 { get; set; }
+
+    /// <summary>
+    /// active power tail inductive heater coil x
+    /// </summary>
+    public short? PIhtailInd12 { get; set; }
+
+    /// <summary>
+    /// active power tail inductive heater coil x
+    /// </summary>
+    public short? PIhtailInd13 { get; set; }
+
+    /// <summary>
+    /// active power tail inductive heater coil x
+    /// </summary>
+    public short? PIhtailInd2 { get; set; }
+
+    /// <summary>
+    /// active power tail inductive heater coil x
+    /// </summary>
+    public short? PIhtailInd3 { get; set; }
+
+    /// <summary>
+    /// active power tail inductive heater coil x
+    /// </summary>
+    public short? PIhtailInd4 { get; set; }
+
+    /// <summary>
+    /// active power tail inductive heater coil x
+    /// </summary>
+    public short? PIhtailInd5 { get; set; }
+
+    /// <summary>
+    /// active power tail inductive heater coil x
+    /// </summary>
+    public short? PIhtailInd6 { get; set; }
+
+    /// <summary>
+    /// active power tail inductive heater coil x
+    /// </summary>
+    public short? PIhtailInd7 { get; set; }
+
+    /// <summary>
+    /// active power tail inductive heater coil x
+    /// </summary>
+    public short? PIhtailInd8 { get; set; }
+
+    /// <summary>
+    /// active power tail inductive heater coil x
+    /// </summary>
+    public short? PIhtailInd9 { get; set; }
+
+    /// <summary>
+    /// active power inductive heater coil x
+    /// </summary>
+    public short? PIhInd0 { get; set; }
+
+    /// <summary>
+    /// active power inductive heater coil x
+    /// </summary>
+    public short? PIhInd1 { get; set; }
+
+    /// <summary>
+    /// active power inductive heater coil x
+    /// </summary>
+    public short? PIhInd10 { get; set; }
+
+    /// <summary>
+    /// active power inductive heater coil x
+    /// </summary>
+    public short? PIhInd11 { get; set; }
+
+    /// <summary>
+    /// active power inductive heater coil x
+    /// </summary>
+    public short? PIhInd12 { get; set; }
+
+    /// <summary>
+    /// active power inductive heater coil x
+    /// </summary>
+    public short? PIhInd13 { get; set; }
+
+    /// <summary>
+    /// active power inductive heater coil x
+    /// </summary>
+    public short? PIhInd2 { get; set; }
+
+    /// <summary>
+    /// active power inductive heater coil x
+    /// </summary>
+    public short? PIhInd3 { get; set; }
+
+    /// <summary>
+    /// active power inductive heater coil x
+    /// </summary>
+    public short? PIhInd4 { get; set; }
+
+    /// <summary>
+    /// active power inductive heater coil x
+    /// </summary>
+    public short? PIhInd5 { get; set; }
+
+    /// <summary>
+    /// active power inductive heater coil x
+    /// </summary>
+    public short? PIhInd6 { get; set; }
+
+    /// <summary>
+    /// active power inductive heater coil x
+    /// </summary>
+    public short? PIhInd7 { get; set; }
+
+    /// <summary>
+    /// active power inductive heater coil x
+    /// </summary>
+    public short? PIhInd8 { get; set; }
+
+    /// <summary>
+    /// active power inductive heater coil x
+    /// </summary>
+    public short? PIhInd9 { get; set; }
+
+    /// <summary>
+    /// power speed up value
+    /// </summary>
+    public short? PSuValue { get; set; }
+
+    /// <summary>
+    /// only for HMI: Power speedup value status
+    /// </summary>
+    public short? PSuValueStat { get; set; }
+
+    /// <summary>
+    /// strip position for speed change end 1
+    /// </summary>
+    public short? PosSpeedChangeEnd2 { get; set; }
+
+    /// <summary>
+    /// calculated exit profile
+    /// </summary>
+    public short? Profexcalc { get; set; }
+
+    /// <summary>
+    /// calculated(measured) profile of HRM
+    /// </summary>
+    public short? ProfexcalcHrm { get; set; }
+
+    /// <summary>
+    /// only for HMI: calculated exit profile status
+    /// </summary>
+    public short? ProfexcalcStat { get; set; }
+
+    /// <summary>
+    /// PFC target profile of HRM
+    /// </summary>
+    public short? ProfextargetHrm { get; set; }
+
+    /// <summary>
+    /// strip profile max
+    /// </summary>
+    public short? ProfileMaxX { get; set; }
+
+    /// <summary>
+    /// strip profile min
+    /// </summary>
+    public short? ProfileMinX { get; set; }
+
+    /// <summary>
+    /// strip profile
+    /// </summary>
+    public short? ProfileX { get; set; }
+
+    /// <summary>
+    /// only for HMI: Calculated profile value status
+    /// </summary>
+    public short? ProfileXstat { get; set; }
+
+    /// <summary>
+    /// error code from MOS-FM
+    /// </summary>
+    public short? Sbaz { get; set; }
+
+    /// <summary>
+    /// gap pinch roll entry flying shear
+    /// </summary>
+    public short? SdPrenIh { get; set; }
+
+    /// <summary>
+    /// gap pinch roll entry pendulum shear
+    /// </summary>
+    public short? SdPrenPs { get; set; }
+
+    /// <summary>
+    /// gap pinch roll entry rotary shear
+    /// </summary>
+    public short? SdPrenRs { get; set; }
+
+    /// <summary>
+    /// gap pinch roll entry flying shear
+    /// </summary>
+    public short? SdPrenRs2 { get; set; }
+
+    /// <summary>
+    /// gap pinch roll exit flying shear
+    /// </summary>
+    public short? SdPrexFs { get; set; }
+
+    /// <summary>
+    /// gap pinch roll exit flying shear
+    /// </summary>
+    public short? SdPrexIh { get; set; }
+
+    /// <summary>
+    /// gap pinch roll exit pendulum shear
+    /// </summary>
+    public short? SdPrexPs { get; set; }
+
+    /// <summary>
+    /// gap pinch roll exit rotary shear
+    /// </summary>
+    public short? SdPrexRs { get; set; }
+
+    /// <summary>
+    /// Flag setpoints coiler ok: 1=setpoints are ok
+    /// </summary>
+    public short? SetpointsCocOk { get; set; }
+
+    /// <summary>
+    /// Flag: 1=setpoints from MOS-CS are o.k., -1: last calculation not o.k., but setpoints available, -2: all calculations not o.k., no setpoints available
+    /// </summary>
+    public short? SetpointsCsOk { get; set; }
+
+    /// <summary>
+    /// Flag: 1=setpoints from MOS-FM are o.k., -1: last calculation not o.k., but setpoints available, -2: all calculations not o.k., no setpoints available
+    /// </summary>
+    public short? SetpointsFmOk { get; set; }
+
+    /// <summary>
+    /// Flag: 1=setpoints from MOS-HRM are o.k., -1: last calculation not o.k., but setpoints available, -2: all calculations not o.k., no setpoints available
+    /// </summary>
+    public short? SetpointsHrmOk { get; set; }
+
+    /// <summary>
+    /// Flag: 1=setpoints process area2 are o.k.
+    /// </summary>
+    public short? SetpointsPc2Ok { get; set; }
+
+    /// <summary>
+    /// Flag: 1=setpoints from SST (process area 2) are o.k.
+    /// </summary>
+    public short? SetpointsSstPc2Ok { get; set; }
+
+    /// <summary>
+    /// Speed up rate for speed change 1 (after tail cut)
+    /// </summary>
+    public short? SpeedChangeRate1 { get; set; }
+
+    /// <summary>
+    /// Speed up rate for speed change 2
+    /// </summary>
+    public short? SpeedChangeRate2 { get; set; }
+
+    /// <summary>
+    /// flag for speedup start selection:0=no speedup, 1=speedup with LAS loaded, 2=speedup with coiler loaded, 4 =speedup with time
+    /// </summary>
+    public short? SpeedupFlag { get; set; }
+
+    /// <summary>
+    /// only for HMI: flag for speedup start selection status
+    /// </summary>
+    public short? SpeedupFlagStat { get; set; }
+
+    /// <summary>
+    /// time after which the speedup starts
+    /// </summary>
+    public short? SpeedupTime { get; set; }
+
+    /// <summary>
+    /// only for HMI: time after which the speedup starts status
+    /// </summary>
+    public short? SpeedupTimeStat { get; set; }
+
+    /// <summary>
+    /// ONLY FOR HMI: additional information from MOS-CS
+    /// </summary>
+    public short? SptlFaultCs { get; set; }
+
+    /// <summary>
+    /// ONLY FOR HMI: additional information from MOS-CS status
+    /// </summary>
+    public short? SptlFaultCsstat { get; set; }
+
+    /// <summary>
+    /// ONLY FOR HMI: additional information from MOS-FM
+    /// </summary>
+    public short? SptlFaultFm { get; set; }
+
+    /// <summary>
+    /// ONLY FOR HMI: additional information from MOS-FM status
+    /// </summary>
+    public short? SptlFaultFmstat { get; set; }
+
+    /// <summary>
+    /// standNo, from which speed down is driven
+    /// </summary>
+    public short? StandNoStartSpeedDown { get; set; }
+
+    /// <summary>
+    /// Starting point of wedge,given as distance from tail end of the slab
+    /// </summary>
+    public short? StartWedge { get; set; }
+
+    /// <summary>
+    /// Starting point of wedge HRM,given as distance from tail end of the slab
+    /// </summary>
+    public short? StartWedgeHrm { get; set; }
+
+    /// <summary>
+    /// strip temperature (exit finishing mill)
+    /// </summary>
+    public short? T { get; set; }
+
+    /// <summary>
+    /// entry temperature under measuring house
+    /// </summary>
+    public short? T0Mh { get; set; }
+
+    /// <summary>
+    /// temperature measuring house behind HRM
+    /// </summary>
+    public short? T0MhHrm { get; set; }
+
+    /// <summary>
+    /// strip exit temperature at related length (for cooling model)
+    /// </summary>
+    public short? TAtLengthInd0 { get; set; }
+
+    /// <summary>
+    /// strip exit temperature at related length (for cooling model)
+    /// </summary>
+    public short? TAtLengthInd1 { get; set; }
+
+    /// <summary>
+    /// strip exit temperature at related length (for cooling model)
+    /// </summary>
+    public short? TAtLengthInd2 { get; set; }
+
+    /// <summary>
+    /// strip exit temperature at related length (for cooling model)
+    /// </summary>
+    public short? TAtLengthInd3 { get; set; }
+
+    /// <summary>
+    /// strip exit temperature at related length (for cooling model)
+    /// </summary>
+    public short? TAtLengthInd4 { get; set; }
+
+    /// <summary>
+    /// strip exit temperature at related length (for cooling model)
+    /// </summary>
+    public short? TAtLengthInd5 { get; set; }
+
+    /// <summary>
+    /// strip exit temperature at related length (for cooling model)
+    /// </summary>
+    public short? TAtLengthInd6 { get; set; }
+
+    /// <summary>
+    /// strip exit temperature at related length (for cooling model)
+    /// </summary>
+    public short? TAtLengthInd7 { get; set; }
+
+    /// <summary>
+    /// strip exit temperature at related length (for cooling model)
+    /// </summary>
+    public short? TAtLengthInd8 { get; set; }
+
+    /// <summary>
+    /// strip exit temperature at related length (for cooling model)
+    /// </summary>
+    public short? TAtLengthInd9 { get; set; }
+
+    /// <summary>
+    /// entry transfer bar temperature (roughing mill exit temperature)
+    /// </summary>
+    public short? TEntry { get; set; }
+
+    /// <summary>
+    /// slab entry temperature  (from MOS-RM for IVI-FM)
+    /// </summary>
+    public short? TEntryFrRm { get; set; }
+
+    /// <summary>
+    /// surface temperature at exit of inductive heater
+    /// </summary>
+    public short? TIhx { get; set; }
+
+    /// <summary>
+    /// surface temperature at exit of inductive heater for tail end
+    /// </summary>
+    public short? TIhxtail { get; set; }
+
+    /// <summary>
+    /// only for HMI: Strip temperature (exit finishing mill) status
+    /// </summary>
+    public short? TStat { get; set; }
+
+    /// <summary>
+    /// temperature speed up value
+    /// </summary>
+    public short? TSuValue { get; set; }
+
+    /// <summary>
+    /// only for HMI: Temperature speedup value status
+    /// </summary>
+    public short? TSuValueStat { get; set; }
+
+    /// <summary>
+    /// target speed for speed change 1  (after tail cut)
+    /// </summary>
+    public short? TargetSpeed1 { get; set; }
+
+    /// <summary>
+    /// target speed for speed change 2
+    /// </summary>
+    public short? TargetSpeed2 { get; set; }
+
+    /// <summary>
+    /// target temperature for strip tail behind IH after speed up
+    /// </summary>
+    public short? TargetTempTailIh { get; set; }
+
+    /// <summary>
+    /// thickness gauge grade compensation
+    /// </summary>
+    public short? ThgCompGrade { get; set; }
+
+    /// <summary>
+    /// 0 - endless strip, 1 - thread in to FM
+    /// </summary>
+    public short? ThreadInFlag { get; set; }
+
+    /// <summary>
+    /// total thickness of the floor plate for the coiler (base plate + ripple thickness)
+    /// </summary>
+    public short? TotalHexit { get; set; }
+
+    /// <summary>
+    /// strip exit speed at this length under the measuring location for mill exit temp ( for cooling model)
+    /// </summary>
+    public short? VAtLengthInd0 { get; set; }
+
+    /// <summary>
+    /// strip exit speed at this length under the measuring location for mill exit temp ( for cooling model)
+    /// </summary>
+    public short? VAtLengthInd1 { get; set; }
+
+    /// <summary>
+    /// strip exit speed at this length under the measuring location for mill exit temp ( for cooling model)
+    /// </summary>
+    public short? VAtLengthInd2 { get; set; }
+
+    /// <summary>
+    /// strip exit speed at this length under the measuring location for mill exit temp ( for cooling model)
+    /// </summary>
+    public short? VAtLengthInd3 { get; set; }
+
+    /// <summary>
+    /// strip exit speed at this length under the measuring location for mill exit temp ( for cooling model)
+    /// </summary>
+    public short? VAtLengthInd4 { get; set; }
+
+    /// <summary>
+    /// strip exit speed at this length under the measuring location for mill exit temp ( for cooling model)
+    /// </summary>
+    public short? VAtLengthInd5 { get; set; }
+
+    /// <summary>
+    /// strip exit speed at this length under the measuring location for mill exit temp ( for cooling model)
+    /// </summary>
+    public short? VAtLengthInd6 { get; set; }
+
+    /// <summary>
+    /// strip exit speed at this length under the measuring location for mill exit temp ( for cooling model)
+    /// </summary>
+    public short? VAtLengthInd7 { get; set; }
+
+    /// <summary>
+    /// strip exit speed at this length under the measuring location for mill exit temp ( for cooling model)
+    /// </summary>
+    public short? VAtLengthInd8 { get; set; }
+
+    /// <summary>
+    /// strip exit speed at this length under the measuring location for mill exit temp ( for cooling model)
+    /// </summary>
+    public short? VAtLengthInd9 { get; set; }
+
+    /// <summary>
+    /// circumference roll speed F1 for reduced threadin speed F1
+    /// </summary>
+    public short? VCrs { get; set; }
+
+    /// <summary>
+    /// tension reel/coiler: LAS speed
+    /// </summary>
+    public short? VExitLas { get; set; }
+
+    /// <summary>
+    /// only for HMI: tension reel/coiler: LAS speed status
+    /// </summary>
+    public short? VExitLasStat { get; set; }
+
+    /// <summary>
+    /// target strip exit speed
+    /// </summary>
+    public short? VExitTarg { get; set; }
+
+    /// <summary>
+    /// Max target strip exit speed
+    /// </summary>
+    public short? VExitTargMax { get; set; }
+
+    /// <summary>
+    /// only for HMI: Max target strip exit speed status
+    /// </summary>
+    public short? VExitTargMaxStat { get; set; }
+
+    /// <summary>
+    /// only for HMI: Target strip exit speed status
+    /// </summary>
+    public short? VExitTargStat { get; set; }
+
+    /// <summary>
+    /// speed with which the tail has to leave the mill
+    /// </summary>
+    public short? VTailOutFm { get; set; }
+
+    /// <summary>
+    /// strip thread in speed coiler
+    /// </summary>
+    public short? VThrCoiler { get; set; }
+
+    /// <summary>
+    /// only for HMI: Strip thread speed coiler status
+    /// </summary>
+    public short? VThrCoilerStat { get; set; }
+
+    /// <summary>
+    /// target maximum circumference speed LAS threadin
+    /// </summary>
+    public short? VTmcLas { get; set; }
+
+    /// <summary>
+    /// target maximum circumference speed LAS after coiler threadin
+    /// </summary>
+    public short? VTmcLasAc { get; set; }
+
+    /// <summary>
+    /// second part of strip for side guide
+    /// </summary>
+    public short? W2sideGuide { get; set; }
+
+    /// <summary>
+    /// cast slab width hot
+    /// </summary>
+    public short? WCast { get; set; }
+
+    /// <summary>
+    /// width caster cold
+    /// </summary>
+    public short? WCastCold { get; set; }
+
+    /// <summary>
+    /// length of width change
+    /// </summary>
+    public short? WChangeLength { get; set; }
+
+    /// <summary>
+    /// position width change in front of F5
+    /// </summary>
+    public short? WChangePos { get; set; }
+
+    /// <summary>
+    /// tension reel/coiler: strip width (hot)
+    /// </summary>
+    public short? WCoiler { get; set; }
+
+    /// <summary>
+    /// entry width hot (rough strip width cold)
+    /// </summary>
+    public short? WEntryColdFm { get; set; }
+
+    /// <summary>
+    /// entry width hot (rough strip width hot)
+    /// </summary>
+    public short? WEntryHot { get; set; }
+
+    /// <summary>
+    /// strip width cold
+    /// </summary>
+    public short? WExitCold { get; set; }
+
+    /// <summary>
+    /// only for HMI: Strip width cold status
+    /// </summary>
+    public short? WExitColdStat { get; set; }
+
+    /// <summary>
+    /// width behind FM hot
+    /// </summary>
+    public short? WExitFmHot { get; set; }
+
+    /// <summary>
+    /// strip wedge max
+    /// </summary>
+    public short? WedgeMaxX { get; set; }
+
+    /// <summary>
+    /// strip wedge min
+    /// </summary>
+    public short? WedgeMinX { get; set; }
+
+    /// <summary>
+    /// strip wedge target
+    /// </summary>
+    public short? WedgeX { get; set; }
+
+    public short? WpcAsymBlocked { get; set; }
+
+    public short? WpcSymBlocked { get; set; }
+
+    /// <summary>
+    /// tension reel/coiler: high temperature yield
+    /// </summary>
+    public short? YieldStress { get; set; }
+
+    /// <summary>
+    /// modifying process
+    /// </summary>
+    public string Mop { get; set; }
+
+    /// <summary>
+    /// time of creation
+    /// </summary>
+    public DateTime? Toc { get; set; }
+
+    /// <summary>
+    /// time of modification
+    /// </summary>
+    public DateTime? Tom { get; set; }
+
+    public virtual Me1 Me1 { get; set; }
+}

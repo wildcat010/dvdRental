@@ -25,6 +25,12 @@
         <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\*_glue_xidl.cs">
             <Link>Glue\%(Filename)%(Extension)</Link>
         </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\lds\*_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\lds\*_glue_xidl.cs">
+            <Link>Glue\%(Filename)%(Extension)</Link>
+        </Compile>
     </ItemGroup>
 
 </Project>

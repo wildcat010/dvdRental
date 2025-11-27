@@ -36,6 +36,8 @@ namespace WebHMI.L2Adapter.Common
         void RequestRollData(string plantType, string rollId, short standNo, string rollType);
         void NewHeatSimulation(string heatId, string sequenceId, short heatStart, float length);
         void NewHeatOperation(string heatId, string sequenceId, short heatStart, float length);
+        void UpdateConfig(string aggregateName);
+
         //void SendProcessParametersCreated(ParamsDto arguments);
         //void SendProcessParametersDeleted(ParamsDto arguments);
 

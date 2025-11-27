@@ -231,6 +231,16 @@ public partial class Me1
 
     public virtual ICollection<StatMsmDir> StatMsmDirs { get; set; } = new List<StatMsmDir>();
 
+    public virtual ICollection<StatSpLogEnt> StatSpLogEnts { get; set; } = new List<StatSpLogEnt>();
+
+    public virtual ICollection<StatSpOrd2PcStand> StatSpOrd2PcStands { get; set; } = new List<StatSpOrd2PcStand>();
+
+    public virtual ICollection<StatSpOrd2Pc> StatSpOrd2Pcs { get; set; } = new List<StatSpOrd2Pc>();
+
+    public virtual ICollection<StatSpOrdEnt> StatSpOrdEnts { get; set; } = new List<StatSpOrdEnt>();
+
+    public virtual ICollection<StatSpPhyEnt> StatSpPhyEnts { get; set; } = new List<StatSpPhyEnt>();
+
     public virtual ICollection<Tppass> Tppasses { get; set; } = new List<Tppass>();
 
     public virtual ICollection<Tp> Tps { get; set; } = new List<Tp>();

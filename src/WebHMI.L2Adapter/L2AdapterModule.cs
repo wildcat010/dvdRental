@@ -9,6 +9,7 @@ using WebHMI.L2Adapter.ConnectionManagers;
 using WebHMI.L2Adapter.Dtos;
 using WebHMI.L2Adapter.Senders;
 using WebHMI.L2Adapter.Services;
+using WebHMI.L2Adapter.Services.LdsStub;
 using WebHMI.L2Adapter.Services.MosRcStub;
 using WebHMI.L2Adapter.Services.OdaDbStub;
 using WebHMI.L2Adapter.Services.PapRcvStub;
@@ -118,6 +119,14 @@ namespace WebHMI.L2Adapter
                              .LifestyleTransient()
                 );
                 IocManager.Register<IPapSndStubService, PapSndStubService>(DependencyLifeStyle.Transient);
+
+                IocManager.IocContainer.Register(
+                    Component.For<Func<ILdsStub>>()
+                             .UsingFactoryMethod(() =>
+                                 new Func<ILdsStub>(() => new ILdsStub(new Request("AppLds", "lds", "Project", "ILds", "hsmHmi"))))
+                             .LifestyleTransient()
+                );
+                IocManager.Register<ILdsStubService, LdsStubService>(DependencyLifeStyle.Transient);
 
                 IocManager.Register<IServiceFactory, ServiceFactory>(DependencyLifeStyle.Singleton);
 

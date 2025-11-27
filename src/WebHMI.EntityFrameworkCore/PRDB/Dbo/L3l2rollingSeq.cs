@@ -529,4 +529,14 @@ public partial class L3l2rollingSeq
     /// time of modification
     /// </summary>
     public DateTime? Tom { get; set; }
+
+    /// <summary>
+    /// seq Id
+    /// </summary>
+    public string SequenceId { get; set; }
+
+    /// <summary>
+    /// slab number 1
+    /// </summary>
+    public string OperationFlag { get; set; }
 }

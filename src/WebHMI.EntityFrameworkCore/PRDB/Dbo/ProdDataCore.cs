@@ -1762,4 +1762,9 @@ public partial class ProdDataCore
     /// time of modification
     /// </summary>
     public DateTime? Tom { get; set; }
+
+    /// <summary>
+    /// ED.orderNo, from PDI
+    /// </summary>
+    public string OrderNo { get; set; }
 }

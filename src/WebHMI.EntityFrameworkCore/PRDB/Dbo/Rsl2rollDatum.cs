@@ -66,7 +66,7 @@ public partial class Rsl2rollDatum
     public string RollId2 { get; set; }
 
     /// <summary>
-    /// Roll property class. (physical description) ce, density, etc
+    /// Roll property class. (physical description) cp, density, etc
     /// </summary>
     public int? RollPropertyClass { get; set; }
 
@@ -81,7 +81,7 @@ public partial class Rsl2rollDatum
     public float? Roughness { get; set; }
 
     /// <summary>
-    /// Code for the shape parametersShape coefficient
+    /// Identifier for the shape that is ground to the roll
     /// </summary>
     public int? ShapeCode { get; set; }
 
@@ -126,4 +126,9 @@ public partial class Rsl2rollDatum
     /// time of modification
     /// </summary>
     public DateTime? Tom { get; set; }
+
+    /// <summary>
+    /// Identifier for the chamfer that is ground to the roll
+    /// </summary>
+    public int? ChamferCode { get; set; }
 }

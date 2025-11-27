@@ -19,6 +19,7 @@ using WebHMI.L2Adapter.Services.RollChangeStub;
 using WebHMI.L2Adapter.Services.PapSndStub;
 using Microsoft.VisualBasic;
 using WebHMI.L2Adapter.Services.PdhCusStub;
+using WebHMI.L2Adapter.Services.LdsStub;
 
 namespace WebHMI.L2Adapter.Senders
 {
@@ -154,6 +155,15 @@ namespace WebHMI.L2Adapter.Senders
             var pdhCusService = _factory.Create<IPdhCusStubService>();
             try { pdhCusService.NewHeatOperation(heatId, sequenceId, heatStart, length); }
             finally { _factory.Release(pdhCusService); }
+        }
+
+        //LDS
+
+        public void UpdateConfig(string aggregateName)
+        {
+            var ldsService = _factory.Create<ILdsStubService>();
+            try { ldsService.UpdateConfig(aggregateName); }
+            finally { _factory.Release(ldsService); }
         }
 
     }

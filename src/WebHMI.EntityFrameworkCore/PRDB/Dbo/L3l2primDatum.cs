@@ -576,4 +576,98 @@ public partial class L3l2primDatum
     /// time of modification
     /// </summary>
     public DateTime? Tom { get; set; }
+
+    /// <summary>
+    /// D or I or U
+    /// </summary>
+    public string OperationFlag { get; set; }
+
+    public string ProductionOrderId { get; set; }
+
+    /// <summary>
+    /// Unit[m] Customer limit for minimum thickness
+    /// </summary>
+    public double? ThickLimitMinCust { get; set; }
+
+    /// <summary>
+    /// Unit[m] Customer limit for maximum thickness
+    /// </summary>
+    public double? ThickLimitMaxCust { get; set; }
+
+    /// <summary>
+    /// Unit[m] Customer limit for minimum width
+    /// </summary>
+    public double? WidthLimitMinCust { get; set; }
+
+    /// <summary>
+    /// Unit[m] Customer limit for maximum width
+    /// </summary>
+    public double? WidthLimitMaxCust { get; set; }
+
+    /// <summary>
+    /// Unit[m] Customer limit for minimum fm exit temp
+    /// </summary>
+    public double? FmTempLimitMinCust { get; set; }
+
+    /// <summary>
+    /// Unit[m] Customer limit for maximum fm exit temp
+    /// </summary>
+    public double? FmTempLimitMaxCust { get; set; }
+
+    /// <summary>
+    /// Unit[m] Customer limit for minimum coil temp
+    /// </summary>
+    public double? CoilTempLimitMinCust { get; set; }
+
+    /// <summary>
+    /// Unit[m] Customer limit for maximum coil temp
+    /// </summary>
+    public double? CoilTempLimitMaxCust { get; set; }
+
+    /// <summary>
+    /// Amount of bindings radial
+    /// </summary>
+    public int? AmountBindingsR { get; set; }
+
+    /// <summary>
+    /// part number of material
+    /// </summary>
+    public int? PartNum { get; set; }
+
+    public string ProdType { get; set; }
+
+    /// <summary>
+    /// Unit[m] 
+    /// </summary>
+    public double? EdgeMask { get; set; }
+
+    /// <summary>
+    /// Unit[] 
+    /// </summary>
+    public double? SpareFloat1 { get; set; }
+
+    /// <summary>
+    /// Unit[] 
+    /// </summary>
+    public double? SpareFloat2 { get; set; }
+
+    public string SpareString1 { get; set; }
+
+    public string SpareString2 { get; set; }
+
+    public string OuterWrapTextRow1 { get; set; }
+
+    public string OuterWrapTextRow2 { get; set; }
+
+    public string OuterWrapTextRow3 { get; set; }
+
+    public string OuterWrapTextRow4 { get; set; }
+
+    public string OuterWrapTextRow5 { get; set; }
+
+    public string OuterWrapTextRow6 { get; set; }
+
+    public string FlatSurfaceTextRow1 { get; set; }
+
+    public string FlatSurfaceTextRow2 { get; set; }
 }

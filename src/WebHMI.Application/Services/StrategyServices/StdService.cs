@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using WebHMI.Dtos.Strategy;
 using WebHMI.Dtos.Strategy.StdDtos;
 using WebHMI.Helpers;
+using WebHMI.L2Adapter.Common;
 using WebHMI.PRDB;
 using WebHMI.PRDB.Dbo;
 
@@ -25,6 +26,7 @@ namespace WebHMI.Services.StrategyServices
     {
 
         private readonly IDbContextProvider<PrdbContext> _dbContextProvider;
+        private readonly IL2CommunicationHandler _l2CommunicationHandler;
         private readonly Func<TEntity, TDto> _toDto;
         private readonly Action<TEntity, TDto> _mapEntity;
 
@@ -36,6 +38,7 @@ namespace WebHMI.Services.StrategyServices
             Action<TEntity, TDto> mapEntity)
         {
             _dbContextProvider = IocManager.Instance.ResolveAsDisposable<IDbContextProvider<PrdbContext>>().Object;
+            _l2CommunicationHandler = IocManager.Instance.ResolveAsDisposable<IL2CommunicationHandler>().Object;
 
             _toDto = toDto;
             _mapEntity = mapEntity;
@@ -172,6 +175,8 @@ namespace WebHMI.Services.StrategyServices
 
             await context.SaveChangesAsync();
 
+            _l2CommunicationHandler.UpdateConfig(AggregateName);
+
             return _toDto(entity);
         }
 
@@ -210,6 +215,8 @@ namespace WebHMI.Services.StrategyServices
             }
 
             await context.SaveChangesAsync();
+
+            _l2CommunicationHandler.UpdateConfig(AggregateName);
 
             return updatedDtos;
         }

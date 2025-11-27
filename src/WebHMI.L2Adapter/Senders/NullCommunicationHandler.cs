@@ -75,5 +75,10 @@ namespace WebHMI.L2Adapter.Senders
         {
             throw new NotImplementedException();
         }
+
+        public void UpdateConfig(string aggregateName)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
