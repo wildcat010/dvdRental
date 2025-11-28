@@ -16,6 +16,7 @@ using Abp.Threading.BackgroundWorkers;
 using WebHMI.API.BackgroundTask;
 using WebHMI.BackgroundTask;
 using WebHMI.WebCore.BackgroundTask;
+using WebHMI.Notification;
 
 namespace WebHMI
 {
@@ -51,7 +52,12 @@ namespace WebHMI
                      typeof(WebHMIApplicationModule).GetAssembly()
                  );
 
+            IocManager.Register<ISignalRNotifier, SignalRNotifier>();
+
             ConfigureTokenAuth();
+
+            Configuration.Caching.Configure("ActualNext", c => c.DefaultSlidingExpireTime = TimeSpan.FromHours(6));
+
         }
 
         private void ConfigureTokenAuth()
@@ -81,8 +87,10 @@ namespace WebHMI
 			workManager.Add(IocManager.Resolve<ClenaupBackgroundWorker>());
             workManager.Add(IocManager.Resolve<WatchDogStatusTask>());
             workManager.Add(IocManager.Resolve<WidgetUpdaterTask>());
+            workManager.Add(IocManager.Resolve<TrackingDataBackgroundTask>());
+
         }
-	}
+    }
 }
 
 

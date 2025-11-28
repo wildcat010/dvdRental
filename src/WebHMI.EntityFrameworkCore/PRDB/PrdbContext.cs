@@ -14339,6 +14339,10 @@ public partial class PrdbContext : AbpDbContext
                 .HasMaxLength(20)
                 .IsUnicode(false);
             entity.Property(e => e.EnLoMeId).HasColumnName("EnLoMeID");
+            entity.Property(e => e.EnOrCreator)
+                .IsRequired()
+                .HasMaxLength(2)
+                .IsUnicode(false);
             entity.Property(e => e.EnOrExtId)
                 .IsRequired()
                 .HasMaxLength(20)

@@ -31,6 +31,10 @@ public partial class HmiVProdsequenceComplete
 
     public short? EnOrStatus { get; set; }
 
+    public string EnOrCreator { get; set; }
+
+    public short? EnOrMesId { get; set; }
+
     public int EnLoMeId { get; set; }
 
     public string EnLoExtId { get; set; }
