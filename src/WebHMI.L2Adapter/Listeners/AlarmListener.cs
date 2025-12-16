@@ -25,7 +25,7 @@ namespace WebHMI.L2Adapter.Listeners
 
         public override void onAlarm(AlarmInfo alarmInfo)
 		{
-            _logger.Debug($"Received L2 alarm info: {alarmInfo.ToJsonString()}"); // TODO: check and delete
+            _logger.Info($"Received L2 alarm info: {alarmInfo.ToJsonString()}"); // TODO: check and delete
 
 			_eventBus.Trigger(new EventWrapper<AlarmInfo>(alarmInfo));
 		}
