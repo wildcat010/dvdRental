@@ -26,6 +26,9 @@ namespace WebHMI
 
             var parameters = context.CreatePermission(Permissions.Pages_Parameters);
             parameters.CreateChildPermission(Permissions.Pages_Parameters_Edit);
+
+            var primaryData = context.CreatePermission(Permissions.Pages_PrimaryData);
+            primaryData.CreateChildPermission(Permissions.Pages_PrimaryData_Edit);
             
             var setpointsRm = context.CreatePermission(Permissions.Pages_Setpoints_RM);
             setpointsRm.CreateChildPermission(Permissions.Pages_Setpoints_RM_Edit);

@@ -1,23 +1,20 @@
 ﻿using Abp.Auditing;
+using Abp.Authorization;
 using Abp.Domain.Entities;
 using Abp.EntityFrameworkCore;
 using Abp.UI;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using WebHMI.DataBlobs;
-using WebHMI.Dtos;
 using WebHMI.Dtos.PrimaryData;
 using WebHMI.Helpers;
 using WebHMI.L2Adapter.Common;
 using WebHMI.Mapping.Extensions;
 using WebHMI.PRDB;
 using WebHMI.PRDB.Dbo;
-using XIDL;
 
 namespace WebHMI.Services
 {
@@ -39,7 +36,8 @@ namespace WebHMI.Services
             _l2CommunicationHandler = l2CommunicationHandler;
 		}
 
-		public async Task<PrimaryDataDto> GetPrimaryDataById(int meid, string matType)
+        [AbpAuthorize(Permissions.Pages_PrimaryData)]
+        public async Task<PrimaryDataDto> GetPrimaryDataById(int meid, string matType)
 		{
 			var entryMatStruct = await _matStructEntryService.GetMaterialEntryStruct(meid, matType);
 
@@ -55,6 +53,7 @@ namespace WebHMI.Services
 		}
 
         [Audited]
+        [AbpAuthorize(Permissions.Pages_PrimaryData_Edit)]
         public async Task UpdateAsync(PrimaryDataDto input, string connectionid)
 		{
 			var entryMatStruct = await _matStructEntryService.GetMaterialEntryStruct(input.MeCode.MeId, input.MeCode.MatType);
@@ -171,6 +170,7 @@ namespace WebHMI.Services
 			}
 		}
 
+        [AbpAuthorize(Permissions.Pages_PrimaryData_Edit)]
         public async Task CopyMaterial(int meid, string matType, string newExtId, short isTestMat)
         {
             var entryMatStruct = await _matStructEntryService.GetMaterialEntryStruct(meid, matType);

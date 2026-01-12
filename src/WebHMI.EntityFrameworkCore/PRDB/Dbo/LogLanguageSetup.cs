@@ -33,9 +33,5 @@ public partial class LogLanguageSetup
     /// </summary>
     public DateTime? Tom { get; set; }
 
-    public virtual ICollection<LogAreaSetup> LogAreaSetups { get; set; } = new List<LogAreaSetup>();
-
     public virtual ICollection<LogFormat> LogFormats { get; set; } = new List<LogFormat>();
-
-    public virtual ICollection<LogSeveritySetup> LogSeveritySetups { get; set; } = new List<LogSeveritySetup>();
 }

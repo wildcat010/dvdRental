@@ -2,21 +2,15 @@
 using Abp.Auditing;
 using Abp.Authorization;
 using Abp.Domain.Entities;
-using Abp.Domain.Repositories;
 using Abp.EntityFrameworkCore;
-using AutoMapper.Internal.Mappers;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using WebHMI.Dtos.Parameters;
 using WebHMI.Filters;
 using WebHMI.Helpers;
 using WebHMI.L2Adapter.Common;
 using WebHMI.L2Adapter.Dtos;
-using WebHMI.L2Adapter.Senders;
 using WebHMI.PRDB;
 using WebHMI.PRDB.Dbo;
 
@@ -24,7 +18,6 @@ using WebHMI.PRDB.Dbo;
 
 namespace WebHMI.Services
 {
-    [AbpAuthorize(Permissions.Pages_Parameters)]
     public class ModelParametersAppService : ApplicationServiceBase
     {
         private readonly IDbContextProvider<PrdbContext> _prdbContextProvider;
@@ -43,6 +36,7 @@ namespace WebHMI.Services
         /// Function to get all model parameters
         /// </summary>
         /// <returns></returns>
+        [AbpAuthorize(Permissions.Pages_Parameters)]
         public async Task<PagedResultDto<ParameterDto>> GetAll(FilteredRequestDto input)
         {
             return await ApplyFilter<MosParam, ParameterDto>(_prdbContext.MosParams
@@ -52,6 +46,7 @@ namespace WebHMI.Services
         /// <summary>
         /// Function to get single parameter by given Id
         /// </summary>
+        [AbpAuthorize(Permissions.Pages_Parameters)]
         public async Task<ParameterDto> Get(ParameterKeyDto input)
         {
             var parameter = await _prdbContext.MosParams

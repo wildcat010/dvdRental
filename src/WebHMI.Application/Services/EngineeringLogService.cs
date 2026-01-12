@@ -1,4 +1,5 @@
 ﻿using Abp.Application.Services.Dto;
+using Abp.Authorization;
 using Abp.UI;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -67,11 +68,14 @@ namespace WebHMI.Application.Services
             return filesData;
         }
 
+        [AbpAuthorize(Permissions.Pages_Setpoints_FM, Permissions.Pages_Setpoints_RM)]
         private List<EngineeringLogDetailDto> GetAllLogs(string path, Func<(string Name, DateTime Toc), EngineeringLogDetailDto> parser)
             {
                 var filesData = GetFileInfo(path);
                 return filesData.Select(parser).ToList();
         }
+
+        [AbpAuthorize(Permissions.Pages_Setpoints_FM, Permissions.Pages_Setpoints_RM, Permissions.Pages_PrimaryData)]
         public async Task<PagedResultDto<EngineeringLogDetailDto>> GetAllData(FilteredRequestDto input)
         {
             var result = GetAllLogs(_filePath, SplitFileData);
@@ -79,6 +83,7 @@ namespace WebHMI.Application.Services
             return ApplyFilter<EngineeringLogDetailDto,EngineeringLogDetailDto>(result.AsEnumerable(), input, u => u);
         }
 
+        [AbpAuthorize(Permissions.Pages_Setpoints_FM, Permissions.Pages_Setpoints_RM, Permissions.Pages_PrimaryData)]
         public async Task<PagedResultDto<EngineeringLogDetailDto>> GetAllDataCS(FilteredRequestDto input)
         {
             var result = GetAllLogs(_csFilePath, SplitFileDataCS);
@@ -116,11 +121,13 @@ namespace WebHMI.Application.Services
             return result;
         }
 
+        [AbpAuthorize(Permissions.Pages_Setpoints_FM, Permissions.Pages_Setpoints_RM, Permissions.Pages_PrimaryData)]
         public EngineeringLogItemDto GetLogItem(string fileName)
         {
             return GetSingleLog(_filePath, fileName, SplitFileData);
         }
 
+        [AbpAuthorize(Permissions.Pages_Setpoints_FM, Permissions.Pages_Setpoints_RM, Permissions.Pages_PrimaryData)]
         public EngineeringLogItemDto GetLogItemCS(string fileName)
         {
             return GetSingleLog(_csFilePath, fileName, SplitFileDataCS);

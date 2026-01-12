@@ -3,9 +3,7 @@ using System.Threading.Tasks;
 using WebHMI.Core.Widget;
 using WebHMI.Core.Widget.Models;
 using WebHMI.Core.Widget.Widgets;
-using WebHMI.Dtos;
 using WebHMI.Helpers;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace WebHMI.Application.Services
 {

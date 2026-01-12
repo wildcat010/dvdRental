@@ -20,7 +20,10 @@
 
         public const string Pages_Parameters = "Pages.Parameters";
         public const string Pages_Parameters_Edit = "Pages.Parameters.Edit";
-        
+
+        public const string Pages_PrimaryData = "Pages.PrimaryData";
+        public const string Pages_PrimaryData_Edit = "Pages.PrimaryData.Edit";
+
         public const string Pages_Setpoints_RM = "Pages.Setpoints.RM";
         public const string Pages_Setpoints_RM_Edit = "Pages.Setpoints.RM.Edit";
         public const string Pages_Setpoints_RM_Delete = "Pages.Setpoints.RM.Delete";

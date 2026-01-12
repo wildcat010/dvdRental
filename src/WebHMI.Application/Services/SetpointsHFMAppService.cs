@@ -1,12 +1,9 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Abp.Auditing;
 using Abp.Authorization;
-using Abp.Domain.Uow;
 using Abp.EntityFrameworkCore;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using WebHMI.DataBlobs;
@@ -14,12 +11,9 @@ using WebHMI.Dtos.Setpoints.SetpointsHFM;
 using WebHMI.Dtos.Setpoints.SetpointsHRM;
 using WebHMI.Helpers;
 using WebHMI.L2Adapter.Common;
-using WebHMI.L2Adapter.Senders;
 using WebHMI.Mapping.Extensions;
 using WebHMI.PRDB;
 using WebHMI.PRDB.Dbo;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
-using XIDL;
 
 namespace WebHMI.Services
 {

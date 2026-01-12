@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Abp.Auditing;
 using WebHMI.Dtos.Sessions;
 using WebHMI.Helpers;
 

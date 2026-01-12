@@ -36,6 +36,4 @@ public partial class LogColour
     public virtual SetupColour ColourNavigation { get; set; }
 
     public virtual ICollection<LogIndex> LogIndices { get; set; } = new List<LogIndex>();
-
-    public virtual ICollection<LogSeveritySetup> LogSeveritySetups { get; set; } = new List<LogSeveritySetup>();
 }

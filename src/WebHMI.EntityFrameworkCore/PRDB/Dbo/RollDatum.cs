@@ -241,6 +241,4 @@ public partial class RollDatum
     public virtual RollClass RollClassNavigation { get; set; }
 
     public virtual RollProperty RollPropertyClassNavigation { get; set; }
-
-    public virtual ICollection<RollUsage> RollUsages { get; set; } = new List<RollUsage>();
 }

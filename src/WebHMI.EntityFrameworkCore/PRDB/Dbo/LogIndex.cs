@@ -52,7 +52,5 @@ public partial class LogIndex
 
     public virtual ICollection<LogFormat> LogFormats { get; set; } = new List<LogFormat>();
 
-    public virtual ICollection<LogGroup> LogGroups { get; set; } = new List<LogGroup>();
-
     public virtual LogColour SeverityNavigation { get; set; }
 }

@@ -1,13 +1,7 @@
-using Abp.Domain.Repositories;
 using Abp.UI;
-using Microsoft.EntityFrameworkCore;
 using System;
-using System.Linq.Dynamic.Core;
 using System.Threading.Tasks;
-using WebHMI.API.Prdb;
-using System.Linq;
 using System.Collections.Generic;
-using WebHMI.Dtos;
 using Abp.Auditing;
 using WebHMI.Helpers;
 using Abp.EntityFrameworkCore;

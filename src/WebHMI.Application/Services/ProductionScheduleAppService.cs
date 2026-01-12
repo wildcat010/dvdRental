@@ -188,6 +188,22 @@ namespace WebHMI.Services
 
         }
 
+        [AbpAuthorize(Permissions.Pages_ProductionSchedule)]
+        public async Task<int> GetEnPhMeid(string extId, string sequenceId)
+        {
+            var context = await _prdbContextProvider.GetDbContextAsync();
+
+            if (!await context.HmiVMatInfoShorts.AnyAsync(x => x.EnPhExtId == extId))
+                throw new UserFriendlyException($"There is no {extId} extId in database");
+
+            if (!await context.HmiVMatInfoShorts.AnyAsync(x => x.SequenceId == sequenceId))
+                throw new UserFriendlyException($"There is no material with sequenceId == {sequenceId}");
+
+            var enphMeid = await context.HmiVMatInfoShorts.Where(x=>x.EnPhExtId == extId &&  x.SequenceId == sequenceId).FirstOrDefaultAsync();
+
+            return enphMeid.EnPhMeId;
+        }
+
         /// <summary>
         /// Returns aggregated sequence overview data.
         /// </summary>
