@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using WebHMI.Dtos;
-using WebHMI.EventBus;
+using WebHMI.EventWrapper;
 using WebHMI.Helpers;
 using WebHMI.Notification;
 using WebHMI.PRDB;

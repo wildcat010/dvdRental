@@ -40,7 +40,7 @@ namespace WebHMI.L2Adapter.Services
             return stub;
         }
 
-        protected ME_CODE ToL2MeCode(VMatStructEntry entryMatStruct)
+        protected ME_CODE ToL2OrMeCode(VMatStructEntry entryMatStruct)
         {
             ME_STRUCT meStruct = new()
             {
@@ -54,6 +54,27 @@ namespace WebHMI.L2Adapter.Services
                 BasId = entryMatStruct.EnOrBasId,
                 ExtId = entryMatStruct.EnOrExtId,
                 MeTyp = entryMatStruct.EnOrMeType,
+                Actual = meStruct,
+                Original = meStruct
+            };
+
+            return meCode;
+        }
+
+        protected ME_CODE ToL2PhyMeCode(VMatStructEntry entryMatStruct)
+        {
+            ME_STRUCT meStruct = new()
+            {
+                MeId = entryMatStruct.EnPhMeId,
+                MesId = entryMatStruct.EnPhMesId ?? -1,
+                MeCreator = entryMatStruct.EnPhCreator
+            };
+
+            ME_CODE meCode = new()
+            {
+                BasId = entryMatStruct.EnPhBasId,
+                ExtId = entryMatStruct.EnPhExtId,
+                MeTyp = entryMatStruct.EnPhMeType,
                 Actual = meStruct,
                 Original = meStruct
             };

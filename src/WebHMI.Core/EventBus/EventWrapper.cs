@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WebHMI.EventBus
+namespace WebHMI.EventWrapper
 {
 	public class EventWrapper<T> : IEventData
 	{

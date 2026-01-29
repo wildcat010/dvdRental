@@ -18,7 +18,7 @@ namespace WebHMI.L2Adapter.Services.PapRcvStub
         }
         public void PrimdCopyHMI(VMatStructEntry matStruct, string newExtId, short isTestMat) 
         {
-            ME_CODE meCode = ToL2MeCode(matStruct);
+            ME_CODE meCode = ToL2OrMeCode(matStruct);
 
             HandleL2Call(() =>
                 _stub.doPrimdCopyHMI_async(null, _timeoutMs, meCode, newExtId, isTestMat)

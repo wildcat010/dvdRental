@@ -1,10 +1,8 @@
-﻿using Abp.Domain.Repositories;
-using Abp.Domain.Services;
+﻿using Abp.Domain.Services;
 using Abp.Domain.Uow;
 using Abp.EntityFrameworkCore;
 using Abp.Events.Bus.Handlers;
 using Abp.Runtime.Caching;
-using Castle.Core.Logging;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +11,9 @@ using WebHMI.API.Helpers;
 using WebHMI.Dtos;
 using WebHMI.Dtos.Application.Tracking;
 using WebHMI.Dtos.Core.Communication;
-using WebHMI.EventBus;
+using WebHMI.EventWrapper;
 using WebHMI.Notification;
 using WebHMI.PRDB;
-using WebHMI.PRDB.Dbo;
 using XIDL;
 
 namespace WebHMI.API.Services

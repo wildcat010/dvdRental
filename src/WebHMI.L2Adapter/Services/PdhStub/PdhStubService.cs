@@ -1,10 +1,4 @@
-﻿
-using Castle.Core.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Castle.Core.Logging;
 using WebHMI.PRDB.Dbo;
 using XIDL;
 
@@ -19,7 +13,7 @@ namespace WebHMI.L2Adapter.Services.PdhStub
 
         public void EntryDataChange(VMatStructEntry matStruct, string connectionId)
         {
-            ME_CODE meCode = ToL2MeCode(matStruct);
+            ME_CODE meCode = ToL2PhyMeCode(matStruct);
 
             HMI_RETURN hmiReturn = new HMI_RETURN();
             hmiReturn.HmiClientId = connectionId ?? "NoId";
@@ -33,8 +27,8 @@ namespace WebHMI.L2Adapter.Services.PdhStub
 
         public void MoveMaterialInSequence(VMatStructEntry matStructSource, VMatStructEntry matStructDest, short location, string connectionId)
         {
-            ME_CODE meCodeSrc = ToL2MeCode(matStructSource);
-            ME_CODE meCodeDest = ToL2MeCode(matStructDest);
+            ME_CODE meCodeSrc = ToL2PhyMeCode(matStructSource);
+            ME_CODE meCodeDest = ToL2PhyMeCode(matStructDest);
 
             HMI_RETURN hmiReturn = new HMI_RETURN();
             hmiReturn.HmiClientId = connectionId ?? "NoId";
@@ -48,7 +42,7 @@ namespace WebHMI.L2Adapter.Services.PdhStub
 
         public void SetNextMaterialInSchedule(VMatStructEntry matStruct, string connectionId)
         {
-            ME_CODE meCode = ToL2MeCode(matStruct);
+            ME_CODE meCode = ToL2PhyMeCode(matStruct);
 
             HMI_RETURN hmiReturn = new HMI_RETURN();
             hmiReturn.HmiClientId = connectionId ?? "NoId";

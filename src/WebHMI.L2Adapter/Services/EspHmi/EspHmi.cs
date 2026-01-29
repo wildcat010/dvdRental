@@ -1,12 +1,9 @@
 ﻿using Abp.Dependency;
-using Abp.Runtime.Caching;
+using Abp.Json;
 using Castle.Core.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Abp.Events.Bus;
 using XIDL;
+using WebHMI.EventWrapper;
 
 namespace WebHMI.L2Adapter.Services.EspHmi
 {
@@ -22,10 +19,16 @@ namespace WebHMI.L2Adapter.Services.EspHmi
 
         public override void takeOverTrackingData(HmiTrackingData trackingData)
         {
-
-            _logger.Info($"{nameof(takeOverTrackingData)} received data");
-
-
+            try
+            {
+                _logger.Info($"{nameof(takeOverTrackingData)} received data");
+                _logger.Debug($"[HsmHmi::takeOverTrackingData]HmiTrackingData:{trackingData.ToJsonString()}");
+                _ = EventBus.Default.TriggerAsync(new EventWrapper<HmiTrackingData>() { Data = trackingData });
+            }
+            catch (System.Exception ex)
+            {
+                _logger.Error($"[HsmHmi::takeOverTrackingData]Failer do take over Tracking data. Error:{ex}");
+            }
         }
 
         public override void takeOverTWMData(HmiTwmData data)

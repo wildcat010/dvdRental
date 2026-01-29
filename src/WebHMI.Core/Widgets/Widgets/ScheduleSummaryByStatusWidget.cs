@@ -1,15 +1,12 @@
 using Abp.Dependency;
 using Abp.Domain.Uow;
 using Abp.EntityFrameworkCore;
-using Abp.Events.Bus.Handlers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebHMI.Core.Widget.Models;
 using WebHMI.PRDB;
-using Microsoft.EntityFrameworkCore;
-using WebHMI.EventBus;
 using WebHMI.Notification;
 
 namespace WebHMI.Core.Widget.Widgets

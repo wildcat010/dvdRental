@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Threading.Tasks;
 using WebHMI.Dtos;
 using WebHMI.Dtos.Common;
@@ -240,7 +241,7 @@ namespace WebHMI.Services
         {
             var context = _prdbContextProvider.GetDbContext();
 
-            return await ApplyFilter<string,SequenceIdDto>(context.EdPhyEnts
+            return await ApplyFilter<string, SequenceIdDto>(context.EdPhyEnts
                 .Where(x => x.Source == "E")
                 .Select(x => x.SequenceId)
                 .Distinct(), input, (u) => { return new SequenceIdDto() { Key = u }; });
@@ -258,19 +259,20 @@ namespace WebHMI.Services
 
             var flags = new Dictionary<string, Func<short>>()
             {
-                //{ "LTIRM", () => MosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HRM")?.Strlongtimeinherblocked) },
-                //{ "STIRM", () => MosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HRM")?.Strshorttimeinherblocked) },
-                //{ "RECRM", () => MosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HRM")?.Strrecalculationblocked) },
-                //{ "LTIFM", () => MosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.Strlongtimeinherblocked) },
-                //{ "STIFM", () => MosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.Strshorttimeinherblocked) },
-                //{ "ECFM", () => MosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.Strentrycalculationblocked) },
-                //{ "LIPFC", () => MosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.Strlongtimeinherpfcblocked) },
-                //{ "SIPFC", () => MosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.Strshorttimeinherpfcblocked) },
-                //{ "ALPFC", () => ReverseMosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrswitchesInd0) },
-                //{ "TORM", () => ProgparamsToHMISwitch(progparams.FirstOrDefault(m => m.Param == "SETPTRM_TAKEOVER_MANUAL")?.ParamNum) },
-                //{ "TOFM", () =>  ProgparamsToHMISwitch(progparams.FirstOrDefault(m => m.Param == "SETPTFM_TAKEOVER_MANUAL")?.ParamNum) },
-                //{ "WOPFC", () => MosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.Strpfcwearshiftallowed) },
-                //{ "TOCS", () => ProgparamsToHMISwitch(progparams.FirstOrDefault(x=> x.Param =="SETPTCS_TAKEOVER_MANUAL")?.ParamNum) },
+                { "TAKORM", () => ProgparamsToHMISwitch(progparams.FirstOrDefault(m => m.Param == "SETPTRM_TAKEOVER_MANUAL")?.ParamNum) },
+                { "TAKOFM", () =>  ProgparamsToHMISwitch(progparams.FirstOrDefault(m => m.Param == "SETPTFM_TAKEOVER_MANUAL")?.ParamNum) },
+                { "LTI", () => MosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd5) },
+                { "STI", () => MosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd6) },
+                { "PRIORITY", () => MosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd34) },
+                { "LTIPFC", () => MosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd23) },
+                { "STIPFC", () => MosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd22) },
+                { "IED", () => MosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd20) },
+                //Mapping not finished because db is old(info from Helmut Fett
+                { "WOS1", () => {return 0; } },
+                { "WOS2", () => {return 0; } },
+                { "WOS3", () => {return 0; } },
+                { "WOS4", () => {return 0; } },
+                { "WOS5", () => {return 0; } },
             };
 
             var result = ids
@@ -296,60 +298,54 @@ namespace WebHMI.Services
 
             var flags = new Dictionary<string, Action<short>>()
             {
-                //{ "LTIRM", (x) => {
-                //    var mos = mosswitches.FirstOrDefault(m => m.PlantType == "HRM");
-                //    if (mos != null) mos.Strlongtimeinherblocked = HMIToMosswitchSwitch(x);
-                //}},
-                //{ "STIRM", (x) => {
-                //    var mos = mosswitches.FirstOrDefault(m => m.PlantType == "HRM");
-                //    if (mos != null) mos.Strshorttimeinherblocked = HMIToMosswitchSwitch(x);
-                //}},
-                //{ "RECRM", (x) => {
-                //    var mos = mosswitches.FirstOrDefault(m => m.PlantType == "HRM");
-                //    if (mos != null) mos.Strrecalculationblocked = HMIToMosswitchSwitch(x);
-                //}},
-                //{ "LTIFM", (x) => {
-                //    var mos = mosswitches.FirstOrDefault(m => m.PlantType == "HFM");
-                //    if (mos != null) mos.Strlongtimeinherblocked = HMIToMosswitchSwitch(x);
-                //}},
-                //{ "STIFM", (x) => {
-                //    var mos = mosswitches.FirstOrDefault(m => m.PlantType == "HFM");
-                //    if (mos != null) mos.Strshorttimeinherblocked = HMIToMosswitchSwitch(x);
-                //}},
-                //{ "ECFM", (x) => {
-                //    var mos = mosswitches.FirstOrDefault(m => m.PlantType == "HFM");
-                //    if (mos != null) mos.Strentrycalculationblocked = HMIToMosswitchSwitch(x);
-                //}},
-                //{ "LIPFC", (x) => {
-                //    var mos = mosswitches.FirstOrDefault(m => m.PlantType == "HFM");
-                //    if (mos != null) mos.Strlongtimeinherpfcblocked = HMIToMosswitchSwitch(x);
-                //}},
-                //{ "SIPFC", (x) => {
-                //    var mos = mosswitches.FirstOrDefault(m => m.PlantType == "HFM");
-                //    if (mos != null) mos.Strshorttimeinherpfcblocked = HMIToMosswitchSwitch(x);
-                //}},
-                //{ "ALPFC", (x) => {
-                //    var mos = mosswitches.FirstOrDefault(m => m.PlantType == "HFM");
-                //    if (mos != null) mos.StrswitchesInd0 = ReverseHMIToMosswitchSwitch(x);
-                //}},
-                //{ "TORM", (x) => {
-                //    var param = progparams.FirstOrDefault(m => m.Param == "SETPTRM_TAKEOVER_MANUAL");
-                //    if (param != null) param.ParamNum = HMIToProgparamsSwitch(x);
-                //}},
-                //{ "TOFM", (x) => {
-                //    var param = progparams.FirstOrDefault(m => m.Param == "SETPTFM_TAKEOVER_MANUAL");
-                //    if (param != null) param.ParamNum = HMIToProgparamsSwitch(x);
-                //}},
-                //{ "WOPFC", (x) => {
-                //    var mos = mosswitches.FirstOrDefault(m => m.PlantType == "HFM");
-                //    if (mos != null) mos.Strpfcwearshiftallowed = HMIToMosswitchSwitch(x);
-                //}},
-                //{
-                //  "TOCS", (x) => {
-                //      var param = progparams.FirstOrDefault(x=>x.Param =="SETPTCS_TAKEOVER_MANUAL");
-                //      if(param != null) param.ParamNum = HMIToProgparamsSwitch(x);
-                //  }
-                //}
+                { "TAKORM", (x) => {
+                    var param = progparams.FirstOrDefault(m => m.Param == "SETPTRM_TAKEOVER_MANUAL");
+                    if (param != null) param.ParamNum = HMIToProgparamsSwitch(x);
+                }},
+                { "TAKOFM", (x) => {
+                    var param = progparams.FirstOrDefault(m => m.Param == "SETPTFM_TAKEOVER_MANUAL");
+                    if (param != null) param.ParamNum = HMIToProgparamsSwitch(x);
+                }},
+                { "LTI", (x) => {
+                    var mos = mosswitches.FirstOrDefault(m => m.PlantType == "HFM");
+                    if (mos != null) mos.StrSwitchesInd5 = HMIToMosswitchSwitch(x);
+                }},
+                { "STI", (x) => {
+                    var mos = mosswitches.FirstOrDefault(m => m.PlantType == "HFM");
+                    if (mos != null) mos.StrSwitchesInd6 = HMIToMosswitchSwitch(x);
+                }},
+                { "PRIORITY", (x) => {
+                    var mos = mosswitches.FirstOrDefault(m => m.PlantType == "HFM");
+                    if (mos != null) mos.StrSwitchesInd34 = HMIToMosswitchSwitch(x);
+                }},
+                { "LTIPFC", (x) => {
+                    var mos = mosswitches.FirstOrDefault(m => m.PlantType == "HFM");
+                    if (mos != null) mos.StrSwitchesInd23 = HMIToMosswitchSwitch(x);
+                }},
+                { "STIPFC", (x) => {
+                    var mos = mosswitches.FirstOrDefault(m => m.PlantType == "HFM");
+                    if (mos != null) mos.StrSwitchesInd22 = HMIToMosswitchSwitch(x);
+                }},
+                { "IED", (x) => {
+                    var mos = mosswitches.FirstOrDefault(m => m.PlantType == "HFM");
+                    if (mos != null) mos.StrSwitchesInd20 = HMIToMosswitchSwitch(x);
+                }},
+                //Mapping not finished because db is old(info from Helmut Fett
+                { "WOS1", (x) => {
+                    return;
+                }},
+                { "WOS2", (x) => {
+                    return;
+                }},
+                { "WOS3", (x) => {
+                    return;
+                }},
+                { "WOS4", (x) => {
+                    return;
+                }},
+                { "WOS5", (x) => {
+                    return;
+                }},
             };
 
             var toUpdate = ids
@@ -397,7 +393,7 @@ namespace WebHMI.Services
             return value == 0 ? 0 : 1;
         }
 
-        private static double HMIToProgparamsSwitch(short value)
+        private static float HMIToProgparamsSwitch(short value)
         {
             return value;
         }

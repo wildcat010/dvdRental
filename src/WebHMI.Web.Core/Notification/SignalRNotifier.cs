@@ -1,14 +1,13 @@
 ﻿using Abp;
 using Abp.Dependency;
 using Abp.Events.Bus.Handlers;
-using Abp.Json;
 using Abp.RealTime;
 using Castle.Core.Logging;
 using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Threading.Tasks;
 using WebHMI.Dtos;
-using WebHMI.EventBus;
+using WebHMI.EventWrapper;
 using WebHMI.L2Adapter.Watchdogs.Dto;
 
 

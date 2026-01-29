@@ -994,7 +994,7 @@ namespace WebHMI.Mapping.Extensions
                 stand.WmpModel.DbSource = $"Wmppasses.Model({i})";
 
                 stand.SrpModel.L = srpPassesL?.Model;
-                stand.SrpModel.E = srpPassesL?.Model;
+                stand.SrpModel.E = srpPassesE?.Model;
                 stand.SrpModel.DbSource = $"SrpPasses.Model({i})";
 
                 stand.CsMaxLimit.L = dirFmPfcCycShiftPassL?.CSmaxLimit;

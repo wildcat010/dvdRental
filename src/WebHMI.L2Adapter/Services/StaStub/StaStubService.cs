@@ -19,7 +19,7 @@ namespace WebHMI.L2Adapter.Services.StaStub
        
         public void SetpointsCalculationHMI(VMatStructEntry matStruct, string aggregate, string connectionId)
         {
-            ME_CODE meCode = ToL2MeCode(matStruct);
+            ME_CODE meCode = ToL2OrMeCode(matStruct);
 
             HMI_RETURN hmiReturn = new HMI_RETURN();
             hmiReturn.HmiClientId = connectionId ?? "NoId";

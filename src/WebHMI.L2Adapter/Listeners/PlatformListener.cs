@@ -3,9 +3,8 @@ using Abp.Events.Bus;
 using Abp.Json;
 using Castle.Core.Logging;
 using WebHMI.Dtos;
-using WebHMI.EventBus;
 using WebHMI.Events;
-using WebHMI.L2Adapter.Watchdogs.Dto;
+using WebHMI.EventWrapper;
 using WebHMI.Notification;
 using XIDL;
 
