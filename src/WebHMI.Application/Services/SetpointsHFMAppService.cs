@@ -28,7 +28,7 @@ namespace WebHMI.Services
         private PrdbContext _prdbContext => _prdbContextProvider.GetDbContext();
 
         public SetpointsHFMAppService(
-            MatStructEntryService matStructEntryService, 
+            MatStructEntryService matStructEntryService,
             IDbContextProvider<PrdbContext> prdbContextProvider,
             IL2CommunicationHandler l2Sender
             )
@@ -56,7 +56,7 @@ namespace WebHMI.Services
 
         [Audited]
         [AbpAuthorize(Permissions.Pages_Setpoints_FM_Edit)]
-        public async Task UpdateMaterialOverviewHFM(HFMMaterialOverviewDto input,string connectionId)
+        public async Task UpdateMaterialOverviewHFM(HFMMaterialOverviewDto input, string connectionId)
         {
             var context = _prdbContextProvider.GetDbContext();
             var vMatStructEntryOr = await _matStructEntryService.GetMaterialEntryStruct(input.MeCode.MeId, "OR");
@@ -80,7 +80,7 @@ namespace WebHMI.Services
 
             var lpM = await context.Lps.FirstOrDefaultAsync(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M");
             lpM = context.InsertIfNull(lpM, vMatStructEntryOr);
-            //lpM.REDDISTHRMHFM = input.RedDistHrmFm?.M;
+            lpM.RedDistHrmHfm = input.RedDistHrmFm?.M;
             lpM.PlanNo = input.LpPlanNo?.M;
 
             var dpfmM = await context.Dpfms.FirstOrDefaultAsync(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M");
@@ -105,7 +105,7 @@ namespace WebHMI.Services
 
             var srpM = await context.Srps.FirstOrDefaultAsync(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M");
             srpM = context.InsertIfNull(srpM, vMatStructEntryOr);
-            srpM.PlanNo = input.IscpPlanNo?.M;
+            srpM.PlanNo = input.SrpPlanNo?.M;
 
             var ihpM = await context.Ihps.FirstOrDefaultAsync(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M");
             ihpM = context.InsertIfNull(ihpM, vMatStructEntryOr);
@@ -114,6 +114,7 @@ namespace WebHMI.Services
             var spord2pcM = await context.SpOrd2Pcs.FirstOrDefaultAsync(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M");
             spord2pcM = context.InsertIfNull(spord2pcM, vMatStructEntryOr);
             spord2pcM.LExit = input.LExit?.M;
+            spord2pcM.Profexcalc = input.ProfExCalc?.M;
 
             await context.SaveChangesAsync();
 
@@ -128,7 +129,7 @@ namespace WebHMI.Services
             var hmiVEntryMatStruct = await _matStructEntryService.GetMaterialEntryStruct(meid, matType);
 
             var dataBlob = await GetPassScheduleHfmDataBlob(hmiVEntryMatStruct);
-            
+
             result.MeCode = hmiVEntryMatStruct.ToMeCodeDto();
             result.MapPassSchedule(dataBlob, _standCount, _standStartIdx);
             result.MapLubrication(dataBlob, _standCount, _standStartIdx);
@@ -195,8 +196,8 @@ namespace WebHMI.Services
                 lpPassM.LoadingValue = pass.LoadingValue?.M;
                 lpPassM.LoadingValueCorrection = pass.LoadingValueCorrection?.M;
 
-                await context.SaveChangesAsync();
             }
+            await context.SaveChangesAsync();
         }
 
         private async Task UpdateTpPasses(SetpointsHFMDto input, VMatStructEntry vMatStructEntryOr)
@@ -223,8 +224,8 @@ namespace WebHMI.Services
 
                 tpPassM.SpecifFoTension = pass.SpecifFoTension?.M;
 
-                await context.SaveChangesAsync();
             }
+            await context.SaveChangesAsync();
         }
 
         private async Task UpdateSrpPasses(SetpointsHFMDto input, VMatStructEntry vMatStructEntryOr)
@@ -251,10 +252,9 @@ namespace WebHMI.Services
                     context.Srppasses.Add(srpPassM);
                 }
                 srpPassM.PlanNo = srpManual?.PlanNo;
-                srpPassM.Model = pass.Model?.M;
 
-                await context.SaveChangesAsync();
             }
+            await context.SaveChangesAsync();
         }
 
         private async Task UpdateSpOrdPasses(SetpointsHFMDto input, VMatStructEntry vMatStructEntryOr)
@@ -279,22 +279,10 @@ namespace WebHMI.Services
                     context.SpOrd2PcStands.Add(spOrd2PcStandM);
                 }
 
-                spOrd2PcStandM.Fr = pass.Fr?.M;
-                spOrd2PcStandM.Fb = pass.Fb?.M;
-                spOrd2PcStandM.Sd = pass.Sd?.M;
-                spOrd2PcStandM.T0 = pass.T0?.M;
-                spOrd2PcStandM.H0 = pass.H0?.M;
-                spOrd2PcStandM.VCircum = pass.VCircum?.M;
-                spOrd2PcStandM.TRoll = pass.TRoll?.M;
-                spOrd2PcStandM.RelProfile = pass.RelProfile?.M;
-                spOrd2PcStandM.Profile = pass.AbsProfile?.M;
-                spOrd2PcStandM.Ms = pass.Ms?.M;
-                spOrd2PcStandM.RPower = pass.RPower?.M;
-                spOrd2PcStandM.CalcFlat = pass.CalcFlat?.M;
-                spOrd2PcStandM.PositionWrs = pass.PositionWRS?.M;
+                spOrd2PcStandM.PositionWrs = (float)pass.PositionWRS?.M;
 
-                await context.SaveChangesAsync();
             }
+            await context.SaveChangesAsync();
         }
 
         private async Task UpdateDirFmPfcParaPasses(SetpointsHFMDto input, VMatStructEntry vMatStructEntryOr)
@@ -321,8 +309,8 @@ namespace WebHMI.Services
 
                 dirFmPfcParaPassM.ObservedFlat = pass.ObservedFlat?.M;
 
-                await context.SaveChangesAsync();
             }
+            await context.SaveChangesAsync();
         }
 
         private async Task UpdateLoadingTab(SetpointsHFMDto input, VMatStructEntry vMatStructEntryOr)
@@ -351,29 +339,13 @@ namespace WebHMI.Services
                 lpPassM.CircumSpeedCorrection = pass.CircumSpeedCorrection?.M;
                 lpPassM.BendingForce = pass.BendingForce?.M;
 
-                await context.SaveChangesAsync();
             }
+            await context.SaveChangesAsync();
         }
 
         private async Task UpdateDescalingTab(SetpointsHFMDto input, VMatStructEntry vMatStructEntryOr)
         {
             var context = _prdbContextProvider.GetDbContext();
-
-            var dpfmM = await context.Dpfms.Where(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M").FirstOrDefaultAsync();
-
-            if (dpfmM == null)
-            {
-                dpfmM = new Dpfm()
-                {
-                    MeCreator = vMatStructEntryOr.EnOrCreator,
-                    MeId = vMatStructEntryOr.EnOrMeId,
-                    MesId = (short)vMatStructEntryOr.EnOrMesId,
-                    Source = "M",
-                };
-                context.Dpfms.Add(dpfmM);
-            }
-
-            dpfmM.PlanNo = input.Descaling?.PlanNo.M;
 
             var dprampfmM = await context.DprampFms.Where(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M").FirstOrDefaultAsync();
 
@@ -422,8 +394,6 @@ namespace WebHMI.Services
                 rcPassM.FlowWrLoadedInd0 = pass.FlowWrLoadedInd0?.M;
                 rcPassM.FlowWrLoadedInd1 = pass.FlowWrLoadedInd1?.M;
                 rcPassM.FlowWrLoadedInd2 = pass.FlowWrLoadedInd2?.M;
-
-                await context.SaveChangesAsync();
             }
 
             var iscpPassManuals = await context.Iscppasses.Where(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M").ToListAsync();
@@ -447,10 +417,9 @@ namespace WebHMI.Services
                 iscpPassM.IscVolumeInd0 = pass.IscVolumeInd0?.M;
                 iscpPassM.IscVolumeInd1 = pass.IscVolumeInd1?.M;
                 iscpPassM.IscVolumeInd2 = pass.IscVolumeInd2?.M;
+                iscpPassM.IscVolumeInd3 = pass.IscVolumeInd3?.M;
                 iscpPassM.FumeSuppSprayBehind = pass.FumesuppSprayBehind?.M;
                 iscpPassM.LooperCool = pass.LooperCooling?.M;
-
-                await context.SaveChangesAsync();
             }
 
             await context.SaveChangesAsync();
@@ -485,8 +454,6 @@ namespace WebHMI.Services
 
                 aopPassM.AntiPeelingState = pass.AntiPeelingState?.M;
                 aopPassM.AntiPeeling = pass.AntiPeeling?.M;
-
-                await context.SaveChangesAsync();
             }
 
             await context.SaveChangesAsync();
@@ -515,8 +482,6 @@ namespace WebHMI.Services
                 }
                 tpPassM.SpecifFoTension = pass.SpeciffoTension?.M;
                 tpPassM.LooperStripLen = pass.LooperStripLen?.M;
-
-                await context.SaveChangesAsync();
             }
 
             await context.SaveChangesAsync();
@@ -582,9 +547,7 @@ namespace WebHMI.Services
                     context.Srppasses.Add(srpPassM);
                 }
                 srpPassM.PlanNo = srpManual?.PlanNo;
-                //srpPassM.Model = pass.Model?.M;
-
-                await context.SaveChangesAsync();
+                srpPassM.Model = pass.Model?.M;
             }
 
             await context.SaveChangesAsync();
@@ -629,22 +592,16 @@ namespace WebHMI.Services
             dirFmPfcParapM.PlanNo = input.DirFmPfcParaPlanNo?.M;
             dirFmPfcParapM.ProfileCorr = input.ProfileCorr?.M;
 
+            var dirFmPfcCycShiftPM = await context.DirFmPfcCycShiftPs.FirstOrDefaultAsync(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M");
+            dirFmPfcCycShiftPM = context.InsertIfNull(dirFmPfcCycShiftPM, vMatStructEntryOr);
+            dirFmPfcCycShiftPM.PlanNo = input.DirFmPfcCycShiftPlanNo?.M;
+
             var lpM = await context.Lps.FirstOrDefaultAsync(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M");
             lpM = context.InsertIfNull(lpM, vMatStructEntryOr);
-            //lpM.REDDISTHRMHFM = input.RedDistHrmFm?.M;
+            lpM.RedDistHrmHfm = input.RedDistHrmHfm?.M;
 
             var spord2pcM = await context.SpOrd2Pcs.FirstOrDefaultAsync(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M");
             spord2pcM = context.InsertIfNull(spord2pcM, vMatStructEntryOr);
-            spord2pcM.LExit = input.LExit?.M;
-            spord2pcM.TIhx = input.TiHx?.M;
-            spord2pcM.InherPfc = input.InherPfc?.M;
-            spord2pcM.InherPfcId = input.InherPfcId?.M;
-            spord2pcM.HExitCold = input.HExitCold?.M;
-            spord2pcM.WExitCold = input.WExitCold?.M;
-            spord2pcM.T = input.TValue?.M;
-            spord2pcM.Profexcalc = input.ProfExCalc?.M;
-            spord2pcM.HEntryColdFm = input.HEntryColdFm?.M;
-            spord2pcM.WEntryColdFm = input.WEntryColdFm?.M;
 
             await context.SaveChangesAsync();
 
@@ -687,7 +644,6 @@ namespace WebHMI.Services
             await UpdateLpSrpWmpPass(input, vMatStructEntryOr);
             await UpdateApxSpOrd2PcStands(input, vMatStructEntryOr);
             await UpdateApxDirFmPfcParaPasses(input, vMatStructEntryOr);
-            await UpdateApxDirFmPfcCycShiftPasses(input, vMatStructEntryOr);
 
             await UpdateShifting(input, vMatStructEntryOr);
             await UpdateFlatness(input, vMatStructEntryOr);
@@ -722,44 +678,6 @@ namespace WebHMI.Services
 
                 lpPassM.BendingForce = pass.BendingForce?.M;
                 lpPassM.CVcshifting = pass.CvcShifting?.M;
-
-                await context.SaveChangesAsync();
-
-                var srpPassM = srpPassManuals.FirstOrDefault(x => x.PassNo == pass.PassNo);
-                if (srpPassM == null)
-                {
-                    srpPassM = new Srppass()
-                    {
-                        MeCreator = vMatStructEntryOr.EnOrCreator,
-                        MeId = vMatStructEntryOr.EnOrMeId,
-                        MesId = (short)vMatStructEntryOr.EnOrMesId,
-                        PassNo = pass.PassNo,
-                        Source = "M",
-                    };
-                    context.Srppasses.Add(srpPassM);
-                }
-
-                srpPassM.Model = pass.SrpModel?.M;
-
-                await context.SaveChangesAsync();
-
-                var wmpPassM = wmpPassManuals.FirstOrDefault(x => x.PassNo == pass.PassNo);
-                if (wmpPassM == null)
-                {
-                    wmpPassM = new Wmppass()
-                    {
-                        MeCreator = vMatStructEntryOr.EnOrCreator,
-                        MeId = vMatStructEntryOr.EnOrMeId,
-                        MesId = (short)vMatStructEntryOr.EnOrMesId,
-                        PassNo = pass.PassNo,
-                        Source = "M",
-                    };
-                    context.Wmppasses.Add(wmpPassM);
-                }
-
-                wmpPassM.Model = pass.WmpModel?.M;
-
-                await context.SaveChangesAsync();
             }
 
         }
@@ -786,18 +704,12 @@ namespace WebHMI.Services
                     context.SpOrd2PcStands.Add(spord2pcstandM);
                 }
 
-                spord2pcstandM.Fr = pass.Fr?.M;
-                spord2pcstandM.WrCrownEff = pass.WrCrownEff?.M;
-                spord2pcstandM.ThermCrown = pass.ThermCrown?.M;
-                spord2pcstandM.TRoll = pass.Troll?.M;
                 spord2pcstandM.RelProfile = pass.RelProfile?.M;
                 spord2pcstandM.Profile = pass.Profile?.M;
-                spord2pcstandM.Fb = pass.Fb?.M;
-                spord2pcstandM.PositionWrs = pass.PositionWrs?.M;
                 spord2pcstandM.Wear = pass.Wear?.M;
 
-                await context.SaveChangesAsync();
             }
+            await context.SaveChangesAsync();
         }
 
         private async Task UpdateApxDirFmPfcParaPasses(SetpointsHFMApxDto input, VMatStructEntry vMatStructEntryOr)
@@ -828,37 +740,8 @@ namespace WebHMI.Services
                 dirFmPfcParaPassM.SrLl = pass.Srll?.M;
                 dirFmPfcParaPassM.ObservedFlat = pass.ObservedFlat?.M;
 
-                await context.SaveChangesAsync();
             }
-        }
-
-        private async Task UpdateApxDirFmPfcCycShiftPasses(SetpointsHFMApxDto input, VMatStructEntry vMatStructEntryOr)
-        {
-            var context = _prdbContextProvider.GetDbContext();
-
-            var dirFmPfcCycShiftPassManuals = await context.DirFmPfcCycShiftPpasses.Where(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M").ToListAsync();
-
-            foreach (var pass in input.PassScheduleDtos.OrderByDescending(x => x.PassNo))
-            {
-                var dirFmPfcCycShiftPassM = dirFmPfcCycShiftPassManuals.FirstOrDefault(x => x.PassNo == pass.PassNo);
-                if (dirFmPfcCycShiftPassM == null)
-                {
-                    dirFmPfcCycShiftPassM = new DirFmPfcCycShiftPpass()
-                    {
-                        MeCreator = vMatStructEntryOr.EnOrCreator,
-                        MeId = vMatStructEntryOr.EnOrMeId,
-                        MesId = (short)vMatStructEntryOr.EnOrMesId,
-                        PassNo = pass.PassNo,
-                        Source = "M",
-                    };
-                    context.DirFmPfcCycShiftPpasses.Add(dirFmPfcCycShiftPassM);
-                }
-
-                dirFmPfcCycShiftPassM.CSmaxLimit = pass.CsMaxLimit?.M;
-                dirFmPfcCycShiftPassM.CSminLimit = pass.CsMinLimit?.M;
-
-                await context.SaveChangesAsync();
-            }
+            await context.SaveChangesAsync();
         }
 
         private async Task UpdateShifting(SetpointsHFMApxDto input, VMatStructEntry vMatStructEntryOr)
@@ -891,8 +774,8 @@ namespace WebHMI.Services
                 dirFmPfcCycShiftPassM.CSshiftStep2 = pass.CsShiftStep2?.M;
                 dirFmPfcCycShiftPassM.CSshiftStep3 = pass.CsShiftStep3?.M;
 
-                await context.SaveChangesAsync();
             }
+            await context.SaveChangesAsync();
         }
 
         private async Task UpdateFlatness(SetpointsHFMApxDto input, VMatStructEntry vMatStructEntryOr)
@@ -924,14 +807,14 @@ namespace WebHMI.Services
                 dirFmPfcParaPassM.FacDfbDfr = pass.Facdfbdfr?.M;
                 dirFmPfcParaPassM.FacDfbDiu = pass.Facdfbdiu?.M;
 
-                await context.SaveChangesAsync();
             }
+            await context.SaveChangesAsync();
         }
 
         private async Task<SetpointsHFMDataBlob> GetPassScheduleHfmDataBlob(VMatStructEntry hmiVEntryMatStruct)
         {
             string[] sources = ["L", "M", "S", "E"];
-            var setpointsHFMBlob = new SetpointsHFMDataBlob() 
+            var setpointsHFMBlob = new SetpointsHFMDataBlob()
             {
                 Srppasses = await _prdbContext.Srppasses.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
                 Spord2pcstands = await _prdbContext.SpOrd2PcStands.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
@@ -980,7 +863,8 @@ namespace WebHMI.Services
                 Spord2pcstands = await _prdbContext.SpOrd2PcStands.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
                 Lppasses = await _prdbContext.Lppasses.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
                 Dirfmpfccycshiftppasses = await _prdbContext.DirFmPfcCycShiftPpasses.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
-                Dirfmpfccycshiftps = await _prdbContext.DirFmPfcCycShiftPs.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync()
+                Dirfmpfccycshiftps = await _prdbContext.DirFmPfcCycShiftPs.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
+                Lps = await _prdbContext.Lps.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
 
             };
         }

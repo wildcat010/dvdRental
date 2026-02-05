@@ -84,15 +84,6 @@ namespace WebHMI.Mapping.Extensions
             var dirFmPfcCycShiftS = dataBlob.Dirfmpfccycshiftps.Where(x => x.Source == "S").FirstOrDefault();
             var dirFmPfcCycShiftE = dataBlob.Dirfmpfccycshiftps.Where(x => x.Source == "E").FirstOrDefault();
 
-
-            result.HEntryColdFm.L = spOrd2PcL?.HEntryColdFm;
-            result.HEntryColdFm.E = spOrd2PcE?.HEntryColdFm;
-            result.HEntryColdFm.DbSource = "SpOrd2Pc.HEntryColdFm";
-
-            result.TValue.L = spOrd2PcL?.T;
-            result.TValue.E = spOrd2PcE?.T;
-            result.TValue.DbSource = "SpOrd2Pc.T";
-
             result.HExit.L = edOrdEntL?.HExit;
             result.HExit.E = edOrdEntE?.HExit;
             result.HExit.M = edOrdEntM?.HExit;
@@ -108,24 +99,39 @@ namespace WebHMI.Mapping.Extensions
             result.TExit.M = edOrdEntM?.TExit;
             result.TExit.DbSource = "EdOrdEnt.TExit";
 
-            result.LExit.L = spOrd2PcL?.LExit;
-            result.LExit.E = spOrd2PcE?.LExit;
-            result.LExit.M = spOrd2PcM?.LExit;
-            result.LExit.DbSource = "SpOrd2Pc.LExit";
-
             result.ExitCrownc25.L = edOrdEntL?.ExitCrownC25;
             result.ExitCrownc25.E = edOrdEntE?.ExitCrownC25;
             result.ExitCrownc25.M = edOrdEntM?.ExitCrownC25;
             result.ExitCrownc25.DbSource = "EdOrdEnt.ExitCrownC25";
 
+            result.HExitCold.L = spOrd2PcL?.HExitCold;
+            result.HExitCold.E = spOrd2PcE?.HExitCold;
+            result.HExitCold.DbSource = "SpOrd2Pc.HExitCold";
+
+            result.WExitCold.L = spOrd2PcL?.WExitCold;
+            result.WExitCold.E = spOrd2PcE?.WExitCold;
+            result.WExitCold.DbSource = "SpOrd2Pc.WExitCold";
+
+            result.TValue.L = spOrd2PcL?.T;
+            result.TValue.E = spOrd2PcE?.T;
+            result.TValue.DbSource = "SpOrd2Pc.T";
+
+            result.ProfExCalc.L = spOrd2PcL?.Profexcalc;
+            result.ProfExCalc.E = spOrd2PcE?.Profexcalc;
+            result.ProfExCalc.DbSource = "SpOrd2Pc.Profexcalc";
+
+            result.HEntryColdFm.L = spOrd2PcL?.HEntryColdFm;
+            result.HEntryColdFm.E = spOrd2PcE?.HEntryColdFm;
+            result.HEntryColdFm.DbSource = "SpOrd2Pc.HEntryColdFm";
+
             result.T0MhHRM.L = spOrd2PcL?.T0MhHrm;
             result.T0MhHRM.E = spOrd2PcE?.T0MhHrm;
             result.T0MhHRM.DbSource = "SpOrd2Pc.T0MhHrm";
 
-            //result.RedDistHrmFm.L = lpL?.SpeedBeforeRedStand1;
-            //result.RedDistHrmFm.E = lpE?.SpeedBeforeRedStand1;
-            //result.RedDistHrmFm.M = lpM?.SpeedBeforeRedStand1;
-            //result.RedDistHrmFm.DbSource = "Lp.SpeedBeforeRedStand1";
+            result.RedDistHrmFm.L = lpL?.RedDistHrmHfm;
+            result.RedDistHrmFm.E = lpE?.RedDistHrmHfm;
+            result.RedDistHrmFm.M = lpM?.RedDistHrmHfm;
+            result.RedDistHrmFm.DbSource = "Lp.RedDistHrmHfm";
 
             result.ProfileCorr.L = dirFmPfcParaPL?.ProfileCorr;
             result.ProfileCorr.E = dirFmPfcParaPE?.ProfileCorr;
@@ -134,23 +140,11 @@ namespace WebHMI.Mapping.Extensions
 
             result.TiHx.L = spOrd2PcL?.TIhx;
             result.TiHx.E = spOrd2PcE?.TIhx;
-            result.TiHx.M = spOrd2PcM?.TIhx;
             result.TiHx.DbSource = "SpOrd2Pc.TIhx";
 
-            result.HExitCold.L = spOrd2PcL?.HExitCold;
-            result.HExitCold.E = spOrd2PcE?.HExitCold;
-            result.HExitCold.M = spOrd2PcM?.HExitCold;
-            result.HExitCold.DbSource = "SpOrd2Pc.HExitCold";
-
-            result.WExitCold.L = spOrd2PcL?.HExitCold;
-            result.WExitCold.E = spOrd2PcE?.HExitCold;
-            result.WExitCold.M = spOrd2PcM?.HExitCold;
-            result.WExitCold.DbSource = "SpOrd2Pc.HExitCold";
-
-            result.ProfExCalc.L = spOrd2PcL?.Profexcalc;
-            result.ProfExCalc.E = spOrd2PcE?.Profexcalc;
-            result.ProfExCalc.M = spOrd2PcM?.Profexcalc;
-            result.ProfExCalc.DbSource = "SpOrd2Pc.Profexcalc";
+            result.LExit.L = spOrd2PcL?.LExit;
+            result.LExit.E = spOrd2PcE?.LExit;
+            result.LExit.DbSource = "SpOrd2Pc.LExit";
 
             result.LpPlanNo.L = lpL?.PlanNo;
             result.LpPlanNo.E = lpE?.PlanNo;
@@ -274,7 +268,6 @@ namespace WebHMI.Mapping.Extensions
 
                 stand.Fb.L = spOrd2PcStandL?.Fb;
                 stand.Fb.E = spOrd2PcStandE?.Fb;
-                stand.Fb.M = spOrd2PcStandM?.Fb;
                 stand.Fb.DbSource = $"SpOrd2PcStand.Fb({i})";
 
                 stand.PositionWRS.L = spOrd2PcStandL?.PositionWrs;
@@ -284,18 +277,12 @@ namespace WebHMI.Mapping.Extensions
 
                 stand.Model.L = srpPassesL?.Model;
                 stand.Model.E = srpPassesE?.Model;
-                stand.Model.M = srpPassesM?.Model;
                 stand.Model.DbSource = $"SrpPasses.Model({i})";
 
                 stand.SpecifFoTension.L = tpPassL?.SpecifFoTension;
                 stand.SpecifFoTension.E = tpPassE?.SpecifFoTension;
                 stand.SpecifFoTension.M = tpPassM?.SpecifFoTension;
                 stand.SpecifFoTension.DbSource = $"TpPass.SpecifFoTension({i})";
-
-                //stand.Corr.L = tpPassL?.Corr;
-                //stand.Corr.E = tpPassE?.Corr;
-                //stand.Corr.M = tpPassM?.Corr;
-                //stand.Corr.DbSource = $"TpPass.Corr({i})";
 
                 stand.ObservedFlat.L = dirFmPfcParapPassL?.ObservedFlat;
                 stand.ObservedFlat.E = dirFmPfcParapPassE?.ObservedFlat;
@@ -329,21 +316,17 @@ namespace WebHMI.Mapping.Extensions
                 stand.TRoll.E = spOrd2PcStandE?.TRoll;
                 stand.TRoll.DbSource = $"SpOrd2PcStand.TRoll({i})";
 
-                //stand.DeltaSdPos.L = spOrd2PcStandL?.DeltaSdPos;
-                //stand.DeltaSdPos.E = spOrd2PcStandE?.DeltaSdPos;
-                //stand.DeltaSdPos.DbSource = $"SpOrd2PcStand.DeltaSdPos({i})";
+                stand.DeltaSdPos.L = spOrd2PcStandL?.SdCorr;
+                stand.DeltaSdPos.E = spOrd2PcStandE?.SdCorr;
+                stand.DeltaSdPos.DbSource = $"SpOrd2PcStand.DeltaSdPos({i})";
 
                 stand.RelProfile.L = spOrd2PcStandL?.RelProfile;
                 stand.RelProfile.E = spOrd2PcStandE?.RelProfile;
                 stand.RelProfile.DbSource = $"SpOrd2PcStand.RelProfile({i})";
 
-                stand.AbsProfile.L = spOrd2PcStandL?.Profile;
-                stand.AbsProfile.E = spOrd2PcStandE?.Profile;
-                stand.AbsProfile.DbSource = $"SpOrd2PcStand.Profile({i})";
-
-                stand.TRoll.L = spOrd2PcStandL?.TRoll;
-                stand.TRoll.E = spOrd2PcStandE?.TRoll;
-                stand.TRoll.DbSource = $"SpOrd2PcStand.TRoll({i})";
+                stand.Profile.L = spOrd2PcStandL?.Profile;
+                stand.Profile.E = spOrd2PcStandE?.Profile;
+                stand.Profile.DbSource = $"SpOrd2PcStand.Profile({i})";
 
                 stand.Ms.L = spOrd2PcStandL?.Ms;
                 stand.Ms.E = spOrd2PcStandE?.Ms;
@@ -356,10 +339,6 @@ namespace WebHMI.Mapping.Extensions
                 stand.CalcFlat.L = spOrd2PcStandL?.CalcFlat;
                 stand.CalcFlat.E = spOrd2PcStandE?.CalcFlat;
                 stand.CalcFlat.DbSource = $"SpOrd2PcStand.CalcFlat({i})";
-
-                stand.SptlFaultFm.L = spOrd2PcL?.SptlFaultFm;
-                stand.SptlFaultFm.E = spOrd2PcE?.SptlFaultFm;
-                stand.SptlFaultFm.DbSource = $"SpOrd2Pc.SptlFaultFm({i})";
 
                 result.PassScheduleDtos.Add(stand);
             }
@@ -388,7 +367,6 @@ namespace WebHMI.Mapping.Extensions
 
                 stand.LoadingPlan.L = lpL?.PlanNo;
                 stand.LoadingPlan.E = lpE?.PlanNo;
-                stand.LoadingPlan.M = lpM?.PlanNo;
                 stand.LoadingPlan.DbSource = $"LpPass.PlanNo({i})";
 
                 stand.LoadingType.L = lpPassL?.LoadingType;
@@ -432,7 +410,6 @@ namespace WebHMI.Mapping.Extensions
 
             result.Descaling.PlanNo.L = dpfmL?.PlanNo;
             result.Descaling.PlanNo.E = dpfmE?.PlanNo;
-            result.Descaling.PlanNo.M = dpfmM?.PlanNo;
             result.Descaling.PlanNo.DbSource = "Dpfm.PlanNo";
 
             result.Descaling.DescrampAuto.L = dprampfmL?.DescRampAuto;
@@ -474,7 +451,6 @@ namespace WebHMI.Mapping.Extensions
 
                 stand.PlanNo.L = aopL?.PlanNo;
                 stand.PlanNo.E = aopE?.PlanNo;
-                stand.PlanNo.M = aopM?.PlanNo;
                 stand.PlanNo.DbSource = "Aop.PlanNo";
 
                 stand.AntiOxStateEntry.L = aopPassL?.AntiOxStateEntry;
@@ -543,12 +519,10 @@ namespace WebHMI.Mapping.Extensions
 
                 stand.RcpPlanNo.L = rcpL?.PlanNo;
                 stand.RcpPlanNo.E = rcpE?.PlanNo;
-                stand.RcpPlanNo.M = rcpM?.PlanNo;
                 stand.RcpPlanNo.DbSource = "Rcp.PlanNo";
 
                 stand.IscpPlanNo.L = iscpL?.PlanNo;
                 stand.IscpPlanNo.E = iscpE?.PlanNo;
-                stand.IscpPlanNo.M = iscpM?.PlanNo;
                 stand.IscpPlanNo.DbSource = "Iscp.PlanNo";
 
                 stand.RollCoolState.L = rcpPassL?.RollCoolState;
@@ -591,6 +565,11 @@ namespace WebHMI.Mapping.Extensions
                 stand.IscVolumeInd2.M = iscpPassM?.IscVolumeInd2;
                 stand.IscVolumeInd2.DbSource = $"IscPass.IscVolumeInd2({i})";
 
+                stand.IscVolumeInd3.L = iscpPassL?.IscVolumeInd3;
+                stand.IscVolumeInd3.E = iscpPassE?.IscVolumeInd3;
+                stand.IscVolumeInd3.M = iscpPassM?.IscVolumeInd3;
+                stand.IscVolumeInd3.DbSource = $"IscPass.IscVolumeInd3({i})";
+
                 stand.FumesuppSprayBehind.L = iscpPassL?.FumeSuppSprayBehind;
                 stand.FumesuppSprayBehind.E = iscpPassE?.FumeSuppSprayBehind;
                 stand.FumesuppSprayBehind.M = iscpPassM?.FumeSuppSprayBehind;
@@ -628,7 +607,6 @@ namespace WebHMI.Mapping.Extensions
 
                 stand.PlanNo.L = tpL?.PlanNo;
                 stand.PlanNo.E = tpE?.PlanNo;
-                stand.PlanNo.M = tpM?.PlanNo;
                 stand.PlanNo.DbSource = "Tp.PlanNo";
 
                 stand.SpeciffoTension.L = tpPassL?.SpecifFoTension;
@@ -667,7 +645,6 @@ namespace WebHMI.Mapping.Extensions
 
                 stand.PlanNo.L = rglpL?.PlanNo;
                 stand.PlanNo.E = rglpE?.PlanNo;
-                stand.PlanNo.M = rglpM?.PlanNo;
                 stand.PlanNo.DbSource = "Rglp.PlanNo";
 
                 stand.RollGapLubState.L = rglpPassL?.RollGapLubState;
@@ -727,7 +704,6 @@ namespace WebHMI.Mapping.Extensions
 
                 stand.PlanNo.L = srpL?.PlanNo;
                 stand.PlanNo.E = srpE?.PlanNo;
-                stand.PlanNo.M = srpM?.PlanNo;
                 stand.PlanNo.DbSource = "Srp.PlanNo";
 
                 stand.Model.L = srpPassesL?.Model;
@@ -773,16 +749,10 @@ namespace WebHMI.Mapping.Extensions
             var dirFmPfcCycShiftS = dataBlob.Dirfmpfccycshiftps.Where(x => x.Source == "S").FirstOrDefault();
             var dirFmPfcCycShiftE = dataBlob.Dirfmpfccycshiftps.Where(x => x.Source == "E").FirstOrDefault();
 
-
-            result.HEntryColdFm.L = spOrd2PcL?.HEntryColdFm;
-            result.HEntryColdFm.E = spOrd2PcE?.HEntryColdFm;
-            result.HEntryColdFm.M = spOrd2PcM?.HEntryColdFm;
-            result.HEntryColdFm.DbSource = "SpOrd2Pc.HEntryColdFm";
-
-            result.WEntryColdFm.L = spOrd2PcL?.WEntryColdFm;
-            result.WEntryColdFm.E = spOrd2PcE?.WEntryColdFm;
-            result.WEntryColdFm.M = spOrd2PcM?.WEntryColdFm;
-            result.WEntryColdFm.DbSource = "SpOrd2Pc.WEntryColdFm";
+            var lpL = dataBlob.Lps.Where(x => x.Source == "L").FirstOrDefault();
+            var lpM = dataBlob.Lps.Where(x => x.Source == "M").FirstOrDefault();
+            var lpS = dataBlob.Lps.Where(x => x.Source == "S").FirstOrDefault();
+            var lpE = dataBlob.Lps.Where(x => x.Source == "E").FirstOrDefault();
 
             result.HExit.L = edOrdEntL?.HExit;
             result.HExit.E = edOrdEntE?.HExit;
@@ -799,25 +769,39 @@ namespace WebHMI.Mapping.Extensions
             result.TExit.M = edOrdEntM?.TExit;
             result.TExit.DbSource = "EdOrdEnt.TExit";
 
-            result.LExit.L = spOrd2PcL?.LExit;
-            result.LExit.E = spOrd2PcE?.LExit;
-            result.LExit.M = spOrd2PcM?.LExit;
-            result.LExit.DbSource = "SpOrd2Pc.LExit";
-
             result.ExitCrownC25.L = edOrdEntL?.ExitCrownC25;
             result.ExitCrownC25.E = edOrdEntE?.ExitCrownC25;
             result.ExitCrownC25.M = edOrdEntM?.ExitCrownC25;
             result.ExitCrownC25.DbSource = "EdOrdEnt.ExitCrownC25";
 
+            result.HExitCold.L = spOrd2PcL?.HExitCold;
+            result.HExitCold.E = spOrd2PcE?.HExitCold;
+            result.HExitCold.DbSource = "SpOrd2Pc.HExitCold";
+
+            result.WExitCold.L = spOrd2PcL?.WExitCold;
+            result.WExitCold.E = spOrd2PcE?.WExitCold;
+            result.WExitCold.DbSource = "SpOrd2Pc.WExitCold";
+
+            result.TValue.L = spOrd2PcL?.T;
+            result.TValue.E = spOrd2PcE?.T;
+            result.TValue.DbSource = "SpOrd2Pc.T";
+
+            result.ProfExCalc.L = spOrd2PcL?.Profexcalc;
+            result.ProfExCalc.E = spOrd2PcE?.Profexcalc;
+            result.ProfExCalc.DbSource = "SpOrd2Pc.Profexcalc";
+
+            result.HEntryColdFm.L = spOrd2PcL?.HEntryColdFm;
+            result.HEntryColdFm.E = spOrd2PcE?.HEntryColdFm;
+            result.HEntryColdFm.DbSource = "SpOrd2Pc.HEntryColdFm";
+
             result.T0MhHRM.L = spOrd2PcL?.T0MhHrm;
             result.T0MhHRM.E = spOrd2PcE?.T0MhHrm;
-            result.T0MhHRM.M = spOrd2PcM?.T0MhHrm;
             result.T0MhHRM.DbSource = "SpOrd2Pc.T0MhHrm";
 
-            //result.RedDistHrmFm.L = lpL?.SpeedBeforeRedStand1;
-            //result.RedDistHrmFm.E = lpE?.SpeedBeforeRedStand1;
-            //result.RedDistHrmFm.M = lpM?.SpeedBeforeRedStand1;
-            //result.RedDistHrmFm.DbSource = "Lp.SpeedBeforeRedStand1";
+            result.RedDistHrmHfm.L = lpL?.RedDistHrmHfm;
+            result.RedDistHrmHfm.E = lpE?.RedDistHrmHfm;
+            result.RedDistHrmHfm.M = lpM?.RedDistHrmHfm;
+            result.RedDistHrmHfm.DbSource = "Lp.RedDistHrmHfm";
 
             result.ProfileCorr.L = dirFmPfcParaPL?.ProfileCorr;
             result.ProfileCorr.E = dirFmPfcParaPE?.ProfileCorr;
@@ -826,23 +810,19 @@ namespace WebHMI.Mapping.Extensions
 
             result.TiHx.L = spOrd2PcL?.TIhx;
             result.TiHx.E = spOrd2PcE?.TIhx;
-            result.TiHx.M = spOrd2PcM?.TIhx;
             result.TiHx.DbSource = "SpOrd2Pc.TIhx";
 
-            result.HExitCold.L = spOrd2PcL?.HExitCold;
-            result.HExitCold.E = spOrd2PcE?.HExitCold;
-            result.HExitCold.M = spOrd2PcM?.HExitCold;
-            result.HExitCold.DbSource = "SpOrd2Pc.HExitCold";
+            result.LExit.L = spOrd2PcL?.LExit;
+            result.LExit.E = spOrd2PcE?.LExit;
+            result.LExit.DbSource = "SpOrd2Pc.LExit";
 
-            result.WExitCold.L = spOrd2PcL?.HExitCold;
-            result.WExitCold.E = spOrd2PcE?.HExitCold;
-            result.WExitCold.M = spOrd2PcM?.HExitCold;
-            result.WExitCold.DbSource = "SpOrd2Pc.HExitCold";
+            result.InherPfc.L = spOrd2PcL?.InherPfc;
+            result.InherPfc.E = spOrd2PcE?.InherPfc;
+            result.InherPfc.DbSource = "SpOrd2Pc.InherPfc";
 
-            result.ProfExCalc.L = spOrd2PcL?.Profexcalc;
-            result.ProfExCalc.E = spOrd2PcE?.Profexcalc;
-            result.ProfExCalc.M = spOrd2PcM?.Profexcalc;
-            result.ProfExCalc.DbSource = "SpOrd2Pc.Profexcalc";
+            result.InherPfcId.L = spOrd2PcL?.InherPfcId;
+            result.InherPfcId.E = spOrd2PcE?.InherPfcId;
+            result.InherPfcId.DbSource = "SpOrd2Pc.InherPfcId";
 
             result.DirFmPfcCycShiftPlanNo.L = dirFmPfcCycShiftL?.PlanNo;
             result.DirFmPfcCycShiftPlanNo.E = dirFmPfcCycShiftE?.PlanNo;
@@ -853,21 +833,6 @@ namespace WebHMI.Mapping.Extensions
             result.DirFmPfcParaPlanNo.E = dirFmPfcParaPE?.PlanNo;
             result.DirFmPfcParaPlanNo.M = dirFmPfcParaPM?.PlanNo;
             result.DirFmPfcParaPlanNo.DbSource = "DirFmPfcParaP.PlanNo";
-
-            result.InherPfc.L = spOrd2PcL?.InherPfc;
-            result.InherPfc.E = spOrd2PcE?.InherPfc;
-            result.InherPfc.M = spOrd2PcM?.InherPfc;
-            result.InherPfc.DbSource = "SpOrd2Pc.InherPfc";
-
-            result.InherPfcId.L = spOrd2PcL?.InherPfcId;
-            result.InherPfcId.E = spOrd2PcE?.InherPfcId;
-            result.InherPfcId.M = spOrd2PcM?.InherPfcId;
-            result.InherPfcId.DbSource = "SpOrd2Pc.InherPfcId";
-
-            result.TValue.L = spOrd2PcL?.T;
-            result.TValue.E = spOrd2PcE?.T;
-            result.TValue.M = spOrd2PcM?.T;
-            result.TValue.DbSource = "SpOrd2Pc.T";
 
             return result;
         }
@@ -919,11 +884,6 @@ namespace WebHMI.Mapping.Extensions
                 stand.BendingForce.M = lpPassM?.BendingForce;
                 stand.BendingForce.DbSource = $"LpPass.BendingForce({i})";
 
-                stand.CvcShifting.L = lpPassL?.CVcshifting;
-                stand.CvcShifting.E = lpPassE?.CVcshifting;
-                stand.CvcShifting.M = lpPassM?.CVcshifting;
-                stand.CvcShifting.DbSource = $"LpPass.CvcShifting({i})";
-
                 stand.Fbul.L = dirFmPfcParaPassesL?.FbUl;
                 stand.Fbul.E = dirFmPfcParaPassesE?.FbUl;
                 stand.Fbul.M = dirFmPfcParaPassesM?.FbUl;
@@ -933,6 +893,11 @@ namespace WebHMI.Mapping.Extensions
                 stand.Fbll.E = dirFmPfcParaPassesE?.FbLl;
                 stand.Fbll.M = dirFmPfcParaPassesM?.FbLl;
                 stand.Fbll.DbSource = $"DirFmPfcParaPasses.FbLl({i})";
+
+                stand.CvcShifting.L = lpPassL?.CVcshifting;
+                stand.CvcShifting.E = lpPassE?.CVcshifting;
+                stand.CvcShifting.M = lpPassM?.CVcshifting;
+                stand.CvcShifting.DbSource = $"LpPass.CvcShifting({i})";
 
                 stand.Srul.L = dirFmPfcParaPassesL?.SrUl;
                 stand.Srul.E = dirFmPfcParaPassesE?.SrUl;
@@ -944,14 +909,13 @@ namespace WebHMI.Mapping.Extensions
                 stand.Srll.E = dirFmPfcParaPassesM?.SrLl;
                 stand.Srll.DbSource = $"DirFmPfcParaPasses.SrLl({i})";
 
-                stand.ObservedFlat.L = dirFmPfcParaPassesL?.ObservedFlat;
-                stand.ObservedFlat.E = dirFmPfcParaPassesE?.ObservedFlat;
-                stand.ObservedFlat.E = dirFmPfcParaPassesM?.ObservedFlat;
-                stand.ObservedFlat.DbSource = $"DirFmPfcParaPasses.ObservedFlat({i})";
+                stand.CsMaxLimit.L = dirFmPfcCycShiftPassL?.CSmaxLimit;
+                stand.CsMaxLimit.E = dirFmPfcCycShiftPassE?.CSmaxLimit;
+                stand.CsMaxLimit.DbSource = $"DirFmPfcCycShiftPass.CSmaxLimit({i})";
 
-                stand.Fr.L = spOrd2PcStandL?.Fr;
-                stand.Fr.E = spOrd2PcStandE?.Fr;
-                stand.Fr.DbSource = $"SpOrd2PcStand.Fr({i})";
+                stand.CsMinLimit.L = dirFmPfcCycShiftPassL?.CSminLimit;
+                stand.CsMinLimit.E = dirFmPfcCycShiftPassE?.CSminLimit;
+                stand.CsMinLimit.DbSource = $"DirFmPfcCycShiftPass.CSminLimit({i})";
 
                 stand.Fb.L = spOrd2PcStandL?.Fb;
                 stand.Fb.E = spOrd2PcStandE?.Fb;
@@ -961,13 +925,22 @@ namespace WebHMI.Mapping.Extensions
                 stand.PositionWrs.E = spOrd2PcStandE?.PositionWrs;
                 stand.PositionWrs.DbSource = $"SpOrd2PcStand.PositionWrs({i})";
 
-                stand.RelProfile.L = spOrd2PcStandL?.RelProfile;
-                stand.RelProfile.E = spOrd2PcStandE?.RelProfile;
-                stand.RelProfile.DbSource = $"SpOrd2PcStand.RelProfile({i})";
+                stand.WearCorr.L = wmppassesL?.Model;
+                stand.WearCorr.E = wmppassesE?.Model;
+                stand.WearCorr.DbSource = $"Wmppasses.Model({i})";
 
-                stand.Profile.L = spOrd2PcStandL?.Profile;
-                stand.Profile.E = spOrd2PcStandE?.Profile;
-                stand.Profile.DbSource = $"SpOrd2PcStand.Profile({i})";
+                stand.TaperShiftSpeedCorr.L = srpPassesL?.Model;
+                stand.TaperShiftSpeedCorr.E = srpPassesE?.Model;
+                stand.TaperShiftSpeedCorr.DbSource = $"SrpPasses.Model({i})";
+
+                stand.ObservedFlat.L = dirFmPfcParaPassesL?.ObservedFlat;
+                stand.ObservedFlat.E = dirFmPfcParaPassesE?.ObservedFlat;
+                stand.ObservedFlat.M = dirFmPfcParaPassesM?.ObservedFlat;
+                stand.ObservedFlat.DbSource = $"DirFmPfcParaPasses.ObservedFlat({i})";
+
+                stand.Fr.L = spOrd2PcStandL?.Fr;
+                stand.Fr.E = spOrd2PcStandE?.Fr;
+                stand.Fr.DbSource = $"SpOrd2PcStand.Fr({i})";
 
                 stand.WrCrownEff.L = spOrd2PcStandL?.WrCrownEff;
                 stand.WrCrownEff.E = spOrd2PcStandE?.WrCrownEff;
@@ -977,35 +950,29 @@ namespace WebHMI.Mapping.Extensions
                 stand.ThermCrown.E = spOrd2PcStandE?.ThermCrown;
                 stand.ThermCrown.DbSource = $"SpOrd2PcStand.ThermCrown({i})";
 
-                stand.Wear.L = spOrd2PcStandL?.Wear;
-                stand.Wear.E = spOrd2PcStandE?.Wear;
-                stand.Wear.DbSource = $"SpOrd2PcStand.Wear({i})";
-
                 stand.Troll.L = spOrd2PcStandL?.TRoll;
                 stand.Troll.E = spOrd2PcStandE?.TRoll;
                 stand.Troll.DbSource = $"SpOrd2PcStand.TRoll({i})";
 
+                stand.RelProfile.L = spOrd2PcStandL?.RelProfile;
+                stand.RelProfile.E = spOrd2PcStandE?.RelProfile;
+                stand.RelProfile.DbSource = $"SpOrd2PcStand.RelProfile({i})";
+
+                stand.Profile.L = spOrd2PcStandL?.Profile;
+                stand.Profile.E = spOrd2PcStandE?.Profile;
+                stand.Profile.DbSource = $"SpOrd2PcStand.Profile({i})";
+
+
+
+
+                stand.Wear.L = spOrd2PcStandL?.Wear;
+                stand.Wear.E = spOrd2PcStandE?.Wear;
+                stand.Wear.DbSource = $"SpOrd2PcStand.Wear({i})";
+
                 stand.SptlFaultFm.L = spOrd2PcL?.SptlFaultFm;
                 stand.SptlFaultFm.E = spOrd2PcE?.SptlFaultFm;
                 stand.SptlFaultFm.DbSource = $"SpOrd2Pc.SptlFaultFm({i})";
-
-                stand.WmpModel.L = wmppassesL?.Model;
-                stand.WmpModel.E = wmppassesE?.Model;
-                stand.WmpModel.DbSource = $"Wmppasses.Model({i})";
-
-                stand.SrpModel.L = srpPassesL?.Model;
-                stand.SrpModel.E = srpPassesE?.Model;
-                stand.SrpModel.DbSource = $"SrpPasses.Model({i})";
-
-                stand.CsMaxLimit.L = dirFmPfcCycShiftPassL?.CSmaxLimit;
-                stand.CsMaxLimit.E = dirFmPfcCycShiftPassE?.CSmaxLimit;
-                stand.CsMaxLimit.DbSource = $"DirFmPfcCycShiftPass.CSmaxLimit({i})";
-
-                stand.CsMinLimit.L = dirFmPfcCycShiftPassL?.CSminLimit;
-                stand.CsMinLimit.E = dirFmPfcCycShiftPassE?.CSminLimit;
-                stand.CsMinLimit.DbSource = $"DirFmPfcCycShiftPass.CSminLimit({i})";
-
-              
+                             
                 result.PassScheduleDtos.Add(stand);
             }
 
@@ -1097,7 +1064,6 @@ namespace WebHMI.Mapping.Extensions
 
                 stand.PlanNo.L = dirFmPfcParaL?.PlanNo;
                 stand.PlanNo.E = dirFmPfcParaE?.PlanNo;
-                stand.PlanNo.M = dirFmPfcParaM?.PlanNo;
                 stand.PlanNo.DbSource = "DirFmPfcParaP.PlanNo";
 
                 stand.Fbul.L = dirFmPfcParaPassesL?.FbUl;

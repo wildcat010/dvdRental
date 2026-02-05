@@ -104,13 +104,6 @@ namespace WebHMI.Services
             edordentM.ClassMaxFlatDeltaAsym = input.Data.ClassFlatDeltaMax.M;
             edordentM.ClassMaxWedgeDelta = input.Data.ClassWedgeDeltaMax.M;
             edordentM.ClassMinWedgeDelta = input.Data.ClassWedgeDeltaMin.M;
-            //edordentM.CoilTemp = input.Data.CoilerTemp.M;
-            //edordentM.CoilTempMinTol = input.Data.CoilerTempDeltaMin.M;
-            //edordentM.CoilTempMaxTol = input.Data.CoilerTempDeltaMax.M;
-            //edordentM.CoolRateTop = input.Data.CoolingRateTop.M;
-            //edordentM.CoolRateBot = input.Data.CoolingRateBottom.M;
-            //edordentM.CoolStrategy = input.Data.CoolingStrategyFlag.M;
-            //edordentM.CoolingStrategyModeSelection = input.Data.CoolingStrategyMode.M;
             edordentM.OrderNo = input.Data.OrderNo.M;
 
             //CSSection

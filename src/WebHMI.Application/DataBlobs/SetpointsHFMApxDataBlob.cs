@@ -18,6 +18,6 @@ namespace WebHMI.DataBlobs
         public List<Lppass> Lppasses { get; set; } = new();
         public List<DirFmPfcCycShiftPpass> Dirfmpfccycshiftppasses { get; set; } = new();
         public List<DirFmPfcCycShiftP> Dirfmpfccycshiftps { get; set; } = new();
-
+        public List<Lp> Lps { get; set; } = new();
     }
 }

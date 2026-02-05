@@ -20,7 +20,7 @@ namespace WebHMI.Dtos.Setpoints.SetpointsHRM
         public SourceSet<float?> ProfExTargetHrm { get; set; } = new();
         public SourceSet<float?> ProfExCalcHrm { get; set; } = new();
         public SourceSet<double?> ProfileCorr { get; set; } = new();
-        public SourceSet<string> RedDistHrmFm { get; set; } = new();
+        public SourceSet<double?> RedDistHrmFm { get; set; } = new();
         public SourceSet<int?> InherPfc { get; set; } = new();
         public SourceSet<string> InherPfcId { get; set; } = new();
         public SourceSet<int?> DirFmPfcCycShiftPlanNo { get; set; } = new();

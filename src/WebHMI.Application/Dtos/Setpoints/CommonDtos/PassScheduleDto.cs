@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace WebHMI.Dtos.Setpoints.CommonDtos
+﻿namespace WebHMI.Dtos.Setpoints.CommonDtos
 {
     public class PassScheduleDto
     {
@@ -13,26 +7,23 @@ namespace WebHMI.Dtos.Setpoints.CommonDtos
         public SourceSet<double?> Red { get; set; } = new();
         public SourceSet<double?> LoadingValue { get; set; } = new();
         public SourceSet<double?> LoadingValueCorrection { get; set; } = new();
-        public SourceSet<float?> Fb { get; set; } = new();
-        public SourceSet<float?> PositionWRS { get; set; } = new();
+        public SourceSet<double?> Fb { get; set; } = new();
+        public SourceSet<double?> PositionWRS { get; set; } = new();
         public SourceSet<double?> Model { get; set; } = new();
         public SourceSet<double?> SpecifFoTension { get; set; } = new();
         public SourceSet<double?> Corr { get; set; } = new();
         public SourceSet<double?> ObservedFlat { get; set; } = new();
-        public SourceSet<float?> Fr { get; set; } = new();
-        public SourceSet<float?> Sd { get; set; } = new();
-        public SourceSet<float?> T0 { get; set; } = new();
-        public SourceSet<float?> H0 { get; set; } = new();
-        public SourceSet<float?> VCircum { get; set; } = new();
+        public SourceSet<double?> Fr { get; set; } = new();
+        public SourceSet<double?> Sd { get; set; } = new();
+        public SourceSet<double?> T0 { get; set; } = new();
+        public SourceSet<double?> H0 { get; set; } = new();
+        public SourceSet<double?> VCircum { get; set; } = new();
         public SourceSet<double?> TRoll { get; set; } = new();
         public SourceSet<double?> DeltaSdPos { get; set; } = new();
-        public SourceSet<float?> RelProfile { get; set; } = new();
-        public SourceSet<float?> AbsProfile { get; set; } = new();
-        public SourceSet<float?> Ms { get; set; } = new();
-        public SourceSet<float?> RPower { get; set; } = new();
-        public SourceSet<float?> CalcFlat { get; set; } = new();
-        public SourceSet<string> SptlFaultFm { get; set; } = new();
-
-
+        public SourceSet<double?> RelProfile { get; set; } = new();
+        public SourceSet<double?> Profile { get; set; } = new();
+        public SourceSet<double?> Ms { get; set; } = new();
+        public SourceSet<double?> RPower { get; set; } = new();
+        public SourceSet<double?> CalcFlat { get; set; } = new();
     }
 }

@@ -22,7 +22,7 @@ namespace WebHMI.Dtos.Setpoints.SetpointsHFM
         public SourceSet<float?> TValue { get; set; } = new();
         public SourceSet<float?> ProfExCalc { get; set; } = new();
         public SourceSet<double?> ProfileCorr { get; set; } = new();
-        public SourceSet<string> RedDistHrmFm { get; set; } = new();
+        public SourceSet<double?> RedDistHrmFm { get; set; } = new();
         public SourceSet<int?> LpPlanNo { get; set; } = new();
         public SourceSet<int?> DpHfmPlanNo { get; set; } = new();
         public SourceSet<int?> RcpPlanNo { get; set; } = new();

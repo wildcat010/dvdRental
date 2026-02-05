@@ -27,8 +27,8 @@ namespace WebHMI.Dtos.Setpoints.CommonDtos.ApxDtos
         public SourceSet<float?> Wear { get; set; } = new();
         public SourceSet<double?> Troll { get; set; } = new();
         public SourceSet<string> SptlFaultFm { get; set; } = new();
-        public SourceSet<double?> WmpModel { get; set; } = new();
-        public SourceSet<double?> SrpModel { get; set; } = new();
+        public SourceSet<double?> WearCorr { get; set; } = new();
+        public SourceSet<double?> TaperShiftSpeedCorr { get; set; } = new();
         public SourceSet<double?> CvcShifting { get; set; } = new();
     }
 }

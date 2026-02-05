@@ -17,11 +17,10 @@ namespace WebHMI.Dtos.Setpoints.SetpointsHRM
         public SourceSet<float?> HIntermediate { get; set; } = new();
         public SourceSet<double?> HEntryColdFm { get; set; } = new();
         public SourceSet<double?> WEntryColdFm { get; set; } = new();
-        public SourceSet<float?> TValue { get; set; } = new();
         public SourceSet<float?> ProfExTargetHrm { get; set; } = new();
         public SourceSet<float?> ProfExCalcHrm { get; set; } = new();
         public SourceSet<double?> ProfileCorr { get; set; } = new();
-        public SourceSet<string> RedDistHrmFm { get; set; } = new();
+        public SourceSet<double?> RedDistHrmFm { get; set; } = new();
         public SourceSet<int?> LpPlanNo { get; set; } = new();
         public SourceSet<int?> DpHrmPlanNo { get; set; } = new();
         public SourceSet<int?> RcpPlanNo { get; set; } = new();
