@@ -94,7 +94,7 @@ namespace WebHMI.Services
             var overviewData = await prodHist.ToListAsync();
 
             if (overviewData.Count == 0)
-                throw new EntityNotFoundException("Data for given sequence not found");
+                return new SequenceOverviewDto();
 
             return new SequenceOverviewDto
             {
