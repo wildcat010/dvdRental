@@ -10,32 +10,32 @@ namespace WebHMI.Mapping.Extensions.Strategy
 {
     public class StdAopPassMapper
     {
-        public static void MapEntity(StdAoppass entity, StdAopPassDto dto)
+        public static void MapEntity(Stdaoppass entity, StdAopPassDto dto)
         {
-            entity.PlanNo = dto.PlanNo;
-            entity.ActiveFlag = dto.ActiveFlag;
-            entity.PassNo = dto.PassNo;
-            //entity.Description = dto.Description;
-            entity.AntiOxStateEntry = dto.AntiOxStateEntry;
-            entity.AntiOxidationEntry = dto.AntiOxidationEntry;
-            entity.AntiOxStateExit = dto.AntiOxStateExit;
-            entity.AntiOxidationExit = dto.AntiOxidationExit;
-            entity.AntiPeelingState = dto.AntiPeelingState;
-            entity.AntiPeeling = dto.AntiPeeling;
+            entity.Planno = dto.PlanNo;
+            entity.Activeflag = dto.ActiveFlag;
+            entity.Passno = dto.PassNo;
+            entity.Description = dto.Description;
+            entity.Antioxstateentry = dto.AntiOxStateEntry;
+            entity.Antioxidationentry = dto.AntiOxidationEntry;
+            entity.Antioxstateexit = dto.AntiOxStateExit;
+            entity.Antioxidationexit = dto.AntiOxidationExit;
+            entity.Antipeelingstate = dto.AntiPeelingState;
+            entity.Antipeeling = dto.AntiPeeling;
         }
 
-        public static StdAopPassDto ToDto(StdAoppass entity) => new()
+        public static StdAopPassDto ToDto(Stdaoppass entity) => new()
         {
-            PlanNo = entity.PlanNo,
-            ActiveFlag = entity.ActiveFlag,
-            PassNo = entity.PassNo,
-            //Description = entity.Description
-            AntiOxStateEntry = entity.AntiOxStateEntry,
-            AntiOxidationEntry = entity.AntiOxidationEntry,
-            AntiOxStateExit = entity.AntiOxStateExit,
-            AntiOxidationExit = entity.AntiOxidationExit,
-            AntiPeelingState = entity.AntiPeelingState,
-            AntiPeeling = entity.AntiPeeling
+            PlanNo = entity.Planno,
+            ActiveFlag = entity.Activeflag,
+            PassNo = entity.Passno,
+            Description = entity.Description,
+            AntiOxStateEntry = entity.Antioxstateentry,
+            AntiOxidationEntry = entity.Antioxidationentry,
+            AntiOxStateExit = entity.Antioxstateexit,
+            AntiOxidationExit = entity.Antioxidationexit,
+            AntiPeelingState = entity.Antipeelingstate,
+            AntiPeeling = entity.Antipeeling
         };
     }
 }

@@ -14,6 +14,6 @@ namespace WebHMI.Dtos.Strategy.StdDtos.StdSingleDtos
         public double? AntiOxidationExit { get; set; }
         public int? AntiPeelingState { get; set; }
         public double? AntiPeeling { get; set; }
-
+        public string Description { get; set; }
     }
 }

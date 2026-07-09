@@ -3,2538 +3,1017 @@ using System.Collections.Generic;
 
 namespace WebHMI.PRDB.Dbo;
 
-/// <summary>
-/// Shape curve by customer
-/// </summary>
-public partial class RollShapeCurveCustom
+public partial class Rollshapecurvecustom
 {
-    /// <summary>
-    /// Code for the shapecurve in ShapeCoeff
-    /// </summary>
-    public int ShapeCurveCode { get; set; }
+    public int Shapecurvecode { get; set; }
 
-    /// <summary>
-    /// Shape curve description 
-    /// </summary>
     public string Description { get; set; }
 
-    /// <summary>
-    /// Number valid points in array
-    /// </summary>
-    public int ValidPoints { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd0 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd1 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd10 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd100 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd101 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd102 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd103 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd104 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd105 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd106 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd107 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd108 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd109 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd11 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd110 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd111 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd112 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd113 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd114 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd115 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd116 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd117 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd118 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd119 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd12 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd120 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd121 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd122 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd123 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd124 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd125 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd126 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd127 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd128 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd129 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd13 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd130 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd131 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd132 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd133 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd134 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd135 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd136 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd137 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd138 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd139 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd14 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd140 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd141 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd142 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd143 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd144 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd145 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd146 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd147 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd148 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd149 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd15 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd150 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd151 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd152 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd153 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd154 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd155 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd156 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd157 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd158 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd159 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd16 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd160 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd161 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd162 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd163 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd164 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd165 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd166 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd167 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd168 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd169 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd17 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd170 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd171 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd172 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd173 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd174 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd175 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd176 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd177 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd178 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd179 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd18 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd180 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd181 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd182 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd183 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd184 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd185 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd186 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd187 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd188 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd189 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd19 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd190 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd191 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd192 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd193 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd194 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd195 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd196 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd197 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd198 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd199 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd2 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd20 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd200 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd201 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd202 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd203 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd204 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd205 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd206 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd207 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd208 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd209 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd21 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd210 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd211 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd212 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd213 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd214 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd215 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd216 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd217 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd218 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd219 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd22 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd220 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd221 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd222 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd223 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd224 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd225 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd226 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd227 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd228 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd229 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd23 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd230 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd231 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd232 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd233 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd234 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd235 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd236 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd237 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd238 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd239 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd24 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd240 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd241 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd242 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd243 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd244 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd245 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd246 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd247 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd248 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd249 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd25 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd250 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd251 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd252 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd253 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd254 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd255 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd256 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd257 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd258 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd259 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd26 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd260 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd261 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd262 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd263 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd264 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd265 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd266 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd267 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd268 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd269 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd27 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd270 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd271 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd272 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd273 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd274 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd275 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd276 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd277 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd278 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd279 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd28 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd280 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd281 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd282 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd283 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd284 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd285 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd286 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd287 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd288 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd289 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd29 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd290 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd291 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd292 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd293 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd294 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd295 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd296 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd297 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd298 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd299 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd3 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd30 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd300 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd301 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd302 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd303 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd304 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd305 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd306 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd307 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd308 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd309 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd31 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd310 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd311 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd312 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd313 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd314 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd315 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd316 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd317 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd318 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd319 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd32 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd320 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd321 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd322 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd323 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd324 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd325 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd326 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd327 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd328 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd329 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd33 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd330 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd331 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd332 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd333 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd334 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd335 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd336 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd337 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd338 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd339 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd34 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd340 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd341 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd342 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd343 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd344 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd345 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd346 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd347 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd348 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd349 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd35 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd350 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd351 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd352 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd353 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd354 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd355 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd356 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd357 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd358 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd359 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd36 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd360 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd361 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd362 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd363 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd364 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd365 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd366 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd367 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd368 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd369 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd37 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd370 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd371 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd372 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd373 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd374 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd375 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd376 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd377 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd378 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd379 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd38 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd380 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd381 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd382 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd383 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd384 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd385 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd386 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd387 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd388 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd389 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd39 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd390 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd391 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd392 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd393 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd394 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd395 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd396 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd397 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd398 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd399 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd4 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd40 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd400 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd401 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd402 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd403 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd404 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd405 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd406 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd407 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd408 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd409 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd41 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd410 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd411 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd412 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd413 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd414 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd415 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd416 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd417 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd418 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd419 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd42 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd420 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd421 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd422 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd423 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd424 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd425 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd426 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd427 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd428 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd429 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd43 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd430 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd431 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd432 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd433 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd434 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd435 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd436 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd437 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd438 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd439 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd44 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd440 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd441 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd442 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd443 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd444 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd445 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd446 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd447 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd448 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd449 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd45 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd450 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd451 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd452 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd453 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd454 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd455 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd456 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd457 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd458 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd459 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd46 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd460 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd461 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd462 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd463 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd464 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd465 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd466 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd467 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd468 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd469 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd47 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd470 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd471 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd472 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd473 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd474 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd475 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd476 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd477 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd478 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd479 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd48 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd480 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd481 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd482 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd483 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd484 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd485 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd486 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd487 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd488 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd489 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd49 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd490 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd491 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd492 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd493 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd494 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd495 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd496 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd497 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd498 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd499 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd5 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd50 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd51 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd52 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd53 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd54 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd55 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd56 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd57 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd58 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd59 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd6 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd60 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd61 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd62 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd63 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd64 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd65 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd66 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd67 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd68 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd69 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd7 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd70 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd71 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd72 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd73 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd74 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd75 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd76 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd77 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd78 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd79 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd8 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd80 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd81 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd82 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd83 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd84 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd85 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd86 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd87 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd88 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd89 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd9 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd90 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd91 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd92 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd93 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd94 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd95 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd96 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd97 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd98 { get; set; }
-
-    /// <summary>
-    /// Diameter related, equidistant over barrel length, starting OS
-    /// </summary>
-    public float ValueInd99 { get; set; }
-
-    /// <summary>
-    /// modifying process
-    /// </summary>
+    public int Validpoints { get; set; }
+
+    public double ValueInd000 { get; set; }
+
+    public double ValueInd001 { get; set; }
+
+    public double ValueInd002 { get; set; }
+
+    public double ValueInd003 { get; set; }
+
+    public double ValueInd004 { get; set; }
+
+    public double ValueInd005 { get; set; }
+
+    public double ValueInd006 { get; set; }
+
+    public double ValueInd007 { get; set; }
+
+    public double ValueInd008 { get; set; }
+
+    public double ValueInd009 { get; set; }
+
+    public double ValueInd010 { get; set; }
+
+    public double ValueInd011 { get; set; }
+
+    public double ValueInd012 { get; set; }
+
+    public double ValueInd013 { get; set; }
+
+    public double ValueInd014 { get; set; }
+
+    public double ValueInd015 { get; set; }
+
+    public double ValueInd016 { get; set; }
+
+    public double ValueInd017 { get; set; }
+
+    public double ValueInd018 { get; set; }
+
+    public double ValueInd019 { get; set; }
+
+    public double ValueInd020 { get; set; }
+
+    public double ValueInd021 { get; set; }
+
+    public double ValueInd022 { get; set; }
+
+    public double ValueInd023 { get; set; }
+
+    public double ValueInd024 { get; set; }
+
+    public double ValueInd025 { get; set; }
+
+    public double ValueInd026 { get; set; }
+
+    public double ValueInd027 { get; set; }
+
+    public double ValueInd028 { get; set; }
+
+    public double ValueInd029 { get; set; }
+
+    public double ValueInd030 { get; set; }
+
+    public double ValueInd031 { get; set; }
+
+    public double ValueInd032 { get; set; }
+
+    public double ValueInd033 { get; set; }
+
+    public double ValueInd034 { get; set; }
+
+    public double ValueInd035 { get; set; }
+
+    public double ValueInd036 { get; set; }
+
+    public double ValueInd037 { get; set; }
+
+    public double ValueInd038 { get; set; }
+
+    public double ValueInd039 { get; set; }
+
+    public double ValueInd040 { get; set; }
+
+    public double ValueInd041 { get; set; }
+
+    public double ValueInd042 { get; set; }
+
+    public double ValueInd043 { get; set; }
+
+    public double ValueInd044 { get; set; }
+
+    public double ValueInd045 { get; set; }
+
+    public double ValueInd046 { get; set; }
+
+    public double ValueInd047 { get; set; }
+
+    public double ValueInd048 { get; set; }
+
+    public double ValueInd049 { get; set; }
+
+    public double ValueInd050 { get; set; }
+
+    public double ValueInd051 { get; set; }
+
+    public double ValueInd052 { get; set; }
+
+    public double ValueInd053 { get; set; }
+
+    public double ValueInd054 { get; set; }
+
+    public double ValueInd055 { get; set; }
+
+    public double ValueInd056 { get; set; }
+
+    public double ValueInd057 { get; set; }
+
+    public double ValueInd058 { get; set; }
+
+    public double ValueInd059 { get; set; }
+
+    public double ValueInd060 { get; set; }
+
+    public double ValueInd061 { get; set; }
+
+    public double ValueInd062 { get; set; }
+
+    public double ValueInd063 { get; set; }
+
+    public double ValueInd064 { get; set; }
+
+    public double ValueInd065 { get; set; }
+
+    public double ValueInd066 { get; set; }
+
+    public double ValueInd067 { get; set; }
+
+    public double ValueInd068 { get; set; }
+
+    public double ValueInd069 { get; set; }
+
+    public double ValueInd070 { get; set; }
+
+    public double ValueInd071 { get; set; }
+
+    public double ValueInd072 { get; set; }
+
+    public double ValueInd073 { get; set; }
+
+    public double ValueInd074 { get; set; }
+
+    public double ValueInd075 { get; set; }
+
+    public double ValueInd076 { get; set; }
+
+    public double ValueInd077 { get; set; }
+
+    public double ValueInd078 { get; set; }
+
+    public double ValueInd079 { get; set; }
+
+    public double ValueInd080 { get; set; }
+
+    public double ValueInd081 { get; set; }
+
+    public double ValueInd082 { get; set; }
+
+    public double ValueInd083 { get; set; }
+
+    public double ValueInd084 { get; set; }
+
+    public double ValueInd085 { get; set; }
+
+    public double ValueInd086 { get; set; }
+
+    public double ValueInd087 { get; set; }
+
+    public double ValueInd088 { get; set; }
+
+    public double ValueInd089 { get; set; }
+
+    public double ValueInd090 { get; set; }
+
+    public double ValueInd091 { get; set; }
+
+    public double ValueInd092 { get; set; }
+
+    public double ValueInd093 { get; set; }
+
+    public double ValueInd094 { get; set; }
+
+    public double ValueInd095 { get; set; }
+
+    public double ValueInd096 { get; set; }
+
+    public double ValueInd097 { get; set; }
+
+    public double ValueInd098 { get; set; }
+
+    public double ValueInd099 { get; set; }
+
+    public double ValueInd100 { get; set; }
+
+    public double ValueInd101 { get; set; }
+
+    public double ValueInd102 { get; set; }
+
+    public double ValueInd103 { get; set; }
+
+    public double ValueInd104 { get; set; }
+
+    public double ValueInd105 { get; set; }
+
+    public double ValueInd106 { get; set; }
+
+    public double ValueInd107 { get; set; }
+
+    public double ValueInd108 { get; set; }
+
+    public double ValueInd109 { get; set; }
+
+    public double ValueInd110 { get; set; }
+
+    public double ValueInd111 { get; set; }
+
+    public double ValueInd112 { get; set; }
+
+    public double ValueInd113 { get; set; }
+
+    public double ValueInd114 { get; set; }
+
+    public double ValueInd115 { get; set; }
+
+    public double ValueInd116 { get; set; }
+
+    public double ValueInd117 { get; set; }
+
+    public double ValueInd118 { get; set; }
+
+    public double ValueInd119 { get; set; }
+
+    public double ValueInd120 { get; set; }
+
+    public double ValueInd121 { get; set; }
+
+    public double ValueInd122 { get; set; }
+
+    public double ValueInd123 { get; set; }
+
+    public double ValueInd124 { get; set; }
+
+    public double ValueInd125 { get; set; }
+
+    public double ValueInd126 { get; set; }
+
+    public double ValueInd127 { get; set; }
+
+    public double ValueInd128 { get; set; }
+
+    public double ValueInd129 { get; set; }
+
+    public double ValueInd130 { get; set; }
+
+    public double ValueInd131 { get; set; }
+
+    public double ValueInd132 { get; set; }
+
+    public double ValueInd133 { get; set; }
+
+    public double ValueInd134 { get; set; }
+
+    public double ValueInd135 { get; set; }
+
+    public double ValueInd136 { get; set; }
+
+    public double ValueInd137 { get; set; }
+
+    public double ValueInd138 { get; set; }
+
+    public double ValueInd139 { get; set; }
+
+    public double ValueInd140 { get; set; }
+
+    public double ValueInd141 { get; set; }
+
+    public double ValueInd142 { get; set; }
+
+    public double ValueInd143 { get; set; }
+
+    public double ValueInd144 { get; set; }
+
+    public double ValueInd145 { get; set; }
+
+    public double ValueInd146 { get; set; }
+
+    public double ValueInd147 { get; set; }
+
+    public double ValueInd148 { get; set; }
+
+    public double ValueInd149 { get; set; }
+
+    public double ValueInd150 { get; set; }
+
+    public double ValueInd151 { get; set; }
+
+    public double ValueInd152 { get; set; }
+
+    public double ValueInd153 { get; set; }
+
+    public double ValueInd154 { get; set; }
+
+    public double ValueInd155 { get; set; }
+
+    public double ValueInd156 { get; set; }
+
+    public double ValueInd157 { get; set; }
+
+    public double ValueInd158 { get; set; }
+
+    public double ValueInd159 { get; set; }
+
+    public double ValueInd160 { get; set; }
+
+    public double ValueInd161 { get; set; }
+
+    public double ValueInd162 { get; set; }
+
+    public double ValueInd163 { get; set; }
+
+    public double ValueInd164 { get; set; }
+
+    public double ValueInd165 { get; set; }
+
+    public double ValueInd166 { get; set; }
+
+    public double ValueInd167 { get; set; }
+
+    public double ValueInd168 { get; set; }
+
+    public double ValueInd169 { get; set; }
+
+    public double ValueInd170 { get; set; }
+
+    public double ValueInd171 { get; set; }
+
+    public double ValueInd172 { get; set; }
+
+    public double ValueInd173 { get; set; }
+
+    public double ValueInd174 { get; set; }
+
+    public double ValueInd175 { get; set; }
+
+    public double ValueInd176 { get; set; }
+
+    public double ValueInd177 { get; set; }
+
+    public double ValueInd178 { get; set; }
+
+    public double ValueInd179 { get; set; }
+
+    public double ValueInd180 { get; set; }
+
+    public double ValueInd181 { get; set; }
+
+    public double ValueInd182 { get; set; }
+
+    public double ValueInd183 { get; set; }
+
+    public double ValueInd184 { get; set; }
+
+    public double ValueInd185 { get; set; }
+
+    public double ValueInd186 { get; set; }
+
+    public double ValueInd187 { get; set; }
+
+    public double ValueInd188 { get; set; }
+
+    public double ValueInd189 { get; set; }
+
+    public double ValueInd190 { get; set; }
+
+    public double ValueInd191 { get; set; }
+
+    public double ValueInd192 { get; set; }
+
+    public double ValueInd193 { get; set; }
+
+    public double ValueInd194 { get; set; }
+
+    public double ValueInd195 { get; set; }
+
+    public double ValueInd196 { get; set; }
+
+    public double ValueInd197 { get; set; }
+
+    public double ValueInd198 { get; set; }
+
+    public double ValueInd199 { get; set; }
+
+    public double ValueInd200 { get; set; }
+
+    public double ValueInd201 { get; set; }
+
+    public double ValueInd202 { get; set; }
+
+    public double ValueInd203 { get; set; }
+
+    public double ValueInd204 { get; set; }
+
+    public double ValueInd205 { get; set; }
+
+    public double ValueInd206 { get; set; }
+
+    public double ValueInd207 { get; set; }
+
+    public double ValueInd208 { get; set; }
+
+    public double ValueInd209 { get; set; }
+
+    public double ValueInd210 { get; set; }
+
+    public double ValueInd211 { get; set; }
+
+    public double ValueInd212 { get; set; }
+
+    public double ValueInd213 { get; set; }
+
+    public double ValueInd214 { get; set; }
+
+    public double ValueInd215 { get; set; }
+
+    public double ValueInd216 { get; set; }
+
+    public double ValueInd217 { get; set; }
+
+    public double ValueInd218 { get; set; }
+
+    public double ValueInd219 { get; set; }
+
+    public double ValueInd220 { get; set; }
+
+    public double ValueInd221 { get; set; }
+
+    public double ValueInd222 { get; set; }
+
+    public double ValueInd223 { get; set; }
+
+    public double ValueInd224 { get; set; }
+
+    public double ValueInd225 { get; set; }
+
+    public double ValueInd226 { get; set; }
+
+    public double ValueInd227 { get; set; }
+
+    public double ValueInd228 { get; set; }
+
+    public double ValueInd229 { get; set; }
+
+    public double ValueInd230 { get; set; }
+
+    public double ValueInd231 { get; set; }
+
+    public double ValueInd232 { get; set; }
+
+    public double ValueInd233 { get; set; }
+
+    public double ValueInd234 { get; set; }
+
+    public double ValueInd235 { get; set; }
+
+    public double ValueInd236 { get; set; }
+
+    public double ValueInd237 { get; set; }
+
+    public double ValueInd238 { get; set; }
+
+    public double ValueInd239 { get; set; }
+
+    public double ValueInd240 { get; set; }
+
+    public double ValueInd241 { get; set; }
+
+    public double ValueInd242 { get; set; }
+
+    public double ValueInd243 { get; set; }
+
+    public double ValueInd244 { get; set; }
+
+    public double ValueInd245 { get; set; }
+
+    public double ValueInd246 { get; set; }
+
+    public double ValueInd247 { get; set; }
+
+    public double ValueInd248 { get; set; }
+
+    public double ValueInd249 { get; set; }
+
+    public double ValueInd250 { get; set; }
+
+    public double ValueInd251 { get; set; }
+
+    public double ValueInd252 { get; set; }
+
+    public double ValueInd253 { get; set; }
+
+    public double ValueInd254 { get; set; }
+
+    public double ValueInd255 { get; set; }
+
+    public double ValueInd256 { get; set; }
+
+    public double ValueInd257 { get; set; }
+
+    public double ValueInd258 { get; set; }
+
+    public double ValueInd259 { get; set; }
+
+    public double ValueInd260 { get; set; }
+
+    public double ValueInd261 { get; set; }
+
+    public double ValueInd262 { get; set; }
+
+    public double ValueInd263 { get; set; }
+
+    public double ValueInd264 { get; set; }
+
+    public double ValueInd265 { get; set; }
+
+    public double ValueInd266 { get; set; }
+
+    public double ValueInd267 { get; set; }
+
+    public double ValueInd268 { get; set; }
+
+    public double ValueInd269 { get; set; }
+
+    public double ValueInd270 { get; set; }
+
+    public double ValueInd271 { get; set; }
+
+    public double ValueInd272 { get; set; }
+
+    public double ValueInd273 { get; set; }
+
+    public double ValueInd274 { get; set; }
+
+    public double ValueInd275 { get; set; }
+
+    public double ValueInd276 { get; set; }
+
+    public double ValueInd277 { get; set; }
+
+    public double ValueInd278 { get; set; }
+
+    public double ValueInd279 { get; set; }
+
+    public double ValueInd280 { get; set; }
+
+    public double ValueInd281 { get; set; }
+
+    public double ValueInd282 { get; set; }
+
+    public double ValueInd283 { get; set; }
+
+    public double ValueInd284 { get; set; }
+
+    public double ValueInd285 { get; set; }
+
+    public double ValueInd286 { get; set; }
+
+    public double ValueInd287 { get; set; }
+
+    public double ValueInd288 { get; set; }
+
+    public double ValueInd289 { get; set; }
+
+    public double ValueInd290 { get; set; }
+
+    public double ValueInd291 { get; set; }
+
+    public double ValueInd292 { get; set; }
+
+    public double ValueInd293 { get; set; }
+
+    public double ValueInd294 { get; set; }
+
+    public double ValueInd295 { get; set; }
+
+    public double ValueInd296 { get; set; }
+
+    public double ValueInd297 { get; set; }
+
+    public double ValueInd298 { get; set; }
+
+    public double ValueInd299 { get; set; }
+
+    public double ValueInd300 { get; set; }
+
+    public double ValueInd301 { get; set; }
+
+    public double ValueInd302 { get; set; }
+
+    public double ValueInd303 { get; set; }
+
+    public double ValueInd304 { get; set; }
+
+    public double ValueInd305 { get; set; }
+
+    public double ValueInd306 { get; set; }
+
+    public double ValueInd307 { get; set; }
+
+    public double ValueInd308 { get; set; }
+
+    public double ValueInd309 { get; set; }
+
+    public double ValueInd310 { get; set; }
+
+    public double ValueInd311 { get; set; }
+
+    public double ValueInd312 { get; set; }
+
+    public double ValueInd313 { get; set; }
+
+    public double ValueInd314 { get; set; }
+
+    public double ValueInd315 { get; set; }
+
+    public double ValueInd316 { get; set; }
+
+    public double ValueInd317 { get; set; }
+
+    public double ValueInd318 { get; set; }
+
+    public double ValueInd319 { get; set; }
+
+    public double ValueInd320 { get; set; }
+
+    public double ValueInd321 { get; set; }
+
+    public double ValueInd322 { get; set; }
+
+    public double ValueInd323 { get; set; }
+
+    public double ValueInd324 { get; set; }
+
+    public double ValueInd325 { get; set; }
+
+    public double ValueInd326 { get; set; }
+
+    public double ValueInd327 { get; set; }
+
+    public double ValueInd328 { get; set; }
+
+    public double ValueInd329 { get; set; }
+
+    public double ValueInd330 { get; set; }
+
+    public double ValueInd331 { get; set; }
+
+    public double ValueInd332 { get; set; }
+
+    public double ValueInd333 { get; set; }
+
+    public double ValueInd334 { get; set; }
+
+    public double ValueInd335 { get; set; }
+
+    public double ValueInd336 { get; set; }
+
+    public double ValueInd337 { get; set; }
+
+    public double ValueInd338 { get; set; }
+
+    public double ValueInd339 { get; set; }
+
+    public double ValueInd340 { get; set; }
+
+    public double ValueInd341 { get; set; }
+
+    public double ValueInd342 { get; set; }
+
+    public double ValueInd343 { get; set; }
+
+    public double ValueInd344 { get; set; }
+
+    public double ValueInd345 { get; set; }
+
+    public double ValueInd346 { get; set; }
+
+    public double ValueInd347 { get; set; }
+
+    public double ValueInd348 { get; set; }
+
+    public double ValueInd349 { get; set; }
+
+    public double ValueInd350 { get; set; }
+
+    public double ValueInd351 { get; set; }
+
+    public double ValueInd352 { get; set; }
+
+    public double ValueInd353 { get; set; }
+
+    public double ValueInd354 { get; set; }
+
+    public double ValueInd355 { get; set; }
+
+    public double ValueInd356 { get; set; }
+
+    public double ValueInd357 { get; set; }
+
+    public double ValueInd358 { get; set; }
+
+    public double ValueInd359 { get; set; }
+
+    public double ValueInd360 { get; set; }
+
+    public double ValueInd361 { get; set; }
+
+    public double ValueInd362 { get; set; }
+
+    public double ValueInd363 { get; set; }
+
+    public double ValueInd364 { get; set; }
+
+    public double ValueInd365 { get; set; }
+
+    public double ValueInd366 { get; set; }
+
+    public double ValueInd367 { get; set; }
+
+    public double ValueInd368 { get; set; }
+
+    public double ValueInd369 { get; set; }
+
+    public double ValueInd370 { get; set; }
+
+    public double ValueInd371 { get; set; }
+
+    public double ValueInd372 { get; set; }
+
+    public double ValueInd373 { get; set; }
+
+    public double ValueInd374 { get; set; }
+
+    public double ValueInd375 { get; set; }
+
+    public double ValueInd376 { get; set; }
+
+    public double ValueInd377 { get; set; }
+
+    public double ValueInd378 { get; set; }
+
+    public double ValueInd379 { get; set; }
+
+    public double ValueInd380 { get; set; }
+
+    public double ValueInd381 { get; set; }
+
+    public double ValueInd382 { get; set; }
+
+    public double ValueInd383 { get; set; }
+
+    public double ValueInd384 { get; set; }
+
+    public double ValueInd385 { get; set; }
+
+    public double ValueInd386 { get; set; }
+
+    public double ValueInd387 { get; set; }
+
+    public double ValueInd388 { get; set; }
+
+    public double ValueInd389 { get; set; }
+
+    public double ValueInd390 { get; set; }
+
+    public double ValueInd391 { get; set; }
+
+    public double ValueInd392 { get; set; }
+
+    public double ValueInd393 { get; set; }
+
+    public double ValueInd394 { get; set; }
+
+    public double ValueInd395 { get; set; }
+
+    public double ValueInd396 { get; set; }
+
+    public double ValueInd397 { get; set; }
+
+    public double ValueInd398 { get; set; }
+
+    public double ValueInd399 { get; set; }
+
+    public double ValueInd400 { get; set; }
+
+    public double ValueInd401 { get; set; }
+
+    public double ValueInd402 { get; set; }
+
+    public double ValueInd403 { get; set; }
+
+    public double ValueInd404 { get; set; }
+
+    public double ValueInd405 { get; set; }
+
+    public double ValueInd406 { get; set; }
+
+    public double ValueInd407 { get; set; }
+
+    public double ValueInd408 { get; set; }
+
+    public double ValueInd409 { get; set; }
+
+    public double ValueInd410 { get; set; }
+
+    public double ValueInd411 { get; set; }
+
+    public double ValueInd412 { get; set; }
+
+    public double ValueInd413 { get; set; }
+
+    public double ValueInd414 { get; set; }
+
+    public double ValueInd415 { get; set; }
+
+    public double ValueInd416 { get; set; }
+
+    public double ValueInd417 { get; set; }
+
+    public double ValueInd418 { get; set; }
+
+    public double ValueInd419 { get; set; }
+
+    public double ValueInd420 { get; set; }
+
+    public double ValueInd421 { get; set; }
+
+    public double ValueInd422 { get; set; }
+
+    public double ValueInd423 { get; set; }
+
+    public double ValueInd424 { get; set; }
+
+    public double ValueInd425 { get; set; }
+
+    public double ValueInd426 { get; set; }
+
+    public double ValueInd427 { get; set; }
+
+    public double ValueInd428 { get; set; }
+
+    public double ValueInd429 { get; set; }
+
+    public double ValueInd430 { get; set; }
+
+    public double ValueInd431 { get; set; }
+
+    public double ValueInd432 { get; set; }
+
+    public double ValueInd433 { get; set; }
+
+    public double ValueInd434 { get; set; }
+
+    public double ValueInd435 { get; set; }
+
+    public double ValueInd436 { get; set; }
+
+    public double ValueInd437 { get; set; }
+
+    public double ValueInd438 { get; set; }
+
+    public double ValueInd439 { get; set; }
+
+    public double ValueInd440 { get; set; }
+
+    public double ValueInd441 { get; set; }
+
+    public double ValueInd442 { get; set; }
+
+    public double ValueInd443 { get; set; }
+
+    public double ValueInd444 { get; set; }
+
+    public double ValueInd445 { get; set; }
+
+    public double ValueInd446 { get; set; }
+
+    public double ValueInd447 { get; set; }
+
+    public double ValueInd448 { get; set; }
+
+    public double ValueInd449 { get; set; }
+
+    public double ValueInd450 { get; set; }
+
+    public double ValueInd451 { get; set; }
+
+    public double ValueInd452 { get; set; }
+
+    public double ValueInd453 { get; set; }
+
+    public double ValueInd454 { get; set; }
+
+    public double ValueInd455 { get; set; }
+
+    public double ValueInd456 { get; set; }
+
+    public double ValueInd457 { get; set; }
+
+    public double ValueInd458 { get; set; }
+
+    public double ValueInd459 { get; set; }
+
+    public double ValueInd460 { get; set; }
+
+    public double ValueInd461 { get; set; }
+
+    public double ValueInd462 { get; set; }
+
+    public double ValueInd463 { get; set; }
+
+    public double ValueInd464 { get; set; }
+
+    public double ValueInd465 { get; set; }
+
+    public double ValueInd466 { get; set; }
+
+    public double ValueInd467 { get; set; }
+
+    public double ValueInd468 { get; set; }
+
+    public double ValueInd469 { get; set; }
+
+    public double ValueInd470 { get; set; }
+
+    public double ValueInd471 { get; set; }
+
+    public double ValueInd472 { get; set; }
+
+    public double ValueInd473 { get; set; }
+
+    public double ValueInd474 { get; set; }
+
+    public double ValueInd475 { get; set; }
+
+    public double ValueInd476 { get; set; }
+
+    public double ValueInd477 { get; set; }
+
+    public double ValueInd478 { get; set; }
+
+    public double ValueInd479 { get; set; }
+
+    public double ValueInd480 { get; set; }
+
+    public double ValueInd481 { get; set; }
+
+    public double ValueInd482 { get; set; }
+
+    public double ValueInd483 { get; set; }
+
+    public double ValueInd484 { get; set; }
+
+    public double ValueInd485 { get; set; }
+
+    public double ValueInd486 { get; set; }
+
+    public double ValueInd487 { get; set; }
+
+    public double ValueInd488 { get; set; }
+
+    public double ValueInd489 { get; set; }
+
+    public double ValueInd490 { get; set; }
+
+    public double ValueInd491 { get; set; }
+
+    public double ValueInd492 { get; set; }
+
+    public double ValueInd493 { get; set; }
+
+    public double ValueInd494 { get; set; }
+
+    public double ValueInd495 { get; set; }
+
+    public double ValueInd496 { get; set; }
+
+    public double ValueInd497 { get; set; }
+
+    public double ValueInd498 { get; set; }
+
+    public double ValueInd499 { get; set; }
+
     public string Mop { get; set; }
 
-    /// <summary>
-    /// time of creation
-    /// </summary>
     public DateTime? Toc { get; set; }
 
-    /// <summary>
-    /// time of modification
-    /// </summary>
     public DateTime? Tom { get; set; }
 }

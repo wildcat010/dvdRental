@@ -52,7 +52,7 @@ namespace WebHMI.Services
         [AbpAuthorize(Permissions.Pages_RollData_Edit)]
         public async Task<SingleRollDetailsDto> CreateRoll(SingleRollDetailsDto rollDto)
         {
-            bool rollDataExist = await _prdbContext.RollData.AsNoTracking().AnyAsync(x => x.RollId == rollDto.Rollid && x.PlantType == rollDto.Planttype);
+            bool rollDataExist = await _prdbContext.Rolldata.AsNoTracking().AnyAsync(x => x.Rollid == rollDto.Rollid && x.Planttype == rollDto.Planttype);
 
             if (rollDataExist)
                 throw new UserFriendlyException("The roller already exists. Please use a unique name.");
@@ -64,7 +64,7 @@ namespace WebHMI.Services
 
             try
             {
-                _prdbContext.RollData.Add(rollData);
+                _prdbContext.Rolldata.Add(rollData);
                 await CurrentUnitOfWork.SaveChangesAsync();
             }
             catch (Exception ex)
@@ -81,7 +81,7 @@ namespace WebHMI.Services
         {
             return await ApplyFilter(
                 _prdbContext.HmiVRollInventories
-                    .OrderByDescending(t => t.RollId),
+                    .OrderByDescending(t => t.Rollid),
                 input,
                 RollMapper.ToRollDataCoreDto);
         }
@@ -93,7 +93,7 @@ namespace WebHMI.Services
 
             try
             {
-                var rollInventory = await _prdbContext.HmiVRollInventories.FirstOrDefaultAsync(x => x.RollId == rollId && x.PlantType == planttype.ToString());
+                var rollInventory = await _prdbContext.HmiVRollInventories.FirstOrDefaultAsync(x => x.Rollid == rollId && x.Planttype == planttype.ToString());
 
                 if (rollInventory is null)
                     throw new UserFriendlyException("Roll not found in database");
@@ -102,28 +102,28 @@ namespace WebHMI.Services
 
                 // Map shape coefficients
                 result.ShapeCoeffArray = [];
-                var shapeCoeffData = await _prdbContext.RollShapeCoeffs.FirstOrDefaultAsync(x => x.ShapeCode == rollInventory.Shapecode);
+                var shapeCoeffData = await _prdbContext.Rollshapecoeffs.FirstOrDefaultAsync(x => x.Shapecode == rollInventory.Shapecode);
 
                 if (shapeCoeffData is not null)
                 {
                     result.ShapeDescription = shapeCoeffData.Description;
-                    result.ShapeType = shapeCoeffData.ShapeType;
-                    result.ShapeCoeffArray.Add(shapeCoeffData.ShapeX1 ?? 0.0);
-                    result.ShapeCoeffArray.Add(shapeCoeffData.ShapeX2 ?? 0.0);
-                    result.ShapeCoeffArray.Add(shapeCoeffData.ShapeX3 ?? 0.0);
-                    result.ShapeCoeffArray.Add(shapeCoeffData.ShapeX4 ?? 0.0);
-                    result.ShapeCoeffArray.Add(shapeCoeffData.ShapeX5 ?? 0.0);
-                    result.ShapeCoeffArray.Add(shapeCoeffData.ShapeX6 ?? 0.0);
-                    result.ShapeCoeffArray.Add(shapeCoeffData.ShapeX7 ?? 0.0);
-                    result.ShapeCoeffArray.Add(shapeCoeffData.ShapeX8 ?? 0.0);
-                    result.ShapeCoeffArray.Add(shapeCoeffData.ShapeX9 ?? 0.0);
+                    result.ShapeType = shapeCoeffData.Shapetype;
+                    result.ShapeCoeffArray.Add(shapeCoeffData.Shapex1 ?? 0.0);
+                    result.ShapeCoeffArray.Add(shapeCoeffData.Shapex2 ?? 0.0);
+                    result.ShapeCoeffArray.Add(shapeCoeffData.Shapex3 ?? 0.0);
+                    result.ShapeCoeffArray.Add(shapeCoeffData.Shapex4 ?? 0.0);
+                    result.ShapeCoeffArray.Add(shapeCoeffData.Shapex5 ?? 0.0);
+                    result.ShapeCoeffArray.Add(shapeCoeffData.Shapex6 ?? 0.0);
+                    result.ShapeCoeffArray.Add(shapeCoeffData.Shapex7 ?? 0.0);
+                    result.ShapeCoeffArray.Add(shapeCoeffData.Shapex8 ?? 0.0);
+                    result.ShapeCoeffArray.Add(shapeCoeffData.Shapex9 ?? 0.0);
                 }
 
-                var rollClass = await _prdbContext.RollClasses.FirstOrDefaultAsync(x => x.RollClass1 == rollInventory.RollClass);
+                var rollClass = await _prdbContext.Rollclasses.FirstOrDefaultAsync(x => x.Rollclass1 == rollInventory.Rollclass);
                 if (rollClass is not null)
                     result.RollClassName = rollClass.Description;
 
-                var rollProperty = await _prdbContext.RollProperties.FirstOrDefaultAsync(x => x.RollPropertyClass == rollInventory.RollPropertyClass);
+                var rollProperty = await _prdbContext.Rollproperties.FirstOrDefaultAsync(x => x.Rollpropertyclass == rollInventory.Rollpropertyclass);
                 if (rollProperty is not null)
                     result.RollPropertyClassName = rollProperty.Description;
             }
@@ -140,25 +140,25 @@ namespace WebHMI.Services
         [AbpAuthorize(Permissions.Pages_RollData_Edit)]
         public async Task<SingleRollDetailsDto> UpdateRoll(SingleRollDetailsDto rollDto)
         {
-            var rollData = await _prdbContext.RollData.FirstOrDefaultAsync(x => x.RollId == rollDto.Rollid && x.PlantType == rollDto.Planttype.ToString());
+            var rollData = await _prdbContext.Rolldata.FirstOrDefaultAsync(x => x.Rollid == rollDto.Rollid && x.Planttype == rollDto.Planttype.ToString());
             if (rollData is not null && rollData.Stat == "I")
                 throw new UserFriendlyException("It is not permitted to change the properties of installed rollers.");
 
-            rollData.RollId = rollDto.Rollid;
-            rollData.RollType = rollDto.Rolltype;
-            rollData.PlantType = rollDto.Planttype;
+            rollData.Rollid = rollDto.Rollid;
+            rollData.Rolltype = rollDto.Rolltype;
+            rollData.Planttype = rollDto.Planttype;
             rollData.Diameter = rollDto.Diameter;
-            rollData.RollClass = rollDto.Rollclass;
-            rollData.RollPropertyClass = rollDto.RollPropertyClass;
+            rollData.Rollclass = rollDto.Rollclass;
+            rollData.Rollpropertyclass = rollDto.RollPropertyClass;
             rollData.Roughness = rollDto.Roughness;
-            rollData.RollShapeCode = rollDto.ShapeCode;
+            rollData.Rollshapecode = rollDto.ShapeCode;
             rollData.Grinding = rollDto.Grinding;
-            rollData.RollPos = rollDto.Rollpos;
-            rollData.RollChamferCode = rollDto.RollChamferClassId;
+            rollData.Rollpos = rollDto.Rollpos;
+            rollData.Rollchamfercode = rollDto.RollChamferClassId;
             rollData.Stat = rollDto.Stat;
             rollData.Shimm = rollDto.Shimm;
             //rollData.DismountTime = dto.Dismounttime;
-            rollData.RelatedRollId = rollDto.RelatedRollid;
+            rollData.Relatedrollid = rollDto.RelatedRollid;
 
             try
             {
@@ -177,13 +177,13 @@ namespace WebHMI.Services
         [AbpAuthorize(Permissions.Pages_RollData_Delete)]
         public async Task<bool> DeleteRoll(string rollId, string planttype)
         {
-            var rollData = await _prdbContext.RollData.FirstOrDefaultAsync(x => x.RollId == rollId && x.PlantType == planttype.ToString());
+            var rollData = await _prdbContext.Rolldata.FirstOrDefaultAsync(x => x.Rollid == rollId && x.Planttype == planttype.ToString());
             if (rollData is not null && rollData.Stat == "I")
                 throw new UserFriendlyException("It is not permitted to delete the properties of installed rollers.");
 
             try
             {
-                _prdbContext.RollData.Remove(rollData);
+                _prdbContext.Rolldata.Remove(rollData);
                 await CurrentUnitOfWork.SaveChangesAsync();
             }
             catch (Exception ex)
@@ -204,7 +204,7 @@ namespace WebHMI.Services
         [AbpAuthorize(Permissions.Pages_RollData_Edit)]
         public async Task<RollClassDto> CreateRollClass(RollClassDto rollClassDto)
         {
-            bool rollClassExist = await _prdbContext.RollClasses.AnyAsync(t => t.RollClass1 == rollClassDto.RollClass);
+            bool rollClassExist = await _prdbContext.Rollclasses.AnyAsync(t => t.Rollclass1 == rollClassDto.RollClass);
 
             if (rollClassExist)
                 throw new UserFriendlyException("The specified ID is already in use.");
@@ -213,7 +213,7 @@ namespace WebHMI.Services
                 throw new UserFriendlyException("The description must be at least 3 characters long.");
 
             var rollClass = rollClassDto.ToRollClassEntity();
-            _prdbContext.RollClasses.Add(rollClass);
+            _prdbContext.Rollclasses.Add(rollClass);
 
             try
             {
@@ -230,10 +230,10 @@ namespace WebHMI.Services
         [AbpAuthorize(Permissions.Pages_RollData)]
         public async Task<RollClassDto> GetRollClassById(int id)
         {
-            var rollClass = await _prdbContext.RollClasses.FirstOrDefaultAsync(x => x.RollClass1 == id);
+            var rollClass = await _prdbContext.Rollclasses.FirstOrDefaultAsync(x => x.Rollclass1 == id);
 
             if (rollClass is null)
-                throw new EntityNotFoundException(typeof(RollClass), id);
+                throw new EntityNotFoundException(typeof(Rollclass), id);
 
             return rollClass.ToRollClassDto();
         }
@@ -242,8 +242,8 @@ namespace WebHMI.Services
         public async Task<PagedResultDto<RollClassDto>> GetRollClassAll(FilteredRequestDto input)
         {
             return await ApplyFilter(
-                _prdbContext.RollClasses
-                    .OrderBy(t => t.RollClass1),
+                _prdbContext.Rollclasses
+                    .OrderBy(t => t.Rollclass1),
                 input,
                 RollMapper.ToRollClassDto);
         }
@@ -256,10 +256,10 @@ namespace WebHMI.Services
             if (rollClassDto.Description.Length < 3)
                 throw new UserFriendlyException("The description must be at least 3 characters long.");
 
-            var rollClass = await _prdbContext.RollClasses.FirstOrDefaultAsync(x => x.RollClass1 == rollClassDto.RollClass);
+            var rollClass = await _prdbContext.Rollclasses.FirstOrDefaultAsync(x => x.Rollclass1 == rollClassDto.RollClass);
 
             if (rollClass is null)
-                throw new EntityNotFoundException(typeof(RollClass), rollClassDto.RollClass);
+                throw new EntityNotFoundException(typeof(Rollclass), rollClassDto.RollClass);
 
             rollClass.MapRollClassEntity(rollClassDto);
 
@@ -280,12 +280,12 @@ namespace WebHMI.Services
         [AbpAuthorize(Permissions.Pages_RollData_Delete)]
         public async Task DeleteRollClass(int input)
         {
-            var rollData = await _prdbContext.RollClasses.Where(x => x.RollClass1 == input).ToListAsync();
+            var rollData = await _prdbContext.Rollclasses.Where(x => x.Rollclass1 == input).ToListAsync();
 
             if (!rollData.Any())
                 throw new UserFriendlyException("The given class is linked to an existing roller and cannot be deleted.");
 
-            _prdbContext.RollClasses.RemoveRange(rollData);
+            _prdbContext.Rollclasses.RemoveRange(rollData);
         }
 
         #endregion
@@ -297,13 +297,13 @@ namespace WebHMI.Services
         [AbpAuthorize(Permissions.Pages_RollData_Edit)]
         public async Task<RollChamferDto> CreateRollChamfer(RollChamferDto rollChamferDto)
         {
-            bool rollChamferExist = await _prdbContext.RollChamfers.AnyAsync(t => t.RollChamferClass == rollChamferDto.Rollchamferclass);
+            bool rollChamferExist = await _prdbContext.Rollchamfers.AnyAsync(t => t.Rollchamferclass == rollChamferDto.Rollchamferclass);
 
             if (rollChamferExist)
                 throw new UserFriendlyException("The specified ID is already in use.");
 
             var rollChamfer = rollChamferDto.ToRollChamferEntity();
-            _prdbContext.RollChamfers.Add(rollChamfer);
+            _prdbContext.Rollchamfers.Add(rollChamfer);
 
             try
             {
@@ -320,10 +320,10 @@ namespace WebHMI.Services
         [AbpAuthorize(Permissions.Pages_RollData)]
         public async Task<RollChamferDto> GetRollChamferById(int id)
         {
-            var rollChamfer = await _prdbContext.RollChamfers.FirstOrDefaultAsync(x => x.RollChamferClass == id);
+            var rollChamfer = await _prdbContext.Rollchamfers.FirstOrDefaultAsync(x => x.Rollchamferclass == id);
 
             if (rollChamfer is null)
-                throw new EntityNotFoundException(typeof(RollChamfer), id);
+                throw new EntityNotFoundException(typeof(Rollchamfer), id);
 
             return rollChamfer.ToRollChamferDto();
         }
@@ -332,8 +332,8 @@ namespace WebHMI.Services
         public async Task<PagedResultDto<RollChamferDto>> GetRollChamferAll(FilteredRequestDto input)
         {
             return await ApplyFilter(
-                _prdbContext.RollChamfers
-                    .OrderBy(t => t.RollChamferClass),
+                _prdbContext.Rollchamfers
+                    .OrderBy(t => t.Rollchamferclass),
                 input,
                 RollMapper.ToRollChamferDto);
         }
@@ -343,10 +343,10 @@ namespace WebHMI.Services
         [AbpAuthorize(Permissions.Pages_RollData_Edit)]
         public async Task<RollChamferDto> UpdateRollChamfer(RollChamferDto rollClassDto)
         {
-            var rollChamfer = await _prdbContext.RollChamfers.FirstOrDefaultAsync(x => x.RollChamferClass == rollClassDto.Rollchamferclass);
+            var rollChamfer = await _prdbContext.Rollchamfers.FirstOrDefaultAsync(x => x.Rollchamferclass == rollClassDto.Rollchamferclass);
 
             if (rollChamfer is null)
-                throw new EntityNotFoundException(typeof(RollChamfer), rollClassDto.Rollchamferclass);
+                throw new EntityNotFoundException(typeof(Rollchamfer), rollClassDto.Rollchamferclass);
 
             rollChamfer.MapRollChamferEntity(rollClassDto);
 
@@ -366,12 +366,12 @@ namespace WebHMI.Services
         [AbpAuthorize(Permissions.Pages_RollData_Delete)]
         public async Task DeleteRollChamfer(int id)
         {
-            var rollData = await _prdbContext.RollChamfers.Where(x => x.RollChamferClass == id).ToListAsync();
+            var rollData = await _prdbContext.Rollchamfers.Where(x => x.Rollchamferclass == id).ToListAsync();
 
             if (!rollData.Any())
                 throw new UserFriendlyException("The given class is linked to an existing roller and cannot be deleted.");
 
-            _prdbContext.RollChamfers.RemoveRange(rollData);
+            _prdbContext.Rollchamfers.RemoveRange(rollData);
         }
 
         #endregion
@@ -382,7 +382,7 @@ namespace WebHMI.Services
         [AbpAuthorize(Permissions.Pages_RollData_Edit)]
         public async Task<RollPropertyClassDto> CreateRollPropertyClass(RollPropertyClassDto rollPropertyClassDto)
         {
-            var rollProperty = await _prdbContext.RollProperties.FirstOrDefaultAsync(t => t.RollPropertyClass == rollPropertyClassDto.RollPropertyClass);
+            var rollProperty = await _prdbContext.Rollproperties.FirstOrDefaultAsync(t => t.Rollpropertyclass == rollPropertyClassDto.RollPropertyClass);
 
             if (rollProperty is not null)
                 throw new UserFriendlyException("Given id is already in use");
@@ -392,7 +392,7 @@ namespace WebHMI.Services
 
             var newRollProperty = rollPropertyClassDto.ToRollPropertyEntity();
 
-             _prdbContext.RollProperties.Add(newRollProperty);
+             _prdbContext.Rollproperties.Add(newRollProperty);
             await CurrentUnitOfWork.SaveChangesAsync();
 
             return newRollProperty.ToRollPropertyClassDto();
@@ -401,7 +401,7 @@ namespace WebHMI.Services
         [AbpAuthorize(Permissions.Pages_RollData)]
         public async Task<RollPropertyClassDto> GetRollPropertyClassById(int id)
         {
-            var rollPropertyClass = await _prdbContext.RollProperties.FirstOrDefaultAsync(x => x.RollPropertyClass == id);
+            var rollPropertyClass = await _prdbContext.Rollproperties.FirstOrDefaultAsync(x => x.Rollpropertyclass == id);
 
             if (rollPropertyClass is null)
                 throw new EntityNotFoundException(typeof(RollPropertyClassDto), id);
@@ -413,8 +413,8 @@ namespace WebHMI.Services
         public async Task<PagedResultDto<RollPropertyClassDto>> GetRollPropertyClassAll(FilteredRequestDto input)
         {
             return await ApplyFilter(
-                _prdbContext.RollProperties
-                    .OrderBy(t => t.RollPropertyClass),
+                _prdbContext.Rollproperties
+                    .OrderBy(t => t.Rollpropertyclass),
                 input,
                 RollMapper.ToRollPropertyClassDto);
         }
@@ -427,7 +427,7 @@ namespace WebHMI.Services
             if (rollPropertyClassDto.RollType is not null && rollPropertyClassDto.RollType.Length > 3 || rollPropertyClassDto.PlantType is not null && rollPropertyClassDto.PlantType.Length > 3)
                 throw new UserFriendlyException("RollType and PlantType can have maximum 3 characters");
 
-            var rollProperty = await _prdbContext.RollProperties.FirstOrDefaultAsync(t => t.RollPropertyClass == rollPropertyClassDto.RollPropertyClass);
+            var rollProperty = await _prdbContext.Rollproperties.FirstOrDefaultAsync(t => t.Rollpropertyclass == rollPropertyClassDto.RollPropertyClass);
 
             if (rollProperty is null)
                 throw new UserFriendlyException("Roll property not found");
@@ -443,12 +443,12 @@ namespace WebHMI.Services
         [AbpAuthorize(Permissions.Pages_RollData_Delete)]
         public async Task DeleteRollPropertyClass(int input)
         {
-            var rollData = await _prdbContext.RollData.FirstOrDefaultAsync(x => x.RollPropertyClass == input);
+            var rollData = await _prdbContext.Rolldata.FirstOrDefaultAsync(x => x.Rollpropertyclass == input);
 
             if (rollData is not null)
                 throw new UserFriendlyException("Given Rollpropertyclass has reference in RollData table and was not deleted");
 
-            _prdbContext.RollProperties.RemoveRange(_prdbContext.RollProperties.Where(x => x.RollPropertyClass == input));
+            _prdbContext.Rollproperties.RemoveRange(_prdbContext.Rollproperties.Where(x => x.Rollpropertyclass == input));
         }
 
         #endregion
@@ -461,14 +461,14 @@ namespace WebHMI.Services
         {
             var context = _prdbContextProvider.GetDbContext();
 
-            bool exist = await context.RollShapeCoeffs.AnyAsync(x => x.ShapeCode == dto.ShapeCode);
+            bool exist = await context.Rollshapecoeffs.AnyAsync(x => x.Shapecode == dto.ShapeCode);
 
             if (exist)
                 throw new UserFriendlyException($"Roll shape coeff with shape code = '{dto.ShapeCode}' already exist");
 
             var rollcoeff = dto.ToRollShapeCoeffEntity();
 
-            await context.RollShapeCoeffs.AddAsync(rollcoeff);
+            await context.Rollshapecoeffs.AddAsync(rollcoeff);
 
             return rollcoeff.ToRollShapeCoeffDto();
         }
@@ -478,8 +478,8 @@ namespace WebHMI.Services
         {
             var context = _prdbContextProvider.GetDbContext();
 
-            var shape = await context.RollShapeCoeffs
-                .FirstOrDefaultAsync(x => x.ShapeCode == shapeCode)
+            var shape = await context.Rollshapecoeffs
+                .FirstOrDefaultAsync(x => x.Shapecode == shapeCode)
                 ?? throw new EntityNotFoundException($"Roll shape coeff with shape code = '{shapeCode}' doesn't exist");
 
             return shape.ToRollShapeCoeffDto();
@@ -491,8 +491,8 @@ namespace WebHMI.Services
             var context = _prdbContextProvider.GetDbContext();
 
             return await ApplyFilter(
-                context.RollShapeCoeffs
-                    .OrderBy(t => t.ShapeCode),
+                context.Rollshapecoeffs
+                    .OrderBy(t => t.Shapecode),
                 input,
                 RollMapper.ToRollShapeCoeffDto);
         }
@@ -503,25 +503,25 @@ namespace WebHMI.Services
         {
             var context = _prdbContextProvider.GetDbContext();
 
-            var entity = await context.RollShapeCoeffs
-                .FirstOrDefaultAsync(x => x.ShapeCode == dto.ShapeCode);
+            var entity = await context.Rollshapecoeffs
+                .FirstOrDefaultAsync(x => x.Shapecode == dto.ShapeCode);
 
             if (entity is null)
                 throw new EntityNotFoundException($"Roll shape coeff with shape code = '{dto.ShapeCode}' doesn't exist");
 
             entity.Description = dto.Description;
-            entity.ShapeType = dto.ShapeType;
-            entity.ShapeX1 = dto.ShapeX1;
-            entity.ShapeX2 = dto.ShapeX2;
-            entity.ShapeX3 = dto.ShapeX3;
-            entity.ShapeX4 = dto.ShapeX4;
-            entity.ShapeX5 = dto.ShapeX5;
-            entity.ShapeX6 = dto.ShapeX6;
-            entity.ShapeX7 = dto.ShapeX7;
-            entity.ShapeX8 = dto.ShapeX8;
-            entity.ShapeX9 = dto.ShapeX9;
-            entity.StandRange = dto.StandRange;
-            entity.ShapeCurveCode = dto.ShapeCurveCode;
+            entity.Shapetype = dto.ShapeType;
+            entity.Shapex1 = dto.ShapeX1;
+            entity.Shapex2 = dto.ShapeX2;
+            entity.Shapex3 = dto.ShapeX3;
+            entity.Shapex4 = dto.ShapeX4;
+            entity.Shapex5 = dto.ShapeX5;
+            entity.Shapex6 = dto.ShapeX6;
+            entity.Shapex7 = dto.ShapeX7;
+            entity.Shapex8 = dto.ShapeX8;
+            entity.Shapex9 = dto.ShapeX9;
+            entity.Standrange = dto.StandRange;
+            entity.Shapecurvecode = dto.ShapeCurveCode;
 
             return entity.ToRollShapeCoeffDto();
         }
@@ -532,11 +532,11 @@ namespace WebHMI.Services
         {
             var context = _prdbContextProvider.GetDbContext();
 
-            var shape = await context.RollShapeCoeffs
-                .FirstOrDefaultAsync(x => x.ShapeCode == shapeCode)
+            var shape = await context.Rollshapecoeffs
+                .FirstOrDefaultAsync(x => x.Shapecode == shapeCode)
                 ?? throw new EntityNotFoundException($"Roll shape coeff with shape code = '{shapeCode}' doesn't exist");
 
-            context.RollShapeCoeffs.Remove(shape);
+            context.Rollshapecoeffs.Remove(shape);
         }
 
         #endregion
@@ -548,8 +548,8 @@ namespace WebHMI.Services
         {
             var context = _prdbContextProvider.GetDbContext();
 
-            var entity = await context.RollShapeCurveCustoms
-                .FirstOrDefaultAsync(x => x.ShapeCurveCode == shapeCurveCode);
+            var entity = await context.Rollshapecurvecustoms
+                .FirstOrDefaultAsync(x => x.Shapecurvecode == shapeCurveCode);
 
             if (entity is null)
                 throw new EntityNotFoundException($"Custom roll shape curve with shape curve code = '{shapeCurveCode}' doesn't exist");
@@ -563,8 +563,8 @@ namespace WebHMI.Services
             var context = _prdbContextProvider.GetDbContext();
 
             return await ApplyFilter(
-                context.RollShapeCurveCustoms
-                .OrderBy(x => x.ShapeCurveCode),
+                context.Rollshapecurvecustoms
+                .OrderBy(x => x.Shapecurvecode),
                 input,
                 RollMapper.ToCustomRollShapeCurveItem);
         }
@@ -577,7 +577,7 @@ namespace WebHMI.Services
         {
             try
             {
-                var rollData = await _prdbContext.RollData.FirstOrDefaultAsync(x => x.RollId == rollId && x.PlantType == planttype);
+                var rollData = await _prdbContext.Rolldata.FirstOrDefaultAsync(x => x.Rollid == rollId && x.Planttype == planttype);
                 if (rollData is null)
                     throw new UserFriendlyException("Roll data not found");
 
@@ -599,7 +599,7 @@ namespace WebHMI.Services
             SingleRollDataCoreDto result = new SingleRollDataCoreDto();
             try
             {
-                HmiVRollInventory rollData = await _prdbContext.HmiVRollInventories.FirstOrDefaultAsync(x => x.PlantType == plantType && x.StandId == standId && x.RollType == rollType && x.RollPos == rollPos && x.Stat == rollStatus);
+                HmiVRollInventory rollData = await _prdbContext.HmiVRollInventories.FirstOrDefaultAsync(x => x.Planttype == plantType && x.Standid == standId && x.Rolltype == rollType && x.Rollpos == rollPos && x.Stat == rollStatus);
                 if (rollData is not null)
                 {
                     result = rollData.ToRollDataCoreDto();
@@ -629,8 +629,8 @@ namespace WebHMI.Services
 
                 return ApplyFilter(
                     _prdbContext.HmiVRollInventories
-                       .Where(z => z.PlantType == plantType && z.RollType == rollType && z.Stat != "I")
-                       .OrderByDescending(t => t.RollId),
+                       .Where(z => z.Planttype == plantType && z.Rolltype == rollType && z.Stat != "I")
+                       .OrderByDescending(t => t.Rollid),
                    input,
                    RollMapper.ToRollDataCoreDto);
 
@@ -656,16 +656,16 @@ namespace WebHMI.Services
             try
             {
                 //clear any previous planned roll on this position
-                var rollDataCheck = await _prdbContext.RollData.FirstOrDefaultAsync(x => x.PlantType == plantType.ToString() && x.RollType == rollType && x.StandId == standId && x.RollPos == rollPos && x.Stat == "P");
+                var rollDataCheck = await _prdbContext.Rolldata.FirstOrDefaultAsync(x => x.Planttype == plantType.ToString() && x.Rolltype == rollType && x.Standid == standId && x.Rollpos == rollPos && x.Stat == "P");
                 if (rollDataCheck is not null)
                 {
                     rollDataCheck.Stat = null;
-                    Logger.Info($"Roll {rollDataCheck.RollId} has been cleared from Planned status.");
+                    Logger.Info($"Roll {rollDataCheck.Rollid} has been cleared from Planned status.");
                 }
 
                 if (!string.IsNullOrWhiteSpace(rollId))
                 {
-                    var rollData = await _prdbContext.RollData.FirstOrDefaultAsync(x => x.RollId == rollId && x.PlantType == plantType.ToString());
+                    var rollData = await _prdbContext.Rolldata.FirstOrDefaultAsync(x => x.Rollid == rollId && x.Planttype == plantType.ToString());
                     if (rollData is null)
                         throw new UserFriendlyException("Unknown roller.");
 
@@ -673,14 +673,14 @@ namespace WebHMI.Services
                         throw new UserFriendlyException("It is not permitted to change the properties of installed rollers.");
 
                     rollData.Stat = "P";
-                    rollData.StandId = standId;
-                    rollData.RollPos = rollPos;
+                    rollData.Standid = standId;
+                    rollData.Rollpos = rollPos;
                     rollData.Shimm = shimm;
 
                     if (diameter is not null)
                         rollData.Diameter = diameter.Value;
 
-                    Logger.Info($"Roll {rollData.RollId} has been Planned for next roll change.");
+                    Logger.Info($"Roll {rollData.Rollid} has been Planned for next roll change.");
                 }
 
                 await _prdbContext.SaveChangesAsync();
@@ -695,7 +695,7 @@ namespace WebHMI.Services
                 }
 
                 //read roll data from DB after update to initialize return DTO
-                HmiVRollInventory rollDataAfterUpdate = await _prdbContext.HmiVRollInventories.FirstOrDefaultAsync(x => x.RollId == rollId && x.PlantType == plantType.ToString());
+                HmiVRollInventory rollDataAfterUpdate = await _prdbContext.HmiVRollInventories.FirstOrDefaultAsync(x => x.Rollid == rollId && x.Planttype == plantType.ToString());
                 return rollDataAfterUpdate?.ToRollDataCoreDto();
             }
             catch (Exception ex)
@@ -771,17 +771,17 @@ namespace WebHMI.Services
                     if (!isValid)
                         continue;
 
-                    var rdRec = await context.RollData.FirstOrDefaultAsync(f =>
-                        f.StandId == stand.StandId &&
-                        f.RollPos == stand.RollPos &&
+                    var rdRec = await context.Rolldata.FirstOrDefaultAsync(f =>
+                        f.Standid == stand.StandId &&
+                        f.Rollpos == stand.RollPos &&
                         f.Stat == "I" &&
-                        f.RollType == stand.RollType &&
-                        f.PlantType == plantType);
+                        f.Rolltype == stand.RollType &&
+                        f.Planttype == plantType);
 
                     if (rdRec is null)
                         continue;
 
-                    rdRec.RemoveReason = input.ReasonId;
+                    rdRec.Removereason = input.ReasonId;
                     rdRec.Remarks = input.OperatorRemarks;
                 }
 
@@ -833,44 +833,44 @@ namespace WebHMI.Services
             };
 
             // Reference curves
-            var refCalData = await context.CalDsses
-                .Where(x => x.StandNo == standId)
-                .OrderBy(o => o.DssNumber)
+            var refCalData = await context.Caldsses
+                .Where(x => x.Standno == standId)
+                .OrderBy(o => o.Dssnumber)
                 .ToListAsync();
 
             var refStandStretch = CreateCurve("Stand Stretch Reference");
-            var refTotalStretch = CreateCurve("Total Stretch Reference");
+            //var refTotalStretch = CreateCurve("Total Stretch Reference");
 
             result.CalCurvesDataSet.Add(1, refStandStretch);
-            result.CalCurvesDataSet.Add(2, refTotalStretch);
+            //result.CalCurvesDataSet.Add(2, refTotalStretch);
 
             if (refCalData?.Any() == true)
             {
                 foreach (var el in refCalData)
                 {
-                    AddMeasuredValue(refStandStretch, el.Tom, el.DssNumber, el.Fr ?? 0.0, el.DsFrame);
-                    AddMeasuredValue(refTotalStretch, el.Tom, el.DssNumber, el.Fr ?? 0.0, el.Dss);
+                    AddMeasuredValue(refStandStretch, el.Tom, el.Dssnumber, el.Fr ?? 0.0, el.Dss);
+                    //AddMeasuredValue(refTotalStretch, el.Tom, el.Dssnumber, el.Fr ?? 0.0, el.Dss);
                 }
             }
 
             // Actual curves
-            var actCalData = await context.CalDssActs
-                .Where(x => x.StandNo == standId)
-                .OrderBy(o => o.DssNumber)
+            var actCalData = await context.Caldssacts
+                .Where(x => x.Standno == standId)
+                .OrderBy(o => o.Dssnumber)
                 .ToListAsync();
 
             var actStandStretch = CreateCurve("Stand Stretch Actual");
-            var actTotalStretch = CreateCurve("Total Stretch Actual");
+            //var actTotalStretch = CreateCurve("Total Stretch Actual");
 
             result.CalCurvesDataSet.Add(3, actStandStretch);
-            result.CalCurvesDataSet.Add(4, actTotalStretch);
+            //result.CalCurvesDataSet.Add(4, actTotalStretch);
 
             if (actCalData?.Any() == true)
             {
                 foreach (var el in actCalData)
                 {
-                    AddMeasuredValue(actStandStretch, el.Tom, el.DssNumber, el.Fr ?? 0.0, el.DsFrame);
-                    AddMeasuredValue(actTotalStretch, el.Tom, el.DssNumber, el.Fr ?? 0.0, el.Dss);
+                    AddMeasuredValue(actStandStretch, el.Tom, el.Dssnumber, el.Fr ?? 0.0, el.Dss);
+                    //AddMeasuredValue(actTotalStretch, el.Tom, el.Dssnumber, el.Fr ?? 0.0, el.Dss);
                 }
             }
 
@@ -907,9 +907,9 @@ namespace WebHMI.Services
             //read actual calibration data
             var context = _prdbContextProvider.GetDbContext();
 
-            List<CalDssAct> actCalData = await context.CalDssActs
-                .Where(x => x.StandNo == standId)
-                .OrderBy(o => o.DssNumber)
+            List<Caldssact> actCalData = await context.Caldssacts
+                .Where(x => x.Standno == standId)
+                .OrderBy(o => o.Dssnumber)
                 .ToListAsync();
 
             if (actCalData == null || actCalData.Count == 0)
@@ -917,8 +917,8 @@ namespace WebHMI.Services
                 throw new Abp.UI.UserFriendlyException("No valid calibration data available for the transfer.");
             }
 
-            List<CalPadeAct> actCalPade = await context.CalPadeActs
-                .Where(x => x.StandNo == standId)
+            List<Calpadeact> actCalPade = await context.Calpadeacts
+                .Where(x => x.Standno == standId)
                 .ToListAsync();
 
             if (actCalPade == null || actCalPade.Count == 0)
@@ -926,57 +926,61 @@ namespace WebHMI.Services
                 throw new Abp.UI.UserFriendlyException($"No CalPadeAct for standId:{standId}");
             }
 
-            var calPadesToRemove = await context.CalPades
-                .Where(x => x.StandNo == standId)
+            var calPadesToRemove = await context.Calpades
+                .Where(x => x.Standno == standId)
                 .ToListAsync();
 
-            context.CalPades.RemoveRange(calPadesToRemove);
+            context.Calpades.RemoveRange(calPadesToRemove);
 
-            List<CalPade> newCalPades = new();
+            List<Calpade> newCalPades = new();
 
             foreach (var el in actCalPade)
             {
-                newCalPades.Add(new CalPade()
+                newCalPades.Add(new Calpade()
                 {
-                    StandNo = el.StandNo,
-                    PadeA0 = el.PadeA0,
-                    PadeA1 = el.PadeA1,
-                    PadeA2 = el.PadeA2,
-                    PadeB1 = el.PadeB1,
+                    Curvetype = el.Curvetype,
+                    Standno = el.Standno,
+                    Padea0 = el.Padea0,
+                    Padea1 = el.Padea1,
+                    Padea2 = el.Padea2,
+                    Padeb1 = el.Padeb1,
                     Mop = el.Mop,
-                    PlantType = el.PlantType,
+                    Planttype = el.Planttype,
                     Toc = el.Toc,
                     Tom = el.Tom,
                 });
             }
 
-            await context.CalPades.AddRangeAsync(newCalPades);
+            await context.Calpades.AddRangeAsync(newCalPades);
 
-            var calDssToRemove = await context.CalDsses
-                .Where(x => x.StandNo == standId)
+            var calDssToRemove = await context.Caldsses
+                .Where(x => x.Standno == standId)
                 .ToListAsync();
 
-            context.CalDsses.RemoveRange(calDssToRemove);
+            context.Caldsses.RemoveRange(calDssToRemove);
 
-            List<CalDss> newCalDsses = new ();
 
-            foreach (CalDssAct el in actCalData)
+            List<Caldss> newCalDsses = new ();
+
+            foreach (Caldssact el in actCalData)
             {
-                newCalDsses.Add(new CalDss()
+                newCalDsses.Add(new Caldss()
                 {
-                    StandNo = el.StandNo,
-                    DsFrame = el.DsFrame,
+                    Standno = el.Standno,
+                    Dsframe = el.Dsframe,
                     Dss = el.Dss,
-                    DssNumber = el.DssNumber,
+                    Dssnumber = el.Dssnumber,
                     Fr = el.Fr,
                     Mop = el.Mop,
-                    PlantType = el.PlantType,
+                    Planttype = el.Planttype,
                     Toc = el.Toc,
                     Tom = el.Tom,
                 });
             }
 
-            await context.CalDsses.AddRangeAsync(newCalDsses);
+            await context.Caldsses.AddRangeAsync(newCalDsses);
+
+            await context.SaveChangesAsync();
 
             _l2Sender.TakeoverActual4RevCurve(standId);
 

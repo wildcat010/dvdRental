@@ -62,20 +62,20 @@ namespace WebHMI.Core.Widget.Widgets
 			{
 				case "OR":
 					enPhMeId = context.VMatStructEntries
-						.Where(x => x.EnOrMeId == MeId)
-						.Select(x => x.EnPhMeId)
+						.Where(x => x.Enormeid == MeId)
+						.Select(x => x.Enphmeid)
 						.FirstOrDefault();
 					break;															  
 				case "PH":
 					enPhMeId = context.VMatStructEntries
-						.Where(x => x.EnPhMeId == MeId)
-						.Select(x => x.EnPhMeId)
+						.Where(x => x.Enphmeid == MeId)
+						.Select(x => x.Enphmeid)
 						.FirstOrDefault();
 					break;															  
 				case "LO":
 					enPhMeId = context.VMatStructEntries
-						.Where(x => x.EnLoMeId == MeId)
-						.Select(x => x.EnPhMeId)
+						.Where(x => x.Enlomeid == MeId)
+						.Select(x => x.Enphmeid)
 						.FirstOrDefault();
 					break;
 			}
@@ -92,14 +92,14 @@ namespace WebHMI.Core.Widget.Widgets
 
 			if (enPhMeId != 0)
 			{
-				Data.Defects = context.Defects.Where(x => x.MeId == enPhMeId && x.MesId == 1).Select(x => new DefectDto()
+				Data.Defects = context.Defects.Where(x => x.Meid == enPhMeId && x.Mesid == 1).Select(x => new DefectDto()
 				{
-					DefectStart = x.DefStart,
-					DefectEnd = x.DefEnd,
+					DefectStart = x.Defstart,
+					DefectEnd = x.Defend,
 					DefectIntensity = x.Intensity,
-					DefectType = x.DefType,
-					DefectSide = x.DefSide,
-					DefectClass = x.DefClass,
+					DefectType = x.Deftype,
+					DefectSide = x.Defside,
+					DefectClass = x.Defclass,
 					Action = x.Action,
 					No = x.Sid
 				}).ToList();

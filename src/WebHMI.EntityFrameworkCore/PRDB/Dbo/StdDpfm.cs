@@ -3,43 +3,21 @@ using System.Collections.Generic;
 
 namespace WebHMI.PRDB.Dbo;
 
-/// <summary>
-/// Standard descaler plan FM
-/// </summary>
-public partial class StdDpfm
+public partial class Stddpfm
 {
-    /// <summary>
-    /// active flag
-    /// </summary>
-    public int ActiveFlag { get; set; }
+    public int Activeflag { get; set; }
 
-    /// <summary>
-    /// Unit[0...999] d p number
-    /// </summary>
-    public int PlanNo { get; set; }
+    public int Planno { get; set; }
 
-    /// <summary>
-    /// Unit[m] delay length for descaler switch ON
-    /// </summary>
-    public float? DelayLength { get; set; }
+    public double? Delaylength { get; set; }
 
-    /// <summary>
-    /// Unit[0.... 2] number of descaler ramps
-    /// </summary>
-    public int? NoRamps { get; set; }
+    public string Description { get; set; }
 
-    /// <summary>
-    /// modifying process
-    /// </summary>
+    public int? Noramps { get; set; }
+
     public string Mop { get; set; }
 
-    /// <summary>
-    /// time of creation
-    /// </summary>
     public DateTime? Toc { get; set; }
 
-    /// <summary>
-    /// time of modification
-    /// </summary>
     public DateTime? Tom { get; set; }
 }

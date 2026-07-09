@@ -3,37 +3,21 @@ using System.Collections.Generic;
 
 namespace WebHMI.PRDB.Dbo;
 
-public partial class StdCsCoilTempOffset
+public partial class Stdcscoiltempoffset
 {
-    /// <summary>
-    /// active flag
-    /// </summary>
-    public int ActiveFlag { get; set; }
+    public int Activeflag { get; set; }
 
-    /// <summary>
-    /// Unit[] key for the compensation plan
-    /// </summary>
-    public int PlanNo { get; set; }
+    public int Planno { get; set; }
 
     public string Description { get; set; }
 
-    /// <summary>
-    /// Unit[m] reference strip length
-    /// </summary>
-    public int? SplineId { get; set; }
+    public string Description2 { get; set; }
 
-    /// <summary>
-    /// modifying process
-    /// </summary>
+    public int? Splineid { get; set; }
+
     public string Mop { get; set; }
 
-    /// <summary>
-    /// time of creation
-    /// </summary>
     public DateTime? Toc { get; set; }
 
-    /// <summary>
-    /// time of modification
-    /// </summary>
     public DateTime? Tom { get; set; }
 }

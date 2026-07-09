@@ -20,7 +20,8 @@ namespace WebHMI.Application.Services
 
         private readonly string _filePath;
         private readonly string _csFilePath;
-        private readonly string _domain;
+        private readonly string _millDomain;
+        private readonly string _csDomain;
         private readonly string _username;
         private readonly string _password;
         public EngineeringLogService(IConfiguration configuration)
@@ -28,18 +29,19 @@ namespace WebHMI.Application.Services
             _configuration = configuration;
 
             var config = _configuration.GetSection("Impersonation");
-            _domain = config["Domain"];
+            _millDomain = config["Domain"];
+            _csDomain = config["CsDomain"];
             _username = config["Username"];
             _password = config["Password"];
             _filePath = config["Path"];
             _csFilePath = config["PathCS"];
         }
 
-        private List<(string Name, DateTime Toc)> GetFileInfo(string filePath) 
+        private List<(string Name, DateTime Toc)> GetFileInfo(string filePath, string domain)
         {
             List<(string Name, DateTime Toc)> filesData = new List<(string, DateTime)>();
 
-            ImpersonationHelper.Run(_domain, _username, _password, () =>
+            ImpersonationHelper.Run(domain, _username, _password, () =>
             {
 
                 string[] files = Array.Empty<string>();
@@ -53,7 +55,7 @@ namespace WebHMI.Application.Services
                     throw new UserFriendlyException("Error during reading files from directory. ", ex.Message);
                 }
 
-                foreach (var filePath in files)
+                foreach (var filePath in files.Where(x => !x.EndsWith(".gz")))
                 {
                     var fileInfo = new FileInfo(filePath);
                     filesData.Add(new()
@@ -69,33 +71,33 @@ namespace WebHMI.Application.Services
         }
 
         [AbpAuthorize(Permissions.Pages_Setpoints_FM, Permissions.Pages_Setpoints_RM)]
-        private List<EngineeringLogDetailDto> GetAllLogs(string path, Func<(string Name, DateTime Toc), EngineeringLogDetailDto> parser)
-            {
-                var filesData = GetFileInfo(path);
-                return filesData.Select(parser).ToList();
+        private List<EngineeringLogDetailDto> GetAllLogs(string path, string domain, Func<(string Name, DateTime Toc), EngineeringLogDetailDto> parser)
+        {
+            var filesData = GetFileInfo(path, domain);
+            return filesData.Select(parser).ToList();
         }
 
         [AbpAuthorize(Permissions.Pages_Setpoints_FM, Permissions.Pages_Setpoints_RM, Permissions.Pages_PrimaryData)]
         public async Task<PagedResultDto<EngineeringLogDetailDto>> GetAllData(FilteredRequestDto input)
         {
-            var result = GetAllLogs(_filePath, SplitFileData);
+            var result = GetAllLogs(_filePath, _millDomain, SplitFileData);
 
-            return ApplyFilter<EngineeringLogDetailDto,EngineeringLogDetailDto>(result.AsEnumerable(), input, u => u);
+            return ApplyFilter<EngineeringLogDetailDto, EngineeringLogDetailDto>(result.AsEnumerable(), input, u => u);
         }
 
         [AbpAuthorize(Permissions.Pages_Setpoints_FM, Permissions.Pages_Setpoints_RM, Permissions.Pages_PrimaryData)]
         public async Task<PagedResultDto<EngineeringLogDetailDto>> GetAllDataCS(FilteredRequestDto input)
         {
-            var result = GetAllLogs(_csFilePath, SplitFileDataCS);
+            var result = GetAllLogs(_csFilePath, _csDomain, SplitFileDataCS);
             return ApplyFilter<EngineeringLogDetailDto, EngineeringLogDetailDto>(result.AsEnumerable(), input, u => u);
 
         }
 
-        private EngineeringLogItemDto GetSingleLog(string path, string fileName, Func<(string Name, DateTime Toc), EngineeringLogDetailDto> parser)
+        private EngineeringLogItemDto GetSingleLog(string path, string domain, string fileName, Func<(string Name, DateTime Toc), EngineeringLogDetailDto> parser)
         {
             EngineeringLogItemDto result = null;
 
-            ImpersonationHelper.Run(_domain, _username, _password, () =>
+            ImpersonationHelper.Run(domain, _username, _password, () =>
             {
                 try
                 {
@@ -124,13 +126,13 @@ namespace WebHMI.Application.Services
         [AbpAuthorize(Permissions.Pages_Setpoints_FM, Permissions.Pages_Setpoints_RM, Permissions.Pages_PrimaryData)]
         public EngineeringLogItemDto GetLogItem(string fileName)
         {
-            return GetSingleLog(_filePath, fileName, SplitFileData);
+            return GetSingleLog(_filePath, _millDomain, fileName, SplitFileData);
         }
 
         [AbpAuthorize(Permissions.Pages_Setpoints_FM, Permissions.Pages_Setpoints_RM, Permissions.Pages_PrimaryData)]
         public EngineeringLogItemDto GetLogItemCS(string fileName)
         {
-            return GetSingleLog(_csFilePath, fileName, SplitFileDataCS);
+            return GetSingleLog(_csFilePath, _csDomain, fileName, SplitFileDataCS);
         }
 
         private EngineeringLogDetailDto SplitFileData((string Name, DateTime Toc) fileData)

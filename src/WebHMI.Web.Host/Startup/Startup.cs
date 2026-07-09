@@ -100,6 +100,7 @@ namespace WebHMI.Web.Host.Startup
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapHub<HmiHub>("/signalr");
+                endpoints.MapHub<TwmHub>("/signalr-twm");
 
                 endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapControllerRoute("defaultWithArea", "{area}/{controller=Home}/{action=Index}/{id?}");

@@ -1,22 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using WebHMI.PRDB.Dbo;
 
 namespace WebHMI.DataBlobs
 {
-    public class SetpointsCSDataBlob
+    public class SetpointsCsDataBlob
     {
-        public List<EdOrdEnt> Edordents { get; set; } = new();
-        public List<SpOrd2Pc> SpOrd2Pcs { get; set; } = new();
-        public List<CsStrategy> CsStrategies { get; set; } = new();
-        public List<CsProfile> CsProfiles { get; set; } = new();
-        public List<CsCr> CsCrs { get; set; } = new();
-        public List<CsRtCooling> CsRtCoolings { get; set; } = new();
-        public List<CsPerf> CsPerves { get; set; } = new();
-        public List<CsPcResult> CsPcResults { get; set; } = new();
-        //public List<CsEdgeMasking> CsEdgeMaskings { get; set; } = new();
+        public List<Spord2pc> SpOrd2Pcs { get; internal set; }
+        public List<Cspcresult> Cspcresults { get; internal set; }
+        public List<Csstrategy> CsStrategies { get; internal set; }
+        public List<Csprofile> CsProfiles { get; internal set; }
+        public List<Cspccurve> CsPcCurves { get; internal set; }
+        public Cspcresult CsPcResult { get; internal set; }
+        public List<Cspcspeeddiag> CsPcSpeedDiags { get; internal set; }
     }
 }

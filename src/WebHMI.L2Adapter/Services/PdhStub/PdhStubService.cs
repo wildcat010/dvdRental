@@ -21,7 +21,7 @@ namespace WebHMI.L2Adapter.Services.PdhStub
             hmiReturn.LfeName = "pdh";
 
             HandleL2Call(() =>
-                _stub.entryDataChange_async(null, _timeoutMs, meCode, 2, hmiReturn) //meType = kind of material type 0 = physical 1 = logical, 2 = order
+                _stub.entryDataChange_async(null, _timeoutMs, meCode, 0, hmiReturn) //meType = kind of material type 0 = physical 1 = logical, 2 = order
             );
         }
 
@@ -54,20 +54,11 @@ namespace WebHMI.L2Adapter.Services.PdhStub
             );
         }
 
-        //public void AssignApsKey(string apsKey, string alloyCode, string connectionId)
-        //{
-
-        //    //HMI_RETURN hmiReturn = new HMI_RETURN();
-        //    //hmiReturn.HmiClientId = connectionId ?? "NoId";
-        //    //hmiReturn.FunctionName = "entryDataChange";
-        //    //hmiReturn.LfeName = "pdh";
-
-        //    HandleL2Call(() =>
-        //        _stub.(null, _timeoutMs, meCode, 2, hmiReturn) //meType = kind of material type 0 = physical 1 = logical, 2 = order
-        //    );
-        //}
-
-        
-
+        public void AssignApsKey(string apsKey, string alloyCode)
+        {
+            HandleL2Call(() =>
+                _stub.assignApsKey_async(null, _timeoutMs, apsKey, alloyCode) 
+            );
+        }
     }
 }

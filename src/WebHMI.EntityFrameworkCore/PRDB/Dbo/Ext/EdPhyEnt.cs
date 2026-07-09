@@ -2,5 +2,5 @@
 
 namespace WebHMI.PRDB.Dbo
 {
-	public partial class EdPhyEnt : IMaterialIdTypePhysical { }
+	public partial class Edphyent : IMaterialIdTypePhysical { }
 }

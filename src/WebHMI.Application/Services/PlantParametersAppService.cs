@@ -40,7 +40,7 @@ namespace WebHMI.Services
         [AbpAuthorize(Permissions.Pages_Parameters)]
         public async Task<PagedResultDto<ParameterDto>> GetAll(FilteredRequestDto input)
         {
-            return await ApplyFilter<PlantParam, ParameterDto>(_prdbContext.PlantParams
+            return await ApplyFilter<Plantparam, ParameterDto>(_prdbContext.Plantparams
                                     .OrderByDescending(t => t.Toc), input, PlantParameterMapper.MapToDto);
         }
 
@@ -50,8 +50,8 @@ namespace WebHMI.Services
         [AbpAuthorize(Permissions.Pages_Parameters)]
         public async Task<ParameterDto> Get(ParameterKeyDto input)
         {
-            var parameter = await _prdbContext.PlantParams
-                .FirstOrDefaultAsync(x => x.ParamName == input.ParamName && x.PlantType == input.PlantType.ToString())
+            var parameter = await _prdbContext.Plantparams
+                .FirstOrDefaultAsync(x => x.Paramname == input.ParamName && x.Planttype == input.PlantType.ToString())
                 ?? throw new EntityNotFoundException(typeof(ParameterKeyDto), input);
 
             return parameter.MapToDto();
@@ -65,7 +65,7 @@ namespace WebHMI.Services
         public async Task<ParameterDto> CreateAsync(ParameterDto input)
         {
             var parameter = input.MapToDbo();
-            _prdbContext.PlantParams.Add(parameter);
+            _prdbContext.Plantparams.Add(parameter);
             await CurrentUnitOfWork.SaveChangesAsync();
 
             //_l2Sender.SendProcessParametersUpdated(XIDL.HmiParamCategory.PlantParameter, input.Planttype);
@@ -80,8 +80,8 @@ namespace WebHMI.Services
         [AbpAuthorize(Permissions.Pages_Parameters_Edit)]
         public async Task<ParameterDto> UpdateAsync(ParameterDto input)
         {
-            var parameter = await _prdbContext.PlantParams
-                .FirstOrDefaultAsync(x => x.ParamName == input.ParamName && x.PlantType == input.PlantType)
+            var parameter = await _prdbContext.Plantparams
+                .FirstOrDefaultAsync(x => x.Paramname == input.ParamName && x.Planttype == input.PlantType)
                 ?? throw new EntityNotFoundException("Plant parameter not found");
 
             var callArguments = new ParamsDto()
@@ -90,15 +90,15 @@ namespace WebHMI.Services
                 Name = input.ParamName,
                 DisplayName = input.ParamName,
                 UserName = "user",
-                OldUValue = parameter.CurValN?.ToString() ?? parameter.CurValC,
+                OldUValue = parameter.Curvaln?.ToString() ?? parameter.Curvalc,
                 OldLValue = "",
                 NewUValue = input.CurValN?.ToString() ?? input.CurValC,
                 NewLValue = ""
             };
 
-            parameter.CType = input.CType;
-            parameter.CurValC = input.CurValC;
-            parameter.CurValN = (float)input.CurValN;
+            parameter.Ctype = input.CType;
+            parameter.Curvalc = input.CurValC;
+            parameter.Curvaln = (float)input.CurValN;
             parameter.Description = input.Description;
             parameter.Moddescr = input.Moddescr;
             parameter.Unit = input.Unit;
@@ -117,11 +117,11 @@ namespace WebHMI.Services
         [AbpAuthorize(Permissions.Pages_Parameters_Edit)]
         public async Task DeleteAsync(ParameterKeyDto input)
         {
-            var parameters = await _prdbContext.PlantParams
-                .Where(x => x.ParamName == input.ParamName && x.PlantType == input.PlantType.ToString())
+            var parameters = await _prdbContext.Plantparams
+                .Where(x => x.Paramname == input.ParamName && x.Planttype == input.PlantType.ToString())
                 .ToListAsync();
 
-            _prdbContext.PlantParams.RemoveRange(parameters);
+            _prdbContext.Plantparams.RemoveRange(parameters);
 
             await CurrentUnitOfWork.SaveChangesAsync();
 

@@ -9,8 +9,11 @@ namespace WebHMI.DataBlobs
 {
 	public class PrimaryDataDataBlob
 	{
-		public List<EdPhyEnt> EdPhyEnts { get; internal set; }
-		public List<EdOrdEnt> EdOrdEnts { get; internal set; }
-		public List<EdLogEnt> EdLogEnts { get; internal set; }
-	}
+		public List<Edphyent> EdPhyEnts { get; internal set; }
+		public List<Edordent> EdOrdEnts { get; internal set; }
+		public List<Edlogent> EdLogEnts { get; internal set; }
+        public StatEdphyent StatEdPhyEnts { get; internal set; }
+        public StatEdordent StatEdOrdEnts { get; internal set; }
+        public StatEdlogent StatEdLogEnts { get; internal set; }
+    }
 }

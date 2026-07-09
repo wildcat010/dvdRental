@@ -6,18 +6,18 @@ namespace WebHMI.Mapping.Extensions.Strategy
 {
     public class StdDpHrmMapper
     {
-        public static void MapEntity(StdDphrm entity, StdDpRmDto dto)
+        public static void MapEntity(Stddphrm entity, StdDpRmDto dto)
         {
-            entity.PlanNo = dto.PlanNo;
-            entity.ActiveFlag = dto.ActiveFlag;
-            //entity.Description = dto.Description;
+            entity.Planno = dto.PlanNo;
+            entity.Activeflag = dto.ActiveFlag;
+            entity.Description = dto.Description;
         }
 
-        public static StdDpRmDto ToDto(StdDphrm entity) => new()
+        public static StdDpRmDto ToDto(Stddphrm entity) => new()
         {
-            PlanNo = entity.PlanNo,
-            ActiveFlag = entity.ActiveFlag,
-            //Description = entity.Description
+            PlanNo = entity.Planno,
+            ActiveFlag = entity.Activeflag,
+            Description = entity.Description,
         };
     }
 }

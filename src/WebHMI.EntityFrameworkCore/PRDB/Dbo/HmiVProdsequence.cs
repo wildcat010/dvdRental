@@ -5,83 +5,93 @@ namespace WebHMI.PRDB.Dbo;
 
 public partial class HmiVProdsequence
 {
-    public long? Position { get; set; }
+    public decimal? Position { get; set; }
+
+    public short? Pnext { get; set; }
 
     public int Majorno { get; set; }
 
     public int Minorno { get; set; }
 
-    public short? Next { get; set; }
+    public string Enphextid { get; set; }
 
-    public string EnPhExtId { get; set; }
+    public int Enphmeid { get; set; }
 
-    public int EnPhMeId { get; set; }
+    public string Edphysrc { get; set; }
 
-    public string EdPhySrc { get; set; }
+    public short? Enphstatus { get; set; }
 
-    public short? EnPhStatus { get; set; }
+    public int Enormeid { get; set; }
 
-    public int EnOrMeId { get; set; }
+    public string Enorextid { get; set; }
 
-    public string EnOrExtId { get; set; }
+    public string Edorsrc { get; set; }
 
-    public string EdOrSrc { get; set; }
+    public string Enormetype { get; set; }
 
-    public string EnOrMeType { get; set; }
+    public short? Enorstatus { get; set; }
 
-    public int EnLoMeId { get; set; }
+    public string Enorcreator { get; set; }
 
-    public string AlloyCode { get; set; }
+    public short? Enormesid { get; set; }
 
-    public float? HEntry { get; set; }
+    public int Enlomeid { get; set; }
 
-    public float? HExit { get; set; }
+    public string Enloextid { get; set; }
 
-    public float? WExit { get; set; }
+    public short? Enlostatus { get; set; }
 
-    public float? WEntry { get; set; }
+    public string Alloycode { get; set; }
 
-    public float? WeightEntry { get; set; }
+    public double? Hentry { get; set; }
 
-    public float? LEntry { get; set; }
+    public double? Hexit { get; set; }
 
-    public float? LExit { get; set; }
+    public double? Wexit { get; set; }
 
-    public string SequenceId { get; set; }
+    public double? Wentry { get; set; }
 
-    public short? PdiStatus { get; set; }
+    public double? Weightentry { get; set; }
 
-    public short? SetpointsPc2Ok { get; set; }
+    public double? Lentry { get; set; }
+
+    public double? Lexit { get; set; }
+
+    public string Sequenceid { get; set; }
+
+    public int? Pdistatus { get; set; }
+
+    public short? Setpointspc2ok { get; set; }
 
     public int? Sbaz { get; set; }
 
-    public DateTime? LastCalc { get; set; }
+    public DateTime? Lastcalc { get; set; }
 
-    public string ApsKey { get; set; }
+    public string Apskey { get; set; }
 
-    public int? SimMat { get; set; }
+    public int? Simmat { get; set; }
 
-    public short? SetpointsCsOk { get; set; }
+    public short? Setpointscsok { get; set; }
 
-    public float? TEntryFm { get; set; }
+    public double? Tentryfm { get; set; }
 
-    public float? TExitFm { get; set; }
+    public double? Texitfm { get; set; }
 
-    public float? TExitCaster { get; set; }
+    public double? Texitcaster { get; set; }
 
-    public int? CoolStrategy { get; set; }
+    public int? Coolstrategy { get; set; }
 
-    public float? CoilTemp { get; set; }
+    public double? Coiltemp { get; set; }
 
-    public string HeatId { get; set; }
+    public string Heatid { get; set; }
 
-    public string FlagBatchRolling { get; set; }
+    public string Flagbatchrolling { get; set; }
 
-    public int? PlateProduction { get; set; }
+    public int? Plateproduction { get; set; }
 
-    public float? HExitHrm { get; set; }
+    public double? Hexithrm { get; set; }
 
-    public float? ProfileHrm { get; set; }
+    public double? Profilehrm { get; set; }
 
-    public string OrderNo { get; set; }
+    public string Orderno { get; set; }
 }

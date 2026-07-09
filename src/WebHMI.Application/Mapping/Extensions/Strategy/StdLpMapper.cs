@@ -10,18 +10,22 @@ namespace WebHMI.Mapping.Extensions.Strategy
 {
     public class StdLpMapper
     {
-        public static void MapEntity(StdLp entity, StdLpDto dto)
+        public static void MapEntity(Stdlp entity, StdLpDto dto)
         {
-            entity.PlanNo = dto.PlanNo;
-            entity.ActiveFlag = dto.ActiveFlag;
-            //entity.Description = dto.Description;
+            entity.Planno = dto.PlanNo;
+            entity.Activeflag = dto.ActiveFlag;
+            entity.Description = dto.Description;
+            entity.Reddisthrmhfm = dto.Reddisthrmhfm;
+
+
         }
 
-        public static StdLpDto ToDto(StdLp entity) => new()
+        public static StdLpDto ToDto(Stdlp entity) => new()
         {
-            PlanNo = entity.PlanNo,
-            ActiveFlag = entity.ActiveFlag,
-            //Description = entity.Description
+            PlanNo = entity.Planno,
+            ActiveFlag = entity.Activeflag,
+            Description = entity.Description,
+            Reddisthrmhfm = entity.Reddisthrmhfm
         };
     }
 }

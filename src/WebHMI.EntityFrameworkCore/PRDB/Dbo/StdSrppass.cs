@@ -3,40 +3,21 @@ using System.Collections.Generic;
 
 namespace WebHMI.PRDB.Dbo;
 
-public partial class StdSrppass
+public partial class Stdsrppass
 {
-    /// <summary>
-    /// active flag
-    /// </summary>
-    public int ActiveFlag { get; set; }
+    public int Activeflag { get; set; }
 
-    /// <summary>
-    /// pass number
-    /// </summary>
-    public int PassNo { get; set; }
+    public int Passno { get; set; }
 
-    /// <summary>
-    /// Unit[0...999] shifting model plan number
-    /// </summary>
-    public int PlanNo { get; set; }
+    public int Planno { get; set; }
 
-    /// <summary>
-    /// shifting speed value
-    /// </summary>
+    public string Description { get; set; }
+
     public double? Model { get; set; }
 
-    /// <summary>
-    /// modifying process
-    /// </summary>
     public string Mop { get; set; }
 
-    /// <summary>
-    /// time of creation
-    /// </summary>
     public DateTime? Toc { get; set; }
 
-    /// <summary>
-    /// time of modification
-    /// </summary>
     public DateTime? Tom { get; set; }
 }

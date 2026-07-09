@@ -5,54 +5,26 @@ namespace WebHMI.PRDB.Dbo;
 
 public partial class Wmppass
 {
-    /// <summary>
-    /// Material owner
-    /// </summary>
-    public string MeCreator { get; set; }
+    public string Mecreator { get; set; }
 
-    /// <summary>
-    /// Material idendification number
-    /// </summary>
-    public int MeId { get; set; }
+    public int Meid { get; set; }
 
-    /// <summary>
-    /// Line status
-    /// </summary>
-    public short MesId { get; set; }
+    public short Mesid { get; set; }
 
-    /// <summary>
-    /// pass number
-    /// </summary>
-    public int PassNo { get; set; }
+    public int Passno { get; set; }
 
-    /// <summary>
-    /// source
-    /// </summary>
     public string Source { get; set; }
 
-    /// <summary>
-    /// wear model:  2=LIN_THERM, 3=OLD_STYLE
-    /// </summary>
+    public string Description { get; set; }
+
     public double? Model { get; set; }
 
-    /// <summary>
-    /// wear plan num
-    /// </summary>
-    public int? PlanNo { get; set; }
+    public int? Planno { get; set; }
 
-    /// <summary>
-    /// modifying process
-    /// </summary>
     public string Mop { get; set; }
 
-    /// <summary>
-    /// time of creation
-    /// </summary>
     public DateTime? Toc { get; set; }
 
-    /// <summary>
-    /// time of modification
-    /// </summary>
     public DateTime? Tom { get; set; }
 
     public virtual Me1 Me1 { get; set; }

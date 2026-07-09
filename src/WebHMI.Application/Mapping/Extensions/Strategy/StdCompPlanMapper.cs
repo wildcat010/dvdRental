@@ -10,21 +10,21 @@ namespace WebHMI.Mapping.Extensions.Strategy
 {
     public class StdCompPlanMapper
     {
-        public static void MapEntity(StdCompPlan entity, StdCompPlanDto dto)
+        public static void MapEntity(Stdcompplan entity, StdCompPlanDto dto)
         {
-            entity.PlanNo = dto.PlanNo;
-            entity.ActiveFlag = dto.ActiveFlag;
-            //entity.Description = dto.Description;
-            entity.TempInd0 = dto.Temp_Ind0;
-            entity.TempInd1 = dto.Temp_Ind1;
-            entity.TempInd2 = dto.Temp_Ind2;
-            entity.TempInd3 = dto.Temp_Ind3;
-            entity.TempInd4 = dto.Temp_Ind4;
-            entity.TempInd5 = dto.Temp_Ind5;
-            entity.TempInd6 = dto.Temp_Ind6;
-            entity.TempInd7 = dto.Temp_Ind7;
-            entity.TempInd8 = dto.Temp_Ind8;
-            entity.TempInd9 = dto.Temp_Ind9;
+            entity.Planno = dto.PlanNo;
+            entity.Activeflag = dto.ActiveFlag;
+            entity.Description = dto.Description;
+            entity.TempInd00 = dto.Temp_Ind0;
+            entity.TempInd01 = dto.Temp_Ind1;
+            entity.TempInd02 = dto.Temp_Ind2;
+            entity.TempInd03 = dto.Temp_Ind3;
+            entity.TempInd04 = dto.Temp_Ind4;
+            entity.TempInd05 = dto.Temp_Ind5;
+            entity.TempInd06 = dto.Temp_Ind6;
+            entity.TempInd07 = dto.Temp_Ind7;
+            entity.TempInd08 = dto.Temp_Ind8;
+            entity.TempInd09 = dto.Temp_Ind9;
             entity.TempInd10 = dto.Temp_Ind10;
             entity.TempInd11 = dto.Temp_Ind11;
             entity.TempInd12 = dto.Temp_Ind12;
@@ -42,16 +42,16 @@ namespace WebHMI.Mapping.Extensions.Strategy
             entity.TempInd24 = dto.Temp_Ind24;
             entity.TempInd25 = dto.Temp_Ind25;
 
-            entity.KawaInd0 = dto.Kawa_Ind0;
-            entity.KawaInd1 = dto.Kawa_Ind1;
-            entity.KawaInd2 = dto.Kawa_Ind2;
-            entity.KawaInd3 = dto.Kawa_Ind3;
-            entity.KawaInd4 = dto.Kawa_Ind4;
-            entity.KawaInd5 = dto.Kawa_Ind5;
-            entity.KawaInd6 = dto.Kawa_Ind6;
-            entity.KawaInd7 = dto.Kawa_Ind7;
-            entity.KawaInd8 = dto.Kawa_Ind8;
-            entity.KawaInd9 = dto.Kawa_Ind9;
+            entity.KawaInd00 = dto.Kawa_Ind0;
+            entity.KawaInd01 = dto.Kawa_Ind1;
+            entity.KawaInd02 = dto.Kawa_Ind2;
+            entity.KawaInd03 = dto.Kawa_Ind3;
+            entity.KawaInd04 = dto.Kawa_Ind4;
+            entity.KawaInd05 = dto.Kawa_Ind5;
+            entity.KawaInd06 = dto.Kawa_Ind6;
+            entity.KawaInd07 = dto.Kawa_Ind7;
+            entity.KawaInd08 = dto.Kawa_Ind8;
+            entity.KawaInd09 = dto.Kawa_Ind9;
             entity.KawaInd10 = dto.Kawa_Ind10;
             entity.KawaInd11 = dto.Kawa_Ind11;
             entity.KawaInd12 = dto.Kawa_Ind12;
@@ -70,21 +70,21 @@ namespace WebHMI.Mapping.Extensions.Strategy
             entity.KawaInd25 = dto.Kawa_Ind25;
         }
 
-        public static StdCompPlanDto ToDto(StdCompPlan entity) => new()
+        public static StdCompPlanDto ToDto(Stdcompplan entity) => new()
         {
-            PlanNo = entity.PlanNo,
-            ActiveFlag = entity.ActiveFlag,
-            //Description = entity.Description
-            Temp_Ind0 = entity.TempInd0,
-            Temp_Ind1 = entity.TempInd1,
-            Temp_Ind2 = entity.TempInd2,
-            Temp_Ind3 = entity.TempInd3,
-            Temp_Ind4 = entity.TempInd4,
-            Temp_Ind5 = entity.TempInd5,
-            Temp_Ind6 = entity.TempInd6,
-            Temp_Ind7 = entity.TempInd7,
-            Temp_Ind8 = entity.TempInd8,
-            Temp_Ind9 = entity.TempInd9,
+            PlanNo = entity.Planno,
+            ActiveFlag = entity.Activeflag,
+            Description = entity.Description,
+            Temp_Ind0 = entity.TempInd00,
+            Temp_Ind1 = entity.TempInd01,
+            Temp_Ind2 = entity.TempInd02,
+            Temp_Ind3 = entity.TempInd03,
+            Temp_Ind4 = entity.TempInd04,
+            Temp_Ind5 = entity.TempInd05,
+            Temp_Ind6 = entity.TempInd06,
+            Temp_Ind7 = entity.TempInd07,
+            Temp_Ind8 = entity.TempInd08,
+            Temp_Ind9 = entity.TempInd09,
             Temp_Ind10 = entity.TempInd10,
             Temp_Ind11 = entity.TempInd11,
             Temp_Ind12 = entity.TempInd12,
@@ -102,16 +102,16 @@ namespace WebHMI.Mapping.Extensions.Strategy
             Temp_Ind24 = entity.TempInd24,
             Temp_Ind25 = entity.TempInd25,
 
-            Kawa_Ind0 = entity.KawaInd0,
-            Kawa_Ind1 = entity.KawaInd1,
-            Kawa_Ind2 = entity.KawaInd2,
-            Kawa_Ind3 = entity.KawaInd3,
-            Kawa_Ind4 = entity.KawaInd4,
-            Kawa_Ind5 = entity.KawaInd5,
-            Kawa_Ind6 = entity.KawaInd6,
-            Kawa_Ind7 = entity.KawaInd7,
-            Kawa_Ind8 = entity.KawaInd8,
-            Kawa_Ind9 = entity.KawaInd9,
+            Kawa_Ind0 = entity.KawaInd00,
+            Kawa_Ind1 = entity.KawaInd01,
+            Kawa_Ind2 = entity.KawaInd02,
+            Kawa_Ind3 = entity.KawaInd03,
+            Kawa_Ind4 = entity.KawaInd04,
+            Kawa_Ind5 = entity.KawaInd05,
+            Kawa_Ind6 = entity.KawaInd06,
+            Kawa_Ind7 = entity.KawaInd07,
+            Kawa_Ind8 = entity.KawaInd08,
+            Kawa_Ind9 = entity.KawaInd09,
             Kawa_Ind10 = entity.KawaInd10,
             Kawa_Ind11 = entity.KawaInd11,
             Kawa_Ind12 = entity.KawaInd12,

@@ -10,29 +10,29 @@ namespace WebHMI.Mapping.Extensions.Strategy
 {
     public class StdRcpPassMapper
     {
-        public static void MapEntity(StdRcppass entity, StdRcpPassDto dto)
+        public static void MapEntity(Stdrcppass entity, StdRcpPassDto dto)
         {
-            entity.PlanNo = dto.PlanNo;
-            entity.ActiveFlag = dto.ActiveFlag;
-            entity.PassNo = dto.PassNo;
-            //entity.Description = dto.Description;
-            entity.RollCoolState = dto.RollCoolState;
-            entity.FlowBrLoadedInd0 = dto.FlowWrLoadedInd0;
-            entity.FlowBrLoadedInd1 = dto.FlowWrLoadedInd1;
-            entity.FlowBrLoadedInd2 = dto.FlowWrLoadedInd2;
+            entity.Planno = dto.PlanNo;
+            entity.Activeflag = dto.ActiveFlag;
+            entity.Passno = dto.PassNo;
+            entity.Description = dto.Description;
+            entity.Rollcoolstate = dto.RollCoolState;
+            entity.FlowwrloadedInd0 = dto.FlowWrLoadedInd0;
+            entity.FlowwrloadedInd1 = dto.FlowWrLoadedInd1;
+            entity.FlowwrloadedInd2 = dto.FlowWrLoadedInd2;
 
         }
 
-        public static StdRcpPassDto ToDto(StdRcppass entity) => new()
+        public static StdRcpPassDto ToDto(Stdrcppass entity) => new()
         {
-            PlanNo = entity.PlanNo,
-            ActiveFlag = entity.ActiveFlag,
-            PassNo = entity.PassNo,
-            //Description = entity.Description
-            RollCoolState = entity.RollCoolState,
-            FlowWrLoadedInd0 = entity.FlowBrLoadedInd0,
-            FlowWrLoadedInd1 = entity.FlowBrLoadedInd1,
-            FlowWrLoadedInd2 = entity.FlowBrLoadedInd2
+            PlanNo = entity.Planno,
+            ActiveFlag = entity.Activeflag,
+            PassNo = entity.Passno,
+            Description = entity.Description,
+            RollCoolState = entity.Rollcoolstate,
+            FlowWrLoadedInd0 = entity.FlowwrloadedInd0,
+            FlowWrLoadedInd1 = entity.FlowwrloadedInd1,
+            FlowWrLoadedInd2 = entity.FlowwrloadedInd2
         };
     }
 }

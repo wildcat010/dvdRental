@@ -2,5 +2,5 @@
 
 namespace WebHMI.PRDB.Dbo
 {
-    public partial class CsRtCooling : IMaterialIdTypeOrder { }
+    public partial class Csrtcooling : IMaterialIdTypeOrder { }
 }

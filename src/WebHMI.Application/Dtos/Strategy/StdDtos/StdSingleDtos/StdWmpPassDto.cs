@@ -9,5 +9,6 @@ namespace WebHMI.Dtos.Strategy.StdDtos.StdSingleDtos
     public class StdWmpPassDto : StdPassDto
     {
         public double? Model { get; set; }
+        public string Description { get; set; }
     }
 }

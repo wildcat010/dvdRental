@@ -10,26 +10,26 @@ namespace WebHMI.Mapping.Extensions.Strategy
 {
     public class StdDrampHrmMapper
     {
-        public static void MapEntity(StdDprampHrm entity, StdDprampHrmDto dto)
+        public static void MapEntity(Stddpramphrm entity, StdDprampHrmDto dto)
         {
-            entity.PlanNo = dto.PlanNo;
-            entity.ActiveFlag = dto.ActiveFlag;
-            entity.RampNo = dto.RampNo;
-            //entity.Description = dto.Description;
-            entity.DescRampAuto = dto.DescrampAuto;
-            entity.DescRampState = dto.DescrampState;
-            entity.DescRampVolume = dto.DescrampVolume;
+            entity.Planno = dto.PlanNo;
+            entity.Activeflag = dto.ActiveFlag;
+            entity.Description = dto.Description;
+            entity.Rampno = dto.RampNo;
+            entity.Descrampauto = dto.DescrampAuto;
+            entity.Descrampstate = dto.DescrampState;
+            entity.Descrampvolume = dto.DescrampVolume;
         }
 
-        public static StdDprampHrmDto ToDto(StdDprampHrm entity) => new()
+        public static StdDprampHrmDto ToDto(Stddpramphrm entity) => new()
         {
-            PlanNo = entity.PlanNo,
-            ActiveFlag = entity.ActiveFlag,
-            RampNo = entity.RampNo,
-            //Description = entity.Description
-            DescrampAuto = entity.DescRampAuto,
-            DescrampState = entity.DescRampState,
-            DescrampVolume = entity.DescRampVolume
+            PlanNo = entity.Planno,
+            ActiveFlag = entity.Activeflag,
+            Description = entity.Description,
+            RampNo = entity.Rampno,
+            DescrampAuto = entity.Descrampauto,
+            DescrampState = entity.Descrampstate,
+            DescrampVolume = entity.Descrampvolume
         };
     }
 }

@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace WebHMI.Dtos.Setpoints.SetpointsCS
 {
     public class PreCalculationTabDto
     {
-        public SourceSet<float?> Vexitlas { get; set; } = new ();
-        public SourceSet<double?> Wateramount { get; set; } = new();
+        public List<CsTemperatureCurvePoint> TemperatureCurve { get; set; } = new();
+        public List<CsValveSetting> ValveSettings { get; set; } = new();
+        public List<CsSpeedDiagramLine> SpeedDiagram { get; set; } = new();
+        public OrderData OrderData { get; set; } = new();
     }
 }

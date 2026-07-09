@@ -12,12 +12,12 @@ namespace WebHMI.PRDB
 	{
 		public static void Configure(DbContextOptionsBuilder<PrdbContext> builder, string connectionString)
 		{
-			builder.UseSqlServer(connectionString).EnableSensitiveDataLogging();
+			builder.UseOracle(connectionString, b => b.UseOracleSQLCompatibility(OracleSQLCompatibility.DatabaseVersion19)).EnableSensitiveDataLogging();
 		}
 
 		public static void Configure(DbContextOptionsBuilder<PrdbContext> builder, DbConnection connection)
 		{
-			builder.UseSqlServer(connection).EnableSensitiveDataLogging();
+			builder.UseOracle(connection, b => b.UseOracleSQLCompatibility(OracleSQLCompatibility.DatabaseVersion19)).EnableSensitiveDataLogging();
 		}
 	}
 }

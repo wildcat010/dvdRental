@@ -2,5 +2,5 @@
 
 namespace WebHMI.PRDB.Dbo
 {
-	public partial class EdOrdEnt : IMaterialIdTypeOrder { }
+	public partial class Edordent : IMaterialIdTypeOrder { }
 }

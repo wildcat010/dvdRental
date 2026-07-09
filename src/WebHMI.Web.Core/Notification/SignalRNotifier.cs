@@ -1,12 +1,16 @@
 ﻿using Abp;
 using Abp.Dependency;
 using Abp.Events.Bus.Handlers;
+using Abp.Json;
 using Abp.RealTime;
 using Castle.Core.Logging;
 using Microsoft.AspNetCore.SignalR;
 using System;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using WebHMI.Dtos;
+using WebHMI.Events;
 using WebHMI.EventWrapper;
 using WebHMI.L2Adapter.Watchdogs.Dto;
 
@@ -20,14 +24,17 @@ namespace WebHMI.Notification
 
 		private readonly IOnlineClientManager _onlineClientManager;
 		private readonly IHubContext<HmiHub> _hubContext;
+        private readonly IHubContext<TwmHub> _twmHubContext;
 
-		public SignalRNotifier(
+        public SignalRNotifier(
 				IOnlineClientManager onlineClientManager,
-				IHubContext<HmiHub> hubContext)
+				IHubContext<HmiHub> hubContext,
+                IHubContext<TwmHub> twmHubContext)
 		{
 			_onlineClientManager = onlineClientManager;
 			_hubContext = hubContext;
-			Logger = NullLogger.Instance;
+            _twmHubContext = twmHubContext;
+            Logger = NullLogger.Instance;
 		}
 
 		public async Task SendHmiRefresh<T>(string key, T payload)
@@ -101,6 +108,25 @@ namespace WebHMI.Notification
 				Logger.Error("Could not send notification to hmiClientId: " + hmiClientId, ex);
 			}
 		}
+
+        public async Task BroadcastTwmToAllClientsAsync(HmiTwmDataDto input, string methodName = "TwmData")
+        {
+            try
+            {
+                Logger.Debug($"Broadcasting TWM data to all clients, methodName: {methodName}, " +
+                    $"data: {input.ToJsonString(new JsonSerializerOptions()
+                    {
+                        NumberHandling = JsonNumberHandling.AllowNamedFloatingPointLiterals,
+                        WriteIndented = false,
+                    })}");
+                await _twmHubContext.Clients.All.SendAsync(methodName, input);
+            }
+            catch (Exception ex)
+            {
+                Logger.Warn("Broadcasting TWM data to all clients failed, method name: '" + methodName + "'.", ex);
+            }
+        }
+
         public void HandleEvent(EventWrapper<HmiRefreshDto> eventData)
         {
             Logger.Debug(eventData.Data.EventKey[0]);

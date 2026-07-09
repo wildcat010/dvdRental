@@ -11,298 +11,297 @@ namespace WebHMI.Mapping.Extensions.Strategy
 {
     public static class AggregateSelectionMapper
     {
-        public static AggregateSelectionDto MapToDto(this AggregateSelection entity)
+        public static AggregateSelectionDto MapToDto(this Aggregateselection entity)
         {
             var dto = new AggregateSelectionDto();
 
             dto.Active = entity.Active;
             dto.Aggregate = entity.Aggregate;
-            dto.RecId = entity.RecId;
-            dto.AlloyCode = entity.AlloyCode;
-            dto.AlloyGroup = entity.AlloyGroup;
+            dto.RecId = entity.Recid;
+            dto.AlloyCode = entity.Alloycode;
+            dto.AlloyGroup = entity.Alloygroup;
 
-            dto.AlloyValueAlFrom = entity.AlloyValueAlFrom;
-            dto.AlloyValueAlTo = entity.AlloyValueAlTo;
-            dto.AlloyValueAsFrom = entity.AlloyValueAsFrom;
-            dto.AlloyValueAsTo = entity.AlloyValueAsTo;
-            dto.AlloyValueBFrom = entity.AlloyValueBfrom;
-            dto.AlloyValueBTo = entity.AlloyValueBto;
-            dto.AlloyValueCFrom = entity.AlloyValueCfrom;
-            dto.AlloyValueCTo = entity.AlloyValueCto;
-            dto.AlloyValueCoFrom = entity.AlloyValueCoFrom;
-            dto.AlloyValueCoTo = entity.AlloyValueCoTo;
-            dto.AlloyValueCrFrom = entity.AlloyValueCrFrom;
-            dto.AlloyValueCrTo = entity.AlloyValueCrTo;
-            dto.AlloyValueCuFrom = entity.AlloyValueCuFrom;
-            dto.AlloyValueCuTo = entity.AlloyValueCuTo;
-            dto.AlloyValueMgFrom = entity.AlloyValueMgFrom;
-            dto.AlloyValueMgTo = entity.AlloyValueMgTo;
-            dto.AlloyValueMnFrom = entity.AlloyValueMnFrom;
-            dto.AlloyValueMnTo = entity.AlloyValueMnTo;
-            dto.AlloyValueMoFrom = entity.AlloyValueMoFrom;
-            dto.AlloyValueMoTo = entity.AlloyValueMoTo;
-            dto.AlloyValueNFrom = entity.AlloyValueNfrom;
-            dto.AlloyValueNTo = entity.AlloyValueNto;
-            dto.AlloyValueNbFrom = entity.AlloyValueNbFrom;
-            dto.AlloyValueNbTo = entity.AlloyValueNbTo;
-            dto.AlloyValueNiFrom = entity.AlloyValueNiFrom;
-            dto.AlloyValueNiTo = entity.AlloyValueNiTo;
-            dto.AlloyValuePFrom = entity.AlloyValuePfrom;
-            dto.AlloyValuePTo = entity.AlloyValuePto;
-            dto.AlloyValuePbFrom = entity.AlloyValuePbFrom;
-            dto.AlloyValuePbTo = entity.AlloyValuePbTo;
-            dto.AlloyValueSFrom = entity.AlloyValueSfrom;
-            dto.AlloyValueSTo = entity.AlloyValueSto;
-            dto.AlloyValueSiFrom = entity.AlloyValueSiFrom;
-            dto.AlloyValueSiTo = entity.AlloyValueSiTo;
-            dto.AlloyValueSnFrom = entity.AlloyValueSnFrom;
-            dto.AlloyValueSnTo = entity.AlloyValueSnTo;
-            dto.AlloyValueTiFrom = entity.AlloyValueTiFrom;
-            dto.AlloyValueTiTo = entity.AlloyValueTiTo;
-            dto.AlloyValueVFrom = entity.AlloyValueVfrom;
-            dto.AlloyValueVTo = entity.AlloyValueVto;
-            dto.AlloyValueZnFrom = entity.AlloyValueZnFrom;
-            dto.AlloyValueZnTo = entity.AlloyValueZnTo;
+            dto.AlloyValueAlFrom = entity.Alloyvaluealfrom;
+            dto.AlloyValueAlTo = entity.Alloyvaluealto;
+            dto.AlloyValueAsFrom = entity.Alloyvalueasfrom;
+            dto.AlloyValueAsTo = entity.Alloyvalueasto;
+            dto.AlloyValueBFrom = entity.Alloyvaluebfrom;
+            dto.AlloyValueBTo = entity.Alloyvaluebto;
+            dto.AlloyValueCFrom = entity.Alloyvaluecfrom;
+            dto.AlloyValueCTo = entity.Alloyvaluecto;
+            dto.AlloyValueCoFrom = entity.Alloyvaluecofrom;
+            dto.AlloyValueCoTo = entity.Alloyvaluecoto;
+            dto.AlloyValueCrFrom = entity.Alloyvaluecrfrom;
+            dto.AlloyValueCrTo = entity.Alloyvaluecrto;
+            dto.AlloyValueCuFrom = entity.Alloyvaluecufrom;
+            dto.AlloyValueCuTo = entity.Alloyvaluecuto;
+            dto.AlloyValueMgFrom = entity.Alloyvaluemgfrom;
+            dto.AlloyValueMgTo = entity.Alloyvaluemgto;
+            dto.AlloyValueMnFrom = entity.Alloyvaluemnfrom;
+            dto.AlloyValueMnTo = entity.Alloyvaluemnto;
+            dto.AlloyValueMoFrom = entity.Alloyvaluemofrom;
+            dto.AlloyValueMoTo = entity.Alloyvaluemoto;
+            dto.AlloyValueNFrom = entity.Alloyvaluenfrom;
+            dto.AlloyValueNTo = entity.Alloyvaluento;
+            dto.AlloyValueNbFrom = entity.Alloyvaluenbfrom;
+            dto.AlloyValueNbTo = entity.Alloyvaluenbto;
+            dto.AlloyValueNiFrom = entity.Alloyvaluenifrom;
+            dto.AlloyValueNiTo = entity.Alloyvaluenito;
+            dto.AlloyValuePFrom = entity.Alloyvaluepfrom;
+            dto.AlloyValuePTo = entity.Alloyvaluepto;
+            dto.AlloyValuePbFrom = entity.Alloyvaluepbfrom;
+            dto.AlloyValuePbTo = entity.Alloyvaluepbto;
+            dto.AlloyValueSFrom = entity.Alloyvaluesfrom;
+            dto.AlloyValueSTo = entity.Alloyvaluesto;
+            dto.AlloyValueSiFrom = entity.Alloyvaluesifrom;
+            dto.AlloyValueSiTo = entity.Alloyvaluesito;
+            dto.AlloyValueSnFrom = entity.Alloyvaluesnfrom;
+            dto.AlloyValueSnTo = entity.Alloyvaluesnto;
+            dto.AlloyValueTiFrom = entity.Alloyvaluetifrom;
+            dto.AlloyValueTiTo = entity.Alloyvaluetito;
+            dto.AlloyValueVFrom = entity.Alloyvaluevfrom;
+            dto.AlloyValueVTo = entity.Alloyvaluevto;
+            dto.AlloyValueZnFrom = entity.Alloyvalueznfrom;
+            dto.AlloyValueZnTo = entity.Alloyvalueznto;
 
-            dto.ApsKey = entity.ApsKey;
+            dto.ApsKey = entity.Apskey;
+            dto.CoolPlanNo = entity.Coolplanno;
 
-            dto.CheckerHeightFrom = entity.CheckerHeightFrom;
-            dto.CheckerHeightTo = entity.CheckerHeightTo;
+            dto.CheckerHeightFrom = entity.Checkerheightfrom;
+            dto.CheckerHeightTo = entity.Checkerheightto;
 
-            dto.ClassMaxCrownDeltaFrom = entity.ClassMaxCrownDeltaFrom;
-            dto.ClassMaxCrownDeltaTo = entity.ClassMaxCrownDeltaTo;
-            dto.ClassMinCrownDeltaFrom = entity.ClassMinCrownDeltaFrom;
-            dto.ClassMinCrownDeltaTo = entity.ClassMinCrownDeltaTo;
+            dto.ClassMaxCrownDeltaFrom = entity.Classmaxcrowndeltafrom;
+            dto.ClassMaxCrownDeltaTo = entity.Classmaxcrowndeltato;
+            dto.ClassMinCrownDeltaFrom = entity.Classmincrowndeltafrom;
+            dto.ClassMinCrownDeltaTo = entity.Classmincrowndeltato;
 
-            dto.CoilTempFrom = entity.CoilTempFrom;
-            dto.CoilTempTo = entity.CoilTempTo;
+            dto.CoilTempFrom = entity.Coiltempfrom;
+            dto.CoilTempTo = entity.Coiltempto;
 
-            dto.DeltaWidthFrom = entity.DeltaWidthFrom;
-            dto.DeltaWidthTo = entity.DeltaWidthTo;
+            dto.DeltaWidthFrom = entity.Deltawidthfrom;
+            dto.DeltaWidthTo = entity.Deltawidthto;
 
             dto.Dependence = entity.Dependence;
             dto.Description = entity.Description;
 
-            dto.FurnaceNoFrom = entity.FurnaceNoFrom;
-            dto.FurnaceNoTo = entity.FurnaceNoTo;
+            dto.FurnaceNoFrom = entity.Furnacenofrom;
+            dto.FurnaceNoTo = entity.Furnacenoto;
 
-            dto.HentryFmFrom = entity.HEntryFmfrom;
-            dto.HentryFmTo = entity.HEntryFmto;
-            dto.HentryFrom = entity.HEntryFrom;
-            dto.HentryPreFrom = entity.HEntryPreFrom;
-            dto.HentryPreTo = entity.HEntryPreTo;
-            dto.HentryTo = entity.HEntryTo;
+            dto.HentryFmFrom = entity.Hentryfmfrom;
+            dto.HentryFmTo = entity.Hentryfmto;
+            dto.HentryFrom = entity.Hentryfrom;
+            dto.HentryPreFrom = entity.Hentryprefrom;
+            dto.HentryPreTo = entity.Hentrypreto;
+            dto.HentryTo = entity.Hentryto;
 
-            dto.HexitFrom = entity.HExitFrom;
-            dto.HexitTo = entity.HExitTo;
+            dto.HexitFrom = entity.Hexitfrom;
+            dto.HexitTo = entity.Hexitto;
 
-            dto.LentryWedgeFrom = entity.LEntryWedgeFrom;
-            dto.LentryWedgeTo = entity.LEntryWedgeTo;
+            dto.LentryWedgeFrom = entity.Lentrywedgefrom;
+            dto.LentryWedgeTo = entity.Lentrywedgeto;
 
-            dto.PlanNoInd0 = entity.PlanNoInd0;
-            dto.PlanNoInd1 = entity.PlanNoInd1;
-            dto.PlanNoInd2 = entity.PlanNoInd2;
-            dto.PlanNoInd3 = entity.PlanNoInd3;
+            dto.PlanNoInd0 = entity.PlannoInd0;
+            dto.PlanNoInd1 = entity.PlannoInd1;
+            dto.PlanNoInd2 = entity.PlannoInd2;
+            dto.PlanNoInd3 = entity.PlannoInd3;
 
             dto.SetpointsInd0 = entity.SetpointsInd0;
             dto.SetpointsInd1 = entity.SetpointsInd1;
             dto.SetpointsInd2 = entity.SetpointsInd2;
             dto.SetpointsInd3 = entity.SetpointsInd3;
 
-            dto.SlabLengthGroupFrom = entity.SlabLengthGroupFrom;
-            dto.SlabLengthGroupTo = entity.SlabLengthGroupTo;
+            dto.SlabLengthGroupFrom = entity.Slablengthgroupfrom;
+            dto.SlabLengthGroupTo = entity.Slablengthgroupto;
 
-            dto.SortId = entity.SortId;
+            dto.SortId = entity.Sortid;
 
-            dto.TentryFmFrom = entity.TEntryFmfrom;
-            dto.TentryFmTo = entity.TEntryFmto;
-            dto.TentryFrom = entity.TEntryFrom;
-            dto.TentryTo = entity.TEntryTo;
+            dto.TentryFmFrom = entity.Tentryfmfrom;
+            dto.TentryFmTo = entity.Tentryfmto;
+            dto.TentryFrom = entity.Tentryfrom;
+            dto.TentryTo = entity.Tentryto;
 
-            dto.TexitFrom = entity.TExitFrom;
-            dto.TexitTo = entity.TExitTo;
+            dto.TexitFrom = entity.Texitfrom;
+            dto.TexitTo = entity.Texitto;
 
-            dto.WentryFrom = entity.WEntryFrom;
-            dto.WentryTo = entity.WEntryTo;
-            dto.WexitFrom = entity.WExitFrom;
-            dto.WexitTo = entity.WExitTo;
+            dto.WentryFrom = entity.Wentryfrom;
+            dto.WentryTo = entity.Wentryto;
+            dto.WexitFrom = entity.Wexitfrom;
+            dto.WexitTo = entity.Wexitto;
 
-            dto.WeightEntryFrom = entity.WeightEntryFrom;
-            dto.WeightEntryTo = entity.WeightEntryTo;
+            dto.WeightEntryFrom = entity.Weightentryfrom;
+            dto.WeightEntryTo = entity.Weightentryto;
+
+            dto.SpareEqChar01 = entity.Spareeqchar01;
+            dto.SpareFloat01From = entity.Sparefloat01from;
+            dto.SpareFloat01To = entity.Sparefloat01to;
+            dto.SpareFloat02From = entity.Sparefloat02from;
+            dto.SpareFloat02To = entity.Sparefloat02to;
+            dto.SpareFloat03From = entity.Sparefloat03from;
+            dto.SpareFloat03To = entity.Sparefloat03to;
+            dto.SpareFloat04From = entity.Sparefloat04from;
+            dto.SpareFloat04To = entity.Sparefloat04to;
+            dto.SpareFloat05From = entity.Sparefloat05from;
+            dto.SpareFloat05To = entity.Sparefloat05to;
+            dto.SpareFloat06From = entity.Sparefloat06from;
+            dto.SpareFloat06To = entity.Sparefloat06to;
+            dto.SpareFloat07From = entity.Sparefloat07from;
+            dto.SpareFloat07To = entity.Sparefloat07to;
+            dto.SpareFloat08From = entity.Sparefloat08from;
+            dto.SpareFloat08To = entity.Sparefloat08to;
 
             dto.Mop = entity.Mop;
             dto.Toc = entity.Toc;
             dto.Tom = entity.Tom;
 
-            //dto.SpareFloat01From = entity.SpareFloat01From;
-            //dto.SpareFloat01To = entity.SpareFloat01To;
-            //dto.SpareFloat02From = entity.SpareFloat02From;
-            //dto.SpareFloat02To = entity.SpareFloat02To;
-            //dto.SpareFloat03From = entity.SpareFloat03From;
-            //dto.SpareFloat03To = entity.SpareFloat03To;
-            //dto.SpareFloat04From = entity.SpareFloat04From;
-            //dto.SpareFloat04To = entity.SpareFloat04To;
-            //dto.SpareFloat05From = entity.SpareFloat05From;
-            //dto.SpareFloat05To = entity.SpareFloat05To;
-            //dto.SpareFloat06From = entity.SpareFloat06From;
-            //dto.SpareFloat06To = entity.SpareFloat06To;
-            //dto.SpareFloat07From = entity.SpareFloat07From;
-            //dto.SpareFloat07To = entity.SpareFloat07To;
-            //dto.SpareFloat08From = entity.SpareFloat08From;
-            //dto.SpareFloat08To = entity.SpareFloat08To;
-
-            //dto.CoolPlanNo = entity.CoolPlanNo;
-            //dto.SpareEqChar01 = entity.SpareEqChar01;
-
             return dto;
         }
-        public static AggregateSelection MapFromDto(this AggregateSelection entity, AggregateSelectionDto dto) 
+        public static Aggregateselection MapFromDto(this Aggregateselection entity, AggregateSelectionDto dto)
         {
             entity.Active = dto.Active;
             entity.Aggregate = dto.Aggregate;
-            entity.RecId = dto.RecId;
-            entity.AlloyCode = dto.AlloyCode;
-            entity.AlloyGroup = dto.AlloyGroup;
+            entity.Recid = dto.RecId;
+            entity.Alloycode = dto.AlloyCode;
+            entity.Alloygroup = dto.AlloyGroup;
 
-            entity.AlloyValueAlFrom = dto.AlloyValueAlFrom;
-            entity.AlloyValueAlTo = dto.AlloyValueAlTo;
-            entity.AlloyValueAsFrom = dto.AlloyValueAsFrom;
-            entity.AlloyValueAsTo = dto.AlloyValueAsTo;
-            entity.AlloyValueBfrom = dto.AlloyValueBFrom;
-            entity.AlloyValueBto = dto.AlloyValueBTo;
-            entity.AlloyValueCfrom = dto.AlloyValueCFrom;
-            entity.AlloyValueCto = dto.AlloyValueCTo;
-            entity.AlloyValueCoFrom = dto.AlloyValueCoFrom;
-            entity.AlloyValueCoTo = dto.AlloyValueCoTo;
-            entity.AlloyValueCrFrom = dto.AlloyValueCrFrom;
-            entity.AlloyValueCrTo = dto.AlloyValueCrTo;
-            entity.AlloyValueCuFrom = dto.AlloyValueCuFrom;
-            entity.AlloyValueCuTo = dto.AlloyValueCuTo;
-            entity.AlloyValueMgFrom = dto.AlloyValueMgFrom;
-            entity.AlloyValueMgTo = dto.AlloyValueMgTo;
-            entity.AlloyValueMnFrom = dto.AlloyValueMnFrom;
-            entity.AlloyValueMnTo = dto.AlloyValueMnTo;
-            entity.AlloyValueMoFrom = dto.AlloyValueMoFrom;
-            entity.AlloyValueMoTo = dto.AlloyValueMoTo;
-            entity.AlloyValueNfrom = dto.AlloyValueNFrom;
-            entity.AlloyValueNto = dto.AlloyValueNTo;
-            entity.AlloyValueNbFrom = dto.AlloyValueNbFrom;
-            entity.AlloyValueNbTo = dto.AlloyValueNbTo;
-            entity.AlloyValueNiFrom = dto.AlloyValueNiFrom;
-            entity.AlloyValueNiTo = dto.AlloyValueNiTo;
-            entity.AlloyValuePfrom = dto.AlloyValuePFrom;
-            entity.AlloyValuePto = dto.AlloyValuePTo;
-            entity.AlloyValuePbFrom = dto.AlloyValuePbFrom;
-            entity.AlloyValuePbTo = dto.AlloyValuePbTo;
-            entity.AlloyValueSfrom = dto.AlloyValueSFrom;
-            entity.AlloyValueSto = dto.AlloyValueSTo;
-            entity.AlloyValueSiFrom = dto.AlloyValueSiFrom;
-            entity.AlloyValueSiTo = dto.AlloyValueSiTo;
-            entity.AlloyValueSnFrom = dto.AlloyValueSnFrom;
-            entity.AlloyValueSnTo = dto.AlloyValueSnTo;
-            entity.AlloyValueTiFrom = dto.AlloyValueTiFrom;
-            entity.AlloyValueTiTo = dto.AlloyValueTiTo;
-            entity.AlloyValueVfrom = dto.AlloyValueVFrom;
-            entity.AlloyValueVto = dto.AlloyValueVTo;
-            entity.AlloyValueZnFrom = dto.AlloyValueZnFrom;
-            entity.AlloyValueZnTo = dto.AlloyValueZnTo;
 
-            entity.ApsKey = dto.ApsKey;
+            entity.Alloyvaluealfrom = dto.AlloyValueAlFrom;
+            entity.Alloyvaluealto = dto.AlloyValueAlTo;
+            entity.Alloyvalueasfrom = dto.AlloyValueAsFrom;
+            entity.Alloyvalueasto = dto.AlloyValueAsTo;
+            entity.Alloyvaluebfrom = dto.AlloyValueBFrom;
+            entity.Alloyvaluebto = dto.AlloyValueBTo;
+            entity.Alloyvaluecfrom = dto.AlloyValueCFrom;
+            entity.Alloyvaluecto = dto.AlloyValueCTo;
+            entity.Alloyvaluecofrom = dto.AlloyValueCoFrom;
+            entity.Alloyvaluecoto = dto.AlloyValueCoTo;
+            entity.Alloyvaluecrfrom = dto.AlloyValueCrFrom;
+            entity.Alloyvaluecrto = dto.AlloyValueCrTo;
+            entity.Alloyvaluecufrom = dto.AlloyValueCuFrom;
+            entity.Alloyvaluecuto = dto.AlloyValueCuTo;
+            entity.Alloyvaluemgfrom = dto.AlloyValueMgFrom;
+            entity.Alloyvaluemgto = dto.AlloyValueMgTo;
+            entity.Alloyvaluemnfrom = dto.AlloyValueMnFrom;
+            entity.Alloyvaluemnto = dto.AlloyValueMnTo;
+            entity.Alloyvaluemofrom = dto.AlloyValueMoFrom;
+            entity.Alloyvaluemoto = dto.AlloyValueMoTo;
+            entity.Alloyvaluenfrom = dto.AlloyValueNFrom;
+            entity.Alloyvaluento = dto.AlloyValueNTo;
+            entity.Alloyvaluenbfrom = dto.AlloyValueNbFrom;
+            entity.Alloyvaluenbto = dto.AlloyValueNbTo;
+            entity.Alloyvaluenifrom = dto.AlloyValueNiFrom;
+            entity.Alloyvaluenito = dto.AlloyValueNiTo;
+            entity.Alloyvaluepfrom = dto.AlloyValuePFrom;
+            entity.Alloyvaluepto = dto.AlloyValuePTo;
+            entity.Alloyvaluepbfrom = dto.AlloyValuePbFrom;
+            entity.Alloyvaluepbto = dto.AlloyValuePbTo;
+            entity.Alloyvaluesfrom = dto.AlloyValueSFrom;
+            entity.Alloyvaluesto = dto.AlloyValueSTo;
+            entity.Alloyvaluesifrom = dto.AlloyValueSiFrom;
+            entity.Alloyvaluesito = dto.AlloyValueSiTo;
+            entity.Alloyvaluesnfrom = dto.AlloyValueSnFrom;
+            entity.Alloyvaluesnto = dto.AlloyValueSnTo;
+            entity.Alloyvaluetifrom = dto.AlloyValueTiFrom;
+            entity.Alloyvaluetito = dto.AlloyValueTiTo;
+            entity.Alloyvaluevfrom = dto.AlloyValueVFrom;
+            entity.Alloyvaluevto = dto.AlloyValueVTo;
+            entity.Alloyvalueznfrom = dto.AlloyValueZnFrom;
+            entity.Alloyvalueznto = dto.AlloyValueZnTo;
+            entity.Coolplanno = dto.CoolPlanNo;
 
-            entity.CheckerHeightFrom = dto.CheckerHeightFrom;
-            entity.CheckerHeightTo = dto.CheckerHeightTo;
+            entity.Apskey = dto.ApsKey;
 
-            entity.ClassMaxCrownDeltaFrom = dto.ClassMaxCrownDeltaFrom;
-            entity.ClassMaxCrownDeltaTo = dto.ClassMaxCrownDeltaTo;
-            entity.ClassMinCrownDeltaFrom = dto.ClassMinCrownDeltaFrom;
-            entity.ClassMinCrownDeltaTo = dto.ClassMinCrownDeltaTo;
+            entity.Checkerheightfrom = dto.CheckerHeightFrom;
+            entity.Checkerheightto = dto.CheckerHeightTo;
 
-            entity.CoilTempFrom = dto.CoilTempFrom;
-            entity.CoilTempTo = dto.CoilTempTo;
+            entity.Classmaxcrowndeltafrom = dto.ClassMaxCrownDeltaFrom;
+            entity.Classmaxcrowndeltato = dto.ClassMaxCrownDeltaTo;
+            entity.Classmincrowndeltafrom = dto.ClassMinCrownDeltaFrom;
+            entity.Classmincrowndeltato = dto.ClassMinCrownDeltaTo;
 
-            entity.DeltaWidthFrom = dto.DeltaWidthFrom;
-            entity.DeltaWidthTo = dto.DeltaWidthTo;
+            entity.Coiltempfrom = dto.CoilTempFrom;
+            entity.Coiltempto = dto.CoilTempTo;
+
+            entity.Deltawidthfrom = dto.DeltaWidthFrom;
+            entity.Deltawidthto = dto.DeltaWidthTo;
 
             entity.Dependence = dto.Dependence;
             entity.Description = dto.Description;
 
-            entity.FurnaceNoFrom = dto.FurnaceNoFrom;
-            entity.FurnaceNoTo = dto.FurnaceNoTo;
+            entity.Furnacenofrom = dto.FurnaceNoFrom;
+            entity.Furnacenoto = dto.FurnaceNoTo;
 
-            entity.HEntryFmfrom = dto.HentryFmFrom;
-            entity.HEntryFmto = dto.HentryFmTo;
-            entity.HEntryFrom = dto.HentryFrom;
-            entity.HEntryPreFrom = dto.HentryPreFrom;
-            entity.HEntryPreTo = dto.HentryPreTo;
-            entity.HEntryTo = dto.HentryTo;
+            entity.Hentryfmfrom = dto.HentryFmFrom;
+            entity.Hentryfmto = dto.HentryFmTo;
+            entity.Hentryfrom = dto.HentryFrom;
+            entity.Hentryprefrom = dto.HentryPreFrom;
+            entity.Hentrypreto = dto.HentryPreTo;
+            entity.Hentryto = dto.HentryTo;
 
-            entity.HExitFrom = dto.HexitFrom;
-            entity.HExitTo = dto.HexitTo;
+            entity.Hexitfrom = dto.HexitFrom;
+            entity.Hexitto = dto.HexitTo;
 
-            entity.LEntryWedgeFrom = dto.LentryWedgeFrom;
-            entity.LEntryWedgeTo = dto.LentryWedgeTo;
+            entity.Lentrywedgefrom = dto.LentryWedgeFrom;
+            entity.Lentrywedgeto = dto.LentryWedgeTo;
 
-            entity.PlanNoInd0 = dto.PlanNoInd0;
-            entity.PlanNoInd1 = dto.PlanNoInd1;
-            entity.PlanNoInd2 = dto.PlanNoInd2;
-            entity.PlanNoInd3 = dto.PlanNoInd3;
+            entity.PlannoInd0 = dto.PlanNoInd0;
+            entity.PlannoInd1 = dto.PlanNoInd1;
+            entity.PlannoInd2 = dto.PlanNoInd2;
+            entity.PlannoInd3 = dto.PlanNoInd3;
 
             entity.SetpointsInd0 = dto.SetpointsInd0;
             entity.SetpointsInd1 = dto.SetpointsInd1;
             entity.SetpointsInd2 = dto.SetpointsInd2;
             entity.SetpointsInd3 = dto.SetpointsInd3;
 
-            entity.SlabLengthGroupFrom = dto.SlabLengthGroupFrom;
-            entity.SlabLengthGroupTo = dto.SlabLengthGroupTo;
+            entity.Slablengthgroupfrom = dto.SlabLengthGroupFrom;
+            entity.Slablengthgroupto = dto.SlabLengthGroupTo;
 
-            entity.SortId = dto.SortId;
+            entity.Sortid = dto.SortId;
 
-            entity.TEntryFmfrom = dto.TentryFmFrom;
-            entity.TEntryFmto = dto.TentryFmTo;
-            entity.TEntryFrom = dto.TentryFrom;
-            entity.TEntryTo = dto.TentryTo;
+            entity.Tentryfmfrom = dto.TentryFmFrom;
+            entity.Tentryfmto = dto.TentryFmTo;
+            entity.Tentryfrom = dto.TentryFrom;
+            entity.Tentryto = dto.TentryTo;
 
-            entity.TExitFrom = dto.TexitFrom;
-            entity.TExitTo = dto.TexitTo;
+            entity.Texitfrom = dto.TexitFrom;
+            entity.Texitto = dto.TexitTo;
 
-            entity.WEntryFrom = dto.WentryFrom;
-            entity.WEntryTo = dto.WentryTo;
-            entity.WExitFrom = dto.WexitFrom;
-            entity.WExitTo = dto.WexitTo;
+            entity.Wentryfrom = dto.WentryFrom;
+            entity.Wentryto = dto.WentryTo;
+            entity.Wexitfrom = dto.WexitFrom;
+            entity.Wexitto = dto.WexitTo;
 
-            entity.WeightEntryFrom = dto.WeightEntryFrom;
-            entity.WeightEntryTo = dto.WeightEntryTo;
+            entity.Weightentryfrom = dto.WeightEntryFrom;
+            entity.Weightentryto = dto.WeightEntryTo;
+
+            entity.Spareeqchar01 = dto.SpareEqChar01;
+            entity.Sparefloat01from = dto.SpareFloat01From;
+            entity.Sparefloat01to = dto.SpareFloat01To;
+            entity.Sparefloat02from = dto.SpareFloat02From;
+            entity.Sparefloat02to = dto.SpareFloat02To;
+            entity.Sparefloat03from = dto.SpareFloat03From;
+            entity.Sparefloat03to = dto.SpareFloat03To;
+            entity.Sparefloat04from = dto.SpareFloat04From;
+            entity.Sparefloat04to = dto.SpareFloat04To;
+            entity.Sparefloat05from = dto.SpareFloat05From;
+            entity.Sparefloat05to = dto.SpareFloat05To;
+            entity.Sparefloat06from = dto.SpareFloat06From;
+            entity.Sparefloat06to = dto.SpareFloat06To;
+            entity.Sparefloat07from = dto.SpareFloat07From;
+            entity.Sparefloat07to = dto.SpareFloat07To;
+            entity.Sparefloat08from = dto.SpareFloat08From;
+            entity.Sparefloat08to = dto.SpareFloat08To;
 
             entity.Mop = dto.Mop;
             entity.Toc = dto.Toc;
             entity.Tom = dto.Tom;
 
-            //entity.SpareFloat01From = dto.SpareFloat01From;
-            //entity.SpareFloat01To = dto.SpareFloat01To;
-            //entity.SpareFloat02From = dto.SpareFloat02From;
-            //entity.SpareFloat02To = dto.SpareFloat02To;
-            //entity.SpareFloat03From = dto.SpareFloat03From;
-            //entity.SpareFloat03To = dto.SpareFloat03To;
-            //entity.SpareFloat04From = dto.SpareFloat04From;
-            //entity.SpareFloat04To = dto.SpareFloat04To;
-            //entity.SpareFloat05From = dto.SpareFloat05From;
-            //entity.SpareFloat05To = dto.SpareFloat05To;
-            //entity.SpareFloat06From = dto.SpareFloat06From;
-            //entity.SpareFloat06To = dto.SpareFloat06To;
-            //entity.SpareFloat07From = dto.SpareFloat07From;
-            //entity.SpareFloat07To = dto.SpareFloat07To;
-            //entity.SpareFloat08From = dto.SpareFloat08From;
-            //entity.SpareFloat08To = dto.SpareFloat08To;
-
-            //entity.CoolPlanNo = dto.CoolPlanNo;
-            //entity.SpareEqChar01 = dto.SpareEqChar01;
-
             return entity;
         }
-        public static AggregateSelection ToEntity(this AggregateSelectionDto dto, int recId)
+        public static Aggregateselection ToEntity(this AggregateSelectionDto dto, int recId)
         {
             dto.RecId = recId + 1; // to be changed after changing recId to autoincrement in database
-            return new AggregateSelection().MapFromDto(dto);
+            return new Aggregateselection().MapFromDto(dto);
         }
     }
 }

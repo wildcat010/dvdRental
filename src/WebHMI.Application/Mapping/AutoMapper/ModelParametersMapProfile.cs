@@ -13,7 +13,7 @@ namespace WebHMI.Mapping.AutoMapper
     {
         public ModelParametersMapProfile()
         {
-            CreateMap<MosParam, ParameterDto>().ReverseMap();
+            CreateMap<Mosparam, ParameterDto>().ReverseMap();
         }
     }
 }

@@ -1,0 +1,29 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace WebHMI.PRDB.Dbo;
+
+public partial class StatAdordent
+{
+    public string Mecreator { get; set; }
+
+    public int Meid { get; set; }
+
+    public short Mesid { get; set; }
+
+    public string Source { get; set; }
+
+    public short Thickhead { get; set; }
+
+    public short? Adapokfm { get; set; }
+
+    public short? Adapokrm { get; set; }
+
+    public string Mop { get; set; }
+
+    public DateTime? Toc { get; set; }
+
+    public DateTime? Tom { get; set; }
+
+    public virtual Me1 Me1 { get; set; }
+}

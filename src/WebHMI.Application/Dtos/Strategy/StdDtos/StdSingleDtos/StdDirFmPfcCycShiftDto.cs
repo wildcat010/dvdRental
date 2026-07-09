@@ -8,6 +8,6 @@ namespace WebHMI.Dtos.Strategy.StdDtos.StdSingleDtos
 {
     public class StdDirFmPfcCycShiftDto : StdItemDto
     {
-
+        public short? Manint { get; set; }
     }
 }

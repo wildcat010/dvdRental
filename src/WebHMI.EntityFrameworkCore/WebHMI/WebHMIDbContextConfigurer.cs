@@ -7,13 +7,13 @@ namespace WebHMI.WebHMI
 	{
 		public static void Configure(DbContextOptionsBuilder<WebHMIDbContext> builder, string connectionString)
 		{
-			builder.UseSqlServer(connectionString);
+			builder.UseOracle(connectionString, b => b.UseOracleSQLCompatibility(OracleSQLCompatibility.DatabaseVersion19));
 		}
 
 		public static void Configure(DbContextOptionsBuilder<WebHMIDbContext> builder, DbConnection connection)
 		{
-			builder.UseSqlServer(connection);
-		}
+			builder.UseOracle(connection, b => b.UseOracleSQLCompatibility(OracleSQLCompatibility.DatabaseVersion19));
+        }
 	}
 }
 

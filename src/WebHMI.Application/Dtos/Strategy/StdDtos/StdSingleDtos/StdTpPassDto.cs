@@ -10,5 +10,6 @@ namespace WebHMI.Dtos.Strategy.StdDtos.StdSingleDtos
     {
         public double? SpeciffoTension { get; set; }
         public double? LooperStripLen { get; set; }
+        public string Description { get; set; }
     }
 }

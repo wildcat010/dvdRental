@@ -57,12 +57,12 @@ namespace WebHMI.Core.Widget.Widgets
 			List<StadnardDistributionOneItem> result = new List<StadnardDistributionOneItem>();
 
 			var context = _dbContextProvider.GetDbContext();
-			var res = await context.HmiVProdsequences
-				.GroupBy(d => d.WExit)
+			var res = await context.HmiVProdsequenceCompletes
+				.GroupBy(d => d.Wexit)
 					.Select(
 					   d => new
 					   {
-						   AggregatedWeight = d.Sum(g => (double)g.WeightEntry),
+						   AggregatedWeight = d.Sum(g => (double)g.Weightentry),
 						   CountProducts = d.Count(),
 						   WidthExit = d.Key
 					   })

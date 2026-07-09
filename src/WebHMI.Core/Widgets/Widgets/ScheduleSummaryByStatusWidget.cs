@@ -56,14 +56,14 @@ namespace WebHMI.Core.Widget.Widgets
 		private Task ReadData()
 		{
 			var context = _dbContextProvider.GetDbContext();
-			Data.AllGood = context.HmiVProdsequences
-				.Where(t => t.SimMat == 0 && t.SetpointsPc2Ok == 1 && t.SetpointsCsOk == 1 && t.PdiStatus == 1) //t.creator != \"SI
+			Data.AllGood = context.HmiVProdsequenceCompletes
+				.Where(t => t.Simmat == 0 && t.Setpointspc2ok == 1 && t.Setpointscsok == 1 && t.Pdistatus == 1) //t.creator != \"SI
                 .Count();
-			Data.SetpointsInvalid = context.HmiVProdsequences
-				.Where(t => t.SimMat == 0 && t.PdiStatus == 1 && t.SetpointsCsOk != 1 || t.PdiStatus == 1 && t.SetpointsPc2Ok != 1)
+			Data.SetpointsInvalid = context.HmiVProdsequenceCompletes
+                .Where(t => t.Simmat == 0 && t.Pdistatus == 1 && t.Setpointscsok != 1 || t.Pdistatus == 1 && t.Setpointspc2ok != 1)
 				.Count();
-			Data.PrimaryDataInvalid = context.HmiVProdsequences
-				.Where(t => t.SimMat == 0 && t.PdiStatus != 1)
+			Data.PrimaryDataInvalid = context.HmiVProdsequenceCompletes
+                .Where(t => t.Simmat == 0 && t.Pdistatus != 1)
 				.Count();
 
 			return Task.CompletedTask;

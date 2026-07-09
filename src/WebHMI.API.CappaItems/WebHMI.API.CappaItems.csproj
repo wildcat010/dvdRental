@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿    <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -7,7 +7,7 @@
   </PropertyGroup>
 
     <ItemGroup>
-        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspNonControl\*_type_xidl.cs">
+        <!--<Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspNonControl\*_type_xidl.cs">
             <Link>Type\%(Filename)%(Extension)</Link>
         </Compile>
         <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspNonControl\*_glue_xidl.cs">
@@ -30,7 +30,702 @@
         </Compile>
         <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\lds\*_glue_xidl.cs">
             <Link>Glue\%(Filename)%(Extension)</Link>
+        </Compile>-->
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspNonControl\IPdhStub_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
         </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspNonControl\IPdhSkeleton_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspNonControl\IPdh_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspControl\IPdhCusStub_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspControl\IPdhCusSkeleton_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspControl\IPdhCus_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspControl\CUT_INFO_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspControl\CUT_INFO_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspNonControl\IOdaDbStub_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspNonControl\IOdaDbSkeleton_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspNonControl\IOdaDb_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspControl\IMosRcStub_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspControl\IMosRcSkeleton_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspControl\IMosRc_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspNonControl\IPapRcvStub_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspNonControl\IPapRcvSkeleton_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspNonControl\IPapRcv_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspNonControl\IPapSndStub_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspNonControl\IPapSndSkeleton_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspNonControl\IPapSnd_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspControl\IRollChangeStub_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspControl\IRollChangeSkeleton_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspControl\IRollChange_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspControl\IStaStub_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspControl\IStaSkeleton_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspControl\ISta_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        
+        
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\ILdsStub_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\ILdsSkeleton_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\ILds_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspNonControl\MATERIAL_ACKNOWLEDGE_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspNonControl\MATERIAL_ACKNOWLEDGE_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspNonControl\MATERIAL_BREAK_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspNonControl\MATERIAL_BREAK_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspNonControl\GET_MATERIAL_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspNonControl\GET_MATERIAL_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\NEW_MATERIAL_UNIT_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\NEW_MATERIAL_UNIT_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspNonControl\MATERIAL_DIVISION_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspNonControl\MATERIAL_DIVISION_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspNonControl\OPERATION_STATE_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspNonControl\OPERATION_STATE_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspNonControl\MATERIAL_PHY_DIVISION_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspNonControl\MATERIAL_PHY_DIVISION_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\TAKE_OUT_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\TAKE_OUT_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspControl\MOLD_INFO_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspControl\MOLD_INFO_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\interfaces\IEspHmiSkeleton_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\interfaces\IEspHmi_type_xidl.cs">
+            <Link>Glue\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\interfaces\IEspHmiStub_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+      <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\IHmiToL2CsSkeleton_glue_xidl.cs">
+        <Link>Type\%(Filename)%(Extension)</Link>
+      </Compile>
+      <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\IHmiToL2Cs_type_xidl.cs">
+        <Link>Glue\%(Filename)%(Extension)</Link>
+      </Compile>
+      <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\IHmiToL2CsStub_glue_xidl.cs">
+        <Link>Type\%(Filename)%(Extension)</Link>
+      </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\shared\HmiEquipmentStatus_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\shared\HmiEquipmentStatus_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\shared\HmiEquipmentTypes_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\shared\HmiEquipmentTypes_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\shared\HmiKeyValue_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\shared\HmiKeyValue_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\shared\HmiMaterial_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\shared\HmiMaterial_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\shared\HmiMeasurementsPack_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\shared\HmiMeasurementsPack_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\shared\HmiSingleMeasuredValue_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\shared\HmiSingleMeasuredValue_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\shared\HmiTrackingData_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\shared\HmiTrackingData_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\shared\HmiTwmData_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\shared\HmiTwmData_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\shared\HmiTwmRoll_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\shared\HmiTwmRoll_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\shared\HmiTwmRollStack_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\shared\HmiTwmRollStack_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\shared\HmiTwmSingleDiscData_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\shared\HmiTwmSingleDiscData_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\shared\HmiTwmStand_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\shared\HmiTwmStand_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiCsConfigData_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiCsConfigData_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiCsCtcCurve_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiCsCtcCurve_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiCsCtcData_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiCsCtcData_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiCsCtcInfos_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiCsCtcInfos_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiCsCtcLimits_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiCsCtcLimits_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiCsCtcMisc_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiCsCtcMisc_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiCsCtcParameter_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiCsCtcParameter_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiCsCtcPlantValues_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiCsCtcPlantValues_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiCsCtcRunTimeDiagram_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiCsCtcRunTimeDiagram_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiCsCtcSpeedDiagramParameter_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiCsCtcSpeedDiagramParameter_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiCsCtcStandLimits_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiCsCtcStandLimits_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiCsFlowGroup_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiCsFlowGroup_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiCsL2ModeEnum_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiCsL2ModeEnum_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiCsMaintenanceCalibrConfig_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiCsMaintenanceCalibrConfig_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiCsMaintenanceCyclicConfig_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiCsMaintenanceCyclicConfig_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiCsMaintenanceCyclicResult_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiCsMaintenanceCyclicResult_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiCsMaintenanceInOut_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiCsMaintenanceInOut_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiCsMaintenanceManualConfig_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiCsMaintenanceManualConfig_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiCsMaintenancePredefConfig_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiCsMaintenancePredefConfig_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiCsMaintenanceResults_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiCsMaintenanceResults_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiCsMaintenanceSequenceConfig_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiCsMaintenanceSequenceConfig_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiCsMaintenanceWormConfig_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiCsMaintenanceWormConfig_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiCsMeters_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiCsMeters_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiCsSimpleMeter_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiCsSimpleMeter_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiCsSliderF4t_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiCsSliderF4t_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiCsSpare_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiCsSpare_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiCsStatus_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiCsStatus_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiCsSubModeEnum_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiCsSubModeEnum_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiCsValveColors_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiCsValveColors_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiCsValves_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiCsValves_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiCsValveState_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiCsValveState_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+       <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiPhasoMeter_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\HmiPhasoMeter_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspControl\MOS_BEAR_FLOAT_DATA_REQ_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspControl\MOS_BEAR_FLOAT_DATA_REQ_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspControl\MorgOilMeasValues_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspControl\MorgOilMeasValues_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspControl\MOS_CAL_REQ_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspControl\MOS_CAL_REQ_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspControl\ROLL_CHANGE_FINISHED_L1_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspControl\ROLL_CHANGE_FINISHED_L1_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspControl\DO_CALCULATION_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspControl\DO_CALCULATION_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\CalcType_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\CalcType_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\SetpointType_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\SetpointType_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\MtrTimeHeader_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\MtrTimeHeader_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspControl\ROLL_DATA_REQ_L1_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspControl\ROLL_DATA_REQ_L1_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspControl\MAT_INFO_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspControl\MAT_INFO_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspControl\ROLL_SEQ_TEL_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspControl\ROLL_SEQ_TEL_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspControl\MorgOilStand_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspControl\MorgOilStand_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspControl\RSEQ_MECODEBAS_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspControl\RSEQ_MECODEBAS_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspControl\RSEQ_HEADER_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspControl\RSEQ_HEADER_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspNonControl\MAT_ACT_COMT_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspNonControl\MAT_ACT_COMT_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspNonControl\CAS_SEG_MAT_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspNonControl\CAS_SEG_MAT_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspNonControl\CASCUTINFO_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspNonControl\CASCUTINFO_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspNonControl\MILL_CAS_PLAN_DATA_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspNonControl\MILL_CAS_PLAN_DATA_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspNonControl\PAP_ROLL_CHANGE_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspNonControl\PAP_ROLL_CHANGE_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspNonControl\SpeedChangePos_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspNonControl\SpeedChangePos_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspNonControl\WidthChangePos_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\EspNonControl\WidthChangePos_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\lds\EspCsPlanNumbers_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\lds\EspCsPlanNumbers_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\lds\EspFmPlanNumbers_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\lds\EspFmPlanNumbers_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\lds\EspHrmPlanNumbers_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\lds\EspHrmPlanNumbers_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\lds\EspPlanNumbers_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\lds\EspPlanNumbers_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\MAT_UNIT_MTR_IN_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\MAT_UNIT_MTR_IN_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Constants_glue_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Constants_type_xidl.cs">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <!--<Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Include="$([System.Environment]::GetEnvironmentVariable('BUILD_ROOT'))\public\gen\Project\Shared\">
+            <Link>Type\%(Filename)%(Extension)</Link>
+        </Compile>-->
     </ItemGroup>
 
 </Project>

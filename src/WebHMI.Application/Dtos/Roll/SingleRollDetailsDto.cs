@@ -11,16 +11,16 @@ namespace WebHMI.Dtos.Roll
         public int? Standid { get; set; }
         public string Stat { get; set; }
         public string Rollpos { get; set; }
-        public float Diameter { get; set; }
-        public float? InitTemp { get; set; }
-        public float? Shimm { get; set; }
+        public double Diameter { get; set; }
+        public double? InitTemp { get; set; }
+        public double? Shimm { get; set; }
         public int? Rollclass { get; set; }
         public string RollClassName { get; set; }
         public int RollPropertyClass { get; set; }
         public string RollPropertyClassName { get; set; }
         public DateTime? Mounttime { get; set; }
         public DateTime? Dismounttime { get; set; }
-        public float? Roughness { get; set; }
+        public double? Roughness { get; set; }
         public short ShapeCode { get; set; }
         public int? ShapeType { get; set; }
         public string ShapeDescription { get; set; }

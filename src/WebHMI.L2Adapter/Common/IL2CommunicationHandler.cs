@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WebHMI.L2Adapter.Dtos;
+﻿using WebHMI.L2Adapter.Dtos;
+using WebHMI.L2Adapter.Services.HmiToL2CsStub;
 using WebHMI.PRDB.Dbo;
+using XIDL;
 
 namespace WebHMI.L2Adapter.Common
 {
-    public interface IL2CommunicationHandler
+    public interface  IL2CommunicationHandler
     {
         //void AppendMaterial(VMatStructEntry matStruct, string connectionId);
         //void ClearAllManualInputs(VMatStructEntry matStruct, string connectionId);
@@ -37,7 +33,23 @@ namespace WebHMI.L2Adapter.Common
         void NewHeatSimulation(string heatId, string sequenceId, short heatStart, float length);
         void NewHeatOperation(string heatId, string sequenceId, short heatStart, float length);
         void UpdateConfig(string aggregateName);
-
+        void fillCsConfigurationSync(ref HmiCsConfigData configData);
+        void takeOverManualValveState(int idx, HmiCsValveColors manualValveState, int type);
+        void AssignApsKey(string apsKey, string alloyCode);
+        void StartMaintainanceWorm(HmiCsMaintenanceWormConfig input);
+        void StopMaintainanceWorm();
+        void StartMaintainanceWormPowerCooling(HmiCsMaintenanceWormConfig config, double pressureDes4MaintenanceWormPc, double numberOfValves4MaintenanceWormPc);
+        void StopMaintainanceWormPowerCooling();
+        void StartMaintainanceWaterTest(short testId);
+        public void StopMaintainanceWaterTest(short testId);
+        public void StartMaintainanceManualTest(HmiCsMaintenanceManualConfig input);
+        public void StopMaintainanceManualTest();
+        public void StartTestSpecificValves(HmiCsMaintenanceSequenceConfig input);
+        public void StopTestSpecificValves();
+        void takeOverL2Mode(HmiCsL2ModeEnum mode);
+        void fillValveCalibrationMode(ref bool mode);
+        void stopValveCalibration();
+        void startValveCalibration(HmiCsMaintenanceCalibrConfig[] testData);
         //void SendProcessParametersCreated(ParamsDto arguments);
         //void SendProcessParametersDeleted(ParamsDto arguments);
 

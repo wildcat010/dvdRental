@@ -1,27 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WebHMI.Dtos.Strategy.StdDtos.StdSingleDtos;
+﻿using WebHMI.Dtos.Strategy.StdDtos.StdSingleDtos;
 using WebHMI.PRDB.Dbo;
 
 namespace WebHMI.Mapping.Extensions.Strategy
 {
     public class StdDirFmPfcCycShiftPMapper
     {
-        public static void MapEntity(StdDirFmPfcCycShiftP entity, StdDirFmPfcCycShiftDto dto)
+        public static void MapEntity(Stddirfmpfccycshiftp entity, StdDirFmPfcCycShiftDto dto)
         {
-            entity.PlanNo = dto.PlanNo;
-            entity.ActiveFlag = dto.ActiveFlag;
-            //entity.Description = dto.Description;
+            entity.Planno = dto.PlanNo;
+            entity.Activeflag = dto.ActiveFlag;
+            entity.Description = dto.Description;
+            entity.Manint = dto.Manint;
         }
 
-        public static StdDirFmPfcCycShiftDto ToDto(StdDirFmPfcCycShiftP entity) => new()
+        public static StdDirFmPfcCycShiftDto ToDto(Stddirfmpfccycshiftp entity) => new()
         {
-            PlanNo = entity.PlanNo,
-            ActiveFlag = entity.ActiveFlag,
-            //Description = entity.Description
+            PlanNo = entity.Planno,
+            ActiveFlag = entity.Activeflag,
+            Description = entity.Description,
+            Manint = entity.Manint,
         };
     }
 }

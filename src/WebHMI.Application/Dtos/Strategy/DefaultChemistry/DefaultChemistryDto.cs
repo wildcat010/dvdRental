@@ -1,94 +1,52 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using WebHMI.Dtos.Common;
 
 namespace WebHMI.Dtos.Strategy.DefaultChemistry
 {
     public class DefaultChemistryDto
     {
         public string Alloycode { get; set; }
-        public int? Cn_Ind0 { get; set; }
-        public int? Cn_Ind1 { get; set; }
-        public int? Cn_Ind2 { get; set; }
-        public int? Cn_Ind3 { get; set; }
-        public int? Cn_Ind4 { get; set; }
-        public int? Cn_Ind5 { get; set; }
-        public int? Cn_Ind6 { get; set; }
-        public int? Cn_Ind7 { get; set; }
-        public int? Cn_Ind8 { get; set; }
-        public int? Cn_Ind9 { get; set; }
-        public int? Cn_Ind10 { get; set; }
-        public int? Cn_Ind11 { get; set; }
-        public int? Cn_Ind12 { get; set; }
-        public int? Cn_Ind13 { get; set; }
-        public int? Cn_Ind14 { get; set; }
-        public int? Cn_Ind15 { get; set; }
-        public int? Cn_Ind16 { get; set; }
-        public int? Cn_Ind17 { get; set; }
-        public int? Cn_Ind18 { get; set; }
-        public int? Cn_Ind19 { get; set; }
-        public int? Cn_Ind20 { get; set; }
-        public int? Cn_Ind21 { get; set; }
-        public int? Cn_Ind22 { get; set; }
-        public int? Cn_Ind23 { get; set; }
-        public int? Cn_Ind24 { get; set; }
-        public int? Cn_Ind25 { get; set; }
-        public int? Cn_Ind26 { get; set; }
-        public int? Cn_Ind27 { get; set; }
-        public int? Cn_Ind28 { get; set; }
-        public int? Cn_Ind29 { get; set; }
-        public int? Cn_Ind30 { get; set; }
-        public int? Cn_Ind31 { get; set; }
-        public int? Cn_Ind32 { get; set; }
-        public int? Cn_Ind33 { get; set; }
-        public int? Cn_Ind34 { get; set; }
-        public int? Cn_Ind35 { get; set; }
-        public int? Cn_Ind36 { get; set; }
-        public int? Cn_Ind37 { get; set; }
-        public int? Cn_Ind38 { get; set; }
-        public int? Cn_Ind39 { get; set; }
-
-        public double? Ca_Ind0 { get; set; }
-        public double? Ca_Ind1 { get; set; }
-        public double? Ca_Ind2 { get; set; }
-        public double? Ca_Ind3 { get; set; }
-        public double? Ca_Ind4 { get; set; }
-        public double? Ca_Ind5 { get; set; }
-        public double? Ca_Ind6 { get; set; }
-        public double? Ca_Ind7 { get; set; }
-        public double? Ca_Ind8 { get; set; }
-        public double? Ca_Ind9 { get; set; }
-        public double? Ca_Ind10 { get; set; }
-        public double? Ca_Ind11 { get; set; }
-        public double? Ca_Ind12 { get; set; }
-        public double? Ca_Ind13 { get; set; }
-        public double? Ca_Ind14 { get; set; }
-        public double? Ca_Ind15 { get; set; }
-        public double? Ca_Ind16 { get; set; }
-        public double? Ca_Ind17 { get; set; }
-        public double? Ca_Ind18 { get; set; }
-        public double? Ca_Ind19 { get; set; }
-        public double? Ca_Ind20 { get; set; }
-        public double? Ca_Ind21 { get; set; }
-        public double? Ca_Ind22 { get; set; }
-        public double? Ca_Ind23 { get; set; }
-        public double? Ca_Ind24 { get; set; }
-        public double? Ca_Ind25 { get; set; }
-        public double? Ca_Ind26 { get; set; }
-        public double? Ca_Ind27 { get; set; }
-        public double? Ca_Ind28 { get; set; }
-        public double? Ca_Ind29 { get; set; }
-        public double? Ca_Ind30 { get; set; }
-        public double? Ca_Ind31 { get; set; }
-        public double? Ca_Ind32 { get; set; }
-        public double? Ca_Ind33 { get; set; }
-        public double? Ca_Ind34 { get; set; }
-        public double? Ca_Ind35 { get; set; }
-        public double? Ca_Ind36 { get; set; }
-        public double? Ca_Ind37 { get; set; }
-        public double? Ca_Ind38 { get; set; }
-        public double? Ca_Ind39 { get; set; }
+        public ApsChemistryElement ChemistryElement0 { get; set; } = new();
+        public ApsChemistryElement ChemistryElement1 { get; set; } = new();
+        public ApsChemistryElement ChemistryElement2 { get; set; } = new();
+        public ApsChemistryElement ChemistryElement3 { get; set; } = new();
+        public ApsChemistryElement ChemistryElement4 { get; set; } = new();
+        public ApsChemistryElement ChemistryElement5 { get; set; } = new();
+        public ApsChemistryElement ChemistryElement6 { get; set; } = new();
+        public ApsChemistryElement ChemistryElement7 { get; set; } = new();
+        public ApsChemistryElement ChemistryElement8 { get; set; } = new();
+        public ApsChemistryElement ChemistryElement9 { get; set; } = new();
+        public ApsChemistryElement ChemistryElement10 { get; set; } = new();
+        public ApsChemistryElement ChemistryElement11 { get; set; } = new();
+        public ApsChemistryElement ChemistryElement12 { get; set; } = new();
+        public ApsChemistryElement ChemistryElement13 { get; set; } = new();
+        public ApsChemistryElement ChemistryElement14 { get; set; } = new();
+        public ApsChemistryElement ChemistryElement15 { get; set; } = new();
+        public ApsChemistryElement ChemistryElement16 { get; set; } = new();
+        public ApsChemistryElement ChemistryElement17 { get; set; } = new();
+        public ApsChemistryElement ChemistryElement18 { get; set; } = new();
+        public ApsChemistryElement ChemistryElement19 { get; set; } = new();
+        public ApsChemistryElement ChemistryElement20 { get; set; } = new();
+        public ApsChemistryElement ChemistryElement21 { get; set; } = new();
+        public ApsChemistryElement ChemistryElement22 { get; set; } = new();
+        public ApsChemistryElement ChemistryElement23 { get; set; } = new();
+        public ApsChemistryElement ChemistryElement24 { get; set; } = new();
+        public ApsChemistryElement ChemistryElement25 { get; set; } = new();
+        public ApsChemistryElement ChemistryElement26 { get; set; } = new();
+        public ApsChemistryElement ChemistryElement27 { get; set; } = new();
+        public ApsChemistryElement ChemistryElement28 { get; set; } = new();
+        public ApsChemistryElement ChemistryElement29 { get; set; } = new();
+        public ApsChemistryElement ChemistryElement30 { get; set; } = new();
+        public ApsChemistryElement ChemistryElement31 { get; set; } = new();
+        public ApsChemistryElement ChemistryElement32 { get; set; } = new();
+        public ApsChemistryElement ChemistryElement33 { get; set; } = new();
+        public ApsChemistryElement ChemistryElement34 { get; set; } = new();
+        public ApsChemistryElement ChemistryElement35 { get; set; } = new();
+        public ApsChemistryElement ChemistryElement36 { get; set; } = new();
+        public ApsChemistryElement ChemistryElement37 { get; set; } = new();
+        public ApsChemistryElement ChemistryElement38 { get; set; } = new();
+        public ApsChemistryElement ChemistryElement39 { get; set; } = new();
+        public string Description { get; set; }
+        public double Total { get; set; }
     }
 }

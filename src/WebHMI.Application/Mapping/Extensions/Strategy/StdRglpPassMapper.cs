@@ -10,33 +10,33 @@ namespace WebHMI.Mapping.Extensions.Strategy
 {
     public class StdRglpPassMapper
     {
-        public static void MapEntity(StdRglppass entity, StdRglpPassDto dto)
+        public static void MapEntity(Stdrglppass entity, StdRglpPassDto dto)
         {
-            entity.PlanNo = dto.PlanNo;
-            entity.ActiveFlag = dto.ActiveFlag;
-            entity.PassNo = dto.PassNo;
-            //entity.Description = dto.Description;
-            entity.RollGapLubState = dto.RollGapLubState;
-            entity.RollGapLubRampTimeStart = dto.RollGapLubRampTimeStart;
-            entity.RollGapLubRampTimeStop = dto.RollGapLubRampTimeStop;
-            entity.RollGapLubSwitchLength = dto.RollGapLubSwitchLength;
-            entity.RollGapLubOilFlowTop = dto.RollGapLubOilFlowTop;
-            entity.RollGapLubOilFlowBot = dto.RollGapLubOilFlowBot;
+            entity.Planno = dto.PlanNo;
+            entity.Activeflag = dto.ActiveFlag;
+            entity.Passno = dto.PassNo;
+            entity.Description = dto.Description;
+            entity.Rollgaplubstate = dto.RollGapLubState;
+            entity.Rollgaplubramptimestart = dto.RollGapLubRampTimeStart;
+            entity.Rollgaplubramptimestop = dto.RollGapLubRampTimeStop;
+            entity.Rollgaplubswitchlength = dto.RollGapLubSwitchLength;
+            entity.Rollgapluboilflowtop = dto.RollGapLubOilFlowTop;
+            entity.Rollgapluboilflowbot = dto.RollGapLubOilFlowBot;
 
         }
 
-        public static StdRglpPassDto ToDto(StdRglppass entity) => new()
+        public static StdRglpPassDto ToDto(Stdrglppass entity) => new()
         {
-            PlanNo = entity.PlanNo,
-            ActiveFlag = entity.ActiveFlag,
-            PassNo = entity.PassNo,
-            //Description = entity.Description
-            RollGapLubState = entity.RollGapLubState,
-            RollGapLubRampTimeStart = entity.RollGapLubRampTimeStart,
-            RollGapLubRampTimeStop = entity.RollGapLubRampTimeStop,
-            RollGapLubSwitchLength = entity.RollGapLubSwitchLength,
-            RollGapLubOilFlowTop = entity.RollGapLubOilFlowTop,
-            RollGapLubOilFlowBot = entity.RollGapLubOilFlowBot
+            PlanNo = entity.Planno,
+            ActiveFlag = entity.Activeflag,
+            PassNo = entity.Passno,
+            Description = entity.Description,
+            RollGapLubState = entity.Rollgaplubstate,
+            RollGapLubRampTimeStart = entity.Rollgaplubramptimestart,
+            RollGapLubRampTimeStop = entity.Rollgaplubramptimestop,
+            RollGapLubSwitchLength = entity.Rollgaplubswitchlength,
+            RollGapLubOilFlowTop = entity.Rollgapluboilflowtop,
+            RollGapLubOilFlowBot = entity.Rollgapluboilflowbot
         };
     }
 }

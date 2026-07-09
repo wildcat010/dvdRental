@@ -10,19 +10,19 @@ namespace WebHMI.Mapping.Extensions.Strategy
 {
     public class StdIhpMapper
     {
-        public static void MapEntity(StdIhp entity, StdIhpDto dto)
+        public static void MapEntity(Stdihp entity, StdIhpDto dto)
         {
-            entity.PlanNo = dto.PlanNo;
-            entity.ActiveFlag = dto.ActiveFlag;
-            //entity.Description = dto.Description;
+            entity.Planno = dto.PlanNo;
+            entity.Activeflag = dto.ActiveFlag;
+            entity.Description = dto.Description;
             entity.Temperature = dto.Temperature;
         }
 
-        public static StdIhpDto ToDto(StdIhp entity) => new()
+        public static StdIhpDto ToDto(Stdihp entity) => new()
         {
-            PlanNo = entity.PlanNo,
-            ActiveFlag = entity.ActiveFlag,
-            //Description = entity.Description
+            PlanNo = entity.Planno,
+            ActiveFlag = entity.Activeflag,
+            Description = entity.Description,
             Temperature = entity.Temperature
         };
     }

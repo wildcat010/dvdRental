@@ -3,29 +3,29 @@ using System.Collections.Generic;
 
 namespace WebHMI.PRDB.Dbo;
 
-public partial class StdCsPerf
+public partial class Stdcsperf
 {
-    public int ActiveFlag { get; set; }
+    public int Activeflag { get; set; }
 
-    public int PlanNo { get; set; }
+    public int Planno { get; set; }
 
     public string Description { get; set; }
 
     public string Description2 { get; set; }
 
-    public double? PerformatorControlRatio { get; set; }
+    public double? Performatorcontrolratio { get; set; }
 
-    public double? PerformatorDistanceToApply { get; set; }
+    public double? Performatordistancetoapply { get; set; }
 
-    public short? PerformatorEnable { get; set; }
+    public short? Performatorenable { get; set; }
 
-    public short? PerformatorEnableForF4tCooling { get; set; }
+    public short? Performatorenableforf4tcooling { get; set; }
 
-    public short? PerformatorManualNo { get; set; }
+    public short? Performatormanualno { get; set; }
 
-    public double? PerformatorMaxLimit { get; set; }
+    public double? Performatormaxlimit { get; set; }
 
-    public double? PerformatorMinLimit { get; set; }
+    public double? Performatorminlimit { get; set; }
 
     public string Mop { get; set; }
 

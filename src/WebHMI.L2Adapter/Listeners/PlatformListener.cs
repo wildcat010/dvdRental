@@ -50,7 +50,10 @@ namespace WebHMI.L2Adapter.Listeners
                         } : null
                     }
                 };
-                _eventBus.Trigger(eventData);
+                //_logger.Info($"1111");
+                _ = EventBus.Default.TriggerAsync(eventData);
+                //_eventBus.Trigger(eventData);
+
                 _logger.Debug($"Propagated object: {Newtonsoft.Json.JsonConvert.SerializeObject(eventData)}");
                 _signalRNotifier.BroadcastToAllClientsAsync(eventData, "HmiRefreshData");
             }

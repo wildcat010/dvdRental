@@ -80,5 +80,100 @@ namespace WebHMI.L2Adapter.Senders
         {
             throw new NotImplementedException();
         }
+
+        public void NewHeatSimulation(string heatId, string sequenceId, short heatStart, double length)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void NewHeatOperation(string heatId, string sequenceId, short heatStart, double length)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void fillCsConfigurationSync(ref HmiCsConfigData configData)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void takeOverManualValveState(int idx, HmiCsValveColors manualValveState, int type)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AssignApsKey(string apsKey, string alloyCode)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void StartMaintainanceWorm(HmiCsMaintenanceWormConfig input)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void StopMaintainanceWorm()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void StartMaintainanceWormPowerCooling(HmiCsMaintenanceWormConfig config, double pressureDes4MaintenanceWormPc, double numberOfValves4MaintenanceWormPc)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void StopMaintainanceWormPowerCooling()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void StartMaintainanceWaterTest(short testId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void StopMaintainanceWaterTest(short testId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void StartMaintainanceManualTest(HmiCsMaintenanceManualConfig input)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void StopMaintainanceManualTest()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void StartTestSpecificValves(HmiCsMaintenanceSequenceConfig input)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void StopTestSpecificValves()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void takeOverL2Mode(HmiCsL2ModeEnum mode)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void fillValveCalibrationMode(ref bool mode)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void stopValveCalibration()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void startValveCalibration(HmiCsMaintenanceCalibrConfig[] testData)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

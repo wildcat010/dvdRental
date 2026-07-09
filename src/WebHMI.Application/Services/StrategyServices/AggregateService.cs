@@ -6,34 +6,33 @@ using Abp.EntityFrameworkCore;
 using Abp.Events.Bus;
 using Abp.UI;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Dynamic.Core;
 using System.Reflection;
-using System.Text;
 using System.Threading.Tasks;
 using WebHMI.Dtos.Strategy.AggregateDtos;
 using WebHMI.Helpers;
+using WebHMI.L2Adapter.Common;
 using WebHMI.Mapping.Extensions.Strategy;
 using WebHMI.PRDB;
 using WebHMI.PRDB.Dbo;
-using WebHMI.WebHMI.Migrations;
 using WebHMIApplication.Dtos.Filters;
 
 namespace WebHMI.API.Services.StrategyServices
 {
     public class AggregateService : ApplicationServiceBase
     {
-        //private readonly IL2CommunicationHandler _l2CommunicationHandler;
+        private readonly IL2CommunicationHandler _l2CommunicationHandler;
         private readonly IDbContextProvider<PrdbContext> _prdbContextProvider;
 
 
-        public AggregateService(IDbContextProvider<PrdbContext> prdbContextProvider)
+        public AggregateService(IDbContextProvider<PrdbContext> prdbContextProvider,
+            IL2CommunicationHandler l2CommunicationHandler)
         {
             _prdbContextProvider = prdbContextProvider;
-            //_l2CommunicationHandler = l2CommunicationHandler;
+            _l2CommunicationHandler = l2CommunicationHandler;
         }
 
         /// <summary>
@@ -46,15 +45,15 @@ namespace WebHMI.API.Services.StrategyServices
         {
             var context = _prdbContextProvider.GetDbContext();
 
-            var lastRecId = await context.AggregateSelections
-                .OrderByDescending(x => x.RecId)
-                .Select(x => x.RecId)
+            var lastRecId = await context.Aggregateselections
+                .OrderByDescending(x => x.Recid)
+                .Select(x => x.Recid)
                 .FirstOrDefaultAsync();
 
             var entity = input.ToEntity(lastRecId);
-            await context.AggregateSelections.AddAsync(entity);
+            await context.Aggregateselections.AddAsync(entity);
 
-            //_l2CommunicationHandler.SendApsStrategyChange(input.Aggregate);
+            _l2CommunicationHandler.AssignApsKey(input.ApsKey, input.AlloyCode);
 
             return entity.MapToDto();
         }
@@ -64,8 +63,8 @@ namespace WebHMI.API.Services.StrategyServices
         {
             var context = _prdbContextProvider.GetDbContext();
 
-            var result = await context.AggregateSelections
-            .FirstOrDefaultAsync(x => x.Active == active && x.RecId == recId && x.Aggregate == aggregate)
+            var result = await context.Aggregateselections
+            .FirstOrDefaultAsync(x => x.Active == active && x.Recid == recId && x.Aggregate == aggregate)
             ?? throw new UserFriendlyException("Entity for given key not found.");
 
             return result.MapToDto();
@@ -76,7 +75,7 @@ namespace WebHMI.API.Services.StrategyServices
         {
             var context = _prdbContextProvider.GetDbContext();
 
-            var query = context.AggregateSelections.AsQueryable();
+            var query = context.Aggregateselections.AsQueryable();
             query = ApplyAggregateFilter(input, query);
             return await ApplyFilter(query, input, AggregateSelectionMapper.MapToDto);
         }
@@ -86,8 +85,8 @@ namespace WebHMI.API.Services.StrategyServices
         {
             var context = _prdbContextProvider.GetDbContext();
 
-            return await context.ApsRefs
-                .Select(x => x.ApsKey)
+            return await context.Apsrefs
+                .Select(x => x.Apskey)
                 .Distinct()
                 .ToListAsync();
         }
@@ -102,13 +101,13 @@ namespace WebHMI.API.Services.StrategyServices
         {
             var context = _prdbContextProvider.GetDbContext();
 
-            var entity = await context.AggregateSelections
-                .SingleOrDefaultAsync(x => x.Active == input.Active && x.RecId == input.RecId && x.Aggregate == input.Aggregate)
+            var entity = await context.Aggregateselections
+                .SingleOrDefaultAsync(x => x.Active == input.Active && x.Recid == input.RecId && x.Aggregate == input.Aggregate)
                 ?? throw new UserFriendlyException("Aggregate not found for given id");
 
             entity.MapFromDto(input);
 
-           // _l2CommunicationHandler.SendApsStrategyChange(input.Aggregate);
+           _l2CommunicationHandler.AssignApsKey(input.ApsKey, input.AlloyCode);
 
             return entity.MapToDto();
         }
@@ -119,18 +118,16 @@ namespace WebHMI.API.Services.StrategyServices
         {
             var context = _prdbContextProvider.GetDbContext();
 
-            var entity = await context.AggregateSelections
-                .SingleOrDefaultAsync(x => x.Active == active && x.RecId == recId && x.Aggregate == aggregate)
+            var entity = await context.Aggregateselections
+                .SingleOrDefaultAsync(x => x.Active == active && x.Recid == recId && x.Aggregate == aggregate)
                 ?? throw new UserFriendlyException("Aggregate not found for a given id");
 
-            context.AggregateSelections.Remove(entity);
-
-            //_l2CommunicationHandler.SendApsStrategyChange(entity.Aggregate);
+            context.Aggregateselections.Remove(entity);
 
         }
-        private static IQueryable<AggregateSelection> ApplyAggregateFilter(AggregateFilteredRequestDto input, IQueryable<AggregateSelection> query)
+        private static IQueryable<Aggregateselection> ApplyAggregateFilter(AggregateFilteredRequestDto input, IQueryable<Aggregateselection> query)
         {
-            var entityType = typeof(AggregateSelection);
+            var entityType = typeof(Aggregateselection);
 
             if (input.FromToFilters?.PropName.Any() ?? false)
             {

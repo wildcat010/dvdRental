@@ -3,24 +3,31 @@ using System.Collections.Generic;
 
 namespace WebHMI.PRDB.Dbo;
 
-/// <summary>
-/// Standard compensation plan
-/// </summary>
-public partial class StdCompPlan
+public partial class Stdcompplan
 {
-    /// <summary>
-    /// active flag
-    /// </summary>
-    public int ActiveFlag { get; set; }
+    public int Activeflag { get; set; }
 
-    /// <summary>
-    /// key for the compensation plan
-    /// </summary>
-    public int PlanNo { get; set; }
+    public int Planno { get; set; }
 
-    public double? KawaInd0 { get; set; }
+    public double? KawaInd00 { get; set; }
 
-    public double? KawaInd1 { get; set; }
+    public double? KawaInd01 { get; set; }
+
+    public double? KawaInd02 { get; set; }
+
+    public double? KawaInd03 { get; set; }
+
+    public double? KawaInd04 { get; set; }
+
+    public double? KawaInd05 { get; set; }
+
+    public double? KawaInd06 { get; set; }
+
+    public double? KawaInd07 { get; set; }
+
+    public double? KawaInd08 { get; set; }
+
+    public double? KawaInd09 { get; set; }
 
     public double? KawaInd10 { get; set; }
 
@@ -42,8 +49,6 @@ public partial class StdCompPlan
 
     public double? KawaInd19 { get; set; }
 
-    public double? KawaInd2 { get; set; }
-
     public double? KawaInd20 { get; set; }
 
     public double? KawaInd21 { get; set; }
@@ -56,20 +61,6 @@ public partial class StdCompPlan
 
     public double? KawaInd25 { get; set; }
 
-    public double? KawaInd3 { get; set; }
-
-    public double? KawaInd4 { get; set; }
-
-    public double? KawaInd5 { get; set; }
-
-    public double? KawaInd6 { get; set; }
-
-    public double? KawaInd7 { get; set; }
-
-    public double? KawaInd8 { get; set; }
-
-    public double? KawaInd9 { get; set; }
-
     public double? KawakInd0 { get; set; }
 
     public double? KawakInd1 { get; set; }
@@ -80,9 +71,25 @@ public partial class StdCompPlan
 
     public double? KawakInd4 { get; set; }
 
-    public double? TempInd0 { get; set; }
+    public double? TempInd00 { get; set; }
 
-    public double? TempInd1 { get; set; }
+    public double? TempInd01 { get; set; }
+
+    public double? TempInd02 { get; set; }
+
+    public double? TempInd03 { get; set; }
+
+    public double? TempInd04 { get; set; }
+
+    public double? TempInd05 { get; set; }
+
+    public double? TempInd06 { get; set; }
+
+    public double? TempInd07 { get; set; }
+
+    public double? TempInd08 { get; set; }
+
+    public double? TempInd09 { get; set; }
 
     public double? TempInd10 { get; set; }
 
@@ -104,8 +111,6 @@ public partial class StdCompPlan
 
     public double? TempInd19 { get; set; }
 
-    public double? TempInd2 { get; set; }
-
     public double? TempInd20 { get; set; }
 
     public double? TempInd21 { get; set; }
@@ -118,32 +123,11 @@ public partial class StdCompPlan
 
     public double? TempInd25 { get; set; }
 
-    public double? TempInd3 { get; set; }
-
-    public double? TempInd4 { get; set; }
-
-    public double? TempInd5 { get; set; }
-
-    public double? TempInd6 { get; set; }
-
-    public double? TempInd7 { get; set; }
-
-    public double? TempInd8 { get; set; }
-
-    public double? TempInd9 { get; set; }
-
-    /// <summary>
-    /// modifying process
-    /// </summary>
     public string Mop { get; set; }
 
-    /// <summary>
-    /// time of creation
-    /// </summary>
     public DateTime? Toc { get; set; }
 
-    /// <summary>
-    /// time of modification
-    /// </summary>
     public DateTime? Tom { get; set; }
+
+    public string Description { get; set; }
 }

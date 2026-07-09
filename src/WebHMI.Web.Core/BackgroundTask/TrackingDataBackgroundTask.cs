@@ -78,7 +78,7 @@ namespace WebHMI.API.BackgroundTask
         {
             var context = _dbContextProvider.GetDbContext();
 
-            bool isCoilUpdated = await context.HmiCoils
+            bool isCoilUpdated = await context.Hmicoils
                 .AnyAsync(x => x.Tom > _lastHmiCoilUpdate);
 
             bool isCacheAvailable = (await _cacheActualNext.GetOrDefaultAsync(_trackingDataCacheKey)) is not null;
@@ -88,7 +88,7 @@ namespace WebHMI.API.BackgroundTask
 
             var result = new Dictionary<string, MeCodeDto>();
 
-            var hmiCoils = await context.HmiCoils
+            var hmiCoils = await context.Hmicoils
                 .Where(x => x.Id != null & x.Param != null)
                 .ToListAsync();
 
@@ -118,7 +118,7 @@ namespace WebHMI.API.BackgroundTask
             return await _cacheMeCode.GetAsync(enloextid, async () =>
             {
                 return (await context.VMatStructEntries
-                .FirstOrDefaultAsync(x => x.EnLoExtId == enloextid)
+                .FirstOrDefaultAsync(x => x.Enloextid == enloextid)
                 )?.ToMeCodeDto();
 
             });

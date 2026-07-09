@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace WebHMI.L2Adapter.Watchdogs.Dto
+namespace WebHMI.Events
 {
     public class HmiTwmDataDto
     {

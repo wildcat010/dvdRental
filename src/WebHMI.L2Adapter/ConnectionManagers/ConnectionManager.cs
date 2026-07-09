@@ -24,6 +24,13 @@ namespace WebHMI.L2Adapter.ConnectionManagers
         private readonly EspHmi _espHmi;
 
         private bool _disposed = false;
+        private IAlarmListenerSkeleton alarmListenerSkeleton;
+        private Servant alarmListener;
+        private Servant tmp3;
+        private IEspHmiSkeleton espHmiSkeleton;
+        private Servant expHmiServant;
+        private IHmiPaSkeleton hmiPaSkeleton;
+        private Servant hmiPaServant;
 
         public static bool IsL2CommunicationRunning { get; private set; }
 
@@ -95,14 +102,14 @@ namespace WebHMI.L2Adapter.ConnectionManagers
 
             try
             {
-                var hmiPaSkeleton = new IHmiPaSkeleton(_platformListener);
-                new Servant("hmiPa", hmiPaSkeleton);
+                hmiPaSkeleton = new IHmiPaSkeleton(_platformListener);
+                hmiPaServant = new Servant("hmiPa", hmiPaSkeleton);
 
-                var espHmiSkeleton = new IEspHmiSkeleton(_espHmi);
-                new Servant("espHmi", espHmiSkeleton);
+                espHmiSkeleton = new IEspHmiSkeleton(_espHmi);
+                expHmiServant= new Servant("espHmi", espHmiSkeleton);
 
-                var alarmListenerSkeleton = new IAlarmListenerSkeleton(_alarmListener);
-                new Servant("alarmListener", alarmListenerSkeleton);
+                alarmListenerSkeleton = new IAlarmListenerSkeleton(_alarmListener);
+                alarmListener=new Servant("alarmListener", alarmListenerSkeleton);
 
                 // Initialize stubs
                 IocManager.Instance.Resolve<IL2CommunicationHandler>();

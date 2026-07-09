@@ -50,6 +50,9 @@ namespace WebHMI
             strategies.CreateChildPermission(Permissions.Pages_Strategies_Edit);
             strategies.CreateChildPermission(Permissions.Pages_Strategies_Delete);
 
+            var prodHistory = context.CreatePermission(Permissions.Pages_ProductHistory);
+            prodHistory.CreateChildPermission(Permissions.Pages_ProductHistory_Edit);
+            prodHistory.CreateChildPermission(Permissions.Pages_ProductHistory_Delete);
         }
     }
 }

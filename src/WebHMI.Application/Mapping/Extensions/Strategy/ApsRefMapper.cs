@@ -10,26 +10,26 @@ namespace WebHMI.Mapping.Extensions.Strategy
 {
     public static class ApsRefMapper
     {
-        public static ApsRef ToEntity(this ApsRefDto dto)
+        public static Apsref ToEntity(this ApsRefDto dto)
         {
-            var result = new ApsRef();
+            var result = new Apsref();
             result.MapFromDto(dto);
             return result;
         }
 
-        public static void MapFromDto(this ApsRef entity, ApsRefDto dto)
+        public static void MapFromDto(this Apsref entity, ApsRefDto dto)
         {
-            entity.KeyName = dto.KeyName;
-            entity.KeyType = dto.KeyType;
-            entity.ApsKey = dto.ApsKey;
+            entity.Keyname = dto.KeyName;
+            entity.Keytype = dto.KeyType;
+            entity.Apskey = dto.ApsKey;
         }
 
-        public static ApsRefDto MapToDto(this ApsRef entity)
+        public static ApsRefDto MapToDto(this Apsref entity)
         {
             var result = new ApsRefDto();
-            result.KeyName = entity.KeyName;
-            result.KeyType = entity.KeyType;
-            result.ApsKey = entity.ApsKey;
+            result.KeyName = entity.Keyname;
+            result.KeyType = entity.Keytype;
+            result.ApsKey = entity.Apskey;
 
             return result;
         }

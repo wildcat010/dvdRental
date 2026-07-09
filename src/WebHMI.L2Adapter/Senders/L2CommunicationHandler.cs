@@ -1,25 +1,19 @@
-﻿using Abp.Dependency;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Abp.Authorization;
 using WebHMI.L2Adapter.Common;
-using WebHMI.L2Adapter.Services;
 using WebHMI.L2Adapter.Dtos;
+using WebHMI.L2Adapter.Services;
+using WebHMI.L2Adapter.Services.HmiToL2CsStub;
+using WebHMI.L2Adapter.Services.LdsStub;
 using WebHMI.L2Adapter.Services.MosRcStub;
 using WebHMI.L2Adapter.Services.OdaDbStub;
+using WebHMI.L2Adapter.Services.PapRcvStub;
+using WebHMI.L2Adapter.Services.PapSndStub;
+using WebHMI.L2Adapter.Services.PdhCusStub;
 using WebHMI.L2Adapter.Services.PdhStub;
+using WebHMI.L2Adapter.Services.RollChangeStub;
 using WebHMI.L2Adapter.Services.StaStub;
 using WebHMI.PRDB.Dbo;
 using XIDL;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
-using WebHMI.L2Adapter.Services.PapRcvStub;
-using WebHMI.L2Adapter.Services.RollChangeStub;
-using WebHMI.L2Adapter.Services.PapSndStub;
-using Microsoft.VisualBasic;
-using WebHMI.L2Adapter.Services.PdhCusStub;
-using WebHMI.L2Adapter.Services.LdsStub;
 
 namespace WebHMI.L2Adapter.Senders
 {
@@ -31,23 +25,6 @@ namespace WebHMI.L2Adapter.Senders
             _factory = factory;
         }
 
-        //private readonly IPdhStubService _pdhService;
-        //private readonly IOdaDbStubService _odaDbService;
-        //private readonly IMosRcStubService _mosRcService;
-        //private readonly IStaStubService _staService;
-
-        //public L2CommunicationHandler(
-        //    //IPdhStubService pdhService,
-        //    IOdaDbStubService odaDbService,
-        //    IMosRcStubService mosRcService,
-        //    IStaStubService staService)
-        //{
-        //    //_pdhService = pdhService;
-        //    _odaDbService = odaDbService;
-        //    _mosRcService = mosRcService;
-        //    _staService = staService;
-        //}
-
         //PDH
 
         public void EntryDataChange(VMatStructEntry matStruct, string connectionId)
@@ -55,10 +32,9 @@ namespace WebHMI.L2Adapter.Senders
             var pdhService = _factory.Create<IPdhStubService>();
             try { pdhService.EntryDataChange(matStruct, connectionId); }
             finally { _factory.Release(pdhService); }
-            
         }
 
-        public void MoveMaterialInSequence(VMatStructEntry matStructSrc, VMatStructEntry matStructDest , short location, string connectionId)
+        public void MoveMaterialInSequence(VMatStructEntry matStructSrc, VMatStructEntry matStructDest, short location, string connectionId)
         {
             //_pdhService.MoveMaterialInSequence(matStructSrc, matStructDest,location,connectionId);
             var pdhService = _factory.Create<IPdhStubService>();
@@ -72,6 +48,15 @@ namespace WebHMI.L2Adapter.Senders
 
             var pdhService = _factory.Create<IPdhStubService>();
             try { pdhService.SetNextMaterialInSchedule(matStruct, connectionId); }
+            finally { _factory.Release(pdhService); }
+        }
+
+        public void AssignApsKey(string apsKey, string alloyCode)
+        {
+            // _pdhService.SetNextMaterialInSchedule(matStruct, connectionId);
+
+            var pdhService = _factory.Create<IPdhStubService>();
+            try { pdhService.AssignApsKey(apsKey, alloyCode); }
             finally { _factory.Release(pdhService); }
         }
 
@@ -103,7 +88,7 @@ namespace WebHMI.L2Adapter.Senders
 
         //STA 
 
-        public void SetpointsCalculationHMI(VMatStructEntry matStruct, string aggregate, string connectionId) 
+        public void SetpointsCalculationHMI(VMatStructEntry matStruct, string aggregate, string connectionId)
         {
             // _staService.SetpointsCalculationHMI(matStruct, aggregate,connectionId);
 
@@ -166,5 +151,119 @@ namespace WebHMI.L2Adapter.Senders
             finally { _factory.Release(ldsService); }
         }
 
+        //CS
+
+        public void fillCsConfigurationSync(ref HmiCsConfigData configData)
+        {
+            var hmiToL2CsService = _factory.Create<IHmiToL2CsService>();
+            try { hmiToL2CsService.fillCsConfigurationSync(ref configData); }
+            finally { _factory.Release(hmiToL2CsService); }
+        }
+
+        public void takeOverManualValveState(int idx, HmiCsValveColors manualValveState, int type)
+        {
+            var hmiToL2CsService = _factory.Create<IHmiToL2CsService>();
+            try { hmiToL2CsService.takeOverManualValveState(idx, manualValveState, type); }
+            finally { _factory.Release(hmiToL2CsService); }
+        }
+
+
+        public void StartMaintainanceWorm(HmiCsMaintenanceWormConfig input)
+        {
+            var hmiToL2CsService = _factory.Create<IHmiToL2CsService>();
+            try { hmiToL2CsService.startMaintainanceWorm(input); }
+            finally { _factory.Release(hmiToL2CsService); }
+        }
+
+        public void StopMaintainanceWorm()
+        {
+            var hmiToL2CsService = _factory.Create<IHmiToL2CsService>();
+            try { hmiToL2CsService.stopMaintainanceWorm(); }
+            finally { _factory.Release(hmiToL2CsService); }
+        }
+
+        public void StartMaintainanceWormPowerCooling(HmiCsMaintenanceWormConfig config, double pressureDes4MaintenanceWormPc, double numberOfValves4MaintenanceWormPc)
+        {
+            var hmiToL2CsService = _factory.Create<IHmiToL2CsService>();
+            try { hmiToL2CsService.startMaintainanceWormPowerCooling(config, pressureDes4MaintenanceWormPc, numberOfValves4MaintenanceWormPc); }
+            finally { _factory.Release(hmiToL2CsService); }
+        }
+
+        public void StopMaintainanceWormPowerCooling()
+        {
+            var hmiToL2CsService = _factory.Create<IHmiToL2CsService>();
+            try { hmiToL2CsService.stopMaintainanceWormPowerCooling(); }
+            finally { _factory.Release(hmiToL2CsService); }
+        }
+
+        public void StartMaintainanceWaterTest(short testId)
+        {
+            var hmiToL2CsService = _factory.Create<IHmiToL2CsService>();
+            try { hmiToL2CsService.startMaintainanceWaterTest(testId); }
+            finally { _factory.Release(hmiToL2CsService); }
+        }
+
+        public void StopMaintainanceWaterTest(short testId)
+        {
+            var hmiToL2CsService = _factory.Create<IHmiToL2CsService>();
+            try { hmiToL2CsService.stopMaintainanceWaterTest(testId); }
+            finally { _factory.Release(hmiToL2CsService); }
+        }
+
+        public void StartMaintainanceManualTest(HmiCsMaintenanceManualConfig input)
+        {
+            var hmiToL2CsService = _factory.Create<IHmiToL2CsService>();
+            try { hmiToL2CsService.startMaintainanceManualTest(input); }
+            finally { _factory.Release(hmiToL2CsService); }
+        }
+
+        public void StopMaintainanceManualTest()
+        {
+            var hmiToL2CsService = _factory.Create<IHmiToL2CsService>();
+            try { hmiToL2CsService.stopMaintainanceManualTest(); }
+            finally { _factory.Release(hmiToL2CsService); }
+        }
+
+        public void StartTestSpecificValves(HmiCsMaintenanceSequenceConfig input)
+        {
+            var hmiToL2CsService = _factory.Create<IHmiToL2CsService>();
+            try { hmiToL2CsService.startTestSpecificValves(input); }
+            finally { _factory.Release(hmiToL2CsService); }
+        }
+
+        public void StopTestSpecificValves()
+        {
+            var hmiToL2CsService = _factory.Create<IHmiToL2CsService>();
+            try { hmiToL2CsService.stopTestSpecificValves(); }
+            finally { _factory.Release(hmiToL2CsService); }
+        }
+
+        public void takeOverL2Mode(HmiCsL2ModeEnum mode)
+        {
+            var hmiToL2CsService = _factory.Create<IHmiToL2CsService>();
+            try { hmiToL2CsService.takeOverL2Mode(mode); }
+            finally { _factory.Release(hmiToL2CsService); }
+        }
+
+        public void fillValveCalibrationMode(ref bool mode)
+        {
+            var hmiToL2CsService = _factory.Create<IHmiToL2CsService>();
+            try { hmiToL2CsService.fillValveCalibrationMode(ref mode); }
+            finally { _factory.Release(hmiToL2CsService); }
+        }
+
+        public void stopValveCalibration()
+        {
+            var hmiToL2CsService = _factory.Create<IHmiToL2CsService>();
+            try { hmiToL2CsService.stopValveCalibration(); }
+            finally { _factory.Release(hmiToL2CsService); }
+        }
+
+        public void startValveCalibration(HmiCsMaintenanceCalibrConfig[] testData)
+        {
+            var hmiToL2CsService = _factory.Create<IHmiToL2CsService>();
+            try { hmiToL2CsService.startValveCalibration(testData); }
+            finally { _factory.Release(hmiToL2CsService); }
+        }
     }
 }

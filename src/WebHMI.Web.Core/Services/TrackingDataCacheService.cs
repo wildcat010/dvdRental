@@ -6,6 +6,7 @@ using Abp.Runtime.Caching;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using WebHMI.API.Helpers;
 using WebHMI.Dtos;
@@ -14,6 +15,7 @@ using WebHMI.Dtos.Core.Communication;
 using WebHMI.EventWrapper;
 using WebHMI.Notification;
 using WebHMI.PRDB;
+using WebHMI.Services;
 using XIDL;
 
 namespace WebHMI.API.Services
@@ -31,13 +33,15 @@ namespace WebHMI.API.Services
         private readonly ITypedCache<string, List<MeCodeDto>> _cacheNextSlabs;
         //private readonly ITypedCache<string, List<MeCodeDto>> _cacheProducedCoils;
 
+        private readonly CommonAppService _commonService;
         private readonly IDbContextProvider<PrdbContext> _dbContextProvider;
         private readonly ISignalRNotifier _signalRNotifier;
         private readonly IUnitOfWorkManager _unitOfWorkManager;
 
         public TrackingDataCacheService(ICacheManager cacheManager,
             ISignalRNotifier signalRNotifier,
-            IUnitOfWorkManager unitOfWorkManager, 
+            IUnitOfWorkManager unitOfWorkManager,
+            CommonAppService commonService,
             IDbContextProvider<PrdbContext> dbContextProvider)
         {
             _cacheTrackingData = cacheManager.GetCache<string, HmiTrackingData>("HmiTrackingData");
@@ -49,9 +53,10 @@ namespace WebHMI.API.Services
             _signalRNotifier = signalRNotifier;
             _unitOfWorkManager = unitOfWorkManager;
             _dbContextProvider = dbContextProvider;
+            _commonService = commonService;
         }
 
-        //[UnitOfWork]
+        [UnitOfWork]
         public async Task HandleEventAsync(EventWrapper<HmiRefreshDto> eventData)
         {
             bool isCoilEvent = eventData.Data?.EventKey?.Contains("COILS") ?? false;
@@ -62,13 +67,19 @@ namespace WebHMI.API.Services
         }
 
         [UnitOfWork]
-        public virtual async Task<TrackingDataDto> GetTrackingStructCaches() => new TrackingDataDto()
+        public virtual async Task<TrackingDataDto> GetTrackingStructCaches()
         {
-            HmiTrackingData = await _cacheTrackingData.GetOrDefaultAsync(_trackingDataCacheKey),
-            ActualNext = await _cacheActualNext.GetOrDefaultAsync(_trackingDataCacheKey),
-            NextSlabs = await _cacheNextSlabs.GetAsync(_trackingDataCacheKey, async key => await GetNextSlabsCachesAsync()),
-            //ProducedCoils = await _cacheProducedCoils.GetOrDefaultAsync(_trackingDataCacheKey),
-        };
+            var context = await _dbContextProvider.GetDbContextAsync();
+            return new TrackingDataDto()
+            {
+                HmiTrackingData = await _cacheTrackingData.GetOrDefaultAsync(_trackingDataCacheKey),
+                ActualNext = await _cacheActualNext.GetOrDefaultAsync(_trackingDataCacheKey),
+                NextSlabs = await _cacheNextSlabs.GetAsync(_trackingDataCacheKey, async key => await GetNextSlabsCachesAsync()),
+                ActualSequenceId = await context.HmiVActualsequences.Select(x => x.Actsequenceid).FirstOrDefaultAsync(),
+                ActualHeatId = await context.HmiVActualheats.Select(x => x.Actheatid).FirstOrDefaultAsync(),
+                //ProducedCoils = await _cacheProducedCoils.GetOrDefaultAsync(_trackingDataCacheKey),
+            };
+        }
 
         [UnitOfWork]
         public virtual async Task<MaterialMVDataDto> GetMeasurements(int meid, string matType, string measurementName, short passNo)
@@ -81,7 +92,7 @@ namespace WebHMI.API.Services
                 var result = new MaterialMVDataDto()
                 {
                     MVName = measurementName,
-                    MeCode = (await context.VMatStructEntries.FirstOrDefaultAsync(x => x.EnOrMeId == meid))?.ToMeCodeDto(),
+                    MeCode = (await context.VMatStructEntries.FirstOrDefaultAsync(x => x.Enormeid == meid))?.ToMeCodeDto(),
                     MVSeries = cache.Select(x => new MVPoint(1, new float?[] { (float)x.Value })).ToList()
                 };
                 return result;
@@ -131,35 +142,43 @@ namespace WebHMI.API.Services
             await _cacheMeasuredValues.ClearAsync();
             await _cacheActualNext.ClearAsync();
             await _cacheNextSlabs.ClearAsync();
-           //await _cacheProducedCoils.ClearAsync();
+            //await _cacheProducedCoils.ClearAsync();
         }
 
-        [UnitOfWork]
+        //[UnitOfWork]
         private async Task<List<MeCodeDto>> GetNextSlabsCachesAsync()
         {
             var context = _dbContextProvider.GetDbContext();
             using var uow = _unitOfWorkManager.Begin();
 
-            var nextSlabId = await context.HmiVProdsequenceCompletes
-                .Where(x => x.Next == 1)
-                .Select(x => x.Position)
-                .FirstOrDefaultAsync();
+            var result = new List<MeCodeDto>();
 
-            var result = await context.HmiVProdsequenceCompletes
-                .Where(x => x.Position >= nextSlabId)
-                .OrderBy(x => x.Position)
-                .Take(3)
-                .Select(x => new MeCodeDto
+            var curSeqId = await _commonService.GetActualSequenceId();
+            var nextSlabId = await context.HmiVProdsequences
+                .Where(x => x.Sequenceid == curSeqId)
+                .OrderBy(x => x.Majorno)
+                .ThenBy(x => x.Minorno)
+                .Select(x => new { x.Majorno, x.Minorno })
+                .FirstOrDefaultAsync();
+            if (nextSlabId != null)
+            {
+                var tmp = context.HmiVProdsequences
+                    .Where(x => x.Majorno >= nextSlabId.Majorno && x.Minorno >= nextSlabId.Minorno && x.Sequenceid == curSeqId)
+                    .OrderBy(x => x.Majorno)
+                    .ThenBy(x => x.Minorno)
+                    .Take(3);
+
+                result = await tmp.Select(x => new MeCodeDto
                 {
-                    MeId = x.EnOrMeId,
+                    MeId = x.Enormeid,
                     MatType = "OR",
-                    MesId = x.EnOrMesId ?? -1,
-                    MeCreator = x.EnOrCreator,
-                    ExtId = x.EnOrExtId,
-                    Status = x.EnOrStatus
+                    MesId = x.Enormesid ?? -1,
+                    MeCreator = x.Enorcreator,
+                    ExtId = x.Enorextid,
+                    Status = x.Enorstatus
                 })
                 .ToListAsync();
-
+            }
             uow.Complete();
 
             await _signalRNotifier.BroadcastToAllClientsAsync(result, "NextSlabs");

@@ -1,14 +1,6 @@
 ﻿using Abp;
-using Abp.Dependency;
-using Abp.Notifications;
-using Abp.RealTime;
-using Castle.Core.Logging;
-using Microsoft.AspNetCore.SignalR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using WebHMI.Events;
 
 namespace WebHMI.Notification
 {
@@ -18,6 +10,7 @@ namespace WebHMI.Notification
 		Task BroadcastToAllClientsAsync<T>(T input, string methodName);
 		Task BroadcastToClientAsync<T>(T input, IUserIdentifier userId, string methodName);
 		Task BroadcastToUserClientAsync<T>(T input, string userId, string methodName);
-	}
+        Task BroadcastTwmToAllClientsAsync(HmiTwmDataDto input, string methodName = "TwmData");
+    }
 }
 

@@ -10,10 +10,10 @@ namespace WebHMI.Mapping.Extensions.Strategy.CSMappers
 {
     public static class StdCrCsMapper
     {
-        public static void MapEntity(StdCsCr entity, StdCrCsDto dto)
+        public static void MapEntity(Stdcscr entity, StdCrCsDto dto)
         {
-            entity.ActiveFlag = dto.ActiveFlag;
-            entity.PlanNo = dto.PlanNo;
+            entity.Activeflag = dto.ActiveFlag;
+            entity.Planno = dto.PlanNo;
             entity.CrsInd10 = dto.CrsInd10;
             entity.CrsInd11 = dto.CrsInd11;
             entity.CrsInd12 = dto.CrsInd12;
@@ -46,22 +46,22 @@ namespace WebHMI.Mapping.Extensions.Strategy.CSMappers
             entity.CrsInd39 = dto.CrsInd39;
             entity.Delaylength = dto.Delaylength;
             entity.Description = dto.Description;
-            entity.CrsInd0 = dto.CrsInd00;
-            entity.CrsInd1 = dto.CrsInd01;
-            entity.CrsInd2 = dto.CrsInd02;
-            entity.CrsInd3 = dto.CrsInd03;
-            entity.CrsInd4 = dto.CrsInd04;
-            entity.CrsInd5 = dto.CrsInd05;
-            entity.CrsInd6 = dto.CrsInd06;
-            entity.CrsInd7 = dto.CrsInd07;
-            entity.CrsInd8 = dto.CrsInd08;
-            entity.CrsInd9 = dto.CrsInd09;
+            entity.CrsInd00 = dto.CrsInd00;
+            entity.CrsInd01 = dto.CrsInd01;
+            entity.CrsInd02 = dto.CrsInd02;
+            entity.CrsInd03 = dto.CrsInd03;
+            entity.CrsInd04 = dto.CrsInd04;
+            entity.CrsInd05 = dto.CrsInd05;
+            entity.CrsInd06 = dto.CrsInd06;
+            entity.CrsInd07 = dto.CrsInd07;
+            entity.CrsInd08 = dto.CrsInd08;
+            entity.CrsInd09 = dto.CrsInd09;
         }
 
-        public static StdCrCsDto ToDto(StdCsCr entity) => new()
+        public static StdCrCsDto ToDto(Stdcscr entity) => new()
         {
-            ActiveFlag = entity.ActiveFlag,
-            PlanNo = entity.PlanNo,
+            ActiveFlag = entity.Activeflag,
+            PlanNo = entity.Planno,
             CrsInd10 = entity.CrsInd10,
             CrsInd11 = entity.CrsInd11,
             CrsInd12 = entity.CrsInd12,
@@ -94,16 +94,16 @@ namespace WebHMI.Mapping.Extensions.Strategy.CSMappers
             CrsInd39 = entity.CrsInd39,
             Delaylength = entity.Delaylength,
             Description = entity.Description,
-            CrsInd00 = entity.CrsInd0,
-            CrsInd01 = entity.CrsInd1,
-            CrsInd02 = entity.CrsInd2,
-            CrsInd03 = entity.CrsInd3,
-            CrsInd04 = entity.CrsInd4,
-            CrsInd05 = entity.CrsInd5,
-            CrsInd06 = entity.CrsInd6,
-            CrsInd07 = entity.CrsInd7,
-            CrsInd08 = entity.CrsInd8,
-            CrsInd09 = entity.CrsInd9,
+            CrsInd00 = entity.CrsInd00,
+            CrsInd01 = entity.CrsInd01,
+            CrsInd02 = entity.CrsInd02,
+            CrsInd03 = entity.CrsInd03,
+            CrsInd04 = entity.CrsInd04,
+            CrsInd05 = entity.CrsInd05,
+            CrsInd06 = entity.CrsInd06,
+            CrsInd07 = entity.CrsInd07,
+            CrsInd08 = entity.CrsInd08,
+            CrsInd09 = entity.CrsInd09,
         };
     }
 }

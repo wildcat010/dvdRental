@@ -2,5 +2,5 @@ using WebHMI.API.Prdb.Abstract;
 
 namespace WebHMI.PRDB.Dbo
 {
-    public partial class CsStrategy : IMaterialIdTypeOrder { }
+    public partial class Csstrategy : IMaterialIdTypeOrder { }
 }

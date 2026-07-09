@@ -14,5 +14,6 @@ namespace WebHMI.Dtos.Strategy.StdDtos.StdSingleDtos
         public double? RollGapLubSwitchLength { get; set; }
         public double? RollGapLubOilFlowTop { get; set; }
         public double? RollGapLubOilFlowBot { get; set; }
+        public string Description { get; internal set; }
     }
 }

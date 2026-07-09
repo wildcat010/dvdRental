@@ -3,75 +3,33 @@ using System.Collections.Generic;
 
 namespace WebHMI.PRDB.Dbo;
 
-public partial class PlantParam
+public partial class Plantparam
 {
-    /// <summary>
-    /// Unit[Unit] name of the parameter
-    /// </summary>
-    public string ParamName { get; set; }
+    public string Paramname { get; set; }
 
-    /// <summary>
-    /// plant type:  HRM, HFM
-    /// </summary>
-    public string PlantType { get; set; }
+    public string Planttype { get; set; }
 
-    /// <summary>
-    /// Unit[Unit] type of the value
-    /// </summary>
-    public string CType { get; set; }
+    public string Ctype { get; set; }
 
-    /// <summary>
-    /// Unit[Unit] character value
-    /// </summary>
-    public string CurValC { get; set; }
+    public string Curvalc { get; set; }
 
-    /// <summary>
-    /// Unit[Unit] numeric value
-    /// </summary>
-    public float? CurValN { get; set; }
+    public double? Curvaln { get; set; }
 
-    /// <summary>
-    /// Unit[Unit] description
-    /// </summary>
     public string Description { get; set; }
 
-    /// <summary>
-    /// Unit[Unit] name of the lower limit value
-    /// </summary>
-    public string LimitNameLl { get; set; }
+    public string Limitnamell { get; set; }
 
-    /// <summary>
-    /// Unit[Unit] name of the upper limit value
-    /// </summary>
-    public string LimitNameUl { get; set; }
+    public string Limitnameul { get; set; }
 
-    /// <summary>
-    /// Unit[Unit] description of the modification
-    /// </summary>
     public string Moddescr { get; set; }
 
-    /// <summary>
-    /// Unit[Unit] sort order
-    /// </summary>
-    public string SortOrder { get; set; }
+    public string Sortorder { get; set; }
 
-    /// <summary>
-    /// Unit[Unit] unit of the value
-    /// </summary>
     public string Unit { get; set; }
 
-    /// <summary>
-    /// modifying process
-    /// </summary>
     public string Mop { get; set; }
 
-    /// <summary>
-    /// time of creation
-    /// </summary>
     public DateTime? Toc { get; set; }
 
-    /// <summary>
-    /// time of modification
-    /// </summary>
     public DateTime? Tom { get; set; }
 }

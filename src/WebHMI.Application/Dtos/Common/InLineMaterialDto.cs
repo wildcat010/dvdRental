@@ -34,17 +34,17 @@ namespace WebHMI.Dtos.Common
 
 		public string AlloyCode { get; set; }
 
-		public float? HEntry { get; set; }
+		public double? HEntry { get; set; }
 
-		public float? HExit { get; set; }
+		public double? HExit { get; set; }
 
-		public float? WEntry { get; set; }
+		public double? WEntry { get; set; }
 
-		public float? WeightEntry { get; set; }
+		public double? WeightEntry { get; set; }
 
-		public float? LEntry { get; set; }
+		public double? LEntry { get; set; }
 
-		public float? WExit { get; set; }
+		public double? WExit { get; set; }
 
 		public string SequenceId { get; set; }
 
@@ -62,13 +62,13 @@ namespace WebHMI.Dtos.Common
 
 		public short? SetpointsCsOk { get; set; }
 
-		public float? TEntryFm { get; set; }
+		public double? TEntryFm { get; set; }
 
-		public float? TExitFm { get; set; }
+		public double? TExitFm { get; set; }
 
-		public float? TExitCaster { get; set; }
+		public double? TExitCaster { get; set; }
 
-		public float? CoilTemp { get; set; }
+		public double? CoilTemp { get; set; }
 
 		public string HeatId { get; set; }
 

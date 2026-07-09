@@ -3,89 +3,91 @@ using System.Collections.Generic;
 
 namespace WebHMI.PRDB.Dbo;
 
-public partial class StdCsStrategy
+public partial class Stdcsstrategy
 {
-    public int ActiveFlag { get; set; }
+    public int Activeflag { get; set; }
 
-    public int PlanNo { get; set; }
+    public int Planno { get; set; }
 
-    public short? AdaptationFm { get; set; }
+    public short? Adaptationfm { get; set; }
 
     public short? AdaptationInd0 { get; set; }
 
     public short? AdaptationInd1 { get; set; }
 
-    public double? AutoSplineTempTransition { get; set; }
+    public double? Autosplinetemptransition { get; set; }
 
-    public double? AutoSplineValueLowBot { get; set; }
+    public double? Autosplinevaluelowbot { get; set; }
 
-    public double? AutoSplineValueLowTop { get; set; }
+    public double? Autosplinevaluelowtop { get; set; }
 
-    public double? CoolRateBotInd0 { get; set; }
+    public double? CoolratebotInd0 { get; set; }
 
-    public double? CoolRateBotInd1 { get; set; }
+    public double? CoolratebotInd1 { get; set; }
 
-    public double? CoolRateTopInd0 { get; set; }
+    public double? CoolratetopInd0 { get; set; }
 
-    public double? CoolRateTopInd1 { get; set; }
+    public double? CoolratetopInd1 { get; set; }
 
-    public int? CoolingStrategy { get; set; }
+    public int? Coolingstrategy { get; set; }
 
     public string Description { get; set; }
 
     public string Description2 { get; set; }
 
-    public double? FtzLoad { get; set; }
+    public double? Ftzload { get; set; }
 
-    public double? HoldTime { get; set; }
+    public double? Holdtime { get; set; }
 
-    public short? LeadingPyroIndexInd0 { get; set; }
+    public short? LeadingpyroindexInd0 { get; set; }
 
-    public short? LeadingPyroIndexInd1 { get; set; }
+    public short? LeadingpyroindexInd1 { get; set; }
 
-    public short? StartValveNumberBotInd0 { get; set; }
+    public short? StartvalvenumberbotInd0 { get; set; }
 
-    public short? StartValveNumberBotInd1 { get; set; }
+    public short? StartvalvenumberbotInd1 { get; set; }
 
-    public short? StartValveNumberTopInd0 { get; set; }
+    public short? StartvalvenumbertopInd0 { get; set; }
 
-    public short? StartValveNumberTopInd1 { get; set; }
+    public short? StartvalvenumbertopInd1 { get; set; }
 
-    public double? TargetF4tInd0 { get; set; }
+    public double? Targetf4tInd0 { get; set; }
 
-    public double? TargetF4tInd1 { get; set; }
+    public double? Targetf4tInd1 { get; set; }
 
-    public double? TargetTempInd0 { get; set; }
+    public double? TargettempInd0 { get; set; }
 
-    public double? TargetTempInd1 { get; set; }
+    public double? TargettempInd1 { get; set; }
 
-    public double? TempGradInd0 { get; set; }
+    public double? TempgradInd0 { get; set; }
 
-    public double? TempGradInd1 { get; set; }
+    public double? TempgradInd1 { get; set; }
 
-    public double? TempOffsetAInd0 { get; set; }
+    public double? TempoffsetaInd0 { get; set; }
 
-    public double? TempOffsetAInd1 { get; set; }
+    public double? TempoffsetaInd1 { get; set; }
 
-    public double? TempOffsetBInd0 { get; set; }
+    public double? TempoffsetbInd0 { get; set; }
 
-    public double? TempOffsetBInd1 { get; set; }
+    public double? TempoffsetbInd1 { get; set; }
 
-    public double? TempOffsetFmA { get; set; }
+    public double? Tempoffsetfma { get; set; }
 
-    public double? TempOffsetFmB { get; set; }
+    public double? Tempoffsetfmb { get; set; }
 
-    public short? UseTempGradSelectionInd0 { get; set; }
+    public short? UsetempgradselectionInd0 { get; set; }
 
-    public short? UseTempGradSelectionInd1 { get; set; }
+    public short? UsetempgradselectionInd1 { get; set; }
 
-    public short? ValveRatioBotInd0 { get; set; }
+    public short? ValveratiobotInd0 { get; set; }
 
-    public short? ValveRatioBotInd1 { get; set; }
+    public short? ValveratiobotInd1 { get; set; }
 
-    public short? ValveRatioTopInd0 { get; set; }
+    public short? ValveratiotopInd0 { get; set; }
 
-    public short? ValveRatioTopInd1 { get; set; }
+    public short? ValveratiotopInd1 { get; set; }
+
+    public short? Valvesequenceindexcus { get; set; }
 
     public string Mop { get; set; }
 

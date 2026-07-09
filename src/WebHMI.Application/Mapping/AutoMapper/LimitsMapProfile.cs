@@ -13,12 +13,12 @@ namespace WebHMI.Mapping.AutoMapper
     {
         public LimitsMapProfile()
         {
-            CreateMap<LimitDto, PlantLimit>()
+            CreateMap<LimitDto, Plantlimit>()
                 .ReverseMap();
 
-            CreateMap<CreateLimitDto, PlantLimit>();
+            CreateMap<CreateLimitDto, Plantlimit>();
 
-            CreateMap<DeleteLimitDto, PlantLimit>();
+            CreateMap<DeleteLimitDto, Plantlimit>();
         }
     }
 }

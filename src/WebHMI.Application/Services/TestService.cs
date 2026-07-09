@@ -41,16 +41,16 @@ namespace WebHMI.Services
             if (meId != null && matType != null)
             {
                 //create MeCode parameter
-                Me me = await context.Mes.FirstOrDefaultAsync(x => x.MeId == meId && x.MeTyp == matType);
+                Me me = await context.Mes.FirstOrDefaultAsync(x => x.Meid == meId && x.Metyp == matType);
                 if (me != null)
                 {
                     meCodeDto = new MeCodeDto();
-                    meCodeDto.ExtId = me.ExtId;
-                    meCodeDto.MeId = me.MeId;
-                    meCodeDto.MesId = me.CurMesId ?? 1;
-                    meCodeDto.MatType = me.MeTyp;
+                    meCodeDto.ExtId = me.Extid;
+                    meCodeDto.MeId = me.Meid;
+                    meCodeDto.MesId = me.Curmesid ?? 1;
+                    meCodeDto.MatType = me.Metyp;
                     meCodeDto.Status = me.Status;
-                    meCodeDto.MeCreator = me.MeCreator;
+                    meCodeDto.MeCreator = me.Mecreator;
 
                 }
                 else

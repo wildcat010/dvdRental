@@ -3,141 +3,62 @@ using System.Collections.Generic;
 
 namespace WebHMI.PRDB.Dbo;
 
-/// <summary>
-/// Material specific strategy Table with Effective (E), Manual (M) and original (X) lines for each material
-/// </summary>
-public partial class CsRtCooling
+public partial class Csrtcooling
 {
-    /// <summary>
-    /// Material owner
-    /// </summary>
-    public string MeCreator { get; set; }
+    public string Mecreator { get; set; }
 
-    /// <summary>
-    /// Material idendification number
-    /// </summary>
-    public int MeId { get; set; }
+    public int Meid { get; set; }
 
-    /// <summary>
-    /// Line status
-    /// </summary>
-    public short MesId { get; set; }
+    public short Mesid { get; set; }
 
     public string Source { get; set; }
 
-    /// <summary>
-    /// description field
-    /// </summary>
     public string Description { get; set; }
 
-    /// <summary>
-    /// manual intervention in plan
-    /// </summary>
-    public short? ManInt { get; set; }
+    public short? Manint { get; set; }
 
-    /// <summary>
-    /// Unit[0...999] plan number
-    /// </summary>
-    public int? PlanNo { get; set; }
+    public int? Planno { get; set; }
 
-    /// <summary>
-    /// delay time to switch off
-    /// </summary>
-    public int? RtcCoolDownTime { get; set; }
+    public int? Rtccooldowntime { get; set; }
 
-    /// <summary>
-    /// roller tables on durring production (0,1)
-    /// </summary>
-    public int? RtcStrategyInd0 { get; set; }
+    public int? RtcstrategyInd00 { get; set; }
 
-    /// <summary>
-    /// roller tables on durring production (0,1)
-    /// </summary>
-    public int? RtcStrategyInd1 { get; set; }
+    public int? RtcstrategyInd01 { get; set; }
 
-    /// <summary>
-    /// roller tables on durring production (0,1)
-    /// </summary>
-    public int? RtcStrategyInd10 { get; set; }
+    public int? RtcstrategyInd02 { get; set; }
 
-    /// <summary>
-    /// roller tables on durring production (0,1)
-    /// </summary>
-    public int? RtcStrategyInd11 { get; set; }
+    public int? RtcstrategyInd03 { get; set; }
 
-    /// <summary>
-    /// roller tables on durring production (0,1)
-    /// </summary>
-    public int? RtcStrategyInd12 { get; set; }
+    public int? RtcstrategyInd04 { get; set; }
 
-    /// <summary>
-    /// roller tables on durring production (0,1)
-    /// </summary>
-    public int? RtcStrategyInd13 { get; set; }
+    public int? RtcstrategyInd05 { get; set; }
 
-    /// <summary>
-    /// roller tables on durring production (0,1)
-    /// </summary>
-    public int? RtcStrategyInd14 { get; set; }
+    public int? RtcstrategyInd06 { get; set; }
 
-    /// <summary>
-    /// roller tables on durring production (0,1)
-    /// </summary>
-    public int? RtcStrategyInd15 { get; set; }
+    public int? RtcstrategyInd07 { get; set; }
 
-    /// <summary>
-    /// roller tables on durring production (0,1)
-    /// </summary>
-    public int? RtcStrategyInd2 { get; set; }
+    public int? RtcstrategyInd08 { get; set; }
 
-    /// <summary>
-    /// roller tables on durring production (0,1)
-    /// </summary>
-    public int? RtcStrategyInd3 { get; set; }
+    public int? RtcstrategyInd09 { get; set; }
 
-    /// <summary>
-    /// roller tables on durring production (0,1)
-    /// </summary>
-    public int? RtcStrategyInd4 { get; set; }
+    public int? RtcstrategyInd10 { get; set; }
 
-    /// <summary>
-    /// roller tables on durring production (0,1)
-    /// </summary>
-    public int? RtcStrategyInd5 { get; set; }
+    public int? RtcstrategyInd11 { get; set; }
 
-    /// <summary>
-    /// roller tables on durring production (0,1)
-    /// </summary>
-    public int? RtcStrategyInd6 { get; set; }
+    public int? RtcstrategyInd12 { get; set; }
 
-    /// <summary>
-    /// roller tables on durring production (0,1)
-    /// </summary>
-    public int? RtcStrategyInd7 { get; set; }
+    public int? RtcstrategyInd13 { get; set; }
 
-    /// <summary>
-    /// roller tables on durring production (0,1)
-    /// </summary>
-    public int? RtcStrategyInd8 { get; set; }
+    public int? RtcstrategyInd14 { get; set; }
 
-    /// <summary>
-    /// roller tables on durring production (0,1)
-    /// </summary>
-    public int? RtcStrategyInd9 { get; set; }
+    public int? RtcstrategyInd15 { get; set; }
 
-    /// <summary>
-    /// modifying process
-    /// </summary>
+    public string Toextid { get; set; }
+
     public string Mop { get; set; }
 
-    /// <summary>
-    /// time of creation
-    /// </summary>
     public DateTime? Toc { get; set; }
 
-    /// <summary>
-    /// time of modification
-    /// </summary>
     public DateTime? Tom { get; set; }
 
     public virtual Me1 Me1 { get; set; }

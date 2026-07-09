@@ -10,18 +10,18 @@ namespace WebHMI.Mapping.Extensions.Strategy
 {
     public class StdDirFmPfcParapMapper
     {
-        public static void MapEntity(StdDirFmPfcParaP entity, StdDirFmPfcParapDto dto)
+        public static void MapEntity(Stddirfmpfcparap entity, StdDirFmPfcParapDto dto)
         {
-            entity.PlanNo = dto.PlanNo;
-            entity.ActiveFlag = dto.ActiveFlag;
-            //entity.Description = dto.Description;
+            entity.Planno = dto.PlanNo;
+            entity.Activeflag = dto.ActiveFlag;
+            entity.Description = dto.Description;
         }
 
-        public static StdDirFmPfcParapDto ToDto(StdDirFmPfcParaP entity) => new()
+        public static StdDirFmPfcParapDto ToDto(Stddirfmpfcparap entity) => new()
         {
-            PlanNo = entity.PlanNo,
-            ActiveFlag = entity.ActiveFlag,
-            //Description = entity.Description
+            PlanNo = entity.Planno,
+            ActiveFlag = entity.Activeflag,
+            Description = entity.Description
         };
     }
 }

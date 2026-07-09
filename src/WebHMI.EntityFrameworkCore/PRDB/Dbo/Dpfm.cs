@@ -5,60 +5,27 @@ namespace WebHMI.PRDB.Dbo;
 
 public partial class Dpfm
 {
-    /// <summary>
-    /// Material owner
-    /// </summary>
-    public string MeCreator { get; set; }
+    public string Mecreator { get; set; }
 
-    /// <summary>
-    /// Material idendification number
-    /// </summary>
-    public int MeId { get; set; }
+    public int Meid { get; set; }
 
-    /// <summary>
-    /// Line status
-    /// </summary>
-    public short MesId { get; set; }
+    public short Mesid { get; set; }
 
-    /// <summary>
-    /// owner
-    /// </summary>
     public string Source { get; set; }
 
-    /// <summary>
-    /// Unit[m] delay length for descaler switch ON
-    /// </summary>
-    public float? DelayLength { get; set; }
+    public double? Delaylength { get; set; }
 
-    /// <summary>
-    /// Unit[0.... 2] number of descaler ramps
-    /// </summary>
-    public int? NoRamps { get; set; }
+    public string Description { get; set; }
 
-    /// <summary>
-    /// Unit[0...999] d p number
-    /// </summary>
-    public int? PlanNo { get; set; }
+    public int? Noramps { get; set; }
 
-    /// <summary>
-    /// modifying process
-    /// </summary>
+    public int? Planno { get; set; }
+
     public string Mop { get; set; }
 
-    /// <summary>
-    /// time of creation
-    /// </summary>
     public DateTime? Toc { get; set; }
 
-    /// <summary>
-    /// time of modification
-    /// </summary>
     public DateTime? Tom { get; set; }
-
-    /// <summary>
-    /// description field
-    /// </summary>
-    public string Description { get; set; }
 
     public virtual Me1 Me1 { get; set; }
 }

@@ -6,7 +6,6 @@ using Abp.Domain.Entities;
 using Abp.EntityFrameworkCore;
 using Abp.UI;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,7 +52,7 @@ namespace WebHMI.Services.StrategyServices
 
             var context = _dbContextProvider.GetDbContext();
             bool stdExist = await context.Set<TEntity>().AnyAsync(x =>
-                x.PlanNo == dto.PlanNo);
+                x.Planno == dto.PlanNo);
 
             if (stdExist)
                 throw new EntityNotFoundException("Std already exists for given key");
@@ -74,14 +73,14 @@ namespace WebHMI.Services.StrategyServices
         {
             var context = _dbContextProvider.GetDbContext();
             var entity = await context.Set<TEntity>().FirstOrDefaultAsync(x =>
-                x.PlanNo == planNo && x.ActiveFlag == 1);
+                x.Planno == planNo && x.Activeflag == 1);
 
             if (entity is null)
                 throw new EntityNotFoundException("Std for given key not found");
 
             var dto = _toDto(entity);
-            dto.AssignmentsCount = context.AggregateSelections
-                .Where(x => x.Aggregate == AggregateName && (x.PlanNoInd0 == dto.PlanNo || x.PlanNoInd1 == dto.PlanNo || x.PlanNoInd2 == dto.PlanNo || x.PlanNoInd3 == dto.PlanNo))
+            dto.AssignmentsCount = context.Aggregateselections
+                .Where(x => x.Aggregate == AggregateName && (x.PlannoInd0 == dto.PlanNo || x.PlannoInd1 == dto.PlanNo || x.PlannoInd2 == dto.PlanNo || x.PlannoInd3 == dto.PlanNo))
                 .Count();
             return dto;
         }
@@ -89,30 +88,30 @@ namespace WebHMI.Services.StrategyServices
         public async Task<PagedResultDto<StdItemDto>> GetAvailablePlans(StdFilteredRequestDto input)
         {
             var context = _dbContextProvider.GetDbContext();
-            var query = context.Set<TEntity>().AsQueryable().Where(x => x.PlanNo != 0);
+            var query = context.Set<TEntity>().AsQueryable().Where(x => x.Activeflag == 1);
 
             if (input.NotAssignedPlans)
             {
-                var usedPlanNumbers = await context.AggregateSelections
+                var usedPlanNumbers = await context.Aggregateselections
                     .Where(x => x.Aggregate == AggregateName)
-                    .Select(x => new { x.PlanNoInd0, x.PlanNoInd1, x.PlanNoInd2, x.PlanNoInd3 })
+                    .Select(x => new { x.PlannoInd0, x.PlannoInd1, x.PlannoInd2, x.PlannoInd3 })
                     .ToArrayAsync();
 
                 var usedUniquePlanNumbers = usedPlanNumbers
-                    .SelectMany(x => new[] { x.PlanNoInd0, x.PlanNoInd1, x.PlanNoInd2, x.PlanNoInd3 })
+                    .SelectMany(x => new[] { x.PlannoInd0, x.PlannoInd1, x.PlannoInd2, x.PlannoInd3 })
                     .Distinct()
                     .Where(x => x.HasValue);
 
-                query = query.Where(x => !usedUniquePlanNumbers.Contains(x.PlanNo));
+                query = query.Where(x => !usedUniquePlanNumbers.Contains(x.Planno));
             }
 
-            return await ApplyFilter(query, input, MapItem);
+            return await ApplyFilter(query.OrderBy(x=>x.Planno), input, MapItem);
 
             StdItemDto MapItem(TEntity entity) => new()
             {
-                PlanNo = entity.PlanNo,
-                ActiveFlag = entity.ActiveFlag,
-                //Description = entity.Description,
+                PlanNo = entity.Planno,
+                ActiveFlag = entity.Activeflag,
+                Description = entity.Description,
                 LastModified = entity.Tom
             };
         }
@@ -153,7 +152,7 @@ namespace WebHMI.Services.StrategyServices
         public async Task<StdListDto<TDto>> GetAll()
         {
             var context = _dbContextProvider.GetDbContext();
-            var result = await context.Set<TEntity>().Where(x => x.PlanNo != 0).ToListAsync();
+            var result = await context.Set<TEntity>().OrderByDescending(x=>x.Planno).ToListAsync();
             return new StdListDto<TDto>() { Stds = result.Select(x => _toDto(x)) };
         }
 
@@ -166,7 +165,7 @@ namespace WebHMI.Services.StrategyServices
 
             var context = _dbContextProvider.GetDbContext();
             var entity = await context.Set<TEntity>().FirstOrDefaultAsync(x =>
-                x.PlanNo == dto.PlanNo && x.ActiveFlag == 1);
+                x.Planno == dto.PlanNo && x.Activeflag == 1);
 
             if (entity is null)
                 throw new EntityNotFoundException("Std for given key not found");
@@ -201,7 +200,7 @@ namespace WebHMI.Services.StrategyServices
                 //    .ToListAsync();
 
                 var entity = await context.Set<TEntity>().FirstOrDefaultAsync(x =>
-                    x.PlanNo == dto.PlanNo && x.ActiveFlag == 1);
+                    x.Planno == dto.PlanNo && x.Activeflag == 1);
 
                 if (entity is null)
                 {
@@ -230,24 +229,24 @@ namespace WebHMI.Services.StrategyServices
 
             var context = _dbContextProvider.GetDbContext();
             var entity = await context.Set<TEntity>().FirstOrDefaultAsync(x =>
-                x.PlanNo == planNo && x.ActiveFlag == 1);
+                x.Planno == planNo && x.Activeflag == 1);
 
             if (entity is null)
                 throw new EntityNotFoundException("Std for given key not found");
 
-            var aggregateSortIdsUsingThisPlan = await context.AggregateSelections
+            var aggregateSortIdsUsingThisPlan = await context.Aggregateselections
                 .Where(x => x.Aggregate == AggregateName)
                 .Where(x =>
-                    x.PlanNoInd0 == planNo ||
-                    x.PlanNoInd1 == planNo ||
-                    x.PlanNoInd2 == planNo ||
-                    x.PlanNoInd3 == planNo)
-                .Select(x => x.SortId)
+                    x.PlannoInd0 == planNo ||
+                    x.PlannoInd1 == planNo ||
+                    x.PlannoInd2 == planNo ||
+                    x.PlannoInd3 == planNo)
+                .Select(x => x.Sortid)
                 .ToListAsync();
 
             if (aggregateSortIdsUsingThisPlan.Any())
                 throw new UserFriendlyException($"Can't delete, because this plan is used in " +
-                    $"'{nameof(AggregateSelection)}' with '{nameof(AggregateSelection.SortId)}': [{string.Join(", ", aggregateSortIdsUsingThisPlan)}]");
+                    $"'{nameof(Aggregateselection)}' with '{nameof(Aggregateselection.Sortid)}': [{string.Join(", ", aggregateSortIdsUsingThisPlan)}]");
 
             context.Set<TEntity>().Remove(entity);
 
@@ -266,7 +265,7 @@ namespace WebHMI.Services.StrategyServices
             var context = _dbContextProvider.GetDbContext();
             if (planNo == 0)
                 return false;
-            bool exist = await context.Set<TEntity>().AnyAsync(x => x.PlanNo == planNo);
+            bool exist = await context.Set<TEntity>().AnyAsync(x => x.Planno == planNo);
             return !exist;
         }
     }

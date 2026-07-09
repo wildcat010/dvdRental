@@ -3,373 +3,263 @@ using System.Collections.Generic;
 
 namespace WebHMI.PRDB.Dbo;
 
-/// <summary>
-/// MOS debug and strategy switches
-/// </summary>
-public partial class MosSwitch
+public partial class Mosswitch
 {
-    /// <summary>
-    /// plant type (HRM, HFM, ...)
-    /// </summary>
-    public string PlantType { get; set; }
-
-    /// <summary>
-    /// key to the only one MOS switches record: 0
-    /// </summary>
-    public int RecNo { get; set; }
-
-    /// <summary>
-    /// debug mod on/off pfc input file
-    /// </summary>
-    public int? DbgPfcIncnstr { get; set; }
-
-    /// <summary>
-    /// debug mod on/off pfc output file
-    /// </summary>
-    public int? DbgPfcOutcnstr { get; set; }
-
-    /// <summary>
-    /// write pfc result file
-    /// </summary>
-    public int? DbgPfcResult { get; set; }
-
-    /// <summary>
-    /// write psc debug file psc internel
-    /// </summary>
-    public int? DbgPscDebugFile { get; set; }
-
-    /// <summary>
-    /// write psc protokol output from calculation
-    /// </summary>
-    public int? DbgPscProt { get; set; }
-
-    /// <summary>
-    /// dummy debug switch
-    /// </summary>
-    public int? DbgSwitch1 { get; set; }
-
-    /// <summary>
-    /// debug switches for future use
-    /// </summary>
-    public int? DbgSwitchFInd0 { get; set; }
-
-    /// <summary>
-    /// debug switches for future use
-    /// </summary>
-    public int? DbgSwitchFInd1 { get; set; }
-
-    /// <summary>
-    /// debug switches for future use
-    /// </summary>
-    public int? DbgSwitchFInd10 { get; set; }
-
-    /// <summary>
-    /// debug switches for future use
-    /// </summary>
-    public int? DbgSwitchFInd11 { get; set; }
-
-    /// <summary>
-    /// debug switches for future use
-    /// </summary>
-    public int? DbgSwitchFInd12 { get; set; }
-
-    /// <summary>
-    /// debug switches for future use
-    /// </summary>
-    public int? DbgSwitchFInd13 { get; set; }
-
-    /// <summary>
-    /// debug switches for future use
-    /// </summary>
-    public int? DbgSwitchFInd14 { get; set; }
-
-    /// <summary>
-    /// debug switches for future use
-    /// </summary>
-    public int? DbgSwitchFInd15 { get; set; }
-
-    /// <summary>
-    /// debug switches for future use
-    /// </summary>
-    public int? DbgSwitchFInd16 { get; set; }
-
-    /// <summary>
-    /// debug switches for future use
-    /// </summary>
-    public int? DbgSwitchFInd17 { get; set; }
-
-    /// <summary>
-    /// debug switches for future use
-    /// </summary>
-    public int? DbgSwitchFInd18 { get; set; }
-
-    /// <summary>
-    /// debug switches for future use
-    /// </summary>
-    public int? DbgSwitchFInd19 { get; set; }
-
-    /// <summary>
-    /// debug switches for future use
-    /// </summary>
-    public int? DbgSwitchFInd2 { get; set; }
-
-    /// <summary>
-    /// debug switches for future use
-    /// </summary>
-    public int? DbgSwitchFInd3 { get; set; }
-
-    /// <summary>
-    /// debug switches for future use
-    /// </summary>
-    public int? DbgSwitchFInd4 { get; set; }
-
-    /// <summary>
-    /// debug switches for future use
-    /// </summary>
-    public int? DbgSwitchFInd5 { get; set; }
-
-    /// <summary>
-    /// debug switches for future use
-    /// </summary>
-    public int? DbgSwitchFInd6 { get; set; }
-
-    /// <summary>
-    /// debug switches for future use
-    /// </summary>
-    public int? DbgSwitchFInd7 { get; set; }
-
-    /// <summary>
-    /// debug switches for future use
-    /// </summary>
-    public int? DbgSwitchFInd8 { get; set; }
-
-    /// <summary>
-    /// debug switches for future use
-    /// </summary>
-    public int? DbgSwitchFInd9 { get; set; }
-
-    /// <summary>
-    /// dummy strategy switch
-    /// </summary>
-    public int? StrSwitch1 { get; set; }
-
-    /// <summary>
-    /// dummy strategy switch
-    /// </summary>
-    public int? StrSwitch2 { get; set; }
-
-    /// <summary>
-    /// strategy switches for future use
-    /// </summary>
-    public int? StrSwitchesInd0 { get; set; }
-
-    /// <summary>
-    /// strategy switches for future use
-    /// </summary>
-    public int? StrSwitchesInd1 { get; set; }
-
-    /// <summary>
-    /// strategy switches for future use
-    /// </summary>
-    public int? StrSwitchesInd10 { get; set; }
-
-    /// <summary>
-    /// strategy switches for future use
-    /// </summary>
-    public int? StrSwitchesInd11 { get; set; }
-
-    /// <summary>
-    /// strategy switches for future use
-    /// </summary>
-    public int? StrSwitchesInd12 { get; set; }
-
-    /// <summary>
-    /// strategy switches for future use
-    /// </summary>
-    public int? StrSwitchesInd13 { get; set; }
-
-    /// <summary>
-    /// strategy switches for future use
-    /// </summary>
-    public int? StrSwitchesInd14 { get; set; }
-
-    /// <summary>
-    /// strategy switches for future use
-    /// </summary>
-    public int? StrSwitchesInd15 { get; set; }
-
-    /// <summary>
-    /// strategy switches for future use
-    /// </summary>
-    public int? StrSwitchesInd16 { get; set; }
-
-    /// <summary>
-    /// strategy switches for future use
-    /// </summary>
-    public int? StrSwitchesInd17 { get; set; }
-
-    /// <summary>
-    /// strategy switches for future use
-    /// </summary>
-    public int? StrSwitchesInd18 { get; set; }
-
-    /// <summary>
-    /// strategy switches for future use
-    /// </summary>
-    public int? StrSwitchesInd19 { get; set; }
-
-    /// <summary>
-    /// strategy switches for future use
-    /// </summary>
-    public int? StrSwitchesInd2 { get; set; }
-
-    /// <summary>
-    /// strategy switches for future use
-    /// </summary>
-    public int? StrSwitchesInd20 { get; set; }
-
-    /// <summary>
-    /// strategy switches for future use
-    /// </summary>
-    public int? StrSwitchesInd21 { get; set; }
-
-    /// <summary>
-    /// strategy switches for future use
-    /// </summary>
-    public int? StrSwitchesInd22 { get; set; }
-
-    /// <summary>
-    /// strategy switches for future use
-    /// </summary>
-    public int? StrSwitchesInd23 { get; set; }
-
-    /// <summary>
-    /// strategy switches for future use
-    /// </summary>
-    public int? StrSwitchesInd24 { get; set; }
-
-    /// <summary>
-    /// strategy switches for future use
-    /// </summary>
-    public int? StrSwitchesInd25 { get; set; }
-
-    /// <summary>
-    /// strategy switches for future use
-    /// </summary>
-    public int? StrSwitchesInd26 { get; set; }
-
-    /// <summary>
-    /// strategy switches for future use
-    /// </summary>
-    public int? StrSwitchesInd27 { get; set; }
-
-    /// <summary>
-    /// strategy switches for future use
-    /// </summary>
-    public int? StrSwitchesInd28 { get; set; }
-
-    /// <summary>
-    /// strategy switches for future use
-    /// </summary>
-    public int? StrSwitchesInd29 { get; set; }
-
-    /// <summary>
-    /// strategy switches for future use
-    /// </summary>
-    public int? StrSwitchesInd3 { get; set; }
-
-    /// <summary>
-    /// strategy switches for future use
-    /// </summary>
-    public int? StrSwitchesInd30 { get; set; }
-
-    /// <summary>
-    /// strategy switches for future use
-    /// </summary>
-    public int? StrSwitchesInd31 { get; set; }
-
-    /// <summary>
-    /// strategy switches for future use
-    /// </summary>
-    public int? StrSwitchesInd32 { get; set; }
-
-    /// <summary>
-    /// strategy switches for future use
-    /// </summary>
-    public int? StrSwitchesInd33 { get; set; }
-
-    /// <summary>
-    /// strategy switches for future use
-    /// </summary>
-    public int? StrSwitchesInd34 { get; set; }
-
-    /// <summary>
-    /// strategy switches for future use
-    /// </summary>
-    public int? StrSwitchesInd35 { get; set; }
-
-    /// <summary>
-    /// strategy switches for future use
-    /// </summary>
-    public int? StrSwitchesInd36 { get; set; }
-
-    /// <summary>
-    /// strategy switches for future use
-    /// </summary>
-    public int? StrSwitchesInd37 { get; set; }
-
-    /// <summary>
-    /// strategy switches for future use
-    /// </summary>
-    public int? StrSwitchesInd38 { get; set; }
-
-    /// <summary>
-    /// strategy switches for future use
-    /// </summary>
-    public int? StrSwitchesInd39 { get; set; }
-
-    /// <summary>
-    /// strategy switches for future use
-    /// </summary>
-    public int? StrSwitchesInd4 { get; set; }
-
-    /// <summary>
-    /// strategy switches for future use
-    /// </summary>
-    public int? StrSwitchesInd5 { get; set; }
-
-    /// <summary>
-    /// strategy switches for future use
-    /// </summary>
-    public int? StrSwitchesInd6 { get; set; }
-
-    /// <summary>
-    /// strategy switches for future use
-    /// </summary>
-    public int? StrSwitchesInd7 { get; set; }
-
-    /// <summary>
-    /// strategy switches for future use
-    /// </summary>
-    public int? StrSwitchesInd8 { get; set; }
-
-    /// <summary>
-    /// strategy switches for future use
-    /// </summary>
-    public int? StrSwitchesInd9 { get; set; }
-
-    /// <summary>
-    /// modifying process
-    /// </summary>
+    public string Planttype { get; set; }
+
+    public int Recno { get; set; }
+
+    public int? Dbgpscdebugfile { get; set; }
+
+    public int? Dbgpscprot { get; set; }
+
+    public int? Dbgswitch1 { get; set; }
+
+    public int? DbgswitchfInd00 { get; set; }
+
+    public int? DbgswitchfInd01 { get; set; }
+
+    public int? DbgswitchfInd02 { get; set; }
+
+    public int? DbgswitchfInd03 { get; set; }
+
+    public int? DbgswitchfInd04 { get; set; }
+
+    public int? DbgswitchfInd05 { get; set; }
+
+    public int? DbgswitchfInd06 { get; set; }
+
+    public int? DbgswitchfInd07 { get; set; }
+
+    public int? DbgswitchfInd08 { get; set; }
+
+    public int? DbgswitchfInd09 { get; set; }
+
+    public int? DbgswitchfInd10 { get; set; }
+
+    public int? DbgswitchfInd11 { get; set; }
+
+    public int? DbgswitchfInd12 { get; set; }
+
+    public int? DbgswitchfInd13 { get; set; }
+
+    public int? DbgswitchfInd14 { get; set; }
+
+    public int? DbgswitchfInd15 { get; set; }
+
+    public int? DbgswitchfInd16 { get; set; }
+
+    public int? DbgswitchfInd17 { get; set; }
+
+    public int? DbgswitchfInd18 { get; set; }
+
+    public int? DbgswitchfInd19 { get; set; }
+
+    public int? Strfirstprioprofile { get; set; }
+
+    public int? StrpfcwearshiftallowedInd0 { get; set; }
+
+    public int? StrpfcwearshiftallowedInd1 { get; set; }
+
+    public int? StrpfcwearshiftallowedInd2 { get; set; }
+
+    public int? StrpfcwearshiftallowedInd3 { get; set; }
+
+    public int? StrpfcwearshiftallowedInd4 { get; set; }
+
+    public int? StrpfcwearshiftallowedInd5 { get; set; }
+
+    public int? StrpfcwearshiftallowedInd6 { get; set; }
+
+    public int? StrpfcwearshiftallowedInd7 { get; set; }
+
+    public int? StrpfcwearshiftallowedInd8 { get; set; }
+
+    public int? StrrccallowedInd0 { get; set; }
+
+    public int? StrrccallowedInd1 { get; set; }
+
+    public int? StrrccallowedInd2 { get; set; }
+
+    public int? StrrccallowedInd3 { get; set; }
+
+    public int? StrrccallowedInd4 { get; set; }
+
+    public int? StrrccallowedInd5 { get; set; }
+
+    public int? StrrccallowedInd6 { get; set; }
+
+    public int? StrrccallowedInd7 { get; set; }
+
+    public int? StrrccallowedInd8 { get; set; }
+
+    public int? Strswitch1 { get; set; }
+
+    public int? Strswitch2 { get; set; }
+
+    public int? StrswitchesInd00 { get; set; }
+
+    public int? StrswitchesInd01 { get; set; }
+
+    public int? StrswitchesInd02 { get; set; }
+
+    public int? StrswitchesInd03 { get; set; }
+
+    public int? StrswitchesInd04 { get; set; }
+
+    public int? StrswitchesInd05 { get; set; }
+
+    public int? StrswitchesInd06 { get; set; }
+
+    public int? StrswitchesInd07 { get; set; }
+
+    public int? StrswitchesInd08 { get; set; }
+
+    public int? StrswitchesInd09 { get; set; }
+
+    public int? StrswitchesInd10 { get; set; }
+
+    public int? StrswitchesInd11 { get; set; }
+
+    public int? StrswitchesInd12 { get; set; }
+
+    public int? StrswitchesInd13 { get; set; }
+
+    public int? StrswitchesInd14 { get; set; }
+
+    public int? StrswitchesInd15 { get; set; }
+
+    public int? StrswitchesInd16 { get; set; }
+
+    public int? StrswitchesInd17 { get; set; }
+
+    public int? StrswitchesInd18 { get; set; }
+
+    public int? StrswitchesInd19 { get; set; }
+
+    public int? StrswitchesInd20 { get; set; }
+
+    public int? StrswitchesInd21 { get; set; }
+
+    public int? StrswitchesInd22 { get; set; }
+
+    public int? StrswitchesInd23 { get; set; }
+
+    public int? StrswitchesInd24 { get; set; }
+
+    public int? StrswitchesInd25 { get; set; }
+
+    public int? StrswitchesInd26 { get; set; }
+
+    public int? StrswitchesInd27 { get; set; }
+
+    public int? StrswitchesInd28 { get; set; }
+
+    public int? StrswitchesInd29 { get; set; }
+
+    public int? StrswitchesInd30 { get; set; }
+
+    public int? StrswitchesInd31 { get; set; }
+
+    public int? StrswitchesInd32 { get; set; }
+
+    public int? StrswitchesInd33 { get; set; }
+
+    public int? StrswitchesInd34 { get; set; }
+
+    public int? StrswitchesInd35 { get; set; }
+
+    public int? StrswitchesInd36 { get; set; }
+
+    public int? StrswitchesInd37 { get; set; }
+
+    public int? StrswitchesInd38 { get; set; }
+
+    public int? StrswitchesInd39 { get; set; }
+
+    public int? StrswitchesInd40 { get; set; }
+
+    public int? StrswitchesInd41 { get; set; }
+
+    public int? StrswitchesInd42 { get; set; }
+
+    public int? StrswitchesInd43 { get; set; }
+
+    public int? StrswitchesInd44 { get; set; }
+
+    public int? StrswitchesInd45 { get; set; }
+
+    public int? StrswitchesInd46 { get; set; }
+
+    public int? StrswitchesInd47 { get; set; }
+
+    public int? StrswitchesInd48 { get; set; }
+
+    public int? StrswitchesInd49 { get; set; }
+
+    public int? StrswitchesInd50 { get; set; }
+
+    public int? StrswitchesInd51 { get; set; }
+
+    public int? StrswitchesInd52 { get; set; }
+
+    public int? StrswitchesInd53 { get; set; }
+
+    public int? StrswitchesInd54 { get; set; }
+
+    public int? StrswitchesInd55 { get; set; }
+
+    public int? StrswitchesInd56 { get; set; }
+
+    public int? StrswitchesInd57 { get; set; }
+
+    public int? StrswitchesInd58 { get; set; }
+
+    public int? StrswitchesInd59 { get; set; }
+
+    public int? StrswitchesInd60 { get; set; }
+
+    public int? StrswitchesInd61 { get; set; }
+
+    public int? StrswitchesInd62 { get; set; }
+
+    public int? StrswitchesInd63 { get; set; }
+
+    public int? StrswitchesInd64 { get; set; }
+
+    public int? StrswitchesInd65 { get; set; }
+
+    public int? StrswitchesInd66 { get; set; }
+
+    public int? StrswitchesInd67 { get; set; }
+
+    public int? StrswitchesInd68 { get; set; }
+
+    public int? StrswitchesInd69 { get; set; }
+
+    public int? StrswitchesInd70 { get; set; }
+
+    public int? StrswitchesInd71 { get; set; }
+
+    public int? StrswitchesInd72 { get; set; }
+
+    public int? StrswitchesInd73 { get; set; }
+
+    public int? StrswitchesInd74 { get; set; }
+
+    public int? StrswitchesInd75 { get; set; }
+
+    public int? StrswitchesInd76 { get; set; }
+
+    public int? StrswitchesInd77 { get; set; }
+
+    public int? StrswitchesInd78 { get; set; }
+
+    public int? StrswitchesInd79 { get; set; }
+
     public string Mop { get; set; }
 
-    /// <summary>
-    /// time of creation
-    /// </summary>
     public DateTime? Toc { get; set; }
 
-    /// <summary>
-    /// time of modification
-    /// </summary>
     public DateTime? Tom { get; set; }
 }

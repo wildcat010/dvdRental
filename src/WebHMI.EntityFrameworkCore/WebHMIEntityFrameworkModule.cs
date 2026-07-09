@@ -68,11 +68,11 @@ namespace WebHMI
 		public override void PostInitialize()
 		{
             // Early database warmup
-            Task.Run(() =>
-            {
-                using (IocManager.Resolve<IUnitOfWorkManager>().Begin())
-                    _ = IocManager.ResolveAsDisposable<IDbContextProvider<PrdbContext>>().Object.GetDbContext().Model;
-            });
+            //Task.Run(() =>
+            //{
+            //    using (IocManager.Resolve<IUnitOfWorkManager>().Begin())
+            //        _ = IocManager.ResolveAsDisposable<IDbContextProvider<PrdbContext>>().Object.GetDbContext().Model;
+            //});
 
             if (!SkipDbSeed)
 			{

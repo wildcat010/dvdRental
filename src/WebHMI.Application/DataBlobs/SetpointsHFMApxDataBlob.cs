@@ -5,19 +5,35 @@ namespace WebHMI.DataBlobs
 {
     public class SetpointsHRMApxDataBlob
     {
-        public List<SpOrd2Pc> Spord2pcs { get; set; } = new();
-        public List<EdOrdEnt> Edordents { get; set; } = new();
-        public List<EdPhyEnt> Edphyents { get; set; } = new();
-        public List<EdLogEnt> Edlogents { get; set; } = new();
+        public List<Spord2pc> Spord2pcs { get; set; } = new();
+        public List<Edordent> Edordents { get; set; } = new();
+        public List<Edphyent> Edphyents { get; set; } = new();
+        public List<Edlogent> Edlogents { get; set; } = new();
         public List<Me> Mes { get; set; } = new();
-        public List<DirFmPfcParaP> DirFmPfcParaPs { get; set; } = new();
-        public List<StatDirFmPfcParaPpass> DirFmPfcParaPasses { get; set; } = new();
+        public List<Dirfmpfcparap> DirFmPfcParaPs { get; set; } = new();
+        public List<Dirfmpfcparappass> DirFmPfcParaPasses { get; set; } = new();
         public List<Srppass> Srppasses { get; set; } = new();
         public List<Wmppass> Wmppasses { get; set; } = new();
-        public List<SpOrd2PcStand> Spord2pcstands { get; set; } = new();
+        public List<Spord2pcstand> Spord2pcstands { get; set; } = new();
         public List<Lppass> Lppasses { get; set; } = new();
-        public List<DirFmPfcCycShiftPpass> Dirfmpfccycshiftppasses { get; set; } = new();
-        public List<DirFmPfcCycShiftP> Dirfmpfccycshiftps { get; set; } = new();
+        public List<Dirfmpfccycshiftppass> Dirfmpfccycshiftppasses { get; set; } = new();
+        public List<Dirfmpfccycshiftp> Dirfmpfccycshiftps { get; set; } = new();
         public List<Lp> Lps { get; set; } = new();
+        public Adord2pc AdordPc2 { get; set; } = new();
+        public List<Adord2pcstand> AdordPc2Stands { get; set; } = new();
+        public StatSpord2pc StatSpord2pcs { get; set; } = new();
+        public StatEdordent StatEdordents { get; set; } = new();
+        public StatEdphyent StatEdphyents { get; set; } = new();
+        public StatEdlogent StatEdlogents { get; set; } = new();
+        public StatDirfmpfcparap StatDirFmPfcParaPs { get; set; } = new();
+        public List<StatDirfmpfcparappass> StatDirFmPfcParapPasses { get; set; } = new();
+        public List<StatSpord2pcstand> StatSpord2pcstands { get; set; } = new();
+        public List<StatLppass> StatLppasses { get; set; } = new();
+        public List<StatDirfmpfccycshiftppass> StatDirfmpfccycshiftppasses { get; set; } = new();
+        public StatDirfmpfccycshiftp StatDirfmpfccycshiftps { get; set; } = new();
+        public StatAdord2pc StatAdordPc2 { get; set; } = new();
+        public List<StatAdord2pcstand> StatAdordPc2Stands { get; set; } = new();
+        public List<Srp> Srp { get; set; } = new();
+        public List<Rcp> Rcps { get; set; } = new();
     }
 }

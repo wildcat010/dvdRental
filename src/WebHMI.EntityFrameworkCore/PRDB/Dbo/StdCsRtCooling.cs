@@ -3,123 +3,51 @@ using System.Collections.Generic;
 
 namespace WebHMI.PRDB.Dbo;
 
-/// <summary>
-/// Standard strategy Table for APS plan
-/// </summary>
-public partial class StdCsRtCooling
+public partial class Stdcsrtcooling
 {
-    /// <summary>
-    /// active flag
-    /// </summary>
-    public int ActiveFlag { get; set; }
+    public int Activeflag { get; set; }
 
-    /// <summary>
-    /// key for the compensation plan
-    /// </summary>
-    public int PlanNo { get; set; }
+    public int Planno { get; set; }
 
-    /// <summary>
-    /// description field
-    /// </summary>
     public string Description { get; set; }
 
-    /// <summary>
-    /// delay time to switch off
-    /// </summary>
-    public int? RtcCoolDownTime { get; set; }
+    public int? Rtccooldowntime { get; set; }
 
-    /// <summary>
-    /// roller tables on durring production (0,1)
-    /// </summary>
-    public int? RtcStrategyInd0 { get; set; }
+    public int? RtcstrategyInd00 { get; set; }
 
-    /// <summary>
-    /// roller tables on durring production (0,1)
-    /// </summary>
-    public int? RtcStrategyInd1 { get; set; }
+    public int? RtcstrategyInd01 { get; set; }
 
-    /// <summary>
-    /// roller tables on durring production (0,1)
-    /// </summary>
-    public int? RtcStrategyInd10 { get; set; }
+    public int? RtcstrategyInd02 { get; set; }
 
-    /// <summary>
-    /// roller tables on durring production (0,1)
-    /// </summary>
-    public int? RtcStrategyInd11 { get; set; }
+    public int? RtcstrategyInd03 { get; set; }
 
-    /// <summary>
-    /// roller tables on durring production (0,1)
-    /// </summary>
-    public int? RtcStrategyInd12 { get; set; }
+    public int? RtcstrategyInd04 { get; set; }
 
-    /// <summary>
-    /// roller tables on durring production (0,1)
-    /// </summary>
-    public int? RtcStrategyInd13 { get; set; }
+    public int? RtcstrategyInd05 { get; set; }
 
-    /// <summary>
-    /// roller tables on durring production (0,1)
-    /// </summary>
-    public int? RtcStrategyInd14 { get; set; }
+    public int? RtcstrategyInd06 { get; set; }
 
-    /// <summary>
-    /// roller tables on durring production (0,1)
-    /// </summary>
-    public int? RtcStrategyInd15 { get; set; }
+    public int? RtcstrategyInd07 { get; set; }
 
-    /// <summary>
-    /// roller tables on durring production (0,1)
-    /// </summary>
-    public int? RtcStrategyInd2 { get; set; }
+    public int? RtcstrategyInd08 { get; set; }
 
-    /// <summary>
-    /// roller tables on durring production (0,1)
-    /// </summary>
-    public int? RtcStrategyInd3 { get; set; }
+    public int? RtcstrategyInd09 { get; set; }
 
-    /// <summary>
-    /// roller tables on durring production (0,1)
-    /// </summary>
-    public int? RtcStrategyInd4 { get; set; }
+    public int? RtcstrategyInd10 { get; set; }
 
-    /// <summary>
-    /// roller tables on durring production (0,1)
-    /// </summary>
-    public int? RtcStrategyInd5 { get; set; }
+    public int? RtcstrategyInd11 { get; set; }
 
-    /// <summary>
-    /// roller tables on durring production (0,1)
-    /// </summary>
-    public int? RtcStrategyInd6 { get; set; }
+    public int? RtcstrategyInd12 { get; set; }
 
-    /// <summary>
-    /// roller tables on durring production (0,1)
-    /// </summary>
-    public int? RtcStrategyInd7 { get; set; }
+    public int? RtcstrategyInd13 { get; set; }
 
-    /// <summary>
-    /// roller tables on durring production (0,1)
-    /// </summary>
-    public int? RtcStrategyInd8 { get; set; }
+    public int? RtcstrategyInd14 { get; set; }
 
-    /// <summary>
-    /// roller tables on durring production (0,1)
-    /// </summary>
-    public int? RtcStrategyInd9 { get; set; }
+    public int? RtcstrategyInd15 { get; set; }
 
-    /// <summary>
-    /// modifying process
-    /// </summary>
     public string Mop { get; set; }
 
-    /// <summary>
-    /// time of creation
-    /// </summary>
     public DateTime? Toc { get; set; }
 
-    /// <summary>
-    /// time of modification
-    /// </summary>
     public DateTime? Tom { get; set; }
 }

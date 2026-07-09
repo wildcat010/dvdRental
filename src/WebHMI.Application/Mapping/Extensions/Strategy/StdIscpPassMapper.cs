@@ -10,31 +10,31 @@ namespace WebHMI.Mapping.Extensions.Strategy
 {
     public class StdIscpPassMapper
     {
-        public static void MapEntity(StdIscppass entity, StdIscpPassDto dto)
+        public static void MapEntity(Stdiscppass entity, StdIscpPassDto dto)
         {
-            entity.PlanNo = dto.PlanNo;
-            entity.ActiveFlag = dto.ActiveFlag;
-            entity.PassNo = dto.PassNo;
-            //entity.Description = dto.Description;
-            entity.IscVolumeInd0 = dto.IscVolumeInd0;
-            entity.IscVolumeInd1 = dto.IscVolumeInd1;
-            entity.IscVolumeInd2 = dto.IscVolumeInd2;
-            entity.StripSprayBefor = dto.StripSprayBefore;
-            entity.FumeSuppSprayBehind = dto.FumeSuppSprayBehind;
+            entity.Planno = dto.PlanNo;
+            entity.Activeflag = dto.ActiveFlag;
+            entity.Passno = dto.PassNo;
+            entity.Description = dto.Description;
+            entity.IscvolumeInd0 = dto.IscVolumeInd0;
+            entity.IscvolumeInd1 = dto.IscVolumeInd1;
+            entity.IscvolumeInd2 = dto.IscVolumeInd2;
+            entity.Stripspraybefor = dto.StripSprayBefore;
+            entity.Fumesuppspraybehind = dto.FumeSuppSprayBehind;
 
         }
 
-        public static StdIscpPassDto ToDto(StdIscppass entity) => new()
+        public static StdIscpPassDto ToDto(Stdiscppass entity) => new()
         {
-            PlanNo = entity.PlanNo,
-            ActiveFlag = entity.ActiveFlag,
-            PassNo = entity.PassNo,
-            //Description = entity.Description
-            IscVolumeInd0 = entity.IscVolumeInd0,
-            IscVolumeInd1 = entity.IscVolumeInd1,
-            IscVolumeInd2 = entity.IscVolumeInd2,
-            StripSprayBefore = entity.StripSprayBefor,
-            FumeSuppSprayBehind = entity.FumeSuppSprayBehind
+            PlanNo = entity.Planno,
+            ActiveFlag = entity.Activeflag,
+            PassNo = entity.Passno,
+            Description = entity.Description,
+            IscVolumeInd0 = entity.IscvolumeInd0,
+            IscVolumeInd1 = entity.IscvolumeInd1,
+            IscVolumeInd2 = entity.IscvolumeInd2,
+            StripSprayBefore = entity.Stripspraybefor,
+            FumeSuppSprayBehind = entity.Fumesuppspraybehind
 
         };
     }

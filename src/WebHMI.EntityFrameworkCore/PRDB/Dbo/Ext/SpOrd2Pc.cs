@@ -2,5 +2,5 @@
 
 namespace WebHMI.PRDB.Dbo
 {
-    public partial class SpOrd2Pc : IMaterialIdTypeOrder { }
+    public partial class Spord2pc : IMaterialIdTypeOrder { }
 }

@@ -8,6 +8,6 @@ namespace WebHMI.Dtos.Strategy.StdDtos.StdSingleDtos
 {
     public class StdIhpDto : StdItemDto
     {
-        public float? Temperature { get; set; }
+        public double? Temperature { get; set; }
     }
 }

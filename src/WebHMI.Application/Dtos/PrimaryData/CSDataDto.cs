@@ -8,34 +8,34 @@ namespace WebHMI.Dtos.PrimaryData
 {
     public class CSDataDto
     {
-        public SourceSet<float?> CoilTemp { get; set; } = new();
-        public SourceSet<float?> CoilTempMax { get; set; } = new();
-        public SourceSet<float?> CoilTempMin { get; set; } = new();
-        public SourceSet<float?> Fraction { get; set; } = new();
-        public SourceSet<float?> HeadUncoolHeadLength { get; set; } = new();
-        public SourceSet<float?> HeadProfileTemp { get; set; } = new();
-        public SourceSet<float?> HeadProfileLength { get; set; } = new();
-        public SourceSet<float?> HeadRampUpLength{ get; set; } = new();
-        public SourceSet<float?> TailUncoolHeadLength { get; set; } = new();
-        public SourceSet<float?> TailProfileTemp { get; set; } = new();
-        public SourceSet<float?> TailProfileLength { get; set; } = new();
-        public SourceSet<float?> TailRampUpLength { get; set; } = new();
+        public SourceSet<double?> CoilTemp { get; set; } = new();
+        public SourceSet<double?> CoilTempMax { get; set; } = new();
+        public SourceSet<double?> CoilTempMin { get; set; } = new();
+        public SourceSet<double?> Fraction { get; set; } = new();
+        public SourceSet<double?> HeadUncoolHeadLength { get; set; } = new();
+        public SourceSet<double?> HeadProfileTemp { get; set; } = new();
+        public SourceSet<double?> HeadProfileLength { get; set; } = new();
+        public SourceSet<double?> HeadRampUpLength{ get; set; } = new();
+        public SourceSet<double?> TailUncoolHeadLength { get; set; } = new();
+        public SourceSet<double?> TailProfileTemp { get; set; } = new();
+        public SourceSet<double?> TailProfileLength { get; set; } = new();
+        public SourceSet<double?> TailRampUpLength { get; set; } = new();
         public SourceSet<int?> CoolMode { get; set; } = new();
         public SourceSet<short?> CoolModeSource { get; set; } = new();
-        public SourceSet<float?> FirstValveTop { get; set; } = new();
-        public SourceSet<float?> FirstValveBot { get; set; } = new();
-        public SourceSet<float?> LeadingPyro { get; set; } = new();
-        public SourceSet<float?> StartValveTop { get; set; } = new();
-        public SourceSet<float?> StartValveBot { get; set; } = new();
-        public SourceSet<float?> DirCoolRateTop { get; set; } = new();
-        public SourceSet<float?> DirCoolRateBot { get; set; } = new();
+        public SourceSet<double?> FirstValveTop { get; set; } = new();
+        public SourceSet<double?> FirstValveBot { get; set; } = new();
+        public SourceSet<double?> LeadingPyro { get; set; } = new();
+        public SourceSet<double?> StartValveTop { get; set; } = new();
+        public SourceSet<double?> StartValveBot { get; set; } = new();
+        public SourceSet<double?> DirCoolRateTop { get; set; } = new();
+        public SourceSet<double?> DirCoolRateBot { get; set; } = new();
         public SourceSet<int?> ValveSeqIdx { get; set; } = new();
-        public SourceSet<float?> CoolLoad { get; set; } = new();
-        public SourceSet<float?> DpCoolRateTop { get; set; } = new();
-        public SourceSet<float?> DpCoolRateBot { get; set; } = new();
-        public SourceSet<float?> HoldTime { get; set; } = new();
-        public SourceSet<float?> HoldTemp { get; set; } = new();
-        public SourceSet<float?> DpFraction { get; set; } = new();
+        public SourceSet<double?> CoolLoad { get; set; } = new();
+        public SourceSet<double?> DpCoolRateTop { get; set; } = new();
+        public SourceSet<double?> DpCoolRateBot { get; set; } = new();
+        public SourceSet<double?> HoldTime { get; set; } = new();
+        public SourceSet<double?> HoldTemp { get; set; } = new();
+        public SourceSet<double?> DpFraction { get; set; } = new();
 
     }
 }

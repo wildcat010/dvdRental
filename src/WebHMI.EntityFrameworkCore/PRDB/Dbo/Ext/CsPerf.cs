@@ -2,5 +2,5 @@
 
 namespace WebHMI.PRDB.Dbo
 {
-    public partial class CsPerf : IMaterialIdTypeOrder { }
+    public partial class Csperf : IMaterialIdTypeOrder { }
 }

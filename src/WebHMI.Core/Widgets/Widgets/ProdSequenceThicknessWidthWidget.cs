@@ -57,14 +57,14 @@ namespace WebHMI.Core.Widget.Widgets
         {
             var context = _dbContextProvider.GetDbContext();
 
-            var seq = (await context.HmiVProdsequences
-                .Select(x => new { x.SequenceId, x.Next })
-                .FirstOrDefaultAsync(x => x.Next == 1));
+            var seq = (await context.HmiVProdsequenceCompletes
+                .Select(x => new { x.Sequenceid, x.Pnext })
+                .FirstOrDefaultAsync(x => x.Pnext == 1));
 
             if (seq is null)
                 return "-1";
 
-            return seq.SequenceId;
+            return seq.Sequenceid;
         }
 
         private async Task ReadData()
@@ -74,9 +74,7 @@ namespace WebHMI.Core.Widget.Widgets
             //var actualSeqId = await GetActualSequenceId();
 
             var prodSequences = context.HmiVProdsequenceCompletes
-                .OrderBy(x => x.Majorno)
-                .ThenBy(x => x.Minorno)
-                .ThenBy(x => x.Position)
+                .OrderBy(x => x.Position)
                 .AsEnumerable();
                // .Where(x => x.SequenceId == actualSeqId);
 
@@ -85,16 +83,16 @@ namespace WebHMI.Core.Widget.Widgets
 			foreach (var el in prodSequences)
 			{
 				result.Add(new KeyValuePair<string, SingleProdSequenceThicknessWidth>(
-					el.EnOrExtId,
+					el.Enorextid,
 					new SingleProdSequenceThicknessWidth
 					{
-						EntryThickness = el.HEntry,
-						ExitThickness = el.HExit,
-						Width = el.WExit,
-						HeatId = el.HeatId,
-						SeqId = el.SequenceId,
-						FlagNext = el.Next,
-						Status = el.EnOrStatus,
+						EntryThickness = el.Hentry,
+						ExitThickness = el.Hexit,
+						Width = el.Wexit,
+						HeatId = el.Heatid,
+						SeqId = el.Sequenceid,
+						FlagNext = el.Pnext,
+						Status = el.Enorstatus,
                     }));
 			}
 

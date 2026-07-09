@@ -10,6 +10,6 @@ namespace WebHMI.L2Adapter
 	{
 		public bool IsEnabled { get; set; }
 		public int StatusReadCycleMs { get; set; } = 1000;
-		public List<string> Watchdogs { get; set; }
+        public List<string> Watchdogs { get; set; } = new();
 	}
 }

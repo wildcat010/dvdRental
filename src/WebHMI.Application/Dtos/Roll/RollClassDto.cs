@@ -7,7 +7,7 @@ namespace WebHMI.Dtos.Roll
         public int RollClass { get; set; }
         public double? CaliberDiaDiff { get; set; }
         public double? CaliberLength { get; set; }
-        public float? CheckerHeight { get; set; }
+        public double? CheckerHeight { get; set; }
         public int? CheckerRoll { get; set; }
         public double? DNeck { get; set; }
         public string Description { get; set; }

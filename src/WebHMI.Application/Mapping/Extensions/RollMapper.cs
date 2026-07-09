@@ -15,333 +15,333 @@ namespace WebHMI.Mapping.Extensions
 {
     public static class RollMapper
     {
-        public static RollClassDto ToRollClassDto(this RollClass entity) => new()
+        public static RollClassDto ToRollClassDto(this Rollclass entity) => new()
         {
-            RollClass = entity.RollClass1,
-            CaliberDiaDiff = entity.CaliberDiaDiff,
-            CaliberLength = entity.CaliberLength,
-            CheckerHeight = entity.CheckerHeight,
-            CheckerRoll = entity.CheckerRoll,
-            DNeck = entity.DNeck,
+            RollClass = entity.Rollclass1,
+            CaliberDiaDiff = entity.Caliberdiadiff,
+            CaliberLength = entity.Caliberlength,
+            CheckerHeight = entity.Checkerheight,
+            CheckerRoll = entity.Checkerroll,
+            DNeck = entity.Dneck,
             Description = entity.Description,
-            LNeck = entity.LNeck,
+            LNeck = entity.Lneck,
             Length = entity.Length,
-            PlantType = entity.PlantType,
-            RollType = entity.RollType,
-            StandRange = entity.StandRange,
+            PlantType = entity.Planttype,
+            RollType = entity.Rolltype,
+            StandRange = entity.Standrange,
             Toc = entity.Toc,
             Tom = entity.Tom,
         };
 
-        public static void MapRollClassEntity(this RollClass entity, RollClassDto dto)
+        public static void MapRollClassEntity(this Rollclass entity, RollClassDto dto)
         {
-            entity.RollClass1 = dto.RollClass;
-            entity.CaliberDiaDiff = dto.CaliberDiaDiff;
-            entity.CaliberLength = dto.CaliberLength;
-            entity.CheckerHeight = dto.CheckerHeight;
-            entity.CheckerRoll = dto.CheckerRoll;
-            entity.DNeck = dto.DNeck;
+            entity.Rollclass1 = dto.RollClass;
+            entity.Caliberdiadiff = dto.CaliberDiaDiff;
+            entity.Caliberlength = dto.CaliberLength;
+            entity.Checkerheight = dto.CheckerHeight;
+            entity.Checkerroll = dto.CheckerRoll;
+            entity.Dneck = dto.DNeck;
             entity.Description = dto.Description;
-            entity.LNeck = dto.LNeck;
+            entity.Lneck = dto.LNeck;
             entity.Length = dto.Length;
-            entity.PlantType = dto.PlantType;
-            entity.RollType = dto.RollType;
-            entity.StandRange = dto.StandRange;
+            entity.Planttype = dto.PlantType;
+            entity.Rolltype = dto.RollType;
+            entity.Standrange = dto.StandRange;
         }
 
-        public static RollClass ToRollClassEntity(this RollClassDto dto)
+        public static Rollclass ToRollClassEntity(this RollClassDto dto)
         {
-            var entity = new RollClass();
+            var entity = new Rollclass();
             entity.MapRollClassEntity(dto);
             return entity;
         }
 
-        public static RollChamferDto ToRollChamferDto(this RollChamfer entity) => new()
+        public static RollChamferDto ToRollChamferDto(this Rollchamfer entity) => new()
         {
-            Rollchamferclass = entity.RollChamferClass,
-            Conedistds = entity.ConeDistDs,
-            Conedistos = entity.ConeDistOs,
-            Coneheightds = entity.ConeHeightDs,
-            Coneheightos = entity.ConeHeightOs,
-            Conelengthds = entity.ConeLengthDs,
-            Conelengthos = entity.ConeLengthOs,
-            Conetype = entity.ConeType,
+            Rollchamferclass = entity.Rollchamferclass,
+            Conedistds = entity.Conedistds,
+            Conedistos = entity.Conedistos,
+            Coneheightds = entity.Coneheightds,
+            Coneheightos = entity.Coneheightos,
+            Conelengthds = entity.Conelengthds,
+            Conelengthos = entity.Conelengthos,
+            Conetype = entity.Conetype,
             Description = entity.Description,
-            Standrange = entity.StandRange,
+            Standrange = entity.Standrange,
         };
 
-        public static void MapRollChamferEntity(this RollChamfer entity, RollChamferDto dto)
+        public static void MapRollChamferEntity(this Rollchamfer entity, RollChamferDto dto)
         {
-            entity.RollChamferClass = dto.Rollchamferclass;
-            entity.ConeDistDs = dto.Conedistds;
-            entity.ConeDistOs = dto.Conedistos;
-            entity.ConeHeightDs = dto.Coneheightds;
-            entity.ConeHeightOs = dto.Coneheightos;
-            entity.ConeLengthDs = dto.Conelengthds;
-            entity.ConeLengthOs = dto.Conelengthos;
-            entity.ConeType = dto.Conetype;
+            entity.Rollchamferclass = dto.Rollchamferclass;
+            entity.Conedistds = dto.Conedistds;
+            entity.Conedistos = dto.Conedistos;
+            entity.Coneheightds = dto.Coneheightds;
+            entity.Coneheightos = dto.Coneheightos;
+            entity.Conelengthds = dto.Conelengthds;
+            entity.Conelengthos = dto.Conelengthos;
+            entity.Conetype = dto.Conetype;
             entity.Description = dto.Description;
-            entity.StandRange = dto.Standrange;
+            entity.Standrange = dto.Standrange;
         }
 
-        public static RollChamfer ToRollChamferEntity(this RollChamferDto dto)
+        public static Rollchamfer ToRollChamferEntity(this RollChamferDto dto)
         {
-            var entity = new RollChamfer();
+            var entity = new Rollchamfer();
             entity.MapRollChamferEntity(dto);
             return entity;
         }
 
         public static SingleRollDetailsDto ToRollDetailsDto(this HmiVRollInventory entity) => new()
         {
-            Rollid = entity.RollId,
-            Planttype = entity.PlantType,
-            Rolltype = entity.RollType,
+            Rollid = entity.Rollid,
+            Planttype = entity.Planttype,
+            Rolltype = entity.Rolltype,
             Diameter = entity.Diameter,
-            InitTemp = entity.InitTemp,
+            InitTemp = entity.Inittemp,
             Stat = entity.Stat,
-            Rollclass = entity.RollClass,
+            Rollclass = entity.Rollclass,
             RollClassName = entity.Rollclassdesc,
             ShapeCode = entity.Shapecode,
-            Mounttime = entity.MountTime,
-            Dismounttime = entity.DismountTime,
-            RollPropertyClass = entity.RollPropertyClass,
-            Rollpos = entity.RollPos,
-            Standid = entity.StandId,
+            Mounttime = entity.Mounttime,
+            Dismounttime = entity.Dismounttime,
+            RollPropertyClass = entity.Rollpropertyclass,
+            Rollpos = entity.Rollpos,
+            Standid = entity.Standid,
             RolledLength = entity.Rolledlength,
             RolledWeight = entity.Rolledweight,
             Grinding = entity.Grinding,
-            RelatedRollid = entity.RelatedRollId,
-            PlannedStandId = entity.PlannedStandId,
-            PlannedRollPos = entity.PlannedRollPos,
-            ReasonId = entity.RemoveReason,
+            RelatedRollid = entity.Relatedrollid,
+            PlannedStandId = entity.Plannedstandid,
+            PlannedRollPos = entity.Plannedrollpos,
+            ReasonId = entity.Removereason,
             Remarks = entity.Remarks,
-            RollChamferClassId = entity.RollChamferCode,
+            RollChamferClassId = entity.Rollchamfercode,
             Shimm = entity.Shimm,
             Roughness = entity.Roughness,
-            StandRange = entity.StandRange
+            StandRange = entity.Standrange
         };
 
-        public static SingleRollDataCoreDto ToRollDataCoreDto(this RollDatum entity) => new()
+        public static SingleRollDataCoreDto ToRollDataCoreDto(this Rolldatum entity) => new()
         {
-            Rollid = entity.RollId,
-            Rolltype = entity.RollType,
-            Planttype = entity.PlantType,
-            Standid = entity.StandId,
+            Rollid = entity.Rollid,
+            Rolltype = entity.Rolltype,
+            Planttype = entity.Planttype,
+            Standid = entity.Standid,
             Stat = entity.Stat,
-            Rollpos = entity.RollPos,
+            Rollpos = entity.Rollpos,
             Diameter = entity.Diameter,
-            Rollclass = entity.RollClass,
-            RollPropertyClass = entity.RollPropertyClass,
-            Mounttime = entity.MountTime,
-            Dismounttime = entity.DismountTime,
-            RolledWeight = entity.RolledWeight,
-            RolledLength = entity.RolledLength,
-            RollChamferClassId = entity.RollChamferCode,
+            Rollclass = entity.Rollclass,
+            RollPropertyClass = entity.Rollpropertyclass,
+            Mounttime = entity.Mounttime,
+            Dismounttime = entity.Dismounttime,
+            RolledWeight = entity.Rolledweight,
+            RolledLength = entity.Rolledlength,
+            RollChamferClassId = entity.Rollchamfercode,
             Shimm = entity.Shimm
         };
 
-        public static RollDatum ToRollDetailsEntity(this SingleRollDetailsDto dto)
+        public static Rolldatum ToRollDetailsEntity(this SingleRollDetailsDto dto)
         {
-            var entity = new RollDatum();
+            var entity = new Rolldatum();
             entity.MapRollDetailsEntity(dto);
             return entity;
         }
 
-        public static void MapRollDetailsEntity(this RollDatum entity, SingleRollDetailsDto dto)
+        public static void MapRollDetailsEntity(this Rolldatum entity, SingleRollDetailsDto dto)
         {
-            entity.RollId = dto.Rollid;
-            entity.RollType = dto.Rolltype;
-            entity.PlantType = dto.Planttype;
+            entity.Rollid = dto.Rollid;
+            entity.Rolltype = dto.Rolltype;
+            entity.Planttype = dto.Planttype;
             entity.Diameter = dto.Diameter;
-            entity.RollClass = dto.Rollclass;
-            entity.RollPropertyClass = dto.RollPropertyClass;
+            entity.Rollclass = dto.Rollclass;
+            entity.Rollpropertyclass = dto.RollPropertyClass;
             entity.Roughness = dto.Roughness;
-            entity.RollShapeCode = dto.ShapeCode;
+            entity.Rollshapecode = dto.ShapeCode;
             entity.Grinding = dto.Grinding;
-            entity.RollPos = dto.Rollpos;
-            entity.RollChamferCode = dto.RollChamferClassId;
+            entity.Rollpos = dto.Rollpos;
+            entity.Rollchamfercode = dto.RollChamferClassId;
             entity.Stat = dto.Stat;
             entity.Shimm = dto.Shimm;
-            entity.DismountTime = dto.Dismounttime;
-            entity.RelatedRollId = dto.RelatedRollid;
+            entity.Dismounttime = dto.Dismounttime;
+            entity.Relatedrollid = dto.RelatedRollid;
         }
 
         public static SingleRollDataCoreDto ToRollDataCoreDto(this HmiVRollInventory entity) => new()
         {
-            Rollid = entity.RollId,
-            Rolltype = entity.RollType,
-            Planttype = entity.PlantType,
-            Standid = entity.StandId,
+            Rollid = entity.Rollid,
+            Rolltype = entity.Rolltype,
+            Planttype = entity.Planttype,
+            Standid = entity.Standid,
             Stat = entity.Stat,
-            Rollpos = entity.RollPos,
+            Rollpos = entity.Rollpos,
             Diameter = entity.Diameter,
-            Rollclass = entity.RollClass,
+            Rollclass = entity.Rollclass,
             RollClassDesc = entity.Rollclassdesc,
-            RollPropertyClass = entity.RollPropertyClass,
+            RollPropertyClass = entity.Rollpropertyclass,
             RollPropertyClassName = entity.Rollpropertydesc,
-            Mounttime = entity.MountTime,
-            Dismounttime = entity.DismountTime,
+            Mounttime = entity.Mounttime,
+            Dismounttime = entity.Dismounttime,
             Grinding = entity.Grinding,
-            GrindingTime = entity.GrindingTime,
+            GrindingTime = entity.Grindingtime,
             RolledWeight = entity.Rolledweight,
             RolledLength = entity.Rolledlength,
-            RelatedRollid = entity.RelatedRollId,
-            ResonId = entity.RemoveReason,
+            RelatedRollid = entity.Relatedrollid,
+            ResonId = entity.Removereason,
             Remarks = entity.Remarks,
-            RollChamferClassId = entity.RollChamferCode,
-            RollChamferDesc = entity.RollChamferDesc,
+            RollChamferClassId = entity.Rollchamfercode,
+            RollChamferDesc = entity.Rollchamferdesc,
             Shimm = entity.Shimm,
-            PlannedInstallTime = entity.PlannedInstallTime,
+            PlannedInstallTime = entity.Plannedinstalltime,
             RollShapeCode = entity.Shapecode,
-            RollShapeType = entity.ShapeType,
-            RolledStrips = entity.RolledStrips,
-            RolledTime = entity.RolledTime,
+            RollShapeType = entity.Shapetype,
+            RolledStrips = entity.Rolledstrips,
+            RolledTime = (double?)entity.Rolledtime,
             Tom = entity.Tom
         };
 
-        public static ShapeCodeDto ToShapeCodeDto(this RollShapeCoeff entity) => new()
+        public static ShapeCodeDto ToShapeCodeDto(this Rollshapecoeff entity) => new()
         {
-            ShapeCode = entity.ShapeCode,
+            ShapeCode = entity.Shapecode,
             Description = entity.Description,
-            ShapeType = entity.ShapeType,
-            ShapeX1 = entity.ShapeX1,
-            ShapeX2 = entity.ShapeX2,
-            ShapeX3 = entity.ShapeX3,
-            ShapeX4 = entity.ShapeX4,
-            ShapeX5 = entity.ShapeX5,
-            ShapeX6 = entity.ShapeX6,
-            ShapeX7 = entity.ShapeX7,
-            ShapeX8 = entity.ShapeX8,
-            ShapeX9 = entity.ShapeX9,
+            ShapeType = entity.Shapetype,
+            ShapeX1 = entity.Shapex1,
+            ShapeX2 = entity.Shapex2,
+            ShapeX3 = entity.Shapex3,
+            ShapeX4 = entity.Shapex4,
+            ShapeX5 = entity.Shapex5,
+            ShapeX6 = entity.Shapex6,
+            ShapeX7 = entity.Shapex7,
+            ShapeX8 = entity.Shapex8,
+            ShapeX9 = entity.Shapex9,
         };
 
-        public static RollPropertyClassDto ToRollPropertyClassDto(this RollProperty entity) => new()
+        public static RollPropertyClassDto ToRollPropertyClassDto(this Rollproperty entity) => new()
         {
-            RollPropertyClass = entity.RollPropertyClass,
-            CwIn = entity.CwIn,
-            CwOut = entity.CwOut,
-            DensityIn = entity.DensityIn,
-            DensityOut = entity.DensityOut,
+            RollPropertyClass = entity.Rollpropertyclass,
+            CwIn = entity.Cwin,
+            CwOut = entity.Cwout,
+            DensityIn = entity.Densityin,
+            DensityOut = entity.Densityout,
             Description = entity.Description,
-            EmodIn = entity.EmodIn,
-            EmodOut = entity.EmodOut,
-            ExpansionCoefIn = entity.ExpansionCoefIn,
-            ExpansionCoefOut = entity.ExpansionCoefOut,
-            HtEnv = entity.HtEnv,
-            HtEnv2 = entity.HtEnv2,
-            HtNeck = entity.HtNeck,
-            LambdaIn = entity.LambdaIn,
-            LambdaOut = entity.LambdaOut,
-            PlantType = entity.PlantType,
-            RollType = entity.RollType,
-            TInit = entity.TInit,
-            TNeck = entity.TNeck,
-            TNeckMax = entity.TNeckMax,
-            WEffBotRoll = entity.WEffBotRoll,
-            WEffTopRoll = entity.WEffTopRoll,
-            YieldPolynomCInd0 = entity.YieldPolynomCInd0,
-            YieldPolynomCInd1 = entity.YieldPolynomCInd1,
-            YieldPolynomCInd2 = entity.YieldPolynomCInd2,
-            YieldPolynomCInd3 = entity.YieldPolynomCInd3,
-            YieldStress = entity.YieldStress,
+            EmodIn = entity.Emodin,
+            EmodOut = entity.Emodout,
+            ExpansionCoefIn = entity.Expansioncoefin,
+            ExpansionCoefOut = entity.Expansioncoefout,
+            HtEnv = entity.Htenv,
+            HtEnv2 = entity.Htenv2,
+            HtNeck = entity.Htneck,
+            LambdaIn = entity.Lambdain,
+            LambdaOut = entity.Lambdaout,
+            PlantType = entity.Planttype,
+            RollType = entity.Rolltype,
+            TInit = entity.Tinit,
+            TNeck = entity.Tneck,
+            TNeckMax = entity.Tneckmax,
+            WEffBotRoll = entity.Weffbotroll,
+            WEffTopRoll = entity.Wefftoproll,
+            YieldPolynomCInd0 = entity.YieldpolynomcInd0,
+            YieldPolynomCInd1 = entity.YieldpolynomcInd1,
+            YieldPolynomCInd2 = entity.YieldpolynomcInd2,
+            YieldPolynomCInd3 = entity.YieldpolynomcInd3,
+            YieldStress = entity.Yieldstress,
             Mop = entity.Mop,
             Toc = entity.Toc,
             Tom = entity.Tom,
         };
 
-        public static RollProperty ToRollPropertyEntity(this RollPropertyClassDto dto)
+        public static Rollproperty ToRollPropertyEntity(this RollPropertyClassDto dto)
         {
-            var entity = new RollProperty();
+            var entity = new Rollproperty();
             entity.MapRollPropertyEntity(dto);
             return entity;
         }
 
-        public static void MapRollPropertyEntity(this RollProperty entity, RollPropertyClassDto dto)
+        public static void MapRollPropertyEntity(this Rollproperty entity, RollPropertyClassDto dto)
         {
-            entity.RollPropertyClass = dto.RollPropertyClass;
-            entity.CwIn = dto.CwIn;
-            entity.CwOut = dto.CwOut;
-            entity.DensityIn = dto.DensityIn;
-            entity.DensityOut = dto.DensityOut;
+            entity.Rollpropertyclass = dto.RollPropertyClass;
+            entity.Cwin = dto.CwIn;
+            entity.Cwout = dto.CwOut;
+            entity.Densityin = dto.DensityIn;
+            entity.Densityout = dto.DensityOut;
             entity.Description = dto.Description;
-            entity.EmodIn = dto.EmodIn;
-            entity.EmodOut = dto.EmodOut;
-            entity.ExpansionCoefIn = dto.ExpansionCoefIn;
-            entity.ExpansionCoefOut = dto.ExpansionCoefOut;
-            entity.HtEnv = dto.HtEnv;
-            entity.HtEnv2 = dto.HtEnv2;
-            entity.HtNeck = dto.HtNeck;
-            entity.LambdaIn = dto.LambdaIn;
-            entity.LambdaOut = dto.LambdaOut;
-            entity.PlantType = dto.PlantType;
-            entity.RollType = dto.RollType;
-            entity.TInit = dto.TInit;
-            entity.TNeck = dto.TNeck;
-            entity.TNeckMax = dto.TNeckMax;
-            entity.WEffBotRoll = dto.WEffBotRoll;
-            entity.WEffTopRoll = dto.WEffTopRoll;
-            entity.YieldPolynomCInd0 = dto.YieldPolynomCInd0;
-            entity.YieldPolynomCInd1 = dto.YieldPolynomCInd1;
-            entity.YieldPolynomCInd2 = dto.YieldPolynomCInd2;
-            entity.YieldPolynomCInd3 = dto.YieldPolynomCInd3;
-            entity.YieldStress = dto.YieldStress;
+            entity.Emodin = dto.EmodIn;
+            entity.Emodout = dto.EmodOut;
+            entity.Expansioncoefin = dto.ExpansionCoefIn;
+            entity.Expansioncoefout = dto.ExpansionCoefOut;
+            entity.Htenv = dto.HtEnv;
+            entity.Htenv2 = dto.HtEnv2;
+            entity.Htneck = dto.HtNeck;
+            entity.Lambdain = dto.LambdaIn;
+            entity.Lambdaout = dto.LambdaOut;
+            entity.Planttype = dto.PlantType;
+            entity.Rolltype = dto.RollType;
+            entity.Tinit = dto.TInit;
+            entity.Tneck = dto.TNeck;
+            entity.Tneckmax = dto.TNeckMax;
+            entity.Weffbotroll = dto.WEffBotRoll;
+            entity.Wefftoproll = dto.WEffTopRoll;
+            entity.YieldpolynomcInd0 = dto.YieldPolynomCInd0;
+            entity.YieldpolynomcInd1 = dto.YieldPolynomCInd1;
+            entity.YieldpolynomcInd2 = dto.YieldPolynomCInd2;
+            entity.YieldpolynomcInd3 = dto.YieldPolynomCInd3;
+            entity.Yieldstress = dto.YieldStress;
         }
 
-        public static RollShapeCoeffDto ToRollShapeCoeffDto(this RollShapeCoeff entity)
+        public static RollShapeCoeffDto ToRollShapeCoeffDto(this Rollshapecoeff entity)
         {
             var dto = new RollShapeCoeffDto();
-            dto.ShapeCode = entity.ShapeCode;
+            dto.ShapeCode = entity.Shapecode;
             dto.Description = entity.Description;
-            dto.ShapeType = entity.ShapeType;
-            dto.ShapeX1 = entity.ShapeX1;
-            dto.ShapeX2 = entity.ShapeX2;
-            dto.ShapeX3 = entity.ShapeX3;
-            dto.ShapeX4 = entity.ShapeX4;
-            dto.ShapeX5 = entity.ShapeX5;
-            dto.ShapeX6 = entity.ShapeX6;
-            dto.ShapeX7 = entity.ShapeX7;
-            dto.ShapeX8 = entity.ShapeX8;
-            dto.ShapeX9 = entity.ShapeX9;
-            dto.StandRange = entity.StandRange;
-            dto.ShapeCurveCode = entity.ShapeCurveCode;
+            dto.ShapeType = entity.Shapetype;
+            dto.ShapeX1 = entity.Shapex1;
+            dto.ShapeX2 = entity.Shapex2;
+            dto.ShapeX3 = entity.Shapex3;
+            dto.ShapeX4 = entity.Shapex4;
+            dto.ShapeX5 = entity.Shapex5;
+            dto.ShapeX6 = entity.Shapex6;
+            dto.ShapeX7 = entity.Shapex7;
+            dto.ShapeX8 = entity.Shapex8;
+            dto.ShapeX9 = entity.Shapex9;
+            dto.StandRange = entity.Standrange;
+            dto.ShapeCurveCode = entity.Shapecurvecode;
 
             return dto;
         }
 
-        public static RollShapeCoeff ToRollShapeCoeffEntity(this RollShapeCoeffDto dto)
+        public static Rollshapecoeff ToRollShapeCoeffEntity(this RollShapeCoeffDto dto)
         {
-            var entity = new RollShapeCoeff();
-            entity.ShapeCode = dto.ShapeCode;
+            var entity = new Rollshapecoeff();
+            entity.Shapecode = dto.ShapeCode;
             entity.Description = dto.Description;
-            entity.ShapeType = dto.ShapeType;
-            entity.ShapeX1 = dto.ShapeX1;
-            entity.ShapeX2 = dto.ShapeX2;
-            entity.ShapeX3 = dto.ShapeX3;
-            entity.ShapeX4 = dto.ShapeX4;
-            entity.ShapeX5 = dto.ShapeX5;
-            entity.ShapeX6 = dto.ShapeX6;
-            entity.ShapeX7 = dto.ShapeX7;
-            entity.ShapeX8 = dto.ShapeX8;
-            entity.ShapeX9 = dto.ShapeX9;
-            entity.StandRange = dto.StandRange;
-            entity.ShapeCurveCode = dto.ShapeCurveCode;
+            entity.Shapetype = dto.ShapeType;
+            entity.Shapex1 = dto.ShapeX1;
+            entity.Shapex2 = dto.ShapeX2;
+            entity.Shapex3 = dto.ShapeX3;
+            entity.Shapex4 = dto.ShapeX4;
+            entity.Shapex5 = dto.ShapeX5;
+            entity.Shapex6 = dto.ShapeX6;
+            entity.Shapex7 = dto.ShapeX7;
+            entity.Shapex8 = dto.ShapeX8;
+            entity.Shapex9 = dto.ShapeX9;
+            entity.Standrange = dto.StandRange;
+            entity.Shapecurvecode = dto.ShapeCurveCode;
 
             return entity;
         }
 
-        public static CustomRollShapeCurveDto ToCustomRollShapeCurve(this RollShapeCurveCustom entity)
+        public static CustomRollShapeCurveDto ToCustomRollShapeCurve(this Rollshapecurvecustom entity)
         {
             var dto = new CustomRollShapeCurveDto();
 
-            dto.Shapecurvecode = entity.ShapeCurveCode;
+            dto.Shapecurvecode = entity.Shapecurvecode;
             dto.Description = entity.Description;
-            dto.Validpoints = entity.ValidPoints;
+            dto.Validpoints = entity.Validpoints;
             dto.Values = ToCustomRollShapeCurveValues(entity);
 
             return dto;
         }
 
-        private static List<double> ToCustomRollShapeCurveValues(RollShapeCurveCustom entity)
+        private static List<double> ToCustomRollShapeCurveValues(Rollshapecurvecustom entity)
         {
             return entity.GetType()
                 .GetProperties()
@@ -352,12 +352,12 @@ namespace WebHMI.Mapping.Extensions
                 .ToList();
         }
 
-        public static CustomRollShapeCurveItem ToCustomRollShapeCurveItem(this RollShapeCurveCustom entity)
+        public static CustomRollShapeCurveItem ToCustomRollShapeCurveItem(this Rollshapecurvecustom entity)
         {
             var curveItem = new CustomRollShapeCurveItem();
 
-            curveItem.ShapeCurveCode = entity.ShapeCurveCode;
-            curveItem.ValidPoints = entity.ValidPoints;
+            curveItem.ShapeCurveCode = entity.Shapecurvecode;
+            curveItem.ValidPoints = entity.Validpoints;
             curveItem.Description = entity.Description;
 
             return curveItem;

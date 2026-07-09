@@ -21,18 +21,18 @@ namespace WebHMI.Core.Widget
             //NextScheduledMaterialsWidget nextScheduledMaterialsWidget,
             ////CasterStatusWidget casterStatusWidget,
             //EntryTrackingByLocationWidget entryTrackingByLocationWidget,
-            ScheduleSummaryByStatusWidget scheduleSummaryWidget,
+            //ScheduleSummaryByStatusWidget scheduleSummaryWidget,
             //HardnessDistributionWidget hardnessDistributionWidget,
             //ThicknessOverHardnessWidget thicknessOverHardnessWidget,
-            PrimaryDataDefectsWidget primaryDataDefectsWidget,
+            //PrimaryDataDefectsWidget primaryDataDefectsWidget,
             //PrimaryDataChemistryWidget primaryDataChemistryWidget,
             //ExitConveyorCoiler1Widget exitConveyorCoiler1Widget,
             //ExitConveyorCoiler2Widget exitConveyorCoiler2Widget,
             //DelaysSummaryWidget delaysSummaryWidget,
-            LastShiftsProductionWidget  lastShiftsProductionWidget,
-			ProdSequenceByAlloyCodeWidget prodSequenceByAlloyCodeWidget,
-			ProdSequenceByThicknessWidget prodSequenceByThicknessWidget,
-			ProdSequenceByWidthWidget prodSequenceByWidthWidget,
+            //LastShiftsProductionWidget  lastShiftsProductionWidget
+			//ProdSequenceByAlloyCodeWidget prodSequenceByAlloyCodeWidget,
+			//ProdSequenceByThicknessWidget prodSequenceByThicknessWidget,
+			//ProdSequenceByWidthWidget prodSequenceByWidthWidget,
 			ProdSequenceThicknessWidthWidget prodSequenceThicknessWidth
 
 
@@ -52,18 +52,18 @@ namespace WebHMI.Core.Widget
                // RegisterWidget(nextScheduledMaterialsWidget);
                // //RegisterWidget(casterStatusWidget);
                // RegisterWidget(entryTrackingByLocationWidget);
-               RegisterWidget(scheduleSummaryWidget);
+               //RegisterWidget(scheduleSummaryWidget);
                // RegisterWidget(hardnessDistributionWidget);
                // RegisterWidget(thicknessOverHardnessWidget);
-               RegisterWidget(primaryDataDefectsWidget);
+               //RegisterWidget(primaryDataDefectsWidget);
                // RegisterWidget(primaryDataChemistryWidget);
                // RegisterWidget(exitConveyorCoiler1Widget);
                // RegisterWidget(exitConveyorCoiler2Widget);
                // RegisterWidget(delaysSummaryWidget);
-               RegisterWidget(lastShiftsProductionWidget);
-               RegisterWidget(prodSequenceByAlloyCodeWidget);
-               RegisterWidget(prodSequenceByThicknessWidget);
-               RegisterWidget(prodSequenceByWidthWidget);
+               //RegisterWidget(lastShiftsProductionWidget);
+               //RegisterWidget(prodSequenceByAlloyCodeWidget);
+               //RegisterWidget(prodSequenceByThicknessWidget);
+               //RegisterWidget(prodSequenceByWidthWidget);
                RegisterWidget(prodSequenceThicknessWidth);
 				
 

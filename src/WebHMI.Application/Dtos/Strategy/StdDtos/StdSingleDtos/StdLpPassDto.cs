@@ -11,5 +11,6 @@ namespace WebHMI.Dtos.Strategy.StdDtos.StdSingleDtos
         public int? LoadingType { get; set; }
         public double? LoadingValue { get; set; }
         public double? CircumSpeedCorrection { get; set; }
+        public string Description { get; set; }
     }
 }

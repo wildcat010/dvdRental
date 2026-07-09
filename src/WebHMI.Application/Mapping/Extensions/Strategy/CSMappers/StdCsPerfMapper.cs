@@ -10,28 +10,28 @@ namespace WebHMI.Mapping.Extensions.Strategy.CSMappers
 {
     public static class StdCsPerfMapper
     {
-        public static void MapEntity(StdCsPerf entity, StdCsPerfDto dto)
+        public static void MapEntity(Stdcsperf entity, StdCsPerfDto dto)
         {
-            entity.PlanNo = dto.PlanNo;
-            entity.ActiveFlag = dto.ActiveFlag;
+            entity.Planno = dto.PlanNo;
+            entity.Activeflag = dto.ActiveFlag;
             entity.Description = dto.Description;
 
-            entity.PerformatorEnable = dto.Performatorenable;
-            entity.PerformatorEnableForF4tCooling = dto.Performatorenableforf4tcooling;
-            entity.PerformatorMaxLimit = dto.Performatormaxlimit;
-            entity.PerformatorMinLimit = dto.Performatorminlimit;
+            entity.Performatorenable = dto.Performatorenable;
+            entity.Performatorenableforf4tcooling = dto.Performatorenableforf4tcooling;
+            entity.Performatormaxlimit = dto.Performatormaxlimit;
+            entity.Performatorminlimit = dto.Performatorminlimit;
         }
 
-        public static StdCsPerfDto ToDto(StdCsPerf entity) => new()
+        public static StdCsPerfDto ToDto(Stdcsperf entity) => new()
         {
-            PlanNo = entity.PlanNo,
-            ActiveFlag = entity.ActiveFlag,
+            PlanNo = entity.Planno,
+            ActiveFlag = entity.Activeflag,
             Description = entity.Description,
 
-            Performatorenable = entity.PerformatorEnable,
-            Performatorenableforf4tcooling = entity.PerformatorEnableForF4tCooling,
-            Performatormaxlimit = entity.PerformatorMaxLimit,
-            Performatorminlimit = entity.PerformatorMinLimit,
+            Performatorenable = entity.Performatorenable,
+            Performatorenableforf4tcooling = entity.Performatorenableforf4tcooling,
+            Performatormaxlimit = entity.Performatormaxlimit,
+            Performatorminlimit = entity.Performatorminlimit,
         };
     }
 }

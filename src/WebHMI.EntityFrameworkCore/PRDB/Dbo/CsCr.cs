@@ -3,31 +3,35 @@ using System.Collections.Generic;
 
 namespace WebHMI.PRDB.Dbo;
 
-/// <summary>
-/// Material specific strategy Table with Effective (E), Manual (M) and original (X) lines for each material
-/// </summary>
-public partial class CsCr
+public partial class Cscr
 {
-    /// <summary>
-    /// Material owner
-    /// </summary>
-    public string MeCreator { get; set; }
+    public string Mecreator { get; set; }
 
-    /// <summary>
-    /// Material idendification number
-    /// </summary>
-    public int MeId { get; set; }
+    public int Meid { get; set; }
 
-    /// <summary>
-    /// Line status
-    /// </summary>
-    public short MesId { get; set; }
+    public short Mesid { get; set; }
 
     public string Source { get; set; }
 
-    public int? CrsInd0 { get; set; }
+    public int? CrsInd00 { get; set; }
 
-    public int? CrsInd1 { get; set; }
+    public int? CrsInd01 { get; set; }
+
+    public int? CrsInd02 { get; set; }
+
+    public int? CrsInd03 { get; set; }
+
+    public int? CrsInd04 { get; set; }
+
+    public int? CrsInd05 { get; set; }
+
+    public int? CrsInd06 { get; set; }
+
+    public int? CrsInd07 { get; set; }
+
+    public int? CrsInd08 { get; set; }
+
+    public int? CrsInd09 { get; set; }
 
     public int? CrsInd10 { get; set; }
 
@@ -49,8 +53,6 @@ public partial class CsCr
 
     public int? CrsInd19 { get; set; }
 
-    public int? CrsInd2 { get; set; }
-
     public int? CrsInd20 { get; set; }
 
     public int? CrsInd21 { get; set; }
@@ -70,8 +72,6 @@ public partial class CsCr
     public int? CrsInd28 { get; set; }
 
     public int? CrsInd29 { get; set; }
-
-    public int? CrsInd3 { get; set; }
 
     public int? CrsInd30 { get; set; }
 
@@ -93,51 +93,21 @@ public partial class CsCr
 
     public int? CrsInd39 { get; set; }
 
-    public int? CrsInd4 { get; set; }
-
-    public int? CrsInd5 { get; set; }
-
-    public int? CrsInd6 { get; set; }
-
-    public int? CrsInd7 { get; set; }
-
-    public int? CrsInd8 { get; set; }
-
-    public int? CrsInd9 { get; set; }
-
     public int? Delaylength { get; set; }
 
     public string Description { get; set; }
 
-    /// <summary>
-    /// manual intervention in plan
-    /// </summary>
-    public short? ManInt { get; set; }
+    public short? Manint { get; set; }
 
-    /// <summary>
-    /// Unit[0...999] plan number
-    /// </summary>
-    public int? PlanNo { get; set; }
+    public int? Planno { get; set; }
 
-    /// <summary>
-    /// modifying process
-    /// </summary>
+    public string Toextid { get; set; }
+
     public string Mop { get; set; }
 
-    /// <summary>
-    /// time of creation
-    /// </summary>
     public DateTime? Toc { get; set; }
 
-    /// <summary>
-    /// time of modification
-    /// </summary>
     public DateTime? Tom { get; set; }
-
-    /// <summary>
-    /// External material ID
-    /// </summary>
-    public string ToExtId { get; set; }
 
     public virtual Me1 Me1 { get; set; }
 }

@@ -31,8 +31,8 @@ namespace WebHMI.API.Services.StrategyServices
         public async Task<ApsRefDto> Create(ApsRefDto input)
         {
             var context = _prdbContextProvider.GetDbContext();
-            var exist = await context.ApsRefs
-                .AnyAsync(x => x.KeyName == input.KeyName && input.KeyType == x.KeyType);
+            var exist = await context.Apsrefs
+                .AnyAsync(x => x.Keyname == input.KeyName && input.KeyType == x.Keytype);
 
             if (exist)
                 throw new UserFriendlyException($"Record with unique key " +
@@ -41,7 +41,7 @@ namespace WebHMI.API.Services.StrategyServices
                     $"already exists");
 
             var entity = input.ToEntity();
-            context.ApsRefs.Add(entity);
+            context.Apsrefs.Add(entity);
 
             return entity.MapToDto();
         }
@@ -51,8 +51,8 @@ namespace WebHMI.API.Services.StrategyServices
         {
             var context = _prdbContextProvider.GetDbContext();
 
-            var entity = await context.ApsRefs
-                .FirstOrDefaultAsync(x => x.KeyName == keyName && x.KeyType == keyType);
+            var entity = await context.Apsrefs
+                .FirstOrDefaultAsync(x => x.Keyname == keyName && x.Keytype == keyType);
 
             if (entity is null)
                 throw new EntityNotFoundException("Aps ref for given key not found");
@@ -64,7 +64,7 @@ namespace WebHMI.API.Services.StrategyServices
         public async Task<PagedResultDto<ApsRefDto>> GetAll(FilteredRequestDto input)
         {
             var context = _prdbContextProvider.GetDbContext();
-            var query = context.ApsRefs.AsQueryable();
+            var query = context.Apsrefs.AsQueryable();
 
             return await ApplyFilter(query, input, ApsRefMapper.MapToDto);
         }
@@ -75,8 +75,8 @@ namespace WebHMI.API.Services.StrategyServices
         {
             var context = _prdbContextProvider.GetDbContext();
 
-            var entity = await context.ApsRefs
-                .SingleOrDefaultAsync(x => x.KeyName == input.KeyName && x.KeyType == input.KeyType);
+            var entity = await context.Apsrefs
+                .SingleOrDefaultAsync(x => x.Keyname == input.KeyName && x.Keytype == input.KeyType);
 
             if (entity is null)
                 throw new EntityNotFoundException(
@@ -93,13 +93,13 @@ namespace WebHMI.API.Services.StrategyServices
         {
             var context = _prdbContextProvider.GetDbContext();
 
-            var entity = await context.ApsRefs
-                .SingleOrDefaultAsync(x => x.KeyName == keyName && x.KeyType == keyType);
+            var entity = await context.Apsrefs
+                .SingleOrDefaultAsync(x => x.Keyname == keyName && x.Keytype == keyType);
 
             if (entity is null)
                 throw new EntityNotFoundException("Aps ref for given key not found");
 
-            context.ApsRefs.Remove(entity);
+            context.Apsrefs.Remove(entity);
         }
     }
 }

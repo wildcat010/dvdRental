@@ -3,53 +3,23 @@ using System.Collections.Generic;
 
 namespace WebHMI.PRDB.Dbo;
 
-/// <summary>
-/// Standard flatness plan
-/// </summary>
-public partial class StdDirFmPfcParaP
+public partial class Stddirfmpfcparap
 {
-    /// <summary>
-    /// active flag
-    /// </summary>
-    public int ActiveFlag { get; set; }
+    public int Activeflag { get; set; }
 
-    /// <summary>
-    /// plan number
-    /// </summary>
-    public int PlanNo { get; set; }
+    public int Planno { get; set; }
 
-    /// <summary>
-    /// description field
-    /// </summary>
     public string Description { get; set; }
 
-    /// <summary>
-    /// manual intervention in plan
-    /// </summary>
-    public short? ManInt { get; set; }
+    public short? Manint { get; set; }
 
-    /// <summary>
-    /// plant type
-    /// </summary>
-    public string PlantType { get; set; }
+    public string Planttype { get; set; }
 
-    /// <summary>
-    /// Unit[m] Correction value of target profile
-    /// </summary>
-    public double? ProfileCorr { get; set; }
+    public double? Profilecorr { get; set; }
 
-    /// <summary>
-    /// modifying process
-    /// </summary>
     public string Mop { get; set; }
 
-    /// <summary>
-    /// time of creation
-    /// </summary>
     public DateTime? Toc { get; set; }
 
-    /// <summary>
-    /// time of modification
-    /// </summary>
     public DateTime? Tom { get; set; }
 }

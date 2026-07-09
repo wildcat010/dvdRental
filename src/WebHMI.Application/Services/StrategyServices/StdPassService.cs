@@ -63,7 +63,7 @@ namespace WebHMI.Services.StrategyServices
             var std = await _stdService.Create(input.Std);
 
             bool passesExist = await context.Set<TPassEntity>().AnyAsync(x =>
-                x.PlanNo == input.PassSets.PlanNo);
+                x.Planno == input.PassSets.PlanNo);
 
             if (passesExist)
                 throw new EntityNotFoundException("Passes already exist for given key");
@@ -71,7 +71,7 @@ namespace WebHMI.Services.StrategyServices
             var passes = new List<TPassEntity>();
 
             if (input.PassSets.StdPasses.Count == 0)
-                passes.Add(new TPassEntity() { PassNo = 0, PlanNo = input.Std.PlanNo });
+                passes.Add(new TPassEntity() { Passno = 0, Planno = input.Std.PlanNo });
 
             foreach (var pass in input.PassSets.StdPasses)
             {
@@ -103,7 +103,7 @@ namespace WebHMI.Services.StrategyServices
         {
             var context = _dbContextProvider.GetDbContext();
             var passes = await context.Set<TPassEntity>().Where(x =>
-                x.PlanNo == planNo && x.PlanNo != 0 && x.ActiveFlag == 1)
+                x.Planno == planNo  && x.Activeflag == 1)
                 .ToListAsync();
 
             return new StdPassSetsDto<TDto, TPassDto>()
@@ -137,8 +137,7 @@ namespace WebHMI.Services.StrategyServices
         {
             var context = _dbContextProvider.GetDbContext();
             var passes = await context.Set<TPassEntity>()
-                .Where(x => x.PlanNo != 0)
-                .OrderBy(x => x.PassNo)
+                .OrderBy(x => x.Passno)
                 .ToListAsync();
 
             var result = new StdPassKeySetDto<TDto, TPassDto>();
@@ -147,12 +146,12 @@ namespace WebHMI.Services.StrategyServices
             {
                 var passDto = _toDto(pass);
 
-                var keyPassSet = result.StdKeyPassSets.FirstOrDefault(x => x.PlanNo == pass.PlanNo);
+                var keyPassSet = result.StdKeyPassSets.FirstOrDefault(x => x.PlanNo == pass.Planno);
                 if (keyPassSet is null)
                 {
                     var newSet = new StdPassSetDto<TPassDto>
                     {
-                        PlanNo = pass.PlanNo,
+                        PlanNo = pass.Planno,
                         StdPasses = new List<TPassDto>() { passDto }
                     };
 
@@ -182,7 +181,7 @@ namespace WebHMI.Services.StrategyServices
 
             var context = _dbContextProvider.GetDbContext();
             context.Set<TPassEntity>().RemoveRange(context.Set<TPassEntity>().Where(x =>
-                x.PlanNo == input.PassSets.PlanNo && x.ActiveFlag == 1).ToList());
+                x.Planno == input.PassSets.PlanNo && x.Activeflag == 1).ToList());
 
             await context.SaveChangesAsync();
 
@@ -230,7 +229,7 @@ namespace WebHMI.Services.StrategyServices
                 ValidateInput(input);
 
                 context.Set<TPassEntity>().RemoveRange(context.Set<TPassEntity>().Where(x =>
-                    x.PlanNo == input.PassSets.PlanNo && x.ActiveFlag == 1).ToList());
+                    x.Planno == input.PassSets.PlanNo && x.Activeflag == 1).ToList());
 
                 var passes = new List<TPassEntity>();
 
@@ -272,7 +271,7 @@ namespace WebHMI.Services.StrategyServices
             await _stdService.Delete(planNo);
 
             context.Set<TPassEntity>().RemoveRange(context.Set<TPassEntity>().Where(x =>
-                x.PlanNo == planNo && x.ActiveFlag == 1).ToList());
+                x.Planno == planNo && x.Activeflag == 1).ToList());
 
             await context.SaveChangesAsync();
         }

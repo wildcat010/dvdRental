@@ -10,22 +10,22 @@ namespace WebHMI.Mapping.Extensions.Strategy
 {
     public class StdTpMapper
     {
-        public static void MapEntity(StdTp entity, StdTpDto dto)
+        public static void MapEntity(Stdtp entity, StdTpDto dto)
         {
-            entity.PlanNo = dto.PlanNo;
-            entity.ActiveFlag = dto.ActiveFlag;
-            //entity.Description = dto.Description;
-            entity.CoilerTension = dto.CoilerTension;
-            entity.YieldStress = dto.YieldStress;
+            entity.Planno = dto.PlanNo;
+            entity.Activeflag = dto.ActiveFlag;
+            entity.Description = dto.Description;
+            entity.Coilertension = dto.CoilerTension;
+            entity.Yieldstress = dto.YieldStress;
         }
 
-        public static StdTpDto ToDto(StdTp entity) => new()
+        public static StdTpDto ToDto(Stdtp entity) => new()
         {
-            PlanNo = entity.PlanNo,
-            ActiveFlag = entity.ActiveFlag,
-            //Description = entity.Description
-            CoilerTension = entity.CoilerTension,
-            YieldStress = entity.YieldStress
+            PlanNo = entity.Planno,
+            ActiveFlag = entity.Activeflag,
+            Description = entity.Description,
+            CoilerTension = entity.Coilertension,
+            YieldStress = entity.Yieldstress
         };
     }
 }

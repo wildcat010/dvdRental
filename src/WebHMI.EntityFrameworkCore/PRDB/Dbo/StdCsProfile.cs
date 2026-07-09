@@ -3,31 +3,31 @@ using System.Collections.Generic;
 
 namespace WebHMI.PRDB.Dbo;
 
-public partial class StdCsProfile
+public partial class Stdcsprofile
 {
-    public int ActiveFlag { get; set; }
+    public int Activeflag { get; set; }
 
-    public int PlanNo { get; set; }
+    public int Planno { get; set; }
 
-    public double? CoilTempProfileHead { get; set; }
+    public double? Coiltempprofilehead { get; set; }
 
-    public double? CoilTempProfileTail { get; set; }
+    public double? Coiltempprofiletail { get; set; }
 
     public string Description { get; set; }
 
     public string Description2 { get; set; }
 
-    public double? LengthProfileHead { get; set; }
+    public double? Lengthprofilehead { get; set; }
 
-    public double? LengthProfileHeadWedge { get; set; }
+    public double? Lengthprofileheadwedge { get; set; }
 
-    public double? LengthProfileTail { get; set; }
+    public double? Lengthprofiletail { get; set; }
 
-    public double? LengthProfileTailWedge { get; set; }
+    public double? Lengthprofiletailwedge { get; set; }
 
-    public double? LengthUncooledHead { get; set; }
+    public double? Lengthuncooledhead { get; set; }
 
-    public double? LengthUncooledTail { get; set; }
+    public double? Lengthuncooledtail { get; set; }
 
     public string Mop { get; set; }
 

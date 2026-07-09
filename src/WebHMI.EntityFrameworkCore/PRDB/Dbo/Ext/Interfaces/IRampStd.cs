@@ -8,8 +8,10 @@ namespace WebHMI.PRDB.Dbo.Ext.Interfaces
 {
     public interface IRampStd
     {
-        public int ActiveFlag { get; set; }
-        public int PlanNo { get; set; }
-        public int RampNo { get; set; }
+        public int Activeflag { get; set; }
+        public int Planno { get; set; }
+        public int Rampno { get; set; }
+        public string Description { get; set; }
+        public DateTime? Tom { get; set; }
     }
 }

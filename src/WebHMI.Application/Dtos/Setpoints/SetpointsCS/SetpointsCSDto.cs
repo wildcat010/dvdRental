@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace WebHMI.Dtos.Setpoints.SetpointsCS
 {
-    public class SetpointsCSDto
+    public class SetpointsCsDto
     {
         public MeCodeDto MeCode { get; set; } = new();
-        public PreCalculationTabDto PreCalculationTab{ get; set;} = new();
+        public PreCalculationTabDto PreCalculation{ get; set;} = new();
         public CoolingStrategyTabDto CoolingStrategyTab { get; set;} = new();
         public ProfileCoolingTabDto ProfileCoolingTab  { get; set;} = new();
 

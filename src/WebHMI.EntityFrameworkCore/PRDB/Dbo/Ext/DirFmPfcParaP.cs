@@ -2,5 +2,5 @@ using WebHMI.API.Prdb.Abstract;
 
 namespace WebHMI.PRDB.Dbo
 {
-    public partial class DirFmPfcParaP : IMaterialIdTypeOrder { }
+    public partial class Dirfmpfcparap : IMaterialIdTypeOrder { }
 }

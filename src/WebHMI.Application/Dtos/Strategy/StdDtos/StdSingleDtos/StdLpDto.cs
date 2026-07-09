@@ -9,5 +9,6 @@ namespace WebHMI.Dtos.Strategy.StdDtos.StdSingleDtos
     public class StdLpDto : StdItemDto
     {
         public double? RedDistHrmhFm {  get; set; }
+        public double? Reddisthrmhfm { get; set; }
     }
 }

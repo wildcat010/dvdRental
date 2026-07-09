@@ -10,38 +10,38 @@ namespace WebHMI.Mapping.Extensions.Strategy.CSMappers
 {
     public static class StdProfileCsMapper
     {
-        public static void MapEntity(StdCsProfile entity, StdProfileCsDto dto)
+        public static void MapEntity(Stdcsprofile entity, StdProfileCsDto dto)
         {
 
-            entity.ActiveFlag = dto.ActiveFlag;
-            entity.PlanNo = dto.PlanNo;
-            entity.CoilTempProfileHead = dto.Coiltempprofilehead;
-            entity.CoilTempProfileTail = dto.Coiltempprofiletail;
+            entity.Activeflag = dto.ActiveFlag;
+            entity.Planno = dto.PlanNo;
+            entity.Coiltempprofilehead = dto.Coiltempprofilehead;
+            entity.Coiltempprofiletail = dto.Coiltempprofiletail;
             entity.Description = dto.Description;
-            entity.LengthProfileHead = dto.Lengthprofilehead;
-            entity.LengthProfileHeadWedge = dto.Lengthprofileheadwedge;
-            entity.LengthProfileTail = dto.Lengthprofiletail;
-            entity.LengthProfileTailWedge = dto.Lengthprofiletailwedge;
-            entity.LengthUncooledHead = dto.Lengthuncooledhead;
-            entity.LengthUncooledTail = dto.Lengthuncooledtail;
+            entity.Lengthprofilehead = dto.Lengthprofilehead;
+            entity.Lengthprofileheadwedge = dto.Lengthprofileheadwedge;
+            entity.Lengthprofiletail = dto.Lengthprofiletail;
+            entity.Lengthprofiletailwedge = dto.Lengthprofiletailwedge;
+            entity.Lengthuncooledhead = dto.Lengthuncooledhead;
+            entity.Lengthuncooledtail = dto.Lengthuncooledtail;
             entity.Description2 = dto.Description2;
 
         }
 
-        public static StdProfileCsDto ToDto(StdCsProfile entity) => new()
+        public static StdProfileCsDto ToDto(Stdcsprofile entity) => new()
         {
 
-            ActiveFlag = entity.ActiveFlag,
-            PlanNo = entity.PlanNo,
-            Coiltempprofilehead = entity.CoilTempProfileHead,
-            Coiltempprofiletail = entity.CoilTempProfileTail,
+            ActiveFlag = entity.Activeflag,
+            PlanNo = entity.Planno,
+            Coiltempprofilehead = entity.Coiltempprofilehead,
+            Coiltempprofiletail = entity.Coiltempprofiletail,
             Description = entity.Description,
-            Lengthprofilehead = entity.LengthProfileHead,
-            Lengthprofileheadwedge = entity.LengthProfileHeadWedge,
-            Lengthprofiletail = entity.LengthProfileTail,
-            Lengthprofiletailwedge = entity.LengthProfileTailWedge,
-            Lengthuncooledhead = entity.LengthUncooledHead,
-            Lengthuncooledtail = entity.LengthUncooledTail,
+            Lengthprofilehead = entity.Lengthprofilehead,
+            Lengthprofileheadwedge = entity.Lengthprofileheadwedge,
+            Lengthprofiletail = entity.Lengthprofiletail,
+            Lengthprofiletailwedge = entity.Lengthprofiletailwedge,
+            Lengthuncooledhead = entity.Lengthuncooledhead,
+            Lengthuncooledtail = entity.Lengthuncooledtail,
             Description2 = entity.Description2,
         };
     }

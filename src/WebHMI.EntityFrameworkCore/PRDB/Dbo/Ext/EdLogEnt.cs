@@ -7,5 +7,5 @@ using WebHMI.API.Prdb.Abstract;
 
 namespace WebHMI.PRDB.Dbo
 {
-	public partial class EdLogEnt : IMaterialIdTypeLogical { }
+	public partial class Edlogent : IMaterialIdTypeLogical { }
 }

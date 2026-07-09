@@ -11,5 +11,7 @@ namespace WebHMI.Dtos.Application.Tracking
 
         public HmiTrackingData HmiTrackingData { get; set; }
         public Dictionary<string, MeCodeDto> ActualNext { get; set; }
+        public string ActualSequenceId { get; set; }
+        public string ActualHeatId { get; set; }
     }
 }

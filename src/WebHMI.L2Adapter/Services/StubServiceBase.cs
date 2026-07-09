@@ -44,16 +44,16 @@ namespace WebHMI.L2Adapter.Services
         {
             ME_STRUCT meStruct = new()
             {
-                MeId = entryMatStruct.EnOrMeId,
-                MesId = entryMatStruct.EnOrMesId ?? -1,
-                MeCreator = entryMatStruct.EnOrCreator
+                MeId = entryMatStruct.Enormeid,
+                MesId = entryMatStruct.Enormesid ?? -1,
+                MeCreator = entryMatStruct.Enorcreator
             };
 
             ME_CODE meCode = new()
             {
-                BasId = entryMatStruct.EnOrBasId,
-                ExtId = entryMatStruct.EnOrExtId,
-                MeTyp = entryMatStruct.EnOrMeType,
+                BasId = entryMatStruct.Enorbasid,
+                ExtId = entryMatStruct.Enorextid,
+                MeTyp = entryMatStruct.Enormetype,
                 Actual = meStruct,
                 Original = meStruct
             };
@@ -65,16 +65,16 @@ namespace WebHMI.L2Adapter.Services
         {
             ME_STRUCT meStruct = new()
             {
-                MeId = entryMatStruct.EnPhMeId,
-                MesId = entryMatStruct.EnPhMesId ?? -1,
-                MeCreator = entryMatStruct.EnPhCreator
+                MeId = entryMatStruct.Enphmeid,
+                MesId = entryMatStruct.Enphmesid ?? -1,
+                MeCreator = entryMatStruct.Enphcreator
             };
 
             ME_CODE meCode = new()
             {
-                BasId = entryMatStruct.EnPhBasId,
-                ExtId = entryMatStruct.EnPhExtId,
-                MeTyp = entryMatStruct.EnPhMeType,
+                BasId = entryMatStruct.Enphbasid,
+                ExtId = entryMatStruct.Enphextid,
+                MeTyp = entryMatStruct.Enphmetype,
                 Actual = meStruct,
                 Original = meStruct
             };

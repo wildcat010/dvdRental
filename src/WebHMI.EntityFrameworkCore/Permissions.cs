@@ -43,7 +43,10 @@
         public const string Pages_Strategies = "Pages.Strategies";
         public const string Pages_Strategies_Edit = "Pages.Strategies.Edit";
         public const string Pages_Strategies_Delete = "Pages.Strategies.Delete";
-        
+
+        public const string Pages_ProductHistory = "Pages.ProductHistory";
+        public const string Pages_ProductHistory_Edit = "Pages.ProductHistory.Edit";
+        public const string Pages_ProductHistory_Delete = "Pages.ProductHistory.Delete";
     }
 }
 

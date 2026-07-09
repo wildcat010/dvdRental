@@ -15,165 +15,185 @@ namespace WebHMI.Mapping.Extensions
 	{
         public static MaterialHeaderDto MapData(this MaterialHeaderDto result, List<HmiVMatInfoShort> matInfo)
 		{
-			var sourceL = matInfo.FirstOrDefault(x => x.EdOrSrc == "L");
-			var sourceM = matInfo.FirstOrDefault(x => x.EdOrSrc == "M");
-			var sourceS = matInfo.FirstOrDefault(x => x.EdOrSrc == "S");
-			var sourceE = matInfo.FirstOrDefault(x => x.EdOrSrc == "E");
+			var sourceL = matInfo.FirstOrDefault(x => x.Edorsrc == "L");
+			var sourceM = matInfo.FirstOrDefault(x => x.Edorsrc == "M");
+			var sourceS = matInfo.FirstOrDefault(x => x.Edorsrc == "S");
+			var sourceE = matInfo.FirstOrDefault(x => x.Edorsrc == "E");
 
-			result.Data.EnPhExtId.L = sourceL?.EnPhExtId;
-			result.Data.EnPhExtId.M = sourceM?.EnPhExtId;
-			result.Data.EnPhExtId.S = sourceS?.EnPhExtId;
-			result.Data.EnPhExtId.E = sourceE?.EnPhExtId;
+			result.Data.EnPhExtId.L = sourceL?.Enphextid;
+			result.Data.EnPhExtId.M = sourceM?.Enphextid;
+			result.Data.EnPhExtId.S = sourceS?.Enphextid;
+			result.Data.EnPhExtId.E = sourceE?.Enphextid;
 
-			result.Data.EnPhMeId.L = sourceL?.EnPhMeId;
-			result.Data.EnPhMeId.M = sourceM?.EnPhMeId;
-			result.Data.EnPhMeId.S = sourceS?.EnPhMeId;
-			result.Data.EnPhMeId.E = sourceE?.EnPhMeId;
+            result.Data.EnorBasId.L = sourceL?.Enorbasid;
+            result.Data.EnorBasId.M = sourceM?.Enorbasid;
+            result.Data.EnorBasId.S = sourceS?.Enorbasid;
+            result.Data.EnorBasId.E = sourceE?.Enorbasid;
 
-			result.Data.EdPhySrc.L = sourceL?.EdPhySrc;
-			result.Data.EdPhySrc.M = sourceM?.EdPhySrc;
-			result.Data.EdPhySrc.S = sourceS?.EdPhySrc;
-			result.Data.EdPhySrc.E = sourceE?.EdPhySrc;
+            result.Data.EnPhMeId.L = sourceL?.Enphmeid;
+			result.Data.EnPhMeId.M = sourceM?.Enphmeid;
+			result.Data.EnPhMeId.S = sourceS?.Enphmeid;
+			result.Data.EnPhMeId.E = sourceE?.Enphmeid;
 
-			result.Data.EnPhStatus.L = sourceL?.EnPhStatus;
-			result.Data.EnPhStatus.M = sourceM?.EnPhStatus;
-			result.Data.EnPhStatus.S = sourceS?.EnPhStatus;
-			result.Data.EnPhStatus.E = sourceE?.EnPhStatus;
+			result.Data.EdPhySrc.L = sourceL?.Edphysrc;
+			result.Data.EdPhySrc.M = sourceM?.Edphysrc;
+			result.Data.EdPhySrc.S = sourceS?.Edphysrc;
+			result.Data.EdPhySrc.E = sourceE?.Edphysrc;
 
-			result.Data.EdOrSrc.L = sourceL?.EdOrSrc;
-			result.Data.EdOrSrc.M = sourceM?.EdOrSrc;
-			result.Data.EdOrSrc.S = sourceS?.EdOrSrc;
-			result.Data.EdOrSrc.E = sourceE?.EdOrSrc;
+			result.Data.EnPhStatus.L = sourceL?.Enphstatus;
+			result.Data.EnPhStatus.M = sourceM?.Enphstatus;
+			result.Data.EnPhStatus.S = sourceS?.Enphstatus;
+			result.Data.EnPhStatus.E = sourceE?.Enphstatus;
 
-			result.Data.EnLoMeId.L = sourceL?.EnLoMeId;
-			result.Data.EnLoMeId.M = sourceM?.EnLoMeId;
-			result.Data.EnLoMeId.S = sourceS?.EnLoMeId;
-			result.Data.EnLoMeId.E = sourceE?.EnLoMeId;
+			result.Data.EdOrSrc.L = sourceL?.Edorsrc;
+			result.Data.EdOrSrc.M = sourceM?.Edorsrc;
+			result.Data.EdOrSrc.S = sourceS?.Edorsrc;
+			result.Data.EdOrSrc.E = sourceE?.Edorsrc;
 
-			result.Data.EdLoSrc.L = sourceL?.EdLoSrc;
-			result.Data.EdLoSrc.M = sourceM?.EdLoSrc;
-			result.Data.EdLoSrc.S = sourceS?.EdLoSrc;
-			result.Data.EdLoSrc.E = sourceE?.EdLoSrc;
+			result.Data.EnLoMeId.L = sourceL?.Enlomeid;
+			result.Data.EnLoMeId.M = sourceM?.Enlomeid;
+			result.Data.EnLoMeId.S = sourceS?.Enlomeid;
+			result.Data.EnLoMeId.E = sourceE?.Enlomeid;
 
-			result.Data.AlloyCode.L = sourceL?.AlloyCode;
-			result.Data.AlloyCode.M = sourceM?.AlloyCode;
-			result.Data.AlloyCode.S = sourceS?.AlloyCode;
-			result.Data.AlloyCode.E = sourceE?.AlloyCode;
+			result.Data.EdLoSrc.L = sourceL?.Edlosrc;
+			result.Data.EdLoSrc.M = sourceM?.Edlosrc;
+			result.Data.EdLoSrc.S = sourceS?.Edlosrc;
+			result.Data.EdLoSrc.E = sourceE?.Edlosrc;
 
-			result.Data.HEntry.L = sourceL?.HEntry;
-			result.Data.HEntry.M = sourceM?.HEntry;
-			result.Data.HEntry.S = sourceS?.HEntry;
-			result.Data.HEntry.E = sourceE?.HEntry;
+			result.Data.AlloyCode.L = sourceL?.Alloycode;
+			result.Data.AlloyCode.M = sourceM?.Alloycode;
+			result.Data.AlloyCode.S = sourceS?.Alloycode;
+			result.Data.AlloyCode.E = sourceE?.Alloycode;
 
-			result.Data.HExit.L = sourceL?.HExit;
-			result.Data.HExit.M = sourceM?.HExit;
-			result.Data.HExit.S = sourceS?.HExit;
-			result.Data.HExit.E = sourceE?.HExit;
+			result.Data.HEntry.L = sourceL?.Hentry;
+			result.Data.HEntry.M = sourceM?.Hentry;
+			result.Data.HEntry.S = sourceS?.Hentry;
+			result.Data.HEntry.E = sourceE?.Hentry;
 
-			result.Data.WEntry.L = sourceL?.WEntry;
-			result.Data.WEntry.M = sourceM?.WEntry;
-			result.Data.WEntry.S = sourceS?.WEntry;
-			result.Data.WEntry.E = sourceE?.WEntry;
+			result.Data.HExit.L = sourceL?.Hexit;
+			result.Data.HExit.M = sourceM?.Hexit;
+			result.Data.HExit.S = sourceS?.Hexit;
+			result.Data.HExit.E = sourceE?.Hexit;
 
-			result.Data.WeightEntry.L = sourceL?.WeightEntry;
-			result.Data.WeightEntry.M = sourceM?.WeightEntry;
-			result.Data.WeightEntry.S = sourceS?.WeightEntry;
-			result.Data.WeightEntry.E = sourceE?.WeightEntry;
+			result.Data.WEntry.L = sourceL?.Wentry;
+			result.Data.WEntry.M = sourceM?.Wentry;
+			result.Data.WEntry.S = sourceS?.Wentry;
+			result.Data.WEntry.E = sourceE?.Wentry;
 
-			result.Data.LEntry.L = sourceL?.LEntry;
-			result.Data.LEntry.M = sourceM?.LEntry;
-			result.Data.LEntry.S = sourceS?.LEntry;
-			result.Data.LEntry.E = sourceE?.LEntry;
+			result.Data.WeightEntry.L = sourceL?.Weightentry;
+			result.Data.WeightEntry.M = sourceM?.Weightentry;
+			result.Data.WeightEntry.S = sourceS?.Weightentry;
+			result.Data.WeightEntry.E = sourceE?.Weightentry;
 
-			result.Data.WExit.L = sourceL?.WExit;
-			result.Data.WExit.M = sourceM?.WExit;
-			result.Data.WExit.S = sourceS?.WExit;
-			result.Data.WExit.E = sourceE?.WExit;
+			result.Data.LEntry.L = sourceL?.Lentry;
+			result.Data.LEntry.M = sourceM?.Lentry;
+			result.Data.LEntry.S = sourceS?.Lentry;
+			result.Data.LEntry.E = sourceE?.Lentry;
 
-			result.Data.SequenceId.L = sourceL?.SequenceId;
-			result.Data.SequenceId.M = sourceM?.SequenceId;
-			result.Data.SequenceId.S = sourceS?.SequenceId;
-			result.Data.SequenceId.E = sourceE?.SequenceId;
+			result.Data.WExit.L = sourceL?.Wexit;
+			result.Data.WExit.M = sourceM?.Wexit;
+			result.Data.WExit.S = sourceS?.Wexit;
+			result.Data.WExit.E = sourceE?.Wexit;
 
-			result.Data.PdiStatus.L = sourceL?.PdiStatus;
-			result.Data.PdiStatus.M = sourceM?.PdiStatus;
-			result.Data.PdiStatus.S = sourceS?.PdiStatus;
-			result.Data.PdiStatus.E = sourceE?.PdiStatus;
+			result.Data.SequenceId.L = sourceL?.Sequenceid;
+			result.Data.SequenceId.M = sourceM?.Sequenceid;
+			result.Data.SequenceId.S = sourceS?.Sequenceid;
+			result.Data.SequenceId.E = sourceE?.Sequenceid;
 
-			result.Data.SetpointsPc2Ok.L = sourceL?.SetpointsPc2Ok;
-			result.Data.SetpointsPc2Ok.M = sourceM?.SetpointsPc2Ok;
-			result.Data.SetpointsPc2Ok.S = sourceS?.SetpointsPc2Ok;
-			result.Data.SetpointsPc2Ok.E = sourceE?.SetpointsPc2Ok;
+			result.Data.PdiStatus.L = sourceL?.Pdistatus;
+			result.Data.PdiStatus.M = sourceM?.Pdistatus;
+			result.Data.PdiStatus.S = sourceS?.Pdistatus;
+			result.Data.PdiStatus.E = sourceE?.Pdistatus;
 
-			result.Data.Sbaz.L = sourceL?.Sbaz;
+			result.Data.SetpointsPc2Ok.L = sourceL?.Setpointspc2ok;
+			result.Data.SetpointsPc2Ok.M = sourceM?.Setpointspc2ok;
+			result.Data.SetpointsPc2Ok.S = sourceS?.Setpointspc2ok;
+			result.Data.SetpointsPc2Ok.E = sourceE?.Setpointspc2ok;
+
+            result.Data.Setpointshrmok.L = sourceL?.Setpointshrmok;
+            result.Data.Setpointshrmok.M = sourceM?.Setpointshrmok;
+            result.Data.Setpointshrmok.S = sourceS?.Setpointshrmok;
+            result.Data.Setpointshrmok.E = sourceE?.Setpointshrmok;
+
+            result.Data.Sbaz.L = sourceL?.Sbaz;
 			result.Data.Sbaz.M = sourceM?.Sbaz;
 			result.Data.Sbaz.S = sourceS?.Sbaz;
 			result.Data.Sbaz.E = sourceE?.Sbaz;
 
-			result.Data.LastCalc.L = sourceL?.LastCalc;
-			result.Data.LastCalc.M = sourceM?.LastCalc;
-			result.Data.LastCalc.S = sourceS?.LastCalc;
-			result.Data.LastCalc.E = sourceE?.LastCalc;
+			result.Data.LastCalc.L = sourceL?.Lastcalc;
+			result.Data.LastCalc.M = sourceM?.Lastcalc;
+			result.Data.LastCalc.S = sourceS?.Lastcalc;
+			result.Data.LastCalc.E = sourceE?.Lastcalc;
 
-			result.Data.ApsKey.L = sourceL?.ApsKey;
-			result.Data.ApsKey.M = sourceM?.ApsKey;
-			result.Data.ApsKey.S = sourceS?.ApsKey;
-			result.Data.ApsKey.E = sourceE?.ApsKey;
+            result.Data.ModelInfoPc2.L = sourceL?.Sptlfaultfm;
+            result.Data.ModelInfoPc2.M = sourceM?.Sptlfaultfm;
+            result.Data.ModelInfoPc2.S = sourceS?.Sptlfaultfm;
+            result.Data.ModelInfoPc2.E = sourceE?.Sptlfaultfm;
 
-			result.Data.SimMat.L = sourceL?.SimMat;
-			result.Data.SimMat.M = sourceM?.SimMat;
-			result.Data.SimMat.S = sourceS?.SimMat;
-			result.Data.SimMat.E = sourceE?.SimMat;
+            result.Data.ModelInfoLC.L = sourceL?.Sptlfaultcs;
+            result.Data.ModelInfoLC.M = sourceM?.Sptlfaultcs;
+            result.Data.ModelInfoLC.S = sourceS?.Sptlfaultcs;
+            result.Data.ModelInfoLC.E = sourceE?.Sptlfaultcs;
 
-			result.Data.SetpointsCsOk.L = sourceL?.SetpointsCsOk;
-			result.Data.SetpointsCsOk.M = sourceM?.SetpointsCsOk;
-			result.Data.SetpointsCsOk.S = sourceS?.SetpointsCsOk;
-			result.Data.SetpointsCsOk.E = sourceE?.SetpointsCsOk;
+            result.Data.ApsKey.L = sourceL?.Apskey;
+			result.Data.ApsKey.M = sourceM?.Apskey;
+			result.Data.ApsKey.S = sourceS?.Apskey;
+			result.Data.ApsKey.E = sourceE?.Apskey;
 
-			result.Data.TEntryFm.L = sourceL?.TEntryFm;
-			result.Data.TEntryFm.M = sourceM?.TEntryFm;
-			result.Data.TEntryFm.S = sourceS?.TEntryFm;
-			result.Data.TEntryFm.E = sourceE?.TEntryFm;
+			result.Data.SimMat.L = sourceL?.Simmat;
+			result.Data.SimMat.M = sourceM?.Simmat;
+			result.Data.SimMat.S = sourceS?.Simmat;
+			result.Data.SimMat.E = sourceE?.Simmat;
 
-			result.Data.TExitFm.L = sourceL?.TExitFm;
-			result.Data.TExitFm.M = sourceM?.TExitFm;
-			result.Data.TExitFm.S = sourceS?.TExitFm;
-			result.Data.TExitFm.E = sourceE?.TExitFm;
+			result.Data.SetpointsCsOk.L = sourceL?.Setpointscsok;
+			result.Data.SetpointsCsOk.M = sourceM?.Setpointscsok;
+			result.Data.SetpointsCsOk.S = sourceS?.Setpointscsok;
+			result.Data.SetpointsCsOk.E = sourceE?.Setpointscsok;
 
-			result.Data.TExitCaster.L = sourceL?.TExitCaster;
-			result.Data.TExitCaster.M = sourceM?.TExitCaster;
-			result.Data.TExitCaster.S = sourceS?.TExitCaster;
-			result.Data.TExitCaster.E = sourceE?.TExitCaster;
+			result.Data.TEntryFm.L = sourceL?.Tentryfm;
+			result.Data.TEntryFm.M = sourceM?.Tentryfm;
+			result.Data.TEntryFm.S = sourceS?.Tentryfm;
+			result.Data.TEntryFm.E = sourceE?.Tentryfm;
 
-			result.Data.CoilTemp.L = sourceL?.CoilTemp;
-			result.Data.CoilTemp.M = sourceM?.CoilTemp;
-			result.Data.CoilTemp.S = sourceS?.CoilTemp;
-			result.Data.CoilTemp.E = sourceE?.CoilTemp;
+			result.Data.TExitFm.L = sourceL?.Texitfm;
+			result.Data.TExitFm.M = sourceM?.Texitfm;
+			result.Data.TExitFm.S = sourceS?.Texitfm;
+			result.Data.TExitFm.E = sourceE?.Texitfm;
 
-			result.Data.HeatId.L = sourceL?.HeatId;
-			result.Data.HeatId.M = sourceM?.HeatId;
-			result.Data.HeatId.S = sourceS?.HeatId;
-			result.Data.HeatId.E = sourceE?.HeatId;
+			result.Data.TExitCaster.L = sourceL?.Texitcaster;
+			result.Data.TExitCaster.M = sourceM?.Texitcaster;
+			result.Data.TExitCaster.S = sourceS?.Texitcaster;
+			result.Data.TExitCaster.E = sourceE?.Texitcaster;
 
-			result.Data.FlagBatchRolling.L = sourceL?.FlagBatchRolling;
-			result.Data.FlagBatchRolling.M = sourceM?.FlagBatchRolling;
-			result.Data.FlagBatchRolling.S = sourceS?.FlagBatchRolling;
-			result.Data.FlagBatchRolling.E = sourceE?.FlagBatchRolling;
+			result.Data.CoilTemp.L = sourceL?.Coiltemp;
+			result.Data.CoilTemp.M = sourceM?.Coiltemp;
+			result.Data.CoilTemp.S = sourceS?.Coiltemp;
+			result.Data.CoilTemp.E = sourceE?.Coiltemp;
 
-			result.Data.ProductType.L = sourceL?.PlateProduction;
-			result.Data.ProductType.M = sourceM?.PlateProduction;
-			result.Data.ProductType.S = sourceS?.PlateProduction;
-			result.Data.ProductType.E = sourceE?.PlateProduction;
+			result.Data.HeatId.L = sourceL?.Heatid;
+			result.Data.HeatId.M = sourceM?.Heatid;
+			result.Data.HeatId.S = sourceS?.Heatid;
+			result.Data.HeatId.E = sourceE?.Heatid;
 
-            result.Data.ProdStartTime.L = sourceL?.ProdStartTime;
-            result.Data.ProdStartTime.M = sourceM?.ProdStartTime;
-            result.Data.ProdStartTime.S = sourceS?.ProdStartTime;
-            result.Data.ProdStartTime.E = sourceE?.ProdStartTime;
+			result.Data.FlagBatchRolling.L = sourceL?.Flagbatchrolling;
+			result.Data.FlagBatchRolling.M = sourceM?.Flagbatchrolling;
+			result.Data.FlagBatchRolling.S = sourceS?.Flagbatchrolling;
+			result.Data.FlagBatchRolling.E = sourceE?.Flagbatchrolling;
 
-            result.Data.ProdEndTime.L = sourceL?.ProdEndTime;
-            result.Data.ProdEndTime.M = sourceM?.ProdEndTime;
-            result.Data.ProdEndTime.S = sourceS?.ProdEndTime;
-            result.Data.ProdEndTime.E = sourceE?.ProdEndTime;
+			result.Data.ProductType.L = sourceL?.Plateproduction;
+			result.Data.ProductType.M = sourceM?.Plateproduction;
+			result.Data.ProductType.S = sourceS?.Plateproduction;
+			result.Data.ProductType.E = sourceE?.Plateproduction;
+
+            result.Data.ProdStartTime.L = sourceL?.Prodstarttime;
+            result.Data.ProdStartTime.M = sourceM?.Prodstarttime;
+            result.Data.ProdStartTime.S = sourceS?.Prodstarttime;
+            result.Data.ProdStartTime.E = sourceE?.Prodstarttime;
+
+            result.Data.ProdEndTime.L = sourceL?.Prodendtime;
+            result.Data.ProdEndTime.M = sourceM?.Prodendtime;
+            result.Data.ProdEndTime.S = sourceS?.Prodendtime;
+            result.Data.ProdEndTime.E = sourceE?.Prodendtime;
 
             return result;
 		}
@@ -184,74 +204,74 @@ namespace WebHMI.Mapping.Extensions
 
             result.MeCode = new MeCodeDto()
             {
-                Status = matInfo.EnPhStatus,
-                MeId = matInfo.EnOrMeId,
+                Status = matInfo.Enorstatus,
+                MeId = matInfo.Enormeid,
                 MatType = "OR",
                 MesId = 1,
-                ExtId = matInfo.EnOrExtId
+                ExtId = matInfo.Enorextid
             };
 
-            result.Data.EnPhExtId.E = matInfo?.EnPhExtId;
+            result.Data.EnPhExtId.E = matInfo?.Enphextid;
 
-            result.Data.EnPhMeId.E = matInfo?.EnPhMeId;
+            result.Data.EnPhMeId.E = matInfo?.Enphmeid;
 
-            result.Data.EdPhySrc.E = matInfo?.EdPhySrc;
+            result.Data.EdPhySrc.E = matInfo?.Edphysrc;
 
-            result.Data.EnPhStatus.E = matInfo?.EnPhStatus;
+            result.Data.EnPhStatus.E = matInfo?.Enphstatus;
 
-            result.Data.EdOrSrc.E = matInfo?.EdOrSrc;
+            result.Data.EdOrSrc.E = matInfo?.Edorsrc;
 
-            result.Data.EnLoMeId.E = matInfo?.EnLoMeId;
+            result.Data.EnLoMeId.E = matInfo?.Enlomeid;
 
-            result.Data.EdLoSrc.E = matInfo?.EdLoSrc;
+            result.Data.EdLoSrc.E = matInfo?.Edlosrc;
 
-            result.Data.AlloyCode.E = matInfo?.AlloyCode;
+            result.Data.AlloyCode.E = matInfo?.Alloycode;
 
-            result.Data.HEntry.E = matInfo?.HEntry;
+            result.Data.HEntry.E = matInfo?.Hentry;
 
-            result.Data.HExit.E = matInfo?.HExit;
+            result.Data.HExit.E = matInfo?.Hexit;
 
-            result.Data.WEntry.E = matInfo?.WEntry;
+            result.Data.WEntry.E = matInfo?.Wentry;
 
-            result.Data.WeightEntry.E = matInfo?.WeightEntry;
+            result.Data.WeightEntry.E = matInfo?.Weightentry;
 
-            result.Data.LEntry.E = matInfo?.LEntry;
+            result.Data.LEntry.E = matInfo?.Lentry;
 
-            result.Data.WExit.E = matInfo?.WExit;
+            result.Data.WExit.E = matInfo?.Wexit;
 
-            result.Data.SequenceId.E = matInfo?.SequenceId;
+            result.Data.SequenceId.E = matInfo?.Sequenceid;
 
-            result.Data.PdiStatus.E = matInfo?.PdiStatus;
+            result.Data.PdiStatus.E = matInfo?.Pdistatus;
 
-            result.Data.SetpointsPc2Ok.E = matInfo?.SetpointsPc2Ok;
+            result.Data.SetpointsPc2Ok.E = matInfo?.Setpointspc2ok;
 
             result.Data.Sbaz.E = matInfo?.Sbaz;
 
-            result.Data.LastCalc.E = matInfo?.LastCalc;
+            result.Data.LastCalc.E = matInfo?.Lastcalc;
 
-            result.Data.ApsKey.E = matInfo?.ApsKey;
+            result.Data.ApsKey.E = matInfo?.Apskey;
 
-            result.Data.SimMat.E = matInfo?.SimMat;
+            result.Data.SimMat.E = matInfo?.Simmat;
 
-            result.Data.SetpointsCsOk.E = matInfo?.SetpointsCsOk;
+            result.Data.SetpointsCsOk.E = matInfo?.Setpointscsok;
 
-            result.Data.TEntryFm.E = matInfo?.TEntryFm;
+            result.Data.TEntryFm.E = matInfo?.Tentryfm;
 
-            result.Data.TExitFm.E = matInfo?.TExitFm;
+            result.Data.TExitFm.E = matInfo?.Texitfm;
 
-            result.Data.TExitCaster.E = matInfo?.TExitCaster;
+            result.Data.TExitCaster.E = matInfo?.Texitcaster;
 
-            result.Data.CoilTemp.E = matInfo?.CoilTemp;
+            result.Data.CoilTemp.E = matInfo?.Coiltemp;
 
-            result.Data.HeatId.E = matInfo?.HeatId;
+            result.Data.HeatId.E = matInfo?.Heatid;
 
-            result.Data.FlagBatchRolling.E = matInfo?.FlagBatchRolling;
+            result.Data.FlagBatchRolling.E = matInfo?.Flagbatchrolling;
 
-            result.Data.ProductType.E = matInfo?.PlateProduction;
+            result.Data.ProductType.E = matInfo?.Plateproduction;
 
-            result.Data.ProdStartTime.E = matInfo?.ProdStartTime;
+            result.Data.ProdStartTime.E = matInfo?.Prodstarttime;
 
-            result.Data.ProdEndTime.E = matInfo?.ProdEndTime;
+            result.Data.ProdEndTime.E = matInfo?.Prodendtime;
 
             return result;
         }

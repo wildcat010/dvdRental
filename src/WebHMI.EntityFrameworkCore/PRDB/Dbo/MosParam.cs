@@ -3,75 +3,33 @@ using System.Collections.Generic;
 
 namespace WebHMI.PRDB.Dbo;
 
-public partial class MosParam
+public partial class Mosparam
 {
-    /// <summary>
-    /// name of the parameter
-    /// </summary>
-    public string ParamName { get; set; }
+    public string Paramname { get; set; }
 
-    /// <summary>
-    /// plant type:  HRM, HFM
-    /// </summary>
-    public string PlantType { get; set; }
+    public string Planttype { get; set; }
 
-    /// <summary>
-    /// type of the value
-    /// </summary>
-    public string CType { get; set; }
+    public string Ctype { get; set; }
 
-    /// <summary>
-    /// character value
-    /// </summary>
-    public string CurValC { get; set; }
+    public string Curvalc { get; set; }
 
-    /// <summary>
-    /// numeric value
-    /// </summary>
-    public double? CurValN { get; set; }
+    public double? Curvaln { get; set; }
 
-    /// <summary>
-    /// description
-    /// </summary>
     public string Description { get; set; }
 
-    /// <summary>
-    /// name of the lower limit value
-    /// </summary>
-    public string LimitNameLl { get; set; }
+    public string Limitnamell { get; set; }
 
-    /// <summary>
-    /// name of the upper limit value
-    /// </summary>
-    public string LimitNameUl { get; set; }
+    public string Limitnameul { get; set; }
 
-    /// <summary>
-    /// description of the modification
-    /// </summary>
     public string Moddescr { get; set; }
 
-    /// <summary>
-    /// sort order
-    /// </summary>
-    public string SortOrder { get; set; }
+    public string Sortorder { get; set; }
 
-    /// <summary>
-    /// unit of the value
-    /// </summary>
     public string Unit { get; set; }
 
-    /// <summary>
-    /// modifying process
-    /// </summary>
     public string Mop { get; set; }
 
-    /// <summary>
-    /// time of creation
-    /// </summary>
     public DateTime? Toc { get; set; }
 
-    /// <summary>
-    /// time of modification
-    /// </summary>
     public DateTime? Tom { get; set; }
 }

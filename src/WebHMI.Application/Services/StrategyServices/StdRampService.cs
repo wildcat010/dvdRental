@@ -63,7 +63,7 @@ namespace WebHMI.Services.StrategyServices
             var std = await _stdService.Create(input.Std);
 
             bool rampsExist = await context.Set<TRampEntity>().AnyAsync(x =>
-                x.PlanNo == input.RampSets.PlanNo);
+                x.Planno == input.RampSets.PlanNo);
 
             if (rampsExist)
                 throw new EntityNotFoundException("Ramps already exist for given key");
@@ -71,7 +71,7 @@ namespace WebHMI.Services.StrategyServices
             var ramps = new List<TRampEntity>();
 
             if (input.RampSets.StdRamps.Count == 0)
-                ramps.Add(new TRampEntity() { RampNo = 0, PlanNo = input.Std.PlanNo });
+                ramps.Add(new TRampEntity() { Rampno = 0, Planno = input.Std.PlanNo });
 
             foreach (var ramp in input.RampSets.StdRamps)
             {
@@ -103,7 +103,7 @@ namespace WebHMI.Services.StrategyServices
         {
             var context = _dbContextProvider.GetDbContext();
             var ramps = await context.Set<TRampEntity>().Where(x =>
-                x.PlanNo == planNo && x.PlanNo != 0 && x.ActiveFlag == 1)
+                x.Planno == planNo && x.Planno != 0 && x.Activeflag == 1 && x.Rampno == 1)
                 .ToListAsync();
 
             return new StdRampSetsDto<TDto, TRampDto>()
@@ -119,11 +119,37 @@ namespace WebHMI.Services.StrategyServices
             };
         }
 
-        /// <inheritdoc cref="StdService{TEntity, TPrimaryKey, TDto}.GetAvailablePlans(StdFilteredRequestDto)" />
         [AbpAuthorize(Permissions.Pages_Strategies)]
         public async Task<PagedResultDto<StdItemDto>> GetAvailablePlans(StdFilteredRequestDto input)
         {
-            return await _stdService.GetAvailablePlans(input);
+            var context = _dbContextProvider.GetDbContext();
+            var query = context.Set<TRampEntity>().AsQueryable().Where(x => x.Activeflag == 1 && x.Rampno == 1);
+
+            if (input.NotAssignedPlans)
+            {
+                var usedPlanNumbers = await context.Aggregateselections
+                    .Where(x => x.Aggregate == AggregateName)
+                    .Select(x => new { x.PlannoInd0, x.PlannoInd1, x.PlannoInd2, x.PlannoInd3 })
+                    .ToArrayAsync();
+
+                var usedUniquePlanNumbers = usedPlanNumbers
+                    .SelectMany(x => new[] { x.PlannoInd0, x.PlannoInd1, x.PlannoInd2, x.PlannoInd3 })
+                    .Distinct()
+                    .Where(x => x.HasValue);
+
+                query = query.Where(x => !usedUniquePlanNumbers.Contains(x.Planno));
+            }
+
+            return await ApplyFilterRamp(query.OrderBy(x => x.Planno), input, MapItem);
+
+            StdItemDto MapItem(TRampEntity entity) => new()
+            {
+                PlanNo = entity.Planno,
+                ActiveFlag = entity.Activeflag,
+                Description = entity.Description,
+                LastModified = entity.Tom
+            };
+           // return await _stdService.GetAvailablePlans(input);
         }
 
         //[AbpAuthorize(Permissions.Pages_Strategies)]
@@ -137,8 +163,8 @@ namespace WebHMI.Services.StrategyServices
         {
             var context = _dbContextProvider.GetDbContext();
             var ramps = await context.Set<TRampEntity>()
-                .Where(x => x.PlanNo != 0)
-                .OrderBy(x => x.RampNo)
+                .Where(x => x.Planno != 0)
+                .OrderBy(x => x.Rampno)
                 .ToListAsync();
 
             var result = new StdRampKeySetDto<TDto, TRampDto>();
@@ -147,12 +173,12 @@ namespace WebHMI.Services.StrategyServices
             {
                 var passDto = _toDto(ramp);
 
-                var keyPassSet = result.StdKeyRampSets.FirstOrDefault(x => x.PlanNo == ramp.PlanNo);
+                var keyPassSet = result.StdKeyRampSets.FirstOrDefault(x => x.PlanNo == ramp.Planno);
                 if (keyPassSet is null)
                 {
                     var newSet = new StdRampSetDto<TRampDto>
                     {
-                        PlanNo = ramp.PlanNo,
+                        PlanNo = ramp.Planno,
                         StdRamps = new List<TRampDto>() { passDto }
                     };
 
@@ -182,7 +208,7 @@ namespace WebHMI.Services.StrategyServices
 
             var context = _dbContextProvider.GetDbContext();
             context.Set<TRampEntity>().RemoveRange(context.Set<TRampEntity>().Where(x =>
-                x.PlanNo == input.RampSets.PlanNo && x.ActiveFlag == 1).ToList());
+                x.Planno == input.RampSets.PlanNo && x.Activeflag == 1).ToList());
 
             await context.SaveChangesAsync();
 
@@ -192,7 +218,7 @@ namespace WebHMI.Services.StrategyServices
             //foreach (var dto in input.RampSets.StdRamps)
             {
                 var dto = input.RampSets.StdRamps[i];
-                dto.RampNo = i;
+                //dto.RampNo = i;
                 var entity = new TRampEntity();
                 _mapEntity(entity, dto);
                 ramps.Add(entity);
@@ -230,7 +256,7 @@ namespace WebHMI.Services.StrategyServices
                 ValidateInput(input);
 
                 context.Set<TRampEntity>().RemoveRange(context.Set<TRampEntity>().Where(x =>
-                    x.PlanNo == input.RampSets.PlanNo && x.ActiveFlag == 1).ToList());
+                    x.Planno == input.RampSets.PlanNo && x.Activeflag == 1).ToList());
 
                 var ramps = new List<TRampEntity>();
 
@@ -272,7 +298,7 @@ namespace WebHMI.Services.StrategyServices
             await _stdService.Delete(planNo);
 
             context.Set<TRampEntity>().RemoveRange(context.Set<TRampEntity>().Where(x =>
-                x.PlanNo == planNo && x.ActiveFlag == 1).ToList());
+                x.Planno == planNo && x.Activeflag == 1).ToList());
 
             await context.SaveChangesAsync();
         }

@@ -14,5 +14,6 @@ namespace WebHMI.Dtos.Strategy.StdDtos.StdSingleDtos
         public double? Srll { get; set; }
         public double? Facdfbdfr { get; set; }
         public double? Facdfbdiu { get; set; }
+        public string Description { get; internal set; }
     }
 }

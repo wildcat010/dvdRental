@@ -19,6 +19,8 @@ namespace WebHMI.WebHMI
 
             TreatDatabaseDateAsUtc(modelBuilder);
 
+            modelBuilder.ChangeAbpTablePrefix<Tenant, Role, User>("Hmi");
+
             modelBuilder.Entity<AuditLog>()
 				.Property(e => e.Parameters)
 				.HasMaxLength(int.MaxValue);

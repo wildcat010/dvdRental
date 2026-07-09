@@ -12,5 +12,6 @@ namespace WebHMI.Dtos.Strategy.StdDtos.StdSingleDtos
         public double? FlowWrLoadedInd0 { get; set; }
         public double? FlowWrLoadedInd1 { get; set; }
         public double? FlowWrLoadedInd2 { get; set; }
+        public string Description { get; set; }
     }
 }
