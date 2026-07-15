@@ -41,14 +41,14 @@ namespace WebHMI.Services
             {
                 var context = await _dbContextProvider.GetDbContextAsync();
                 var query = context.HmiVProductionHistories.AsQueryable();
-                if (string.IsNullOrEmpty(sequenceId))
-                    query = query.Where(x => x.Sequenceid == sequenceId);
+                if (!string.IsNullOrEmpty(sequenceId))
+                    query = query.Where(x => x.SequenceId == sequenceId);
 
                 if (timeFrom != null)
                     query = query.Where(x => x.Prodstart >= timeFrom);
 
                 if (timeTo != null)
-                    query = query.Where(x => x.Prodend <= timeTo);
+                    query = query.Where(x => x.ProdEnd <= timeTo);
 
                 return await ApplyFilter(
                     query,
@@ -86,14 +86,14 @@ namespace WebHMI.Services
 
             var query = context.HmiVProductionHistories.AsQueryable();
 
-            if (string.IsNullOrEmpty(sequenceId))
-                query = query.Where(x => x.Sequenceid == sequenceId);
+            if (!string.IsNullOrEmpty(sequenceId))
+                query = query.Where(x => x.SequenceId == sequenceId);
 
             if (timeFrom != null)
                 query = query.Where(x => x.Prodstart >= timeFrom);
 
             if (timeTo != null)
-                query = query.Where(x => x.Prodend <= timeTo);
+                query = query.Where(x => x.ProdEnd <= timeTo);
 
             var overviewData = await query.ToListAsync();
 
@@ -126,18 +126,16 @@ namespace WebHMI.Services
         public async Task<List<KeyValuePair<string, SingleProdSequenceThicknessWidth>>> GetProductionHistoryPlot(string sequenceId, DateTime? timeFrom, DateTime? timeTo)
         {
             var context = await _dbContextProvider.GetDbContextAsync();
-            if (string.IsNullOrEmpty(sequenceId))
-                sequenceId = context.HmiVProductionHistories.OrderByDescending(x => x.Prodend).Distinct().Select(x => x.Sequenceid).Skip(1).FirstOrDefault();
             var query = context.HmiVProductionHistories.AsQueryable();
 
-            if (string.IsNullOrEmpty(sequenceId))
-                query = query.Where(x => x.Sequenceid == sequenceId);
+            if (!string.IsNullOrEmpty(sequenceId))
+                query = query.Where(x => x.SequenceId == sequenceId);
 
             if (timeFrom != null)
                 query = query.Where(x => x.Prodstart >= timeFrom);
 
             if (timeTo != null)
-                query = query.Where(x => x.Prodend <= timeTo);
+                query = query.Where(x => x.ProdEnd <= timeTo);
             var overviewData = await query
                 .Select(x => new KeyValuePair<string, SingleProdSequenceThicknessWidth>(
                     x.CoilId,
