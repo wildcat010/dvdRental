@@ -295,6 +295,8 @@ namespace WebHMI.Services
                 RemRollLength = matInfos.Where(x => x.EnPhStatus < 0)
                                         .Sum(x => x.LExit),
 
+                MaxThick = matInfos.Max(x => x.HExit),
+
                 MinThick = matInfos.Min(x => x.HExit),
 
                 WidthFrom = matInfos.Min(x => x.WExit),

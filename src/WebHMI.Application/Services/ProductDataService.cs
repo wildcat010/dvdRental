@@ -114,6 +114,7 @@ namespace WebHMI.Services
 
                 TotalRollLength = overviewData.Sum(x => x.CoilLengthX),
 
+                MaxThick = overviewData.Max(x => x.HExit),
 
                 MinThick = overviewData.Min(x => x.HExit),
 

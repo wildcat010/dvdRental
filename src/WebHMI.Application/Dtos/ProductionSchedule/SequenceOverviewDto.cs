@@ -20,5 +20,6 @@ namespace WebHMI.Dtos.ProductionSchedule
         public double? WidthTo { get; set; }
         public TimeSpan? TotalRollTime { get; set; }
         public TimeSpan? RemainingRollTime { get; set; }
+        public double? MaxThick { get; set; }
     }
 }
