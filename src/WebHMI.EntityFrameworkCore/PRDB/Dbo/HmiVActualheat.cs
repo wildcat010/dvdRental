@@ -5,5 +5,5 @@ namespace WebHMI.PRDB.Dbo;
 
 public partial class HmiVActualheat
 {
-    public string Actheatid { get; set; }
+    public string GetCurrentHeat { get; set; }
 }

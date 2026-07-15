@@ -37,16 +37,16 @@ namespace WebHMI.Services
         public async Task<List<ValveTestHeaderDto>> GetValveTestList(short? valveStart, short? valveEnd)
         {
             var context = _dbContextProvider.GetDbContext();
-            return await context.CsmaintSequences
-                .Where(x => x.Valvestart >= valveStart && x.Valveend <= valveEnd)
+            return await context.CsMaintSequences
+                .Where(x => x.ValveStart >= valveStart && x.ValveEnd <= valveEnd)
                 .Select(x => new ValveTestHeaderDto()
                 {
                     TestTime = x.Toc,
                     MaintenanceId = x.MId,
                     SequenceId = x.Id,
-                    ValveGroup = x.Valvegroup,
-                    ValveStart = x.Valvestart,
-                    ValveEnd = x.Valveend
+                    ValveGroup = x.ValveGroup,
+                    ValveStart = x.ValveStart,
+                    ValveEnd = x.ValveEnd
                 })
                 .OrderByDescending(x => x.TestTime)
                 .Take(100)
@@ -57,20 +57,20 @@ namespace WebHMI.Services
         public async Task<List<ValveTestDetailsDto>> GetValveTestDetails(int m_id, int sq_id)
         {
             var context = _dbContextProvider.GetDbContext();
-            return await context.CsmaintSteps
+            return await context.CsMaintSteps
                 .Where(x => x.MId == m_id && x.SqId == sq_id)
                 .Select(x => new ValveTestDetailsDto()
                 {
                     Id = x.Id,
                     SqId = x.SqId,
                     MId = x.MId,
-                    Ampldes = x.Ampldes,
-                    FlowDesDown = x.Flowdesdown,
-                    FlowDesUp = x.Flowdesup,
-                    FlowMeasDown = x.Flowmeasdown,
-                    FlowMeasUp = x.Flowmeasup,
-                    FlowObsDown = x.Flowobsdown,
-                    FlowObsUp = x.Flowobsup
+                    Ampldes = x.AmplDes,
+                    FlowDesDown = x.FlowDesDown,
+                    FlowDesUp = x.FlowDesUp,
+                    FlowMeasDown = x.FlowMeasDown,
+                    FlowMeasUp = x.FlowMeasUp,
+                    FlowObsDown = x.FlowObsDown,
+                    FlowObsUp = x.FlowObsUp
                 }).ToListAsync();
         }
 
@@ -78,17 +78,17 @@ namespace WebHMI.Services
         public async Task<List<IdAndHmiCsMainenanceCalibrConfigPair>> GetValveCalibrationAsync()
         {
             var context = _dbContextProvider.GetDbContext();
-            return await context.Cscalibrationconfigs.OrderBy(x => x.Id).Select(x =>
+            return await context.CsCalibrationConfigs.OrderBy(x => x.Id).Select(x =>
             new IdAndHmiCsMainenanceCalibrConfigPair()
             {
                 Config = new HmiCsMaintenanceCalibrConfig()
                 {
-                    AmplStep = x.Amplstep.HasValue ? x.Amplstep.Value : 0,
-                    TimeStep = x.Timestep.HasValue ? x.Timestep.Value : 0,
-                    ValveFirst = x.Valvefirst.HasValue ? x.Valvefirst.Value : (short)0,
-                    ValveLast = x.Valvelast.HasValue ? x.Valvelast.Value : (short)0,
-                    NoValves = x.Novalves.HasValue ? x.Novalves.Value : (short)0,
-                    ValveGroup = x.Valvegroup.HasValue ? x.Valvegroup.Value : (short)0
+                    AmplStep = x.AmplStep.HasValue ? x.AmplStep.Value : 0,
+                    TimeStep = x.TimeStep.HasValue ? x.TimeStep.Value : 0,
+                    ValveFirst = x.ValveFirst.HasValue ? x.ValveFirst.Value : (short)0,
+                    ValveLast = x.ValveLast.HasValue ? x.ValveLast.Value : (short)0,
+                    NoValves = x.NoValves.HasValue ? x.NoValves.Value : (short)0,
+                    ValveGroup = x.ValveGroup.HasValue ? x.ValveGroup.Value : (short)0
                 },
                 Id = x.Id
             }
@@ -99,25 +99,25 @@ namespace WebHMI.Services
         public async Task<IdAndHmiCsMainenanceCalibrConfigPair> UpdateValveCalibration(IdAndHmiCsMainenanceCalibrConfigPair input, string connectionId)
         {
             var context = _dbContextProvider.GetDbContext();
-            var dbRow = await context.Cscalibrationconfigs.FirstOrDefaultAsync(x => x.Id == input.Id);
+            var dbRow = await context.CsCalibrationConfigs.FirstOrDefaultAsync(x => x.Id == input.Id);
             if (dbRow == null)
-                context.Cscalibrationconfigs.Add(new Cscalibrationconfig()
+                context.CsCalibrationConfigs.Add(new CsCalibrationConfig()
                 {
-                    Amplstep = input.Config.AmplStep,
-                    Timestep = input.Config.TimeStep,
-                    Valvefirst = input.Config.ValveFirst,
-                    Valvelast = input.Config.ValveLast,
-                    Novalves = input.Config.NoValves,
-                    Valvegroup = input.Config.ValveGroup,
+                    AmplStep = input.Config.AmplStep,
+                    TimeStep = input.Config.TimeStep,
+                    ValveFirst = input.Config.ValveFirst,
+                    ValveLast = input.Config.ValveLast,
+                    NoValves = input.Config.NoValves,
+                    ValveGroup = input.Config.ValveGroup,
                 });
             else
             {
-                dbRow.Amplstep = input.Config.AmplStep;
-                dbRow.Timestep = input.Config.TimeStep;
-                dbRow.Valvefirst = input.Config.ValveFirst;
-                dbRow.Valvelast = input.Config.ValveLast;
-                dbRow.Novalves = input.Config.NoValves;
-                dbRow.Valvegroup = input.Config.ValveGroup;
+                dbRow.AmplStep = input.Config.AmplStep;
+                dbRow.TimeStep = input.Config.TimeStep;
+                dbRow.ValveFirst = input.Config.ValveFirst;
+                dbRow.ValveLast = input.Config.ValveLast;
+                dbRow.NoValves = input.Config.NoValves;
+                dbRow.ValveGroup = input.Config.ValveGroup;
             }
             await context.SaveChangesAsync();
             var eventData = new EventWrapper<HmiReturnEvent>()

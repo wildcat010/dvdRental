@@ -3,71 +3,170 @@ using System.Collections.Generic;
 
 namespace WebHMI.PRDB.Dbo;
 
-public partial class StatDirfmpfccycshiftppass
+/// <summary>
+/// Material related strategy value: cyclic shifting pass
+/// </summary>
+public partial class StatDirFmPfcCycShiftPpass
 {
-    public string Mecreator { get; set; }
+    /// <summary>
+    /// Material owner
+    /// </summary>
+    public string MeCreator { get; set; }
 
-    public int Meid { get; set; }
+    /// <summary>
+    /// Material idendification number
+    /// </summary>
+    public int MeId { get; set; }
 
-    public short Mesid { get; set; }
+    /// <summary>
+    /// Line status
+    /// </summary>
+    public short MesId { get; set; }
 
-    public int Passno { get; set; }
+    /// <summary>
+    /// pass number
+    /// </summary>
+    public int PassNo { get; set; }
 
+    /// <summary>
+    /// owner
+    /// </summary>
     public string Source { get; set; }
 
-    public short? Csmaxlimit { get; set; }
+    /// <summary>
+    /// cyclic shifting: maximum shifting position
+    /// </summary>
+    public short? CSmaxLimit { get; set; }
 
-    public short? Csminlimit { get; set; }
+    /// <summary>
+    /// wear shifting: maximum shifting position
+    /// </summary>
+    public short? CSmaxLimitParabolicInd0 { get; set; }
 
-    public short? Csmode { get; set; }
+    /// <summary>
+    /// wear shifting: maximum shifting position
+    /// </summary>
+    public short? CSmaxLimitParabolicInd1 { get; set; }
 
-    public short? Csshiftdir { get; set; }
+    /// <summary>
+    /// wear shifting: maximum shifting position
+    /// </summary>
+    public short? CSmaxLimitParabolicInd2 { get; set; }
 
-    public short? Csshiftstep1 { get; set; }
+    /// <summary>
+    /// cyclic shifting: minimum shifting position
+    /// </summary>
+    public short? CSminLimit { get; set; }
 
-    public short? Csshiftstep2 { get; set; }
+    /// <summary>
+    /// wear shifting: minimum shifting position
+    /// </summary>
+    public short? CSminLimitParabolicInd0 { get; set; }
 
-    public short? Csshiftstep3 { get; set; }
+    /// <summary>
+    /// wear shifting: minimum shifting position
+    /// </summary>
+    public short? CSminLimitParabolicInd1 { get; set; }
 
-    public short? Csstartpos { get; set; }
+    /// <summary>
+    /// wear shifting: minimum shifting position
+    /// </summary>
+    public short? CSminLimitParabolicInd2 { get; set; }
 
+    /// <summary>
+    /// wear shifting on/off: 0 - no shifting, 1 - shifting based on rollshape active
+    /// </summary>
+    public short? CSmode { get; set; }
+
+    /// <summary>
+    /// wear shifting direction: -1: negative, 1: positiv
+    /// </summary>
+    public short? CSshiftDir { get; set; }
+
+    /// <summary>
+    /// cyclic shifting step range
+    /// </summary>
+    public short? CSshiftStep1 { get; set; }
+
+    /// <summary>
+    /// cyclic shifting step range
+    /// </summary>
+    public short? CSshiftStep2 { get; set; }
+
+    /// <summary>
+    /// cyclic shifting step range
+    /// </summary>
+    public short? CSshiftStep3 { get; set; }
+
+    /// <summary>
+    /// wear shifting: start position
+    /// </summary>
+    public short? CSstartPos { get; set; }
+
+    /// <summary>
+    /// wear shifting step range - parabolic
+    /// </summary>
+    public short? CSstepParabolicInd0 { get; set; }
+
+    /// <summary>
+    /// wear shifting step range - parabolic
+    /// </summary>
+    public short? CSstepParabolicInd1 { get; set; }
+
+    /// <summary>
+    /// wear shifting step range - parabolic
+    /// </summary>
+    public short? CSstepParabolicInd2 { get; set; }
+
+    /// <summary>
+    /// wear shifting step range - SmartCrown / CVC
+    /// </summary>
+    public short? CSstepSmartCrownInd0 { get; set; }
+
+    /// <summary>
+    /// wear shifting step range - SmartCrown / CVC
+    /// </summary>
+    public short? CSstepSmartCrownInd1 { get; set; }
+
+    /// <summary>
+    /// wear shifting step range - SmartCrown / CVC
+    /// </summary>
+    public short? CSstepSmartCrownInd2 { get; set; }
+
+    /// <summary>
+    /// description field
+    /// </summary>
     public short? Description { get; set; }
 
-    public short? Manint { get; set; }
+    /// <summary>
+    /// manual intervention in plan
+    /// </summary>
+    public short? ManInt { get; set; }
 
-    public short? Planno { get; set; }
+    /// <summary>
+    /// cyclic shift plan number
+    /// </summary>
+    public short? PlanNo { get; set; }
 
-    public string Toextid { get; set; }
+    /// <summary>
+    /// External material ID
+    /// </summary>
+    public string ToExtId { get; set; }
 
+    /// <summary>
+    /// modifying process
+    /// </summary>
     public string Mop { get; set; }
 
+    /// <summary>
+    /// time of creation
+    /// </summary>
     public DateTime? Toc { get; set; }
 
+    /// <summary>
+    /// time of modification
+    /// </summary>
     public DateTime? Tom { get; set; }
-
-    public short? CsmaxlimitparabolicInd0 { get; set; }
-
-    public short? CsmaxlimitparabolicInd1 { get; set; }
-
-    public short? CsmaxlimitparabolicInd2 { get; set; }
-
-    public short? CsminlimitparabolicInd0 { get; set; }
-
-    public short? CsminlimitparabolicInd1 { get; set; }
-
-    public short? CsminlimitparabolicInd2 { get; set; }
-
-    public short? CsstepparabolicInd0 { get; set; }
-
-    public short? CsstepparabolicInd1 { get; set; }
-
-    public short? CsstepparabolicInd2 { get; set; }
-
-    public short? CsstepsmartcrownInd0 { get; set; }
-
-    public short? CsstepsmartcrownInd1 { get; set; }
-
-    public short? CsstepsmartcrownInd2 { get; set; }
 
     public virtual Me1 Me1 { get; set; }
 }

@@ -10,17 +10,17 @@ namespace WebHMI.Mapping.Extensions.Strategy
 {
     public class StdAopMapper
     {
-        public static void MapEntity(Stdaop entity, StdAopDto dto)
+        public static void MapEntity(StdAop entity, StdAopDto dto)
         {
-            entity.Planno = dto.PlanNo;
-            entity.Activeflag = dto.ActiveFlag;
+            entity.PlanNo = dto.PlanNo;
+            entity.ActiveFlag = dto.ActiveFlag;
             entity.Description = dto.Description;
         }
 
-        public static StdAopDto ToDto(Stdaop entity) => new()
+        public static StdAopDto ToDto(StdAop entity) => new()
         {
-            PlanNo = entity.Planno,
-            ActiveFlag = entity.Activeflag,
+            PlanNo = entity.PlanNo,
+            ActiveFlag = entity.ActiveFlag,
             Description = entity.Description
         };
     }

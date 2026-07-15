@@ -5,5 +5,5 @@ namespace WebHMI.PRDB.Dbo;
 
 public partial class HmiVActualsequence
 {
-    public string Actsequenceid { get; set; }
+    public string Getcurrentsequence { get; set; }
 }

@@ -58,20 +58,20 @@ namespace WebHMI.Core.Widget.Widgets
 
 			var context = _dbContextProvider.GetDbContext();	
 			var res = await context.HmiVProdsequenceCompletes
-				.GroupBy(d => d.Alloycode)
+              .GroupBy(d => d.AlloyCode)
 					.Select(
 					   d => new
 					   {
-						   AggregatedWeight = d.Sum(g => (double)g.Weightentry),
+                           AggregatedWeight = d.Sum(g => (double)g.WeightEntry),
 						   CountProducts = d.Count(),
-						   Alloycode = d.Key
+                           AlloyCode = d.Key
 					   })
 					.OrderByDescending(d => d.AggregatedWeight)
 			.ToListAsync();
 
 			foreach (var el in res)
 			{
-				result.Add(new StadnardDistributionOneItem { Key = el.Alloycode, Value = el.AggregatedWeight });
+                result.Add(new StadnardDistributionOneItem { Key = el.AlloyCode, Value = el.AggregatedWeight });
 			}
 			Data.ProductionDistributionData = result;
 		}

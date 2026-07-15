@@ -9,8 +9,8 @@ using WebHMI.PRDB.Dbo;
 namespace WebHMI.Services.StrategyServices
 {
     public class StdLpPassService : StdPassService<
-        Stdlp, StdLpDto,
-        Stdlppass, StdLpPassDto>
+        StdLp, StdLpDto,
+        StdLppass, StdLpPassDto>
     {
         public override string AggregateName => "FmLoadingPlan";
 
@@ -23,8 +23,8 @@ namespace WebHMI.Services.StrategyServices
     }
 
     public class StdDrampHrmService : StdRampService<
-    Stddphrm, StdDpRmDto,
-    Stddpramphrm, StdDprampHrmDto>
+    StdDphrm, StdDpRmDto,
+    StdDprampHrm, StdDprampHrmDto>
     {
         public override string AggregateName => "RmDescalerPlan";
 
@@ -37,8 +37,8 @@ namespace WebHMI.Services.StrategyServices
     }
 
     public class StdDrampFmService : StdRampService<
-    Stddpfm, StdDpFmDto,
-    Stddprampfm, StdDprampFmDto>
+    StdDpfm, StdDpFmDto,
+    StdDprampFm, StdDprampFmDto>
     {
         public override string AggregateName => "FmDescalerPlan";
 
@@ -51,8 +51,8 @@ namespace WebHMI.Services.StrategyServices
     }
 
     public class StdPcService : StdRampService<
-    Stdpc, StdPcDto,
-    Stdpcramp, StdPcRampDto>
+    StdPc, StdPcDto,
+    StdPcramp, StdPcRampDto>
     {
         public override string AggregateName => "FmPowerCoolingPlan";
 
@@ -65,8 +65,8 @@ namespace WebHMI.Services.StrategyServices
     }
 
     public class StdRcpPassService : StdPassService<
-    Stdrcp, StdRcpDto,
-    Stdrcppass, StdRcpPassDto>
+    StdRcp, StdRcpDto,
+    StdRcppass, StdRcpPassDto>
     {
         public override string AggregateName => "FmRollCoolPlan";
 
@@ -79,8 +79,8 @@ namespace WebHMI.Services.StrategyServices
     }
 
     public class StdIscpPassService : StdPassService<
-    Stdiscp, StdIscpDto,
-    Stdiscppass, StdIscpPassDto>
+    StdIscp, StdIscpDto,
+    StdIscppass, StdIscpPassDto>
     {
         public override string AggregateName => "FmISCoolPlan";
 
@@ -93,8 +93,8 @@ namespace WebHMI.Services.StrategyServices
     }
 
     public class StdAopPassServices : StdPassService<
-        Stdaop, StdAopDto,
-        Stdaoppass, StdAopPassDto>
+        StdAop, StdAopDto,
+        StdAoppass, StdAopPassDto>
     {
         public override string AggregateName => "FmAntiOxPeelPlan";
 
@@ -107,8 +107,8 @@ namespace WebHMI.Services.StrategyServices
     }
 
     public class StdTpPassService : StdPassService<
-        Stdtp, StdTpDto,
-        Stdtppass, StdTpPassDto>
+        StdTp, StdTpDto,
+        StdTppass, StdTpPassDto>
     {
         public override string AggregateName => "FmTensionPlan";
 
@@ -121,8 +121,8 @@ namespace WebHMI.Services.StrategyServices
     }
 
     public class StdRglpPassService : StdPassService<
-        Stdrglp, StdRglpDto,
-        Stdrglppass, StdRglpPassDto>
+        StdRglp, StdRglpDto,
+        StdRglppass, StdRglpPassDto>
     {
         public override string AggregateName => "FmRollGapLubPlan";
 
@@ -135,8 +135,8 @@ namespace WebHMI.Services.StrategyServices
     }
 
     public class StdDirFmPfcCycShiftService : StdPassService<
-    Stddirfmpfccycshiftp, StdDirFmPfcCycShiftDto,
-    Stddirfmpfccycshiftppass, StdDirFmPfcCycShiftPassDto>
+    StdDirFmPfcCycShiftP, StdDirFmPfcCycShiftDto,
+    StdDirFmPfcCycShiftPpass, StdDirFmPfcCycShiftPassDto>
     {
         public override string AggregateName => "FmCyclicShiftPlan";
 
@@ -149,8 +149,8 @@ namespace WebHMI.Services.StrategyServices
     }
 
     public class StdDirFmPfcParapPassService : StdPassService<
-        Stddirfmpfcparap, StdDirFmPfcParapDto,
-        Stddirfmpfcparappass, StdDirFmPfcParapPassDto>
+        StdDirFmPfcParaP, StdDirFmPfcParapDto,
+        StdDirFmPfcParaPpass, StdDirFmPfcParapPassDto>
     {
         public override string AggregateName => "FmProfileFlatPlan";
 
@@ -163,7 +163,7 @@ namespace WebHMI.Services.StrategyServices
     }
 
     public class StdCompPlanService : StdService<
-        Stdcompplan, StdCompPlanDto>
+        StdCompPlan, StdCompPlanDto>
     {
         public override string AggregateName => "FmCompPlan";
 
@@ -173,7 +173,7 @@ namespace WebHMI.Services.StrategyServices
         { }
     }
     public class StdIhpService : StdService<
-        Stdihp, StdIhpDto>
+        StdIhp, StdIhpDto>
     {
         public override string AggregateName => "FmIHPlan";
 
@@ -184,8 +184,8 @@ namespace WebHMI.Services.StrategyServices
     }
 
     public class StdWmpPassService : StdPassService<
-        Stdwmp, StdWmpDto,
-        Stdwmppass, StdWmpPassDto>
+        StdWmp, StdWmpDto,
+        StdWmppass, StdWmpPassDto>
     {
         public override string AggregateName => "FmWearModelPlan";
 
@@ -198,8 +198,8 @@ namespace WebHMI.Services.StrategyServices
     }
 
     public class StdSrpPassService : StdPassService<
-        Stdsrp, StdSrpDto,
-        Stdsrppass, StdSrpPassDto>
+        StdSrp, StdSrpDto,
+        StdSrppass, StdSrpPassDto>
     {
         public override string AggregateName => "FmShiftModelPlan";
 
@@ -211,7 +211,7 @@ namespace WebHMI.Services.StrategyServices
         { }
     }
 
-    public class StdCsStrategyService : StdService<Stdcsstrategy, StdStrategyCsDto>
+    public class StdCsStrategyService : StdService<StdCsStrategy, StdStrategyCsDto>
     {
         public override string AggregateName => "CsStrategySelection";
 
@@ -221,7 +221,7 @@ namespace WebHMI.Services.StrategyServices
         { }
     }
 
-    public class StdCsProfileService : StdService<Stdcsprofile, StdProfileCsDto>
+    public class StdCsProfileService : StdService<StdCsProfile, StdProfileCsDto>
     {
         public override string AggregateName => "CsProfileSelection";
 
@@ -231,7 +231,7 @@ namespace WebHMI.Services.StrategyServices
         { }
     }
 
-    public class StdCsRtCoolingService : StdService<Stdcsrtcooling, StdRtCoolingCsDto>
+    public class StdCsRtCoolingService : StdService<StdCsRtCooling, StdRtCoolingCsDto>
     {
         public override string AggregateName => "CsRtcSelection";
 
@@ -241,7 +241,7 @@ namespace WebHMI.Services.StrategyServices
         { }
     }
 
-    public class StdCscrService : StdService<Stdcscr, StdCrCsDto>
+    public class StdCscrService : StdService<StdCsCr, StdCrCsDto>
     {
         public override string AggregateName => "CsCrsSelection";
 
@@ -251,7 +251,7 @@ namespace WebHMI.Services.StrategyServices
         { }
     }
 
-    public class StdCsCoilTempOffsetService : StdService<Stdcscoiltempoffset, StdCsCoilTempOffsetDto>
+    public class StdCsCoilTempOffsetService : StdService<StdCsCoilTempOffset, StdCsCoilTempOffsetDto>
     {
         public override string AggregateName => "CsCoilTempOffsetSelection";
 
@@ -261,7 +261,7 @@ namespace WebHMI.Services.StrategyServices
         { }
     }
 
-    public class StdCsPerfService : StdService<Stdcsperf, StdCsPerfDto>
+    public class StdCsPerfService : StdService<StdCsPerf, StdCsPerfDto>
     {
         public override string AggregateName => "CsPerfSelection";
 
@@ -271,7 +271,7 @@ namespace WebHMI.Services.StrategyServices
         { }
     }
 
-    public class StdcsedgemaskingService : StdService<Stdcsedgemasking, StdcsedgemaskingDto>
+    public class StdcsedgemaskingService : StdService<StdCsEdgeMasking, StdcsedgemaskingDto>
     {
         public override string AggregateName => "CsEdgeMaskingSelection";
 

@@ -3,26 +3,56 @@ using System.Collections.Generic;
 
 namespace WebHMI.PRDB.Dbo;
 
-public partial class StatAdordent
+public partial class StatAdOrdEnt
 {
-    public string Mecreator { get; set; }
+    /// <summary>
+    /// Material owner
+    /// </summary>
+    public string MeCreator { get; set; }
 
-    public int Meid { get; set; }
+    /// <summary>
+    /// Material idendification number
+    /// </summary>
+    public int MeId { get; set; }
 
-    public short Mesid { get; set; }
+    /// <summary>
+    /// Line status
+    /// </summary>
+    public short MesId { get; set; }
 
+    /// <summary>
+    /// owner
+    /// </summary>
     public string Source { get; set; }
 
-    public short Thickhead { get; set; }
+    /// <summary>
+    /// owner
+    /// </summary>
+    public short ThickHead { get; set; }
 
-    public short? Adapokfm { get; set; }
+    /// <summary>
+    /// adaptation FM ok
+    /// </summary>
+    public short? AdapOkFm { get; set; }
 
-    public short? Adapokrm { get; set; }
+    /// <summary>
+    /// adaptation RM ok
+    /// </summary>
+    public short? AdapOkRm { get; set; }
 
+    /// <summary>
+    /// modifying process
+    /// </summary>
     public string Mop { get; set; }
 
+    /// <summary>
+    /// time of creation
+    /// </summary>
     public DateTime? Toc { get; set; }
 
+    /// <summary>
+    /// time of modification
+    /// </summary>
     public DateTime? Tom { get; set; }
 
     public virtual Me1 Me1 { get; set; }

@@ -5,13 +5,13 @@ namespace WebHMI.PRDB.Dbo;
 
 public partial class HmiVRollinghistoryseq
 {
-    public decimal? Position { get; set; }
+    public long? Position { get; set; }
 
     public int? Enphmeid { get; set; }
 
-    public int? Enormeid { get; set; }
+    public int Enormeid { get; set; }
 
-    public string Enormetype { get; set; }
+    public string EnOrMeType { get; set; }
 
     public string Enorextid { get; set; }
 

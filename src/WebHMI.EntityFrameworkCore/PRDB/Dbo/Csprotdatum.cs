@@ -3,9 +3,12 @@ using System.Collections.Generic;
 
 namespace WebHMI.PRDB.Dbo;
 
-public partial class Csprotdatum
+public partial class CsProtDatum
 {
-    public int Meid { get; set; }
+    /// <summary>
+    /// material identification
+    /// </summary>
+    public int MeId { get; set; }
 
     public double? AnalysisAluminium { get; set; }
 
@@ -61,375 +64,726 @@ public partial class Csprotdatum
 
     public double? AnalysisZirkonium { get; set; }
 
-    public double? Controlratioisc { get; set; }
+    /// <summary>
+    /// only applicable for ISC strategy = auto: this value decides, how much percentage of the temperature error will be compensated by switching water
+    /// </summary>
+    public double? ControlRatioIsc { get; set; }
+
+    /// <summary>
+    /// strategy: OFF, FIXEDWATER, AUTO
+    /// </summary>
+    public int? CoolingStrategyIsc { get; set; }
+
+    /// <summary>
+    /// length [m] where no water will be appied on head
+    /// </summary>
+    public double? IscUncooledHeadLen { get; set; }
+
+    /// <summary>
+    /// water amount max, only applicable for ISC strategy = auto
+    /// </summary>
+    public double? IscWaterAmountMaxInd00 { get; set; }
+
+    /// <summary>
+    /// water amount max, only applicable for ISC strategy = auto
+    /// </summary>
+    public double? IscWaterAmountMaxInd01 { get; set; }
+
+    /// <summary>
+    /// water amount max, only applicable for ISC strategy = auto
+    /// </summary>
+    public double? IscWaterAmountMaxInd02 { get; set; }
+
+    /// <summary>
+    /// water amount max, only applicable for ISC strategy = auto
+    /// </summary>
+    public double? IscWaterAmountMaxInd03 { get; set; }
+
+    /// <summary>
+    /// water amount max, only applicable for ISC strategy = auto
+    /// </summary>
+    public double? IscWaterAmountMaxInd04 { get; set; }
+
+    /// <summary>
+    /// water amount max, only applicable for ISC strategy = auto
+    /// </summary>
+    public double? IscWaterAmountMaxInd05 { get; set; }
+
+    /// <summary>
+    /// water amount max, only applicable for ISC strategy = auto
+    /// </summary>
+    public double? IscWaterAmountMaxInd06 { get; set; }
+
+    /// <summary>
+    /// water amount max, only applicable for ISC strategy = auto
+    /// </summary>
+    public double? IscWaterAmountMaxInd07 { get; set; }
+
+    /// <summary>
+    /// water amount max, only applicable for ISC strategy = auto
+    /// </summary>
+    public double? IscWaterAmountMaxInd08 { get; set; }
+
+    /// <summary>
+    /// water amount max, only applicable for ISC strategy = auto
+    /// </summary>
+    public double? IscWaterAmountMaxInd09 { get; set; }
+
+    /// <summary>
+    /// water amount max, only applicable for ISC strategy = auto
+    /// </summary>
+    public double? IscWaterAmountMaxInd10 { get; set; }
+
+    /// <summary>
+    /// water amount max, only applicable for ISC strategy = auto
+    /// </summary>
+    public double? IscWaterAmountMaxInd11 { get; set; }
+
+    /// <summary>
+    /// water amount max, only applicable for ISC strategy = auto
+    /// </summary>
+    public double? IscWaterAmountMaxInd12 { get; set; }
+
+    /// <summary>
+    /// water amount max, only applicable for ISC strategy = auto
+    /// </summary>
+    public double? IscWaterAmountMaxInd13 { get; set; }
+
+    /// <summary>
+    /// water amount max, only applicable for ISC strategy = auto
+    /// </summary>
+    public double? IscWaterAmountMaxInd14 { get; set; }
+
+    /// <summary>
+    /// water amount max, only applicable for ISC strategy = auto
+    /// </summary>
+    public double? IscWaterAmountMaxInd15 { get; set; }
+
+    /// <summary>
+    /// water amount max, only applicable for ISC strategy = auto
+    /// </summary>
+    public double? IscWaterAmountMaxInd16 { get; set; }
+
+    /// <summary>
+    /// water amount max, only applicable for ISC strategy = auto
+    /// </summary>
+    public double? IscWaterAmountMaxInd17 { get; set; }
+
+    /// <summary>
+    /// water amount max, only applicable for ISC strategy = auto
+    /// </summary>
+    public double? IscWaterAmountMaxInd18 { get; set; }
+
+    /// <summary>
+    /// water amount max, only applicable for ISC strategy = auto
+    /// </summary>
+    public double? IscWaterAmountMaxInd19 { get; set; }
+
+    /// <summary>
+    /// water amount max, only applicable for ISC strategy = auto
+    /// </summary>
+    public double? IscWaterAmountMaxInd20 { get; set; }
+
+    /// <summary>
+    /// water amount max, only applicable for ISC strategy = auto
+    /// </summary>
+    public double? IscWaterAmountMaxInd21 { get; set; }
+
+    /// <summary>
+    /// water amount max, only applicable for ISC strategy = auto
+    /// </summary>
+    public double? IscWaterAmountMaxInd22 { get; set; }
+
+    /// <summary>
+    /// water amount max, only applicable for ISC strategy = auto
+    /// </summary>
+    public double? IscWaterAmountMaxInd23 { get; set; }
+
+    /// <summary>
+    /// water amount max, only applicable for ISC strategy = auto
+    /// </summary>
+    public double? IscWaterAmountMaxInd24 { get; set; }
+
+    /// <summary>
+    /// water amount max, only applicable for ISC strategy = auto
+    /// </summary>
+    public double? IscWaterAmountMaxInd25 { get; set; }
+
+    /// <summary>
+    /// water amount min, only applicable for ISC strategy = auto
+    /// </summary>
+    public double? IscWaterAmountMinInd00 { get; set; }
+
+    /// <summary>
+    /// water amount min, only applicable for ISC strategy = auto
+    /// </summary>
+    public double? IscWaterAmountMinInd01 { get; set; }
+
+    /// <summary>
+    /// water amount min, only applicable for ISC strategy = auto
+    /// </summary>
+    public double? IscWaterAmountMinInd02 { get; set; }
+
+    /// <summary>
+    /// water amount min, only applicable for ISC strategy = auto
+    /// </summary>
+    public double? IscWaterAmountMinInd03 { get; set; }
+
+    /// <summary>
+    /// water amount min, only applicable for ISC strategy = auto
+    /// </summary>
+    public double? IscWaterAmountMinInd04 { get; set; }
+
+    /// <summary>
+    /// water amount min, only applicable for ISC strategy = auto
+    /// </summary>
+    public double? IscWaterAmountMinInd05 { get; set; }
+
+    /// <summary>
+    /// water amount min, only applicable for ISC strategy = auto
+    /// </summary>
+    public double? IscWaterAmountMinInd06 { get; set; }
+
+    /// <summary>
+    /// water amount min, only applicable for ISC strategy = auto
+    /// </summary>
+    public double? IscWaterAmountMinInd07 { get; set; }
+
+    /// <summary>
+    /// water amount min, only applicable for ISC strategy = auto
+    /// </summary>
+    public double? IscWaterAmountMinInd08 { get; set; }
+
+    /// <summary>
+    /// water amount min, only applicable for ISC strategy = auto
+    /// </summary>
+    public double? IscWaterAmountMinInd09 { get; set; }
+
+    /// <summary>
+    /// water amount min, only applicable for ISC strategy = auto
+    /// </summary>
+    public double? IscWaterAmountMinInd10 { get; set; }
+
+    /// <summary>
+    /// water amount min, only applicable for ISC strategy = auto
+    /// </summary>
+    public double? IscWaterAmountMinInd11 { get; set; }
+
+    /// <summary>
+    /// water amount min, only applicable for ISC strategy = auto
+    /// </summary>
+    public double? IscWaterAmountMinInd12 { get; set; }
+
+    /// <summary>
+    /// water amount min, only applicable for ISC strategy = auto
+    /// </summary>
+    public double? IscWaterAmountMinInd13 { get; set; }
+
+    /// <summary>
+    /// water amount min, only applicable for ISC strategy = auto
+    /// </summary>
+    public double? IscWaterAmountMinInd14 { get; set; }
+
+    /// <summary>
+    /// water amount min, only applicable for ISC strategy = auto
+    /// </summary>
+    public double? IscWaterAmountMinInd15 { get; set; }
+
+    /// <summary>
+    /// water amount min, only applicable for ISC strategy = auto
+    /// </summary>
+    public double? IscWaterAmountMinInd16 { get; set; }
+
+    /// <summary>
+    /// water amount min, only applicable for ISC strategy = auto
+    /// </summary>
+    public double? IscWaterAmountMinInd17 { get; set; }
+
+    /// <summary>
+    /// water amount min, only applicable for ISC strategy = auto
+    /// </summary>
+    public double? IscWaterAmountMinInd18 { get; set; }
+
+    /// <summary>
+    /// water amount min, only applicable for ISC strategy = auto
+    /// </summary>
+    public double? IscWaterAmountMinInd19 { get; set; }
+
+    /// <summary>
+    /// water amount min, only applicable for ISC strategy = auto
+    /// </summary>
+    public double? IscWaterAmountMinInd20 { get; set; }
+
+    /// <summary>
+    /// water amount min, only applicable for ISC strategy = auto
+    /// </summary>
+    public double? IscWaterAmountMinInd21 { get; set; }
+
+    /// <summary>
+    /// water amount min, only applicable for ISC strategy = auto
+    /// </summary>
+    public double? IscWaterAmountMinInd22 { get; set; }
+
+    /// <summary>
+    /// water amount min, only applicable for ISC strategy = auto
+    /// </summary>
+    public double? IscWaterAmountMinInd23 { get; set; }
+
+    /// <summary>
+    /// water amount min, only applicable for ISC strategy = auto
+    /// </summary>
+    public double? IscWaterAmountMinInd24 { get; set; }
+
+    /// <summary>
+    /// water amount min, only applicable for ISC strategy = auto
+    /// </summary>
+    public double? IscWaterAmountMinInd25 { get; set; }
+
+    /// <summary>
+    /// water amount, only applicable for ISC strategy = fixed water
+    /// </summary>
+    public double? IscWaterAmountInd00 { get; set; }
+
+    /// <summary>
+    /// water amount, only applicable for ISC strategy = fixed water
+    /// </summary>
+    public double? IscWaterAmountInd01 { get; set; }
+
+    /// <summary>
+    /// water amount, only applicable for ISC strategy = fixed water
+    /// </summary>
+    public double? IscWaterAmountInd02 { get; set; }
+
+    /// <summary>
+    /// water amount, only applicable for ISC strategy = fixed water
+    /// </summary>
+    public double? IscWaterAmountInd03 { get; set; }
+
+    /// <summary>
+    /// water amount, only applicable for ISC strategy = fixed water
+    /// </summary>
+    public double? IscWaterAmountInd04 { get; set; }
+
+    /// <summary>
+    /// water amount, only applicable for ISC strategy = fixed water
+    /// </summary>
+    public double? IscWaterAmountInd05 { get; set; }
+
+    /// <summary>
+    /// water amount, only applicable for ISC strategy = fixed water
+    /// </summary>
+    public double? IscWaterAmountInd06 { get; set; }
+
+    /// <summary>
+    /// water amount, only applicable for ISC strategy = fixed water
+    /// </summary>
+    public double? IscWaterAmountInd07 { get; set; }
+
+    /// <summary>
+    /// water amount, only applicable for ISC strategy = fixed water
+    /// </summary>
+    public double? IscWaterAmountInd08 { get; set; }
+
+    /// <summary>
+    /// water amount, only applicable for ISC strategy = fixed water
+    /// </summary>
+    public double? IscWaterAmountInd09 { get; set; }
+
+    /// <summary>
+    /// water amount, only applicable for ISC strategy = fixed water
+    /// </summary>
+    public double? IscWaterAmountInd10 { get; set; }
+
+    /// <summary>
+    /// water amount, only applicable for ISC strategy = fixed water
+    /// </summary>
+    public double? IscWaterAmountInd11 { get; set; }
+
+    /// <summary>
+    /// water amount, only applicable for ISC strategy = fixed water
+    /// </summary>
+    public double? IscWaterAmountInd12 { get; set; }
+
+    /// <summary>
+    /// water amount, only applicable for ISC strategy = fixed water
+    /// </summary>
+    public double? IscWaterAmountInd13 { get; set; }
+
+    /// <summary>
+    /// water amount, only applicable for ISC strategy = fixed water
+    /// </summary>
+    public double? IscWaterAmountInd14 { get; set; }
+
+    /// <summary>
+    /// water amount, only applicable for ISC strategy = fixed water
+    /// </summary>
+    public double? IscWaterAmountInd15 { get; set; }
+
+    /// <summary>
+    /// water amount, only applicable for ISC strategy = fixed water
+    /// </summary>
+    public double? IscWaterAmountInd16 { get; set; }
+
+    /// <summary>
+    /// water amount, only applicable for ISC strategy = fixed water
+    /// </summary>
+    public double? IscWaterAmountInd17 { get; set; }
+
+    /// <summary>
+    /// water amount, only applicable for ISC strategy = fixed water
+    /// </summary>
+    public double? IscWaterAmountInd18 { get; set; }
+
+    /// <summary>
+    /// water amount, only applicable for ISC strategy = fixed water
+    /// </summary>
+    public double? IscWaterAmountInd19 { get; set; }
+
+    /// <summary>
+    /// water amount, only applicable for ISC strategy = fixed water
+    /// </summary>
+    public double? IscWaterAmountInd20 { get; set; }
+
+    /// <summary>
+    /// water amount, only applicable for ISC strategy = fixed water
+    /// </summary>
+    public double? IscWaterAmountInd21 { get; set; }
+
+    /// <summary>
+    /// water amount, only applicable for ISC strategy = fixed water
+    /// </summary>
+    public double? IscWaterAmountInd22 { get; set; }
+
+    /// <summary>
+    /// water amount, only applicable for ISC strategy = fixed water
+    /// </summary>
+    public double? IscWaterAmountInd23 { get; set; }
+
+    /// <summary>
+    /// water amount, only applicable for ISC strategy = fixed water
+    /// </summary>
+    public double? IscWaterAmountInd24 { get; set; }
+
+    /// <summary>
+    /// water amount, only applicable for ISC strategy = fixed water
+    /// </summary>
+    public double? IscWaterAmountInd25 { get; set; }
+
+    /// <summary>
+    /// strategy: EARLY, LATE, DISTRIBUTED
+    /// </summary>
+    public int? ValveSwitchingStrategyIsc { get; set; }
+
+    public int? ValveSwitchingStrategyIndex { get; set; }
+
+    /// <summary>
+    /// water over length: relative strip length
+    /// </summary>
+    public double? WaterOverLengthRelLengthInd0 { get; set; }
+
+    /// <summary>
+    /// water over length: relative strip length
+    /// </summary>
+    public double? WaterOverLengthRelLengthInd1 { get; set; }
+
+    /// <summary>
+    /// water over length: relative strip length
+    /// </summary>
+    public double? WaterOverLengthRelLengthInd2 { get; set; }
+
+    /// <summary>
+    /// water over length: relative strip length
+    /// </summary>
+    public double? WaterOverLengthRelLengthInd3 { get; set; }
+
+    /// <summary>
+    /// water over length: relative strip length
+    /// </summary>
+    public double? WaterOverLengthRelLengthInd4 { get; set; }
+
+    /// <summary>
+    /// water over length: relative strip length
+    /// </summary>
+    public double? WaterOverLengthRelLengthInd5 { get; set; }
+
+    /// <summary>
+    /// water over length: water amount
+    /// </summary>
+    public double? WaterOverLengthRelWaterInd0 { get; set; }
+
+    /// <summary>
+    /// water over length: water amount
+    /// </summary>
+    public double? WaterOverLengthRelWaterInd1 { get; set; }
+
+    /// <summary>
+    /// water over length: water amount
+    /// </summary>
+    public double? WaterOverLengthRelWaterInd2 { get; set; }
+
+    /// <summary>
+    /// water over length: water amount
+    /// </summary>
+    public double? WaterOverLengthRelWaterInd3 { get; set; }
+
+    /// <summary>
+    /// water over length: water amount
+    /// </summary>
+    public double? WaterOverLengthRelWaterInd4 { get; set; }
+
+    /// <summary>
+    /// water over length: water amount
+    /// </summary>
+    public double? WaterOverLengthRelWaterInd5 { get; set; }
+
+    public int? AirCoolingLimitation { get; set; }
+
+    public string AlloyCode { get; set; }
+
+    public int? AmountSimilartStripsCs { get; set; }
+
+    public int? AmountSimilartStripsFm { get; set; }
+
+    public int? AmountVerySimilartStripsCs { get; set; }
+
+    /// <summary>
+    /// from: 3.Similar strip
+    /// </summary>
+    public double? Cofa1Heat { get; set; }
+
+    /// <summary>
+    /// from: 3.Similar strip
+    /// </summary>
+    public double? Cofa1Phase { get; set; }
+
+    /// <summary>
+    /// from: 3.Similar strip
+    /// </summary>
+    public double? Cofa1RefSpeed { get; set; }
+
+    /// <summary>
+    /// from: 3.Similar strip
+    /// </summary>
+    public double? Cofa2Heat { get; set; }
+
+    /// <summary>
+    /// from: 3.Similar strip
+    /// </summary>
+    public double? Cofa2Phase { get; set; }
+
+    /// <summary>
+    /// from: 3.Similar strip
+    /// </summary>
+    public double? Cofa2RefSpeed { get; set; }
+
+    public int? CoilerNo { get; set; }
+
+    public double? CoilerTempSp { get; set; }
+
+    /// <summary>
+    /// 0: drive vRef (no CTC control), 1: full CTC control, 0 &lt; x &lt; 1: v = x*vDesiredCTC + (1-x)*vRef
+    /// </summary>
+    public double? ControlRatioCtc { get; set; }
 
-    public int? Coolingstrategyisc { get; set; }
+    public int? CoolRateBot { get; set; }
 
-    public double? Iscuncooledheadlen { get; set; }
+    public int? CoolRateBotIc { get; set; }
 
-    public double? IscwateramountmaxInd00 { get; set; }
+    public int? CoolRateTop { get; set; }
 
-    public double? IscwateramountmaxInd01 { get; set; }
+    public int? CoolRateTopIc { get; set; }
 
-    public double? IscwateramountmaxInd02 { get; set; }
+    public int? CoolingStrategy { get; set; }
 
-    public double? IscwateramountmaxInd03 { get; set; }
+    /// <summary>
+    /// maximum allowed technological deceleration rate which can be realized by BA, when strip is already coiling
+    /// </summary>
+    public double? CsTechnAccMaxCoiling { get; set; }
 
-    public double? IscwateramountmaxInd04 { get; set; }
+    /// <summary>
+    /// maximum allowed technological deceleration rate which can be realized by BA, from strip head at last active stand till strip head at coiler
+    /// </summary>
+    public double? CsTechnAccMaxStart { get; set; }
 
-    public double? IscwateramountmaxInd05 { get; set; }
+    /// <summary>
+    /// minimum allowed technological deceleration rate which can be realized by BA, when strip is already coiling
+    /// </summary>
+    public double? CsTechnAccMinCoiling { get; set; }
 
-    public double? IscwateramountmaxInd06 { get; set; }
+    /// <summary>
+    /// minimum allowed technological deceleration rate which can be realized by BA, from strip head at last active stand till strip head at coiler
+    /// </summary>
+    public double? CsTechnAccMinStart { get; set; }
 
-    public double? IscwateramountmaxInd07 { get; set; }
+    /// <summary>
+    /// 0: don#t care, 1: CTC has control, 2: TC has control
+    /// </summary>
+    public short? CtcActivePlan { get; set; }
 
-    public double? IscwateramountmaxInd08 { get; set; }
+    public int? DcAdaptationInd0 { get; set; }
 
-    public double? IscwateramountmaxInd09 { get; set; }
+    public int? DcAdaptationInd1 { get; set; }
 
-    public double? IscwateramountmaxInd10 { get; set; }
+    public int? DcAdaptationInd2 { get; set; }
 
-    public double? IscwateramountmaxInd11 { get; set; }
+    public int? DcAdaptationInd3 { get; set; }
 
-    public double? IscwateramountmaxInd12 { get; set; }
+    public int? DcCoolRateBotInd0 { get; set; }
 
-    public double? IscwateramountmaxInd13 { get; set; }
+    public int? DcCoolRateBotInd1 { get; set; }
 
-    public double? IscwateramountmaxInd14 { get; set; }
+    public int? DcCoolRateBotInd2 { get; set; }
 
-    public double? IscwateramountmaxInd15 { get; set; }
+    public int? DcCoolRateBotInd3 { get; set; }
 
-    public double? IscwateramountmaxInd16 { get; set; }
+    public int? DcCoolRateTopInd0 { get; set; }
 
-    public double? IscwateramountmaxInd17 { get; set; }
+    public int? DcCoolRateTopInd1 { get; set; }
 
-    public double? IscwateramountmaxInd18 { get; set; }
+    public int? DcCoolRateTopInd2 { get; set; }
 
-    public double? IscwateramountmaxInd19 { get; set; }
+    public int? DcCoolRateTopInd3 { get; set; }
 
-    public double? IscwateramountmaxInd20 { get; set; }
+    public double? DcHoldTimeInd0 { get; set; }
 
-    public double? IscwateramountmaxInd21 { get; set; }
+    public double? DcHoldTimeInd1 { get; set; }
 
-    public double? IscwateramountmaxInd22 { get; set; }
+    public double? DcHoldTimeInd2 { get; set; }
 
-    public double? IscwateramountmaxInd23 { get; set; }
+    public int? DcLeadingPyroIdxInd0 { get; set; }
 
-    public double? IscwateramountmaxInd24 { get; set; }
+    public int? DcLeadingPyroIdxInd1 { get; set; }
 
-    public double? IscwateramountmaxInd25 { get; set; }
+    public int? DcLeadingPyroIdxInd2 { get; set; }
 
-    public double? IscwateramountminInd00 { get; set; }
+    public int? DcLeadingPyroIdxInd3 { get; set; }
 
-    public double? IscwateramountminInd01 { get; set; }
+    public int? DcSplineBot { get; set; }
 
-    public double? IscwateramountminInd02 { get; set; }
+    public int? DcSplineTop { get; set; }
 
-    public double? IscwateramountminInd03 { get; set; }
+    public int? DcStartValveInd0 { get; set; }
 
-    public double? IscwateramountminInd04 { get; set; }
+    public int? DcStartValveInd1 { get; set; }
 
-    public double? IscwateramountminInd05 { get; set; }
+    public int? DcStartValveInd2 { get; set; }
 
-    public double? IscwateramountminInd06 { get; set; }
+    public int? DcStartValveInd3 { get; set; }
 
-    public double? IscwateramountminInd07 { get; set; }
+    public double? DcTargetF4tInd0 { get; set; }
 
-    public double? IscwateramountminInd08 { get; set; }
+    public double? DcTargetF4tInd1 { get; set; }
 
-    public double? IscwateramountminInd09 { get; set; }
+    public double? DcTargetF4tInd2 { get; set; }
 
-    public double? IscwateramountminInd10 { get; set; }
+    public double? DcTargetF4tInd3 { get; set; }
 
-    public double? IscwateramountminInd11 { get; set; }
+    public double? DcTargetTempInd0 { get; set; }
 
-    public double? IscwateramountminInd12 { get; set; }
+    public double? DcTargetTempInd1 { get; set; }
 
-    public double? IscwateramountminInd13 { get; set; }
+    public double? DcTargetTempInd2 { get; set; }
 
-    public double? IscwateramountminInd14 { get; set; }
+    public double? DcTargetTempInd3 { get; set; }
 
-    public double? IscwateramountminInd15 { get; set; }
+    public double? DcTempOffsetAInd0 { get; set; }
 
-    public double? IscwateramountminInd16 { get; set; }
+    public double? DcTempOffsetAInd1 { get; set; }
 
-    public double? IscwateramountminInd17 { get; set; }
+    public double? DcTempOffsetAInd2 { get; set; }
 
-    public double? IscwateramountminInd18 { get; set; }
+    public double? DcTempOffsetAInd3 { get; set; }
 
-    public double? IscwateramountminInd19 { get; set; }
+    public double? DcTempOffsetBInd0 { get; set; }
 
-    public double? IscwateramountminInd20 { get; set; }
+    public double? DcTempOffsetBInd1 { get; set; }
 
-    public double? IscwateramountminInd21 { get; set; }
+    public double? DcTempOffsetBInd2 { get; set; }
 
-    public double? IscwateramountminInd22 { get; set; }
+    public double? DcTempOffsetBInd3 { get; set; }
 
-    public double? IscwateramountminInd23 { get; set; }
+    /// <summary>
+    /// maximum speed difference between actual speed desired by CTC and speed resulting from given speed up
+    /// </summary>
+    public double? DeltaSpeedEnvelope { get; set; }
 
-    public double? IscwateramountminInd24 { get; set; }
+    public double? F4tReachedSeg1 { get; set; }
 
-    public double? IscwateramountminInd25 { get; set; }
+    public double? F4tReachedSeg2 { get; set; }
 
-    public double? IscwateramountInd00 { get; set; }
+    public double? F4tSp { get; set; }
 
-    public double? IscwateramountInd01 { get; set; }
-
-    public double? IscwateramountInd02 { get; set; }
-
-    public double? IscwateramountInd03 { get; set; }
-
-    public double? IscwateramountInd04 { get; set; }
-
-    public double? IscwateramountInd05 { get; set; }
-
-    public double? IscwateramountInd06 { get; set; }
-
-    public double? IscwateramountInd07 { get; set; }
-
-    public double? IscwateramountInd08 { get; set; }
-
-    public double? IscwateramountInd09 { get; set; }
-
-    public double? IscwateramountInd10 { get; set; }
-
-    public double? IscwateramountInd11 { get; set; }
-
-    public double? IscwateramountInd12 { get; set; }
-
-    public double? IscwateramountInd13 { get; set; }
-
-    public double? IscwateramountInd14 { get; set; }
-
-    public double? IscwateramountInd15 { get; set; }
-
-    public double? IscwateramountInd16 { get; set; }
-
-    public double? IscwateramountInd17 { get; set; }
-
-    public double? IscwateramountInd18 { get; set; }
-
-    public double? IscwateramountInd19 { get; set; }
-
-    public double? IscwateramountInd20 { get; set; }
-
-    public double? IscwateramountInd21 { get; set; }
-
-    public double? IscwateramountInd22 { get; set; }
-
-    public double? IscwateramountInd23 { get; set; }
-
-    public double? IscwateramountInd24 { get; set; }
-
-    public double? IscwateramountInd25 { get; set; }
-
-    public int? Valveswitchingstrategyisc { get; set; }
-
-    public int? Valveswitchingstrategyindex { get; set; }
-
-    public double? WateroverlengthrellengthInd0 { get; set; }
-
-    public double? WateroverlengthrellengthInd1 { get; set; }
-
-    public double? WateroverlengthrellengthInd2 { get; set; }
-
-    public double? WateroverlengthrellengthInd3 { get; set; }
-
-    public double? WateroverlengthrellengthInd4 { get; set; }
-
-    public double? WateroverlengthrellengthInd5 { get; set; }
-
-    public double? WateroverlengthrelwaterInd0 { get; set; }
-
-    public double? WateroverlengthrelwaterInd1 { get; set; }
-
-    public double? WateroverlengthrelwaterInd2 { get; set; }
-
-    public double? WateroverlengthrelwaterInd3 { get; set; }
-
-    public double? WateroverlengthrelwaterInd4 { get; set; }
-
-    public double? WateroverlengthrelwaterInd5 { get; set; }
-
-    public int? Aircoolinglimitation { get; set; }
-
-    public string Alloycode { get; set; }
-
-    public int? Amountsimilartstripscs { get; set; }
-
-    public int? Amountsimilartstripsfm { get; set; }
-
-    public int? Amountverysimilartstripscs { get; set; }
-
-    public double? Cofa1heat { get; set; }
-
-    public double? Cofa1phase { get; set; }
-
-    public double? Cofa1refspeed { get; set; }
-
-    public double? Cofa2heat { get; set; }
-
-    public double? Cofa2phase { get; set; }
-
-    public double? Cofa2refspeed { get; set; }
-
-    public int? Coilerno { get; set; }
-
-    public double? Coilertempsp { get; set; }
-
-    public double? Controlratioctc { get; set; }
-
-    public int? Coolratebot { get; set; }
-
-    public int? Coolratebotic { get; set; }
-
-    public int? Coolratetop { get; set; }
-
-    public int? Coolratetopic { get; set; }
-
-    public int? Coolingstrategy { get; set; }
-
-    public double? Cstechnaccmaxcoiling { get; set; }
-
-    public double? Cstechnaccmaxstart { get; set; }
-
-    public double? Cstechnaccmincoiling { get; set; }
-
-    public double? Cstechnaccminstart { get; set; }
-
-    public short? Ctcactiveplan { get; set; }
-
-    public int? DcadaptationInd0 { get; set; }
-
-    public int? DcadaptationInd1 { get; set; }
-
-    public int? DcadaptationInd2 { get; set; }
-
-    public int? DcadaptationInd3 { get; set; }
-
-    public int? DccoolratebotInd0 { get; set; }
-
-    public int? DccoolratebotInd1 { get; set; }
-
-    public int? DccoolratebotInd2 { get; set; }
-
-    public int? DccoolratebotInd3 { get; set; }
-
-    public int? DccoolratetopInd0 { get; set; }
-
-    public int? DccoolratetopInd1 { get; set; }
-
-    public int? DccoolratetopInd2 { get; set; }
-
-    public int? DccoolratetopInd3 { get; set; }
-
-    public double? DcholdtimeInd0 { get; set; }
-
-    public double? DcholdtimeInd1 { get; set; }
-
-    public double? DcholdtimeInd2 { get; set; }
-
-    public int? DcleadingpyroidxInd0 { get; set; }
-
-    public int? DcleadingpyroidxInd1 { get; set; }
-
-    public int? DcleadingpyroidxInd2 { get; set; }
-
-    public int? DcleadingpyroidxInd3 { get; set; }
-
-    public int? Dcsplinebot { get; set; }
-
-    public int? Dcsplinetop { get; set; }
-
-    public int? DcstartvalveInd0 { get; set; }
-
-    public int? DcstartvalveInd1 { get; set; }
-
-    public int? DcstartvalveInd2 { get; set; }
-
-    public int? DcstartvalveInd3 { get; set; }
-
-    public double? Dctargetf4tInd0 { get; set; }
-
-    public double? Dctargetf4tInd1 { get; set; }
-
-    public double? Dctargetf4tInd2 { get; set; }
-
-    public double? Dctargetf4tInd3 { get; set; }
-
-    public double? DctargettempInd0 { get; set; }
-
-    public double? DctargettempInd1 { get; set; }
-
-    public double? DctargettempInd2 { get; set; }
-
-    public double? DctargettempInd3 { get; set; }
-
-    public double? DctempoffsetaInd0 { get; set; }
-
-    public double? DctempoffsetaInd1 { get; set; }
-
-    public double? DctempoffsetaInd2 { get; set; }
-
-    public double? DctempoffsetaInd3 { get; set; }
-
-    public double? DctempoffsetbInd0 { get; set; }
-
-    public double? DctempoffsetbInd1 { get; set; }
-
-    public double? DctempoffsetbInd2 { get; set; }
-
-    public double? DctempoffsetbInd3 { get; set; }
-
-    public double? Deltaspeedenvelope { get; set; }
-
-    public double? F4treachedseg1 { get; set; }
-
-    public double? F4treachedseg2 { get; set; }
-
-    public double? F4tsp { get; set; }
-
-    public double? Finishingtempsp { get; set; }
+    public double? FinishingTempSp { get; set; }
 
     public int? Flag { get; set; }
 
-    public int? Furnaceno { get; set; }
+    public int? FurnaceNo { get; set; }
 
-    public int? Leadingpyroidx { get; set; }
+    public int? LeadingPyroIdx { get; set; }
 
-    public string Opmode { get; set; }
+    /// <summary>
+    /// from: 1. History
+    /// </summary>
+    public string OpMode { get; set; }
 
-    public string Productid { get; set; }
+    public string ProductId { get; set; }
 
-    public double? Roughingtempsp { get; set; }
+    public double? RoughingTempSp { get; set; }
 
-    public int? Startvalvebot { get; set; }
+    public int? StartValveBot { get; set; }
 
-    public int? Startvalvetop { get; set; }
+    public int? StartValveTop { get; set; }
 
     public int? Status { get; set; }
 
-    public double? Striplength { get; set; }
+    public double? StripLength { get; set; }
 
-    public double? Thicknesssp { get; set; }
+    public double? ThicknessSp { get; set; }
 
-    public short? Usecalcfmtempsp { get; set; }
+    /// <summary>
+    /// false: use setpoint FM target temperature from PDI, 1: use FM target temperature calculated by MOS
+    /// </summary>
+    public short? UseCalcFmTempSp { get; set; }
 
-    public string Vdefectbot { get; set; }
+    /// <summary>
+    /// Defect valves on bottom
+    /// </summary>
+    public string VDefectBot { get; set; }
 
-    public string Vdefecttop { get; set; }
+    /// <summary>
+    /// Defect valves on top
+    /// </summary>
+    public string VDefectTop { get; set; }
 
-    public string Vprecalcbot { get; set; }
+    /// <summary>
+    /// Precalculated valves on bottom
+    /// </summary>
+    public string VPrecalcBot { get; set; }
 
-    public string Vprecalctop { get; set; }
+    /// <summary>
+    /// Precalculated valves on top
+    /// </summary>
+    public string VPrecalcTop { get; set; }
 
-    public double? Vref { get; set; }
+    /// <summary>
+    /// if NULL: speed from SpeedThicknessDiagram, otherwise: constant speed
+    /// </summary>
+    public double? VRef { get; set; }
 
-    public double? Widthsp { get; set; }
+    public double? WidthSp { get; set; }
 
+    /// <summary>
+    /// modifying process
+    /// </summary>
     public string Mop { get; set; }
 
+    /// <summary>
+    /// time of creation
+    /// </summary>
     public DateTime? Toc { get; set; }
 
+    /// <summary>
+    /// time of modification
+    /// </summary>
     public DateTime? Tom { get; set; }
 }

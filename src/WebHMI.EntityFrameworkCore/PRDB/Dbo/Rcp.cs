@@ -5,24 +5,54 @@ namespace WebHMI.PRDB.Dbo;
 
 public partial class Rcp
 {
-    public string Mecreator { get; set; }
+    /// <summary>
+    /// Material owner
+    /// </summary>
+    public string MeCreator { get; set; }
 
-    public int Meid { get; set; }
+    /// <summary>
+    /// Material idendification number
+    /// </summary>
+    public int MeId { get; set; }
 
-    public short Mesid { get; set; }
+    /// <summary>
+    /// Line status
+    /// </summary>
+    public short MesId { get; set; }
 
+    /// <summary>
+    /// owner
+    /// </summary>
     public string Source { get; set; }
 
+    /// <summary>
+    /// description field
+    /// </summary>
     public string Description { get; set; }
 
+    /// <summary>
+    /// Unit[m] dummy for mosDm
+    /// </summary>
     public double? Dummy { get; set; }
 
-    public int? Planno { get; set; }
+    /// <summary>
+    /// Unit[0...999] r c p number
+    /// </summary>
+    public int? PlanNo { get; set; }
 
+    /// <summary>
+    /// modifying process
+    /// </summary>
     public string Mop { get; set; }
 
+    /// <summary>
+    /// time of creation
+    /// </summary>
     public DateTime? Toc { get; set; }
 
+    /// <summary>
+    /// time of modification
+    /// </summary>
     public DateTime? Tom { get; set; }
 
     public virtual Me1 Me1 { get; set; }

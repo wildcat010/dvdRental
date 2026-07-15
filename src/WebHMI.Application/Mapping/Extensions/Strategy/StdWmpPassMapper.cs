@@ -10,22 +10,22 @@ namespace WebHMI.Mapping.Extensions.Strategy
 {
     public class StdWmpPassMapper
     {
-        public static void MapEntity(Stdwmppass entity, StdWmpPassDto dto)
+        public static void MapEntity(StdWmppass entity, StdWmpPassDto dto)
         {
-            entity.Planno = dto.PlanNo;
-            entity.Activeflag = dto.ActiveFlag;
-            entity.Passno = dto.PassNo;
+            entity.PlanNo = dto.PlanNo;
+            entity.ActiveFlag = dto.ActiveFlag;
+            entity.PassNo = dto.PassNo;
             entity.Description = dto.Description;
             entity.Model = dto.Model;
 
 
         }
 
-        public static StdWmpPassDto ToDto(Stdwmppass entity) => new()
+        public static StdWmpPassDto ToDto(StdWmppass entity) => new()
         {
-            PlanNo = entity.Planno,
-            ActiveFlag = entity.Activeflag,
-            PassNo = entity.Passno,
+            PlanNo = entity.PlanNo,
+            ActiveFlag = entity.ActiveFlag,
+            PassNo = entity.PassNo,
             Description = entity.Description,
             Model = entity.Model
         };

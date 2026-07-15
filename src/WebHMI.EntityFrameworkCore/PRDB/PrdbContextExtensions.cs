@@ -18,9 +18,9 @@ namespace WebHMI.PRDB
         public static async Task<VMatStructEntry> GetMaterialEntryStruct(this PrdbContext prdbContext, long meId, string matType) =>
             matType switch
             {
-                "OR" => await prdbContext.VMatStructEntries.FirstOrDefaultAsync(x => x.Enormeid == meId),
-                "LO" => await prdbContext.VMatStructEntries.FirstOrDefaultAsync(x => x.Enlomeid == meId),
-                "PH" => await prdbContext.VMatStructEntries.FirstOrDefaultAsync(x => x.Enphmeid == meId),
+                "OR" => await prdbContext.VMatStructEntries.FirstOrDefaultAsync(x => x.EnOrMeId == meId),
+                "LO" => await prdbContext.VMatStructEntries.FirstOrDefaultAsync(x => x.EnLoMeId == meId),
+                "PH" => await prdbContext.VMatStructEntries.FirstOrDefaultAsync(x => x.EnPhMeId == meId),
                 _ => null
             };
 
@@ -49,19 +49,19 @@ namespace WebHMI.PRDB
             switch (entity)
             {
                 case IMaterialIdTypeOrder:
-                    entity.Meid = entryMatStruct.Enormeid;
-                    entity.Mesid = entryMatStruct.Enormesid ?? 1;
-                    entity.Mecreator = entryMatStruct.Enorcreator;
+                    entity.MeId = entryMatStruct.EnOrMeId;
+                    entity.MesId = entryMatStruct.EnOrMesId ?? 1;
+                    entity.MeCreator = entryMatStruct.EnOrCreator;
                     break;
                 case IMaterialIdTypeLogical:
-                    entity.Meid = entryMatStruct.Enlomeid;
-                    entity.Mesid = entryMatStruct.Enlomesid ?? 1;
-                    entity.Mecreator = entryMatStruct.Enlocreator;
+                    entity.MeId = entryMatStruct.EnLoMeId;
+                    entity.MesId = entryMatStruct.EnLoMesid ?? 1;
+                    entity.MeCreator = entryMatStruct.EnLoCreator;
                     break;
                 case IMaterialIdTypePhysical:
-                    entity.Meid = entryMatStruct.Enphmeid;
-                    entity.Mesid = entryMatStruct.Enphmesid ?? 1;
-                    entity.Mecreator = entryMatStruct.Enphcreator;
+                    entity.MeId = entryMatStruct.EnPhMeId;
+                    entity.MesId = entryMatStruct.EnPhMesId ?? 1;
+                    entity.MeCreator = entryMatStruct.EnPhCreator;
                     break;
                 default:
                     throw new InvalidOperationException("Entity must implement only one material id type interface");

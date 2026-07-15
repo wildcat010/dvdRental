@@ -1,4 +1,4 @@
-﻿using Abp.Auditing;
+using Abp.Auditing;
 using Abp.Authorization;
 using Abp.EntityFrameworkCore;
 using Abp.Events.Bus.Handlers;
@@ -72,11 +72,11 @@ namespace WebHMI.API.Services
         }
 
         [AbpAuthorize(Permissions.Pages_Setpoints_CS)]
-        public async Task<MaterialOverviewCsDto> GetMaterialOverviewCS(int meid, string matType)
+        public async Task<MaterialOverviewCsDto> GetMaterialOverviewCS(int meId, string matType)
         {
-            var dto = await _setpointsOverviewCache.GetAsync(new MaterialKey(meid, matType), async () =>
+            var dto = await _setpointsOverviewCache.GetAsync(new MaterialKey(meId, matType), async () =>
             {
-                var entryMatStruct = await _matStructEntryService.GetMaterialEntryStruct(meid, matType);
+                var entryMatStruct = await _matStructEntryService.GetMaterialEntryStruct(meId, matType);
 
                 var dataBlob = await GetSetpointsOverviewDataBlob(entryMatStruct);
 
@@ -101,51 +101,51 @@ namespace WebHMI.API.Services
 
             var vMatStructEntry = await _matStructEntryService.GetMaterialEntryStruct(input.MeCode.MeId, "OR");
 
-            var edOrdEntM = await context.Edordents.FirstOrDefaultAsync(x => x.Meid == vMatStructEntry.Enormeid && x.Source == "M");
+            var edOrdEntM = await context.EdOrdEnts.FirstOrDefaultAsync(x => x.MeId == vMatStructEntry.EnOrMeId && x.Source == "M");
             edOrdEntM = context.InsertIfNull(edOrdEntM, vMatStructEntry);
-            edOrdEntM.Coiltemp = input.CoilTemp?.M;
+            edOrdEntM.CoilTemp = input.CoilTemp?.M;
 
-            var csStartegyM = await context.Csstrategies.FirstOrDefaultAsync(x => x.Meid == vMatStructEntry.Enormeid && x.Source == "M");
+            var csStartegyM = await context.CsStrategies.FirstOrDefaultAsync(x => x.MeId == vMatStructEntry.EnOrMeId && x.Source == "M");
             csStartegyM = context.InsertIfNull(csStartegyM, vMatStructEntry);
-            csStartegyM.Coolingstrategy = input.CoolingStrategy?.M;
-            csStartegyM.Ftzload = input.FtzLoad?.M;
-            csStartegyM.StartvalvenumbertopInd0 = input.StartValveNumberTopInd0?.M;
-            csStartegyM.StartvalvenumberbotInd0 = input.StartValveNumberBotInd0?.M;
-            csStartegyM.CoolratetopInd0 = input.CoolRateTopInd0?.M;
-            csStartegyM.CoolratebotInd0 = input.CoolRateBotInd0?.M;
-            csStartegyM.Planno = input.CsStrategyPlanNo?.M;
+            csStartegyM.CoolingStrategy = input.CoolingStrategy?.M;
+            csStartegyM.FtzLoad = input.FtzLoad?.M;
+            csStartegyM.StartValveNumberTopInd0 = input.StartValveNumberTopInd0?.M;
+            csStartegyM.StartValveNumberBotInd0 = input.StartValveNumberBotInd0?.M;
+            csStartegyM.CoolRateTopInd0 = input.CoolRateTopInd0?.M;
+            csStartegyM.CoolRateBotInd0 = input.CoolRateBotInd0?.M;
+            csStartegyM.PlanNo = input.CsStrategyPlanNo?.M;
 
-            var csProfileM = await context.Csprofiles.FirstOrDefaultAsync(x => x.Meid == vMatStructEntry.Enormeid && x.Source == "M");
+            var csProfileM = await context.CsProfiles.FirstOrDefaultAsync(x => x.MeId == vMatStructEntry.EnOrMeId && x.Source == "M");
             csProfileM = context.InsertIfNull(csProfileM, vMatStructEntry);
-            csProfileM.Lengthuncooledhead = input.LengthUncooledHead?.M;
-            csProfileM.Lengthuncooledtail = input.LengthUncooledTail?.M;
-            csProfileM.Lengthprofilehead = input.LengthProfileHead?.M;
-            csProfileM.Lengthprofiletail = input.LengthProfileTail?.M;
-            csProfileM.Coiltempprofilehead = input.CoilTempProfileHead?.M;
-            csProfileM.Coiltempprofiletail = input.CoilTempProfileTail?.M;
-            csProfileM.Planno = input.CsProfilePlanNo?.M;
+            csProfileM.LengthUncooledHead = input.LengthUncooledHead?.M;
+            csProfileM.LengthUncooledTail = input.LengthUncooledTail?.M;
+            csProfileM.LengthProfileHead = input.LengthProfileHead?.M;
+            csProfileM.LengthProfileTail = input.LengthProfileTail?.M;
+            csProfileM.CoilTempProfileHead = input.CoilTempProfileHead?.M;
+            csProfileM.CoilTempProfileTail = input.CoilTempProfileTail?.M;
+            csProfileM.PlanNo = input.CsProfilePlanNo?.M;
 
-            var csCrsM = await context.Cscrs.FirstOrDefaultAsync(x => x.Meid == vMatStructEntry.Enormeid && x.Source == "M");
+            var csCrsM = await context.CsCrs.FirstOrDefaultAsync(x => x.MeId == vMatStructEntry.EnOrMeId && x.Source == "M");
             csCrsM = context.InsertIfNull(csCrsM, vMatStructEntry);
-            csCrsM.Planno = input.CscrsPlanNo?.M;
+            csCrsM.PlanNo = input.CscrsPlanNo?.M;
 
-            var csRtCoolingM = await context.Csrtcoolings.FirstOrDefaultAsync(x => x.Meid == vMatStructEntry.Enormeid && x.Source == "M");
+            var csRtCoolingM = await context.CsRtCoolings.FirstOrDefaultAsync(x => x.MeId == vMatStructEntry.EnOrMeId && x.Source == "M");
             csRtCoolingM = context.InsertIfNull(csRtCoolingM, vMatStructEntry);
-            csRtCoolingM.Planno = input.CsRtCoolingPlanNo?.M;
+            csRtCoolingM.PlanNo = input.CsRtCoolingPlanNo?.M;
 
-            var csPerfM = await context.Csperves.FirstOrDefaultAsync(x => x.Meid == vMatStructEntry.Enormeid && x.Source == "M");
+            var csPerfM = await context.CsPerves.FirstOrDefaultAsync(x => x.MeId == vMatStructEntry.EnOrMeId && x.Source == "M");
             csPerfM = context.InsertIfNull(csPerfM, vMatStructEntry);
-            csPerfM.Planno = input.CsPerfPlanNo?.M;
+            csPerfM.PlanNo = input.CsPerfPlanNo?.M;
 
             await context.SaveChangesAsync();
         }
 
         [AbpAuthorize(Permissions.Pages_Setpoints_CS)]
-        public async Task<SetpointsCsDto> GetSetpointsCS(int meid, string matType)
+        public async Task<SetpointsCsDto> GetSetpointsCS(int MeId, string matType)
         {
-            var dto = await _setpointsCache.GetAsync(new MaterialKey(meid, matType), async () =>
+            var dto = await _setpointsCache.GetAsync(new MaterialKey(MeId, matType), async () =>
             {
-                var entryMatStruct = await _matStructEntryService.GetMaterialEntryStruct(meid, matType);
+                var entryMatStruct = await _matStructEntryService.GetMaterialEntryStruct(MeId, matType);
 
                 var dataBlob = await GetSetpointsDataBlob(entryMatStruct);
 
@@ -171,50 +171,50 @@ namespace WebHMI.API.Services
             var context = _dbContextProvider.GetDbContext();
             var vMatStructEntry = await _matStructEntryService.GetMaterialEntryStruct(input.MeCode.MeId, "OR");
 
-            var spOrd2pcM = await context.Spord2pcs.FirstOrDefaultAsync(x => x.Meid == vMatStructEntry.Enormeid && x.Source == "M");
+            var spOrd2pcM = await context.SpOrd2Pcs.FirstOrDefaultAsync(x => x.MeId == vMatStructEntry.EnOrMeId && x.Source == "M");
             spOrd2pcM = context.InsertIfNull(spOrd2pcM, vMatStructEntry);
-            spOrd2pcM.Vexitlas = input.PreCalculation.OrderData.Vexit?.M;
+            spOrd2pcM.VExitLas = input.PreCalculation.OrderData.Vexit?.M;
 
-            var csPcResultM = await context.Cspcresults.FirstOrDefaultAsync(x => x.Meid == vMatStructEntry.Enormeid);
+            var csPcResultM = await context.CsPcResults.FirstOrDefaultAsync(x => x.MeId == vMatStructEntry.EnOrMeId);
             if (csPcResultM == null)
             {
-                csPcResultM = new Cspcresult()
+                csPcResultM = new CsPcResult()
                 {
-                    Meid = vMatStructEntry.Enormeid,
-                    Mesid = (short)vMatStructEntry.Enormesid,
-                    Mecreator = vMatStructEntry.Enorcreator
+                    MeId = vMatStructEntry.EnOrMeId,
+                    MesId = (short)vMatStructEntry.EnOrMesId,
+                    MeCreator = vMatStructEntry.EnOrCreator
                 };
             }
-            csPcResultM.Wateramount = input.PreCalculation.OrderData.WaterAmount?.M;
+            csPcResultM.WaterAmount = input.PreCalculation.OrderData.WaterAmount?.M;
 
-            var csStrategyM = await context.Csstrategies.FirstOrDefaultAsync(x => x.Meid == vMatStructEntry.Enormeid && x.Source == "M");
+            var csStrategyM = await context.CsStrategies.FirstOrDefaultAsync(x => x.MeId == vMatStructEntry.EnOrMeId && x.Source == "M");
             csStrategyM = context.InsertIfNull(csStrategyM, vMatStructEntry);
-            csStrategyM.Planno = input.CoolingStrategyTab.PlanNo?.M;
-            csStrategyM.StartvalvenumbertopInd0 = input.CoolingStrategyTab.StartValveNumberTopInd0?.M;
-            csStrategyM.StartvalvenumberbotInd0 = input.CoolingStrategyTab.StartValveNumberBotInd0?.M;
-            csStrategyM.CoolratetopInd0 = input.CoolingStrategyTab.CoolRateTopInd0?.M;
-            csStrategyM.CoolratebotInd0 = input.CoolingStrategyTab.CoolRateBotInd0?.M;
-            csStrategyM.TempoffsetaInd0 = input.CoolingStrategyTab.TempOffsetAInd0?.M;
-            csStrategyM.TempoffsetbInd0 = input.CoolingStrategyTab.TempOffsetBInd0?.M;
+            csStrategyM.PlanNo = input.CoolingStrategyTab.PlanNo?.M;
+            csStrategyM.StartValveNumberTopInd0 = input.CoolingStrategyTab.StartValveNumberTopInd0?.M;
+            csStrategyM.StartValveNumberBotInd0 = input.CoolingStrategyTab.StartValveNumberBotInd0?.M;
+            csStrategyM.CoolRateTopInd0 = input.CoolingStrategyTab.CoolRateTopInd0?.M;
+            csStrategyM.CoolRateBotInd0 = input.CoolingStrategyTab.CoolRateBotInd0?.M;
+            csStrategyM.TempOffsetAInd0 = input.CoolingStrategyTab.TempOffsetAInd0?.M;
+            csStrategyM.TempOffsetBInd0 = input.CoolingStrategyTab.TempOffsetBInd0?.M;
             csStrategyM.AdaptationInd0 = input.CoolingStrategyTab.AdaptationInd0?.M;
-            csStrategyM.LeadingpyroindexInd0 = input.CoolingStrategyTab.LeadingPyroIndexInd0?.M;
-            csStrategyM.Targetf4tInd0 = input.CoolingStrategyTab.TargetF4TInd0?.M;
-            csStrategyM.TargettempInd0 = input.CoolingStrategyTab.TargetTempInd0?.M;
-            csStrategyM.Tempoffsetfma = input.CoolingStrategyTab.TempOffsetFma?.M;
-            csStrategyM.Tempoffsetfma = input.CoolingStrategyTab.TempOffsetFmb?.M;
-            csStrategyM.Adaptationfm = input.CoolingStrategyTab.AdaptationFm?.M;
+            csStrategyM.LeadingPyroIndexInd0 = input.CoolingStrategyTab.LeadingPyroIndexInd0?.M;
+            csStrategyM.TargetF4tInd0 = input.CoolingStrategyTab.TargetF4TInd0?.M;
+            csStrategyM.TargetTempInd0 = input.CoolingStrategyTab.TargetTempInd0?.M;
+            csStrategyM.TempOffsetFmA = input.CoolingStrategyTab.TempOffsetFma?.M;
+            csStrategyM.TempOffsetFmB = input.CoolingStrategyTab.TempOffsetFmb?.M;
+            csStrategyM.AdaptationFm = input.CoolingStrategyTab.AdaptationFm?.M;
 
-            var csProfileM = await context.Csprofiles.FirstOrDefaultAsync(x => x.Meid == vMatStructEntry.Enormeid && x.Source == "M");
+            var csProfileM = await context.CsProfiles.FirstOrDefaultAsync(x => x.MeId == vMatStructEntry.EnOrMeId && x.Source == "M");
             csProfileM = context.InsertIfNull(csProfileM, vMatStructEntry);
-            csProfileM.Planno = input.ProfileCoolingTab?.PlanNo.M;
-            csProfileM.Lengthuncooledhead = input.ProfileCoolingTab?.LengthUncooledHead.M;
-            csProfileM.Coiltempprofilehead = input.ProfileCoolingTab?.CoilTempProfileHead.M;
-            csProfileM.Lengthprofilehead = input.ProfileCoolingTab?.LengthProfileHead.M;
-            csProfileM.Lengthprofileheadwedge = input.ProfileCoolingTab?.LengthProfileHeadWedge.M;
-            csProfileM.Lengthprofiletailwedge = input.ProfileCoolingTab?.LengthProfileTailWedge.M;
-            csProfileM.Lengthprofiletail = input.ProfileCoolingTab?.LengthProfileTail.M;
-            csProfileM.Coiltempprofiletail = input.ProfileCoolingTab?.CoilTempProfileTail.M;
-            csProfileM.Lengthuncooledtail = input.ProfileCoolingTab?.LengthUncooledTail.M;
+            csProfileM.PlanNo = input.ProfileCoolingTab?.PlanNo.M;
+            csProfileM.LengthUncooledHead = input.ProfileCoolingTab?.LengthUncooledHead.M;
+            csProfileM.CoilTempProfileHead = input.ProfileCoolingTab?.CoilTempProfileHead.M;
+            csProfileM.LengthProfileHead = input.ProfileCoolingTab?.LengthProfileHead.M;
+            csProfileM.LengthProfileHeadWedge = input.ProfileCoolingTab?.LengthProfileHeadWedge.M;
+            csProfileM.LengthProfileTailWedge = input.ProfileCoolingTab?.LengthProfileTailWedge.M;
+            csProfileM.LengthProfileTail = input.ProfileCoolingTab?.LengthProfileTail.M;
+            csProfileM.CoilTempProfileTail = input.ProfileCoolingTab?.CoilTempProfileTail.M;
+            csProfileM.LengthUncooledTail = input.ProfileCoolingTab?.LengthUncooledTail.M;
 
             await context.SaveChangesAsync();
 
@@ -227,54 +227,54 @@ namespace WebHMI.API.Services
             var context = await _dbContextProvider.GetDbContextAsync();
             var dto = new CsSetpointsPlansDto();
             
-            dto.Coolings = await context.Stdcsstrategies
-                .Where(x => x.Activeflag == 1)
+            dto.Coolings = await context.StdCsStrategies
+                .Where(x => x.ActiveFlag == 1)
                 .OrderBy(x => x.Description)
-                .Select(x => new StdPlanNoElementDto { PlanNo = x.Planno, PlanDesc = $"{x.Planno} - {x.Description}" })
+                .Select(x => new StdPlanNoElementDto { PlanNo = x.PlanNo, PlanDesc = $"{x.PlanNo} - {x.Description}" })
                 .ToListAsync();
             
-            dto.ProfileCoolings = await context.Stdcsprofiles
-                .Where(x => x.Activeflag == 1)
+            dto.ProfileCoolings = await context.StdCsProfiles
+                .Where(x => x.ActiveFlag == 1)
                 .OrderBy(x => x.Description)
-                .Select(x => new StdPlanNoElementDto { PlanNo = x.Planno, PlanDesc = $"{x.Planno} - {x.Description}" })
+                .Select(x => new StdPlanNoElementDto { PlanNo = x.PlanNo, PlanDesc = $"{x.PlanNo} - {x.Description}" })
                 .ToListAsync();
 
-            dto.RollerTableCoolings = await context.Stdcsrtcoolings
-                .Where(x => x.Activeflag == 1) 
+            dto.RollerTableCoolings = await context.StdCsRtCoolings
+                .Where(x => x.ActiveFlag == 1) 
                 .OrderBy(x => x.Description)
-                .Select(x => new StdPlanNoElementDto { PlanNo = x.Planno, PlanDesc = $"{x.Planno} - {x.Description}" })
+                .Select(x => new StdPlanNoElementDto { PlanNo = x.PlanNo, PlanDesc = $"{x.PlanNo} - {x.Description}" })
                 .ToListAsync();
 
-            dto.CrossSprayss = await context.Stdcscrs
-                .Where(x => x.Activeflag == 1) 
+            dto.CrossSprayss = await context.StdCsCrs
+                .Where(x => x.ActiveFlag == 1) 
                 .OrderBy(x => x.Description)
-                .Select(x => new StdPlanNoElementDto { PlanNo = x.Planno, PlanDesc = $"{x.Planno} - {x.Description}" })
+                .Select(x => new StdPlanNoElementDto { PlanNo = x.PlanNo, PlanDesc = $"{x.PlanNo} - {x.Description}" })
                 .ToListAsync();
 
-            dto.Perf = await context.Stdcsperves
-                .Where(x => x.Activeflag == 1) 
+            dto.Perf = await context.StdCsPerves
+                .Where(x => x.ActiveFlag == 1) 
                 .OrderBy(x => x.Description)
-                .Select(x => new StdPlanNoElementDto { PlanNo = x.Planno, PlanDesc = $"{x.Planno} - {x.Description}" })
+                .Select(x => new StdPlanNoElementDto { PlanNo = x.PlanNo, PlanDesc = $"{x.PlanNo} - {x.Description}" })
                 .ToListAsync();
 
             return dto;
         }
 
         [AbpAuthorize(Permissions.Pages_Setpoints_CS)]
-        public async Task<ProcessProtocolDto> GetProcessProtocolData(int meid)
+        public async Task<ProcessProtocolDto> GetProcessProtocolData(int MeId)
         {
             var context = await _dbContextProvider.GetDbContextAsync();
 
-            var csProtData = await context.Csprotdata.FirstOrDefaultAsync(x => x.Meid == meid);
+            var csProtData = await context.CsProtData.FirstOrDefaultAsync(x => x.MeId == MeId);
             if (csProtData == null) 
                 return null;
-            var csTickData = await context.Csprotticks.Where(x => x.Meid == meid).ToListAsync();
-            var csSimilarData = await context.Csprotsimilars.Where(x => x.Meid == meid && x.Seg == 0).ToListAsync();
-            var vMatStructs = await context.Proddatacores.Where(x => csSimilarData.Select(x => x.Meidsim).Contains(x.Meid)).ToListAsync();
-            var csSimilarDtos = csSimilarData.Join(vMatStructs, a => a.Meidsim, b => b.Meid, (a, b) => new CsSimilarStripsDto()
+            var csTickData = await context.CsProtTicks.Where(x => x.MeId == MeId).ToListAsync();
+            var csSimilarData = await context.CsProtSimilars.Where(x => x.MeId == MeId && x.Seg == 0).ToListAsync();
+            var vMatStructs = await context.ProdDataCores.Where(x => csSimilarData.Select(x => x.MeIdSim).Contains(x.MeId)).ToListAsync();
+            var csSimilarDtos = csSimilarData.Join(vMatStructs, a => a.MeIdSim, b => b.MeId, (a, b) => new CsSimilarStripsDto()
             {
-                Produced = b.Prodend,
-                ExtId = b.Coilid
+                Produced = b.ProdEnd,
+                ExtId = b.CoilId
             }).ToList();
             return new ProcessProtocolDto().Map(csProtData, csTickData, csSimilarDtos);
         }
@@ -314,15 +314,15 @@ namespace WebHMI.API.Services
                 _l2CommunicationHandler.takeOverManualValveState(valve.ValveId, valve.ManualValveState, valve.Type);
         }
 
-        private async Task InvalidateMaterialCaches(long meId, string matType)
+        private async Task InvalidateMaterialCaches(long MeId, string matType)
         {
-            await _setpointsCache.RemoveAsync(new MaterialKey(meId, matType));
-            await _setpointsOverviewCache.RemoveAsync(new MaterialKey(meId, matType));
+            await _setpointsCache.RemoveAsync(new MaterialKey(MeId, matType));
+            await _setpointsOverviewCache.RemoveAsync(new MaterialKey(MeId, matType));
         }
 
-        private async Task InvalidateMaterialCache(long meId, string matType)
+        private async Task InvalidateMaterialCache(long MeId, string matType)
         {
-            await _setpointsCache.RemoveAsync(new MaterialKey(meId, matType));
+            await _setpointsCache.RemoveAsync(new MaterialKey(MeId, matType));
         }
 
         private async Task<SetpointsCsDataBlob> GetSetpointsDataBlob(VMatStructEntry entryMatStruct)
@@ -332,13 +332,13 @@ namespace WebHMI.API.Services
 
             return new()
             {
-                SpOrd2Pcs = await context.Spord2pcs.Where(x => x.Meid == entryMatStruct.Enormeid && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
-                Cspcresults = await context.Cspcresults.Where(x => x.Meid == entryMatStruct.Enormeid).AsNoTracking().ToListAsync(),
-                CsStrategies = await context.Csstrategies.Where(x => x.Meid == entryMatStruct.Enormeid && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
-                CsProfiles = await context.Csprofiles.Where(x => x.Meid == entryMatStruct.Enormeid && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
-                CsPcCurves = await context.Cspccurves.Where(x => x.Meid == entryMatStruct.Enormeid).OrderBy(x => x.Distpoint).AsNoTracking().ToListAsync(),
-                CsPcResult = await context.Cspcresults.AsNoTracking().FirstOrDefaultAsync(x => x.Meid == entryMatStruct.Enormeid),
-                CsPcSpeedDiags = await context.Cspcspeeddiags.Where(x => x.Meid == entryMatStruct.Enormeid).OrderBy(x => x.Phaseindex).AsNoTracking().ToListAsync()
+                SpOrd2Pcs = await context.SpOrd2Pcs.Where(x => x.MeId == entryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
+                Cspcresults = await context.CsPcResults.Where(x => x.MeId == entryMatStruct.EnOrMeId).AsNoTracking().ToListAsync(),
+                CsStrategies = await context.CsStrategies.Where(x => x.MeId == entryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
+                CsProfiles = await context.CsProfiles.Where(x => x.MeId == entryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
+                CsPcCurves = await context.CspcCurves.Where(x => x.MeId == entryMatStruct.EnOrMeId).OrderBy(x => x.DistPoint).AsNoTracking().ToListAsync(),
+                CsPcResult = await context.CsPcResults.AsNoTracking().FirstOrDefaultAsync(x => x.MeId == entryMatStruct.EnOrMeId),
+                CsPcSpeedDiags = await context.CsPcSpeedDiags.Where(x => x.MeId == entryMatStruct.EnOrMeId).OrderBy(x => x.PhaseIndex).AsNoTracking().ToListAsync()
             };
         }
 
@@ -349,13 +349,13 @@ namespace WebHMI.API.Services
 
             return new()
             {
-                Edordents =await context.Edordents.Where(x=>x.Meid == entryMatStruct.Enormeid && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
-                SpOrd2Pcs = await context.Spord2pcs.Where(x => x.Meid == entryMatStruct.Enormeid && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
-                CsStrategies = await context.Csstrategies.Where(x => x.Meid == entryMatStruct.Enormeid && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
-                CsProfiles = await context.Csprofiles.Where(x => x.Meid == entryMatStruct.Enormeid && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
-                CsCrs = await context.Cscrs.Where(x => x.Meid == entryMatStruct.Enormeid && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
-                CsRtCoolings = await context.Csrtcoolings.Where(x => x.Meid == entryMatStruct.Enormeid && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
-                CsPerves = await context.Csperves.Where(x => x.Meid == entryMatStruct.Enormeid && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
+                Edordents =await context.EdOrdEnts.Where(x=>x.MeId == entryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
+                SpOrd2Pcs = await context.SpOrd2Pcs.Where(x => x.MeId == entryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
+                CsStrategies = await context.CsStrategies.Where(x => x.MeId == entryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
+                CsProfiles = await context.CsProfiles.Where(x => x.MeId == entryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
+                CsCrs = await context.CsCrs.Where(x => x.MeId == entryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
+                CsRtCoolings = await context.CsRtCoolings.Where(x => x.MeId == entryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
+                CsPerves = await context.CsPerves.Where(x => x.MeId == entryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
             };
         }
     }

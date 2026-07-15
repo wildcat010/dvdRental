@@ -44,7 +44,7 @@ namespace WebHMI.Services
                 var context = await _dbContextProvider.GetDbContextAsync();
                 var query = context.HmiVProductionHistories.AsQueryable();
                 if (!string.IsNullOrEmpty(sequenceId))
-                    query = query.Where(x => x.Sequenceid == sequenceId);
+                    query = query.Where(x => x.SequenceId == sequenceId);
 
                 return await ApplyFilter(
                     query,
@@ -64,7 +64,7 @@ namespace WebHMI.Services
             var context = await _dbContextProvider.GetDbContextAsync();
 
             var entryMatStruct = await _matStructEntryService.GetMaterialEntryStruct(meId, matType);
-            var prodData = await context.HmiVProductionHistories.FirstOrDefaultAsync(x => x.Meid == entryMatStruct.Enormeid);
+            var prodData = await context.HmiVProductionHistories.FirstOrDefaultAsync(x => x.Meid == entryMatStruct.EnOrMeId);
 
             if (prodData is null)
             {
@@ -83,13 +83,13 @@ namespace WebHMI.Services
             var prodHist = context.HmiVProductionHistories.AsQueryable();
 
             if (sequenceId != "-1")
-                prodHist = prodHist.Where(x => x.Sequenceid == sequenceId);
+                prodHist = prodHist.Where(x => x.SequenceId == sequenceId);
 
             if (timeFrom != null)
-                prodHist = prodHist.Where(x => x.Prodstart >= timeFrom);
+                prodHist = prodHist.Where(x => x.Prodstart>= timeFrom);
 
             if (timeTo != null)
-                prodHist = prodHist.Where(x => x.Prodend <= timeTo);
+                prodHist = prodHist.Where(x => x.ProdEnd <= timeTo);
 
             var overviewData = await prodHist.ToListAsync();
 
@@ -100,7 +100,7 @@ namespace WebHMI.Services
             {
                 SequenceId = sequenceId,
 
-                NoOfHeats = overviewData.Select(x => x.Heatid1)
+                NoOfHeats = overviewData.Select(x => x.HeatId1)
                                     .Distinct()
                                     .Count(),
 
@@ -108,14 +108,14 @@ namespace WebHMI.Services
                                     .Distinct()
                                     .Count(),
 
-                TotalRollLength = overviewData.Sum(x => x.Coillengthx),
+                TotalRollLength = overviewData.Sum(x => x.CoilLengthX),
 
 
-                MinThick = overviewData.Min(x => x.Hexit),
+                MinThick = overviewData.Min(x => x.HExit),
 
-                WidthFrom = overviewData.Min(x => x.Wexit),
+                WidthFrom = overviewData.Min(x => x.WExit),
 
-                WidthTo = overviewData.Max(x => x.Wexit),
+                WidthTo = overviewData.Max(x => x.WExit),
             };
         }
 
@@ -123,19 +123,19 @@ namespace WebHMI.Services
         {
             var context = await _dbContextProvider.GetDbContextAsync();
             if (string.IsNullOrEmpty(sequenceId))
-                sequenceId = context.HmiVProductionHistories.OrderByDescending(x => x.Prodend).Distinct().Select(x => x.Sequenceid).Skip(1).FirstOrDefault();
+                sequenceId = context.HmiVProductionHistories.OrderByDescending(x => x.ProdEnd).Distinct().Select(x => x.SequenceId).Skip(1).FirstOrDefault();
             var prodHist = context.HmiVProductionHistories.AsQueryable();
             if (sequenceId != "-1")
-                prodHist = prodHist.Where(x => x.Sequenceid == sequenceId);
+                prodHist = prodHist.Where(x => x.SequenceId == sequenceId);
             var overviewData = await prodHist
                 .Select(x => new KeyValuePair<string, SingleProdSequenceThicknessWidth>(
-                    x.Coilid,
+                    x.CoilId,
                     new SingleProdSequenceThicknessWidth
                     {
-                        EntryThickness = x.Texitcsaver,
-                        Width = x.Wexitaver,
-                        HeatId = x.Heatid1,
-                        SeqId = x.Sequenceid,
+                        EntryThickness = x.TExitCsaver,
+                        Width = x.WExitAver,
+                        HeatId = x.HeatId1,
+                        SeqId = x.SequenceId,
                     }))
                 .ToListAsync();
             if (overviewData.Count == 0)

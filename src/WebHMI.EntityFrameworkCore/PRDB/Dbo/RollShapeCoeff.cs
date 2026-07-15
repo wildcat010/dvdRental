@@ -3,39 +3,93 @@ using System.Collections.Generic;
 
 namespace WebHMI.PRDB.Dbo;
 
-public partial class Rollshapecoeff
+/// <summary>
+/// Shape coefficent of rolls
+/// </summary>
+public partial class RollShapeCoeff
 {
-    public int Shapecode { get; set; }
+    /// <summary>
+    /// Code for the shape parametersShape
+    /// </summary>
+    public int ShapeCode { get; set; }
 
+    /// <summary>
+    /// Description for this shape code
+    /// </summary>
     public string Description { get; set; }
 
-    public int? Shapecurvecode { get; set; }
+    /// <summary>
+    /// Shape curve by customer (use extra table shapeCurveCustom)
+    /// </summary>
+    public int? ShapeCurveCode { get; set; }
 
-    public int? Shapetype { get; set; }
+    /// <summary>
+    /// Shape type ( 1 CVC | 2 smart crown | 3 cosine)
+    /// </summary>
+    public int? ShapeType { get; set; }
 
-    public double? Shapex1 { get; set; }
+    /// <summary>
+    /// Shape coefficient x(exp1) - diameter related and normelized -1 to 1
+    /// </summary>
+    public double? ShapeX1 { get; set; }
 
-    public double? Shapex2 { get; set; }
+    /// <summary>
+    /// Unit[1/m] Shape coefficient x(exp2) - diameter related and normelized -1 to 1
+    /// </summary>
+    public double? ShapeX2 { get; set; }
 
-    public double? Shapex3 { get; set; }
+    /// <summary>
+    /// Unit[1/m2] Shape coefficient x(exp3) - diameter related and normelized -1 to 1
+    /// </summary>
+    public double? ShapeX3 { get; set; }
 
-    public double? Shapex4 { get; set; }
+    /// <summary>
+    /// Unit[1/m3] Shape coefficient x(exp4) - diameter related and normelized -1 to 1
+    /// </summary>
+    public double? ShapeX4 { get; set; }
 
-    public double? Shapex5 { get; set; }
+    /// <summary>
+    /// Unit[1/m4] Shape coefficient x(exp5) - diameter related and normelized -1 to 1
+    /// </summary>
+    public double? ShapeX5 { get; set; }
 
-    public double? Shapex6 { get; set; }
+    /// <summary>
+    /// Unit[1/m5] Shape coefficient x(exp6) - diameter related and normelized -1 to 1
+    /// </summary>
+    public double? ShapeX6 { get; set; }
 
-    public double? Shapex7 { get; set; }
+    /// <summary>
+    /// Unit[1/m6] Shape coefficient x(exp7) - diameter related and normelized -1 to 1
+    /// </summary>
+    public double? ShapeX7 { get; set; }
 
-    public double? Shapex8 { get; set; }
+    /// <summary>
+    /// Unit[1/m7] Shape coefficient x(exp8) - diameter related and normelized -1 to 1
+    /// </summary>
+    public double? ShapeX8 { get; set; }
 
-    public double? Shapex9 { get; set; }
+    /// <summary>
+    /// Unit[1/m8] Shape coefficient x(exp9) - diameter related and normelized -1 to 1
+    /// </summary>
+    public double? ShapeX9 { get; set; }
 
-    public string Standrange { get; set; }
+    /// <summary>
+    /// Unit[-]:Stand range
+    /// </summary>
+    public string StandRange { get; set; }
 
+    /// <summary>
+    /// modifying process
+    /// </summary>
     public string Mop { get; set; }
 
+    /// <summary>
+    /// time of creation
+    /// </summary>
     public DateTime? Toc { get; set; }
 
+    /// <summary>
+    /// time of modification
+    /// </summary>
     public DateTime? Tom { get; set; }
 }

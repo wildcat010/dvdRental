@@ -3,35 +3,83 @@ using System.Collections.Generic;
 
 namespace WebHMI.PRDB.Dbo;
 
-public partial class Rollchamfer
+/// <summary>
+/// Roll chamfer
+/// </summary>
+public partial class RollChamfer
 {
-    public int Rollchamferclass { get; set; }
+    /// <summary>
+    /// Classification number of rolls with different class chamfer related to rolldata)
+    /// </summary>
+    public int RollChamferClass { get; set; }
 
-    public double? Conedistds { get; set; }
+    /// <summary>
+    /// Unit[m] Distance from roll neck to cone (drive side)
+    /// </summary>
+    public double? ConeDistDs { get; set; }
 
-    public double? Conedistos { get; set; }
+    /// <summary>
+    /// Unit[m] Distance from roll neck to cone (operator side)
+    /// </summary>
+    public double? ConeDistOs { get; set; }
 
-    public double? Coneheightds { get; set; }
+    /// <summary>
+    /// Unit[m] Diameter decrease at roll edge (drive side)
+    /// </summary>
+    public double? ConeHeightDs { get; set; }
 
-    public double? Coneheightos { get; set; }
+    /// <summary>
+    /// Unit[m] Diameter decrease at roll edge (operators side)
+    /// </summary>
+    public double? ConeHeightOs { get; set; }
 
-    public double? Conelengthds { get; set; }
+    /// <summary>
+    /// Unit[m] Cone length (drive side)
+    /// </summary>
+    public double? ConeLengthDs { get; set; }
 
-    public double? Conelengthos { get; set; }
+    /// <summary>
+    /// Unit[m] Cone length (operators side)
+    /// </summary>
+    public double? ConeLengthOs { get; set; }
 
-    public double? Coneradiusds { get; set; }
+    /// <summary>
+    /// Unit[m] Distance from roll neck to cone (drive side)
+    /// </summary>
+    public double? ConeRadiusDs { get; set; }
 
-    public double? Coneradiusos { get; set; }
+    /// <summary>
+    /// Unit[m] Distance from roll neck to cone (operator side)
+    /// </summary>
+    public double? ConeRadiusOs { get; set; }
 
-    public int? Conetype { get; set; }
+    /// <summary>
+    /// Typ cone 1-linear, 2-quadratic, 5-taper, 7 - biquadratic, 8 - quadraticlinear
+    /// </summary>
+    public int? ConeType { get; set; }
 
+    /// <summary>
+    /// Desscription
+    /// </summary>
     public string Description { get; set; }
 
-    public string Standrange { get; set; }
+    /// <summary>
+    /// Stand range (for selection of roll class from WIS)
+    /// </summary>
+    public string StandRange { get; set; }
 
+    /// <summary>
+    /// modifying process
+    /// </summary>
     public string Mop { get; set; }
 
+    /// <summary>
+    /// time of creation
+    /// </summary>
     public DateTime? Toc { get; set; }
 
+    /// <summary>
+    /// time of modification
+    /// </summary>
     public DateTime? Tom { get; set; }
 }

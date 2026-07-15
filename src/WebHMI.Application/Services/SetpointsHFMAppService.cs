@@ -39,10 +39,10 @@ namespace WebHMI.Services
         }
 
         [AbpAuthorize(Permissions.Pages_Setpoints_FM)]
-        public async Task<HFMMaterialOverviewDto> GetMaterialOverviewHFM(int meid, string matType)
+        public async Task<HFMMaterialOverviewDto> GetMaterialOverviewHFM(int MeId, string matType)
         {
             var result = new HFMMaterialOverviewDto();
-            var hmiVEntryMatStruct = await _matStructEntryService.GetMaterialEntryStruct(meid, matType);
+            var hmiVEntryMatStruct = await _matStructEntryService.GetMaterialEntryStruct(MeId, matType);
 
             string[] sources = ["L", "M", "S", "E"];
 
@@ -61,69 +61,69 @@ namespace WebHMI.Services
             var context = _prdbContextProvider.GetDbContext();
             var vMatStructEntryOr = await _matStructEntryService.GetMaterialEntryStruct(input.MeCode.MeId, "OR");
 
-            var edOrdEntM = await context.Edordents.FirstOrDefaultAsync(x => x.Meid == vMatStructEntryOr.Enormeid && x.Source == "M");
+            var edOrdEntM = await context.EdOrdEnts.FirstOrDefaultAsync(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M");
             edOrdEntM = context.InsertIfNull(edOrdEntM, vMatStructEntryOr);
-            edOrdEntM.Hexit = input.HExit?.M;
-            edOrdEntM.Widthexit = input.WidthExit?.M;
-            edOrdEntM.Texit = input.TExit?.M;
-            edOrdEntM.Exitcrownc25 = input.ExitCrownc25?.M;
+            edOrdEntM.HExit = input.HExit?.M;
+            edOrdEntM.WidthExit = input.WidthExit?.M;
+            edOrdEntM.TExit = input.TExit?.M;
+            edOrdEntM.ExitCrownC25 = input.ExitCrownc25?.M;
 
-            var edLogEntM = await context.Edlogents.FirstOrDefaultAsync(x => x.Meid == vMatStructEntryOr.Enlomeid && x.Source == "M");
+            var edLogEntM = await context.EdLogEnts.FirstOrDefaultAsync(x => x.MeId == vMatStructEntryOr.EnLoMeId && x.Source == "M");
             edLogEntM = context.InsertIfNull(edLogEntM, vMatStructEntryOr);
 
-            var edPhyEntM = await context.Edphyents.FirstOrDefaultAsync(x => x.Meid == vMatStructEntryOr.Enphmeid && x.Source == "M");
+            var edPhyEntM = await context.EdPhyEnts.FirstOrDefaultAsync(x => x.MeId == vMatStructEntryOr.EnPhMeId && x.Source == "M");
             edPhyEntM = context.InsertIfNull(edPhyEntM, vMatStructEntryOr);
 
-            var dirFmPfcParapM = await context.Dirfmpfcparaps.FirstOrDefaultAsync(x => x.Meid == vMatStructEntryOr.Enormeid && x.Source == "M");
+            var dirFmPfcParapM = await context.DirFmPfcParaPs.FirstOrDefaultAsync(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M");
             dirFmPfcParapM = context.InsertIfNull(dirFmPfcParapM, vMatStructEntryOr);
-            dirFmPfcParapM.Profilecorr = input.ProfileCorr?.M;
+            dirFmPfcParapM.ProfileCorr = input.ProfileCorr?.M;
 
-            var lpM = await context.Lps.FirstOrDefaultAsync(x => x.Meid == vMatStructEntryOr.Enormeid && x.Source == "M");
+            var lpM = await context.Lps.FirstOrDefaultAsync(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M");
             lpM = context.InsertIfNull(lpM, vMatStructEntryOr);
-            lpM.Reddisthrmhfm = input.RedDistHrmFm?.M;
-            lpM.Planno = input.LpPlanNo?.M;
+            lpM.RedDistHrmHfm = input.RedDistHrmFm?.M;
+            lpM.PlanNo = input.LpPlanNo?.M;
 
-            var dpfmM = await context.Dpfms.FirstOrDefaultAsync(x => x.Meid == vMatStructEntryOr.Enormeid && x.Source == "M");
+            var dpfmM = await context.Dpfms.FirstOrDefaultAsync(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M");
             dpfmM = context.InsertIfNull(dpfmM, vMatStructEntryOr);
-            dpfmM.Planno = input.DpHfmPlanNo?.M;
+            dpfmM.PlanNo = input.DpHfmPlanNo?.M;
 
-            var rcpM = await context.Rcps.FirstOrDefaultAsync(x => x.Meid == vMatStructEntryOr.Enormeid && x.Source == "M");
+            var rcpM = await context.Rcps.FirstOrDefaultAsync(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M");
             rcpM = context.InsertIfNull(rcpM, vMatStructEntryOr);
-            rcpM.Planno = input.RcpPlanNo?.M;
+            rcpM.PlanNo = input.RcpPlanNo?.M;
 
-            var tpM = await context.Tps.FirstOrDefaultAsync(x => x.Meid == vMatStructEntryOr.Enormeid && x.Source == "M");
+            var tpM = await context.Tps.FirstOrDefaultAsync(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M");
             tpM = context.InsertIfNull(tpM, vMatStructEntryOr);
-            tpM.Planno = input.TpPlanNo?.M;
+            tpM.PlanNo = input.TpPlanNo?.M;
 
-            var rglpM = await context.Rglps.FirstOrDefaultAsync(x => x.Meid == vMatStructEntryOr.Enormeid && x.Source == "M");
+            var rglpM = await context.Rglps.FirstOrDefaultAsync(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M");
             rglpM = context.InsertIfNull(rglpM, vMatStructEntryOr);
-            rglpM.Planno = input.RglpPlanNo?.M;
+            rglpM.PlanNo = input.RglpPlanNo?.M;
 
-            var iscpM = await context.Iscps.FirstOrDefaultAsync(x => x.Meid == vMatStructEntryOr.Enormeid && x.Source == "M");
+            var iscpM = await context.Iscps.FirstOrDefaultAsync(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M");
             iscpM = context.InsertIfNull(iscpM, vMatStructEntryOr);
-            iscpM.Planno = input.IscpPlanNo?.M;
+            iscpM.PlanNo = input.IscpPlanNo?.M;
 
-            var srpM = await context.Srps.FirstOrDefaultAsync(x => x.Meid == vMatStructEntryOr.Enormeid && x.Source == "M");
+            var srpM = await context.Srps.FirstOrDefaultAsync(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M");
             srpM = context.InsertIfNull(srpM, vMatStructEntryOr);
-            srpM.Planno = input.SrpPlanNo?.M;
+            srpM.PlanNo = input.SrpPlanNo?.M;
 
-            var ihpM = await context.Ihps.FirstOrDefaultAsync(x => x.Meid == vMatStructEntryOr.Enormeid && x.Source == "M");
+            var ihpM = await context.Ihps.FirstOrDefaultAsync(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M");
             ihpM = context.InsertIfNull(ihpM, vMatStructEntryOr);
             ihpM.Temperature = input.Temperature?.M;
 
-            var spord2pcM = await context.Spord2pcs.FirstOrDefaultAsync(x => x.Meid == vMatStructEntryOr.Enormeid && x.Source == "M");
-            spord2pcM = context.InsertIfNull(spord2pcM, vMatStructEntryOr);
-            spord2pcM.Lexit = input.LExit?.M;
-            spord2pcM.Profexcalc = input.ProfExCalc?.M;
+            var spOrd2PcM = await context.SpOrd2Pcs.FirstOrDefaultAsync(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M");
+            spOrd2PcM = context.InsertIfNull(spOrd2PcM, vMatStructEntryOr);
+            spOrd2PcM.LExit = input.LExit?.M;
+            spOrd2PcM.Profexcalc = input.ProfExCalc?.M;
 
             await context.SaveChangesAsync();
         }
 
         [AbpAuthorize(Permissions.Pages_Setpoints_FM)]
-        public async Task<SetpointsHFMDto> GetPassScheduleHFM(int meid, string matType)
+        public async Task<SetpointsHFMDto> GetPassScheduleHFM(int MeId, string matType)
         {
             var result = new SetpointsHFMDto();
-            var hmiVEntryMatStruct = await _matStructEntryService.GetMaterialEntryStruct(meid, matType);
+            var hmiVEntryMatStruct = await _matStructEntryService.GetMaterialEntryStruct(MeId, matType);
 
             var dataBlob = await GetPassScheduleHfmDataBlob(hmiVEntryMatStruct);
 
@@ -169,27 +169,27 @@ namespace WebHMI.Services
         {
             var context = _prdbContextProvider.GetDbContext();
 
-            var lpPassManuals = await context.Lppasses.Where(x => x.Meid == vMatStructEntryOr.Enormeid && x.Source == "M").ToListAsync();
+            var lpPassManuals = await context.Lppasses.Where(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M").ToListAsync();
 
             foreach (var pass in input.PassScheduleDtos.OrderByDescending(x => x.PassNo))
             {
-                var lpPassM = lpPassManuals.FirstOrDefault(x => x.Passno == pass.PassNo);
+                var lpPassM = lpPassManuals.FirstOrDefault(x => x.PassNo == pass.PassNo);
                 if (lpPassM == null)
                 {
                     lpPassM = new Lppass()
                     {
-                        Mecreator = vMatStructEntryOr.Enorcreator,
-                        Meid = vMatStructEntryOr.Enormeid,
-                        Mesid = (short)vMatStructEntryOr.Enormesid,
-                        Passno = pass.PassNo,
+                        MeCreator = vMatStructEntryOr.EnOrCreator,
+                        MeId = vMatStructEntryOr.EnOrMeId,
+                        MesId = (short)vMatStructEntryOr.EnOrMesId,
+                        PassNo = pass.PassNo,
                         Source = "M",
                     };
                     context.Lppasses.Add(lpPassM);
                 }
 
-                lpPassM.Loadingtype = pass.LoadingType?.M;
-                lpPassM.Loadingvalue = pass.LoadingValue?.M;
-                lpPassM.Loadingvaluecorrection = pass.LoadingValueCorrection?.M;
+                lpPassM.LoadingType = pass.LoadingType?.M;
+                lpPassM.LoadingValue = pass.LoadingValue?.M;
+                lpPassM.LoadingValueCorrection = pass.LoadingValueCorrection?.M;
 
             }
             await context.SaveChangesAsync();
@@ -199,25 +199,25 @@ namespace WebHMI.Services
         {
             var context = _prdbContextProvider.GetDbContext();
 
-            var tpPassManuals = await context.Tppasses.Where(x => x.Meid == vMatStructEntryOr.Enormeid && x.Source == "M").ToListAsync();
+            var tpPassManuals = await context.Tppasses.Where(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M").ToListAsync();
 
             foreach (var pass in input.PassScheduleDtos.OrderByDescending(x => x.PassNo))
             {
-                var tpPassM = tpPassManuals.FirstOrDefault(x => x.Passno == pass.PassNo);
+                var tpPassM = tpPassManuals.FirstOrDefault(x => x.PassNo == pass.PassNo);
                 if (tpPassM == null)
                 {
                     tpPassM = new Tppass()
                     {
-                        Mecreator = vMatStructEntryOr.Enorcreator,
-                        Meid = vMatStructEntryOr.Enormeid,
-                        Mesid = (short)vMatStructEntryOr.Enormesid,
-                        Passno = pass.PassNo,
+                        MeCreator = vMatStructEntryOr.EnOrCreator,
+                        MeId = vMatStructEntryOr.EnOrMeId,
+                        MesId = (short)vMatStructEntryOr.EnOrMesId,
+                        PassNo = pass.PassNo,
                         Source = "M",
                     };
                     context.Tppasses.Add(tpPassM);
                 }
 
-                tpPassM.Speciffotension = pass.SpecifFoTension?.M;
+                tpPassM.SpecifFoTension = pass.SpecifFoTension?.M;
 
             }
             await context.SaveChangesAsync();
@@ -227,26 +227,26 @@ namespace WebHMI.Services
         {
             var context = _prdbContextProvider.GetDbContext();
 
-            var srpManual = await context.Srps.Where(x => x.Meid == vMatStructEntryOr.Enormeid && x.Source == "E").FirstOrDefaultAsync();
+            var srpManual = await context.Srps.Where(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "E").FirstOrDefaultAsync();
 
-            var srpPassManuals = await context.Srppasses.Where(x => x.Meid == vMatStructEntryOr.Enormeid && x.Source == "M").ToListAsync();
+            var srpPassManuals = await context.Srppasses.Where(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M").ToListAsync();
 
             foreach (var pass in input.PassScheduleDtos.OrderByDescending(x => x.PassNo))
             {
-                var srpPassM = srpPassManuals.FirstOrDefault(x => x.Passno == pass.PassNo);
+                var srpPassM = srpPassManuals.FirstOrDefault(x => x.PassNo == pass.PassNo);
                 if (srpPassM == null)
                 {
                     srpPassM = new Srppass()
                     {
-                        Mecreator = vMatStructEntryOr.Enorcreator,
-                        Meid = vMatStructEntryOr.Enormeid,
-                        Mesid = (short)vMatStructEntryOr.Enormesid,
-                        Passno = pass.PassNo,
+                        MeCreator = vMatStructEntryOr.EnOrCreator,
+                        MeId = vMatStructEntryOr.EnOrMeId,
+                        MesId = (short)vMatStructEntryOr.EnOrMesId,
+                        PassNo = pass.PassNo,
                         Source = "M",
                     };
                     context.Srppasses.Add(srpPassM);
                 }
-                srpPassM.Planno = srpManual?.Planno;
+                srpPassM.PlanNo = srpManual?.PlanNo;
 
             }
             await context.SaveChangesAsync();
@@ -256,25 +256,25 @@ namespace WebHMI.Services
         {
             var context = _prdbContextProvider.GetDbContext();
 
-            var spOrd2PcStandManuals = await context.Spord2pcstands.Where(x => x.Meid == vMatStructEntryOr.Enormeid && x.Source == "M").ToListAsync();
+            var spOrd2PcStandManuals = await context.SpOrd2PcStands.Where(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M").ToListAsync();
 
             foreach (var pass in input.PassScheduleDtos.OrderByDescending(x => x.PassNo))
             {
-                var spOrd2PcStandM = spOrd2PcStandManuals.FirstOrDefault(x => x.Standid == pass.PassNo);
+                var spOrd2PcStandM = spOrd2PcStandManuals.FirstOrDefault(x => x.StandId == pass.PassNo);
                 if (spOrd2PcStandM == null)
                 {
-                    spOrd2PcStandM = new Spord2pcstand()
+                    spOrd2PcStandM = new SpOrd2PcStand()
                     {
-                        Mecreator = vMatStructEntryOr.Enorcreator,
-                        Meid = vMatStructEntryOr.Enormeid,
-                        Mesid = (short)vMatStructEntryOr.Enormesid,
-                        Standid = pass.PassNo,
+                        MeCreator = vMatStructEntryOr.EnOrCreator,
+                        MeId = vMatStructEntryOr.EnOrMeId,
+                        MesId = (short)vMatStructEntryOr.EnOrMesId,
+                        StandId = pass.PassNo,
                         Source = "M",
                     };
-                    context.Spord2pcstands.Add(spOrd2PcStandM);
+                    context.SpOrd2PcStands.Add(spOrd2PcStandM);
                 }
 
-                spOrd2PcStandM.Positionwrs = pass.PositionWRS?.M;
+                spOrd2PcStandM.PositionWrs = pass.PositionWRS?.M;
 
             }
             await context.SaveChangesAsync();
@@ -284,25 +284,25 @@ namespace WebHMI.Services
         {
             var context = _prdbContextProvider.GetDbContext();
 
-            var dirFmPfcParaPassManuals = await context.Dirfmpfcparappasses.Where(x => x.Meid == vMatStructEntryOr.Enormeid && x.Source == "M").ToListAsync();
+            var dirFmPfcParaPassManuals = await context.DirFmPfcParaPpasses.Where(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M").ToListAsync();
 
             foreach (var pass in input.PassScheduleDtos.OrderByDescending(x => x.PassNo))
             {
-                var dirFmPfcParaPassM = dirFmPfcParaPassManuals.FirstOrDefault(x => x.Passno == pass.PassNo);
+                var dirFmPfcParaPassM = dirFmPfcParaPassManuals.FirstOrDefault(x => x.PassNo == pass.PassNo);
                 if (dirFmPfcParaPassM == null)
                 {
-                    dirFmPfcParaPassM = new Dirfmpfcparappass()
+                    dirFmPfcParaPassM = new DirFmPfcParaPpass()
                     {
-                        Mecreator = vMatStructEntryOr.Enorcreator,
-                        Meid = vMatStructEntryOr.Enormeid,
-                        Mesid = (short)vMatStructEntryOr.Enormesid,
-                        Passno = pass.PassNo,
+                        MeCreator = vMatStructEntryOr.EnOrCreator,
+                        MeId = vMatStructEntryOr.EnOrMeId,
+                        MesId = (short)vMatStructEntryOr.EnOrMesId,
+                        PassNo = pass.PassNo,
                         Source = "M",
                     };
-                    context.Dirfmpfcparappasses.Add(dirFmPfcParaPassM);
+                    context.DirFmPfcParaPpasses.Add(dirFmPfcParaPassM);
                 }
 
-                dirFmPfcParaPassM.Observedflat = pass.ObservedFlat?.M;
+                dirFmPfcParaPassM.ObservedFlat = pass.ObservedFlat?.M;
 
             }
             await context.SaveChangesAsync();
@@ -312,27 +312,27 @@ namespace WebHMI.Services
         {
             var context = _prdbContextProvider.GetDbContext();
 
-            var lpPassManuals = await context.Lppasses.Where(x => x.Meid == vMatStructEntryOr.Enormeid && x.Source == "M").ToListAsync();
+            var lpPassManuals = await context.Lppasses.Where(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M").ToListAsync();
 
             foreach (var pass in input.LoadingDtos.OrderByDescending(x => x.PassNo))
             {
-                var lpPassM = lpPassManuals.FirstOrDefault(x => x.Passno == pass.PassNo);
+                var lpPassM = lpPassManuals.FirstOrDefault(x => x.PassNo == pass.PassNo);
                 if (lpPassM == null)
                 {
                     lpPassM = new Lppass()
                     {
-                        Mecreator = vMatStructEntryOr.Enorcreator,
-                        Meid = vMatStructEntryOr.Enormeid,
-                        Mesid = (short)vMatStructEntryOr.Enormesid,
-                        Passno = pass.PassNo,
+                        MeCreator = vMatStructEntryOr.EnOrCreator,
+                        MeId = vMatStructEntryOr.EnOrMeId,
+                        MesId = (short)vMatStructEntryOr.EnOrMesId,
+                        PassNo = pass.PassNo,
                         Source = "M",
                     };
                     context.Lppasses.Add(lpPassM);
                 }
-                lpPassM.Loadingtype = pass.LoadingType?.M;
-                lpPassM.Loadingvalue = pass.LoadingValue?.M;
-                lpPassM.Circumspeedcorrection = pass.CircumSpeedCorrection?.M;
-                lpPassM.Bendingforce = pass.BendingForce?.M;
+                lpPassM.LoadingType = pass.LoadingType?.M;
+                lpPassM.LoadingValue = pass.LoadingValue?.M;
+                lpPassM.CircumSpeedCorrection = pass.CircumSpeedCorrection?.M;
+                lpPassM.BendingForce = pass.BendingForce?.M;
 
             }
             await context.SaveChangesAsync();
@@ -342,23 +342,23 @@ namespace WebHMI.Services
         {
             var context = _prdbContextProvider.GetDbContext();
 
-            var dprampfmM = await context.Dprampfms.Where(x => x.Meid == vMatStructEntryOr.Enormeid && x.Source == "M").FirstOrDefaultAsync();
+            var dprampfmM = await context.DprampFms.Where(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M").FirstOrDefaultAsync();
 
             if (dprampfmM == null)
             {
-                dprampfmM = new Dprampfm()
+                dprampfmM = new DprampFm()
                 {
-                    Mecreator = vMatStructEntryOr.Enorcreator,
-                    Meid = vMatStructEntryOr.Enormeid,
-                    Mesid = (short)vMatStructEntryOr.Enormesid,
+                    MeCreator = vMatStructEntryOr.EnOrCreator,
+                    MeId = vMatStructEntryOr.EnOrMeId,
+                    MesId = (short)vMatStructEntryOr.EnOrMesId,
                     Source = "M",
                 };
-                context.Dprampfms.Add(dprampfmM);
+                context.DprampFms.Add(dprampfmM);
             }
 
-            dprampfmM.Descrampauto = input.Descaling?.DescrampAuto.M;
-            dprampfmM.Descrampstate = input.Descaling?.DescrampState.M;
-            dprampfmM.Descrampvolume = input.Descaling?.DescrampVolume.M;
+            dprampfmM.DescRampAuto = input.Descaling?.DescrampAuto.M;
+            dprampfmM.DescRampState = input.Descaling?.DescrampState.M;
+            dprampfmM.DescRampVolume = input.Descaling?.DescrampVolume.M;
 
             await context.SaveChangesAsync();
 
@@ -368,53 +368,53 @@ namespace WebHMI.Services
         {
             var context = _prdbContextProvider.GetDbContext();
 
-            var rcpPassManuals = await context.Rcppasses.Where(x => x.Meid == vMatStructEntryOr.Enormeid && x.Source == "M").ToListAsync();
+            var rcpPassManuals = await context.Rcppasses.Where(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M").ToListAsync();
 
             foreach (var pass in input.WorkCoolingDtos.OrderByDescending(x => x.PassNo))
             {
-                var rcPassM = rcpPassManuals.FirstOrDefault(x => x.Passno == pass.PassNo);
+                var rcPassM = rcpPassManuals.FirstOrDefault(x => x.PassNo == pass.PassNo);
                 if (rcPassM == null)
                 {
                     rcPassM = new Rcppass()
                     {
-                        Mecreator = vMatStructEntryOr.Enorcreator,
-                        Meid = vMatStructEntryOr.Enormeid,
-                        Mesid = (short)vMatStructEntryOr.Enormesid,
-                        Passno = pass.PassNo,
+                        MeCreator = vMatStructEntryOr.EnOrCreator,
+                        MeId = vMatStructEntryOr.EnOrMeId,
+                        MesId = (short)vMatStructEntryOr.EnOrMesId,
+                        PassNo = pass.PassNo,
                         Source = "M",
                     };
                     context.Rcppasses.Add(rcPassM);
                 }
-                rcPassM.Rollcoolstate = pass.RollCoolState?.M;
-                rcPassM.FlowwrloadedInd0 = pass.FlowWrLoadedInd0?.M;
-                rcPassM.FlowwrloadedInd1 = pass.FlowWrLoadedInd1?.M;
-                rcPassM.FlowwrloadedInd2 = pass.FlowWrLoadedInd2?.M;
+                rcPassM.RollCoolState = pass.RollCoolState?.M;
+                rcPassM.FlowWrLoadedInd0 = pass.FlowWrLoadedInd0?.M;
+                rcPassM.FlowWrLoadedInd1 = pass.FlowWrLoadedInd1?.M;
+                rcPassM.FlowWrLoadedInd2 = pass.FlowWrLoadedInd2?.M;
             }
 
-            var iscpPassManuals = await context.Iscppasses.Where(x => x.Meid == vMatStructEntryOr.Enormeid && x.Source == "M").ToListAsync();
+            var iscpPassManuals = await context.Iscppasses.Where(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M").ToListAsync();
 
             foreach (var pass in input.WorkCoolingDtos.OrderByDescending(x => x.PassNo))
             {
-                var iscpPassM = iscpPassManuals.FirstOrDefault(x => x.Passno == pass.PassNo);
+                var iscpPassM = iscpPassManuals.FirstOrDefault(x => x.PassNo == pass.PassNo);
                 if (iscpPassM == null)
                 {
                     iscpPassM = new Iscppass()
                     {
-                        Mecreator = vMatStructEntryOr.Enorcreator,
-                        Meid = vMatStructEntryOr.Enormeid,
-                        Mesid = (short)vMatStructEntryOr.Enormesid,
-                        Passno = pass.PassNo,
+                        MeCreator = vMatStructEntryOr.EnOrCreator,
+                        MeId = vMatStructEntryOr.EnOrMeId,
+                        MesId = (short)vMatStructEntryOr.EnOrMesId,
+                        PassNo = pass.PassNo,
                         Source = "M",
                     };
                     context.Iscppasses.Add(iscpPassM);
                 }
-                iscpPassM.Stripspraybefor = pass.StripSprayBefor?.M;
-                iscpPassM.IscvolumeInd0 = pass.IscVolumeInd0?.M;
-                iscpPassM.IscvolumeInd1 = pass.IscVolumeInd1?.M;
-                iscpPassM.IscvolumeInd2 = pass.IscVolumeInd2?.M;
-                iscpPassM.IscvolumeInd3 = pass.IscVolumeInd3?.M;
-                iscpPassM.Fumesuppspraybehind = pass.FumesuppSprayBehind?.M;
-                iscpPassM.Loopercool = pass.LooperCooling?.M;
+                iscpPassM.StripSprayBefor = pass.StripSprayBefor?.M;
+                iscpPassM.IscVolumeInd0 = pass.IscVolumeInd0?.M;
+                iscpPassM.IscVolumeInd1 = pass.IscVolumeInd1?.M;
+                iscpPassM.IscVolumeInd2 = pass.IscVolumeInd2?.M;
+                iscpPassM.IscVolumeInd3 = pass.IscVolumeInd3?.M;
+                iscpPassM.FumeSuppSprayBehind = pass.FumesuppSprayBehind?.M;
+                iscpPassM.LooperCool = pass.LooperCooling?.M;
             }
 
             await context.SaveChangesAsync();
@@ -425,30 +425,30 @@ namespace WebHMI.Services
         {
             var context = _prdbContextProvider.GetDbContext();
 
-            var aopPassManuals = await context.Aoppasses.Where(x => x.Meid == vMatStructEntryOr.Enormeid && x.Source == "M").ToListAsync();
+            var aopPassManuals = await context.Aoppasses.Where(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M").ToListAsync();
 
             foreach (var pass in input.AntiPeelingDtos.OrderByDescending(x => x.PassNo))
             {
-                var aopPassM = aopPassManuals.FirstOrDefault(x => x.Passno == pass.PassNo);
+                var aopPassM = aopPassManuals.FirstOrDefault(x => x.PassNo == pass.PassNo);
                 if (aopPassM == null)
                 {
                     aopPassM = new Aoppass()
                     {
-                        Mecreator = vMatStructEntryOr.Enorcreator,
-                        Meid = vMatStructEntryOr.Enormeid,
-                        Mesid = (short)vMatStructEntryOr.Enormesid,
-                        Passno = pass.PassNo,
+                        MeCreator = vMatStructEntryOr.EnOrCreator,
+                        MeId = vMatStructEntryOr.EnOrMeId,
+                        MesId = (short)vMatStructEntryOr.EnOrMesId,
+                        PassNo = pass.PassNo,
                         Source = "M",
                     };
                     context.Aoppasses.Add(aopPassM);
                 }
-                aopPassM.Antioxstateentry = pass.AntiOxStateEntry?.M;
-                aopPassM.Antioxidationentry = pass.AntiOxidationEntry?.M;
-                aopPassM.Antioxstateexit = pass.AntiOxStateExit?.M;
-                aopPassM.Antioxidationexit = pass.AntiOxidationExit?.M;
+                aopPassM.AntiOxStateEntry = pass.AntiOxStateEntry?.M;
+                aopPassM.AntiOxidationEntry = pass.AntiOxidationEntry?.M;
+                aopPassM.AntiOxStateExit = pass.AntiOxStateExit?.M;
+                aopPassM.AntiOxidationExit = pass.AntiOxidationExit?.M;
 
-                aopPassM.Antipeelingstate = pass.AntiPeelingState?.M;
-                aopPassM.Antipeeling = pass.AntiPeeling?.M;
+                aopPassM.AntiPeelingState = pass.AntiPeelingState?.M;
+                aopPassM.AntiPeeling = pass.AntiPeeling?.M;
             }
 
             await context.SaveChangesAsync();
@@ -458,25 +458,25 @@ namespace WebHMI.Services
         {
             var context = _prdbContextProvider.GetDbContext();
 
-            var tpPassManuals = await context.Tppasses.Where(x => x.Meid == vMatStructEntryOr.Enormeid && x.Source == "M").ToListAsync();
+            var tpPassManuals = await context.Tppasses.Where(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M").ToListAsync();
 
             foreach (var pass in input.TensionDtos.OrderByDescending(x => x.PassNo))
             {
-                var tpPassM = tpPassManuals.FirstOrDefault(x => x.Passno == pass.PassNo);
+                var tpPassM = tpPassManuals.FirstOrDefault(x => x.PassNo == pass.PassNo);
                 if (tpPassM == null)
                 {
                     tpPassM = new Tppass()
                     {
-                        Mecreator = vMatStructEntryOr.Enorcreator,
-                        Meid = vMatStructEntryOr.Enormeid,
-                        Mesid = (short)vMatStructEntryOr.Enormesid,
-                        Passno = pass.PassNo,
+                        MeCreator = vMatStructEntryOr.EnOrCreator,
+                        MeId = vMatStructEntryOr.EnOrMeId,
+                        MesId = (short)vMatStructEntryOr.EnOrMesId,
+                        PassNo = pass.PassNo,
                         Source = "M",
                     };
                     context.Tppasses.Add(tpPassM);
                 }
-                tpPassM.Speciffotension = pass.SpeciffoTension?.M;
-                tpPassM.Looperstriplen = pass.LooperStripLen?.M;
+                tpPassM.SpecifFoTension = pass.SpeciffoTension?.M;
+                tpPassM.LooperStripLen = pass.LooperStripLen?.M;
             }
 
             await context.SaveChangesAsync();
@@ -487,33 +487,33 @@ namespace WebHMI.Services
         {
             var context = _prdbContextProvider.GetDbContext();
 
-            var rglpManual = await context.Rglps.Where(x => x.Meid == vMatStructEntryOr.Enormeid && x.Source == "E").FirstOrDefaultAsync();
+            var rglpManual = await context.Rglps.Where(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "E").FirstOrDefaultAsync();
 
-            var rglpPassManuals = await context.Rglppasses.Where(x => x.Meid == vMatStructEntryOr.Enormeid && x.Source == "M").ToListAsync();
+            var rglpPassManuals = await context.Rglppasses.Where(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M").ToListAsync();
 
             foreach (var pass in input.LubricationDtos.OrderByDescending(x => x.PassNo))
             {
-                var rglpPassM = rglpPassManuals.FirstOrDefault(x => x.Passno == pass.PassNo);
+                var rglpPassM = rglpPassManuals.FirstOrDefault(x => x.PassNo == pass.PassNo);
                 if (rglpPassM == null)
                 {
                     rglpPassM = new Rglppass()
                     {
-                        Mecreator = vMatStructEntryOr.Enorcreator,
-                        Meid = vMatStructEntryOr.Enormeid,
-                        Mesid = (short)vMatStructEntryOr.Enormesid,
-                        Passno = pass.PassNo,
+                        MeCreator = vMatStructEntryOr.EnOrCreator,
+                        MeId = vMatStructEntryOr.EnOrMeId,
+                        MesId = (short)vMatStructEntryOr.EnOrMesId,
+                        PassNo = pass.PassNo,
                         Source = "M",
                     };
                     context.Rglppasses.Add(rglpPassM);
                 }
 
-                rglpPassM.Planno = rglpManual?.Planno;
-                rglpPassM.Rollgaplubstate = pass.RollGapLubState?.M;
-                rglpPassM.Rollgaplubramptimestart = pass.RollGapLubRampTimeStart?.M;
-                rglpPassM.Rollgaplubramptimestop = pass.RollGapLubRampTimeStop?.M;
-                rglpPassM.Rollgaplubswitchlength = pass.RollGapLubSwitchLength?.M;
-                rglpPassM.Rollgapluboilflowtop = pass.RollGapLubOilFlowTop?.M;
-                rglpPassM.Rollgapluboilflowbot = pass.RollGapLubOilFlowBot?.M;
+                rglpPassM.PlanNo = rglpManual?.PlanNo;
+                rglpPassM.RollGapLubState = pass.RollGapLubState?.M;
+                rglpPassM.RollGapLubRampTimeStart = pass.RollGapLubRampTimeStart?.M;
+                rglpPassM.RollGapLubRampTimeStop = pass.RollGapLubRampTimeStop?.M;
+                rglpPassM.RollGapLubSwitchLength = pass.RollGapLubSwitchLength?.M;
+                rglpPassM.RollGapLubOilFlowTop = pass.RollGapLubOilFlowTop?.M;
+                rglpPassM.RollGapLubOilFlowBot = pass.RollGapLubOilFlowBot?.M;
 
                 await context.SaveChangesAsync();
             }
@@ -522,26 +522,26 @@ namespace WebHMI.Services
         {
             var context = _prdbContextProvider.GetDbContext();
 
-            var srpManual = await context.Srps.Where(x => x.Meid == vMatStructEntryOr.Enormeid && x.Source == "E").FirstOrDefaultAsync();
+            var srpManual = await context.Srps.Where(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "E").FirstOrDefaultAsync();
 
-            var srpPassManuals = await context.Srppasses.Where(x => x.Meid == vMatStructEntryOr.Enormeid && x.Source == "M").ToListAsync();
+            var srpPassManuals = await context.Srppasses.Where(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M").ToListAsync();
 
             foreach (var pass in input.TaperShiftingDtos.OrderByDescending(x => x.PassNo))
             {
-                var srpPassM = srpPassManuals.FirstOrDefault(x => x.Passno == pass.PassNo);
+                var srpPassM = srpPassManuals.FirstOrDefault(x => x.PassNo == pass.PassNo);
                 if (srpPassM == null)
                 {
                     srpPassM = new Srppass()
                     {
-                        Mecreator = vMatStructEntryOr.Enorcreator,
-                        Meid = vMatStructEntryOr.Enormeid,
-                        Mesid = (short)vMatStructEntryOr.Enormesid,
-                        Passno = pass.PassNo,
+                        MeCreator = vMatStructEntryOr.EnOrCreator,
+                        MeId = vMatStructEntryOr.EnOrMeId,
+                        MesId = (short)vMatStructEntryOr.EnOrMesId,
+                        PassNo = pass.PassNo,
                         Source = "M",
                     };
                     context.Srppasses.Add(srpPassM);
                 }
-                srpPassM.Planno = srpManual?.Planno;
+                srpPassM.PlanNo = srpManual?.PlanNo;
                 srpPassM.Model = pass.Model?.M;
             }
 
@@ -550,10 +550,10 @@ namespace WebHMI.Services
         }
 
         [AbpAuthorize(Permissions.Pages_Setpoints_FM)]
-        public async Task<HFMApxMaterialOverviewDto> GetApxMaterialOverview(int meid, string matType)
+        public async Task<HFMApxMaterialOverviewDto> GetApxMaterialOverview(int MeId, string matType)
         {
             var result = new HFMApxMaterialOverviewDto();
-            var hmiVEntryMatStruct = await _matStructEntryService.GetMaterialEntryStruct(meid, matType);
+            var hmiVEntryMatStruct = await _matStructEntryService.GetMaterialEntryStruct(MeId, matType);
 
             var dataBlob = await GetApxPassScheduleHfmDataBlob(hmiVEntryMatStruct);
 
@@ -569,43 +569,43 @@ namespace WebHMI.Services
             var context = _prdbContextProvider.GetDbContext();
             var vMatStructEntryOr = await _matStructEntryService.GetMaterialEntryStruct(input.MeCode.MeId, "OR");
 
-            var edOrdEntM = await context.Edordents.FirstOrDefaultAsync(x => x.Meid == vMatStructEntryOr.Enormeid && x.Source == "M");
+            var edOrdEntM = await context.EdOrdEnts.FirstOrDefaultAsync(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M");
             edOrdEntM = context.InsertIfNull(edOrdEntM, vMatStructEntryOr);
-            edOrdEntM.Hexit = input.HExit?.M;
-            edOrdEntM.Widthexit = input.WidthExit?.M;
-            edOrdEntM.Texit = input.TExit?.M;
-            edOrdEntM.Exitcrownc25 = input.ExitCrownC25?.M;
+            edOrdEntM.HExit = input.HExit?.M;
+            edOrdEntM.WidthExit = input.WidthExit?.M;
+            edOrdEntM.TExit = input.TExit?.M;
+            edOrdEntM.ExitCrownC25 = input.ExitCrownC25?.M;
 
-            var edLogEntM = await context.Edlogents.FirstOrDefaultAsync(x => x.Meid == vMatStructEntryOr.Enlomeid && x.Source == "M");
+            var edLogEntM = await context.EdLogEnts.FirstOrDefaultAsync(x => x.MeId == vMatStructEntryOr.EnLoMeId && x.Source == "M");
             edLogEntM = context.InsertIfNull(edLogEntM, vMatStructEntryOr);
 
-            var edPhyEntM = await context.Edphyents.FirstOrDefaultAsync(x => x.Meid == vMatStructEntryOr.Enphmeid && x.Source == "M");
+            var edPhyEntM = await context.EdPhyEnts.FirstOrDefaultAsync(x => x.MeId == vMatStructEntryOr.EnPhMeId && x.Source == "M");
             edPhyEntM = context.InsertIfNull(edPhyEntM, vMatStructEntryOr);
 
-            var dirFmPfcParapM = await context.Dirfmpfcparaps.FirstOrDefaultAsync(x => x.Meid == vMatStructEntryOr.Enormeid && x.Source == "M");
+            var dirFmPfcParapM = await context.DirFmPfcParaPs.FirstOrDefaultAsync(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M");
             dirFmPfcParapM = context.InsertIfNull(dirFmPfcParapM, vMatStructEntryOr);
-            dirFmPfcParapM.Planno = input.DirFmPfcParaPlanNo?.M;
-            dirFmPfcParapM.Profilecorr = input.ProfileCorr?.M;
+            dirFmPfcParapM.PlanNo = input.DirFmPfcParaPlanNo?.M;
+            dirFmPfcParapM.ProfileCorr = input.ProfileCorr?.M;
 
-            var srpM = await context.Srps.FirstOrDefaultAsync(x => x.Meid == vMatStructEntryOr.Enormeid && x.Source == "M");
+            var srpM = await context.Srps.FirstOrDefaultAsync(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M");
             srpM = context.InsertIfNull(srpM, vMatStructEntryOr);
-            srpM.Planno = input.SrpPlanNo?.M;
+            srpM.PlanNo = input.SrpPlanNo?.M;
 
-            var lpM = await context.Lps.FirstOrDefaultAsync(x => x.Meid == vMatStructEntryOr.Enormeid && x.Source == "M");
+            var lpM = await context.Lps.FirstOrDefaultAsync(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M");
             lpM = context.InsertIfNull(lpM, vMatStructEntryOr);
-            lpM.Reddisthrmhfm = input.RedDistHrmHfm?.M;
+            lpM.RedDistHrmHfm = input.RedDistHrmHfm?.M;
 
-            var spord2pcM = await context.Spord2pcs.FirstOrDefaultAsync(x => x.Meid == vMatStructEntryOr.Enormeid && x.Source == "M");
-            spord2pcM = context.InsertIfNull(spord2pcM, vMatStructEntryOr);
+            var spOrd2PcM = await context.SpOrd2Pcs.FirstOrDefaultAsync(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M");
+            spOrd2PcM = context.InsertIfNull(spOrd2PcM, vMatStructEntryOr);
 
             await context.SaveChangesAsync();
         }
 
         [AbpAuthorize(Permissions.Pages_Setpoints_FM)]
-        public async Task<SetpointsHFMApxDto> GetApxPassScheduleHFM(int meid, string matType)
+        public async Task<SetpointsHFMApxDto> GetApxPassScheduleHFM(int MeId, string matType)
         {
             var result = new SetpointsHFMApxDto();
-            var hmiVEntryMatStruct = await _matStructEntryService.GetMaterialEntryStruct(meid, matType);
+            var hmiVEntryMatStruct = await _matStructEntryService.GetMaterialEntryStruct(MeId, matType);
 
             var dataBlob = await GetApxPassScheduleHfmDataBlob(hmiVEntryMatStruct);
 
@@ -625,13 +625,13 @@ namespace WebHMI.Services
             var context = _prdbContextProvider.GetDbContext();
             var vMatStructEntryOr = await _matStructEntryService.GetMaterialEntryStruct(input.MeCode.MeId, "OR");
 
-            var edPhyEntM = await context.Edphyents.FirstOrDefaultAsync(x => x.Meid == vMatStructEntryOr.Enphmeid && x.Source == "M");
+            var edPhyEntM = await context.EdPhyEnts.FirstOrDefaultAsync(x => x.MeId == vMatStructEntryOr.EnPhMeId && x.Source == "M");
             edPhyEntM = context.InsertIfNull(edPhyEntM, vMatStructEntryOr);
 
-            var edLogEntM = await context.Edlogents.FirstOrDefaultAsync(x => x.Meid == vMatStructEntryOr.Enlomeid && x.Source == "M");
+            var edLogEntM = await context.EdLogEnts.FirstOrDefaultAsync(x => x.MeId == vMatStructEntryOr.EnLoMeId && x.Source == "M");
             edLogEntM = context.InsertIfNull(edLogEntM, vMatStructEntryOr);
 
-            var edOrdEntM = await context.Edordents.FirstOrDefaultAsync(x => x.Meid == vMatStructEntryOr.Enormeid && x.Source == "M");
+            var edOrdEntM = await context.EdOrdEnts.FirstOrDefaultAsync(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M");
             edOrdEntM = context.InsertIfNull(edOrdEntM, vMatStructEntryOr);
 
             await UpdateLpSrpWmpPass(input, vMatStructEntryOr);
@@ -653,28 +653,28 @@ namespace WebHMI.Services
         {
             var context = _prdbContextProvider.GetDbContext();
 
-            var lpPassManuals = await context.Lppasses.Where(x => x.Meid == vMatStructEntryOr.Enormeid && x.Source == "M").ToListAsync();
-            var srpPassManuals = await context.Srppasses.Where(x => x.Meid == vMatStructEntryOr.Enormeid && x.Source == "M").ToListAsync();
-            var wmpPassManuals = await context.Wmppasses.Where(x => x.Meid == vMatStructEntryOr.Enormeid && x.Source == "M").ToListAsync();
+            var lpPassManuals = await context.Lppasses.Where(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M").ToListAsync();
+            var srpPassManuals = await context.Srppasses.Where(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M").ToListAsync();
+            var wmpPassManuals = await context.Wmppasses.Where(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M").ToListAsync();
 
             foreach (var pass in input.PassScheduleDtos.OrderByDescending(x => x.PassNo))
             {
-                var lpPassM = lpPassManuals.FirstOrDefault(x => x.Passno == pass.PassNo);
+                var lpPassM = lpPassManuals.FirstOrDefault(x => x.PassNo == pass.PassNo);
                 if (lpPassM == null)
                 {
                     lpPassM = new Lppass()
                     {
-                        Mecreator = vMatStructEntryOr.Enorcreator,
-                        Meid = vMatStructEntryOr.Enormeid,
-                        Mesid = (short)vMatStructEntryOr.Enormesid,
-                        Passno = pass.PassNo,
+                        MeCreator = vMatStructEntryOr.EnOrCreator,
+                        MeId = vMatStructEntryOr.EnOrMeId,
+                        MesId = (short)vMatStructEntryOr.EnOrMesId,
+                        PassNo = pass.PassNo,
                         Source = "M",
                     };
                     context.Lppasses.Add(lpPassM);
                 }
 
-                lpPassM.Bendingforce = pass.BendingForce?.M;
-                lpPassM.Cvcshifting = pass.CvcShifting?.M;
+                lpPassM.BendingForce = pass.BendingForce?.M;
+                lpPassM.CVcshifting = pass.CvcShifting?.M;
             }
 
         }
@@ -683,27 +683,27 @@ namespace WebHMI.Services
         {
             var context = _prdbContextProvider.GetDbContext();
 
-            var spOrd2PcStandManuals = await context.Spord2pcstands.Where(x => x.Meid == vMatStructEntryOr.Enormeid && x.Source == "M").ToListAsync();
+            var spOrd2PcStandManuals = await context.SpOrd2PcStands.Where(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M").ToListAsync();
 
             foreach (var pass in input.PassScheduleDtos.OrderByDescending(x => x.PassNo))
             {
-                var spord2pcstandM = spOrd2PcStandManuals.FirstOrDefault(x => x.Standid == pass.PassNo);
-                if (spord2pcstandM == null)
+                var spOrd2PcStandM = spOrd2PcStandManuals.FirstOrDefault(x => x.StandId == pass.PassNo);
+                if (spOrd2PcStandM == null)
                 {
-                    spord2pcstandM = new Spord2pcstand()
+                    spOrd2PcStandM = new SpOrd2PcStand()
                     {
-                        Mecreator = vMatStructEntryOr.Enorcreator,
-                        Meid = vMatStructEntryOr.Enormeid,
-                        Mesid = (short)vMatStructEntryOr.Enormesid,
-                        Standid = (short)pass.PassNo,
+                        MeCreator = vMatStructEntryOr.EnOrCreator,
+                        MeId = vMatStructEntryOr.EnOrMeId,
+                        MesId = (short)vMatStructEntryOr.EnOrMesId,
+                        StandId = (short)pass.PassNo,
                         Source = "M",
                     };
-                    context.Spord2pcstands.Add(spord2pcstandM);
+                    context.SpOrd2PcStands.Add(spOrd2PcStandM);
                 }
 
-                spord2pcstandM.Relprofile = pass.RelProfile?.M;
-                spord2pcstandM.Profile = pass.Profile?.M;
-                spord2pcstandM.Wcrown = pass.Wear?.M;
+                spOrd2PcStandM.RelProfile = pass.RelProfile?.M;
+                spOrd2PcStandM.Profile = pass.Profile?.M;
+                spOrd2PcStandM.WCrown = pass.Wear?.M;
 
             }
             await context.SaveChangesAsync();
@@ -713,29 +713,29 @@ namespace WebHMI.Services
         {
             var context = _prdbContextProvider.GetDbContext();
 
-            var dirFmPfcParaPassManuals = await context.Dirfmpfcparappasses.Where(x => x.Meid == vMatStructEntryOr.Enormeid && x.Source == "M").ToListAsync();
+            var dirFmPfcParaPassManuals = await context.DirFmPfcParaPpasses.Where(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M").ToListAsync();
 
             foreach (var pass in input.PassScheduleDtos.OrderByDescending(x => x.PassNo))
             {
-                var dirFmPfcParaPassM = dirFmPfcParaPassManuals.FirstOrDefault(x => x.Passno == pass.PassNo);
+                var dirFmPfcParaPassM = dirFmPfcParaPassManuals.FirstOrDefault(x => x.PassNo == pass.PassNo);
                 if (dirFmPfcParaPassM == null)
                 {
-                    dirFmPfcParaPassM = new Dirfmpfcparappass()
+                    dirFmPfcParaPassM = new DirFmPfcParaPpass()
                     {
-                        Mecreator = vMatStructEntryOr.Enorcreator,
-                        Meid = vMatStructEntryOr.Enormeid,
-                        Mesid = (short)vMatStructEntryOr.Enormesid,
-                        Passno = pass.PassNo,
+                        MeCreator = vMatStructEntryOr.EnOrCreator,
+                        MeId = vMatStructEntryOr.EnOrMeId,
+                        MesId = (short)vMatStructEntryOr.EnOrMesId,
+                        PassNo = pass.PassNo,
                         Source = "M",
                     };
-                    context.Dirfmpfcparappasses.Add(dirFmPfcParaPassM);
+                    context.DirFmPfcParaPpasses.Add(dirFmPfcParaPassM);
                 }
 
-                dirFmPfcParaPassM.Fbul = pass.Fbul?.M;
-                dirFmPfcParaPassM.Fbll = pass.Fbll?.M;
-                dirFmPfcParaPassM.Srul = pass.Srul?.M;
-                dirFmPfcParaPassM.Srll = pass.Srll?.M;
-                dirFmPfcParaPassM.Observedflat = pass.ObservedFlat?.M;
+                dirFmPfcParaPassM.FbUl = pass.Fbul?.M;
+                dirFmPfcParaPassM.FbLl = pass.Fbll?.M;
+                dirFmPfcParaPassM.SrUl = pass.Srul?.M;
+                dirFmPfcParaPassM.SrLl = pass.Srll?.M;
+                dirFmPfcParaPassM.ObservedFlat = pass.ObservedFlat?.M;
 
             }
             await context.SaveChangesAsync();
@@ -745,46 +745,46 @@ namespace WebHMI.Services
         {
             var context = _prdbContextProvider.GetDbContext();
 
-            var dirFmPfcCycShiftPassManuals = await context.Dirfmpfccycshiftppasses.Where(x => x.Meid == vMatStructEntryOr.Enormeid && x.Source == "M").ToListAsync();
+            var dirFmPfcCycShiftPassManuals = await context.DirFmPfcCycShiftPpasses.Where(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M").ToListAsync();
 
             foreach (var pass in input.ShiftingDtos.OrderByDescending(x => x.PassNo))
             {
-                var dirFmPfcCycShiftPassM = dirFmPfcCycShiftPassManuals.FirstOrDefault(x => x.Passno == pass.PassNo);
+                var dirFmPfcCycShiftPassM = dirFmPfcCycShiftPassManuals.FirstOrDefault(x => x.PassNo == pass.PassNo);
                 if (dirFmPfcCycShiftPassM == null)
                 {
-                    dirFmPfcCycShiftPassM = new Dirfmpfccycshiftppass()
+                    dirFmPfcCycShiftPassM = new DirFmPfcCycShiftPpass()
                     {
-                        Mecreator = vMatStructEntryOr.Enorcreator,
-                        Meid = vMatStructEntryOr.Enormeid,
-                        Mesid = (short)vMatStructEntryOr.Enormesid,
-                        Passno = pass.PassNo,
+                        MeCreator = vMatStructEntryOr.EnOrCreator,
+                        MeId = vMatStructEntryOr.EnOrMeId,
+                        MesId = (short)vMatStructEntryOr.EnOrMesId,
+                        PassNo = pass.PassNo,
                         Source = "M",
                     };
-                    context.Dirfmpfccycshiftppasses.Add(dirFmPfcCycShiftPassM);
+                    context.DirFmPfcCycShiftPpasses.Add(dirFmPfcCycShiftPassM);
                 }
 
-                dirFmPfcCycShiftPassM.Csmaxlimit = pass.CsMaxLimit?.M;
-                dirFmPfcCycShiftPassM.Csminlimit = pass.CsMinLimit?.M;
-                dirFmPfcCycShiftPassM.Csstartpos = pass.CsStartPos?.M;
-                dirFmPfcCycShiftPassM.Csshiftdir = pass.CsShiftDir?.M;
-                dirFmPfcCycShiftPassM.Csshiftstep1 = pass.CsShiftStep1?.M;
-                dirFmPfcCycShiftPassM.Csshiftstep2 = pass.CsShiftStep2?.M;
-                dirFmPfcCycShiftPassM.Csshiftstep3 = pass.CsShiftStep3?.M;
+                dirFmPfcCycShiftPassM.CSmaxLimit = pass.CsMaxLimit?.M;
+                dirFmPfcCycShiftPassM.CSminLimit = pass.CsMinLimit?.M;
+                dirFmPfcCycShiftPassM.CSstartPos = pass.CsStartPos?.M;
+                dirFmPfcCycShiftPassM.CSshiftDir = pass.CsShiftDir?.M;
+                dirFmPfcCycShiftPassM.CSshiftStep1 = pass.CsShiftStep1?.M;
+                dirFmPfcCycShiftPassM.CSshiftStep2 = pass.CsShiftStep2?.M;
+                dirFmPfcCycShiftPassM.CSshiftStep3 = pass.CsShiftStep3?.M;
                 dirFmPfcCycShiftPassM.Description =pass.Description?.M ;
-                dirFmPfcCycShiftPassM.Manint =pass.Manint?.M ;
-                dirFmPfcCycShiftPassM.Toextid =pass.Toextid?.M ;
-                dirFmPfcCycShiftPassM.CsmaxlimitparabolicInd0 =pass.CsmaxlimitparabolicInd0?.M ;
-                dirFmPfcCycShiftPassM.CsmaxlimitparabolicInd1 =pass.CsmaxlimitparabolicInd1?.M ;
-                dirFmPfcCycShiftPassM.CsmaxlimitparabolicInd2 =pass.CsmaxlimitparabolicInd2?.M ;
-                dirFmPfcCycShiftPassM.CsminlimitparabolicInd0 =pass.CsminlimitparabolicInd0?.M ;
-                dirFmPfcCycShiftPassM.CsminlimitparabolicInd1 =pass.CsminlimitparabolicInd1?.M ;
-                dirFmPfcCycShiftPassM.CsminlimitparabolicInd2 =pass.CsminlimitparabolicInd2?.M ;
-                dirFmPfcCycShiftPassM.CsstepparabolicInd0 =pass.CsstepparabolicInd0?.M ;
-                dirFmPfcCycShiftPassM.CsstepparabolicInd1 =pass.CsstepparabolicInd1?.M ;
-                dirFmPfcCycShiftPassM.CsstepparabolicInd2 =pass.CsstepparabolicInd2?.M ;
-                dirFmPfcCycShiftPassM.CsstepsmartcrownInd0 =pass.CsstepsmartcrownInd0?.M ;
-                dirFmPfcCycShiftPassM.CsstepsmartcrownInd1 =pass.CsstepsmartcrownInd1?.M ;
-                dirFmPfcCycShiftPassM.CsstepsmartcrownInd2 =pass.CsstepsmartcrownInd2?.M ;
+                dirFmPfcCycShiftPassM.ManInt =pass.Manint?.M ;
+                dirFmPfcCycShiftPassM.ToExtId =pass.Toextid?.M ;
+                dirFmPfcCycShiftPassM.CSmaxLimitParabolicInd0 =pass.CsmaxlimitparabolicInd0?.M ;
+                dirFmPfcCycShiftPassM.CSmaxLimitParabolicInd1 =pass.CsmaxlimitparabolicInd1?.M ;
+                dirFmPfcCycShiftPassM.CSmaxLimitParabolicInd2 =pass.CsmaxlimitparabolicInd2?.M ;
+                dirFmPfcCycShiftPassM.CSminLimitParabolicInd0 =pass.CsminlimitparabolicInd0?.M ;
+                dirFmPfcCycShiftPassM.CSminLimitParabolicInd1 =pass.CsminlimitparabolicInd1?.M ;
+                dirFmPfcCycShiftPassM.CSminLimitParabolicInd2 =pass.CsminlimitparabolicInd2?.M ;
+                dirFmPfcCycShiftPassM.CSstepParabolicInd0 =pass.CsstepparabolicInd0?.M ;
+                dirFmPfcCycShiftPassM.CSstepParabolicInd1 =pass.CsstepparabolicInd1?.M ;
+                dirFmPfcCycShiftPassM.CSstepParabolicInd2 =pass.CsstepparabolicInd2?.M ;
+                dirFmPfcCycShiftPassM.CSstepSmartCrownInd0 =pass.CsstepsmartcrownInd0?.M ;
+                dirFmPfcCycShiftPassM.CSstepSmartCrownInd1 =pass.CsstepsmartcrownInd1?.M ;
+                dirFmPfcCycShiftPassM.CSstepSmartCrownInd2 =pass.CsstepsmartcrownInd2?.M ;
 
             }
             await context.SaveChangesAsync();
@@ -794,30 +794,30 @@ namespace WebHMI.Services
         {
             var context = _prdbContextProvider.GetDbContext();
 
-            var dirFmPfcParaPassManuals = await context.Dirfmpfcparappasses.Where(x => x.Meid == vMatStructEntryOr.Enormeid && x.Source == "M").ToListAsync();
+            var dirFmPfcParaPassManuals = await context.DirFmPfcParaPpasses.Where(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M").ToListAsync();
 
             foreach (var pass in input.FlatnessDtos.OrderByDescending(x => x.PassNo))
             {
-                var dirFmPfcParaPassM = dirFmPfcParaPassManuals.FirstOrDefault(x => x.Passno == pass.PassNo);
+                var dirFmPfcParaPassM = dirFmPfcParaPassManuals.FirstOrDefault(x => x.PassNo == pass.PassNo);
                 if (dirFmPfcParaPassM == null)
                 {
-                    dirFmPfcParaPassM = new Dirfmpfcparappass()
+                    dirFmPfcParaPassM = new DirFmPfcParaPpass()
                     {
-                        Mecreator = vMatStructEntryOr.Enorcreator,
-                        Meid = vMatStructEntryOr.Enormeid,
-                        Mesid = (short)vMatStructEntryOr.Enormesid,
-                        Passno = pass.PassNo,
+                        MeCreator = vMatStructEntryOr.EnOrCreator,
+                        MeId = vMatStructEntryOr.EnOrMeId,
+                        MesId = (short)vMatStructEntryOr.EnOrMesId,
+                        PassNo = pass.PassNo,
                         Source = "M",
                     };
-                    context.Dirfmpfcparappasses.Add(dirFmPfcParaPassM);
+                    context.DirFmPfcParaPpasses.Add(dirFmPfcParaPassM);
                 }
-
-                dirFmPfcParaPassM.Fbul = pass.Fbul?.M;
-                dirFmPfcParaPassM.Fbll = pass.Fbll?.M;
-                dirFmPfcParaPassM.Srul = pass.Srul?.M;
-                dirFmPfcParaPassM.Srll = pass.Srll?.M;
-                dirFmPfcParaPassM.Facdfbdfr = pass.Facdfbdfr?.M;
-                dirFmPfcParaPassM.Facdfbdiu = pass.Facdfbdiu?.M;
+                
+                dirFmPfcParaPassM.FbUl = pass.Fbul?.M;
+                dirFmPfcParaPassM.FbLl = pass.Fbll?.M;
+                dirFmPfcParaPassM.SrUl = pass.Srul?.M;
+                dirFmPfcParaPassM.SrLl = pass.Srll?.M;
+                dirFmPfcParaPassM.FacDfbDfr = pass.Facdfbdfr?.M;
+                dirFmPfcParaPassM.FacDfbDiu = pass.Facdfbdiu?.M;
 
             }
             await context.SaveChangesAsync();
@@ -827,26 +827,26 @@ namespace WebHMI.Services
         {
             var context = _prdbContextProvider.GetDbContext();
 
-            var srpManual = await context.Srps.Where(x => x.Meid == vMatStructEntryOr.Enormeid && x.Source == "E").FirstOrDefaultAsync();
+            var srpManual = await context.Srps.Where(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "E").FirstOrDefaultAsync();
 
-            var srpPassManuals = await context.Srppasses.Where(x => x.Meid == vMatStructEntryOr.Enormeid && x.Source == "M").ToListAsync();
+            var srpPassManuals = await context.Srppasses.Where(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M").ToListAsync();
 
             foreach (var pass in input.TaperShiftingDtos.OrderByDescending(x => x.PassNo))
             {
-                var srpPassM = srpPassManuals.FirstOrDefault(x => x.Passno == pass.PassNo);
+                var srpPassM = srpPassManuals.FirstOrDefault(x => x.PassNo == pass.PassNo);
                 if (srpPassM == null)
                 {
                     srpPassM = new Srppass()
                     {
-                        Mecreator = vMatStructEntryOr.Enorcreator,
-                        Meid = vMatStructEntryOr.Enormeid,
-                        Mesid = (short)vMatStructEntryOr.Enormesid,
-                        Passno = pass.PassNo,
+                        MeCreator = vMatStructEntryOr.EnOrCreator,
+                        MeId = vMatStructEntryOr.EnOrMeId,
+                        MesId = (short)vMatStructEntryOr.EnOrMesId,
+                        PassNo = pass.PassNo,
                         Source = "M",
                     };
                     context.Srppasses.Add(srpPassM);
                 }
-                srpPassM.Planno = srpManual?.Planno;
+                srpPassM.PlanNo = srpManual?.PlanNo;
                 srpPassM.Model = pass.Model?.M;
             }
 
@@ -859,46 +859,46 @@ namespace WebHMI.Services
             string[] sources = ["L", "M", "S", "E"];
             var setpointsHFMBlob = new SetpointsHFMDataBlob()
             {
-                Srps = await _prdbContext.Srps.Where(x => x.Meid == hmiVEntryMatStruct.Enormeid && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
-                Srppasses = await _prdbContext.Srppasses.Where(x => x.Meid == hmiVEntryMatStruct.Enormeid && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
-                Spord2pcstands = await _prdbContext.Spord2pcstands.Where(x => x.Meid == hmiVEntryMatStruct.Enormeid && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
-                Aoppasses = await _prdbContext.Aoppasses.Where(x => x.Meid == hmiVEntryMatStruct.Enormeid && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
-                Iscpasses = await _prdbContext.Iscppasses.Where(x => x.Meid == hmiVEntryMatStruct.Enormeid && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
-                Rcppasses = await _prdbContext.Rcppasses.Where(x => x.Meid == hmiVEntryMatStruct.Enormeid && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
-                Lppasses = await _prdbContext.Lppasses.Where(x => x.Meid == hmiVEntryMatStruct.Enormeid && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
-                Tppasses = await _prdbContext.Tppasses.Where(x => x.Meid == hmiVEntryMatStruct.Enormeid && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
-                Rglppasses = await _prdbContext.Rglppasses.Where(x => x.Meid == hmiVEntryMatStruct.Enormeid && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
-                Dirfmpfccycshiftps = await _prdbContext.Dirfmpfccycshiftps.Where(x => x.Meid == hmiVEntryMatStruct.Enormeid && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
-                Dirfmpfccycshiftppasses = await _prdbContext.Dirfmpfccycshiftppasses.Where(x => x.Meid == hmiVEntryMatStruct.Enormeid && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
-                Iscps = await _prdbContext.Iscps.Where(x => x.Meid == hmiVEntryMatStruct.Enormeid && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
-                Rglps = await _prdbContext.Rglps.Where(x => x.Meid == hmiVEntryMatStruct.Enormeid && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
-                Tps = await _prdbContext.Tps.Where(x => x.Meid == hmiVEntryMatStruct.Enormeid && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
-                Rcps = await _prdbContext.Rcps.Where(x => x.Meid == hmiVEntryMatStruct.Enormeid && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
-                Lps = await _prdbContext.Lps.Where(x => x.Meid == hmiVEntryMatStruct.Enormeid && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
-                Spord2pcs = await _prdbContext.Spord2pcs.Where(x => x.Meid == hmiVEntryMatStruct.Enormeid && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
-                Edordents = await _prdbContext.Edordents.Where(x => x.Meid == hmiVEntryMatStruct.Enormeid && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
-                Edphyents = await _prdbContext.Edphyents.Where(x => x.Meid == hmiVEntryMatStruct.Enormeid && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
-                Edlogents = await _prdbContext.Edlogents.Where(x => x.Meid == hmiVEntryMatStruct.Enormeid && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
-                Mes = await _prdbContext.Mes.Where(x => x.Meid == hmiVEntryMatStruct.Enormeid).AsNoTracking().ToListAsync(),
-                DirFmPfcParaPs = await _prdbContext.Dirfmpfcparaps.Where(x => x.Meid == hmiVEntryMatStruct.Enormeid && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
-                DirFmPfcParapPasses = await _prdbContext.Dirfmpfcparappasses.Where(x => x.Meid == hmiVEntryMatStruct.Enormeid && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
-                DpFms = await _prdbContext.Dpfms.Where(x => x.Meid == hmiVEntryMatStruct.Enormeid && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
-                Dprampfms = await _prdbContext.Dprampfms.Where(x => x.Meid == hmiVEntryMatStruct.Enormeid && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
-                Adord2PC = await _prdbContext.Adord2pcs.Where(x=>x.Meid == hmiVEntryMatStruct.Enormeid && x.Source == "S").FirstOrDefaultAsync(),
-                Adord2PCStands = await _prdbContext.Adord2pcstands.Where(x=>x.Meid == hmiVEntryMatStruct.Enormeid && x.Source == "S").ToListAsync(),
-                StatSpord2pcstands = await _prdbContext.StatSpord2pcstands.Where(x => x.Meid == hmiVEntryMatStruct.Enormeid && x.Source =="E").AsNoTracking().ToListAsync(),
-                StatLppasses = await _prdbContext.StatLppasses.Where(x => x.Meid == hmiVEntryMatStruct.Enormeid && x.Source =="E").AsNoTracking().ToListAsync(),
-                StatDirfmpfccycshiftps = await _prdbContext.StatDirfmpfccycshiftps.Where(x => x.Meid == hmiVEntryMatStruct.Enormeid && x.Source =="E").AsNoTracking().FirstOrDefaultAsync(),
-                StatDirfmpfccycshiftppasses = await _prdbContext.StatDirfmpfccycshiftppasses.Where(x => x.Meid == hmiVEntryMatStruct.Enormeid && x.Source =="E").AsNoTracking().ToListAsync(),
-                StatSpord2pcs = await _prdbContext.StatSpord2pcs.Where(x => x.Meid == hmiVEntryMatStruct.Enormeid && x.Source =="E").AsNoTracking().FirstOrDefaultAsync(),
-                StatEdordents = await _prdbContext.StatEdordents.Where(x => x.Meid == hmiVEntryMatStruct.Enormeid && x.Source =="E").AsNoTracking().FirstOrDefaultAsync(),
-                StatEdphyents = await _prdbContext.StatEdphyents.Where(x => x.Meid == hmiVEntryMatStruct.Enormeid && x.Source =="E").AsNoTracking().FirstOrDefaultAsync(),
-                StatEdlogents = await _prdbContext.StatEdlogents.Where(x => x.Meid == hmiVEntryMatStruct.Enormeid && x.Source =="E").AsNoTracking().FirstOrDefaultAsync(),
-                StatDirFmPfcParaPs = await _prdbContext.StatDirfmpfcparaps.Where(x => x.Meid == hmiVEntryMatStruct.Enormeid && x.Source =="E").AsNoTracking().FirstOrDefaultAsync(),
-                StatDirFmPfcParapPasses = await _prdbContext.StatDirfmpfcparappasses.Where(x => x.Meid == hmiVEntryMatStruct.Enormeid && x.Source =="E").AsNoTracking().ToListAsync(),
-                StatAdord2PC = await _prdbContext.StatAdord2pcs.Where(x => x.Meid == hmiVEntryMatStruct.Enormeid && x.Source == "M").FirstOrDefaultAsync(),
-                StatAdord2PCStands = await _prdbContext.StatAdord2pcstands.Where(x => x.Meid == hmiVEntryMatStruct.Enormeid && x.Source == "M").ToListAsync(),
-                Ihps = await _prdbContext.Ihps.Where(x=>x.Meid == hmiVEntryMatStruct.Enormeid && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
+                Srps = await _prdbContext.Srps.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
+                Srppasses = await _prdbContext.Srppasses.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
+                Spord2pcstands = await _prdbContext.SpOrd2PcStands.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
+                Aoppasses = await _prdbContext.Aoppasses.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
+                Iscpasses = await _prdbContext.Iscppasses.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
+                Rcppasses = await _prdbContext.Rcppasses.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
+                Lppasses = await _prdbContext.Lppasses.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
+                Tppasses = await _prdbContext.Tppasses.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
+                Rglppasses = await _prdbContext.Rglppasses.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
+                Dirfmpfccycshiftps = await _prdbContext.DirFmPfcCycShiftPs.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
+                Dirfmpfccycshiftppasses = await _prdbContext.DirFmPfcCycShiftPpasses.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
+                Iscps = await _prdbContext.Iscps.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
+                Rglps = await _prdbContext.Rglps.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
+                Tps = await _prdbContext.Tps.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
+                Rcps = await _prdbContext.Rcps.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
+                Lps = await _prdbContext.Lps.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
+                Spord2pcs = await _prdbContext.SpOrd2Pcs.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
+                Edordents = await _prdbContext.EdOrdEnts.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
+                Edphyents = await _prdbContext.EdPhyEnts.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
+                Edlogents = await _prdbContext.EdLogEnts.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
+                Mes = await _prdbContext.Mes.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId).AsNoTracking().ToListAsync(),
+                DirFmPfcParaPs = await _prdbContext.DirFmPfcParaPs.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
+                DirFmPfcParapPasses = await _prdbContext.DirFmPfcParaPpasses.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
+                DpFms = await _prdbContext.Dpfms.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
+                Dprampfms = await _prdbContext.DprampFms.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
+                Adord2PC = await _prdbContext.AdOrd2Pcs.Where(x=>x.MeId == hmiVEntryMatStruct.EnOrMeId && x.Source == "S").FirstOrDefaultAsync(),
+                Adord2PCStands = await _prdbContext.AdOrd2PcStands.Where(x=>x.MeId == hmiVEntryMatStruct.EnOrMeId && x.Source == "S").ToListAsync(),
+                StatSpord2pcstands = await _prdbContext.StatSpOrd2PcStands.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && x.Source =="E").AsNoTracking().ToListAsync(),
+                StatLppasses = await _prdbContext.StatLppasses.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && x.Source =="E").AsNoTracking().ToListAsync(),
+                StatDirfmpfccycshiftps = await _prdbContext.StatDirFmPfcCycShiftPs.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && x.Source =="E").AsNoTracking().FirstOrDefaultAsync(),
+                StatDirfmpfccycshiftppasses = await _prdbContext.StatDirFmPfcCycShiftPpasses.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && x.Source =="E").AsNoTracking().ToListAsync(),
+                StatSpord2pcs = await _prdbContext.StatSpOrd2Pcs.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && x.Source =="E").AsNoTracking().FirstOrDefaultAsync(),
+                StatEdordents = await _prdbContext.StatEdOrdEnts.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && x.Source =="E").AsNoTracking().FirstOrDefaultAsync(),
+                StatEdphyents = await _prdbContext.StatEdPhyEnts.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && x.Source =="E").AsNoTracking().FirstOrDefaultAsync(),
+                StatEdlogents = await _prdbContext.StatEdLogEnts.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && x.Source =="E").AsNoTracking().FirstOrDefaultAsync(),
+                StatDirFmPfcParaPs = await _prdbContext.StatDirFmPfcParaPs.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && x.Source =="E").AsNoTracking().FirstOrDefaultAsync(),
+                StatDirFmPfcParapPasses = await _prdbContext.StatDirFmPfcParaPpasses.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && x.Source =="E").AsNoTracking().ToListAsync(),
+                StatAdord2PC = await _prdbContext.StatAdOrd2Pcs.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && x.Source == "M").FirstOrDefaultAsync(),
+                StatAdord2PCStands = await _prdbContext.StatAdOrd2PcStands.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && x.Source == "M").ToListAsync(),
+                Ihps = await _prdbContext.Ihps.Where(x=>x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
             };
 
             return setpointsHFMBlob;
@@ -911,37 +911,37 @@ namespace WebHMI.Services
 
             return new SetpointsHFMApxDataBlob
             {
-                Srps = await _prdbContext.Srps.Where(x => x.Meid == hmiVEntryMatStruct.Enormeid && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
-                Spord2pcs = await _prdbContext.Spord2pcs.Where(x => x.Meid == hmiVEntryMatStruct.Enormeid && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
-                Edordents = await _prdbContext.Edordents.Where(x => x.Meid == hmiVEntryMatStruct.Enormeid && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
-                Edphyents = await _prdbContext.Edphyents.Where(x => x.Meid == hmiVEntryMatStruct.Enphmeid && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
-                Edlogents = await _prdbContext.Edlogents.Where(x => x.Meid == hmiVEntryMatStruct.Enlomeid && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
-                DirFmPfcParaPs = await _prdbContext.Dirfmpfcparaps.Where(x => x.Meid == hmiVEntryMatStruct.Enormeid && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
-                Srppasses = await _prdbContext.Srppasses.Where(x => x.Meid == hmiVEntryMatStruct.Enormeid && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
-                Wmppasses = await _prdbContext.Wmppasses.Where(x => x.Meid == hmiVEntryMatStruct.Enormeid && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
-                Spord2pcstands = await _prdbContext.Spord2pcstands.Where(x => x.Meid == hmiVEntryMatStruct.Enormeid && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
-                Lppasses = await _prdbContext.Lppasses.Where(x => x.Meid == hmiVEntryMatStruct.Enormeid && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
-                Dirfmpfccycshiftppasses = await _prdbContext.Dirfmpfccycshiftppasses.Where(x => x.Meid == hmiVEntryMatStruct.Enormeid && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
-                Dirfmpfccycshiftps = await _prdbContext.Dirfmpfccycshiftps.Where(x => x.Meid == hmiVEntryMatStruct.Enormeid && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
-                Lps = await _prdbContext.Lps.Where(x => x.Meid == hmiVEntryMatStruct.Enormeid && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
-                Adord2Pc = await _prdbContext.Adord2pcs.Where(x => x.Meid == hmiVEntryMatStruct.Enormeid && x.Source == "S").FirstOrDefaultAsync(),
-                Adord2PcStands = await _prdbContext.Adord2pcstands.Where(x => x.Meid == hmiVEntryMatStruct.Enormeid && x.Source == "S").ToListAsync(),
-                Ihps = await _prdbContext.Ihps.Where(x => x.Meid == hmiVEntryMatStruct.Enormeid && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
-                DirFmPfcParaPasses = await _prdbContext.Dirfmpfcparappasses.Where(x => x.Meid == hmiVEntryMatStruct.Enormeid && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
+                Srps = await _prdbContext.Srps.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
+                Spord2pcs = await _prdbContext.SpOrd2Pcs.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
+                Edordents = await _prdbContext.EdOrdEnts.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
+                Edphyents = await _prdbContext.EdPhyEnts.Where(x => x.MeId == hmiVEntryMatStruct.EnPhMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
+                Edlogents = await _prdbContext.EdLogEnts.Where(x => x.MeId == hmiVEntryMatStruct.EnLoMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
+                DirFmPfcParaPs = await _prdbContext.DirFmPfcParaPs.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
+                Srppasses = await _prdbContext.Srppasses.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
+                Wmppasses = await _prdbContext.Wmppasses.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
+                Spord2pcstands = await _prdbContext.SpOrd2PcStands.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
+                Lppasses = await _prdbContext.Lppasses.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
+                Dirfmpfccycshiftppasses = await _prdbContext.DirFmPfcCycShiftPpasses.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
+                Dirfmpfccycshiftps = await _prdbContext.DirFmPfcCycShiftPs.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
+                Lps = await _prdbContext.Lps.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
+                Adord2Pc = await _prdbContext.AdOrd2Pcs.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && x.Source == "S").FirstOrDefaultAsync(),
+                Adord2PcStands = await _prdbContext.AdOrd2PcStands.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && x.Source == "S").ToListAsync(),
+                Ihps = await _prdbContext.Ihps.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
+                DirFmPfcParaPasses = await _prdbContext.DirFmPfcParaPpasses.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
 
 
-                StatSpord2pcs = await _prdbContext.StatSpord2pcs.Where(x => x.Meid == hmiVEntryMatStruct.Enormeid && x.Source == "E").AsNoTracking().FirstOrDefaultAsync(),
-                StatEdordents = await _prdbContext.StatEdordents.Where(x => x.Meid == hmiVEntryMatStruct.Enormeid && x.Source == "E").AsNoTracking().FirstOrDefaultAsync(),
-                StatEdphyents = await _prdbContext.StatEdphyents.Where(x => x.Meid == hmiVEntryMatStruct.Enphmeid && x.Source == "E").AsNoTracking().FirstOrDefaultAsync(),
-                StatEdlogents = await _prdbContext.StatEdlogents.Where(x => x.Meid == hmiVEntryMatStruct.Enlomeid && x.Source == "E").AsNoTracking().FirstOrDefaultAsync(),
-                StatDirFmPfcParaPs = await _prdbContext.StatDirfmpfcparaps.Where(x => x.Meid == hmiVEntryMatStruct.Enormeid && x.Source == "E").AsNoTracking().FirstOrDefaultAsync(),
-                StatSpord2pcstands = await _prdbContext.StatSpord2pcstands.Where(x => x.Meid == hmiVEntryMatStruct.Enormeid && x.Source == "E").AsNoTracking().ToListAsync(),
-                StatLppasses = await _prdbContext.StatLppasses.Where(x => x.Meid == hmiVEntryMatStruct.Enormeid && x.Source == "E").AsNoTracking().ToListAsync(),
-                StatDirfmpfccycshiftppasses = await _prdbContext.StatDirfmpfccycshiftppasses.Where(x => x.Meid == hmiVEntryMatStruct.Enormeid && x.Source == "E").AsNoTracking().ToListAsync(),
-                StatDirfmpfccycshiftps = await _prdbContext.StatDirfmpfccycshiftps.Where(x => x.Meid == hmiVEntryMatStruct.Enormeid && x.Source == "E").AsNoTracking().FirstOrDefaultAsync(),
-                StatAdord2Pc = await _prdbContext.StatAdord2pcs.Where(x => x.Meid == hmiVEntryMatStruct.Enormeid && x.Source == "E").FirstOrDefaultAsync(),
-                StatAdord2PcStands = await _prdbContext.StatAdord2pcstands.Where(x => x.Meid == hmiVEntryMatStruct.Enormeid && x.Source == "E").ToListAsync(),
-                StatDirFmPfcParaPasses = await _prdbContext.StatDirfmpfcparappasses.Where(x => x.Meid == hmiVEntryMatStruct.Enormeid && x.Source == "E").ToListAsync()
+                StatSpord2pcs = await _prdbContext.StatSpOrd2Pcs.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && x.Source == "E").AsNoTracking().FirstOrDefaultAsync(),
+                StatEdordents = await _prdbContext.StatEdOrdEnts.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && x.Source == "E").AsNoTracking().FirstOrDefaultAsync(),
+                StatEdphyents = await _prdbContext.StatEdPhyEnts.Where(x => x.MeId == hmiVEntryMatStruct.EnPhMeId && x.Source == "E").AsNoTracking().FirstOrDefaultAsync(),
+                StatEdlogents = await _prdbContext.StatEdLogEnts.Where(x => x.MeId == hmiVEntryMatStruct.EnLoMeId && x.Source == "E").AsNoTracking().FirstOrDefaultAsync(),
+                StatDirFmPfcParaPs = await _prdbContext.StatDirFmPfcParaPs.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && x.Source == "E").AsNoTracking().FirstOrDefaultAsync(),
+                StatSpord2pcstands = await _prdbContext.StatSpOrd2PcStands.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && x.Source == "E").AsNoTracking().ToListAsync(),
+                StatLppasses = await _prdbContext.StatLppasses.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && x.Source == "E").AsNoTracking().ToListAsync(),
+                StatDirfmpfccycshiftppasses = await _prdbContext.StatDirFmPfcCycShiftPpasses.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && x.Source == "E").AsNoTracking().ToListAsync(),
+                StatDirfmpfccycshiftps = await _prdbContext.StatDirFmPfcCycShiftPs.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && x.Source == "E").AsNoTracking().FirstOrDefaultAsync(),
+                StatAdord2Pc = await _prdbContext.StatAdOrd2Pcs.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && x.Source == "E").FirstOrDefaultAsync(),
+                StatAdord2PcStands = await _prdbContext.StatAdOrd2PcStands.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && x.Source == "E").ToListAsync(),
+                StatDirFmPfcParaPasses = await _prdbContext.StatDirFmPfcParaPpasses.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && x.Source == "E").ToListAsync()
             };
         }
     }

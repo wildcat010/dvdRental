@@ -42,22 +42,22 @@ namespace WebHMI.Services
                                 select new FlattenedMessage
                                 {
                                     Code = index.Descr,
-                                    NeedConfirmation = index.Needconfirm ?? false,
+                                    NeedConfirmation = index.NeedConfirm ?? false,
                                     Level = MapAlarmLevel(index.Severity),
 
                                     Language = format.Lang,
                                     Value = format.Format,
 
-                                    Id = data.Entryid,
-                                    ConfirmedAt = data.Confirmedat,
-                                    ConfirmedBy = data.Confirmedby,
-                                    Description = data.Userdata3,
+                                    Id = data.EntryId,
+                                    ConfirmedAt = data.ConfirmedAt,
+                                    ConfirmedBy = data.ConfirmedBy,
+                                    Description = data.UserData3,
 
-                                    UserData1 = data.Userdata1,
-                                    UserData2 = data.Userdata2,
-                                    UserData3 = data.Userdata3,
+                                    UserData1 = data.UserData1,
+                                    UserData2 = data.UserData2,
+                                    UserData3 = data.UserData3,
                                     CreationTime = data.Clock,
-                                    Owner = data.Logorigin,
+                                    Owner = data.LogOrigin,
                                     LogIndexId = data.Id,
 
                                     MessageSource = MessageSource.Prdb

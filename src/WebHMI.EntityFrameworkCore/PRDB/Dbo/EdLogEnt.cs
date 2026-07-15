@@ -3,196 +3,481 @@ using System.Collections.Generic;
 
 namespace WebHMI.PRDB.Dbo;
 
-public partial class Edlogent
+public partial class EdLogEnt
 {
-    public string Mecreator { get; set; }
+    /// <summary>
+    /// Material owner
+    /// </summary>
+    public string MeCreator { get; set; }
 
-    public int Meid { get; set; }
+    /// <summary>
+    /// Material idendification number
+    /// </summary>
+    public int MeId { get; set; }
 
-    public short Mesid { get; set; }
+    /// <summary>
+    /// Line status
+    /// </summary>
+    public short MesId { get; set; }
 
+    /// <summary>
+    /// owner
+    /// </summary>
     public string Source { get; set; }
 
-    public string Alloycode { get; set; }
-
-    public string AlloynameInd00 { get; set; }
-
-    public string AlloynameInd01 { get; set; }
-
-    public string AlloynameInd02 { get; set; }
-
-    public string AlloynameInd03 { get; set; }
-
-    public string AlloynameInd04 { get; set; }
-
-    public string AlloynameInd05 { get; set; }
-
-    public string AlloynameInd06 { get; set; }
-
-    public string AlloynameInd07 { get; set; }
-
-    public string AlloynameInd08 { get; set; }
-
-    public string AlloynameInd09 { get; set; }
-
-    public string AlloynameInd10 { get; set; }
-
-    public string AlloynameInd11 { get; set; }
-
-    public string AlloynameInd12 { get; set; }
-
-    public string AlloynameInd13 { get; set; }
-
-    public string AlloynameInd14 { get; set; }
-
-    public string AlloynameInd15 { get; set; }
-
-    public string AlloynameInd16 { get; set; }
-
-    public string AlloynameInd17 { get; set; }
-
-    public string AlloynameInd18 { get; set; }
-
-    public string AlloynameInd19 { get; set; }
-
-    public string AlloynameInd20 { get; set; }
-
-    public string AlloynameInd21 { get; set; }
-
-    public string AlloynameInd22 { get; set; }
-
-    public string AlloynameInd23 { get; set; }
-
-    public string AlloynameInd24 { get; set; }
-
-    public string AlloynameInd25 { get; set; }
-
-    public string AlloynameInd26 { get; set; }
-
-    public string AlloynameInd27 { get; set; }
-
-    public string AlloynameInd28 { get; set; }
-
-    public string AlloynameInd29 { get; set; }
-
-    public string AlloynameInd30 { get; set; }
-
-    public string AlloynameInd31 { get; set; }
-
-    public string AlloynameInd32 { get; set; }
-
-    public string AlloynameInd33 { get; set; }
-
-    public string AlloynameInd34 { get; set; }
-
-    public string AlloynameInd35 { get; set; }
-
-    public string AlloynameInd36 { get; set; }
-
-    public string AlloynameInd37 { get; set; }
-
-    public string AlloynameInd38 { get; set; }
-
-    public string AlloynameInd39 { get; set; }
-
-    public int? Alloyno { get; set; }
-
-    public short? Alloyvalid { get; set; }
-
-    public double? AlloyvalueInd00 { get; set; }
-
-    public double? AlloyvalueInd01 { get; set; }
-
-    public double? AlloyvalueInd02 { get; set; }
-
-    public double? AlloyvalueInd03 { get; set; }
-
-    public double? AlloyvalueInd04 { get; set; }
-
-    public double? AlloyvalueInd05 { get; set; }
-
-    public double? AlloyvalueInd06 { get; set; }
-
-    public double? AlloyvalueInd07 { get; set; }
-
-    public double? AlloyvalueInd08 { get; set; }
-
-    public double? AlloyvalueInd09 { get; set; }
-
-    public double? AlloyvalueInd10 { get; set; }
-
-    public double? AlloyvalueInd11 { get; set; }
-
-    public double? AlloyvalueInd12 { get; set; }
-
-    public double? AlloyvalueInd13 { get; set; }
-
-    public double? AlloyvalueInd14 { get; set; }
-
-    public double? AlloyvalueInd15 { get; set; }
-
-    public double? AlloyvalueInd16 { get; set; }
-
-    public double? AlloyvalueInd17 { get; set; }
-
-    public double? AlloyvalueInd18 { get; set; }
-
-    public double? AlloyvalueInd19 { get; set; }
-
-    public double? AlloyvalueInd20 { get; set; }
-
-    public double? AlloyvalueInd21 { get; set; }
-
-    public double? AlloyvalueInd22 { get; set; }
-
-    public double? AlloyvalueInd23 { get; set; }
-
-    public double? AlloyvalueInd24 { get; set; }
-
-    public double? AlloyvalueInd25 { get; set; }
-
-    public double? AlloyvalueInd26 { get; set; }
-
-    public double? AlloyvalueInd27 { get; set; }
-
-    public double? AlloyvalueInd28 { get; set; }
-
-    public double? AlloyvalueInd29 { get; set; }
-
-    public double? AlloyvalueInd30 { get; set; }
-
-    public double? AlloyvalueInd31 { get; set; }
-
-    public double? AlloyvalueInd32 { get; set; }
-
-    public double? AlloyvalueInd33 { get; set; }
-
-    public double? AlloyvalueInd34 { get; set; }
-
-    public double? AlloyvalueInd35 { get; set; }
-
-    public double? AlloyvalueInd36 { get; set; }
-
-    public double? AlloyvalueInd37 { get; set; }
-
-    public double? AlloyvalueInd38 { get; set; }
-
-    public double? AlloyvalueInd39 { get; set; }
-
-    public int? Analysisflag { get; set; }
-
-    public string Apskey { get; set; }
-
-    public string Castinggradecode { get; set; }
-
-    public double? Lengthlogical { get; set; }
-
+    /// <summary>
+    /// name of alloy
+    /// </summary>
+    public string AlloyCode { get; set; }
+
+    /// <summary>
+    /// Array of names for slab chemistry
+    /// </summary>
+    public string AlloyNameInd00 { get; set; }
+
+    /// <summary>
+    /// Array of names for slab chemistry
+    /// </summary>
+    public string AlloyNameInd01 { get; set; }
+
+    /// <summary>
+    /// Array of names for slab chemistry
+    /// </summary>
+    public string AlloyNameInd02 { get; set; }
+
+    /// <summary>
+    /// Array of names for slab chemistry
+    /// </summary>
+    public string AlloyNameInd03 { get; set; }
+
+    /// <summary>
+    /// Array of names for slab chemistry
+    /// </summary>
+    public string AlloyNameInd04 { get; set; }
+
+    /// <summary>
+    /// Array of names for slab chemistry
+    /// </summary>
+    public string AlloyNameInd05 { get; set; }
+
+    /// <summary>
+    /// Array of names for slab chemistry
+    /// </summary>
+    public string AlloyNameInd06 { get; set; }
+
+    /// <summary>
+    /// Array of names for slab chemistry
+    /// </summary>
+    public string AlloyNameInd07 { get; set; }
+
+    /// <summary>
+    /// Array of names for slab chemistry
+    /// </summary>
+    public string AlloyNameInd08 { get; set; }
+
+    /// <summary>
+    /// Array of names for slab chemistry
+    /// </summary>
+    public string AlloyNameInd09 { get; set; }
+
+    /// <summary>
+    /// Array of names for slab chemistry
+    /// </summary>
+    public string AlloyNameInd10 { get; set; }
+
+    /// <summary>
+    /// Array of names for slab chemistry
+    /// </summary>
+    public string AlloyNameInd11 { get; set; }
+
+    /// <summary>
+    /// Array of names for slab chemistry
+    /// </summary>
+    public string AlloyNameInd12 { get; set; }
+
+    /// <summary>
+    /// Array of names for slab chemistry
+    /// </summary>
+    public string AlloyNameInd13 { get; set; }
+
+    /// <summary>
+    /// Array of names for slab chemistry
+    /// </summary>
+    public string AlloyNameInd14 { get; set; }
+
+    /// <summary>
+    /// Array of names for slab chemistry
+    /// </summary>
+    public string AlloyNameInd15 { get; set; }
+
+    /// <summary>
+    /// Array of names for slab chemistry
+    /// </summary>
+    public string AlloyNameInd16 { get; set; }
+
+    /// <summary>
+    /// Array of names for slab chemistry
+    /// </summary>
+    public string AlloyNameInd17 { get; set; }
+
+    /// <summary>
+    /// Array of names for slab chemistry
+    /// </summary>
+    public string AlloyNameInd18 { get; set; }
+
+    /// <summary>
+    /// Array of names for slab chemistry
+    /// </summary>
+    public string AlloyNameInd19 { get; set; }
+
+    /// <summary>
+    /// Array of names for slab chemistry
+    /// </summary>
+    public string AlloyNameInd20 { get; set; }
+
+    /// <summary>
+    /// Array of names for slab chemistry
+    /// </summary>
+    public string AlloyNameInd21 { get; set; }
+
+    /// <summary>
+    /// Array of names for slab chemistry
+    /// </summary>
+    public string AlloyNameInd22 { get; set; }
+
+    /// <summary>
+    /// Array of names for slab chemistry
+    /// </summary>
+    public string AlloyNameInd23 { get; set; }
+
+    /// <summary>
+    /// Array of names for slab chemistry
+    /// </summary>
+    public string AlloyNameInd24 { get; set; }
+
+    /// <summary>
+    /// Array of names for slab chemistry
+    /// </summary>
+    public string AlloyNameInd25 { get; set; }
+
+    /// <summary>
+    /// Array of names for slab chemistry
+    /// </summary>
+    public string AlloyNameInd26 { get; set; }
+
+    /// <summary>
+    /// Array of names for slab chemistry
+    /// </summary>
+    public string AlloyNameInd27 { get; set; }
+
+    /// <summary>
+    /// Array of names for slab chemistry
+    /// </summary>
+    public string AlloyNameInd28 { get; set; }
+
+    /// <summary>
+    /// Array of names for slab chemistry
+    /// </summary>
+    public string AlloyNameInd29 { get; set; }
+
+    /// <summary>
+    /// Array of names for slab chemistry
+    /// </summary>
+    public string AlloyNameInd30 { get; set; }
+
+    /// <summary>
+    /// Array of names for slab chemistry
+    /// </summary>
+    public string AlloyNameInd31 { get; set; }
+
+    /// <summary>
+    /// Array of names for slab chemistry
+    /// </summary>
+    public string AlloyNameInd32 { get; set; }
+
+    /// <summary>
+    /// Array of names for slab chemistry
+    /// </summary>
+    public string AlloyNameInd33 { get; set; }
+
+    /// <summary>
+    /// Array of names for slab chemistry
+    /// </summary>
+    public string AlloyNameInd34 { get; set; }
+
+    /// <summary>
+    /// Array of names for slab chemistry
+    /// </summary>
+    public string AlloyNameInd35 { get; set; }
+
+    /// <summary>
+    /// Array of names for slab chemistry
+    /// </summary>
+    public string AlloyNameInd36 { get; set; }
+
+    /// <summary>
+    /// Array of names for slab chemistry
+    /// </summary>
+    public string AlloyNameInd37 { get; set; }
+
+    /// <summary>
+    /// Array of names for slab chemistry
+    /// </summary>
+    public string AlloyNameInd38 { get; set; }
+
+    /// <summary>
+    /// Array of names for slab chemistry
+    /// </summary>
+    public string AlloyNameInd39 { get; set; }
+
+    /// <summary>
+    /// Number of slab alloy values (not used for MaSteel)
+    /// </summary>
+    public int? AlloyNo { get; set; }
+
+    /// <summary>
+    /// Alloy Valid
+    /// </summary>
+    public short? AlloyValid { get; set; }
+
+    /// <summary>
+    /// Unit[%] Array of slab chemistry (measured)
+    /// </summary>
+    public double? AlloyValueInd00 { get; set; }
+
+    /// <summary>
+    /// Unit[%] Array of slab chemistry (measured)
+    /// </summary>
+    public double? AlloyValueInd01 { get; set; }
+
+    /// <summary>
+    /// Unit[%] Array of slab chemistry (measured)
+    /// </summary>
+    public double? AlloyValueInd02 { get; set; }
+
+    /// <summary>
+    /// Unit[%] Array of slab chemistry (measured)
+    /// </summary>
+    public double? AlloyValueInd03 { get; set; }
+
+    /// <summary>
+    /// Unit[%] Array of slab chemistry (measured)
+    /// </summary>
+    public double? AlloyValueInd04 { get; set; }
+
+    /// <summary>
+    /// Unit[%] Array of slab chemistry (measured)
+    /// </summary>
+    public double? AlloyValueInd05 { get; set; }
+
+    /// <summary>
+    /// Unit[%] Array of slab chemistry (measured)
+    /// </summary>
+    public double? AlloyValueInd06 { get; set; }
+
+    /// <summary>
+    /// Unit[%] Array of slab chemistry (measured)
+    /// </summary>
+    public double? AlloyValueInd07 { get; set; }
+
+    /// <summary>
+    /// Unit[%] Array of slab chemistry (measured)
+    /// </summary>
+    public double? AlloyValueInd08 { get; set; }
+
+    /// <summary>
+    /// Unit[%] Array of slab chemistry (measured)
+    /// </summary>
+    public double? AlloyValueInd09 { get; set; }
+
+    /// <summary>
+    /// Unit[%] Array of slab chemistry (measured)
+    /// </summary>
+    public double? AlloyValueInd10 { get; set; }
+
+    /// <summary>
+    /// Unit[%] Array of slab chemistry (measured)
+    /// </summary>
+    public double? AlloyValueInd11 { get; set; }
+
+    /// <summary>
+    /// Unit[%] Array of slab chemistry (measured)
+    /// </summary>
+    public double? AlloyValueInd12 { get; set; }
+
+    /// <summary>
+    /// Unit[%] Array of slab chemistry (measured)
+    /// </summary>
+    public double? AlloyValueInd13 { get; set; }
+
+    /// <summary>
+    /// Unit[%] Array of slab chemistry (measured)
+    /// </summary>
+    public double? AlloyValueInd14 { get; set; }
+
+    /// <summary>
+    /// Unit[%] Array of slab chemistry (measured)
+    /// </summary>
+    public double? AlloyValueInd15 { get; set; }
+
+    /// <summary>
+    /// Unit[%] Array of slab chemistry (measured)
+    /// </summary>
+    public double? AlloyValueInd16 { get; set; }
+
+    /// <summary>
+    /// Unit[%] Array of slab chemistry (measured)
+    /// </summary>
+    public double? AlloyValueInd17 { get; set; }
+
+    /// <summary>
+    /// Unit[%] Array of slab chemistry (measured)
+    /// </summary>
+    public double? AlloyValueInd18 { get; set; }
+
+    /// <summary>
+    /// Unit[%] Array of slab chemistry (measured)
+    /// </summary>
+    public double? AlloyValueInd19 { get; set; }
+
+    /// <summary>
+    /// Unit[%] Array of slab chemistry (measured)
+    /// </summary>
+    public double? AlloyValueInd20 { get; set; }
+
+    /// <summary>
+    /// Unit[%] Array of slab chemistry (measured)
+    /// </summary>
+    public double? AlloyValueInd21 { get; set; }
+
+    /// <summary>
+    /// Unit[%] Array of slab chemistry (measured)
+    /// </summary>
+    public double? AlloyValueInd22 { get; set; }
+
+    /// <summary>
+    /// Unit[%] Array of slab chemistry (measured)
+    /// </summary>
+    public double? AlloyValueInd23 { get; set; }
+
+    /// <summary>
+    /// Unit[%] Array of slab chemistry (measured)
+    /// </summary>
+    public double? AlloyValueInd24 { get; set; }
+
+    /// <summary>
+    /// Unit[%] Array of slab chemistry (measured)
+    /// </summary>
+    public double? AlloyValueInd25 { get; set; }
+
+    /// <summary>
+    /// Unit[%] Array of slab chemistry (measured)
+    /// </summary>
+    public double? AlloyValueInd26 { get; set; }
+
+    /// <summary>
+    /// Unit[%] Array of slab chemistry (measured)
+    /// </summary>
+    public double? AlloyValueInd27 { get; set; }
+
+    /// <summary>
+    /// Unit[%] Array of slab chemistry (measured)
+    /// </summary>
+    public double? AlloyValueInd28 { get; set; }
+
+    /// <summary>
+    /// Unit[%] Array of slab chemistry (measured)
+    /// </summary>
+    public double? AlloyValueInd29 { get; set; }
+
+    /// <summary>
+    /// Unit[%] Array of slab chemistry (measured)
+    /// </summary>
+    public double? AlloyValueInd30 { get; set; }
+
+    /// <summary>
+    /// Unit[%] Array of slab chemistry (measured)
+    /// </summary>
+    public double? AlloyValueInd31 { get; set; }
+
+    /// <summary>
+    /// Unit[%] Array of slab chemistry (measured)
+    /// </summary>
+    public double? AlloyValueInd32 { get; set; }
+
+    /// <summary>
+    /// Unit[%] Array of slab chemistry (measured)
+    /// </summary>
+    public double? AlloyValueInd33 { get; set; }
+
+    /// <summary>
+    /// Unit[%] Array of slab chemistry (measured)
+    /// </summary>
+    public double? AlloyValueInd34 { get; set; }
+
+    /// <summary>
+    /// Unit[%] Array of slab chemistry (measured)
+    /// </summary>
+    public double? AlloyValueInd35 { get; set; }
+
+    /// <summary>
+    /// Unit[%] Array of slab chemistry (measured)
+    /// </summary>
+    public double? AlloyValueInd36 { get; set; }
+
+    /// <summary>
+    /// Unit[%] Array of slab chemistry (measured)
+    /// </summary>
+    public double? AlloyValueInd37 { get; set; }
+
+    /// <summary>
+    /// Unit[%] Array of slab chemistry (measured)
+    /// </summary>
+    public double? AlloyValueInd38 { get; set; }
+
+    /// <summary>
+    /// Unit[%] Array of slab chemistry (measured)
+    /// </summary>
+    public double? AlloyValueInd39 { get; set; }
+
+    /// <summary>
+    /// analysis flag (0=default analysis for the steel grade, 1=melt shop analysis, 2=caster analysis, 3=slab analysis)
+    /// </summary>
+    public int? AnalysisFlag { get; set; }
+
+    /// <summary>
+    /// technological material key
+    /// </summary>
+    public string ApsKey { get; set; }
+
+    /// <summary>
+    /// Casting Grade Code for surface inspection gauge
+    /// </summary>
+    public string CastingGradeCode { get; set; }
+
+    /// <summary>
+    /// Unit[m] length of logical coil
+    /// </summary>
+    public double? LengthLogical { get; set; }
+
+    /// <summary>
+    /// identification, material data OK = 1
+    /// </summary>
     public short? Ok { get; set; }
 
+    /// <summary>
+    /// modifying process
+    /// </summary>
     public string Mop { get; set; }
 
+    /// <summary>
+    /// time of creation
+    /// </summary>
     public DateTime? Toc { get; set; }
 
+    /// <summary>
+    /// time of modification
+    /// </summary>
     public DateTime? Tom { get; set; }
 
     public virtual Me1 Me1 { get; set; }

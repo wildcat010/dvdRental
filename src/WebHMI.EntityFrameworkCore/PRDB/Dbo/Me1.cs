@@ -5,73 +5,103 @@ namespace WebHMI.PRDB.Dbo;
 
 public partial class Me1
 {
-    public string Mecreator { get; set; }
+    /// <summary>
+    /// Material owner
+    /// </summary>
+    public string MeCreator { get; set; }
 
-    public int Meid { get; set; }
+    /// <summary>
+    /// Material idendification number
+    /// </summary>
+    public int MeId { get; set; }
 
-    public short Mesid { get; set; }
+    /// <summary>
+    /// Line status
+    /// </summary>
+    public short MesId { get; set; }
 
-    public string Compmecreator { get; set; }
+    /// <summary>
+    /// Unit[Unit] MeCreator of parent material
+    /// </summary>
+    public string CompMeCreator { get; set; }
 
-    public int? Compmeid { get; set; }
+    /// <summary>
+    /// Unit[Unit] MeId of parent material
+    /// </summary>
+    public int? CompMeId { get; set; }
 
-    public short? Compmesid { get; set; }
+    /// <summary>
+    /// Unit[Unit] MesId of parent material
+    /// </summary>
+    public short? CompMesId { get; set; }
 
-    public short? Comppos { get; set; }
+    /// <summary>
+    /// Unit[Unit] Position in parent material
+    /// </summary>
+    public short? CompPos { get; set; }
 
+    /// <summary>
+    /// modifying process
+    /// </summary>
     public string Mop { get; set; }
 
+    /// <summary>
+    /// time of creation
+    /// </summary>
     public DateTime? Toc { get; set; }
 
+    /// <summary>
+    /// time of modification
+    /// </summary>
     public DateTime? Tom { get; set; }
 
-    public virtual ICollection<Adord2pc> Adord2pcs { get; set; } = new List<Adord2pc>();
+    public virtual ICollection<AdOrd2PcStand> AdOrd2PcStands { get; set; } = new List<AdOrd2PcStand>();
 
-    public virtual ICollection<Adord2pcstand> Adord2pcstands { get; set; } = new List<Adord2pcstand>();
+    public virtual ICollection<AdOrd2Pc> AdOrd2Pcs { get; set; } = new List<AdOrd2Pc>();
 
     public virtual ICollection<Aoppass> Aoppasses { get; set; } = new List<Aoppass>();
 
-    public virtual ICollection<Cscr> Cscrs { get; set; } = new List<Cscr>();
+    public virtual ICollection<CsCr> CsCrs { get; set; } = new List<CsCr>();
 
-    public virtual ICollection<Csedgemasking> Csedgemaskings { get; set; } = new List<Csedgemasking>();
+    public virtual ICollection<CsEdgeMasking> CsEdgeMaskings { get; set; } = new List<CsEdgeMasking>();
 
-    public virtual ICollection<Cspccurve> Cspccurves { get; set; } = new List<Cspccurve>();
+    public virtual CsPcResult CsPcResult { get; set; }
 
-    public virtual Cspcresult Cspcresult { get; set; }
+    public virtual ICollection<CsPcSpeedDiag> CsPcSpeedDiags { get; set; } = new List<CsPcSpeedDiag>();
 
-    public virtual ICollection<Cspcspeeddiag> Cspcspeeddiags { get; set; } = new List<Cspcspeeddiag>();
+    public virtual ICollection<CsPerf> CsPerves { get; set; } = new List<CsPerf>();
 
-    public virtual ICollection<Csperf> Csperves { get; set; } = new List<Csperf>();
+    public virtual ICollection<CsProfile> CsProfiles { get; set; } = new List<CsProfile>();
 
-    public virtual ICollection<Csprofile> Csprofiles { get; set; } = new List<Csprofile>();
+    public virtual ICollection<CsRtCooling> CsRtCoolings { get; set; } = new List<CsRtCooling>();
 
-    public virtual ICollection<Csrtcooling> Csrtcoolings { get; set; } = new List<Csrtcooling>();
+    public virtual ICollection<CsStrategy> CsStrategies { get; set; } = new List<CsStrategy>();
 
-    public virtual ICollection<Csstrategy> Csstrategies { get; set; } = new List<Csstrategy>();
+    public virtual ICollection<CspcCurve> CspcCurves { get; set; } = new List<CspcCurve>();
 
     public virtual ICollection<Defect> Defects { get; set; } = new List<Defect>();
 
-    public virtual ICollection<Dirfmpfccycshiftppass> Dirfmpfccycshiftppasses { get; set; } = new List<Dirfmpfccycshiftppass>();
+    public virtual ICollection<DirFmPfcCycShiftPpass> DirFmPfcCycShiftPpasses { get; set; } = new List<DirFmPfcCycShiftPpass>();
 
-    public virtual ICollection<Dirfmpfccycshiftp> Dirfmpfccycshiftps { get; set; } = new List<Dirfmpfccycshiftp>();
+    public virtual ICollection<DirFmPfcCycShiftP> DirFmPfcCycShiftPs { get; set; } = new List<DirFmPfcCycShiftP>();
 
-    public virtual ICollection<Dirfmpfcparappass> Dirfmpfcparappasses { get; set; } = new List<Dirfmpfcparappass>();
+    public virtual ICollection<DirFmPfcParaPpass> DirFmPfcParaPpasses { get; set; } = new List<DirFmPfcParaPpass>();
 
-    public virtual ICollection<Dirfmpfcparap> Dirfmpfcparaps { get; set; } = new List<Dirfmpfcparap>();
+    public virtual ICollection<DirFmPfcParaP> DirFmPfcParaPs { get; set; } = new List<DirFmPfcParaP>();
 
     public virtual ICollection<Dpfm> Dpfms { get; set; } = new List<Dpfm>();
 
     public virtual ICollection<Dphrm> Dphrms { get; set; } = new List<Dphrm>();
 
-    public virtual ICollection<Dprampfm> Dprampfms { get; set; } = new List<Dprampfm>();
+    public virtual ICollection<DprampFm> DprampFms { get; set; } = new List<DprampFm>();
 
-    public virtual ICollection<Dpramphrm> Dpramphrms { get; set; } = new List<Dpramphrm>();
+    public virtual ICollection<DprampHrm> DprampHrms { get; set; } = new List<DprampHrm>();
 
-    public virtual ICollection<Edlogent> Edlogents { get; set; } = new List<Edlogent>();
+    public virtual ICollection<EdLogEnt> EdLogEnts { get; set; } = new List<EdLogEnt>();
 
-    public virtual ICollection<Edordent> Edordents { get; set; } = new List<Edordent>();
+    public virtual ICollection<EdOrdEnt> EdOrdEnts { get; set; } = new List<EdOrdEnt>();
 
-    public virtual ICollection<Edphyent> Edphyents { get; set; } = new List<Edphyent>();
+    public virtual ICollection<EdPhyEnt> EdPhyEnts { get; set; } = new List<EdPhyEnt>();
 
     public virtual ICollection<Ihp> Ihps { get; set; } = new List<Ihp>();
 
@@ -95,65 +125,65 @@ public partial class Me1
 
     public virtual ICollection<Rglp> Rglps { get; set; } = new List<Rglp>();
 
-    public virtual ICollection<Spord2pc> Spord2pcs { get; set; } = new List<Spord2pc>();
+    public virtual ICollection<SpOrd2PcStand> SpOrd2PcStands { get; set; } = new List<SpOrd2PcStand>();
 
-    public virtual ICollection<Spord2pcstand> Spord2pcstands { get; set; } = new List<Spord2pcstand>();
+    public virtual ICollection<SpOrd2Pc> SpOrd2Pcs { get; set; } = new List<SpOrd2Pc>();
 
     public virtual ICollection<Srppass> Srppasses { get; set; } = new List<Srppass>();
 
     public virtual ICollection<Srp> Srps { get; set; } = new List<Srp>();
 
-    public virtual ICollection<StatAdord1pc> StatAdord1pcs { get; set; } = new List<StatAdord1pc>();
+    public virtual ICollection<StatAdOrd1Pc> StatAdOrd1Pcs { get; set; } = new List<StatAdOrd1Pc>();
 
-    public virtual ICollection<StatAdord2pc> StatAdord2pcs { get; set; } = new List<StatAdord2pc>();
+    public virtual ICollection<StatAdOrd2PcStand> StatAdOrd2PcStands { get; set; } = new List<StatAdOrd2PcStand>();
 
-    public virtual ICollection<StatAdord2pcstand> StatAdord2pcstands { get; set; } = new List<StatAdord2pcstand>();
+    public virtual ICollection<StatAdOrd2Pc> StatAdOrd2Pcs { get; set; } = new List<StatAdOrd2Pc>();
 
-    public virtual ICollection<StatAdordent> StatAdordents { get; set; } = new List<StatAdordent>();
+    public virtual ICollection<StatAdOrdEnt> StatAdOrdEnts { get; set; } = new List<StatAdOrdEnt>();
 
-    public virtual ICollection<StatCscoiltempoffset> StatCscoiltempoffsets { get; set; } = new List<StatCscoiltempoffset>();
+    public virtual ICollection<StatCsCoilTempOffset> StatCsCoilTempOffsets { get; set; } = new List<StatCsCoilTempOffset>();
 
-    public virtual ICollection<StatCscr> StatCscrs { get; set; } = new List<StatCscr>();
+    public virtual ICollection<StatCsCr> StatCsCrs { get; set; } = new List<StatCsCr>();
 
-    public virtual ICollection<StatCsedgemasking> StatCsedgemaskings { get; set; } = new List<StatCsedgemasking>();
+    public virtual ICollection<StatCsEdgeMasking> StatCsEdgeMaskings { get; set; } = new List<StatCsEdgeMasking>();
 
-    public virtual ICollection<StatCsperf> StatCsperves { get; set; } = new List<StatCsperf>();
+    public virtual ICollection<StatCsPerf> StatCsPerves { get; set; } = new List<StatCsPerf>();
 
-    public virtual ICollection<StatCsprofile> StatCsprofiles { get; set; } = new List<StatCsprofile>();
+    public virtual ICollection<StatCsProfile> StatCsProfiles { get; set; } = new List<StatCsProfile>();
 
-    public virtual ICollection<StatCsrtcooling> StatCsrtcoolings { get; set; } = new List<StatCsrtcooling>();
+    public virtual ICollection<StatCsRtCooling> StatCsRtCoolings { get; set; } = new List<StatCsRtCooling>();
 
-    public virtual ICollection<StatCsstrategy> StatCsstrategies { get; set; } = new List<StatCsstrategy>();
+    public virtual ICollection<StatCsStrategy> StatCsStrategies { get; set; } = new List<StatCsStrategy>();
 
-    public virtual ICollection<StatDirfmpfccycshiftppass> StatDirfmpfccycshiftppasses { get; set; } = new List<StatDirfmpfccycshiftppass>();
+    public virtual ICollection<StatDirFmPfcCycShiftPpass> StatDirFmPfcCycShiftPpasses { get; set; } = new List<StatDirFmPfcCycShiftPpass>();
 
-    public virtual ICollection<StatDirfmpfccycshiftp> StatDirfmpfccycshiftps { get; set; } = new List<StatDirfmpfccycshiftp>();
+    public virtual ICollection<StatDirFmPfcCycShiftP> StatDirFmPfcCycShiftPs { get; set; } = new List<StatDirFmPfcCycShiftP>();
 
-    public virtual ICollection<StatDirfmpfcparappass> StatDirfmpfcparappasses { get; set; } = new List<StatDirfmpfcparappass>();
+    public virtual ICollection<StatDirFmPfcParaPpass> StatDirFmPfcParaPpasses { get; set; } = new List<StatDirFmPfcParaPpass>();
 
-    public virtual ICollection<StatDirfmpfcparap> StatDirfmpfcparaps { get; set; } = new List<StatDirfmpfcparap>();
+    public virtual ICollection<StatDirFmPfcParaP> StatDirFmPfcParaPs { get; set; } = new List<StatDirFmPfcParaP>();
 
-    public virtual ICollection<StatEdlogent> StatEdlogents { get; set; } = new List<StatEdlogent>();
+    public virtual ICollection<StatEdLogEnt> StatEdLogEnts { get; set; } = new List<StatEdLogEnt>();
 
-    public virtual ICollection<StatEdordent> StatEdordents { get; set; } = new List<StatEdordent>();
+    public virtual ICollection<StatEdOrdEnt> StatEdOrdEnts { get; set; } = new List<StatEdOrdEnt>();
 
-    public virtual ICollection<StatEdphyent> StatEdphyents { get; set; } = new List<StatEdphyent>();
+    public virtual ICollection<StatEdPhyEnt> StatEdPhyEnts { get; set; } = new List<StatEdPhyEnt>();
 
     public virtual ICollection<StatLppass> StatLppasses { get; set; } = new List<StatLppass>();
 
-    public virtual ICollection<StatMsmdir> StatMsmdirs { get; set; } = new List<StatMsmdir>();
+    public virtual ICollection<StatMsmDir> StatMsmDirs { get; set; } = new List<StatMsmDir>();
 
-    public virtual ICollection<StatSplogent> StatSplogents { get; set; } = new List<StatSplogent>();
+    public virtual ICollection<StatSpLogEnt> StatSpLogEnts { get; set; } = new List<StatSpLogEnt>();
 
-    public virtual ICollection<StatSpord1pcstand> StatSpord1pcstands { get; set; } = new List<StatSpord1pcstand>();
+    public virtual ICollection<StatSpOrd1PcStand> StatSpOrd1PcStands { get; set; } = new List<StatSpOrd1PcStand>();
 
-    public virtual ICollection<StatSpord2pc> StatSpord2pcs { get; set; } = new List<StatSpord2pc>();
+    public virtual ICollection<StatSpOrd2PcStand> StatSpOrd2PcStands { get; set; } = new List<StatSpOrd2PcStand>();
 
-    public virtual ICollection<StatSpord2pcstand> StatSpord2pcstands { get; set; } = new List<StatSpord2pcstand>();
+    public virtual ICollection<StatSpOrd2Pc> StatSpOrd2Pcs { get; set; } = new List<StatSpOrd2Pc>();
 
-    public virtual ICollection<StatSpordent> StatSpordents { get; set; } = new List<StatSpordent>();
+    public virtual ICollection<StatSpOrdEnt> StatSpOrdEnts { get; set; } = new List<StatSpOrdEnt>();
 
-    public virtual ICollection<StatSpphyent> StatSpphyents { get; set; } = new List<StatSpphyent>();
+    public virtual ICollection<StatSpPhyEnt> StatSpPhyEnts { get; set; } = new List<StatSpPhyEnt>();
 
     public virtual ICollection<Tppass> Tppasses { get; set; } = new List<Tppass>();
 

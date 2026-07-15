@@ -10,17 +10,17 @@ namespace WebHMI.Mapping.Extensions.Strategy
 {
     public class StdIscpMapper
     {
-        public static void MapEntity(Stdiscp entity, StdIscpDto dto)
+        public static void MapEntity(StdIscp entity, StdIscpDto dto)
         {
-            entity.Planno = dto.PlanNo;
-            entity.Activeflag = dto.ActiveFlag;
+            entity.PlanNo = dto.PlanNo;
+            entity.ActiveFlag = dto.ActiveFlag;
             entity.Description = dto.Description;
         }
 
-        public static StdIscpDto ToDto(Stdiscp entity) => new()
+        public static StdIscpDto ToDto(StdIscp entity) => new()
         {
-            PlanNo = entity.Planno,
-            ActiveFlag = entity.Activeflag,
+            PlanNo = entity.PlanNo,
+            ActiveFlag = entity.ActiveFlag,
             Description = entity.Description
         };
     }

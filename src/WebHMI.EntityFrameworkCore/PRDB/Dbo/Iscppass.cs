@@ -5,76 +5,184 @@ namespace WebHMI.PRDB.Dbo;
 
 public partial class Iscppass
 {
-    public string Mecreator { get; set; }
+    /// <summary>
+    /// Material owner
+    /// </summary>
+    public string MeCreator { get; set; }
 
-    public int Meid { get; set; }
+    /// <summary>
+    /// Material idendification number
+    /// </summary>
+    public int MeId { get; set; }
 
-    public short Mesid { get; set; }
+    /// <summary>
+    /// Line status
+    /// </summary>
+    public short MesId { get; set; }
 
-    public int Passno { get; set; }
+    /// <summary>
+    /// pass number
+    /// </summary>
+    public int PassNo { get; set; }
 
+    /// <summary>
+    /// owner
+    /// </summary>
     public string Source { get; set; }
 
-    public int? Descalerauto { get; set; }
+    /// <summary>
+    /// Unit[0..1] descaler auto AUTO = 0 MAN = 1
+    /// </summary>
+    public int? DescalerAuto { get; set; }
 
-    public int? Descalerstate { get; set; }
+    /// <summary>
+    /// Unit[0 / 1] descaler state: ON=0, OFF=1
+    /// </summary>
+    public int? DescalerState { get; set; }
 
-    public double? Descalervolume { get; set; }
+    /// <summary>
+    /// Unit[0...1] descaler factor from maximum cooling flow
+    /// </summary>
+    public double? DescalerVolume { get; set; }
 
+    /// <summary>
+    /// description field
+    /// </summary>
     public string Description { get; set; }
 
-    public double? Fumesuppspraybefor { get; set; }
+    /// <summary>
+    /// Unit[0...1] fume (dust) suppresion spray
+    /// </summary>
+    public double? FumeSuppSprayBefor { get; set; }
 
-    public double? Fumesuppspraybehind { get; set; }
+    /// <summary>
+    /// Unit[0...1] fume (dust) suppresion spray
+    /// </summary>
+    public double? FumeSuppSprayBehind { get; set; }
 
-    public double? Intermbeamcool { get; set; }
+    /// <summary>
+    /// Unit[0...1] intermediate beam cooling
+    /// </summary>
+    public double? IntermBeamCool { get; set; }
 
-    public int? Iscauto { get; set; }
+    /// <summary>
+    /// Unit[0 / 1] ISC automatic mode: AUTO=0, MAN=1
+    /// </summary>
+    public int? IscAuto { get; set; }
 
-    public double? IscmaxvolumeInd0 { get; set; }
+    /// <summary>
+    /// Unit[0...1] ISC maximum volume factor from maximum cooling flow (plant par). [0]= isc 0, [1]= isc 1, [2]= mill stand power cooling
+    /// </summary>
+    public double? IscMaxVolumeInd0 { get; set; }
 
-    public double? IscmaxvolumeInd1 { get; set; }
+    /// <summary>
+    /// Unit[0...1] ISC maximum volume factor from maximum cooling flow (plant par). [0]= isc 0, [1]= isc 1, [2]= mill stand power cooling
+    /// </summary>
+    public double? IscMaxVolumeInd1 { get; set; }
 
-    public double? IscmaxvolumeInd2 { get; set; }
+    /// <summary>
+    /// Unit[0...1] ISC maximum volume factor from maximum cooling flow (plant par). [0]= isc 0, [1]= isc 1, [2]= mill stand power cooling
+    /// </summary>
+    public double? IscMaxVolumeInd2 { get; set; }
 
-    public double? IscmaxvolumeInd3 { get; set; }
+    /// <summary>
+    /// Unit[0...1] ISC maximum volume factor from maximum cooling flow (plant par). [0]= isc 0, [1]= isc 1, [2]= mill stand power cooling
+    /// </summary>
+    public double? IscMaxVolumeInd3 { get; set; }
 
-    public double? IscminvolumeInd0 { get; set; }
+    /// <summary>
+    /// Unit[0...1] ISC minimum volume factor from maximum cooling flow (plant par). [0]= isc 0, [1]= isc 1, [2]= mill stand power cooling
+    /// </summary>
+    public double? IscMinVolumeInd0 { get; set; }
 
-    public double? IscminvolumeInd1 { get; set; }
+    /// <summary>
+    /// Unit[0...1] ISC minimum volume factor from maximum cooling flow (plant par). [0]= isc 0, [1]= isc 1, [2]= mill stand power cooling
+    /// </summary>
+    public double? IscMinVolumeInd1 { get; set; }
 
-    public double? IscminvolumeInd2 { get; set; }
+    /// <summary>
+    /// Unit[0...1] ISC minimum volume factor from maximum cooling flow (plant par). [0]= isc 0, [1]= isc 1, [2]= mill stand power cooling
+    /// </summary>
+    public double? IscMinVolumeInd2 { get; set; }
 
-    public double? IscminvolumeInd3 { get; set; }
+    /// <summary>
+    /// Unit[0...1] ISC minimum volume factor from maximum cooling flow (plant par). [0]= isc 0, [1]= isc 1, [2]= mill stand power cooling
+    /// </summary>
+    public double? IscMinVolumeInd3 { get; set; }
 
-    public int? Iscstate { get; set; }
+    /// <summary>
+    /// Unit[0 / 1] ISC state: ON=0, OFF=1
+    /// </summary>
+    public int? IscState { get; set; }
 
-    public double? IscvolumeInd0 { get; set; }
+    /// <summary>
+    /// Unit[0...1] ISC volume factor from maximum cooling flow (plant par). [0]= isc 0, [1]= isc 1, [2]= mill stand power cooling
+    /// </summary>
+    public double? IscVolumeInd0 { get; set; }
 
-    public double? IscvolumeInd1 { get; set; }
+    /// <summary>
+    /// Unit[0...1] ISC volume factor from maximum cooling flow (plant par). [0]= isc 0, [1]= isc 1, [2]= mill stand power cooling
+    /// </summary>
+    public double? IscVolumeInd1 { get; set; }
 
-    public double? IscvolumeInd2 { get; set; }
+    /// <summary>
+    /// Unit[0...1] ISC volume factor from maximum cooling flow (plant par). [0]= isc 0, [1]= isc 1, [2]= mill stand power cooling
+    /// </summary>
+    public double? IscVolumeInd2 { get; set; }
 
-    public double? IscvolumeInd3 { get; set; }
+    /// <summary>
+    /// Unit[0...1] ISC volume factor from maximum cooling flow (plant par). [0]= isc 0, [1]= isc 1, [2]= mill stand power cooling
+    /// </summary>
+    public double? IscVolumeInd3 { get; set; }
 
-    public double? Loopercool { get; set; }
+    /// <summary>
+    /// Unit[0...1] looper cooling
+    /// </summary>
+    public double? LooperCool { get; set; }
 
-    public int? Planno { get; set; }
+    /// <summary>
+    /// Unit[0...999] i s c p number
+    /// </summary>
+    public int? PlanNo { get; set; }
 
-    public int? Priodescaler { get; set; }
+    /// <summary>
+    /// Unit[0 .... n] behind pass X, priority: -1: do not switch, 0,1,2,3,.....: lowest number is switched on first and switched off last
+    /// </summary>
+    public int? PrioDescaler { get; set; }
 
-    public int? Prioisc { get; set; }
+    /// <summary>
+    /// Unit[0 ..... n] ISC, priority: -1: do not switch, 0,1,2,3,.....: lowest number is switched on first and switched off last
+    /// </summary>
+    public int? PrioIsc { get; set; }
 
-    public double? Rollgapspray { get; set; }
+    /// <summary>
+    /// Unit[0...1] special spray, before pass X, roll gap spray
+    /// </summary>
+    public double? RollGapSpray { get; set; }
 
-    public double? Stripspraybefor { get; set; }
+    /// <summary>
+    /// Unit[0...1] strip spraying
+    /// </summary>
+    public double? StripSprayBefor { get; set; }
 
-    public double? Stripspraybehind { get; set; }
+    /// <summary>
+    /// Unit[0...1] strip spraying
+    /// </summary>
+    public double? StripSprayBehind { get; set; }
 
+    /// <summary>
+    /// modifying process
+    /// </summary>
     public string Mop { get; set; }
 
+    /// <summary>
+    /// time of creation
+    /// </summary>
     public DateTime? Toc { get; set; }
 
+    /// <summary>
+    /// time of modification
+    /// </summary>
     public DateTime? Tom { get; set; }
 
     public virtual Me1 Me1 { get; set; }

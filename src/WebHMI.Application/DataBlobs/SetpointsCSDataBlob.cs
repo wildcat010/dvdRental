@@ -5,12 +5,12 @@ namespace WebHMI.DataBlobs
 {
     public class SetpointsCsDataBlob
     {
-        public List<Spord2pc> SpOrd2Pcs { get; internal set; }
-        public List<Cspcresult> Cspcresults { get; internal set; }
-        public List<Csstrategy> CsStrategies { get; internal set; }
-        public List<Csprofile> CsProfiles { get; internal set; }
-        public List<Cspccurve> CsPcCurves { get; internal set; }
-        public Cspcresult CsPcResult { get; internal set; }
-        public List<Cspcspeeddiag> CsPcSpeedDiags { get; internal set; }
+        public List<SpOrd2Pc> SpOrd2Pcs { get; internal set; }
+        public List<CsPcResult> Cspcresults { get; internal set; }
+        public List<CsStrategy> CsStrategies { get; internal set; }
+        public List<CsProfile> CsProfiles { get; internal set; }
+        public List<CspcCurve> CsPcCurves { get; internal set; }
+        public CsPcResult CsPcResult { get; internal set; }
+        public List<CsPcSpeedDiag> CsPcSpeedDiags { get; internal set; }
     }
 }

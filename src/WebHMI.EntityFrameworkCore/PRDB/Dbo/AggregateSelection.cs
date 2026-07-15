@@ -3,237 +3,585 @@ using System.Collections.Generic;
 
 namespace WebHMI.PRDB.Dbo;
 
-public partial class Aggregateselection
+public partial class AggregateSelection
 {
+    /// <summary>
+    /// is current value active? (0=no, 1=yes)
+    /// </summary>
     public int Active { get; set; }
 
+    /// <summary>
+    /// key for aggregate selection table
+    /// </summary>
     public string Aggregate { get; set; }
 
-    public int Recid { get; set; }
+    /// <summary>
+    /// unique record id
+    /// </summary>
+    public int RecId { get; set; }
 
-    public string Alloycode { get; set; }
+    /// <summary>
+    /// Der Text f_r die Stahlmarkennummer (z.B. 05AL)
+    /// </summary>
+    public string AlloyCode { get; set; }
 
-    public string Alloygroup { get; set; }
+    /// <summary>
+    /// Alloy group code
+    /// </summary>
+    public string AlloyGroup { get; set; }
 
-    public double? Alloyvaluealfrom { get; set; }
+    /// <summary>
+    /// Unit[%] Analysenanteil Al  || NC, Mos, MosCS  ||
+    /// </summary>
+    public double? AlloyValueAlFrom { get; set; }
 
-    public double? Alloyvaluealto { get; set; }
+    /// <summary>
+    /// Unit[%] Analysenanteil Al  || NC, Mos, MosCS  ||
+    /// </summary>
+    public double? AlloyValueAlTo { get; set; }
 
-    public double? Alloyvalueasfrom { get; set; }
+    /// <summary>
+    /// Unit[%] Analysenanteil As  || NC, Mos, MosCS  ||
+    /// </summary>
+    public double? AlloyValueAsFrom { get; set; }
 
-    public double? Alloyvalueasto { get; set; }
+    /// <summary>
+    /// Unit[%] Analysenanteil As  || NC, Mos, MosCS  ||
+    /// </summary>
+    public double? AlloyValueAsTo { get; set; }
 
-    public double? Alloyvaluebfrom { get; set; }
+    /// <summary>
+    /// Unit[%] Analysenanteil B  || NC, Mos, MosCS  ||
+    /// </summary>
+    public double? AlloyValueBfrom { get; set; }
 
-    public double? Alloyvaluebto { get; set; }
+    /// <summary>
+    /// Unit[%] Analysenanteil B  || NC, Mos, MosCS  ||
+    /// </summary>
+    public double? AlloyValueBto { get; set; }
 
-    public double? Alloyvaluecfrom { get; set; }
+    /// <summary>
+    /// Unit[%] Analysenanteil C  || NC, Mos, MosCS  ||
+    /// </summary>
+    public double? AlloyValueCfrom { get; set; }
 
-    public double? Alloyvaluecto { get; set; }
+    /// <summary>
+    /// Unit[%] Analysenanteil C  || NC, Mos, MosCS  ||
+    /// </summary>
+    public double? AlloyValueCto { get; set; }
 
-    public double? Alloyvaluecofrom { get; set; }
+    /// <summary>
+    /// Unit[%] Analysenanteil Co  || NC, Mos, MosCS  ||
+    /// </summary>
+    public double? AlloyValueCoFrom { get; set; }
 
-    public double? Alloyvaluecoto { get; set; }
+    /// <summary>
+    /// Unit[%] Analysenanteil Co  || NC, Mos, MosCS  ||
+    /// </summary>
+    public double? AlloyValueCoTo { get; set; }
 
-    public double? Alloyvaluecrfrom { get; set; }
+    /// <summary>
+    /// Unit[%] Analysenanteil Cr  || NC, Mos, MosCS  ||
+    /// </summary>
+    public double? AlloyValueCrFrom { get; set; }
 
-    public double? Alloyvaluecrto { get; set; }
+    /// <summary>
+    /// Unit[%] Analysenanteil Cr  || NC, Mos, MosCS  ||
+    /// </summary>
+    public double? AlloyValueCrTo { get; set; }
 
-    public double? Alloyvaluecufrom { get; set; }
+    /// <summary>
+    /// Unit[%] Analysenanteil Cu  || NC, Mos, MosCS  ||
+    /// </summary>
+    public double? AlloyValueCuFrom { get; set; }
 
-    public double? Alloyvaluecuto { get; set; }
+    /// <summary>
+    /// Unit[%] Analysenanteil Cu  || NC, Mos, MosCS  ||
+    /// </summary>
+    public double? AlloyValueCuTo { get; set; }
 
-    public double? Alloyvaluemgfrom { get; set; }
+    /// <summary>
+    /// Unit[%] Analysenanteil Mg  || NC, Mos, MosCS  ||
+    /// </summary>
+    public double? AlloyValueMgFrom { get; set; }
 
-    public double? Alloyvaluemgto { get; set; }
+    /// <summary>
+    /// Unit[%] Analysenanteil Mg  || NC, Mos, MosCS  ||
+    /// </summary>
+    public double? AlloyValueMgTo { get; set; }
 
-    public double? Alloyvaluemnfrom { get; set; }
+    /// <summary>
+    /// Unit[%] Analysenanteil Mn  || NC, Mos, MosCS  ||
+    /// </summary>
+    public double? AlloyValueMnFrom { get; set; }
 
-    public double? Alloyvaluemnto { get; set; }
+    /// <summary>
+    /// Unit[%] Analysenanteil Mn  || NC, Mos, MosCS  ||
+    /// </summary>
+    public double? AlloyValueMnTo { get; set; }
 
-    public double? Alloyvaluemofrom { get; set; }
+    /// <summary>
+    /// Unit[%] Analysenanteil Mo  || NC, Mos, MosCS  ||
+    /// </summary>
+    public double? AlloyValueMoFrom { get; set; }
 
-    public double? Alloyvaluemoto { get; set; }
+    /// <summary>
+    /// Unit[%] Analysenanteil Mo  || NC, Mos, MosCS  ||
+    /// </summary>
+    public double? AlloyValueMoTo { get; set; }
 
-    public double? Alloyvaluenfrom { get; set; }
+    /// <summary>
+    /// Unit[%] Analysenanteil N  || NC, Mos, MosCS  ||
+    /// </summary>
+    public double? AlloyValueNfrom { get; set; }
 
-    public double? Alloyvaluento { get; set; }
+    /// <summary>
+    /// Unit[%] Analysenanteil N  || NC, Mos, MosCS  ||
+    /// </summary>
+    public double? AlloyValueNto { get; set; }
 
-    public double? Alloyvaluenbfrom { get; set; }
+    /// <summary>
+    /// Unit[%] Analysenanteil Nb  || NC, Mos, MosCS  ||
+    /// </summary>
+    public double? AlloyValueNbFrom { get; set; }
 
-    public double? Alloyvaluenbto { get; set; }
+    /// <summary>
+    /// Unit[%] Analysenanteil Nb  || NC, Mos, MosCS  ||
+    /// </summary>
+    public double? AlloyValueNbTo { get; set; }
 
-    public double? Alloyvaluenifrom { get; set; }
+    /// <summary>
+    /// Unit[%] Analysenanteil Ni  || NC, Mos, MosCS  ||
+    /// </summary>
+    public double? AlloyValueNiFrom { get; set; }
 
-    public double? Alloyvaluenito { get; set; }
+    /// <summary>
+    /// Unit[%] Analysenanteil Ni  || NC, Mos, MosCS  ||
+    /// </summary>
+    public double? AlloyValueNiTo { get; set; }
 
-    public double? Alloyvaluepfrom { get; set; }
+    /// <summary>
+    /// Unit[%] Analysenanteil P  || NC, Mos, MosCS  ||
+    /// </summary>
+    public double? AlloyValuePfrom { get; set; }
 
-    public double? Alloyvaluepto { get; set; }
+    /// <summary>
+    /// Unit[%] Analysenanteil P  || NC, Mos, MosCS  ||
+    /// </summary>
+    public double? AlloyValuePto { get; set; }
 
-    public double? Alloyvaluepbfrom { get; set; }
+    /// <summary>
+    /// Unit[%] Analysenanteil Pb  || NC, Mos, MosCS  ||
+    /// </summary>
+    public double? AlloyValuePbFrom { get; set; }
 
-    public double? Alloyvaluepbto { get; set; }
+    /// <summary>
+    /// Unit[%] Analysenanteil Pb  || NC, Mos, MosCS  ||
+    /// </summary>
+    public double? AlloyValuePbTo { get; set; }
 
-    public double? Alloyvaluesfrom { get; set; }
+    /// <summary>
+    /// Unit[%] Analysenanteil S  || NC, Mos, MosCS  ||
+    /// </summary>
+    public double? AlloyValueSfrom { get; set; }
 
-    public double? Alloyvaluesto { get; set; }
+    /// <summary>
+    /// Unit[%] Analysenanteil S  || NC, Mos, MosCS  ||
+    /// </summary>
+    public double? AlloyValueSto { get; set; }
 
-    public double? Alloyvaluesifrom { get; set; }
+    /// <summary>
+    /// Unit[%] Analysenanteil Si  || NC, Mos, MosCS  ||
+    /// </summary>
+    public double? AlloyValueSiFrom { get; set; }
 
-    public double? Alloyvaluesito { get; set; }
+    /// <summary>
+    /// Unit[%] Analysenanteil Si  || NC, Mos, MosCS  ||
+    /// </summary>
+    public double? AlloyValueSiTo { get; set; }
 
-    public double? Alloyvaluesnfrom { get; set; }
+    /// <summary>
+    /// Unit[%] Analysenanteil Sn  || NC, Mos, MosCS  ||
+    /// </summary>
+    public double? AlloyValueSnFrom { get; set; }
 
-    public double? Alloyvaluesnto { get; set; }
+    /// <summary>
+    /// Unit[%] Analysenanteil Sn  || NC, Mos, MosCS  ||
+    /// </summary>
+    public double? AlloyValueSnTo { get; set; }
 
-    public double? Alloyvaluetifrom { get; set; }
+    /// <summary>
+    /// Unit[%] Analysenanteil Ti  || NC, Mos, MosCS  ||
+    /// </summary>
+    public double? AlloyValueTiFrom { get; set; }
 
-    public double? Alloyvaluetito { get; set; }
+    /// <summary>
+    /// Unit[%] Analysenanteil Ti  || NC, Mos, MosCS  ||
+    /// </summary>
+    public double? AlloyValueTiTo { get; set; }
 
-    public double? Alloyvaluevfrom { get; set; }
+    /// <summary>
+    /// Unit[%] Analysenanteil V  || NC, Mos, MosCS  ||
+    /// </summary>
+    public double? AlloyValueVfrom { get; set; }
 
-    public double? Alloyvaluevto { get; set; }
+    /// <summary>
+    /// Unit[%] Analysenanteil V  || NC, Mos, MosCS  ||
+    /// </summary>
+    public double? AlloyValueVto { get; set; }
 
-    public double? Alloyvalueznfrom { get; set; }
+    /// <summary>
+    /// Unit[%] Analysenanteil Zn  || NC, Mos, MosCS  ||
+    /// </summary>
+    public double? AlloyValueZnFrom { get; set; }
 
-    public double? Alloyvalueznto { get; set; }
+    /// <summary>
+    /// Unit[%] Analysenanteil Zn  || NC, Mos, MosCS  ||
+    /// </summary>
+    public double? AlloyValueZnTo { get; set; }
 
-    public string Apskey { get; set; }
+    /// <summary>
+    /// Material
+    /// </summary>
+    public string ApsKey { get; set; }
 
-    public double? Checkerheightfrom { get; set; }
+    /// <summary>
+    /// checker height from
+    /// </summary>
+    public double? CheckerHeightFrom { get; set; }
 
-    public double? Checkerheightto { get; set; }
+    /// <summary>
+    /// checker height to
+    /// </summary>
+    public double? CheckerHeightTo { get; set; }
 
-    public double? Classmaxcrowndeltafrom { get; set; }
+    /// <summary>
+    /// Unit[m] Classif. max. strip crown delta from aim C40
+    /// </summary>
+    public double? ClassMaxCrownDeltaFrom { get; set; }
 
-    public double? Classmaxcrowndeltato { get; set; }
+    /// <summary>
+    /// Unit[m] Classif. max. strip crown delta from aim C40
+    /// </summary>
+    public double? ClassMaxCrownDeltaTo { get; set; }
 
-    public double? Classmincrowndeltafrom { get; set; }
+    /// <summary>
+    /// Unit[m] Classif. min. strip crown delta from aim C40
+    /// </summary>
+    public double? ClassMinCrownDeltaFrom { get; set; }
 
-    public double? Classmincrowndeltato { get; set; }
+    /// <summary>
+    /// Unit[m] Classif. min. strip crown delta from aim C40
+    /// </summary>
+    public double? ClassMinCrownDeltaTo { get; set; }
 
-    public double? Coiltempfrom { get; set; }
+    /// <summary>
+    /// Unit[_C] Cooling Section: Coil target temperature for body of strip
+    /// </summary>
+    public double? CoilTempFrom { get; set; }
 
-    public double? Coiltempto { get; set; }
+    /// <summary>
+    /// Unit[_C] Cooling Section: Coil target temperature for body of strip
+    /// </summary>
+    public double? CoilTempTo { get; set; }
 
-    public short? Coolplanno { get; set; }
+    /// <summary>
+    /// cooling section cooling plan number
+    /// </summary>
+    public short? CoolPlanNo { get; set; }
 
-    public double? Deltawidthfrom { get; set; }
+    /// <summary>
+    /// Unit[m] wExit-wEntry
+    /// </summary>
+    public double? DeltaWidthFrom { get; set; }
 
-    public double? Deltawidthto { get; set; }
+    /// <summary>
+    /// Unit[m] wExit-wEntry
+    /// </summary>
+    public double? DeltaWidthTo { get; set; }
 
+    /// <summary>
+    /// name of dependence this record belongs to
+    /// </summary>
     public string Dependence { get; set; }
 
+    /// <summary>
+    /// description
+    /// </summary>
     public string Description { get; set; }
 
-    public int? Furnacenofrom { get; set; }
+    /// <summary>
+    /// Bramme ehemals Ofenr_ckf_hrung, Kennzeichnung f_r Preroller
+    /// </summary>
+    public int? FurnaceNoFrom { get; set; }
 
-    public int? Furnacenoto { get; set; }
+    /// <summary>
+    /// Bramme ehemals Ofenr_ckf_hrung, Kennzeichnung f_r Preroller
+    /// </summary>
+    public int? FurnaceNoTo { get; set; }
 
-    public double? Hentryfmfrom { get; set; }
+    /// <summary>
+    /// Unit[_C] Entry thickness finishing mill
+    /// </summary>
+    public double? HEntryFmfrom { get; set; }
 
-    public double? Hentryfmto { get; set; }
+    /// <summary>
+    /// Unit[_C] Entry thickness finishing mill
+    /// </summary>
+    public double? HEntryFmto { get; set; }
 
-    public double? Hentryfrom { get; set; }
+    /// <summary>
+    /// Unit[m] Slab thickness   || NC, Mos  ||
+    /// </summary>
+    public double? HEntryFrom { get; set; }
 
-    public double? Hentryprefrom { get; set; }
+    /// <summary>
+    /// Eintrittsdicke PreRoller
+    /// </summary>
+    public double? HEntryPreFrom { get; set; }
 
-    public double? Hentrypreto { get; set; }
+    /// <summary>
+    /// Unit[m] Eintrittsdicke PreRoller
+    /// </summary>
+    public double? HEntryPreTo { get; set; }
 
-    public double? Hentryto { get; set; }
+    /// <summary>
+    /// Unit[m] Slab thickness   || NC, Mos  ||
+    /// </summary>
+    public double? HEntryTo { get; set; }
 
-    public double? Hexitfrom { get; set; }
+    /// <summary>
+    /// Unit[m] Finished strip thickness  || NC, Mos, MosCS  ||
+    /// </summary>
+    public double? HExitFrom { get; set; }
 
-    public double? Hexitto { get; set; }
+    /// <summary>
+    /// Unit[m] Finished strip thickness  || NC, Mos, MosCS  ||
+    /// </summary>
+    public double? HExitTo { get; set; }
 
-    public double? Lentrywedgefrom { get; set; }
+    /// <summary>
+    /// Unit[m] Vorbrammenl_nge bei Keil
+    /// </summary>
+    public double? LEntryWedgeFrom { get; set; }
 
-    public double? Lentrywedgeto { get; set; }
+    /// <summary>
+    /// Unit[m] Vorbrammenl_nge bei Keil
+    /// </summary>
+    public double? LEntryWedgeTo { get; set; }
 
-    public int? PlannoInd0 { get; set; }
+    /// <summary>
+    /// auto control level plan number
+    /// </summary>
+    public int? PlanNoInd0 { get; set; }
 
-    public int? PlannoInd1 { get; set; }
+    /// <summary>
+    /// auto control level plan number
+    /// </summary>
+    public int? PlanNoInd1 { get; set; }
 
-    public int? PlannoInd2 { get; set; }
+    /// <summary>
+    /// auto control level plan number
+    /// </summary>
+    public int? PlanNoInd2 { get; set; }
 
-    public int? PlannoInd3 { get; set; }
+    /// <summary>
+    /// auto control level plan number
+    /// </summary>
+    public int? PlanNoInd3 { get; set; }
 
+    /// <summary>
+    /// setpoints for 
+    /// </summary>
     public double? SetpointsInd0 { get; set; }
 
+    /// <summary>
+    /// setpoints for 
+    /// </summary>
     public double? SetpointsInd1 { get; set; }
 
+    /// <summary>
+    /// setpoints for 
+    /// </summary>
     public double? SetpointsInd2 { get; set; }
 
+    /// <summary>
+    /// setpoints for 
+    /// </summary>
     public double? SetpointsInd3 { get; set; }
 
-    public int? Slablengthgroupfrom { get; set; }
+    /// <summary>
+    /// Unit[m] Brammenlaengengruppe; 1: 4100 to 5700, 2: 6600 to 8350, 3: 8350 to 9999, 4: 10000 to 11500
+    /// </summary>
+    public int? SlabLengthGroupFrom { get; set; }
 
-    public int? Slablengthgroupto { get; set; }
+    /// <summary>
+    /// Unit[m] Brammenlaengengruppe; 1: 4100 to 5700, 2: 6600 to 8350, 3: 8350 to 9999, 4: 10000 to 11500
+    /// </summary>
+    public int? SlabLengthGroupTo { get; set; }
 
-    public int Sortid { get; set; }
+    /// <summary>
+    /// sorting of records
+    /// </summary>
+    public int SortId { get; set; }
 
-    public string Spareeqchar01 { get; set; }
+    /// <summary>
+    /// spare equal character 01
+    /// </summary>
+    public string SpareEqChar01 { get; set; }
 
-    public double? Sparefloat01from { get; set; }
+    /// <summary>
+    /// spare float 01 from
+    /// </summary>
+    public double? SpareFloat01From { get; set; }
 
-    public double? Sparefloat01to { get; set; }
+    /// <summary>
+    /// spare float 01 to
+    /// </summary>
+    public double? SpareFloat01To { get; set; }
 
-    public double? Sparefloat02from { get; set; }
+    /// <summary>
+    /// spare float 02 from
+    /// </summary>
+    public double? SpareFloat02From { get; set; }
 
-    public double? Sparefloat02to { get; set; }
+    /// <summary>
+    /// spare float 02 to
+    /// </summary>
+    public double? SpareFloat02To { get; set; }
 
-    public double? Sparefloat03from { get; set; }
+    /// <summary>
+    /// spare float 03 from
+    /// </summary>
+    public double? SpareFloat03From { get; set; }
 
-    public double? Sparefloat03to { get; set; }
+    /// <summary>
+    /// spare float 03 to
+    /// </summary>
+    public double? SpareFloat03To { get; set; }
 
-    public double? Sparefloat04from { get; set; }
+    /// <summary>
+    /// spare float 04 from
+    /// </summary>
+    public double? SpareFloat04From { get; set; }
 
-    public double? Sparefloat04to { get; set; }
+    /// <summary>
+    /// spare float 04 to
+    /// </summary>
+    public double? SpareFloat04To { get; set; }
 
-    public double? Sparefloat05from { get; set; }
+    /// <summary>
+    /// spare float 01 from
+    /// </summary>
+    public double? SpareFloat05From { get; set; }
 
-    public double? Sparefloat05to { get; set; }
+    /// <summary>
+    /// spare float 01 to
+    /// </summary>
+    public double? SpareFloat05To { get; set; }
 
-    public double? Sparefloat06from { get; set; }
+    /// <summary>
+    /// spare float 02 from
+    /// </summary>
+    public double? SpareFloat06From { get; set; }
 
-    public double? Sparefloat06to { get; set; }
+    /// <summary>
+    /// spare float 02 to
+    /// </summary>
+    public double? SpareFloat06To { get; set; }
 
-    public double? Sparefloat07from { get; set; }
+    /// <summary>
+    /// spare float 03 from
+    /// </summary>
+    public double? SpareFloat07From { get; set; }
 
-    public double? Sparefloat07to { get; set; }
+    /// <summary>
+    /// spare float 03 to
+    /// </summary>
+    public double? SpareFloat07To { get; set; }
 
-    public double? Sparefloat08from { get; set; }
+    /// <summary>
+    /// spare float 04 from
+    /// </summary>
+    public double? SpareFloat08From { get; set; }
 
-    public double? Sparefloat08to { get; set; }
+    /// <summary>
+    /// spare float 04 to
+    /// </summary>
+    public double? SpareFloat08To { get; set; }
 
-    public double? Tentryfmfrom { get; set; }
+    /// <summary>
+    /// Unit[_C] Transfer bar temperature set point
+    /// </summary>
+    public double? TEntryFmfrom { get; set; }
 
-    public double? Tentryfmto { get; set; }
+    /// <summary>
+    /// Unit[_C] Transfer bar temperature set point
+    /// </summary>
+    public double? TEntryFmto { get; set; }
 
-    public double? Tentryfrom { get; set; }
+    /// <summary>
+    /// Unit[_C] Slab furnace exit  temperature setpoint    || NC, Mos ||
+    /// </summary>
+    public double? TEntryFrom { get; set; }
 
-    public double? Tentryto { get; set; }
+    /// <summary>
+    /// Unit[_C] Slab furnace exit  temperature setpoint    || NC, Mos ||
+    /// </summary>
+    public double? TEntryTo { get; set; }
 
-    public double? Texitfrom { get; set; }
+    /// <summary>
+    /// Unit[_C] Finished strip temperature  || NC, Mos, MosCS  ||
+    /// </summary>
+    public double? TExitFrom { get; set; }
 
-    public double? Texitto { get; set; }
+    /// <summary>
+    /// Unit[_C] Finished strip temperature  || NC, Mos, MosCS  ||
+    /// </summary>
+    public double? TExitTo { get; set; }
 
-    public double? Wentryfrom { get; set; }
+    /// <summary>
+    /// Unit[m] Slab width || NC, Mos ||
+    /// </summary>
+    public double? WEntryFrom { get; set; }
 
-    public double? Wentryto { get; set; }
+    /// <summary>
+    /// Unit[m] Slab width || NC, Mos ||
+    /// </summary>
+    public double? WEntryTo { get; set; }
 
-    public double? Wexitfrom { get; set; }
+    /// <summary>
+    /// Unit[m] Finished strip width   || NC, Mos ||
+    /// </summary>
+    public double? WExitFrom { get; set; }
 
-    public double? Wexitto { get; set; }
+    /// <summary>
+    /// Unit[m] Finished strip width   || NC, Mos ||
+    /// </summary>
+    public double? WExitTo { get; set; }
 
-    public double? Weightentryfrom { get; set; }
+    /// <summary>
+    /// Unit[kg] slab weight
+    /// </summary>
+    public double? WeightEntryFrom { get; set; }
 
-    public double? Weightentryto { get; set; }
+    /// <summary>
+    /// Unit[kg] slab weight
+    /// </summary>
+    public double? WeightEntryTo { get; set; }
 
+    /// <summary>
+    /// modifying process
+    /// </summary>
     public string Mop { get; set; }
 
+    /// <summary>
+    /// time of creation
+    /// </summary>
     public DateTime? Toc { get; set; }
 
+    /// <summary>
+    /// time of modification
+    /// </summary>
     public DateTime? Tom { get; set; }
 }

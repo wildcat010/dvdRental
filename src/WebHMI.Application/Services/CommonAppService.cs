@@ -1,4 +1,4 @@
-﻿using Abp.Application.Services.Dto;
+using Abp.Application.Services.Dto;
 using Abp.Auditing;
 using Abp.Authorization;
 using Abp.Domain.Uow;
@@ -48,13 +48,13 @@ namespace WebHMI.Services
             switch (matType)
             {
                 case "OR":
-                    hmiVMatInfoShortList = await _prdbContext.HmiVMatInfoShorts.Where(x => x.Enormeid == meid).ToListAsync();
+                    hmiVMatInfoShortList = await _prdbContext.HmiVMatInfoShorts.Where(x => x.EnOrMeId == meid).ToListAsync();
                     break;
                 case "PH":
-                    hmiVMatInfoShortList = await _prdbContext.HmiVMatInfoShorts.Where(x => x.Enphmeid == meid).ToListAsync();
+                    hmiVMatInfoShortList = await _prdbContext.HmiVMatInfoShorts.Where(x => x.EnPhMeId == meid).ToListAsync();
                     break;
                 case "LO":
-                    hmiVMatInfoShortList = await _prdbContext.HmiVMatInfoShorts.Where(x => x.Enlomeid == meid).ToListAsync();
+                    hmiVMatInfoShortList = await _prdbContext.HmiVMatInfoShorts.Where(x => x.EnLoMeId == meid).ToListAsync();
                     break;
             }
 
@@ -65,12 +65,12 @@ namespace WebHMI.Services
 
             result.MeCode = new MeCodeDto
             {
-                ExtId = rec.Enorextid,
+                ExtId = rec.EnOrExtId,
                 MatType = "OR",
-                MeCreator = rec.Enorcreator,
-                MeId = rec.Enormeid,
+                MeCreator = rec.EnOrCreator,
+                MeId = rec.EnOrMeId,
                 MesId = 1,
-                Status = rec.Enorstatus ?? -1
+                Status = rec.EnOrStatus ?? -1
             };
 
             result.MapData(hmiVMatInfoShortList);
@@ -88,8 +88,8 @@ namespace WebHMI.Services
         public async Task<PagedResultDto<MaterialHeaderDto>> GetMaterialHeaderList(FilteredRequestDto input)
         {
             return await ApplyFilter(_prdbContext.HmiVMatInfoShorts
-                .Where(x => x.Edorsrc == "E" && x.Edlosrc == "E" && x.Edphysrc == "E")
-                .OrderBy(x => x.Sequenceid)
+                .Where(x => x.EdOrSrc == "E" && x.EdLoSrc == "E" && x.EdPhySrc == "E")
+                .OrderBy(x => x.SequenceId)
                 .ThenBy(x=> x.Idseq)
                 .ThenBy(x => x.Idriga), input, MaterialHeaderDtoMapper.MapToDto);
         }
@@ -98,7 +98,7 @@ namespace WebHMI.Services
         public async Task<PagedResultDto<MaterialHeaderDto>> GetGhostMaterialHeaderList(FilteredRequestDto input)
         {
             return await ApplyFilter(_prdbContext.HmiVMatInfoShorts
-                .Where(x => x.Edorsrc == "E" && x.Edlosrc == "E" && x.Edphysrc == "E" && x.Simmat == 1)
+                .Where(x => x.EdOrSrc == "E" && x.EdLoSrc == "E" && x.EdPhySrc == "E" && x.SimMat == 1)
                 .OrderBy(x => x.Idseq)
                 .ThenByDescending(x => x.Idriga), input, MaterialHeaderDtoMapper.MapToDto);
         }
@@ -111,8 +111,8 @@ namespace WebHMI.Services
             //var actSeq = await GetActualSequenceId();
 
             var actualMaterial = await _prdbContext.HmiVProdsequenceCompletes
-                //.Where(x => x.Sequenceid == actSeq)
-                .Where(x => x.Enormeid == meid)
+                //.Where(x => x.SequenceId == actSeq)
+                .Where(x => x.EnOrMeId == meid)
                 //.OrderBy(x => x.Majorno)
                 //.ThenBy(x => x.Minorno)
                 //.ThenBy(x => x.Position)
@@ -127,12 +127,12 @@ namespace WebHMI.Services
             //{
             //    if (actualFound)
             //    {
-            //        result.MeId = el.Enormeid ?? -1;
-            //        result.MatType = el.Enormetype;
-            //        result.ExtId = el.Enorextid;
+            //        result.MeId = el.EnOrMeId ?? -1;
+            //        result.MatType = el.EnOrMeType;
+            //        result.ExtId = el.EnOrExtId;
             //        break;
             //    }
-            //    if (el.Enormeid == meid)
+            //    if (el.EnOrMeId == meid)
             //    {
             //        actualFound = true;
             //        continue;
@@ -140,16 +140,16 @@ namespace WebHMI.Services
             //}
 
             var nextMaterial = await _prdbContext.HmiVProdsequenceCompletes
-                .Where(x => x.Sequenceid == actualMaterial.Sequenceid)
+                .Where(x => x.SequenceId == actualMaterial.SequenceId)
                 .Where(x => x.Position == actualMaterial.Position + 1)
                 .FirstOrDefaultAsync();
 
             if (nextMaterial == null)
                 return result;
 
-            result.MeId = nextMaterial.Enormeid ?? -1;
-            result.MatType = nextMaterial.Enormetype;
-            result.ExtId = nextMaterial.Enorextid;
+            result.MeId = nextMaterial.EnOrMeId;
+            result.MatType = nextMaterial.EnOrMeType;
+            result.ExtId = nextMaterial.EnOrExtId;
             return result;
         }
 
@@ -161,8 +161,8 @@ namespace WebHMI.Services
             //var actSeq = await GetActualSequenceId();
 
             var actualMaterial = await _prdbContext.HmiVProdsequenceCompletes
-                //.Where(x => x.Sequenceid == actSeq)
-                .Where(x => x.Enormeid == meid)
+                //.Where(x => x.SequenceId == actSeq)
+                .Where(x => x.EnOrMeId == meid)
                 //.OrderBy(x => x.Majorno)
                 //.ThenBy(x => x.Minorno)
                 //.ThenBy(x => x.Position)
@@ -175,7 +175,7 @@ namespace WebHMI.Services
 
             //foreach (var el in actualMaterial)
             //{
-            //    if (el.Enormeid == meid)
+            //    if (el.EnOrMeId == meid)
             //        break;
             //    else
             //        prevMat = el;
@@ -183,21 +183,21 @@ namespace WebHMI.Services
 
             //if (prevMat != null)
             //{
-            //    result.MeId = prevMat.Enormeid ?? -1;
-            //    result.MatType = prevMat.Enormetype;
-            //    result.ExtId = prevMat.Enorextid;
+            //    result.MeId = prevMat.EnOrMeId ?? -1;
+            //    result.MatType = prevMat.EnOrMeType;
+            //    result.ExtId = prevMat.EnOrExtId;
             //}
             var prevMaterial = await _prdbContext.HmiVProdsequenceCompletes
-                .Where(x => x.Sequenceid == actualMaterial.Sequenceid)
+                .Where(x => x.SequenceId == actualMaterial.SequenceId)
                 .Where(x => x.Position == actualMaterial.Position - 1)
                 .FirstOrDefaultAsync();
 
             if (prevMaterial == null)
                 return result;
 
-            result.MeId = prevMaterial.Enormeid ?? -1;
-            result.MatType = prevMaterial.Enormetype;
-            result.ExtId = prevMaterial.Enorextid;
+            result.MeId = prevMaterial.EnOrMeId;
+            result.MatType = prevMaterial.EnOrMeType;
+            result.ExtId = prevMaterial.EnOrExtId;
             return result;
         }
 
@@ -205,18 +205,18 @@ namespace WebHMI.Services
         public async Task<string> GetActualSequenceId()
         {
             var seq = (await _prdbContext.HmiVActualsequences
-               .Select(x => new { x.Actsequenceid })
+               .Select(x => new { x.Getcurrentsequence })
                .FirstOrDefaultAsync());
 
-            return seq.Actsequenceid;
+            return seq.Getcurrentsequence;
         }
 
         [AbpAuthorize(Permissions.Pages_ProductionSchedule)]
         public async Task<string> GetPreviousSequenceId(string actuallyDisplayedSequenceId)
         {
-            var sequences = await _prdbContext.Edphyents
+            var sequences = await _prdbContext.EdPhyEnts
                 .Where(x => x.Source == "E")
-                .Select(x => x.Sequenceid)
+                .Select(x => x.SequenceId)
                 .Distinct()
                 .OrderBy(x => x)
                 .ToListAsync();
@@ -233,9 +233,9 @@ namespace WebHMI.Services
         [AbpAuthorize(Permissions.Pages_ProductionSchedule)]
         public async Task<string> GetNextSequenceId(string actuallyDisplayedSequenceId)
         {
-            var sequences = await _prdbContext.Edphyents
+            var sequences = await _prdbContext.EdPhyEnts
                 .Where(x => x.Source == "E")
-                .Select(x => x.Sequenceid)
+                .Select(x => x.SequenceId)
                 .Distinct()
                 .OrderBy(x => x)
                 .ToListAsync();
@@ -254,7 +254,7 @@ namespace WebHMI.Services
             var context = _prdbContextProvider.GetDbContext();
 
             return await ApplyFilter(context.HmiVProductionHistories
-                .Select(x => x.Sequenceid)
+                .Select(x => x.SequenceId)
                 .Distinct()
                 .OrderBy(x => x)
                 , input, (u) => { return new SequenceIdDto() { Key = u }; });
@@ -264,9 +264,9 @@ namespace WebHMI.Services
         {
             var context = _prdbContextProvider.GetDbContext();
 
-            return await ApplyFilter(context.Edphyents
-                .Where(x => x.Source == "E" && x.Simmat == 1)
-                .Select(x => x.Sequenceid)
+            return await ApplyFilter(context.EdPhyEnts
+                .Where(x => x.Source == "E" && x.SimMat == 1)
+                .Select(x => x.SequenceId)
                 .Distinct()
                 .OrderByDescending(x => x), input, (u) => { return new SequenceIdDto() { Key = u }; });
         }
@@ -275,9 +275,9 @@ namespace WebHMI.Services
         {
             var context = _prdbContextProvider.GetDbContext();
 
-            return await ApplyFilter(context.Edphyents
+            return await ApplyFilter(context.EdPhyEnts
                 .Where(x => x.Source == "E")
-                .Select(x => x.Heatid)
+                .Select(x => x.HeatId)
                 .Distinct()
                 .OrderByDescending(x => x), input, (heatId) => heatId);
         }
@@ -286,24 +286,24 @@ namespace WebHMI.Services
         public async Task<List<SingleMosFlagDto>> GetMosFlagByIds(List<string> ids)
         {
             var context = await _prdbContextProvider.GetDbContextAsync();
-            var mosswitches = await context.Mosswitches.Where(x => x.Recno == 0).ToListAsync();
+            var mosswitches = await context.MosSwitches.Where(x => x.RecNo == 0).ToListAsync();
             var mappedIds = ids.Select(x => NameToParam(x))
                 .Where(x => x is not null)
                 .ToList();
-            var progparams = await context.Progparameters.Where(x => mappedIds.Contains(x.Param)).ToListAsync();
+            var progparams = await context.ProgParameters.Where(x => mappedIds.Contains(x.Param)).ToListAsync();
 
             var flags = new Dictionary<string, Func<short>>()
             {
-                { "AUTOMATICBENDING", () => MosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.Planttype == "HFM")?.StrswitchesInd17) },
-                { "PRIORITY", () => MosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.Planttype == "HFM")?.StrswitchesInd34) },
-                { "IED", () => MosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.Planttype == "HFM")?.StrswitchesInd20) },
+                { "AUTOMATICBENDING", () => MosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd17) },
+                { "PRIORITY", () => MosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd34) },
+                { "IED", () => MosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd20) },
 
-                { "TAKORM", () => ProgparamsToHMISwitch(progparams.FirstOrDefault(m => m.Param == "SETPTRM_TAKEOVER_MANUAL")?.Paramnum) },
-                { "TAKOFM", () =>  ProgparamsToHMISwitch(progparams.FirstOrDefault(m => m.Param == "SETPTFM_TAKEOVER_MANUAL")?.Paramnum) },
-                { "LTI", () => MosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.Planttype == "HFM")?.StrswitchesInd05) },
-                { "STI", () => MosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.Planttype == "HFM")?.StrswitchesInd06) },
-                { "LTIPFC", () => MosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.Planttype == "HFM")?.StrswitchesInd23) },
-                { "STIPFC", () => MosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.Planttype == "HFM")?.StrswitchesInd22) },
+                { "TAKORM", () => ProgparamsToHMISwitch(progparams.FirstOrDefault(m => m.Param == "SETPTRM_TAKEOVER_MANUAL")?.ParamNum) },
+                { "TAKOFM", () =>  ProgparamsToHMISwitch(progparams.FirstOrDefault(m => m.Param == "SETPTFM_TAKEOVER_MANUAL")?.ParamNum) },
+                { "LTI", () => MosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd05) },
+                { "STI", () => MosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd06) },
+                { "LTIPFC", () => MosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd23) },
+                { "STIPFC", () => MosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd22) },
                 //Mapping not finished because db is old(info from Helmut Fett
                 { "WOS1", () => {return 0; } },
                 { "WOS2", () => {return 0; } },
@@ -327,45 +327,45 @@ namespace WebHMI.Services
         public async Task<List<SingleMosFlagDto>> UpdateMosFlagByIds(List<SingleMosFlagDto> ids)
         {
             var context = await _prdbContextProvider.GetDbContextAsync();
-            var mosswitches = await context.Mosswitches.Where(x => x.Recno == 0).ToListAsync();
+            var mosswitches = await context.MosSwitches.Where(x => x.RecNo == 0).ToListAsync();
             var mappedIds = ids.Select(x => NameToParam(x.Name))
                 .Where(x => x is not null)
                 .ToList();
-            var progparams = await context.Progparameters.Where(x => mappedIds.Contains(x.Param)).ToListAsync();
+            var progparams = await context.ProgParameters.Where(x => mappedIds.Contains(x.Param)).ToListAsync();
 
             var flags = new Dictionary<string, Action<short>>()
             {
                 { "TAKORM", (x) => {
                     var param = progparams.FirstOrDefault(m => m.Param == "SETPTRM_TAKEOVER_MANUAL");
-                    if (param != null) param.Paramnum = HMIToProgparamsSwitch(x);
+                    if (param != null) param.ParamNum = HMIToProgparamsSwitch(x);
                 }},
                 { "TAKOFM", (x) => {
                     var param = progparams.FirstOrDefault(m => m.Param == "SETPTFM_TAKEOVER_MANUAL");
-                    if (param != null) param.Paramnum = HMIToProgparamsSwitch(x);
+                    if (param != null) param.ParamNum = HMIToProgparamsSwitch(x);
                 }},
                 { "LTI", (x) => {
-                    var mos = mosswitches.FirstOrDefault(m => m.Planttype == "HFM");
-                    if (mos != null) mos.StrswitchesInd05 = HMIToMosswitchSwitch(x);
+                    var mos = mosswitches.FirstOrDefault(m => m.PlantType == "HFM");
+                    if (mos != null) mos.StrSwitchesInd05 = HMIToMosswitchSwitch(x);
                 }},
                 { "STI", (x) => {
-                    var mos = mosswitches.FirstOrDefault(m => m.Planttype == "HFM");
-                    if (mos != null) mos.StrswitchesInd06 = HMIToMosswitchSwitch(x);
+                    var mos = mosswitches.FirstOrDefault(m => m.PlantType == "HFM");
+                    if (mos != null) mos.StrSwitchesInd06 = HMIToMosswitchSwitch(x);
                 }},
                 { "PRIORITY", (x) => {
-                    var mos = mosswitches.FirstOrDefault(m => m.Planttype == "HFM");
-                    if (mos != null) mos.StrswitchesInd34 = HMIToMosswitchSwitch(x);
+                    var mos = mosswitches.FirstOrDefault(m => m.PlantType == "HFM");
+                    if (mos != null) mos.StrSwitchesInd34 = HMIToMosswitchSwitch(x);
                 }},
                 { "LTIPFC", (x) => {
-                    var mos = mosswitches.FirstOrDefault(m => m.Planttype == "HFM");
-                    if (mos != null) mos.StrswitchesInd23 = HMIToMosswitchSwitch(x);
+                    var mos = mosswitches.FirstOrDefault(m => m.PlantType == "HFM");
+                    if (mos != null) mos.StrSwitchesInd23 = HMIToMosswitchSwitch(x);
                 }},
                 { "STIPFC", (x) => {
-                    var mos = mosswitches.FirstOrDefault(m => m.Planttype == "HFM");
-                    if (mos != null) mos.StrswitchesInd22 = HMIToMosswitchSwitch(x);
+                    var mos = mosswitches.FirstOrDefault(m => m.PlantType == "HFM");
+                    if (mos != null) mos.StrSwitchesInd22 = HMIToMosswitchSwitch(x);
                 }},
                 { "IED", (x) => {
-                    var mos = mosswitches.FirstOrDefault(m => m.Planttype == "HFM");
-                    if (mos != null) mos.StrswitchesInd20 = HMIToMosswitchSwitch(x);
+                    var mos = mosswitches.FirstOrDefault(m => m.PlantType == "HFM");
+                    if (mos != null) mos.StrSwitchesInd20 = HMIToMosswitchSwitch(x);
                 }},
                 //Mapping not finished because db is old(info from Helmut Fett
                 { "WOS1", (x) => {

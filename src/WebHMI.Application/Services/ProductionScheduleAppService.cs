@@ -1,4 +1,4 @@
-﻿using Abp.Application.Services.Dto;
+using Abp.Application.Services.Dto;
 using Abp.Auditing;
 using Abp.Authorization;
 using Abp.Domain.Entities;
@@ -53,7 +53,7 @@ namespace WebHMI.Services
             {
                 return await ApplyFilter<HmiVProdsequence, ScheduledMaterialsDto>(
                    _prdbContext.HmiVProdsequences
-                   .Where(x => x.Sequenceid == seqID)
+                   .Where(x => x.SequenceId == seqID)
                   .OrderBy(x => x.Majorno)
                   .ThenBy(x => x.Minorno),
                    input, ProductionScheduleMapper.ToScheduledMaterialsDto);
@@ -63,7 +63,7 @@ namespace WebHMI.Services
             {
                 return await ApplyFilter<HmiVProdsequenceComplete, ScheduledMaterialsDto>(
                   _prdbContext.HmiVProdsequenceCompletes
-                  .Where(x => x.Sequenceid == seqID)
+                  .Where(x => x.SequenceId == seqID)
                   .OrderBy(x => x.Majorno)
                   .ThenBy(x => x.Minorno),
                   input, ProductionScheduleMapper.ToScheduledMaterialsDto);
@@ -75,7 +75,7 @@ namespace WebHMI.Services
         {
             return await ApplyFilter<HmiVProdsequence, ScheduledMaterialsDto>(
                 _prdbContext.HmiVProdsequences
-                    .Where(x => x.Simmat == 1)
+                    .Where(x => x.SimMat == 1)
                     .OrderBy(x => x.Position)
                     .ThenBy(x => x.Majorno),
                 input,
@@ -87,7 +87,7 @@ namespace WebHMI.Services
         {
             return await ApplyFilter<HmiVProdsequence, ScheduledMaterialsDto>(
                 _prdbContext.HmiVProdsequences
-                    .Where(x => x.Simmat == 0)
+                    .Where(x => x.SimMat == 0)
                     .OrderBy(x => x.Position)
                     .ThenBy(x => x.Majorno),
                 input,
@@ -101,13 +101,13 @@ namespace WebHMI.Services
             var context = await _prdbContextProvider.GetDbContextAsync();
             var candidates = await context.HmiVProdsequences
                 .Where(h =>
-                    h.Sequenceid == sequenceId &&
-                    h.Alloycode == steelGrade &&
-                    h.Enorextid != null &&
-                    !EF.Functions.Like(h.Enorextid, "%@%") &&
-                    !EF.Functions.Like(h.Enorextid, "%#%")
+                    h.SequenceId == sequenceId &&
+                    h.AlloyCode == steelGrade &&
+                    h.EnOrExtId != null &&
+                    !EF.Functions.Like(h.EnOrExtId, "%@%") &&
+                    !EF.Functions.Like(h.EnOrExtId, "%#%")
                 )
-                .Select(x => x.Enorextid)
+                .Select(x => x.EnOrExtId)
                 .OrderBy(x => x)    
                 .ToListAsync();
             return candidates;
@@ -142,9 +142,9 @@ namespace WebHMI.Services
         {
             var context = _prdbContextProvider.GetDbContext();
 
-            var length = context.HmiVProdsequenceCompletes.Where(x => x.Heatid == heatId && x.Sequenceid == sequenceId).Sum(x => x.Lexit) ?? 0.0f;
-            var prodSeqCom = context.HmiVProdsequenceCompletes.Where(x => x.Heatid == heatId && x.Sequenceid == sequenceId && x.Enphextid == materialId).FirstOrDefault();
-            if (prodSeqCom?.Simmat == 0)
+            var length = context.HmiVProdsequenceCompletes.Where(x => x.HeatId == heatId && x.SequenceId == sequenceId).Sum(x => x.LExit) ?? 0.0f;
+            var prodSeqCom = context.HmiVProdsequenceCompletes.Where(x => x.HeatId == heatId && x.SequenceId == sequenceId && x.EnPhExtId == materialId).FirstOrDefault();
+            if (prodSeqCom?.SimMat == 0)
                 _l2Sender.NewHeatOperation(heatId, sequenceId, 1, (float)length);
             else
                 _l2Sender.NewHeatSimulation(heatId, sequenceId, 1, (float)length);
@@ -241,15 +241,15 @@ namespace WebHMI.Services
         {
             var context = await _prdbContextProvider.GetDbContextAsync();
 
-            if (!await context.HmiVMatInfoShorts.AnyAsync(x => x.Enphextid == extId))
+            if (!await context.HmiVMatInfoShorts.AnyAsync(x => x.EnPhExtId == extId))
                 throw new UserFriendlyException($"There is no {extId} extId in database");
 
-            if (!await context.HmiVMatInfoShorts.AnyAsync(x => x.Sequenceid == sequenceId))
+            if (!await context.HmiVMatInfoShorts.AnyAsync(x => x.SequenceId == sequenceId))
                 throw new UserFriendlyException($"There is no material with sequenceId == {sequenceId}");
 
-            var enphMeid = await context.HmiVMatInfoShorts.Where(x => x.Enphextid == extId && x.Sequenceid == sequenceId).FirstOrDefaultAsync();
+            var enphMeid = await context.HmiVMatInfoShorts.Where(x => x.EnPhExtId == extId && x.SequenceId == sequenceId).FirstOrDefaultAsync();
 
-            return enphMeid.Enphmeid;
+            return enphMeid.EnPhMeId;
         }
 
         /// <summary>
@@ -265,7 +265,7 @@ namespace WebHMI.Services
                 throw new UserFriendlyException("No current sequence, please provide sequence");
 
             var matInfos = await _prdbContext.HmiVMatInfoShorts
-                .Where(x => x.Sequenceid == sequenceId)
+                .Where(x => x.SequenceId == sequenceId)
                 .ToListAsync();
 
             if (matInfos.Count == 0)
@@ -275,32 +275,33 @@ namespace WebHMI.Services
             {
                 SequenceId = sequenceId,
 
-                NoOfHeats = matInfos.Select(x => x.Heatid)
+                NoOfHeats = matInfos.Select(x => x.HeatId)
                                     .Distinct()
                                     .Count(),
 
-                NoOfCoils = matInfos.Select(x => x.Enorextid)
+                NoOfCoils = matInfos.Select(x => x.EnOrExtId)
                                     .Distinct()
                                     .Count(),
 
-                RemNoOfCoils = matInfos.Where(x => x.Enphstatus < 0)
-                                       .Select(x => x.Enorextid)
+                RemNoOfCoils = matInfos.Where(x => x.EnPhStatus < 0)
+                                       .Select(x => x.EnOrExtId)
                                        .Distinct()
                                        .Count(),
 
-                TotalCastLength = matInfos.Sum(x => x.Lentry),
+                TotalCastLength = matInfos.Sum(x => x.LEntry),
 
-                TotalRollLength = matInfos.Sum(x => x.Lexit),
+                TotalRollLength = matInfos.Sum(x => x.LExit),
 
-                RemRollLength = matInfos.Where(x => x.Enphstatus < 0)
-                                        .Sum(x => x.Lexit),
+                RemRollLength = matInfos.Where(x => x.EnPhStatus < 0)
+                                        .Sum(x => x.LExit),
 
-                MinThick = matInfos.Min(x => x.Hexit),
+                MinThick = matInfos.Min(x => x.HExit),
 
-                WidthFrom = matInfos.Min(x => x.Wexit),
+                WidthFrom = matInfos.Min(x => x.WExit),
 
-                WidthTo = matInfos.Max(x => x.Wexit),
+                WidthTo = matInfos.Max(x => x.WExit),
             };
         }
     }
 }
+

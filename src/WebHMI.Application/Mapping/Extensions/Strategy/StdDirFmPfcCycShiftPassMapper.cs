@@ -10,61 +10,61 @@ namespace WebHMI.Mapping.Extensions.Strategy
 {
     public class StdDirFmPfcCycShiftPassMapper
     {
-        public static void MapEntity(Stddirfmpfccycshiftppass entity, StdDirFmPfcCycShiftPassDto dto)
+        public static void MapEntity(StdDirFmPfcCycShiftPpass entity, StdDirFmPfcCycShiftPassDto dto)
         {
-            entity.Planno = dto.PlanNo;
-            entity.Activeflag = dto.ActiveFlag;
+            entity.PlanNo = dto.PlanNo;
+            entity.ActiveFlag = dto.ActiveFlag;
             entity.Description = dto.Description;
-            entity.Passno = dto.PassNo;
-            entity.Csmaxlimit = dto.CsMaxLimit;
-            entity.Csminlimit = dto.CsMinLimit;
-            entity.Csstartpos = dto.CsStartPos;
-            entity.Csshiftdir = dto.CsShiftDir;
-            entity.Csshiftstep1 = dto.CsShiftStep1;
-            entity.Csshiftstep2 = dto.CsShiftStep2;
-            entity.Csshiftstep3 = dto.CsShiftStep3;
-            entity.Csmode = dto.Csmode;
-            entity.Manint = dto.Manint;
-            entity.CsmaxlimitparabolicInd0 = dto.CsmaxlimitparabolicInd0;
-            entity.CsmaxlimitparabolicInd1 = dto.CsmaxlimitparabolicInd1;
-            entity.CsmaxlimitparabolicInd2 = dto.CsmaxlimitparabolicInd2;
-            entity.CsminlimitparabolicInd0 = dto.CsminlimitparabolicInd0;
-            entity.CsminlimitparabolicInd1 = dto.CsminlimitparabolicInd1;
-            entity.CsminlimitparabolicInd2 = dto.CsminlimitparabolicInd2;
-            entity.CsstepparabolicInd0 = dto.CsstepparabolicInd0;
-            entity.CsstepparabolicInd1 = dto.CsstepparabolicInd1;
-            entity.CsstepparabolicInd2 = dto.CsstepparabolicInd2;
-            entity.CsstepsmartcrownInd0 = dto.CsstepsmartcrownInd0;
-            entity.CsstepsmartcrownInd1 = dto.CsstepsmartcrownInd1;
-            entity.CsstepsmartcrownInd2 = dto.CsstepsmartcrownInd2;
+            entity.PassNo = dto.PassNo;
+            entity.CSmaxLimit = dto.CsMaxLimit;
+            entity.CSminLimit = dto.CsMinLimit;
+            entity.CSstartPos = dto.CsStartPos;
+            entity.CSshiftDir = dto.CsShiftDir;
+            entity.CSshiftStep1 = dto.CsShiftStep1;
+            entity.CSshiftStep2 = dto.CsShiftStep2;
+            entity.CSshiftStep3 = dto.CsShiftStep3;
+            entity.CSmode = dto.Csmode;
+            entity.ManInt = dto.Manint;
+            entity.CSmaxLimitParabolicInd0 = dto.CsmaxlimitparabolicInd0;
+            entity.CSmaxLimitParabolicInd1 = dto.CsmaxlimitparabolicInd1;
+            entity.CSmaxLimitParabolicInd2 = dto.CsmaxlimitparabolicInd2;
+            entity.CSminLimitParabolicInd0 = dto.CsminlimitparabolicInd0;
+            entity.CSminLimitParabolicInd1 = dto.CsminlimitparabolicInd1;
+            entity.CSminLimitParabolicInd2 = dto.CsminlimitparabolicInd2;
+            entity.CSstepParabolicInd0 = dto.CsstepparabolicInd0;
+            entity.CSstepParabolicInd1 = dto.CsstepparabolicInd1;
+            entity.CSstepParabolicInd2 = dto.CsstepparabolicInd2;
+            entity.CSstepSmartCrownInd0 = dto.CsstepsmartcrownInd0;
+            entity.CSstepSmartCrownInd1 = dto.CsstepsmartcrownInd1;
+            entity.CSstepSmartCrownInd2 = dto.CsstepsmartcrownInd2;
         }
 
-        public static StdDirFmPfcCycShiftPassDto ToDto(Stddirfmpfccycshiftppass entity) => new()
+        public static StdDirFmPfcCycShiftPassDto ToDto(StdDirFmPfcCycShiftPpass entity) => new()
         {
-            PlanNo = entity.Planno,
-            ActiveFlag = entity.Activeflag,
-            PassNo = entity.Passno,
+            PlanNo = entity.PlanNo,
+            ActiveFlag = entity.ActiveFlag,
+            PassNo = entity.PassNo,
             Description = entity.Description,
-            Csmode = entity.Csmode,
-            CsMaxLimit = entity.Csmaxlimit,
-            CsMinLimit = entity.Csminlimit,
-            CsStartPos = entity.Csstartpos,
-            CsShiftDir = entity.Csshiftdir,
-            CsShiftStep1 = entity.Csshiftstep1,
-            CsShiftStep2 = entity.Csshiftstep2,
-            CsShiftStep3 = entity.Csshiftstep3,
-            CsmaxlimitparabolicInd0 = entity.CsmaxlimitparabolicInd0,
-            CsmaxlimitparabolicInd1 = entity.CsmaxlimitparabolicInd1,
-            CsmaxlimitparabolicInd2 = entity.CsmaxlimitparabolicInd2,
-            CsminlimitparabolicInd0 = entity.CsminlimitparabolicInd0,
-            CsminlimitparabolicInd1 = entity.CsminlimitparabolicInd1,
-            CsminlimitparabolicInd2 = entity.CsminlimitparabolicInd2,
-            CsstepparabolicInd0 = entity.CsstepparabolicInd0,
-            CsstepparabolicInd1 = entity.CsstepparabolicInd1,
-            CsstepparabolicInd2 = entity.CsstepparabolicInd2,
-            CsstepsmartcrownInd0 = entity.CsstepsmartcrownInd0,
-            CsstepsmartcrownInd1 = entity.CsstepsmartcrownInd1,
-            CsstepsmartcrownInd2 = entity.CsstepsmartcrownInd2,
+            Csmode = entity.CSmode,
+            CsMaxLimit = entity.CSmaxLimit,
+            CsMinLimit = entity.CSminLimit,
+            CsStartPos = entity.CSstartPos,
+            CsShiftDir = entity.CSshiftDir,
+            CsShiftStep1 = entity.CSshiftStep1,
+            CsShiftStep2 = entity.CSshiftStep2,
+            CsShiftStep3 = entity.CSshiftStep3,
+            CsmaxlimitparabolicInd0 = entity.CSmaxLimitParabolicInd0,
+            CsmaxlimitparabolicInd1 = entity.CSmaxLimitParabolicInd1,
+            CsmaxlimitparabolicInd2 = entity.CSmaxLimitParabolicInd2,
+            CsminlimitparabolicInd0 = entity.CSminLimitParabolicInd0,
+            CsminlimitparabolicInd1 = entity.CSminLimitParabolicInd1,
+            CsminlimitparabolicInd2 = entity.CSminLimitParabolicInd2,
+            CsstepparabolicInd0 = entity.CSstepParabolicInd0,
+            CsstepparabolicInd1 = entity.CSstepParabolicInd1,
+            CsstepparabolicInd2 = entity.CSstepParabolicInd2,
+            CsstepsmartcrownInd0 = entity.CSstepSmartCrownInd0,
+            CsstepsmartcrownInd1 = entity.CSstepSmartCrownInd1,
+            CsstepsmartcrownInd2 = entity.CSstepSmartCrownInd2,
         };
     }
 }

@@ -10,10 +10,10 @@ namespace WebHMI.Mapping.Extensions.Strategy
 {
     public class StdCompPlanMapper
     {
-        public static void MapEntity(Stdcompplan entity, StdCompPlanDto dto)
+        public static void MapEntity(StdCompPlan entity, StdCompPlanDto dto)
         {
-            entity.Planno = dto.PlanNo;
-            entity.Activeflag = dto.ActiveFlag;
+            entity.PlanNo = dto.PlanNo;
+            entity.ActiveFlag = dto.ActiveFlag;
             entity.Description = dto.Description;
             entity.TempInd00 = dto.Temp_Ind0;
             entity.TempInd01 = dto.Temp_Ind1;
@@ -70,10 +70,10 @@ namespace WebHMI.Mapping.Extensions.Strategy
             entity.KawaInd25 = dto.Kawa_Ind25;
         }
 
-        public static StdCompPlanDto ToDto(Stdcompplan entity) => new()
+        public static StdCompPlanDto ToDto(StdCompPlan entity) => new()
         {
-            PlanNo = entity.Planno,
-            ActiveFlag = entity.Activeflag,
+            PlanNo = entity.PlanNo,
+            ActiveFlag = entity.ActiveFlag,
             Description = entity.Description,
             Temp_Ind0 = entity.TempInd00,
             Temp_Ind1 = entity.TempInd01,

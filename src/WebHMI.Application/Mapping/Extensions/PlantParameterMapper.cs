@@ -10,28 +10,28 @@ namespace WebHMI.Mapping.Extensions
 {
     internal static class PlantParameterMapper
     {
-        public static ParameterDto MapToDto(this Plantparam dbo) 
+        public static ParameterDto MapToDto(this PlantParam dbo) 
         {
             var dto = new ParameterDto();
-            dto.ParamName = dbo.Paramname;
-            dto.PlantType = dbo.Planttype;
-            dto.CType = dbo.Ctype;
-            dto.CurValC = dbo.Curvalc;
-            dto.CurValN = dbo.Curvaln;
+            dto.ParamName = dbo.ParamName;
+            dto.PlantType = dbo.PlantType;
+            dto.CType = dbo.CType;
+            dto.CurValC = dbo.CurValC;
+            dto.CurValN = dbo.CurValN;
             dto.Description = dbo.Description;
             dto.Moddescr = dbo.Moddescr;
             dto.Unit = dbo.Unit;
 
             return dto;
         }
-        public static Plantparam MapToDbo(this ParameterDto dto)
+        public static PlantParam MapToDbo(this ParameterDto dto)
         {
-            var dbo = new Plantparam();
-            dbo.Paramname = dto.ParamName;
-            dbo.Planttype = dto.PlantType;
-            dbo.Ctype = dto.CType;
-            dbo.Curvalc = dto.CurValC;
-            dbo.Curvaln = (float)dto.CurValN;
+            var dbo = new PlantParam();
+            dbo.ParamName = dto.ParamName;
+            dbo.PlantType = dto.PlantType;
+            dbo.CType = dto.CType;
+            dbo.CurValC = dto.CurValC;
+            dbo.CurValN = dto.CurValN;
             dbo.Description = dto.Description;
             dbo.Moddescr = dto.Moddescr;
             dbo.Unit = dto.Unit;

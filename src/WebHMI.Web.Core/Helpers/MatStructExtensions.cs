@@ -11,12 +11,12 @@ namespace WebHMI.API.Helpers
         {
             return new MeCodeDto
             {
-                MesId = hmiVEntryMatStruct.Enormesid ?? 0,
-                MeId = hmiVEntryMatStruct.Enormeid,
-                MeCreator = hmiVEntryMatStruct.Enorcreator,
-                ExtId = hmiVEntryMatStruct.Enorextid,
-                MatType = hmiVEntryMatStruct.Enormetype,
-                Status = hmiVEntryMatStruct.Enorstatus ?? 0
+                MesId = hmiVEntryMatStruct.EnOrMesId ?? 0,
+                MeId = hmiVEntryMatStruct.EnOrMeId,
+                MeCreator = hmiVEntryMatStruct.EnOrCreator,
+                ExtId = hmiVEntryMatStruct.EnOrExtId,
+                MatType = hmiVEntryMatStruct.EnOrMeType,
+                Status = hmiVEntryMatStruct.EnOrStatus ?? 0
             };
         }
     }

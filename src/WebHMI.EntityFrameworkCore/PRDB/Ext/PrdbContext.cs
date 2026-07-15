@@ -2,9 +2,7 @@
 using Abp.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using WebHMI.PRDB.Dbo;
@@ -19,7 +17,7 @@ namespace WebHMI.PRDB
 
             modelBuilder.Entity<Lppass>(entity =>
             {
-                entity.Property(e => e.Passno).ValueGeneratedNever();
+                entity.Property(e => e.PassNo).ValueGeneratedNever();
             });
         }
 
@@ -35,35 +33,35 @@ namespace WebHMI.PRDB
         /// </summary>
         private async Task EnsureAllEdTablesInserted(CancellationToken ct)
         {
-            var addedEdordentMeids = ChangeTracker.Entries<Edordent>()
+            var addedEdordentMeids = ChangeTracker.Entries<EdOrdEnt>()
                 .Where(e => e.State == EntityState.Added && e.Entity.Source == "M")
-                .Select(e => e.Entity.Meid);
+                .Select(e => e.Entity.MeId);
 
-            var addedEdlogentMeids = ChangeTracker.Entries<Edlogent>()
+            var addedEdlogentMeids = ChangeTracker.Entries<EdLogEnt>()
                 .Where(e => e.State == EntityState.Added && e.Entity.Source == "M")
-                .Select(e => e.Entity.Meid);
+                .Select(e => e.Entity.MeId);
 
-            var addedEdphyentMeids = ChangeTracker.Entries<Edphyent>()
+            var addedEdphyentMeids = ChangeTracker.Entries<EdPhyEnt>()
                 .Where(e => e.State == EntityState.Added && e.Entity.Source == "M")
-                .Select(e => e.Entity.Meid);
+                .Select(e => e.Entity.MeId);
 
             var matStructs = await VMatStructEntries
                 .Where(e =>
-                    addedEdordentMeids.Contains(e.Enormeid) ||
-                    addedEdlogentMeids.Contains(e.Enlomeid) ||
-                    addedEdphyentMeids.Contains(e.Enphmeid))
+                    addedEdordentMeids.Contains(e.EnOrMeId) ||
+                    addedEdlogentMeids.Contains(e.EnLoMeId) ||
+                    addedEdphyentMeids.Contains(e.EnPhMeId))
                 .ToListAsync(ct);
 
             foreach (var matStruct in matStructs)
             {
-                if (!addedEdordentMeids.Contains(matStruct.Enormeid) && !await Edordents.AnyAsync(t => t.Meid == matStruct.Enormeid && t.Source == "M", ct))
-                    await Edordents.AddAsync(PrdbContextExtensions.CreateEntity<Edordent>(matStruct, "M"), ct);
+                if (!addedEdordentMeids.Contains(matStruct.EnOrMeId) && !await EdOrdEnts.AnyAsync(t => t.MeId == matStruct.EnOrMeId && t.Source == "M", ct))
+                    await EdOrdEnts.AddAsync(PrdbContextExtensions.CreateEntity<EdOrdEnt>(matStruct, "M"), ct);
 
-                if (!addedEdlogentMeids.Contains(matStruct.Enlomeid) && !await Edlogents.AnyAsync(t => t.Meid == matStruct.Enlomeid && t.Source == "M", ct))
-                    await Edlogents.AddAsync(PrdbContextExtensions.CreateEntity<Edlogent>(matStruct, "M"), ct);
+                if (!addedEdlogentMeids.Contains(matStruct.EnLoMeId) && !await EdLogEnts.AnyAsync(t => t.MeId == matStruct.EnLoMeId && t.Source == "M", ct))
+                    await EdLogEnts.AddAsync(PrdbContextExtensions.CreateEntity<EdLogEnt>(matStruct, "M"), ct);
 
-                if (!addedEdphyentMeids.Contains(matStruct.Enphmeid) && !await Edphyents.AnyAsync(t => t.Meid == matStruct.Enphmeid && t.Source == "M", ct))
-                    await Edphyents.AddAsync(PrdbContextExtensions.CreateEntity<Edphyent>(matStruct, "M"), ct);
+                if (!addedEdphyentMeids.Contains(matStruct.EnPhMeId) && !await EdPhyEnts.AnyAsync(t => t.MeId == matStruct.EnPhMeId && t.Source == "M", ct))
+                    await EdPhyEnts.AddAsync(PrdbContextExtensions.CreateEntity<EdPhyEnt>(matStruct, "M"), ct);
             }
         }
 

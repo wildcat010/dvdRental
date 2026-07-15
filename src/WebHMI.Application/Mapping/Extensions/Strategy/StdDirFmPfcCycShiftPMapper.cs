@@ -5,20 +5,20 @@ namespace WebHMI.Mapping.Extensions.Strategy
 {
     public class StdDirFmPfcCycShiftPMapper
     {
-        public static void MapEntity(Stddirfmpfccycshiftp entity, StdDirFmPfcCycShiftDto dto)
+        public static void MapEntity(StdDirFmPfcCycShiftP entity, StdDirFmPfcCycShiftDto dto)
         {
-            entity.Planno = dto.PlanNo;
-            entity.Activeflag = dto.ActiveFlag;
+            entity.PlanNo = dto.PlanNo;
+            entity.ActiveFlag = dto.ActiveFlag;
             entity.Description = dto.Description;
-            entity.Manint = dto.Manint;
+            entity.ManInt = dto.Manint;
         }
 
-        public static StdDirFmPfcCycShiftDto ToDto(Stddirfmpfccycshiftp entity) => new()
+        public static StdDirFmPfcCycShiftDto ToDto(StdDirFmPfcCycShiftP entity) => new()
         {
-            PlanNo = entity.Planno,
-            ActiveFlag = entity.Activeflag,
+            PlanNo = entity.PlanNo,
+            ActiveFlag = entity.ActiveFlag,
             Description = entity.Description,
-            Manint = entity.Manint,
+            Manint = entity.ManInt,
         };
     }
 }

@@ -5,47 +5,47 @@ namespace WebHMI.PRDB.Dbo;
 
 public partial class VMatStructEntry
 {
-    public int Enormeid { get; set; }
+    public int EnOrMeId { get; set; }
 
-    public string Enorextid { get; set; }
+    public string EnOrExtId { get; set; }
 
-    public string Enormetype { get; set; }
+    public string EnOrMeType { get; set; }
 
-    public short? Enormesid { get; set; }
+    public short? EnOrMesId { get; set; }
 
-    public short Enorbasid { get; set; }
+    public short EnOrBasId { get; set; }
 
-    public int Enlomeid { get; set; }
+    public int EnLoMeId { get; set; }
 
-    public string Enloextid { get; set; }
+    public string EnLoExtId { get; set; }
 
-    public string Enlometype { get; set; }
+    public string EnLoMeType { get; set; }
 
-    public short? Enlomesid { get; set; }
+    public short? EnLoMesid { get; set; }
 
-    public short Enlobasid { get; set; }
+    public short EnLoBasId { get; set; }
 
-    public int Enphmeid { get; set; }
+    public int EnPhMeId { get; set; }
 
-    public string Enphextid { get; set; }
+    public string EnPhExtId { get; set; }
 
-    public short Enphbasid { get; set; }
+    public short EnPhBasId { get; set; }
 
-    public string Enphmetype { get; set; }
+    public string EnPhMeType { get; set; }
 
-    public short? Enphmesid { get; set; }
+    public short? EnPhMesId { get; set; }
 
-    public short? Enorstatus { get; set; }
+    public short? EnOrStatus { get; set; }
 
-    public string Enorcreator { get; set; }
+    public string EnOrCreator { get; set; }
 
-    public short? Enlostatus { get; set; }
+    public short? EnLoStatus { get; set; }
 
-    public string Enlocreator { get; set; }
+    public string EnLoCreator { get; set; }
 
-    public short? Enphstatus { get; set; }
+    public short? EnPhStatus { get; set; }
 
-    public string Enphcreator { get; set; }
+    public string EnPhCreator { get; set; }
 
-    public DateTime? Lastupdate { get; set; }
+    public DateTime? LastUpdate { get; set; }
 }

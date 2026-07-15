@@ -5,36 +5,84 @@ namespace WebHMI.PRDB.Dbo;
 
 public partial class Aoppass
 {
-    public string Mecreator { get; set; }
+    /// <summary>
+    /// Material owner
+    /// </summary>
+    public string MeCreator { get; set; }
 
-    public int Meid { get; set; }
+    /// <summary>
+    /// Material idendification number
+    /// </summary>
+    public int MeId { get; set; }
 
-    public short Mesid { get; set; }
+    /// <summary>
+    /// Line status
+    /// </summary>
+    public short MesId { get; set; }
 
-    public int Passno { get; set; }
+    /// <summary>
+    /// pass number
+    /// </summary>
+    public int PassNo { get; set; }
 
+    /// <summary>
+    /// owner
+    /// </summary>
     public string Source { get; set; }
 
-    public int? Antioxstateentry { get; set; }
+    /// <summary>
+    /// Unit[0/1] anti-oxidation entry pass state: 0-AUTO, 1-MANUAL
+    /// </summary>
+    public int? AntiOxStateEntry { get; set; }
 
-    public int? Antioxstateexit { get; set; }
+    /// <summary>
+    /// Unit[0/1] anti-oxidation exit pass state: 0-AUTO, 1-MANUAL
+    /// </summary>
+    public int? AntiOxStateExit { get; set; }
 
-    public double? Antioxidationentry { get; set; }
+    /// <summary>
+    /// anti-oxidation entry
+    /// </summary>
+    public double? AntiOxidationEntry { get; set; }
 
-    public double? Antioxidationexit { get; set; }
+    /// <summary>
+    /// anti-oxidation exit
+    /// </summary>
+    public double? AntiOxidationExit { get; set; }
 
-    public double? Antipeeling { get; set; }
+    /// <summary>
+    /// anti-peeling
+    /// </summary>
+    public double? AntiPeeling { get; set; }
 
-    public int? Antipeelingstate { get; set; }
+    /// <summary>
+    /// Unit[0/1] anti-peeling pass state: 0-AUTO, 1-MANUAL
+    /// </summary>
+    public int? AntiPeelingState { get; set; }
 
+    /// <summary>
+    /// description field
+    /// </summary>
     public string Description { get; set; }
 
-    public int? Planno { get; set; }
+    /// <summary>
+    /// Unit[0...999] palan number
+    /// </summary>
+    public int? PlanNo { get; set; }
 
+    /// <summary>
+    /// modifying process
+    /// </summary>
     public string Mop { get; set; }
 
+    /// <summary>
+    /// time of creation
+    /// </summary>
     public DateTime? Toc { get; set; }
 
+    /// <summary>
+    /// time of modification
+    /// </summary>
     public DateTime? Tom { get; set; }
 
     public virtual Me1 Me1 { get; set; }

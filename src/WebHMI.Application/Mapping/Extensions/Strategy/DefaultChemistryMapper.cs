@@ -9,9 +9,9 @@ namespace WebHMI.Mapping.Extensions.Strategy
 {
     public static class DefaultChemistryMapper
     {
-        public static void UpdateMapEntity(Matdat entity, DefaultChemistryDto dto)
+        public static void UpdateMapEntity(MatDat entity, DefaultChemistryDto dto)
         {
-            entity.Alloycode = dto.Alloycode;
+            entity.AlloyCode = dto.Alloycode;
             entity.Description = dto.Description;
 
             entity.CaInd00 = dto.ChemistryElement0.Value;
@@ -56,9 +56,9 @@ namespace WebHMI.Mapping.Extensions.Strategy
             entity.CaInd39 = dto.ChemistryElement39.Value;
         }
 
-        public static void InsertMapEntity(Matdat entity, DefaultChemistryDto dto)
+        public static void InsertMapEntity(MatDat entity, DefaultChemistryDto dto)
         {
-            entity.Alloycode = dto.Alloycode;
+            entity.AlloyCode = dto.Alloycode;
             entity.Description = dto.Description;
 
             entity.CaInd00 = dto.ChemistryElement0.Value;
@@ -144,9 +144,9 @@ namespace WebHMI.Mapping.Extensions.Strategy
             entity.CnInd39 = Encode(dto.ChemistryElement39.Name);
         }
 
-        public static DefaultChemistryDto ToDto(Matdat entity) => new()
+        public static DefaultChemistryDto ToDto(MatDat entity) => new()
         {
-            Alloycode = entity.Alloycode,
+            Alloycode = entity.AlloyCode,
             Description = entity.Description,
 
             ChemistryElement0 = new ApsChemistryElement()
@@ -352,7 +352,7 @@ namespace WebHMI.Mapping.Extensions.Strategy
             Total = SumCaInd(entity)
         };
 
-        private static double SumCaInd(Matdat entity)
+        private static double SumCaInd(MatDat entity)
         {
             return
                 (entity.CaInd00 ?? 0.0) +

@@ -3,21 +3,36 @@ using System.Collections.Generic;
 
 namespace WebHMI.PRDB.Dbo;
 
-public partial class Csprottick
+public partial class CsProtTick
 {
-    public int Meid { get; set; }
+    /// <summary>
+    /// material ID
+    /// </summary>
+    public int MeId { get; set; }
 
+    /// <summary>
+    /// tick number
+    /// </summary>
     public int Seg { get; set; }
 
+    /// <summary>
+    /// strip is in CS area
+    /// </summary>
     public short? OccCs { get; set; }
 
+    /// <summary>
+    /// strip is in FM area
+    /// </summary>
     public short? OccFm { get; set; }
 
+    /// <summary>
+    /// strip is in TBC area
+    /// </summary>
     public short? OccTbc { get; set; }
 
-    public int? Botvsetpcnt { get; set; }
+    public int? BotVsetpCnt { get; set; }
 
-    public int? Botvstatescnt { get; set; }
+    public int? BotVstatesCnt { get; set; }
 
     public double? CoefInd0 { get; set; }
 
@@ -25,67 +40,112 @@ public partial class Csprottick
 
     public double? CoefInd2 { get; set; }
 
-    public double? Coiltempsp { get; set; }
+    /// <summary>
+    /// coil temperature SP
+    /// </summary>
+    public double? CoilTempSp { get; set; }
 
-    public double? DctempoffsetInd0 { get; set; }
+    /// <summary>
+    /// adaptation temperature offset
+    /// </summary>
+    public double? DcTempOffsetInd0 { get; set; }
 
-    public double? DctempoffsetInd1 { get; set; }
+    /// <summary>
+    /// adaptation temperature offset
+    /// </summary>
+    public double? DcTempOffsetInd1 { get; set; }
 
-    public double? DctempoffsetInd2 { get; set; }
+    /// <summary>
+    /// adaptation temperature offset
+    /// </summary>
+    public double? DcTempOffsetInd2 { get; set; }
 
-    public double? DctempoffsetInd3 { get; set; }
+    /// <summary>
+    /// adaptation temperature offset
+    /// </summary>
+    public double? DcTempOffsetInd3 { get; set; }
 
-    public int? Fmvsetpcnt { get; set; }
+    public int? FmVsetpCnt { get; set; }
 
-    public int? Fmvstatescnt { get; set; }
+    public int? FmVstatesCnt { get; set; }
 
-    public double? Performatoroffset { get; set; }
+    /// <summary>
+    /// Performator offset
+    /// </summary>
+    public double? PerformatorOffset { get; set; }
 
+    /// <summary>
+    /// ril possition
+    /// </summary>
     public double? Ril { get; set; }
 
     public double? Slope { get; set; }
 
     public double? Speed { get; set; }
 
-    public double? Speed5diagdiff { get; set; }
+    public double? Speed5DiagDiff { get; set; }
 
+    /// <summary>
+    /// time difference
+    /// </summary>
     public double? Tdiff { get; set; }
 
-    public double? Tempcs { get; set; }
+    /// <summary>
+    /// Temperature after CS
+    /// </summary>
+    public double? TempCs { get; set; }
 
-    public double? Tempcsdiff { get; set; }
+    public double? TempCsdiff { get; set; }
 
-    public double? Tempfm { get; set; }
+    /// <summary>
+    /// Temperature after FM
+    /// </summary>
+    public double? TempFm { get; set; }
 
-    public double? Temprm { get; set; }
+    /// <summary>
+    /// Temperature after RM
+    /// </summary>
+    public double? TempRm { get; set; }
 
-    public double? Temptbc { get; set; }
+    /// <summary>
+    /// Temperature after TBC
+    /// </summary>
+    public double? TempTbc { get; set; }
 
-    public double? Temperaturedeviation { get; set; }
+    public double? TemperatureDeviation { get; set; }
 
     public double? Thickness { get; set; }
 
-    public int? Topvsetpcnt { get; set; }
+    public int? TopVsetpCnt { get; set; }
 
-    public int? Topvstatescnt { get; set; }
+    public int? TopVstatesCnt { get; set; }
 
-    public double? Totalcalcwaterflow { get; set; }
+    public double? TotalCalcWaterFlow { get; set; }
 
-    public string Valvesetpbot { get; set; }
+    public string ValveSetpBot { get; set; }
 
-    public string Valvesetpfm { get; set; }
+    public string ValveSetpFm { get; set; }
 
-    public string Valvesetptop { get; set; }
+    public string ValveSetpTop { get; set; }
 
-    public string Valvestatebot { get; set; }
+    public string ValveStateBot { get; set; }
 
-    public string Valvestatefm { get; set; }
+    public string ValveStateFm { get; set; }
 
-    public string Valvestatetop { get; set; }
+    public string ValveStateTop { get; set; }
 
+    /// <summary>
+    /// modifying process
+    /// </summary>
     public string Mop { get; set; }
 
+    /// <summary>
+    /// time of creation
+    /// </summary>
     public DateTime? Toc { get; set; }
 
+    /// <summary>
+    /// time of modification
+    /// </summary>
     public DateTime? Tom { get; set; }
 }

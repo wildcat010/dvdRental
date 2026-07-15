@@ -75,8 +75,8 @@ namespace WebHMI.API.Services
                 HmiTrackingData = await _cacheTrackingData.GetOrDefaultAsync(_trackingDataCacheKey),
                 ActualNext = await _cacheActualNext.GetOrDefaultAsync(_trackingDataCacheKey),
                 NextSlabs = await _cacheNextSlabs.GetAsync(_trackingDataCacheKey, async key => await GetNextSlabsCachesAsync()),
-                ActualSequenceId = await context.HmiVActualsequences.Select(x => x.Actsequenceid).FirstOrDefaultAsync(),
-                ActualHeatId = await context.HmiVActualheats.Select(x => x.Actheatid).FirstOrDefaultAsync(),
+                ActualSequenceId = await context.HmiVActualsequences.Select(x => x.Getcurrentsequence).FirstOrDefaultAsync(),
+                ActualHeatId = await context.HmiVActualheats.Select(x => x.GetCurrentHeat).FirstOrDefaultAsync(),
                 //ProducedCoils = await _cacheProducedCoils.GetOrDefaultAsync(_trackingDataCacheKey),
             };
         }
@@ -92,7 +92,7 @@ namespace WebHMI.API.Services
                 var result = new MaterialMVDataDto()
                 {
                     MVName = measurementName,
-                    MeCode = (await context.VMatStructEntries.FirstOrDefaultAsync(x => x.Enormeid == meid))?.ToMeCodeDto(),
+                    MeCode = (await context.VMatStructEntries.FirstOrDefaultAsync(x => x.EnOrMeId == meid))?.ToMeCodeDto(),
                     MVSeries = cache.Select(x => new MVPoint(1, new float?[] { (float)x.Value })).ToList()
                 };
                 return result;
@@ -155,7 +155,7 @@ namespace WebHMI.API.Services
 
             var curSeqId = await _commonService.GetActualSequenceId();
             var nextSlabId = await context.HmiVProdsequences
-                .Where(x => x.Sequenceid == curSeqId)
+                .Where(x => x.SequenceId == curSeqId)
                 .OrderBy(x => x.Majorno)
                 .ThenBy(x => x.Minorno)
                 .Select(x => new { x.Majorno, x.Minorno })
@@ -163,19 +163,19 @@ namespace WebHMI.API.Services
             if (nextSlabId != null)
             {
                 var tmp = context.HmiVProdsequences
-                    .Where(x => x.Majorno >= nextSlabId.Majorno && x.Minorno >= nextSlabId.Minorno && x.Sequenceid == curSeqId)
+                    .Where(x => x.Majorno >= nextSlabId.Majorno && x.Minorno >= nextSlabId.Minorno && x.SequenceId == curSeqId)
                     .OrderBy(x => x.Majorno)
                     .ThenBy(x => x.Minorno)
                     .Take(3);
 
                 result = await tmp.Select(x => new MeCodeDto
                 {
-                    MeId = x.Enormeid,
+                    MeId = x.EnOrMeId,
                     MatType = "OR",
-                    MesId = x.Enormesid ?? -1,
-                    MeCreator = x.Enorcreator,
-                    ExtId = x.Enorextid,
-                    Status = x.Enorstatus
+                    MesId = x.EnOrMesId ?? -1,
+                    MeCreator = x.EnOrCreator,
+                    ExtId = x.EnOrExtId,
+                    Status = x.EnOrStatus
                 })
                 .ToListAsync();
             }

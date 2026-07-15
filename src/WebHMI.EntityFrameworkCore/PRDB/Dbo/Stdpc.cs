@@ -3,21 +3,48 @@ using System.Collections.Generic;
 
 namespace WebHMI.PRDB.Dbo;
 
-public partial class Stdpc
+/// <summary>
+/// Standard Power Cooling plan
+/// </summary>
+public partial class StdPc
 {
-    public int Activeflag { get; set; }
+    /// <summary>
+    /// active flag
+    /// </summary>
+    public int ActiveFlag { get; set; }
 
-    public int Planno { get; set; }
+    /// <summary>
+    /// Unit[0...999] pc p number
+    /// </summary>
+    public int PlanNo { get; set; }
 
-    public double? Delaylength { get; set; }
+    /// <summary>
+    /// Unit[m] delay length for pc switch ON
+    /// </summary>
+    public double? DelayLength { get; set; }
 
+    /// <summary>
+    /// description field
+    /// </summary>
     public string Description { get; set; }
 
-    public int? Noramps { get; set; }
+    /// <summary>
+    /// Unit[0.... 2] number of pc ramps
+    /// </summary>
+    public int? NoRamps { get; set; }
 
+    /// <summary>
+    /// modifying process
+    /// </summary>
     public string Mop { get; set; }
 
+    /// <summary>
+    /// time of creation
+    /// </summary>
     public DateTime? Toc { get; set; }
 
+    /// <summary>
+    /// time of modification
+    /// </summary>
     public DateTime? Tom { get; set; }
 }

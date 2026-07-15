@@ -6,12 +6,12 @@ namespace WebHMI.DataBlobs
     public class SetpointsRmApxDataBlob
     {
         public List<Lppass> LpPasses { get; set; }
-        public List<Dirfmpfcparappass> DirFmPfcParaPpasses { get; set; }
-        public List<Dirfmpfccycshiftppass> DirFmPfcCycShiftPpasses { get; set; }
-        public List<Spord2pcstand> SpOrd2PcStands { get; set; }
+        public List<DirFmPfcParaPpass> DirFmPfcParaPpasses { get; set; }
+        public List<DirFmPfcCycShiftPpass> DirFmPfcCycShiftPpasses { get; set; }
+        public List<SpOrd2PcStand> SpOrd2PcStands { get; set; }
         public List<Srppass> SrpPasses { get; set; }
-        public List<Stddirfmpfcparappass> StatDirFmPfcParaPpassEffective { get; set; }
-        public List<Dirfmpfccycshiftp> DirFmPfcCycShiftPs { get; set; }
-        public List<Dirfmpfcparap> DirFmPfcParaPs { get; set; }
+        public List<StdDirFmPfcParaPpass> StatDirFmPfcParaPpassEffective { get; set; }
+        public List<DirFmPfcCycShiftP> DirFmPfcCycShiftPs { get; set; }
+        public List<DirFmPfcParaP> DirFmPfcParaPs { get; set; }
     }
 }

@@ -1,12 +1,4 @@
-﻿{
-  "iisSettings": {
-    "windowsAuthentication": false,
-    "anonymousAuthentication": true,
-    "iisExpress": {
-      "applicationUrl": "https://localhost:44311/",
-      "sslPort": 44311
-    }
-  },
+{
   "profiles": {
     "IIS Express": {
       "commandName": "IISExpress",
@@ -15,14 +7,23 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-		"WebHMI.Web.Host": {
-			"commandName": "Project",
-			"launchBrowser": true,
-			"launchUrl": "http://localhost:21029/swagger/index.html",
-			"environmentVariables": {
-				"ASPNETCORE_ENVIRONMENT": "Development"
-			},
-			"applicationUrl": "https://localhost:21029/"
-		}
+    "WebHMI.Web.Host": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "http://localhost:21029/swagger/index.html",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:21029/",
+      "nativeDebugging": true
+    }
+  },
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "https://localhost:44311/",
+      "sslPort": 44311
+    }
   }
 }

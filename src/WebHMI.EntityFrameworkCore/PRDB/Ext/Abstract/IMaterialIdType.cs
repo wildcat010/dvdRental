@@ -2,9 +2,9 @@
 {
     public interface IMaterialIdType
     {
-        int Meid { get; set; }
-        short Mesid { get; set; }
-        string Mecreator { get; set; }
+        int MeId { get; set; }
+        short MesId { get; set; }
+        string MeCreator { get; set; }
         string Source { get; set; }
     }
 }

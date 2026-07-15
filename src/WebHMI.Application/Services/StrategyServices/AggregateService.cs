@@ -1,9 +1,7 @@
 ﻿using Abp.Application.Services.Dto;
 using Abp.Auditing;
 using Abp.Authorization;
-using Abp.Domain.Repositories;
 using Abp.EntityFrameworkCore;
-using Abp.Events.Bus;
 using Abp.UI;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -45,13 +43,13 @@ namespace WebHMI.API.Services.StrategyServices
         {
             var context = _prdbContextProvider.GetDbContext();
 
-            var lastRecId = await context.Aggregateselections
-                .OrderByDescending(x => x.Recid)
-                .Select(x => x.Recid)
+            var lastRecId = await context.AggregateSelections
+                .OrderByDescending(x => x.RecId)
+                .Select(x => x.RecId)
                 .FirstOrDefaultAsync();
 
             var entity = input.ToEntity(lastRecId);
-            await context.Aggregateselections.AddAsync(entity);
+            await context.AggregateSelections.AddAsync(entity);
 
             _l2CommunicationHandler.AssignApsKey(input.ApsKey, input.AlloyCode);
 
@@ -63,8 +61,8 @@ namespace WebHMI.API.Services.StrategyServices
         {
             var context = _prdbContextProvider.GetDbContext();
 
-            var result = await context.Aggregateselections
-            .FirstOrDefaultAsync(x => x.Active == active && x.Recid == recId && x.Aggregate == aggregate)
+            var result = await context.AggregateSelections
+            .FirstOrDefaultAsync(x => x.Active == active && x.RecId == recId && x.Aggregate == aggregate)
             ?? throw new UserFriendlyException("Entity for given key not found.");
 
             return result.MapToDto();
@@ -75,7 +73,7 @@ namespace WebHMI.API.Services.StrategyServices
         {
             var context = _prdbContextProvider.GetDbContext();
 
-            var query = context.Aggregateselections.AsQueryable();
+            var query = context.AggregateSelections.AsQueryable();
             query = ApplyAggregateFilter(input, query);
             return await ApplyFilter(query, input, AggregateSelectionMapper.MapToDto);
         }
@@ -85,8 +83,8 @@ namespace WebHMI.API.Services.StrategyServices
         {
             var context = _prdbContextProvider.GetDbContext();
 
-            return await context.Apsrefs
-                .Select(x => x.Apskey)
+            return await context.ApsRefs
+                .Select(x => x.ApsKey)
                 .Distinct()
                 .ToListAsync();
         }
@@ -101,8 +99,8 @@ namespace WebHMI.API.Services.StrategyServices
         {
             var context = _prdbContextProvider.GetDbContext();
 
-            var entity = await context.Aggregateselections
-                .SingleOrDefaultAsync(x => x.Active == input.Active && x.Recid == input.RecId && x.Aggregate == input.Aggregate)
+            var entity = await context.AggregateSelections
+                .SingleOrDefaultAsync(x => x.Active == input.Active && x.RecId == input.RecId && x.Aggregate == input.Aggregate)
                 ?? throw new UserFriendlyException("Aggregate not found for given id");
 
             entity.MapFromDto(input);
@@ -118,16 +116,16 @@ namespace WebHMI.API.Services.StrategyServices
         {
             var context = _prdbContextProvider.GetDbContext();
 
-            var entity = await context.Aggregateselections
-                .SingleOrDefaultAsync(x => x.Active == active && x.Recid == recId && x.Aggregate == aggregate)
+            var entity = await context.AggregateSelections
+                .SingleOrDefaultAsync(x => x.Active == active && x.RecId == recId && x.Aggregate == aggregate)
                 ?? throw new UserFriendlyException("Aggregate not found for a given id");
 
-            context.Aggregateselections.Remove(entity);
+            context.AggregateSelections.Remove(entity);
 
         }
-        private static IQueryable<Aggregateselection> ApplyAggregateFilter(AggregateFilteredRequestDto input, IQueryable<Aggregateselection> query)
+        private static IQueryable<AggregateSelection> ApplyAggregateFilter(AggregateFilteredRequestDto input, IQueryable<AggregateSelection> query)
         {
-            var entityType = typeof(Aggregateselection);
+            var entityType = typeof(AggregateSelection);
 
             if (input.FromToFilters?.PropName.Any() ?? false)
             {

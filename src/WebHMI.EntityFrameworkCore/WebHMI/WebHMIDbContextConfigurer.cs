@@ -1,4 +1,5 @@
 ﻿using System.Data.Common;
+using EntityFramework.Exceptions.Oracle;
 using Microsoft.EntityFrameworkCore;
 
 namespace WebHMI.WebHMI
@@ -7,12 +8,12 @@ namespace WebHMI.WebHMI
 	{
 		public static void Configure(DbContextOptionsBuilder<WebHMIDbContext> builder, string connectionString)
 		{
-			builder.UseOracle(connectionString, b => b.UseOracleSQLCompatibility(OracleSQLCompatibility.DatabaseVersion19));
+			builder.UseSqlServer(connectionString).UseExceptionProcessor();
 		}
 
 		public static void Configure(DbContextOptionsBuilder<WebHMIDbContext> builder, DbConnection connection)
 		{
-			builder.UseOracle(connection, b => b.UseOracleSQLCompatibility(OracleSQLCompatibility.DatabaseVersion19));
+			builder.UseSqlServer(connection).UseExceptionProcessor();
         }
 	}
 }

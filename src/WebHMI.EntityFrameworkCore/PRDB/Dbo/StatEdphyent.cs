@@ -3,114 +3,271 @@ using System.Collections.Generic;
 
 namespace WebHMI.PRDB.Dbo;
 
-public partial class StatEdphyent
+public partial class StatEdPhyEnt
 {
-    public string Mecreator { get; set; }
+    /// <summary>
+    /// Material owner
+    /// </summary>
+    public string MeCreator { get; set; }
 
-    public int Meid { get; set; }
+    /// <summary>
+    /// Material idendification number
+    /// </summary>
+    public int MeId { get; set; }
 
-    public short Mesid { get; set; }
+    /// <summary>
+    /// Line status
+    /// </summary>
+    public short MesId { get; set; }
 
+    /// <summary>
+    /// owner
+    /// </summary>
     public string Source { get; set; }
 
-    public short? Aimslabthickness { get; set; }
+    /// <summary>
+    /// planned slab thickness
+    /// </summary>
+    public short? AimSlabThickness { get; set; }
 
-    public short? Aimslabthicknesshead { get; set; }
+    /// <summary>
+    /// planned slab thickness head
+    /// </summary>
+    public short? AimSlabThicknessHead { get; set; }
 
-    public short? Aimslabthicknesstail { get; set; }
+    /// <summary>
+    /// planned slab thickness tail
+    /// </summary>
+    public short? AimSlabThicknessTail { get; set; }
 
-    public short? Bendmodeflag { get; set; }
+    /// <summary>
+    /// bend mode flag from mos
+    /// </summary>
+    public short? BendModeFlag { get; set; }
 
-    public short? Casterline { get; set; }
+    /// <summary>
+    /// (not used forArvedi) 1=caster 1, 2=caster2
+    /// </summary>
+    public short? CasterLine { get; set; }
 
-    public short? Coillength { get; set; }
+    /// <summary>
+    /// length of coil
+    /// </summary>
+    public short? CoilLength { get; set; }
 
-    public short? Flagcaster { get; set; }
+    /// <summary>
+    /// Caster slab flag (1= width tapered slab, 2 = thickness tapered flag, 3=both)
+    /// </summary>
+    public short? FlagCaster { get; set; }
 
-    public short? Flagmixed { get; set; }
+    /// <summary>
+    /// (not used for Arvedi) Flag 1=mixed slab
+    /// </summary>
+    public short? FlagMixed { get; set; }
 
-    public short? Furnaceno { get; set; }
+    /// <summary>
+    /// (Arvedi not available)  Furnace Number
+    /// </summary>
+    public short? FurnaceNo { get; set; }
 
-    public short? Hentry { get; set; }
+    /// <summary>
+    /// Slab thickness - setpoint
+    /// </summary>
+    public short? HEntry { get; set; }
 
-    public short? Hentryfm { get; set; }
+    /// <summary>
+    /// Entry thickness FM
+    /// </summary>
+    public short? HEntryFm { get; set; }
 
-    public short? Hexitcustomer { get; set; }
+    /// <summary>
+    /// exit thickness ordered by customer
+    /// </summary>
+    public short? HExitCustomer { get; set; }
 
-    public short? Heatid { get; set; }
+    /// <summary>
+    /// unique heat identificationn
+    /// </summary>
+    public short? HeatId { get; set; }
 
-    public short? Heatidl3 { get; set; }
+    /// <summary>
+    /// current heat name (planned name from L3, real name from SMP)
+    /// </summary>
+    public short? HeatName { get; set; }
 
-    public short? Heatplanid { get; set; }
+    /// <summary>
+    /// Sequence identifier from L3
+    /// </summary>
+    public short? HeatPos { get; set; }
 
-    public short? Heatpos { get; set; }
+    /// <summary>
+    /// Entry length FM
+    /// </summary>
+    public short? LEntryFm { get; set; }
 
-    public short? Lentryfm { get; set; }
+    /// <summary>
+    /// Row order identifier from L3
+    /// </summary>
+    public short? MatPos { get; set; }
 
-    public short? Matpos { get; set; }
+    /// <summary>
+    /// maximum slab length (used as cutting limit)
+    /// </summary>
+    public short? MaxSlabLength { get; set; }
 
-    public short? Maxslablength { get; set; }
+    /// <summary>
+    /// maximum slab weight
+    /// </summary>
+    public short? MaxSlabWeight { get; set; }
 
-    public short? Maxslabweight { get; set; }
+    /// <summary>
+    /// minimum slab length (used as cutting limit)
+    /// </summary>
+    public short? MinSlabLength { get; set; }
 
-    public short? Minslablength { get; set; }
+    /// <summary>
+    /// minimum salb weight
+    /// </summary>
+    public short? MinSlabWeight { get; set; }
 
-    public short? Minslabweight { get; set; }
+    /// <summary>
+    /// Reason for okAll not ok: e.g. apsKey
+    /// </summary>
+    public short? NOkAllReason { get; set; }
 
-    public short? Nokallreason { get; set; }
-
+    /// <summary>
+    /// identification, material data OK = 1
+    /// </summary>
     public short? Ok { get; set; }
 
-    public short? Okall { get; set; }
+    /// <summary>
+    /// identification, all material data OK = 1
+    /// </summary>
+    public short? OkAll { get; set; }
 
-    public short? Operationflag { get; set; }
+    /// <summary>
+    /// operation flag from L3
+    /// </summary>
+    public short? OperationFlag { get; set; }
 
-    public short? Planid { get; set; }
+    /// <summary>
+    /// plan identification
+    /// </summary>
+    public short? PlanId { get; set; }
 
-    public short? Plateproduction { get; set; }
+    /// <summary>
+    /// 0 : coil 1: plate production
+    /// </summary>
+    public short? PlateProduction { get; set; }
 
-    public short? Sequenceid { get; set; }
+    /// <summary>
+    /// sequence identification
+    /// </summary>
+    public short? SequenceId { get; set; }
 
-    public short? Simmat { get; set; }
+    /// <summary>
+    /// 0: real slab 1: PD for ghost rolling
+    /// </summary>
+    public short? SimMat { get; set; }
 
-    public short? Slablength { get; set; }
+    /// <summary>
+    /// Slab length calculated
+    /// </summary>
+    public short? SlabLength { get; set; }
 
-    public short? Slabposthickchangeend { get; set; }
+    /// <summary>
+    /// (not used for Arvedi) planned position where thickness change ends in the slab
+    /// </summary>
+    public short? SlabPosThickChangeEnd { get; set; }
 
-    public short? Slabposthickchangestart { get; set; }
+    /// <summary>
+    /// (not used for Arvedi) planned position where thickness change start in the slab
+    /// </summary>
+    public short? SlabPosThickChangeStart { get; set; }
 
-    public short? Slabposwidthchangeend { get; set; }
+    /// <summary>
+    /// planned position where width change ends in the slab
+    /// </summary>
+    public short? SlabPosWidthChangeEnd { get; set; }
 
-    public short? Slabposwidthchangestart { get; set; }
+    /// <summary>
+    /// planned position where width change starts in the slab
+    /// </summary>
+    public short? SlabPosWidthChangeStart { get; set; }
 
-    public short? Slabweight { get; set; }
+    /// <summary>
+    /// slab weight from caster
+    /// </summary>
+    public short? SlabWeight { get; set; }
 
-    public short? Slabwidth { get; set; }
+    /// <summary>
+    /// Slab width setpoint
+    /// </summary>
+    public short? SlabWidth { get; set; }
 
-    public short? Slabwidthhead { get; set; }
+    /// <summary>
+    /// planned width at the head
+    /// </summary>
+    public short? SlabWidthHead { get; set; }
 
-    public short? Slabwidthtail { get; set; }
+    /// <summary>
+    /// planned width at the tail
+    /// </summary>
+    public short? SlabWidthTail { get; set; }
 
-    public short? Steelcustomer { get; set; }
+    /// <summary>
+    /// customer steel grade
+    /// </summary>
+    public short? SteelCustomer { get; set; }
 
-    public short? Tentry { get; set; }
+    /// <summary>
+    /// Slab furnace entry temperature setpoint
+    /// </summary>
+    public short? TEntry { get; set; }
 
-    public short? Tentryfm { get; set; }
+    /// <summary>
+    /// Transfer bar temperature set point
+    /// </summary>
+    public short? TEntryFm { get; set; }
 
-    public short? Weightspecific { get; set; }
+    /// <summary>
+    /// specific weight of material
+    /// </summary>
+    public short? WeightSpecific { get; set; }
 
-    public short? Widthchange { get; set; }
+    /// <summary>
+    /// delta width change
+    /// </summary>
+    public short? WidthChange { get; set; }
 
-    public short? Widthchangeflag { get; set; }
+    /// <summary>
+    /// width change over entire coil
+    /// </summary>
+    public short? WidthChangeFlag { get; set; }
 
-    public short? Widthchangesent { get; set; }
+    /// <summary>
+    /// 1 - width change telegram sent to Caster
+    /// </summary>
+    public short? WidthChangeSent { get; set; }
 
-    public short? Widthexitcustomer { get; set; }
+    /// <summary>
+    /// width exit orderd by customer
+    /// </summary>
+    public short? WidthExitCustomer { get; set; }
 
+    /// <summary>
+    /// modifying process
+    /// </summary>
     public string Mop { get; set; }
 
+    /// <summary>
+    /// time of creation
+    /// </summary>
     public DateTime? Toc { get; set; }
 
+    /// <summary>
+    /// time of modification
+    /// </summary>
     public DateTime? Tom { get; set; }
 
     public virtual Me1 Me1 { get; set; }

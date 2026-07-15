@@ -10,25 +10,25 @@ namespace WebHMI.Mapping.Extensions.Strategy
 {
     public class StdTpPassMapper
     {
-        public static void MapEntity(Stdtppass entity, StdTpPassDto dto)
+        public static void MapEntity(StdTppass entity, StdTpPassDto dto)
         {
-            entity.Planno = dto.PlanNo;
-            entity.Activeflag = dto.ActiveFlag;
-            entity.Passno = dto.PassNo;
+            entity.PlanNo = dto.PlanNo;
+            entity.ActiveFlag = dto.ActiveFlag;
+            entity.PassNo = dto.PassNo;
             entity.Description = dto.Description;
-            entity.Speciffotension = dto.SpeciffoTension;
-            entity.Looperstriplen = dto.LooperStripLen;
+            entity.SpecifFoTension = dto.SpeciffoTension;
+            entity.LooperStripLen = dto.LooperStripLen;
 
         }
 
-        public static StdTpPassDto ToDto(Stdtppass entity) => new()
+        public static StdTpPassDto ToDto(StdTppass entity) => new()
         {
-            PlanNo = entity.Planno,
-            ActiveFlag = entity.Activeflag,
-            PassNo = entity.Passno,
+            PlanNo = entity.PlanNo,
+            ActiveFlag = entity.ActiveFlag,
+            PassNo = entity.PassNo,
             Description = entity.Description,
-            SpeciffoTension = entity.Speciffotension,
-            LooperStripLen = entity.Looperstriplen
+            SpeciffoTension = entity.SpecifFoTension,
+            LooperStripLen = entity.LooperStripLen
         };
     }
 }

@@ -1,4 +1,4 @@
-﻿using Abp.Authorization;
+using Abp.Authorization;
 using Abp.Domain.Repositories;
 using Abp.Domain.Uow;
 using Abp.EntityFrameworkCore;
@@ -33,20 +33,20 @@ namespace WebHMI.API.Services
         public async Task<HmiCsMaintenanceSequenceConfig> GetTestSpecificValve()
         {
             var context = await _dbContextProvider.GetDbContextAsync();
-            if (!await context.Csmaintenancevalvestests.AnyAsync())
+            if (!await context.CsMaintenanceValvesTests.AnyAsync())
             {
-                context.Csmaintenancevalvestests.Add(new Csmaintenancevalvestest());
+                context.CsMaintenanceValvesTests.Add(new CsMaintenanceValvesTest());
                 await context.SaveChangesAsync();
             }
-            return await context.Csmaintenancevalvestests.Select(x => new HmiCsMaintenanceSequenceConfig()
+            return await context.CsMaintenanceValvesTests.Select(x => new HmiCsMaintenanceSequenceConfig()
             {
-                ParaStartValve = x.Udsvalvesnofrom.HasValue ? x.Udsvalvesnofrom.Value : (short)0,// 0 or 1 we need to verify it 
-                ParaStopValve = x.Udsvalvesnoto.HasValue ? x.Udsvalvesnoto.Value : (short)1,
-                ParaValveGroup = x.Udsvalvetype.HasValue ? x.Udsvalvetype.Value : (short)2,
-                ParaNoValvesPerStep = x.Udsnovalves.HasValue ? x.Udsnovalves.Value : (short)1,
-                ParaSubStepDeltaAmpl = x.Udsstepsize.HasValue ? x.Udsstepsize.Value : 10,
-                ParaSubStepTime = x.Udssteptime.HasValue ? x.Udssteptime.Value : 1,
-                ParaMaxAmpl = x.Udsmaxamplitude.HasValue ? x.Udsmaxamplitude.Value : 100,
+                ParaStartValve = x.UdsvalvesNoFrom.HasValue ? x.UdsvalvesNoFrom.Value : (short)0,// 0 or 1 we need to verify it 
+                ParaStopValve = x.UdsvalvesNoTo.HasValue ? x.UdsvalvesNoTo.Value : (short)1,
+                ParaValveGroup = x.UdsvalveType.HasValue ? x.UdsvalveType.Value : (short)2,
+                ParaNoValvesPerStep = x.UdsnoValves.HasValue ? x.UdsnoValves.Value : (short)1,
+                ParaSubStepDeltaAmpl = x.UdsstepSize.HasValue ? x.UdsstepSize.Value : 10,
+                ParaSubStepTime = x.UdsstepTime.HasValue ? x.UdsstepTime.Value : 1,
+                ParaMaxAmpl = x.UdsmaxAmplitude.HasValue ? x.UdsmaxAmplitude.Value : 100,
             }).SingleOrDefaultAsync();
         }
 
@@ -55,14 +55,14 @@ namespace WebHMI.API.Services
         public async Task<HmiCsMaintenanceSequenceConfig> UpdateTestSpecificValve(HmiCsMaintenanceSequenceConfig input, string connectionId)
         {
             var context = await _dbContextProvider.GetDbContextAsync();
-            var dbRow = await context.Csmaintenancevalvestests.SingleOrDefaultAsync();
-            dbRow.Udsvalvesnofrom = input.ParaStartValve;
-            dbRow.Udsvalvesnoto = input.ParaStopValve;
-            dbRow.Udsvalvetype = input.ParaValveGroup;
-            dbRow.Udsnovalves = input.ParaNoValvesPerStep;
-            dbRow.Udsstepsize = input.ParaSubStepDeltaAmpl;
-            dbRow.Udssteptime = input.ParaSubStepTime;
-            dbRow.Udsmaxamplitude = input.ParaMaxAmpl;
+            var dbRow = await context.CsMaintenanceValvesTests.SingleOrDefaultAsync();
+            dbRow.UdsvalvesNoFrom = input.ParaStartValve;
+            dbRow.UdsvalvesNoTo = input.ParaStopValve;
+            dbRow.UdsvalveType = input.ParaValveGroup;
+            dbRow.UdsnoValves = input.ParaNoValvesPerStep;
+            dbRow.UdsstepSize = input.ParaSubStepDeltaAmpl;
+            dbRow.UdsstepTime = input.ParaSubStepTime;
+            dbRow.UdsmaxAmplitude = input.ParaMaxAmpl;
             await context.SaveChangesAsync();
             var eventData = new EventWrapper<HmiReturnEvent>()
             {
@@ -87,16 +87,16 @@ namespace WebHMI.API.Services
         public async Task<HmiCsMaintenanceWormConfig> GetMaintenanceWorm()
         {
             var context = await _dbContextProvider.GetDbContextAsync();
-            if (!await context.Csmaintenancevalvestests.AnyAsync())
+            if (!await context.CsMaintenanceValvesTests.AnyAsync())
             {
-                context.Csmaintenancevalvestests.Add(new Csmaintenancevalvestest());
+                context.CsMaintenanceValvesTests.Add(new CsMaintenanceValvesTest());
                 await context.SaveChangesAsync();
             }
-            return await context.Csmaintenancevalvestests.Select(x => new HmiCsMaintenanceWormConfig()
+            return await context.CsMaintenanceValvesTests.Select(x => new HmiCsMaintenanceWormConfig()
             {
-                ParaAmpl = x.Wormaplitude.HasValue ? x.Wormaplitude.Value : 0,
-                ParaNoValvesPerStep = x.Wormnovalves.HasValue ? x.Wormnovalves.Value : (short)0.0,
-                ParaStepTime = x.Wormtime.HasValue ? x.Wormtime.Value : 0,
+                ParaAmpl = x.WormAplitude.HasValue ? x.WormAplitude.Value : 0,
+                ParaNoValvesPerStep = x.WormNoValves.HasValue ? x.WormNoValves.Value : (short)0.0,
+                ParaStepTime = x.WormTime.HasValue ? x.WormTime.Value : 0,
             }).SingleOrDefaultAsync();
         }
 
@@ -105,10 +105,10 @@ namespace WebHMI.API.Services
         public async Task<HmiCsMaintenanceWormConfig> UpdateMaintenanceWorm(HmiCsMaintenanceWormConfig input, string connectionId)
         {
             var context = await _dbContextProvider.GetDbContextAsync();
-            var dbRow = await context.Csmaintenancevalvestests.SingleOrDefaultAsync();
-            dbRow.Wormaplitude = input.ParaAmpl;
-            dbRow.Wormnovalves = input.ParaNoValvesPerStep;
-            dbRow.Wormtime = input.ParaStepTime;
+            var dbRow = await context.CsMaintenanceValvesTests.SingleOrDefaultAsync();
+            dbRow.WormAplitude = input.ParaAmpl;
+            dbRow.WormNoValves = input.ParaNoValvesPerStep;
+            dbRow.WormTime = input.ParaStepTime;
             await context.SaveChangesAsync();
             var eventData = new EventWrapper<HmiReturnEvent>()
             {
@@ -133,15 +133,15 @@ namespace WebHMI.API.Services
         public async Task<HmiCsMaintenanceManualConfig> GetManualTest()
         {
             var context = await _dbContextProvider.GetDbContextAsync();
-            if (!await context.Csmaintenancevalvestests.AnyAsync())
+            if (!await context.CsMaintenanceValvesTests.AnyAsync())
             {
-                context.Csmaintenancevalvestests.Add(new Csmaintenancevalvestest());
+                context.CsMaintenanceValvesTests.Add(new CsMaintenanceValvesTest());
                 await context.SaveChangesAsync();
             }
-            return await context.Csmaintenancevalvestests.Select(x => new HmiCsMaintenanceManualConfig()
+            return await context.CsMaintenanceValvesTests.Select(x => new HmiCsMaintenanceManualConfig()
             {
-                ManuAmplTop = x.Manualamplitudetop.HasValue ? (short)x.Manualamplitudetop.Value : (short)0.0,
-                ManuAmplBot = x.Manualamplitudebot.HasValue ? (short)x.Manualamplitudebot.Value : (short)0.0,
+                ManuAmplTop = x.ManualAmplitudeTop.HasValue ? (short)x.ManualAmplitudeTop.Value : (short)0.0,
+                ManuAmplBot = x.ManualAmplitudeBot.HasValue ? (short)x.ManualAmplitudeBot.Value : (short)0.0,
             }).SingleOrDefaultAsync();
         }
 
@@ -150,9 +150,9 @@ namespace WebHMI.API.Services
         public async Task<HmiCsMaintenanceManualConfig> UpdateManualTest(HmiCsMaintenanceManualConfig input, string connectionId)
         {
             var context = await _dbContextProvider.GetDbContextAsync();
-            var dbRow = await context.Csmaintenancevalvestests.SingleOrDefaultAsync();
-            dbRow.Manualamplitudetop = input.ManuAmplTop;
-            dbRow.Manualamplitudebot = input.ManuAmplBot;
+            var dbRow = await context.CsMaintenanceValvesTests.SingleOrDefaultAsync();
+            dbRow.ManualAmplitudeTop = input.ManuAmplTop;
+            dbRow.ManualAmplitudeBot = input.ManuAmplBot;
             await context.SaveChangesAsync();
             var eventData = new EventWrapper<HmiReturnEvent>()
             {
@@ -177,12 +177,12 @@ namespace WebHMI.API.Services
         public async Task<short> GetWormPowerCooling()
         {
             var context = await _dbContextProvider.GetDbContextAsync();
-            if (!await context.Csmaintenancevalvestests.AnyAsync())
+            if (!await context.CsMaintenanceValvesTests.AnyAsync())
             {
-                context.Csmaintenancevalvestests.Add(new Csmaintenancevalvestest());
+                context.CsMaintenanceValvesTests.Add(new CsMaintenanceValvesTest());
                 await context.SaveChangesAsync();
             }
-            return await context.Csmaintenancevalvestests.Select(x => x.Wpcpressuredesired.HasValue ? x.Wpcpressuredesired.Value : (short)0.0).SingleOrDefaultAsync();
+            return await context.CsMaintenanceValvesTests.Select(x => x.WpcPressureDesired.HasValue ? x.WpcPressureDesired.Value : (short)0.0).SingleOrDefaultAsync();
         }
 
         [AbpAuthorize(Permissions.Pages_Setpoints_CS_Edit)]
@@ -190,8 +190,8 @@ namespace WebHMI.API.Services
         public async Task<short> UpdateWormPowerCooling(short input, string connectionId)
         {
             var context = await _dbContextProvider.GetDbContextAsync();
-            var dbRow = await context.Csmaintenancevalvestests.SingleOrDefaultAsync();
-            dbRow.Manualamplitudetop = input;
+            var dbRow = await context.CsMaintenanceValvesTests.SingleOrDefaultAsync();
+            dbRow.ManualAmplitudeTop = input;
             await context.SaveChangesAsync();
             var eventData = new EventWrapper<HmiReturnEvent>()
             {
@@ -273,3 +273,4 @@ namespace WebHMI.API.Services
         }
     }
 }
+

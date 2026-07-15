@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using EntityFramework.Exceptions.Oracle;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
@@ -12,12 +13,12 @@ namespace WebHMI.PRDB
 	{
 		public static void Configure(DbContextOptionsBuilder<PrdbContext> builder, string connectionString)
 		{
-			builder.UseOracle(connectionString, b => b.UseOracleSQLCompatibility(OracleSQLCompatibility.DatabaseVersion19)).EnableSensitiveDataLogging();
+			builder.UseSqlServer(connectionString).EnableSensitiveDataLogging().UseExceptionProcessor();
 		}
 
 		public static void Configure(DbContextOptionsBuilder<PrdbContext> builder, DbConnection connection)
-		{
-			builder.UseOracle(connection, b => b.UseOracleSQLCompatibility(OracleSQLCompatibility.DatabaseVersion19)).EnableSensitiveDataLogging();
-		}
+        {
+            builder.UseSqlServer(connection).EnableSensitiveDataLogging().UseExceptionProcessor();
+        }
 	}
 }

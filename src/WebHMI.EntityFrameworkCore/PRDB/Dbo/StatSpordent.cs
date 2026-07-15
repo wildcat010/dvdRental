@@ -3,68 +3,161 @@ using System.Collections.Generic;
 
 namespace WebHMI.PRDB.Dbo;
 
-public partial class StatSpordent
+public partial class StatSpOrdEnt
 {
-    public string Mecreator { get; set; }
+    /// <summary>
+    /// Material owner
+    /// </summary>
+    public string MeCreator { get; set; }
 
-    public int Meid { get; set; }
+    /// <summary>
+    /// Material idendification number
+    /// </summary>
+    public int MeId { get; set; }
 
-    public short Mesid { get; set; }
+    /// <summary>
+    /// Line status
+    /// </summary>
+    public short MesId { get; set; }
 
+    /// <summary>
+    /// owner
+    /// </summary>
     public string Source { get; set; }
 
-    public short Thickhead { get; set; }
+    /// <summary>
+    /// thick head flag ( in HSM = 0)
+    /// </summary>
+    public short ThickHead { get; set; }
 
-    public short? Amountbindings { get; set; }
+    /// <summary>
+    /// amount of bindings circumferential
+    /// </summary>
+    public short? AmountBindings { get; set; }
 
-    public short? Amountbindingsr { get; set; }
+    /// <summary>
+    /// amount of bindings radial
+    /// </summary>
+    public short? AmountBindingsR { get; set; }
 
-    public short? Apskey { get; set; }
+    /// <summary>
+    /// only for HMI: technological material key
+    /// </summary>
+    public short? ApsKey { get; set; }
 
-    public short? Dilatometercurve { get; set; }
+    /// <summary>
+    /// no. of dilatometer curve to be applied
+    /// </summary>
+    public short? DilatometerCurve { get; set; }
 
-    public short? Flagplateprod { get; set; }
+    /// <summary>
+    /// Flag for plate production:  0 = strip production, 1 = plate production
+    /// </summary>
+    public short? FlagPlateProd { get; set; }
 
-    public short? Hexitcus { get; set; }
+    /// <summary>
+    /// for marking
+    /// </summary>
+    public short? HExitCus { get; set; }
 
-    public short? Hexitm { get; set; }
+    /// <summary>
+    /// strip thickness - tolerance - (delta)
+    /// </summary>
+    public short? HExitM { get; set; }
 
-    public short? Hexitp { get; set; }
+    /// <summary>
+    /// strip thickness - tolerance + (delta)
+    /// </summary>
+    public short? HExitP { get; set; }
 
-    public short? Hexitsetp { get; set; }
+    /// <summary>
+    /// planned finished strip thickness from L3
+    /// </summary>
+    public short? HExitSetp { get; set; }
 
-    public short? Idriga { get; set; }
+    /// <summary>
+    /// Row Order identifier from L3
+    /// </summary>
+    public short? IdRiga { get; set; }
 
-    public short? Idseq { get; set; }
+    /// <summary>
+    /// Sequence identifier from L3
+    /// </summary>
+    public short? IdSeq { get; set; }
 
-    public short? Inspectioncode { get; set; }
+    /// <summary>
+    /// Sampling/inspection code
+    /// </summary>
+    public short? InspectionCode { get; set; }
 
-    public short? Lengthorder { get; set; }
+    /// <summary>
+    /// length of order
+    /// </summary>
+    public short? LengthOrder { get; set; }
 
-    public short? Markingdatadiscline { get; set; }
+    /// <summary>
+    /// Marking data for disc line
+    /// </summary>
+    public short? MarkingDataDiscLine { get; set; }
 
-    public short? Matid { get; set; }
+    /// <summary>
+    /// material identifier for measurement devices (from table ThickMatId)
+    /// </summary>
+    public short? MatId { get; set; }
 
-    public short? Nodil { get; set; }
+    /// <summary>
+    /// dilatometercurve number
+    /// </summary>
+    public short? NoDil { get; set; }
 
-    public short? Setpointsedok { get; set; }
+    /// <summary>
+    /// Flag: 1=setpoints from Ed are o.k.
+    /// </summary>
+    public short? SetpointsEdOk { get; set; }
 
-    public short? Steelcus { get; set; }
+    /// <summary>
+    /// for marking
+    /// </summary>
+    public short? SteelCus { get; set; }
 
-    public short? Tcoiler { get; set; }
+    /// <summary>
+    /// tension reel/coiler: coiling temperature
+    /// </summary>
+    public short? TCoiler { get; set; }
 
-    public short? Texitsetp { get; set; }
+    /// <summary>
+    /// planned exit temperature from L3
+    /// </summary>
+    public short? TExitSetp { get; set; }
 
-    public short? Wedgemax { get; set; }
+    /// <summary>
+    /// strip wedge - positive tolerance limit
+    /// </summary>
+    public short? WedgeMax { get; set; }
 
-    public short? Wedgemin { get; set; }
+    /// <summary>
+    /// strip wedge - negative tolerance limit
+    /// </summary>
+    public short? WedgeMin { get; set; }
 
-    public short? Widthexitcus { get; set; }
+    /// <summary>
+    /// for marking
+    /// </summary>
+    public short? WidthExitCus { get; set; }
 
+    /// <summary>
+    /// modifying process
+    /// </summary>
     public string Mop { get; set; }
 
+    /// <summary>
+    /// time of creation
+    /// </summary>
     public DateTime? Toc { get; set; }
 
+    /// <summary>
+    /// time of modification
+    /// </summary>
     public DateTime? Tom { get; set; }
 
     public virtual Me1 Me1 { get; set; }

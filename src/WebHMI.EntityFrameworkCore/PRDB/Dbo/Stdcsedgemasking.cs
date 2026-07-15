@@ -3,83 +3,200 @@ using System.Collections.Generic;
 
 namespace WebHMI.PRDB.Dbo;
 
-public partial class Stdcsedgemasking
+/// <summary>
+/// Standard strategy Table for APS plan
+/// </summary>
+public partial class StdCsEdgeMasking
 {
-    public int Activeflag { get; set; }
+    /// <summary>
+    /// active flag
+    /// </summary>
+    public int ActiveFlag { get; set; }
 
-    public int Planno { get; set; }
+    /// <summary>
+    /// key for the compensation plan
+    /// </summary>
+    public int PlanNo { get; set; }
 
     public string Description { get; set; }
 
+    /// <summary>
+    /// description field 2
+    /// </summary>
     public string Description2 { get; set; }
 
-    public short? EdgemaskingwidthInd00 { get; set; }
+    /// <summary>
+    /// Unit[mm] width setpoint for each edgeMaskingDevice as symmetric overlap with strip
+    /// </summary>
+    public short? EdgeMaskingWidthInd00 { get; set; }
 
-    public short? EdgemaskingwidthInd01 { get; set; }
+    /// <summary>
+    /// Unit[mm] width setpoint for each edgeMaskingDevice as symmetric overlap with strip
+    /// </summary>
+    public short? EdgeMaskingWidthInd01 { get; set; }
 
-    public short? EdgemaskingwidthInd02 { get; set; }
+    /// <summary>
+    /// Unit[mm] width setpoint for each edgeMaskingDevice as symmetric overlap with strip
+    /// </summary>
+    public short? EdgeMaskingWidthInd02 { get; set; }
 
-    public short? EdgemaskingwidthInd03 { get; set; }
+    /// <summary>
+    /// Unit[mm] width setpoint for each edgeMaskingDevice as symmetric overlap with strip
+    /// </summary>
+    public short? EdgeMaskingWidthInd03 { get; set; }
 
-    public short? EdgemaskingwidthInd04 { get; set; }
+    /// <summary>
+    /// Unit[mm] width setpoint for each edgeMaskingDevice as symmetric overlap with strip
+    /// </summary>
+    public short? EdgeMaskingWidthInd04 { get; set; }
 
-    public short? EdgemaskingwidthInd05 { get; set; }
+    /// <summary>
+    /// Unit[mm] width setpoint for each edgeMaskingDevice as symmetric overlap with strip
+    /// </summary>
+    public short? EdgeMaskingWidthInd05 { get; set; }
 
-    public short? EdgemaskingwidthInd06 { get; set; }
+    /// <summary>
+    /// Unit[mm] width setpoint for each edgeMaskingDevice as symmetric overlap with strip
+    /// </summary>
+    public short? EdgeMaskingWidthInd06 { get; set; }
 
-    public short? EdgemaskingwidthInd07 { get; set; }
+    /// <summary>
+    /// Unit[mm] width setpoint for each edgeMaskingDevice as symmetric overlap with strip
+    /// </summary>
+    public short? EdgeMaskingWidthInd07 { get; set; }
 
-    public short? EdgemaskingwidthInd08 { get; set; }
+    /// <summary>
+    /// Unit[mm] width setpoint for each edgeMaskingDevice as symmetric overlap with strip
+    /// </summary>
+    public short? EdgeMaskingWidthInd08 { get; set; }
 
-    public short? EdgemaskingwidthInd09 { get; set; }
+    /// <summary>
+    /// Unit[mm] width setpoint for each edgeMaskingDevice as symmetric overlap with strip
+    /// </summary>
+    public short? EdgeMaskingWidthInd09 { get; set; }
 
-    public short? EdgemaskingwidthInd10 { get; set; }
+    /// <summary>
+    /// Unit[mm] width setpoint for each edgeMaskingDevice as symmetric overlap with strip
+    /// </summary>
+    public short? EdgeMaskingWidthInd10 { get; set; }
 
-    public short? EdgemaskingwidthInd11 { get; set; }
+    /// <summary>
+    /// Unit[mm] width setpoint for each edgeMaskingDevice as symmetric overlap with strip
+    /// </summary>
+    public short? EdgeMaskingWidthInd11 { get; set; }
 
-    public short? EdgemaskingwidthInd12 { get; set; }
+    /// <summary>
+    /// Unit[mm] width setpoint for each edgeMaskingDevice as symmetric overlap with strip
+    /// </summary>
+    public short? EdgeMaskingWidthInd12 { get; set; }
 
-    public short? EdgemaskingwidthInd13 { get; set; }
+    /// <summary>
+    /// Unit[mm] width setpoint for each edgeMaskingDevice as symmetric overlap with strip
+    /// </summary>
+    public short? EdgeMaskingWidthInd13 { get; set; }
 
-    public short? EdgemaskingwidthInd14 { get; set; }
+    /// <summary>
+    /// Unit[mm] width setpoint for each edgeMaskingDevice as symmetric overlap with strip
+    /// </summary>
+    public short? EdgeMaskingWidthInd14 { get; set; }
 
-    public short? EdgemaskingwidthInd15 { get; set; }
+    /// <summary>
+    /// Unit[mm] width setpoint for each edgeMaskingDevice as symmetric overlap with strip
+    /// </summary>
+    public short? EdgeMaskingWidthInd15 { get; set; }
 
-    public short? EdgemaskingwidthInd16 { get; set; }
+    /// <summary>
+    /// Unit[mm] width setpoint for each edgeMaskingDevice as symmetric overlap with strip
+    /// </summary>
+    public short? EdgeMaskingWidthInd16 { get; set; }
 
-    public short? EdgemaskingwidthInd17 { get; set; }
+    /// <summary>
+    /// Unit[mm] width setpoint for each edgeMaskingDevice as symmetric overlap with strip
+    /// </summary>
+    public short? EdgeMaskingWidthInd17 { get; set; }
 
-    public short? EdgemaskingwidthInd18 { get; set; }
+    /// <summary>
+    /// Unit[mm] width setpoint for each edgeMaskingDevice as symmetric overlap with strip
+    /// </summary>
+    public short? EdgeMaskingWidthInd18 { get; set; }
 
-    public short? EdgemaskingwidthInd19 { get; set; }
+    /// <summary>
+    /// Unit[mm] width setpoint for each edgeMaskingDevice as symmetric overlap with strip
+    /// </summary>
+    public short? EdgeMaskingWidthInd19 { get; set; }
 
-    public short? EdgemaskingwidthInd20 { get; set; }
+    /// <summary>
+    /// Unit[mm] width setpoint for each edgeMaskingDevice as symmetric overlap with strip
+    /// </summary>
+    public short? EdgeMaskingWidthInd20 { get; set; }
 
-    public short? EdgemaskingwidthInd21 { get; set; }
+    /// <summary>
+    /// Unit[mm] width setpoint for each edgeMaskingDevice as symmetric overlap with strip
+    /// </summary>
+    public short? EdgeMaskingWidthInd21 { get; set; }
 
-    public short? EdgemaskingwidthInd22 { get; set; }
+    /// <summary>
+    /// Unit[mm] width setpoint for each edgeMaskingDevice as symmetric overlap with strip
+    /// </summary>
+    public short? EdgeMaskingWidthInd22 { get; set; }
 
-    public short? EdgemaskingwidthInd23 { get; set; }
+    /// <summary>
+    /// Unit[mm] width setpoint for each edgeMaskingDevice as symmetric overlap with strip
+    /// </summary>
+    public short? EdgeMaskingWidthInd23 { get; set; }
 
-    public short? EdgemaskingwidthInd24 { get; set; }
+    /// <summary>
+    /// Unit[mm] width setpoint for each edgeMaskingDevice as symmetric overlap with strip
+    /// </summary>
+    public short? EdgeMaskingWidthInd24 { get; set; }
 
-    public short? EdgemaskingwidthInd25 { get; set; }
+    /// <summary>
+    /// Unit[mm] width setpoint for each edgeMaskingDevice as symmetric overlap with strip
+    /// </summary>
+    public short? EdgeMaskingWidthInd25 { get; set; }
 
-    public short? EdgemaskingwidthInd26 { get; set; }
+    /// <summary>
+    /// Unit[mm] width setpoint for each edgeMaskingDevice as symmetric overlap with strip
+    /// </summary>
+    public short? EdgeMaskingWidthInd26 { get; set; }
 
-    public short? EdgemaskingwidthInd27 { get; set; }
+    /// <summary>
+    /// Unit[mm] width setpoint for each edgeMaskingDevice as symmetric overlap with strip
+    /// </summary>
+    public short? EdgeMaskingWidthInd27 { get; set; }
 
-    public short? EdgemaskingwidthInd28 { get; set; }
+    /// <summary>
+    /// Unit[mm] width setpoint for each edgeMaskingDevice as symmetric overlap with strip
+    /// </summary>
+    public short? EdgeMaskingWidthInd28 { get; set; }
 
-    public short? EdgemaskingwidthInd29 { get; set; }
+    /// <summary>
+    /// Unit[mm] width setpoint for each edgeMaskingDevice as symmetric overlap with strip
+    /// </summary>
+    public short? EdgeMaskingWidthInd29 { get; set; }
 
-    public short? EdgemaskingwidthInd30 { get; set; }
+    /// <summary>
+    /// Unit[mm] width setpoint for each edgeMaskingDevice as symmetric overlap with strip
+    /// </summary>
+    public short? EdgeMaskingWidthInd30 { get; set; }
 
-    public short? EdgemaskingwidthInd31 { get; set; }
+    /// <summary>
+    /// Unit[mm] width setpoint for each edgeMaskingDevice as symmetric overlap with strip
+    /// </summary>
+    public short? EdgeMaskingWidthInd31 { get; set; }
 
+    /// <summary>
+    /// modifying process
+    /// </summary>
     public string Mop { get; set; }
 
+    /// <summary>
+    /// time of creation
+    /// </summary>
     public DateTime? Toc { get; set; }
 
+    /// <summary>
+    /// time of modification
+    /// </summary>
     public DateTime? Tom { get; set; }
 }

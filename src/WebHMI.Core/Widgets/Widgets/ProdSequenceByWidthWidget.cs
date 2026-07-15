@@ -58,11 +58,11 @@ namespace WebHMI.Core.Widget.Widgets
 
 			var context = _dbContextProvider.GetDbContext();
 			var res = await context.HmiVProdsequenceCompletes
-				.GroupBy(d => d.Wexit)
+              .GroupBy(d => d.WExit)
 					.Select(
 					   d => new
 					   {
-						   AggregatedWeight = d.Sum(g => (double)g.Weightentry),
+                           AggregatedWeight = d.Sum(g => (double)g.WeightEntry),
 						   CountProducts = d.Count(),
 						   WidthExit = d.Key
 					   })

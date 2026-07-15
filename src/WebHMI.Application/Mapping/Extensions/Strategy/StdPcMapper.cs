@@ -11,22 +11,22 @@ namespace WebHMI.Mapping.Extensions.Strategy
 {
     public class StdPcMapper
     {
-        public static void MapEntity(Stdpc entity, StdPcDto dto)
+        public static void MapEntity(StdPc entity, StdPcDto dto)
         {
-            entity.Activeflag = dto.ActiveFlag;
-            entity.Planno = dto.PlanNo;
-            entity.Delaylength = dto.Delaylength;
+            entity.ActiveFlag = dto.ActiveFlag;
+            entity.PlanNo = dto.PlanNo;
+            entity.DelayLength = dto.Delaylength;
             entity.Description = dto.Description;
-            entity.Noramps = dto.Noramps;
+            entity.NoRamps = dto.Noramps;
         }
 
-        public static StdPcDto ToDto(Stdpc entity) => new()
+        public static StdPcDto ToDto(StdPc entity) => new()
         {
-            ActiveFlag = entity.Activeflag,
-            PlanNo = entity.Planno,
-            Delaylength = entity.Delaylength,
+            ActiveFlag = entity.ActiveFlag,
+            PlanNo = entity.PlanNo,
+            Delaylength = entity.DelayLength,
             Description = entity.Description,
-            Noramps = entity.Noramps,
+            Noramps = entity.NoRamps,
         };
     }
 }

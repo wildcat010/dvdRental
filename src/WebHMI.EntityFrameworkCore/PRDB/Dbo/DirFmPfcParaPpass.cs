@@ -3,48 +3,114 @@ using System.Collections.Generic;
 
 namespace WebHMI.PRDB.Dbo;
 
-public partial class Dirfmpfcparappass
+/// <summary>
+/// Material related strategy value: flatness pass
+/// </summary>
+public partial class DirFmPfcParaPpass
 {
-    public string Mecreator { get; set; }
+    /// <summary>
+    /// Material owner
+    /// </summary>
+    public string MeCreator { get; set; }
 
-    public int Meid { get; set; }
+    /// <summary>
+    /// Material idendification number
+    /// </summary>
+    public int MeId { get; set; }
 
-    public short Mesid { get; set; }
+    /// <summary>
+    /// Line status
+    /// </summary>
+    public short MesId { get; set; }
 
-    public int Passno { get; set; }
+    /// <summary>
+    /// pass number
+    /// </summary>
+    public int PassNo { get; set; }
 
+    /// <summary>
+    /// owner
+    /// </summary>
     public string Source { get; set; }
 
+    /// <summary>
+    /// description field
+    /// </summary>
     public string Description { get; set; }
 
-    public double? Facdfbdfr { get; set; }
+    /// <summary>
+    /// damping factor for dpc sensitivity
+    /// </summary>
+    public double? FacDfbDfr { get; set; }
 
-    public double? Facdfbdiu { get; set; }
+    /// <summary>
+    /// damping factor for flc sensitivity
+    /// </summary>
+    public double? FacDfbDiu { get; set; }
 
-    public double? Fbll { get; set; }
+    /// <summary>
+    /// Unit[N] lower limit bending force
+    /// </summary>
+    public double? FbLl { get; set; }
 
-    public double? Fbul { get; set; }
+    /// <summary>
+    /// Unit[N] upper limit bending force
+    /// </summary>
+    public double? FbUl { get; set; }
 
-    public double? Observedflat { get; set; }
+    /// <summary>
+    /// observed flat
+    /// </summary>
+    public double? ObservedFlat { get; set; }
 
+    /// <summary>
+    /// Unit[deg] lower limit paircross
+    /// </summary>
     public double? Paircrossll { get; set; }
 
+    /// <summary>
+    /// Unit[deg] upper limit paircross
+    /// </summary>
     public double? Paircrossul { get; set; }
 
-    public int? Planno { get; set; }
+    /// <summary>
+    /// plan number
+    /// </summary>
+    public int? PlanNo { get; set; }
 
-    public string Planttype { get; set; }
+    /// <summary>
+    /// plant type
+    /// </summary>
+    public string PlantType { get; set; }
 
-    public double? Srll { get; set; }
+    /// <summary>
+    /// Unit[deg] lower limit of roll shift
+    /// </summary>
+    public double? SrLl { get; set; }
 
-    public double? Srul { get; set; }
+    /// <summary>
+    /// Unit[deg] upper limit of roll shift
+    /// </summary>
+    public double? SrUl { get; set; }
 
-    public string Toextid { get; set; }
+    /// <summary>
+    /// External material ID
+    /// </summary>
+    public string ToExtId { get; set; }
 
+    /// <summary>
+    /// modifying process
+    /// </summary>
     public string Mop { get; set; }
 
+    /// <summary>
+    /// time of creation
+    /// </summary>
     public DateTime? Toc { get; set; }
 
+    /// <summary>
+    /// time of modification
+    /// </summary>
     public DateTime? Tom { get; set; }
 
     public virtual Me1 Me1 { get; set; }

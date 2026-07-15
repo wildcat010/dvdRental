@@ -3,39 +3,93 @@ using System.Collections.Generic;
 
 namespace WebHMI.PRDB.Dbo;
 
-public partial class Stddirfmpfcparappass
+/// <summary>
+/// Standard flatness plan pass
+/// </summary>
+public partial class StdDirFmPfcParaPpass
 {
-    public int Activeflag { get; set; }
+    /// <summary>
+    /// active flag
+    /// </summary>
+    public int ActiveFlag { get; set; }
 
-    public int Passno { get; set; }
+    /// <summary>
+    /// pass number
+    /// </summary>
+    public int PassNo { get; set; }
 
-    public int Planno { get; set; }
+    /// <summary>
+    /// plan number
+    /// </summary>
+    public int PlanNo { get; set; }
 
+    /// <summary>
+    /// description field
+    /// </summary>
     public string Description { get; set; }
 
-    public double? Facdfbdfr { get; set; }
+    /// <summary>
+    /// damping factor for dpc sensitivity
+    /// </summary>
+    public double? FacDfbDfr { get; set; }
 
-    public double? Facdfbdiu { get; set; }
+    /// <summary>
+    /// damping factor for flc sensitivity
+    /// </summary>
+    public double? FacDfbDiu { get; set; }
 
-    public double? Fbll { get; set; }
+    /// <summary>
+    /// Unit[N] lower limit bending force
+    /// </summary>
+    public double? FbLl { get; set; }
 
-    public double? Fbul { get; set; }
+    /// <summary>
+    /// Unit[N] upper limit bending force
+    /// </summary>
+    public double? FbUl { get; set; }
 
-    public double? Observedflat { get; set; }
+    /// <summary>
+    /// observed flat
+    /// </summary>
+    public double? ObservedFlat { get; set; }
 
+    /// <summary>
+    /// Unit[deg] lower limit paircross
+    /// </summary>
     public double? Paircrossll { get; set; }
 
+    /// <summary>
+    /// Unit[deg] upper limit paircross
+    /// </summary>
     public double? Paircrossul { get; set; }
 
-    public string Planttype { get; set; }
+    /// <summary>
+    /// plant type
+    /// </summary>
+    public string PlantType { get; set; }
 
-    public double? Srll { get; set; }
+    /// <summary>
+    /// Unit[deg] lower limit of roll shift
+    /// </summary>
+    public double? SrLl { get; set; }
 
-    public double? Srul { get; set; }
+    /// <summary>
+    /// Unit[deg] upper limit of roll shift
+    /// </summary>
+    public double? SrUl { get; set; }
 
+    /// <summary>
+    /// modifying process
+    /// </summary>
     public string Mop { get; set; }
 
+    /// <summary>
+    /// time of creation
+    /// </summary>
     public DateTime? Toc { get; set; }
 
+    /// <summary>
+    /// time of modification
+    /// </summary>
     public DateTime? Tom { get; set; }
 }

@@ -10,20 +10,20 @@ namespace WebHMI.Mapping.Extensions.Strategy.CSMappers
 {
     public static class StdCsCoilTempOffsetMapper
     {
-        public static void MapEntity(Stdcscoiltempoffset entity, StdCsCoilTempOffsetDto dto)
+        public static void MapEntity(StdCsCoilTempOffset entity, StdCsCoilTempOffsetDto dto)
         {
-            entity.Planno = dto.PlanNo;
-            entity.Activeflag = dto.ActiveFlag;
+            entity.PlanNo = dto.PlanNo;
+            entity.ActiveFlag = dto.ActiveFlag;
             entity.Description = dto.Description;
-            entity.Splineid = dto.Splineid;
+            entity.SplineId = dto.Splineid;
         }
 
-        public static StdCsCoilTempOffsetDto ToDto(Stdcscoiltempoffset entity) => new()
+        public static StdCsCoilTempOffsetDto ToDto(StdCsCoilTempOffset entity) => new()
         {
-            PlanNo = entity.Planno,
-            ActiveFlag = entity.Activeflag,
+            PlanNo = entity.PlanNo,
+            ActiveFlag = entity.ActiveFlag,
             Description = entity.Description,
-            Splineid = entity.Splineid,
+            Splineid = entity.SplineId,
         };
     }
 }

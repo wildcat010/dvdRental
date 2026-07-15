@@ -10,10 +10,10 @@ namespace WebHMI.Mapping.Extensions.Strategy.CSMappers
 {
     public static class StdCrCsMapper
     {
-        public static void MapEntity(Stdcscr entity, StdCrCsDto dto)
+        public static void MapEntity(StdCsCr entity, StdCrCsDto dto)
         {
-            entity.Activeflag = dto.ActiveFlag;
-            entity.Planno = dto.PlanNo;
+            entity.ActiveFlag = dto.ActiveFlag;
+            entity.PlanNo = dto.PlanNo;
             entity.CrsInd10 = dto.CrsInd10;
             entity.CrsInd11 = dto.CrsInd11;
             entity.CrsInd12 = dto.CrsInd12;
@@ -58,10 +58,10 @@ namespace WebHMI.Mapping.Extensions.Strategy.CSMappers
             entity.CrsInd09 = dto.CrsInd09;
         }
 
-        public static StdCrCsDto ToDto(Stdcscr entity) => new()
+        public static StdCrCsDto ToDto(StdCsCr entity) => new()
         {
-            ActiveFlag = entity.Activeflag,
-            PlanNo = entity.Planno,
+            ActiveFlag = entity.ActiveFlag,
+            PlanNo = entity.PlanNo,
             CrsInd10 = entity.CrsInd10,
             CrsInd11 = entity.CrsInd11,
             CrsInd12 = entity.CrsInd12,

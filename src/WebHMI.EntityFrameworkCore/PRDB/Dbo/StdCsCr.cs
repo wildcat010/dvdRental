@@ -3,11 +3,20 @@ using System.Collections.Generic;
 
 namespace WebHMI.PRDB.Dbo;
 
-public partial class Stdcscr
+/// <summary>
+/// Standard strategy Table for APS plan
+/// </summary>
+public partial class StdCsCr
 {
-    public int Activeflag { get; set; }
+    /// <summary>
+    /// active flag
+    /// </summary>
+    public int ActiveFlag { get; set; }
 
-    public int Planno { get; set; }
+    /// <summary>
+    /// key for the compensation plan
+    /// </summary>
+    public int PlanNo { get; set; }
 
     public int? CrsInd00 { get; set; }
 
@@ -93,11 +102,23 @@ public partial class Stdcscr
 
     public string Description { get; set; }
 
+    /// <summary>
+    /// description field 2
+    /// </summary>
     public string Description2 { get; set; }
 
+    /// <summary>
+    /// modifying process
+    /// </summary>
     public string Mop { get; set; }
 
+    /// <summary>
+    /// time of creation
+    /// </summary>
     public DateTime? Toc { get; set; }
 
+    /// <summary>
+    /// time of modification
+    /// </summary>
     public DateTime? Tom { get; set; }
 }
