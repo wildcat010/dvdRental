@@ -14,20 +14,21 @@ namespace WebHMI.Mapping.Extensions
             dto.HeatID1 = dbo.HeatId1;
             dto.FlagBatchRolling = dbo.Flagbatchrolling;
             dto.AlloyCode = dbo.Alloycode;
-            dto.Prodend = dbo.ProdEnd;
-            dto.ExitWidthSP = dbo.WExit;
-            dto.ExitWidth = dbo.WExitAver;
-            dto.ExitWidthMin = dbo.WExitMin;
-            dto.ExitWidthMax = dbo.WExitMax;
-            dto.ExitThicknessSP = dbo.HExit;
-            dto.ExitThickness = dbo.HExitAver;
-            dto.ExitThicknessMin = dbo.HExitMin;
-            dto.ExitThicknessMax = dbo.HExitMax;
-            dto.CSExitTempSP = dbo.TExitCs;
-            dto.CSExitTemp = dbo.TExitCsaver;
-            dto.CSExitTempMin = dbo.TExitCsmin;
-            dto.CSExitTempMax = dbo.TExitCsmax;
-            dto.CoilLength = dbo.CoilLengthX;
+            dto.Prodstart = dbo.Prodstart;
+            dto.Prodend = dbo.Prodend;
+            dto.ExitWidthSP = dbo.Wexit;
+            dto.ExitWidth = dbo.Wexitaver;
+            dto.ExitWidthMin = dbo.Wexitmin;
+            dto.ExitWidthMax = dbo.Wexitmax;
+            dto.ExitThicknessSP = dbo.Hexit;
+            dto.ExitThickness = dbo.Hexitaver;
+            dto.ExitThicknessMin = dbo.Hexitmin;
+            dto.ExitThicknessMax = dbo.Hexitmax;
+            dto.CSExitTempSP = dbo.Texitcs;
+            dto.CSExitTemp = dbo.Texitcsaver;
+            dto.CSExitTempMin = dbo.Texitcsmin;
+            dto.CSExitTempMax = dbo.Texitcsmax;
+            dto.CoilLength = dbo.Coillengthx;
             return dto;
         }
 

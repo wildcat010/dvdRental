@@ -24,5 +24,6 @@ namespace WebHMI.Dtos.ProductData
         public double? CSExitTempMin { get; set; }
         public double? CSExitTempMax { get; set; }
         public double? CoilLength { get; set; }
+        public DateTime? Prodstart { get; set; }
     }
 }
