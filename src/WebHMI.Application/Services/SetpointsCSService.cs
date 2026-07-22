@@ -166,7 +166,7 @@ namespace WebHMI.API.Services
         /// </summary>
         [Audited]
         [AbpAuthorize(Permissions.Pages_Setpoints_CS_Edit)]
-        public async Task UpdateSetpointsCS(SetpointsCsDto input, string connectionId)
+        public async Task UpdateSetpointsCS(SetpointsCsDto input, string connectionId, bool pdiChanged = false)
         {
             var context = _dbContextProvider.GetDbContext();
             var vMatStructEntry = await _matStructEntryService.GetMaterialEntryStruct(input.MeCode.MeId, "OR");
@@ -218,7 +218,10 @@ namespace WebHMI.API.Services
 
             await context.SaveChangesAsync();
 
-            _l2CommunicationHandler.SetpointsCalculationHMI(vMatStructEntry, "HFM", connectionId);
+            if (pdiChanged)
+                _l2CommunicationHandler.EntryDataChange(vMatStructEntry, connectionId);
+            else
+                _l2CommunicationHandler.SetpointsCalculationHMI(vMatStructEntry, "HFM", connectionId);
         }
 
         [AbpAuthorize(Permissions.Pages_Setpoints_CS)]
