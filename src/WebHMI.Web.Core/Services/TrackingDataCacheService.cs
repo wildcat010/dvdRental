@@ -63,7 +63,7 @@ namespace WebHMI.API.Services
             if (!isCoilEvent)
                 return;
 
-            await _cacheNextSlabs.SetAsync(_trackingDataCacheKey, await GetNextSlabsCachesAsync());
+            //await _cacheNextSlabs.SetAsync(_trackingDataCacheKey, await GetNextSlabsCachesAsync());
         }
 
         [UnitOfWork]

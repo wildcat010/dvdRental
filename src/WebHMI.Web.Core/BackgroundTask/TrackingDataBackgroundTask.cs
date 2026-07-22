@@ -16,6 +16,7 @@ using WebHMI.Dtos;
 using WebHMI.Notification;
 using WebHMI.PRDB;
 using WebHMI.PRDB.Dbo;
+using WebHMI.Services;
 using XIDL;
 
 namespace WebHMI.API.BackgroundTask
@@ -25,8 +26,10 @@ namespace WebHMI.API.BackgroundTask
         private readonly IDbContextProvider<PrdbContext> _dbContextProvider;
         private readonly ITypedCache<string, MeCodeDto> _cacheMeCode;
         private readonly ITypedCache<string, Dictionary<string, MeCodeDto>> _cacheActualNext;
+        private readonly ITypedCache<string, List<MeCodeDto>> _cacheNextSlabs;
         //private readonly ITypedCache<string, List<MeCodeDto>> _cacheProducedCoils;
         private const string _trackingDataCacheKey = "TrackingDataBackgroundTask";
+        private readonly CommonAppService _commonService;
 
         private readonly ISignalRNotifier _signalRNotifier;
 
@@ -35,6 +38,7 @@ namespace WebHMI.API.BackgroundTask
         public TrackingDataBackgroundTask(IDbContextProvider<PrdbContext> dbContextProvider,
             AbpTimer timer,
             ICacheManager cacheManager,
+            CommonAppService commonService,
             ISignalRNotifier signalRNotifier) : base(timer)
         {
             _dbContextProvider = dbContextProvider;
@@ -42,7 +46,9 @@ namespace WebHMI.API.BackgroundTask
             _cacheActualNext = cacheManager.GetCache<string, Dictionary<string, MeCodeDto>>("ActualNext");
             //_cacheProducedCoils = cacheManager.GetCache<string, List<MeCodeDto>>("ProducedCoils");
             _cacheMeCode = cacheManager.GetCache<string, MeCodeDto>("MeCode");
+            _cacheNextSlabs = cacheManager.GetCache<string, List<MeCodeDto>>("NextSlabs");
             _signalRNotifier = signalRNotifier;
+            _commonService = commonService;
         }
 
         protected override void DoWork()
@@ -74,6 +80,7 @@ namespace WebHMI.API.BackgroundTask
 
         //}
 
+        //function to update the actual and next caches
         private async Task UpdateActualNextCachesAsync()
         {
             var context = _dbContextProvider.GetDbContext();
@@ -85,6 +92,8 @@ namespace WebHMI.API.BackgroundTask
 
             if (!isCoilUpdated && isCacheAvailable)
                 return;
+
+
 
             var result = new Dictionary<string, MeCodeDto>();
 
@@ -106,9 +115,49 @@ namespace WebHMI.API.BackgroundTask
             }
 
             await _cacheActualNext.SetAsync(_trackingDataCacheKey, result);
+            await _cacheNextSlabs.SetAsync(_trackingDataCacheKey, await GetNextSlabsCachesAsync());
+
             await _signalRNotifier.BroadcastToAllClientsAsync(result, "ActualNext");
 
             _lastHmiCoilUpdate = hmiCoils.Max(x => x.Tom) ?? default;
+        }
+
+        //function to get the next slabs caches
+        private async Task<List<MeCodeDto>> GetNextSlabsCachesAsync()
+        {
+            var context = _dbContextProvider.GetDbContext();
+
+            var result = new List<MeCodeDto>();
+
+            var curSeqId = await _commonService.GetActualSequenceId();
+            var nextSlabId = await context.HmiVProdsequences
+                .Where(x => x.SequenceId == curSeqId)
+                .OrderBy(x => x.Majorno)
+                .ThenBy(x => x.Minorno)
+                .Select(x => new { x.Majorno, x.Minorno })
+                .FirstOrDefaultAsync();
+            if (nextSlabId != null)
+            {
+                var tmp = context.HmiVProdsequences
+                    .Where(x => x.Majorno >= nextSlabId.Majorno && x.Minorno >= nextSlabId.Minorno && x.SequenceId == curSeqId)
+                    .OrderBy(x => x.Majorno)
+                    .ThenBy(x => x.Minorno)
+                    .Take(3);
+
+                result = await tmp.Select(x => new MeCodeDto
+                {
+                    MeId = x.EnOrMeId,
+                    MatType = "OR",
+                    MesId = x.EnOrMesId ?? -1,
+                    MeCreator = x.EnOrCreator,
+                    ExtId = x.EnOrExtId,
+                    Status = x.EnOrStatus
+                })
+                .ToListAsync();
+            }
+
+            await _signalRNotifier.BroadcastToAllClientsAsync(result, "NextSlabs");
+            return result;
         }
 
         private async Task<MeCodeDto> GetMeCodeFromCaches(string enloextid)
