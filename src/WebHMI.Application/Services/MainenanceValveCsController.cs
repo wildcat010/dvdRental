@@ -29,13 +29,14 @@ namespace WebHMI.API.Services
             _dbContextProvider = dbContextProvider;
         }
 
+        //Function to get the test specific valve configuration from the database
         [AbpAuthorize(Permissions.Pages_Setpoints_CS)]
         public async Task<HmiCsMaintenanceSequenceConfig> GetTestSpecificValve()
         {
             var context = await _dbContextProvider.GetDbContextAsync();
             if (!await context.CsMaintenanceValvesTests.AnyAsync())
             {
-                context.CsMaintenanceValvesTests.Add(new CsMaintenanceValvesTest());
+                context.CsMaintenanceValvesTests.Add(new CsMaintenanceValvesTest() { Id = 1 });
                 await context.SaveChangesAsync();
             }
             return await context.CsMaintenanceValvesTests.Select(x => new HmiCsMaintenanceSequenceConfig()
@@ -83,13 +84,14 @@ namespace WebHMI.API.Services
             return input;
         }
 
+        //Function to get the maintenance worm configuration from the database
         [AbpAuthorize(Permissions.Pages_Setpoints_CS)]
         public async Task<HmiCsMaintenanceWormConfig> GetMaintenanceWorm()
         {
             var context = await _dbContextProvider.GetDbContextAsync();
             if (!await context.CsMaintenanceValvesTests.AnyAsync())
             {
-                context.CsMaintenanceValvesTests.Add(new CsMaintenanceValvesTest());
+                context.CsMaintenanceValvesTests.Add(new CsMaintenanceValvesTest() { Id = 1 });
                 await context.SaveChangesAsync();
             }
             return await context.CsMaintenanceValvesTests.Select(x => new HmiCsMaintenanceWormConfig()
@@ -129,13 +131,14 @@ namespace WebHMI.API.Services
             return input;
         }
 
+        //Function to get the manual test configuration from the database
         [AbpAuthorize(Permissions.Pages_Setpoints_CS)]
         public async Task<HmiCsMaintenanceManualConfig> GetManualTest()
         {
             var context = await _dbContextProvider.GetDbContextAsync();
             if (!await context.CsMaintenanceValvesTests.AnyAsync())
             {
-                context.CsMaintenanceValvesTests.Add(new CsMaintenanceValvesTest());
+                context.CsMaintenanceValvesTests.Add(new CsMaintenanceValvesTest() { Id = 1 });
                 await context.SaveChangesAsync();
             }
             return await context.CsMaintenanceValvesTests.Select(x => new HmiCsMaintenanceManualConfig()
@@ -173,13 +176,14 @@ namespace WebHMI.API.Services
             return input;
         }
 
+        //Function to get the worm power cooling configuration from the database
         [AbpAuthorize(Permissions.Pages_Setpoints_CS)]
         public async Task<short> GetWormPowerCooling()
         {
             var context = await _dbContextProvider.GetDbContextAsync();
             if (!await context.CsMaintenanceValvesTests.AnyAsync())
             {
-                context.CsMaintenanceValvesTests.Add(new CsMaintenanceValvesTest());
+                context.CsMaintenanceValvesTests.Add(new CsMaintenanceValvesTest() { Id = 1 });
                 await context.SaveChangesAsync();
             }
             return await context.CsMaintenanceValvesTests.Select(x => x.WpcPressureDesired.HasValue ? x.WpcPressureDesired.Value : (short)0.0).SingleOrDefaultAsync();
