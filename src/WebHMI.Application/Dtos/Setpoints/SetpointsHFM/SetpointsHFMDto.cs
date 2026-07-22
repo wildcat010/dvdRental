@@ -5,11 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 using WebHMI.Dtos.Roll;
 using WebHMI.Dtos.Setpoints.CommonDtos;
+using WebHMI.Interface;
 
 namespace WebHMI.Dtos.Setpoints.SetpointsHFM
 {
-    public class SetpointsHFMDto
+    public class SetpointsHFMDto : IAuditLogRelatedIdGetter
     {
+        public string GetAuditLogRelatedId()
+        {
+            return MeCode.GetAuditLogRelatedId();
+        }
+
         public MeCodeDto MeCode { get; set; }
         public List<PassScheduleDto> PassScheduleDtos { get; set; } = new();
         public List<LoadingDto> LoadingDtos { get; set; } = new();

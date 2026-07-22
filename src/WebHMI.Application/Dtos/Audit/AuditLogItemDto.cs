@@ -11,5 +11,7 @@ namespace WebHMI.Dtos.Audit
         public int ExecutionDuration { get; set; }
 		public CallerUser CallerUser { get; set; }
         public AuditCallResult CallResult { get; set; }
-	}
+        public string RelatedId { get; set; }
+        public int Duration { get; set; }
+    }
 }

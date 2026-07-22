@@ -166,6 +166,8 @@ namespace WebHMI.Services
 			}
 		}
 
+        //function to copy material from one entry to another, with the option to specify a new external ID and whether it's a test material
+        [Audited]
         public async Task CopyMaterial(int meid, string matType, string newExtId, short isTestMat)
         {
             var entryMatStruct = await _matStructEntryService.GetMaterialEntryStruct(meid, matType);

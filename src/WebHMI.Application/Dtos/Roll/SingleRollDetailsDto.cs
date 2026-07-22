@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using WebHMI.Interface;
 
 namespace WebHMI.Dtos.Roll
 {
-    public class SingleRollDetailsDto
+    public class SingleRollDetailsDto : IAuditLogRelatedIdGetter
     {
         public string Rollid { get; set; }
         public string Rolltype { get; set; }
@@ -37,5 +38,10 @@ namespace WebHMI.Dtos.Roll
         public int? PlannedStandId { get; internal set; }
         public string StandRange { get; set; }
         public DateTime? GrindingTime { get; set; } = new();
+
+        public string GetAuditLogRelatedId()
+        {
+            return $"{Rollid}";
+        }
     }
 }

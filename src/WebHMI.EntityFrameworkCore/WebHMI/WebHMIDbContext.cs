@@ -13,7 +13,9 @@ namespace WebHMI.WebHMI
 		{
 		}
 
-		protected override void OnModelCreating(ModelBuilder modelBuilder)
+        public virtual DbSet<ExtendedAuditLog> ExtendedAuditLogs { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 			base.OnModelCreating(modelBuilder);
 
@@ -28,7 +30,13 @@ namespace WebHMI.WebHMI
 			modelBuilder.Entity<AuditLog>()
 				.Property(e => e.ReturnValue)
 				.HasMaxLength(int.MaxValue);
-		}
+
+            modelBuilder.Entity<ExtendedAuditLog>(entity =>
+            {
+                entity.Property(x => x.RelatedId);
+                entity.HasDiscriminator<string>("Discriminator");
+            });
+        }
 
         private static void TreatDatabaseDateAsUtc(ModelBuilder modelBuilder)
         {

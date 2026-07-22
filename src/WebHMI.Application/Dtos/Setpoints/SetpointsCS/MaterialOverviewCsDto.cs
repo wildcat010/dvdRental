@@ -3,11 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WebHMI.Interface;
 
 namespace WebHMI.Dtos.Setpoints.SetpointsCS
 {
-    public class MaterialOverviewCsDto
+    public class MaterialOverviewCsDto : IAuditLogRelatedIdGetter
     {
+        public string GetAuditLogRelatedId()
+        {
+            return MeCode.GetAuditLogRelatedId();
+        }
+
         public MeCodeDto MeCode { get; set; } = new();
         public SourceSet<double?> HExit { get; set; } = new();
         public SourceSet<double?> WidthExit { get; set; } = new();

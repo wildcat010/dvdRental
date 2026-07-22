@@ -5,11 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 using WebHMI.Dtos.Setpoints.CommonDtos;
 using WebHMI.Dtos.Setpoints.CommonDtos.ApxDtos;
+using WebHMI.Interface;
 
 namespace WebHMI.Dtos.Setpoints.SetpointsHRM
 {
-    public class SetpointsHRMApxDto
+    public class SetpointsHRMApxDto : IAuditLogRelatedIdGetter
     {
+        public string GetAuditLogRelatedId()
+        {
+            return MeCode.GetAuditLogRelatedId();
+        }
         public MeCodeDto MeCode { get; set; } = new();
         public List<ApxPassScheduleDto> PassScheduleDtos { get; set; } = new();
         public List<ApxShiftingDto> ShiftingDtos { get; set; } = new();

@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WebHMI.Interface;
 
 namespace WebHMI.Dtos.Roll
 {
-    public class RollShapeCoeffDto
+    public class RollShapeCoeffDto : IAuditLogRelatedIdGetter
     {
         public int ShapeCode { get; set; }
         public string Description { get; set; }
@@ -22,5 +23,10 @@ namespace WebHMI.Dtos.Roll
         public double? ShapeX9 { get; set; }
         public string StandRange { get; set; }
         public int? ShapeCurveCode { get; set; }
+
+        public string GetAuditLogRelatedId()
+        {
+            return $"{ShapeCode}";
+        }
     }
 }

@@ -1,8 +1,9 @@
 ﻿using System;
+using WebHMI.Interface;
 
 namespace WebHMI.Dtos.Roll
 {
-    public class RollPropertyClassDto
+    public class RollPropertyClassDto : IAuditLogRelatedIdGetter
     {
         public int RollPropertyClass { get; set; }
         public double? CwIn { get; set; }
@@ -35,5 +36,10 @@ namespace WebHMI.Dtos.Roll
         public string Mop { get; set; }
         public DateTime? Toc { get; set; }
         public DateTime? Tom { get; set; }
+
+        public string GetAuditLogRelatedId()
+        {
+            return $"{RollPropertyClass}";
+        }
     }
 }

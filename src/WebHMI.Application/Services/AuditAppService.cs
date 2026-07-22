@@ -1,44 +1,42 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using Abp.Domain.Repositories;
-using Abp.Application.Services.Dto;
-using System.Linq.Dynamic.Core;
-using System.Collections.Generic;
-using Abp.Authorization;
-using System;
-using Microsoft.EntityFrameworkCore;
+﻿using Abp.Application.Services.Dto;
 using Abp.Auditing;
+using Abp.Authorization;
 using Abp.Domain.Entities;
-using WebHMI.Helpers;
+using Abp.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Dynamic.Core;
+using System.Threading.Tasks;
 using WebHMI.Dtos.Audit;
 using WebHMI.Filters;
+using WebHMI.Helpers;
 using WebHMI.Mapping.Extensions;
-using WebHMI.WebHMI.Dbo;
+using WebHMI.WebHMI;
 
 namespace WebHMI.Services
 {
 	public class AuditAppService : ApplicationServiceBase
     {
-        private readonly IRepository<AuditLog, long> _auditLogRepository;
-        private readonly IRepository<User, long> _usersRepository;
+        private readonly IDbContextProvider<WebHMIDbContext> _dbContextProvider;
 
-        public AuditAppService(
-            IRepository<AuditLog, long> auditLogRepository,
-            IRepository<User, long> usersRepository)
+        public AuditAppService(IDbContextProvider<WebHMIDbContext> dbContextProvider)
         {
-            _auditLogRepository = auditLogRepository;
-            _usersRepository = usersRepository;
+            _dbContextProvider = dbContextProvider;
         }
 
+        //function to get the details of a specific audit log by its ID
         [AbpAuthorize(Permissions.Pages_Audit)]
         public async Task<AuditLogDetailsDto> GetDetails(long id)
-		{
-            var auditLog = await _auditLogRepository.GetAll().FirstOrDefaultAsync(x => x.Id == id);
+        {
+            var hmiContext = await _dbContextProvider.GetDbContextAsync();
+            var auditLog = await hmiContext.ExtendedAuditLogs.FirstOrDefaultAsync(x => x.Id == id);
 
             if (auditLog is null)
                 throw new EntityNotFoundException($"{nameof(AuditLog)} not found");
 
-            var user = await _usersRepository.GetAll()
+            var user = await hmiContext.Users
                 .Select(u => new { u.Id, u.UserName })
                 .FirstOrDefaultAsync(u => u.Id == auditLog.UserId);
 
@@ -52,11 +50,13 @@ namespace WebHMI.Services
             return dto;
         }
 
+        //function to get a paginated list of audit log items based on the provided filter
         [AbpAuthorize(Permissions.Pages_Audit)]
         public async Task<PagedResultDto<AuditLogItemDto>> GetItems(FilteredRequestDto input)
         {
+            var hmiContext = await _dbContextProvider.GetDbContextAsync();
             var pagedEntities = await ApplyFilterWithoutMapping(
-                _auditLogRepository.GetAll()
+                hmiContext.ExtendedAuditLogs
                     .OrderByDescending(x => x.ExecutionTime),
                 input);
 
@@ -64,7 +64,7 @@ namespace WebHMI.Services
                 .Select(x => x.UserId)
                 .Distinct();
 
-            var users = await _usersRepository.GetAll()
+            var users = await hmiContext.Users
                 .Where(u => neededUserIds.Contains(u.Id))
                 .Select(u => new { u.Id, u.UserName })
                 .ToListAsync();

@@ -1,12 +1,14 @@
-﻿using System;
+﻿using Abp.Domain.Entities.Auditing;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WebHMI.Interface;
 
 namespace WebHMI.Dtos.Limit
 {
-    public class LimitDto
+    public class LimitDto : IAuditLogRelatedIdGetter
     {
         public string LimitName { get; set; }
         public string PlantType { get; set; }
@@ -20,5 +22,10 @@ namespace WebHMI.Dtos.Limit
         public DateTime? Toc { get; set; }
         public DateTime? Tom { get; set; }
         public string Mop { get; set; }
+
+        public string GetAuditLogRelatedId()
+        {
+            return $"{LimitName}-{PlantType}";
+        }
     }
 }

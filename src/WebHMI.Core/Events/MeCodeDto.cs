@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WebHMI.Interface;
 
 namespace WebHMI.Dtos
 {
-	public class MeCodeDto
-	{
+	public class MeCodeDto : IAuditLogRelatedIdGetter
+    {
 		/// <summary>
 		/// Refers to table ME.MEID (material key)
 		/// </summary>
@@ -37,5 +38,10 @@ namespace WebHMI.Dtos
 		/// Material status
 		/// </summary>
 		public short? Status { get; set; }
-	}
+
+        public string GetAuditLogRelatedId()
+        {
+            return $"{MeId}-{MatType}-{MeCreator}";
+        }
+    }
 }

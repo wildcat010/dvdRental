@@ -8,13 +8,15 @@ namespace WebHMI.Dtos
 {
 	public class SourceSet<TSourceType>
 	{
-		public TSourceType M { get; set; }
-		public TSourceType E { get; set; }
-		public TSourceType L { get; set; }
-		public TSourceType P { get; set; }
-		public TSourceType S { get; set; }
+        public TSourceType M { get; set; }
+        public TSourceType E { get; set; }
+        public TSourceType L { get; set; }
+        public TSourceType P { get; set; }
+        public TSourceType S { get; set; }
+        public TSourceType PreviousM { get; set; }
 
-		public short? Status { get; set; }
-		public string DbSource { get; set; }
+        public short? Status { get; set; }
+        public string DbSource { get; set; }
+        public bool HasChanged { get; set; } = false;
     }
 }
