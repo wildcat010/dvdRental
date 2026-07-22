@@ -141,11 +141,11 @@ namespace WebHMI.Mapping.Extensions
             result.Data.FMExitThicknessCustomer.DbSource = $"{nameof(EdOrdEnt)}.{nameof(EdOrdEnt.HExitCus)}";
             result.Data.FMExitThicknessCustomer.Status = dataBlob.StatEdOrdEnts?.HExitCus;
 
-            result.Data.FMExitWidthCustomer.L = dataBlob.EdPhyEnts.FirstOrDefault(x => x.Source == "L")?.WidthExitCustomer;
-			result.Data.FMExitWidthCustomer.M = dataBlob.EdPhyEnts.FirstOrDefault(x => x.Source == "M")?.WidthExitCustomer;
-			result.Data.FMExitWidthCustomer.S = dataBlob.EdPhyEnts.FirstOrDefault(x => x.Source == "S")?.WidthExitCustomer;
-			result.Data.FMExitWidthCustomer.E = dataBlob.EdPhyEnts.FirstOrDefault(x => x.Source == "E")?.WidthExitCustomer;
-            result.Data.FMExitWidthCustomer.DbSource = $"{nameof(EdPhyEnt)}.{nameof(EdPhyEnt.WidthExitCustomer)}";
+            result.Data.FMExitWidthCustomer.L = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "L")?.WidthExitCus   ;
+			result.Data.FMExitWidthCustomer.M = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "M")?.WidthExitCus;
+			result.Data.FMExitWidthCustomer.S = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "S")?.WidthExitCus;
+			result.Data.FMExitWidthCustomer.E = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "E")?.WidthExitCus;
+            result.Data.FMExitWidthCustomer.DbSource = $"{nameof(EdOrdEnt)}.{nameof(EdOrdEnt.WidthExitCus)}";
             result.Data.FMExitWidthCustomer.Status = dataBlob.StatEdPhyEnts?.WidthExitCustomer;
 
             result.Data.OrderNo.L = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "L")?.OrderNo;
