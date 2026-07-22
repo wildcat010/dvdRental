@@ -253,7 +253,7 @@ namespace WebHMI.Services
         {
             var context = _prdbContextProvider.GetDbContext();
 
-            return await ApplyFilter(context.HmiVProductionHistories
+            return await ApplyFilter(context.HmiVProdsequences
                 .Select(x => x.SequenceId)
                 .Distinct()
                 .OrderBy(x => x)

@@ -13,6 +13,7 @@ using System.Linq.Dynamic.Core;
 using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
+using WebHMI.Dtos.Common;
 using WebHMI.Dtos.ProductionSchedule;
 using WebHMI.Filters;
 using WebHMI.Helpers;
@@ -303,6 +304,18 @@ namespace WebHMI.Services
 
                 WidthTo = matInfos.Max(x => x.WExit),
             };
+        }
+
+        //function to get all sequence ids for the filter in the production schedule page with optional filtering and pagination
+        public async Task<PagedResultDto<SequenceIdDto>> GetAllSequenceIds(FilteredRequestDto input)
+        {
+            var context = _prdbContextProvider.GetDbContext();
+
+            return await ApplyFilter(context.HmiVProdsequences
+                .Select(x => x.SequenceId)
+                .Distinct()
+                .OrderBy(x => x)
+                , input, (u) => { return new SequenceIdDto() { Key = u }; });
         }
     }
 }

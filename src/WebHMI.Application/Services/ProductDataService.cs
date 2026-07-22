@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebHMI.Core.Widget.Models;
+using WebHMI.Dtos.Common;
 using WebHMI.Dtos.ProductData;
 using WebHMI.Dtos.ProductionSchedule;
 using WebHMI.Filters;
@@ -152,6 +153,18 @@ namespace WebHMI.Services
                 throw new EntityNotFoundException("Data for given sequence not found");
 
             return overviewData;
+        }
+
+        //function to get all sequence ids from the production history view, with optional filtering and pagination
+        public async Task<PagedResultDto<SequenceIdDto>> GetAllSequenceIds(FilteredRequestDto input)
+        {
+            var context = _dbContextProvider.GetDbContext();
+
+            return await ApplyFilter(context.HmiVProductionHistories
+                .Select(x => x.SequenceId)
+                .Distinct()
+                .OrderBy(x => x)
+                , input, (u) => { return new SequenceIdDto() { Key = u }; });
         }
     }
 }
