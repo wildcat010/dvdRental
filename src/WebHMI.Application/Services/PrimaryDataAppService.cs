@@ -108,14 +108,18 @@ namespace WebHMI.Services
             edordentM.ClassMaxWedgeDelta = input.Data.ClassWedgeDeltaMax.M;
             edordentM.ClassMinWedgeDelta = input.Data.ClassWedgeDeltaMin.M;
             edordentM.OrderNo = input.Data.OrderNo.M;
+            edordentM.CoilTemp = input.Data.CoilerTemp.M;
+            edordentM.CoilTempMaxTol = input.Data.CoilerTempDeltaMax.M;
+            edordentM.CoilTempMinTol = input.Data.CoilerTempDeltaMin.M;
 
             //CSSection
-
             edordentM.CoilTemp = input.CSData.CoilTemp.M;
             edordentM.CoilTempMaxTol = input.CSData.CoilTempMax.M;
 			edordentM.CoilTempMinTol = input.CSData.CoilTempMin.M;
             edordentM.CoolStrategy = input.CSData.CoolMode.M;
             edordentM.CoolingStrategyModeSelection = input.CSData.CoolModeSource.M;
+            edordentM.LengthUncooledHead = input.CSData.HeadUncoolHeadLength.M;
+            edordentM.LengthUncooledTail = input.CSData.TailUncoolHeadLength.M;
 
             var edlogentM = await _prdbContext.EdLogEnts.FirstOrDefaultAsync(x => x.MeId == entryMatStruct.EnLoMeId && x.Source == "M");
             edlogentM = _prdbContext.InsertIfNull(edlogentM, entryMatStruct);

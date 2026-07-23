@@ -205,6 +205,9 @@ namespace WebHMI.API.Services
             csStrategyM.TempOffsetFmA = input.CoolingStrategyTab.TempOffsetFma?.M;
             csStrategyM.TempOffsetFmB = input.CoolingStrategyTab.TempOffsetFmb?.M;
             csStrategyM.AdaptationFm = input.CoolingStrategyTab.AdaptationFm?.M;
+            csStrategyM.AutoSplineTempTransition = input.CoolingStrategyTab.AutoSplineTempTransition?.M;
+            csStrategyM.AutoSplineValueLowTop = input.CoolingStrategyTab.AutoSplineValueLowTop?.M;
+            csStrategyM.AutoSplineValueLowBot = input.CoolingStrategyTab.AutoSplineValueLowBot?.M;
 
             var csProfileM = await context.CsProfiles.FirstOrDefaultAsync(x => x.MeId == vMatStructEntry.EnOrMeId && x.Source == "M");
             csProfileM = context.InsertIfNull(csProfileM, vMatStructEntry);

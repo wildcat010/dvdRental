@@ -345,14 +345,17 @@ namespace WebHMI.Mapping.Extensions
             result.CoolingStrategyTab.TargetTempInd1.DbSource = $"{nameof(CsStrategy)}.{nameof(CsStrategy.TargetTempInd1)}";
 
             result.CoolingStrategyTab.AutoSplineValueLowTop.L = csstrategyL?.AutoSplineValueLowTop;
+            result.CoolingStrategyTab.AutoSplineValueLowTop.M = csstrategyM?.AutoSplineValueLowTop;
             result.CoolingStrategyTab.AutoSplineValueLowTop.E = csstrategyE?.AutoSplineValueLowTop;
             result.CoolingStrategyTab.AutoSplineValueLowTop.DbSource = $"{nameof(CsStrategy)}.{nameof(CsStrategy.AutoSplineValueLowTop)}";
 
             result.CoolingStrategyTab.AutoSplineValueLowBot.L = csstrategyL?.AutoSplineValueLowBot;
+            result.CoolingStrategyTab.AutoSplineValueLowBot.M = csstrategyM?.AutoSplineValueLowBot;
             result.CoolingStrategyTab.AutoSplineValueLowBot.E = csstrategyE?.AutoSplineValueLowBot;
             result.CoolingStrategyTab.AutoSplineValueLowBot.DbSource = $"{nameof(CsStrategy)}.{nameof(CsStrategy.AutoSplineValueLowBot)}";
 
             result.CoolingStrategyTab.AutoSplineTempTransition.L = csstrategyL?.AutoSplineTempTransition;
+            result.CoolingStrategyTab.AutoSplineTempTransition.M = csstrategyM?.AutoSplineTempTransition;
             result.CoolingStrategyTab.AutoSplineTempTransition.E = csstrategyE?.AutoSplineTempTransition;
             result.CoolingStrategyTab.AutoSplineTempTransition.DbSource = $"{nameof(CsStrategy)}.{nameof(CsStrategy.AutoSplineTempTransition)}";
 
