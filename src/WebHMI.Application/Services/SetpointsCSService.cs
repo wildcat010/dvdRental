@@ -140,6 +140,7 @@ namespace WebHMI.API.Services
             await context.SaveChangesAsync();
         }
 
+        //Function to get the CS Setpoints for a given material and type. The result is cached for performance.
         [AbpAuthorize(Permissions.Pages_Setpoints_CS)]
         public async Task<SetpointsCsDto> GetSetpointsCS(int MeId, string matType)
         {
@@ -151,7 +152,8 @@ namespace WebHMI.API.Services
 
                 var result = new SetpointsCsDto()
                         .MapPreCalculation(dataBlob)
-                        .MapCoolingStrategy(dataBlob);
+                        .MapCoolingStrategy(dataBlob)
+                        .MapProfileCooling(dataBlob);
 
                 result.MeCode = entryMatStruct.ToOrMeCodeDto();
 
