@@ -99,6 +99,8 @@ dotnet ef dbcontext scaffold $DBConnString Microsoft.EntityFrameworkCore.SqlServ
 -t STDWMPPASS `
 -t STDPC `
 -t STDPCRAMP `
+-t PC `
+-t PCRamp `
 -t TP `
 -t TPPASS `
 -t HMICOIL `

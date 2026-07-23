@@ -1255,5 +1255,14 @@ public partial class SpOrd2PcStand
     /// </summary>
     public DateTime? Tom { get; set; }
 
+    /// <summary>
+    /// Unit[m/s] workroll circumference speed Edger
+    /// </summary>
+    public double? VCircumE { get; set; }
+
+    public short? StandActive { get; set; }
+
+    public short? EdgerActive { get; set; }
+
     public virtual Me1 Me1 { get; set; }
 }

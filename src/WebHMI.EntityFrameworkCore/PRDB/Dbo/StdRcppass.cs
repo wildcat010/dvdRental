@@ -177,4 +177,14 @@ public partial class StdRcppass
     /// time of modification
     /// </summary>
     public DateTime? Tom { get; set; }
+
+    /// <summary>
+    /// Unit[0..1] area work roll, factor flow work roll cooling idle
+    /// </summary>
+    public double? FlowWrIdleInd5 { get; set; }
+
+    /// <summary>
+    /// Unit[0..1] factor flow work roll cooling loaded
+    /// </summary>
+    public double? FlowWrLoadedInd5 { get; set; }
 }

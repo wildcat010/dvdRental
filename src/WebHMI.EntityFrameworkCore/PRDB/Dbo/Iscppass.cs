@@ -185,5 +185,10 @@ public partial class Iscppass
     /// </summary>
     public DateTime? Tom { get; set; }
 
+    /// <summary>
+    /// Unit[0...1] longitudinal spraying
+    /// </summary>
+    public double? LongCrossSpray { get; set; }
+
     public virtual Me1 Me1 { get; set; }
 }

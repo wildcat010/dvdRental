@@ -24,7 +24,7 @@ namespace WebHMI.Dtos.Setpoints.SetpointsHFM
         public List<TensionDto> TensionDtos { get; set; } = new();
         public List<TaperShiftingDto> TaperShiftingDtos { get; set; } = new();
         public List<LubricationDto> LubricationDtos { get; set; } = new();
-
+        public PowerCoolingDto PowerCooling { get; set; } = new();
         public DescalingDto Descaling { get; set; } = new();
     }
 }

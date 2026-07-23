@@ -139,6 +139,10 @@ public partial class PrdbContext : AbpDbContext
 
     public virtual DbSet<MosSwitch> MosSwitches { get; set; }
 
+    public virtual DbSet<Pc> Pcs { get; set; }
+
+    public virtual DbSet<Pcramp> Pcramps { get; set; }
+
     public virtual DbSet<PlantLimit> PlantLimits { get; set; }
 
     public virtual DbSet<PlantParam> PlantParams { get; set; }
@@ -7393,6 +7397,10 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[0...1] ISC volume factor from maximum cooling flow (plant par). [0]= isc 0, [1]= isc 1, [2]= mill stand power cooling")
                 .HasColumnName("iscVolume_ind3");
+            entity.Property(e => e.LongCrossSpray)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0...1] longitudinal spraying")
+                .HasColumnName("longCrossSpray");
             entity.Property(e => e.LooperCool)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[0...1] looper cooling")
@@ -9226,6 +9234,163 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("time of modification")
                 .HasColumnName("tom");
+        });
+
+        modelBuilder.Entity<Pc>(entity =>
+        {
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__PC__D3DB124A0B5FE466");
+
+            entity.ToTable("PC", "PRDB", tb =>
+                {
+                    tb.HasComment("");
+                    tb.HasTrigger("TI_PC");
+                    tb.HasTrigger("TU_PC");
+                });
+
+            entity.Property(e => e.MeId)
+                .HasDefaultValue(1)
+                .HasComment("Material idendification number")
+                .HasColumnName("meId");
+            entity.Property(e => e.MeCreator)
+                .HasMaxLength(2)
+                .IsUnicode(false)
+                .HasDefaultValue("")
+                .HasComment("Material owner")
+                .HasColumnName("meCreator");
+            entity.Property(e => e.MesId)
+                .HasDefaultValue((short)1)
+                .HasComment("Line status")
+                .HasColumnName("mesId");
+            entity.Property(e => e.Source)
+                .HasMaxLength(2)
+                .IsUnicode(false)
+                .HasDefaultValue("-")
+                .HasComment("owner")
+                .HasColumnName("source");
+            entity.Property(e => e.DelayLength)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] delay length for pc switch ON")
+                .HasColumnName("delayLength");
+            entity.Property(e => e.Description)
+                .HasMaxLength(80)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("description field")
+                .HasColumnName("description");
+            entity.Property(e => e.Mop)
+                .HasMaxLength(120)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("modifying process")
+                .HasColumnName("mop");
+            entity.Property(e => e.NoRamps)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0.... 2] number of pc ramps")
+                .HasColumnName("noRamps");
+            entity.Property(e => e.PlanNo)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0...999] pc p number")
+                .HasColumnName("planNo");
+            entity.Property(e => e.Toc)
+                .HasPrecision(3)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("time of creation")
+                .HasColumnName("toc");
+            entity.Property(e => e.Tom)
+                .HasPrecision(3)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("time of modification")
+                .HasColumnName("tom");
+
+            entity.HasOne(d => d.Me1).WithMany(p => p.Pcs)
+                .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
+                .HasConstraintName("FK__PC__19EB91BA");
+        });
+
+        modelBuilder.Entity<Pcramp>(entity =>
+        {
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.RampNo }).HasName("PK__PCRamp__D9DDAEC36336E976");
+
+            entity.ToTable("PCRamp", "PRDB", tb =>
+                {
+                    tb.HasComment("");
+                    tb.HasTrigger("TI_PCRamp");
+                    tb.HasTrigger("TU_PCRamp");
+                });
+
+            entity.Property(e => e.MeId)
+                .HasDefaultValue(1)
+                .HasComment("Material idendification number")
+                .HasColumnName("meId");
+            entity.Property(e => e.MeCreator)
+                .HasMaxLength(2)
+                .IsUnicode(false)
+                .HasDefaultValue("")
+                .HasComment("Material owner")
+                .HasColumnName("meCreator");
+            entity.Property(e => e.MesId)
+                .HasDefaultValue((short)1)
+                .HasComment("Line status")
+                .HasColumnName("mesId");
+            entity.Property(e => e.Source)
+                .HasMaxLength(2)
+                .IsUnicode(false)
+                .HasDefaultValue("-")
+                .HasComment("owner")
+                .HasColumnName("source");
+            entity.Property(e => e.RampNo)
+                .HasComment("ramp number")
+                .HasColumnName("rampNo");
+            entity.Property(e => e.Description)
+                .HasMaxLength(80)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("description field")
+                .HasColumnName("description");
+            entity.Property(e => e.Mop)
+                .HasMaxLength(120)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("modifying process")
+                .HasColumnName("mop");
+            entity.Property(e => e.PcRampAuto)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0 / 1] ramp auto mode: AUTO=0, MAN=1")
+                .HasColumnName("pcRampAuto");
+            entity.Property(e => e.PcRampState)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0 / 1] ramp state: ON=1, OFF=0")
+                .HasColumnName("pcRampState");
+            entity.Property(e => e.PcRampVolumeInd0)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0 / 1] ramp volume flow factor from max flow")
+                .HasColumnName("pcRampVolume_ind0");
+            entity.Property(e => e.PcRampVolumeInd1)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0 / 1] ramp volume flow factor from max flow")
+                .HasColumnName("pcRampVolume_ind1");
+            entity.Property(e => e.PlanNo)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0...999] pc p number")
+                .HasColumnName("planNo");
+            entity.Property(e => e.PrioPowerC)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0...n] priority: -1: do not switch, 0,1,2,3,.....: lowest number is switched on first and switched off last")
+                .HasColumnName("prioPowerC");
+            entity.Property(e => e.Toc)
+                .HasPrecision(3)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("time of creation")
+                .HasColumnName("toc");
+            entity.Property(e => e.Tom)
+                .HasPrecision(3)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("time of modification")
+                .HasColumnName("tom");
+
+            entity.HasOne(d => d.Me1).WithMany(p => p.Pcramps)
+                .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
+                .HasConstraintName("FK__PCRamp__2C0A41F5");
         });
 
         modelBuilder.Entity<PlantLimit>(entity =>
@@ -11069,6 +11234,10 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[0..1] area work roll, factor flow work roll cooling idle")
                 .HasColumnName("flowWrIdle_ind4");
+            entity.Property(e => e.FlowWrIdleInd5)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0..1] area work roll, factor flow work roll cooling idle")
+                .HasColumnName("flowWrIdle_ind5");
             entity.Property(e => e.FlowWrLoadedInd0)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[0..1] factor flow work roll cooling loaded")
@@ -11089,6 +11258,10 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[0..1] factor flow work roll cooling loaded")
                 .HasColumnName("flowWrLoaded_ind4");
+            entity.Property(e => e.FlowWrLoadedInd5)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0..1] factor flow work roll cooling loaded")
+                .HasColumnName("flowWrLoaded_ind5");
             entity.Property(e => e.Mop)
                 .HasMaxLength(120)
                 .IsUnicode(false)
@@ -15840,6 +16013,9 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[m/N] effectiveness profile x2-part on bending force dx2P/dFB referring to gap profile")
                 .HasColumnName("dx2pDfb");
+            entity.Property(e => e.EdgerActive)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("edgerActive");
             entity.Property(e => e.EntryLength)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[m] slablength entry ()")
@@ -16026,6 +16202,9 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("spray flag bit=1 is on (bit0:cross spray behind on, bit1:fume suppression spray on , bit2:roll gap spray on, bit3:looper cooling on , bit4: roll gap lubrication top on, bit5: roll gap lubrication bottom on, bit6: interstand descaling on, bit7: work roll cooling entry on, bit8: interstand cooling on, bit12: cross spray before on)")
                 .HasColumnName("sprayFlag");
+            entity.Property(e => e.StandActive)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("standActive");
             entity.Property(e => e.StandModule)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[N/m] stand module (CG) in working point")
@@ -16076,6 +16255,10 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[m/s] workroll circumference speed")
                 .HasColumnName("vCircum");
+            entity.Property(e => e.VCircumE)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m/s] workroll circumference speed Edger")
+                .HasColumnName("vCircumE");
             entity.Property(e => e.VCircumWt)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[m/s] workroll circumference speed (wedge target/ next strip)")
@@ -22413,6 +22596,9 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("effectiveness profile x2-part on bending force dx2P/dFB referring to gap profile")
                 .HasColumnName("dx2pDfb");
+            entity.Property(e => e.EdgerActive)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("edgerActive");
             entity.Property(e => e.EntryLength)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("slablength entry ()")
@@ -22599,6 +22785,9 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("spray flag bit=1 is on (bit0:cross spray behind on, bit1:fume suppression spray on , bit2:roll gap spray on, bit3:looper cooling on , bit4: roll gap lubrication top on, bit5: roll gap lubrication bottom on, bit6: interstand descaling on, bit7: work roll cooling entry on, bit8: interstand cooling on, bit12: cross spray before on)")
                 .HasColumnName("sprayFlag");
+            entity.Property(e => e.StandActive)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("standActive");
             entity.Property(e => e.StandModule)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("stand module (CG) in working point")
@@ -22649,6 +22838,10 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("workroll circumference speed")
                 .HasColumnName("vCircum");
+            entity.Property(e => e.VCircumE)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("workroll circumference speed Edger")
+                .HasColumnName("vCircumE");
             entity.Property(e => e.VCircumWt)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("workroll circumference speed (wedge target/ next strip)")
@@ -24938,6 +25131,10 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[0...1] ISC volume factor from maximum cooling flow (plant par). [0]= isc 0, [1]= isc 1, [2]= mill stand power cooling")
                 .HasColumnName("iscVolume_ind3");
+            entity.Property(e => e.LongCrossSpray)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0...1] longitudinal spraying")
+                .HasColumnName("longCrossSpray");
             entity.Property(e => e.LooperCool)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[0...1] looper cooling")
@@ -25274,10 +25471,14 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[0 / 1] ramp state: ON=1, OFF=0")
                 .HasColumnName("pcRampState");
-            entity.Property(e => e.PcRampVolume)
+            entity.Property(e => e.PcRampVolumeInd0)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[0 / 1] ramp volume flow factor from max flow")
-                .HasColumnName("pcRampVolume");
+                .HasColumnName("pcRampVolume_ind0");
+            entity.Property(e => e.PcRampVolumeInd1)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0 / 1] ramp volume flow factor from max flow")
+                .HasColumnName("pcRampVolume_ind1");
             entity.Property(e => e.PrioPowerC)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[0...n] priority: -1: do not switch, 0,1,2,3,.....: lowest number is switched on first and switched off last")
@@ -25413,6 +25614,10 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[0..1] area work roll, factor flow work roll cooling idle")
                 .HasColumnName("flowWrIdle_ind4");
+            entity.Property(e => e.FlowWrIdleInd5)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0..1] area work roll, factor flow work roll cooling idle")
+                .HasColumnName("flowWrIdle_ind5");
             entity.Property(e => e.FlowWrLoadedInd0)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[0..1] factor flow work roll cooling loaded")
@@ -25433,6 +25638,10 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[0..1] factor flow work roll cooling loaded")
                 .HasColumnName("flowWrLoaded_ind4");
+            entity.Property(e => e.FlowWrLoadedInd5)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0..1] factor flow work roll cooling loaded")
+                .HasColumnName("flowWrLoaded_ind5");
             entity.Property(e => e.Mop)
                 .HasMaxLength(120)
                 .IsUnicode(false)
@@ -26196,6 +26405,15 @@ public partial class PrdbContext : AbpDbContext
             .StartsAt(10000L)
             .HasMin(1L)
             .HasMax(1000000000L)
+            .IsCyclic();
+        modelBuilder.HasSequence("SEQ_COM_INTERFACE_LOGS", "COMUSER")
+            .StartsAt(10000L)
+            .HasMin(1L)
+            .HasMax(2000000000L)
+            .IsCyclic();
+        modelBuilder.HasSequence("transferid", "COMUSER")
+            .HasMin(1L)
+            .HasMax(2000000000L)
             .IsCyclic();
         modelBuilder.HasSequence("vprunit", "PRDB")
             .HasMin(1L)

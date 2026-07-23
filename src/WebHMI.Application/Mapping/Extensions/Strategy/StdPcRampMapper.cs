@@ -5,6 +5,7 @@ namespace WebHMI.Mapping.Extensions.Strategy
 {
     public class StdPcRampMapper
     {
+        //function to map the entity to the dto
         public static void MapEntity(StdPcramp entity, StdPcRampDto dto)
         {
             entity.PlanNo = dto.PlanNo;
@@ -13,10 +14,12 @@ namespace WebHMI.Mapping.Extensions.Strategy
             entity.RampNo = dto.RampNo; 
             entity.PcRampAuto = dto.Pcrampauto;
             entity.PcRampState = dto.Pcrampstate;
-            entity.PcRampVolume = dto.Pcrampvolume;
+            entity.PcRampVolumeInd0 = dto.PcRampVolumeInd0;
+            entity.PcRampVolumeInd1 = dto.PcRampVolumeInd1;
             entity.PrioPowerC = dto.Priopowerc;
         }
 
+        //function to map the dto to the entity
         public static StdPcRampDto ToDto(StdPcramp entity) => new()
         {
             PlanNo = entity.PlanNo,
@@ -25,7 +28,8 @@ namespace WebHMI.Mapping.Extensions.Strategy
             RampNo = entity.RampNo,
             Pcrampauto = entity.PcRampAuto,
             Pcrampstate = entity.PcRampState,
-            Pcrampvolume = entity.PcRampVolume,
+            PcRampVolumeInd0 = entity.PcRampVolumeInd0,
+            PcRampVolumeInd1 = entity.PcRampVolumeInd1,
             Priopowerc = entity.PrioPowerC,
         };
     }

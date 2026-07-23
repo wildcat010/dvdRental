@@ -117,6 +117,10 @@ public partial class Me1
 
     public virtual Me MeNavigation { get; set; }
 
+    public virtual ICollection<Pcramp> Pcramps { get; set; } = new List<Pcramp>();
+
+    public virtual ICollection<Pc> Pcs { get; set; } = new List<Pc>();
+
     public virtual ICollection<Rcppass> Rcppasses { get; set; } = new List<Rcppass>();
 
     public virtual ICollection<Rcp> Rcps { get; set; } = new List<Rcp>();

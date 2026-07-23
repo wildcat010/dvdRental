@@ -172,4 +172,9 @@ public partial class StdIscppass
     /// time of modification
     /// </summary>
     public DateTime? Tom { get; set; }
+
+    /// <summary>
+    /// Unit[0...1] longitudinal spraying
+    /// </summary>
+    public double? LongCrossSpray { get; set; }
 }

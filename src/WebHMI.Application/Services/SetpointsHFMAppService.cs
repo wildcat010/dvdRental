@@ -119,6 +119,7 @@ namespace WebHMI.Services
             await context.SaveChangesAsync();
         }
 
+        //function to get the pass schedule and other related data for HFM
         [AbpAuthorize(Permissions.Pages_Setpoints_FM)]
         public async Task<SetpointsHFMDto> GetPassScheduleHFM(int MeId, string matType)
         {
@@ -136,10 +137,12 @@ namespace WebHMI.Services
             result.MapTension(dataBlob, _standCount, _standStartIdx);
             result.MapTaperShifting(dataBlob, _standCount, _standStartIdx);
             result.MapLoading(dataBlob, _standCount, _standStartIdx);
+            result.MapPowerCooling(dataBlob);
 
             return result;
         }
 
+        //function to update the pass schedule and other related data for HFM
         [Audited]
         [AbpAuthorize(Permissions.Pages_Setpoints_FM_Edit)]
         public async Task UpdatePassScheduleHFM(SetpointsHFMDto input)
@@ -163,6 +166,7 @@ namespace WebHMI.Services
             await UpdateLubricationTab(input, vMatStructEntry);
             await UpdateTaperShiftingTab(input, vMatStructEntry);
             await UpdateAntiPeelingTab(input, vMatStructEntry);
+            await UpdatePowerCoolingTab(input, vMatStructEntry);
         }
 
         private async Task UpdateLpPasses(SetpointsHFMDto input, VMatStructEntry vMatStructEntryOr)
@@ -549,6 +553,44 @@ namespace WebHMI.Services
 
         }
 
+        //function to update the power cooling tab for HFM
+        private async Task UpdatePowerCoolingTab(SetpointsHFMDto input, VMatStructEntry vMatStructEntryOr)
+        {
+            var context = _prdbContextProvider.GetDbContext();
+
+            var pcManual = await context.Pcs.Where(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "E").FirstOrDefaultAsync();
+
+            var pcRampManuals = await context.Pcramps.Where(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M").ToListAsync();
+
+            foreach (var ramp in input.PowerCooling.PowerCoolingRamps.OrderByDescending(x => x.RampNo))
+            {
+                var pcRampM = pcRampManuals.FirstOrDefault(x => x.RampNo == ramp.RampNo);
+                if (pcRampM == null)
+                {
+                    pcRampM = new Pcramp()
+                    {
+                        MeCreator = vMatStructEntryOr.EnOrCreator,
+                        MeId = vMatStructEntryOr.EnOrMeId,
+                        MesId = (short)vMatStructEntryOr.EnOrMesId,
+                        RampNo = ramp.RampNo,
+                        Source = "M",
+                    };
+                    context.Pcramps.Add(pcRampM);
+                }
+                pcRampM.PlanNo = pcManual?.PlanNo;
+                pcRampM.Description = ramp.Description.M;
+                pcRampM.PcRampAuto = ramp.PcRampAuto.M ;
+                pcRampM.PcRampState = ramp.PcRampState.M ;
+                pcRampM.PlanNo = ramp.PlanNo.M ;
+                pcRampM.PrioPowerC = ramp.PrioPowerC.M ;
+                pcRampM.PcRampVolumeInd0 = ramp.PcRampVolumeInd0.M ;
+                pcRampM.PcRampVolumeInd1 = ramp.PcRampVolumeInd1.M ;
+            }
+
+            await context.SaveChangesAsync();
+
+        }
+
         [AbpAuthorize(Permissions.Pages_Setpoints_FM)]
         public async Task<HFMApxMaterialOverviewDto> GetApxMaterialOverview(int MeId, string matType)
         {
@@ -854,6 +896,7 @@ namespace WebHMI.Services
 
         }
 
+        // function to get the pass schedule data blob for HFM
         private async Task<SetpointsHFMDataBlob> GetPassScheduleHfmDataBlob(VMatStructEntry hmiVEntryMatStruct)
         {
             string[] sources = ["L", "M", "S", "E"];
@@ -886,6 +929,8 @@ namespace WebHMI.Services
                 Dprampfms = await _prdbContext.DprampFms.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
                 Adord2PC = await _prdbContext.AdOrd2Pcs.Where(x=>x.MeId == hmiVEntryMatStruct.EnOrMeId && x.Source == "S").FirstOrDefaultAsync(),
                 Adord2PCStands = await _prdbContext.AdOrd2PcStands.Where(x=>x.MeId == hmiVEntryMatStruct.EnOrMeId && x.Source == "S").ToListAsync(),
+                Pc = await _prdbContext.Pcs.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
+                PcRamp = await _prdbContext.Pcramps.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
                 StatSpord2pcstands = await _prdbContext.StatSpOrd2PcStands.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && x.Source =="E").AsNoTracking().ToListAsync(),
                 StatLppasses = await _prdbContext.StatLppasses.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && x.Source =="E").AsNoTracking().ToListAsync(),
                 StatDirfmpfccycshiftps = await _prdbContext.StatDirFmPfcCycShiftPs.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && x.Source =="E").AsNoTracking().FirstOrDefaultAsync(),
@@ -928,7 +973,6 @@ namespace WebHMI.Services
                 Adord2PcStands = await _prdbContext.AdOrd2PcStands.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && x.Source == "S").ToListAsync(),
                 Ihps = await _prdbContext.Ihps.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
                 DirFmPfcParaPasses = await _prdbContext.DirFmPfcParaPpasses.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
-
 
                 StatSpord2pcs = await _prdbContext.StatSpOrd2Pcs.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && x.Source == "E").AsNoTracking().FirstOrDefaultAsync(),
                 StatEdordents = await _prdbContext.StatEdOrdEnts.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && x.Source == "E").AsNoTracking().FirstOrDefaultAsync(),

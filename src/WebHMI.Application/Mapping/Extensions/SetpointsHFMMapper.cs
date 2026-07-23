@@ -1400,6 +1400,85 @@ namespace WebHMI.Mapping.Extensions
             return result;
         }
 
+        //function to map the power cooling data from the SetpointsHFMDataBlob to the SetpointsHFMDto
+        public static SetpointsHFMDto MapPowerCooling(this SetpointsHFMDto result, SetpointsHFMDataBlob dataBlob)
+        {
+            var pcL = dataBlob.Pc.Where(x => x.Source == "L").FirstOrDefault();
+            var pcM = dataBlob.Pc.Where(x => x.Source == "M").FirstOrDefault();
+            var pcS = dataBlob.Pc.Where(x => x.Source == "S").FirstOrDefault();
+            var pcE = dataBlob.Pc.Where(x => x.Source == "E").FirstOrDefault();
+
+            result.PowerCooling.DelayLength.E = pcE?.DelayLength;
+            result.PowerCooling.DelayLength.M = pcM?.DelayLength;
+            result.PowerCooling.DelayLength.S = pcS?.DelayLength;
+            result.PowerCooling.DelayLength.L = pcL?.DelayLength;
+
+            result.PowerCooling.Description.E = pcE?.Description;
+            result.PowerCooling.Description.M = pcM?.Description;
+            result.PowerCooling.Description.S = pcS?.Description;
+            result.PowerCooling.Description.L = pcL?.Description;
+
+            result.PowerCooling.NoRamps.E = pcE?.NoRamps;
+            result.PowerCooling.NoRamps.M = pcM?.NoRamps;
+            result.PowerCooling.NoRamps.S = pcS?.NoRamps;
+            result.PowerCooling.NoRamps.L = pcL?.NoRamps;
+
+            result.PowerCooling.PlanNo.E = pcE?.PlanNo;
+            result.PowerCooling.PlanNo.M = pcM?.PlanNo;
+            result.PowerCooling.PlanNo.S = pcS?.PlanNo;
+            result.PowerCooling.PlanNo.L = pcL?.PlanNo;
+
+            for (short i = 0; i < pcE.NoRamps; i++)
+            {
+                var pcRampL = dataBlob.PcRamp.Where(x => x.RampNo == i && x.Source == "L").FirstOrDefault();
+                var pcRampM = dataBlob.PcRamp.Where(x => x.RampNo == i && x.Source == "M").FirstOrDefault();
+                var pcRampS = dataBlob.PcRamp.Where(x => x.RampNo == i && x.Source == "S").FirstOrDefault();
+                var pcRampE = dataBlob.PcRamp.Where(x => x.RampNo == i && x.Source == "E").FirstOrDefault();
+
+                var pcRampDto = new PowerCoolingRampDto();
+
+                pcRampDto.RampNo = i;
+
+                pcRampDto.PlanNo.E = pcRampE?.PlanNo;
+                pcRampDto.PlanNo.M = pcRampM?.PlanNo;
+                pcRampDto.PlanNo.S = pcRampS?.PlanNo;
+                pcRampDto.PlanNo.L = pcRampL?.PlanNo;
+
+                pcRampDto.Description.E = pcRampE?.Description;
+                pcRampDto.Description.M = pcRampM?.Description;
+                pcRampDto.Description.S = pcRampS?.Description;
+                pcRampDto.Description.L = pcRampL?.Description;
+
+                pcRampDto.PcRampAuto.E = pcRampE?.PcRampAuto;
+                pcRampDto.PcRampAuto.M = pcRampM?.PcRampAuto;
+                pcRampDto.PcRampAuto.S = pcRampS?.PcRampAuto;
+                pcRampDto.PcRampAuto.L = pcRampL?.PcRampAuto;
+
+                pcRampDto.PcRampState.E = pcRampE?.PcRampState;
+                pcRampDto.PcRampState.M = pcRampM?.PcRampState;
+                pcRampDto.PcRampState.S = pcRampS?.PcRampState;
+                pcRampDto.PcRampState.L = pcRampL?.PcRampState;
+
+                pcRampDto.PrioPowerC.E = pcRampE?.PrioPowerC;
+                pcRampDto.PrioPowerC.M = pcRampM?.PrioPowerC;
+                pcRampDto.PrioPowerC.S = pcRampS?.PrioPowerC;
+                pcRampDto.PrioPowerC.L = pcRampL?.PrioPowerC;
+
+                pcRampDto.PcRampVolumeInd0.E = pcRampE?.PcRampVolumeInd0;
+                pcRampDto.PcRampVolumeInd0.M = pcRampM?.PcRampVolumeInd0;
+                pcRampDto.PcRampVolumeInd0.S = pcRampS?.PcRampVolumeInd0;
+                pcRampDto.PcRampVolumeInd0.L = pcRampL?.PcRampVolumeInd0;
+
+                pcRampDto.PcRampVolumeInd1.E = pcRampE?.PcRampVolumeInd1;
+                pcRampDto.PcRampVolumeInd1.M = pcRampM?.PcRampVolumeInd1;
+                pcRampDto.PcRampVolumeInd1.S = pcRampS?.PcRampVolumeInd1;
+                pcRampDto.PcRampVolumeInd1.L = pcRampL?.PcRampVolumeInd1;
+
+                result.PowerCooling.PowerCoolingRamps.Add(pcRampDto);
+            }
+
+            return result;
+        }
     }
 }
 
