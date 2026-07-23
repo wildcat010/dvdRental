@@ -13748,10 +13748,6 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[%] CS:  percentage of autenite")
                 .HasColumnName("csAustenite");
-            entity.Property(e => e.CsBotValve)
-                .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] CS: bottom valve volume flow (0-100) , 44 laminar cooling valves")
-                .HasColumnName("csBotValve");
             entity.Property(e => e.CsCementite)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[%] CS:  percentage of cementite")
@@ -14000,10 +13996,6 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("CS: correction offset for coiling temperature")
                 .HasColumnName("csTempOffset_ind2");
-            entity.Property(e => e.CsTopValve)
-                .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[%] CS: top valve volume flow (0-100)  , 44 laminar cooling valves")
-                .HasColumnName("csTopValve");
             entity.Property(e => e.CsUncHeadLength)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[m] CS uncooled head length")
@@ -15579,7 +15571,7 @@ public partial class PrdbContext : AbpDbContext
                 .HasColumnName("coMzcCoolDistribution_ind39");
             entity.Property(e => e.CoMzcValveNumberChange)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Change in the number of cooling zones: 0 = Only covered cooling zones are cooled, 1 = Both on OS and DS, an additional zone is cooled next to the edge of the strip, -1 = the first covered cooling zone is not cooled. For larger numbers (2, 3, … or -2, -3, …) the number of additional or removed cooling zones are accordingly")
+                .HasComment("Change in the number of cooling zones: 0 = Only covered cooling zones are cooled, 1 = Both on OS and DS, an additional zone is cooled next to the edge of the strip, -1 = the first covered cooling zone is not cooled. For larger numbers (2, 3, â€¦ or -2, -3, â€¦) the number of additional or removed cooling zones are accordingly")
                 .HasColumnName("coMzcValveNumberChange");
             entity.Property(e => e.CoRollFlInd0)
                 .HasDefaultValueSql("(NULL)")
@@ -20337,10 +20329,9 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("CS:  percentage of autenite")
                 .HasColumnName("csAustenite");
-            entity.Property(e => e.CsBotValve)
+            entity.Property(e => e.CsBotValveInd00)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("CS: bottom valve volume flow (0-100) , 44 laminar cooling valves")
-                .HasColumnName("csBotValve");
+                .HasColumnName("csBotValve_ind00");
             entity.Property(e => e.CsCementite)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("CS:  percentage of cementite")
@@ -20589,10 +20580,6 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("CS: correction offset for coiling temperature")
                 .HasColumnName("csTempOffset_ind2");
-            entity.Property(e => e.CsTopValve)
-                .HasDefaultValueSql("(NULL)")
-                .HasComment("CS: top valve volume flow (0-100)  , 44 laminar cooling valves")
-                .HasColumnName("csTopValve");
             entity.Property(e => e.CsUncHeadLength)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("CS uncooled head length")
@@ -22162,7 +22149,7 @@ public partial class PrdbContext : AbpDbContext
                 .HasColumnName("coMzcCoolDistribution_ind39");
             entity.Property(e => e.CoMzcValveNumberChange)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Change in the number of cooling zones: 0 = Only covered cooling zones are cooled, 1 = Both on OS and DS, an additional zone is cooled next to the edge of the strip, -1 = the first covered cooling zone is not cooled. For larger numbers (2, 3, … or -2, -3, …) the number of additional or removed cooling zones are accordingly")
+                .HasComment("Change in the number of cooling zones: 0 = Only covered cooling zones are cooled, 1 = Both on OS and DS, an additional zone is cooled next to the edge of the strip, -1 = the first covered cooling zone is not cooled. For larger numbers (2, 3, â€¦ or -2, -3, â€¦) the number of additional or removed cooling zones are accordingly")
                 .HasColumnName("coMzcValveNumberChange");
             entity.Property(e => e.CoRollFlInd0)
                 .HasDefaultValueSql("(NULL)")
@@ -26425,5 +26412,4 @@ public partial class PrdbContext : AbpDbContext
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }
-
 

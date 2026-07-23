@@ -81,11 +81,6 @@ public partial class StatSpOrd2Pc
     public short? CsAustenite { get; set; }
 
     /// <summary>
-    /// CS: bottom valve volume flow (0-100) , 44 laminar cooling valves
-    /// </summary>
-    public short? CsBotValve { get; set; }
-
-    /// <summary>
     /// CS:  percentage of cementite
     /// </summary>
     public short? CsCementite { get; set; }
@@ -394,11 +389,6 @@ public partial class StatSpOrd2Pc
     /// CS: correction offset for coiling temperature
     /// </summary>
     public short? CsTempOffsetInd2 { get; set; }
-
-    /// <summary>
-    /// CS: top valve volume flow (0-100)  , 44 laminar cooling valves
-    /// </summary>
-    public short? CsTopValve { get; set; }
 
     /// <summary>
     /// CS uncooled head length
@@ -1907,6 +1897,8 @@ public partial class StatSpOrd2Pc
     /// time of modification
     /// </summary>
     public DateTime? Tom { get; set; }
+
+    public short? CsBotValveInd00 { get; set; }
 
     public virtual Me1 Me1 { get; set; }
 }

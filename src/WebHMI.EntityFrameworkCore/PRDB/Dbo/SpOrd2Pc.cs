@@ -81,11 +81,6 @@ public partial class SpOrd2Pc
     public double? CsAustenite { get; set; }
 
     /// <summary>
-    /// Unit[%] CS: bottom valve volume flow (0-100) , 44 laminar cooling valves
-    /// </summary>
-    public byte[] CsBotValve { get; set; }
-
-    /// <summary>
     /// Unit[%] CS:  percentage of cementite
     /// </summary>
     public double? CsCementite { get; set; }
@@ -394,11 +389,6 @@ public partial class SpOrd2Pc
     /// CS: correction offset for coiling temperature
     /// </summary>
     public double? CsTempOffsetInd2 { get; set; }
-
-    /// <summary>
-    /// Unit[%] CS: top valve volume flow (0-100)  , 44 laminar cooling valves
-    /// </summary>
-    public byte[] CsTopValve { get; set; }
 
     /// <summary>
     /// Unit[m] CS uncooled head length

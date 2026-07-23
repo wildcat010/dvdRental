@@ -393,6 +393,20 @@ namespace WebHMI.Mapping.Extensions
             result.CSData.CoilTempMax.DbSource = $"{nameof(EdOrdEnt)}.{nameof(EdOrdEnt.CoilTempMaxTol)}";
             result.CSData.CoilTempMax.Status = dataBlob.StatEdOrdEnts?.CoilTempMaxTol;
 
+            result.CSData.HeadUncoolHeadLength.L = edOrdEntL?.LengthUncooledHead;
+            result.CSData.HeadUncoolHeadLength.M = edOrdEntM?.LengthUncooledHead;
+            result.CSData.HeadUncoolHeadLength.S = edOrdEntS?.LengthUncooledHead;
+            result.CSData.HeadUncoolHeadLength.E = edOrdEntE?.LengthUncooledHead;
+            result.CSData.HeadUncoolHeadLength.DbSource = $"{nameof(EdOrdEnt)}.{nameof(EdOrdEnt.LengthUncooledHead)}";
+            result.CSData.HeadUncoolHeadLength.Status = dataBlob.StatEdOrdEnts?.LengthUncooledHead;
+
+            result.CSData.TailUncoolHeadLength.L = edOrdEntL?.LengthUncooledTail;
+            result.CSData.TailUncoolHeadLength.M = edOrdEntM?.LengthUncooledTail;
+            result.CSData.TailUncoolHeadLength.S = edOrdEntS?.LengthUncooledTail;
+            result.CSData.TailUncoolHeadLength.E = edOrdEntE?.LengthUncooledTail;
+            result.CSData.TailUncoolHeadLength.DbSource = $"{nameof(EdOrdEnt)}.{nameof(EdOrdEnt.LengthUncooledTail)}";
+            result.CSData.TailUncoolHeadLength.Status = dataBlob.StatEdOrdEnts?.LengthUncooledTail;
+
             result.CSData.CoilTempMin.L = edOrdEntL?.CoilTempMinTol;
             result.CSData.CoilTempMin.M = edOrdEntM?.CoilTempMinTol;
             result.CSData.CoilTempMin.S = edOrdEntS?.CoilTempMinTol;
