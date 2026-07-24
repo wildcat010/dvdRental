@@ -51,7 +51,9 @@ namespace WebHMI.API.Services.StrategyServices
             var entity = input.ToEntity(lastRecId);
             await context.AggregateSelections.AddAsync(entity);
 
-            _l2CommunicationHandler.AssignApsKey(input.ApsKey, input.AlloyCode);
+            await context.SaveChangesAsync();
+            //notifying LDS about changed strategy assignments
+            _l2CommunicationHandler.UpdateConfig(String.Empty);
 
             return entity.MapToDto();
         }
@@ -122,6 +124,9 @@ namespace WebHMI.API.Services.StrategyServices
                 ?? throw new UserFriendlyException("Aggregate not found for a given id");
 
             context.AggregateSelections.Remove(entity);
+            await context.SaveChangesAsync();
+            //notifying LDS about changed strategy assignments
+            _l2CommunicationHandler.UpdateConfig(String.Empty);
 
         }
         private static IQueryable<AggregateSelection> ApplyAggregateFilter(AggregateFilteredRequestDto input, IQueryable<AggregateSelection> query)
