@@ -90,7 +90,7 @@ namespace WebHMI.API.Services.StrategyServices
         }
 
         /// <summary>
-        /// Updates aggregate found by given recId
+        /// Updates aggregate entry found by given recId
         /// </summary>
         /// <returns>Updated aggregate</returns>
         [Audited]
@@ -104,8 +104,9 @@ namespace WebHMI.API.Services.StrategyServices
                 ?? throw new UserFriendlyException("Aggregate not found for given id");
 
             entity.MapFromDto(input);
-
-           _l2CommunicationHandler.AssignApsKey(input.ApsKey, input.AlloyCode);
+            await context.SaveChangesAsync();
+            //notifying LDS about changed strategy assignments
+            _l2CommunicationHandler.UpdateConfig(String.Empty);
 
             return entity.MapToDto();
         }

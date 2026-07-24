@@ -17,7 +17,7 @@ namespace WebHMI.L2Adapter.Services.LdsStub
         public void UpdateConfig(string aggregateName)
         {
             HandleL2Call(() =>
-                    _stub.updateConfig_async(null, _timeoutMs, aggregateName)
+                    _stub.updateConfigEsp_async(null, _timeoutMs)
                 );
         }
 
