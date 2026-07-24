@@ -58,6 +58,14 @@ namespace WebHMI.API.Services.StrategyServices
             return entity.MapToDto();
         }
 
+        /// <summary>
+        /// Standard method to read single assignment record
+        /// </summary>
+        /// <param name="recId"></param>
+        /// <param name="active"></param>
+        /// <param name="aggregate"></param>
+        /// <returns></returns>
+        /// <exception cref="UserFriendlyException"></exception>
         [AbpAuthorize(Permissions.Pages_Strategies)]
         public async Task<AggregateSelectionDto> Get(int recId, int active, string aggregate)
         {
@@ -70,6 +78,11 @@ namespace WebHMI.API.Services.StrategyServices
             return result.MapToDto();
         }
 
+        /// <summary>
+        /// Method returns set of strategy assignments following passed criteria (for table view)
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         [AbpAuthorize(Permissions.Pages_Strategies)]
         public async Task<PagedResultDto<AggregateSelectionDto>> GetAll(AggregateFilteredRequestDto input)
         {
@@ -80,6 +93,10 @@ namespace WebHMI.API.Services.StrategyServices
             return await ApplyFilter(query, input, AggregateSelectionMapper.MapToDto);
         }
 
+        /// <summary>
+        /// Auxiliary function to read all APS keys, used to initialize dropdowns
+        /// </summary>
+        /// <returns></returns>
         [AbpAuthorize(Permissions.Pages_Strategies)]
         public async Task<List<string>> GetApsKeys()
         {
@@ -113,6 +130,14 @@ namespace WebHMI.API.Services.StrategyServices
             return entity.MapToDto();
         }
 
+        /// <summary>
+        /// Function used to remove entry in strategy assignments
+        /// </summary>
+        /// <param name="recId"></param>
+        /// <param name="active"></param>
+        /// <param name="aggregate"></param>
+        /// <returns></returns>
+        /// <exception cref="UserFriendlyException"></exception>
         [Audited]
         [AbpAuthorize(Permissions.Pages_Strategies_Delete)]
         public async Task Delete(int recId, int active, string aggregate)
