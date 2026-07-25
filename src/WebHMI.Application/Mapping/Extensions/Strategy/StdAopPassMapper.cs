@@ -17,9 +17,11 @@ namespace WebHMI.Mapping.Extensions.Strategy
             entity.PassNo = dto.PassNo;
             entity.Description = dto.Description;
             entity.AntiOxStateEntry = dto.AntiOxStateEntry;
-            entity.AntiOxidationEntry = dto.AntiOxidationEntry;
+            entity.AntiOxidationEntryInd0 = dto.AntiOxidationEntryTop;
+            entity.AntiOxidationEntryInd1 = dto.AntiOxidationEntryBot;
             entity.AntiOxStateExit = dto.AntiOxStateExit;
-            entity.AntiOxidationExit = dto.AntiOxidationExit;
+            entity.AntiOxidationExitInd0 = dto.AntiOxidationExitTop;
+            entity.AntiOxidationExitInd1 = dto.AntiOxidationExitBot;
             entity.AntiPeelingState = dto.AntiPeelingState;
             entity.AntiPeeling = dto.AntiPeeling;
         }
@@ -31,9 +33,11 @@ namespace WebHMI.Mapping.Extensions.Strategy
             PassNo = entity.PassNo,
             Description = entity.Description,
             AntiOxStateEntry = entity.AntiOxStateEntry,
-            AntiOxidationEntry = entity.AntiOxidationEntry,
+            AntiOxidationEntryTop = entity.AntiOxidationEntryInd0,
+            AntiOxidationEntryBot = entity.AntiOxidationEntryInd1,
             AntiOxStateExit = entity.AntiOxStateExit,
-            AntiOxidationExit = entity.AntiOxidationExit,
+            AntiOxidationExitTop = entity.AntiOxidationExitInd0,
+            AntiOxidationExitBot = entity.AntiOxidationExitInd1,
             AntiPeelingState = entity.AntiPeelingState,
             AntiPeeling = entity.AntiPeeling
         };

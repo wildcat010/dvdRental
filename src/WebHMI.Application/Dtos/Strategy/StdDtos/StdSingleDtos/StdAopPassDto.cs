@@ -9,9 +9,11 @@ namespace WebHMI.Dtos.Strategy.StdDtos.StdSingleDtos
     public class StdAopPassDto :StdPassDto
     {
         public int? AntiOxStateEntry { get; set; }
-        public double? AntiOxidationEntry { get; set; }
+        public double? AntiOxidationEntryTop { get; set; }
+        public double? AntiOxidationEntryBot { get; set; }
         public int? AntiOxStateExit { get; set; }
-        public double? AntiOxidationExit { get; set; }
+        public double? AntiOxidationExitTop { get; set; }
+        public double? AntiOxidationExitBot { get; set; }
         public int? AntiPeelingState { get; set; }
         public double? AntiPeeling { get; set; }
         public string Description { get; set; }

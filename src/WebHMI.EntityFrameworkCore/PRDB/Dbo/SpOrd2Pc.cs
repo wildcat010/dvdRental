@@ -1898,5 +1898,133 @@ public partial class SpOrd2Pc
     /// </summary>
     public DateTime? Tom { get; set; }
 
+    public short? CsBotValveInd00 { get; set; }
+
+    public short? CsBotValveInd01 { get; set; }
+
+    public short? CsBotValveInd02 { get; set; }
+
+    public short? CsBotValveInd03 { get; set; }
+
+    public short? CsBotValveInd04 { get; set; }
+
+    public short? CsBotValveInd05 { get; set; }
+
+    public short? CsBotValveInd06 { get; set; }
+
+    public short? CsBotValveInd07 { get; set; }
+
+    public short? CsBotValveInd08 { get; set; }
+
+    public short? CsBotValveInd09 { get; set; }
+
+    public short? CsBotValveInd10 { get; set; }
+
+    public short? CsBotValveInd11 { get; set; }
+
+    public short? CsBotValveInd12 { get; set; }
+
+    public short? CsBotValveInd13 { get; set; }
+
+    public short? CsBotValveInd14 { get; set; }
+
+    public short? CsBotValveInd15 { get; set; }
+
+    public short? CsBotValveInd16 { get; set; }
+
+    public short? CsBotValveInd17 { get; set; }
+
+    public short? CsBotValveInd18 { get; set; }
+
+    public short? CsBotValveInd19 { get; set; }
+
+    public short? CsBotValveInd20 { get; set; }
+
+    public short? CsBotValveInd21 { get; set; }
+
+    public short? CsBotValveInd22 { get; set; }
+
+    public short? CsBotValveInd23 { get; set; }
+
+    public short? CsBotValveInd24 { get; set; }
+
+    public short? CsBotValveInd25 { get; set; }
+
+    public short? CsBotValveInd26 { get; set; }
+
+    public short? CsBotValveInd27 { get; set; }
+
+    public short? CsBotValveInd28 { get; set; }
+
+    public short? CsBotValveInd29 { get; set; }
+
+    public short? CsBotValveInd30 { get; set; }
+
+    public short? CsBotValveInd31 { get; set; }
+
+    public short? CsTopValveInd00 { get; set; }
+
+    public short? CsTopValveInd01 { get; set; }
+
+    public short? CsTopValveInd02 { get; set; }
+
+    public short? CsTopValveInd03 { get; set; }
+
+    public short? CsTopValveInd04 { get; set; }
+
+    public short? CsTopValveInd05 { get; set; }
+
+    public short? CsTopValveInd06 { get; set; }
+
+    public short? CsTopValveInd07 { get; set; }
+
+    public short? CsTopValveInd08 { get; set; }
+
+    public short? CsTopValveInd09 { get; set; }
+
+    public short? CsTopValveInd10 { get; set; }
+
+    public short? CsTopValveInd11 { get; set; }
+
+    public short? CsTopValveInd12 { get; set; }
+
+    public short? CsTopValveInd13 { get; set; }
+
+    public short? CsTopValveInd14 { get; set; }
+
+    public short? CsTopValveInd15 { get; set; }
+
+    public short? CsTopValveInd16 { get; set; }
+
+    public short? CsTopValveInd17 { get; set; }
+
+    public short? CsTopValveInd18 { get; set; }
+
+    public short? CsTopValveInd19 { get; set; }
+
+    public short? CsTopValveInd20 { get; set; }
+
+    public short? CsTopValveInd21 { get; set; }
+
+    public short? CsTopValveInd22 { get; set; }
+
+    public short? CsTopValveInd23 { get; set; }
+
+    public short? CsTopValveInd24 { get; set; }
+
+    public short? CsTopValveInd25 { get; set; }
+
+    public short? CsTopValveInd26 { get; set; }
+
+    public short? CsTopValveInd27 { get; set; }
+
+    public short? CsTopValveInd28 { get; set; }
+
+    public short? CsTopValveInd29 { get; set; }
+
+    public short? CsTopValveInd30 { get; set; }
+
+    public short? CsTopValveInd31 { get; set; }
+
     public virtual Me1 Me1 { get; set; }
 }

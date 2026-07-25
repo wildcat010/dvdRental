@@ -534,20 +534,30 @@ namespace WebHMI.Mapping.Extensions
                 stand.AntiOxStateEntry.M = aopPassM?.AntiOxStateEntry;
                 stand.AntiOxStateEntry.DbSource = $"{nameof(Aoppass)}.{nameof(Aoppass.AntiOxStateEntry)}{i}";
 
-                stand.AntiOxidationEntry.L = aopPassL?.AntiOxidationEntry;
-                stand.AntiOxidationEntry.E = aopPassE?.AntiOxidationEntry;
-                stand.AntiOxidationEntry.M = aopPassM?.AntiOxidationEntry;
-                stand.AntiOxidationEntry.DbSource = $"{nameof(Aoppass)}.{nameof(Aoppass.AntiOxidationEntry)}{i}";
+                stand.AntiOxidationEntryTop.L = aopPassL?.AntiOxidationEntryInd0;
+                stand.AntiOxidationEntryTop.E = aopPassE?.AntiOxidationEntryInd0;
+                stand.AntiOxidationEntryTop.M = aopPassM?.AntiOxidationEntryInd0;
+                stand.AntiOxidationEntryTop.DbSource = $"{nameof(Aoppass)}.{nameof(Aoppass.AntiOxidationEntryInd0)}{i}";
+
+                stand.AntiOxidationEntryBottom.L = aopPassL?.AntiOxidationEntryInd1;
+                stand.AntiOxidationEntryBottom.E = aopPassE?.AntiOxidationEntryInd1;
+                stand.AntiOxidationEntryBottom.M = aopPassM?.AntiOxidationEntryInd1;
+                stand.AntiOxidationEntryBottom.DbSource = $"{nameof(Aoppass)}.{nameof(Aoppass.AntiOxidationEntryInd1)}{i}";
 
                 stand.AntiOxStateExit.L = aopPassL?.AntiOxStateExit;
                 stand.AntiOxStateExit.E = aopPassE?.AntiOxStateExit;
                 stand.AntiOxStateExit.M = aopPassM?.AntiOxStateExit;
                 stand.AntiOxStateExit.DbSource = $"{nameof(Aoppass)}.{nameof(Aoppass.AntiOxStateExit)}{i}";
 
-                stand.AntiOxidationExit.L = aopPassL?.AntiOxidationExit;
-                stand.AntiOxidationExit.E = aopPassE?.AntiOxidationExit;
-                stand.AntiOxidationExit.M = aopPassM?.AntiOxidationExit;
-                stand.AntiOxidationExit.DbSource = $"{nameof(Aoppass)}.{nameof(Aoppass.AntiOxidationExit)}{i}";
+                stand.AntiOxidationExitTop.L = aopPassL?.AntiOxidationExitInd0;
+                stand.AntiOxidationExitTop.E = aopPassE?.AntiOxidationExitInd0;
+                stand.AntiOxidationExitTop.M = aopPassM?.AntiOxidationExitInd0;
+                stand.AntiOxidationExitTop.DbSource = $"{nameof(Aoppass)}.{nameof(Aoppass.AntiOxidationExitInd0)}{i}";
+
+                stand.AntiOxidationExitBottom.L = aopPassL?.AntiOxidationExitInd1;
+                stand.AntiOxidationExitBottom.E = aopPassE?.AntiOxidationExitInd1;
+                stand.AntiOxidationExitBottom.M = aopPassM?.AntiOxidationExitInd1;
+                stand.AntiOxidationExitBottom.DbSource = $"{nameof(Aoppass)}.{nameof(Aoppass.AntiOxidationExitInd1)}{i}";
 
                 stand.AntiPeelingState.L = aopPassL?.AntiPeelingState;
                 stand.AntiPeelingState.E = aopPassE?.AntiPeelingState;

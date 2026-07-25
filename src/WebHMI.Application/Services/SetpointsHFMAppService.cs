@@ -447,9 +447,11 @@ namespace WebHMI.Services
                     context.Aoppasses.Add(aopPassM);
                 }
                 aopPassM.AntiOxStateEntry = pass.AntiOxStateEntry?.M;
-                aopPassM.AntiOxidationEntry = pass.AntiOxidationEntry?.M;
+                aopPassM.AntiOxidationEntryInd0 = pass.AntiOxidationEntryTop?.M;
+                aopPassM.AntiOxidationEntryInd1 = pass.AntiOxidationEntryBottom?.M;
                 aopPassM.AntiOxStateExit = pass.AntiOxStateExit?.M;
-                aopPassM.AntiOxidationExit = pass.AntiOxidationExit?.M;
+                aopPassM.AntiOxidationExitInd0 = pass.AntiOxidationExitTop?.M;
+                aopPassM.AntiOxidationExitInd1 = pass.AntiOxidationExitBottom?.M;
 
                 aopPassM.AntiPeelingState = pass.AntiPeelingState?.M;
                 aopPassM.AntiPeeling = pass.AntiPeeling?.M;

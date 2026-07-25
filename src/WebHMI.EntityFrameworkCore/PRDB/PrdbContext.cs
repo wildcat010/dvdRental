@@ -1014,14 +1014,18 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[0/1] anti-oxidation exit pass state: 0-AUTO, 1-MANUAL")
                 .HasColumnName("antiOxStateExit");
-            entity.Property(e => e.AntiOxidationEntry)
+            entity.Property(e => e.AntiOxidationEntryInd0)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("anti-oxidation entry")
-                .HasColumnName("antiOxidationEntry");
-            entity.Property(e => e.AntiOxidationExit)
+                .HasColumnName("antiOxidationEntry_ind0");
+            entity.Property(e => e.AntiOxidationEntryInd1)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("anti-oxidation exit")
-                .HasColumnName("antiOxidationExit");
+                .HasColumnName("antiOxidationEntry_ind1");
+            entity.Property(e => e.AntiOxidationExitInd0)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("antiOxidationExit_ind0");
+            entity.Property(e => e.AntiOxidationExitInd1)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("antiOxidationExit_ind1");
             entity.Property(e => e.AntiPeeling)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("anti-peeling")
@@ -13748,6 +13752,102 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[%] CS:  percentage of autenite")
                 .HasColumnName("csAustenite");
+            entity.Property(e => e.CsBotValveInd00)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csBotValve_ind00");
+            entity.Property(e => e.CsBotValveInd01)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csBotValve_ind01");
+            entity.Property(e => e.CsBotValveInd02)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csBotValve_ind02");
+            entity.Property(e => e.CsBotValveInd03)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csBotValve_ind03");
+            entity.Property(e => e.CsBotValveInd04)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csBotValve_ind04");
+            entity.Property(e => e.CsBotValveInd05)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csBotValve_ind05");
+            entity.Property(e => e.CsBotValveInd06)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csBotValve_ind06");
+            entity.Property(e => e.CsBotValveInd07)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csBotValve_ind07");
+            entity.Property(e => e.CsBotValveInd08)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csBotValve_ind08");
+            entity.Property(e => e.CsBotValveInd09)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csBotValve_ind09");
+            entity.Property(e => e.CsBotValveInd10)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csBotValve_ind10");
+            entity.Property(e => e.CsBotValveInd11)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csBotValve_ind11");
+            entity.Property(e => e.CsBotValveInd12)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csBotValve_ind12");
+            entity.Property(e => e.CsBotValveInd13)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csBotValve_ind13");
+            entity.Property(e => e.CsBotValveInd14)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csBotValve_ind14");
+            entity.Property(e => e.CsBotValveInd15)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csBotValve_ind15");
+            entity.Property(e => e.CsBotValveInd16)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csBotValve_ind16");
+            entity.Property(e => e.CsBotValveInd17)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csBotValve_ind17");
+            entity.Property(e => e.CsBotValveInd18)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csBotValve_ind18");
+            entity.Property(e => e.CsBotValveInd19)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csBotValve_ind19");
+            entity.Property(e => e.CsBotValveInd20)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csBotValve_ind20");
+            entity.Property(e => e.CsBotValveInd21)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csBotValve_ind21");
+            entity.Property(e => e.CsBotValveInd22)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csBotValve_ind22");
+            entity.Property(e => e.CsBotValveInd23)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csBotValve_ind23");
+            entity.Property(e => e.CsBotValveInd24)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csBotValve_ind24");
+            entity.Property(e => e.CsBotValveInd25)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csBotValve_ind25");
+            entity.Property(e => e.CsBotValveInd26)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csBotValve_ind26");
+            entity.Property(e => e.CsBotValveInd27)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csBotValve_ind27");
+            entity.Property(e => e.CsBotValveInd28)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csBotValve_ind28");
+            entity.Property(e => e.CsBotValveInd29)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csBotValve_ind29");
+            entity.Property(e => e.CsBotValveInd30)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csBotValve_ind30");
+            entity.Property(e => e.CsBotValveInd31)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csBotValve_ind31");
             entity.Property(e => e.CsCementite)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[%] CS:  percentage of cementite")
@@ -13996,6 +14096,102 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("CS: correction offset for coiling temperature")
                 .HasColumnName("csTempOffset_ind2");
+            entity.Property(e => e.CsTopValveInd00)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind00");
+            entity.Property(e => e.CsTopValveInd01)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind01");
+            entity.Property(e => e.CsTopValveInd02)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind02");
+            entity.Property(e => e.CsTopValveInd03)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind03");
+            entity.Property(e => e.CsTopValveInd04)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind04");
+            entity.Property(e => e.CsTopValveInd05)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind05");
+            entity.Property(e => e.CsTopValveInd06)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind06");
+            entity.Property(e => e.CsTopValveInd07)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind07");
+            entity.Property(e => e.CsTopValveInd08)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind08");
+            entity.Property(e => e.CsTopValveInd09)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind09");
+            entity.Property(e => e.CsTopValveInd10)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind10");
+            entity.Property(e => e.CsTopValveInd11)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind11");
+            entity.Property(e => e.CsTopValveInd12)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind12");
+            entity.Property(e => e.CsTopValveInd13)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind13");
+            entity.Property(e => e.CsTopValveInd14)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind14");
+            entity.Property(e => e.CsTopValveInd15)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind15");
+            entity.Property(e => e.CsTopValveInd16)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind16");
+            entity.Property(e => e.CsTopValveInd17)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind17");
+            entity.Property(e => e.CsTopValveInd18)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind18");
+            entity.Property(e => e.CsTopValveInd19)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind19");
+            entity.Property(e => e.CsTopValveInd20)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind20");
+            entity.Property(e => e.CsTopValveInd21)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind21");
+            entity.Property(e => e.CsTopValveInd22)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind22");
+            entity.Property(e => e.CsTopValveInd23)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind23");
+            entity.Property(e => e.CsTopValveInd24)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind24");
+            entity.Property(e => e.CsTopValveInd25)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind25");
+            entity.Property(e => e.CsTopValveInd26)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind26");
+            entity.Property(e => e.CsTopValveInd27)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind27");
+            entity.Property(e => e.CsTopValveInd28)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind28");
+            entity.Property(e => e.CsTopValveInd29)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind29");
+            entity.Property(e => e.CsTopValveInd30)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind30");
+            entity.Property(e => e.CsTopValveInd31)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind31");
             entity.Property(e => e.CsUncHeadLength)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[m] CS uncooled head length")
@@ -15571,7 +15767,7 @@ public partial class PrdbContext : AbpDbContext
                 .HasColumnName("coMzcCoolDistribution_ind39");
             entity.Property(e => e.CoMzcValveNumberChange)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Change in the number of cooling zones: 0 = Only covered cooling zones are cooled, 1 = Both on OS and DS, an additional zone is cooled next to the edge of the strip, -1 = the first covered cooling zone is not cooled. For larger numbers (2, 3, â€¦ or -2, -3, â€¦) the number of additional or removed cooling zones are accordingly")
+                .HasComment("Change in the number of cooling zones: 0 = Only covered cooling zones are cooled, 1 = Both on OS and DS, an additional zone is cooled next to the edge of the strip, -1 = the first covered cooling zone is not cooled. For larger numbers (2, 3, … or -2, -3, …) the number of additional or removed cooling zones are accordingly")
                 .HasColumnName("coMzcValveNumberChange");
             entity.Property(e => e.CoRollFlInd0)
                 .HasDefaultValueSql("(NULL)")
@@ -20332,6 +20528,99 @@ public partial class PrdbContext : AbpDbContext
             entity.Property(e => e.CsBotValveInd00)
                 .HasDefaultValueSql("(NULL)")
                 .HasColumnName("csBotValve_ind00");
+            entity.Property(e => e.CsBotValveInd01)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csBotValve_ind01");
+            entity.Property(e => e.CsBotValveInd02)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csBotValve_ind02");
+            entity.Property(e => e.CsBotValveInd03)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csBotValve_ind03");
+            entity.Property(e => e.CsBotValveInd04)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csBotValve_ind04");
+            entity.Property(e => e.CsBotValveInd05)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csBotValve_ind05");
+            entity.Property(e => e.CsBotValveInd06)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csBotValve_ind06");
+            entity.Property(e => e.CsBotValveInd07)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csBotValve_ind07");
+            entity.Property(e => e.CsBotValveInd08)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csBotValve_ind08");
+            entity.Property(e => e.CsBotValveInd09)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csBotValve_ind09");
+            entity.Property(e => e.CsBotValveInd10)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csBotValve_ind10");
+            entity.Property(e => e.CsBotValveInd11)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csBotValve_ind11");
+            entity.Property(e => e.CsBotValveInd12)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csBotValve_ind12");
+            entity.Property(e => e.CsBotValveInd13)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csBotValve_ind13");
+            entity.Property(e => e.CsBotValveInd14)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csBotValve_ind14");
+            entity.Property(e => e.CsBotValveInd15)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csBotValve_ind15");
+            entity.Property(e => e.CsBotValveInd16)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csBotValve_ind16");
+            entity.Property(e => e.CsBotValveInd17)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csBotValve_ind17");
+            entity.Property(e => e.CsBotValveInd18)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csBotValve_ind18");
+            entity.Property(e => e.CsBotValveInd19)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csBotValve_ind19");
+            entity.Property(e => e.CsBotValveInd20)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csBotValve_ind20");
+            entity.Property(e => e.CsBotValveInd21)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csBotValve_ind21");
+            entity.Property(e => e.CsBotValveInd22)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csBotValve_ind22");
+            entity.Property(e => e.CsBotValveInd23)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csBotValve_ind23");
+            entity.Property(e => e.CsBotValveInd24)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csBotValve_ind24");
+            entity.Property(e => e.CsBotValveInd25)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csBotValve_ind25");
+            entity.Property(e => e.CsBotValveInd26)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csBotValve_ind26");
+            entity.Property(e => e.CsBotValveInd27)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csBotValve_ind27");
+            entity.Property(e => e.CsBotValveInd28)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csBotValve_ind28");
+            entity.Property(e => e.CsBotValveInd29)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csBotValve_ind29");
+            entity.Property(e => e.CsBotValveInd30)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csBotValve_ind30");
+            entity.Property(e => e.CsBotValveInd31)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csBotValve_ind31");
             entity.Property(e => e.CsCementite)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("CS:  percentage of cementite")
@@ -20580,6 +20869,102 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("CS: correction offset for coiling temperature")
                 .HasColumnName("csTempOffset_ind2");
+            entity.Property(e => e.CsTopValveInd00)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind00");
+            entity.Property(e => e.CsTopValveInd01)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind01");
+            entity.Property(e => e.CsTopValveInd02)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind02");
+            entity.Property(e => e.CsTopValveInd03)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind03");
+            entity.Property(e => e.CsTopValveInd04)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind04");
+            entity.Property(e => e.CsTopValveInd05)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind05");
+            entity.Property(e => e.CsTopValveInd06)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind06");
+            entity.Property(e => e.CsTopValveInd07)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind07");
+            entity.Property(e => e.CsTopValveInd08)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind08");
+            entity.Property(e => e.CsTopValveInd09)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind09");
+            entity.Property(e => e.CsTopValveInd10)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind10");
+            entity.Property(e => e.CsTopValveInd11)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind11");
+            entity.Property(e => e.CsTopValveInd12)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind12");
+            entity.Property(e => e.CsTopValveInd13)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind13");
+            entity.Property(e => e.CsTopValveInd14)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind14");
+            entity.Property(e => e.CsTopValveInd15)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind15");
+            entity.Property(e => e.CsTopValveInd16)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind16");
+            entity.Property(e => e.CsTopValveInd17)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind17");
+            entity.Property(e => e.CsTopValveInd18)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind18");
+            entity.Property(e => e.CsTopValveInd19)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind19");
+            entity.Property(e => e.CsTopValveInd20)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind20");
+            entity.Property(e => e.CsTopValveInd21)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind21");
+            entity.Property(e => e.CsTopValveInd22)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind22");
+            entity.Property(e => e.CsTopValveInd23)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind23");
+            entity.Property(e => e.CsTopValveInd24)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind24");
+            entity.Property(e => e.CsTopValveInd25)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind25");
+            entity.Property(e => e.CsTopValveInd26)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind26");
+            entity.Property(e => e.CsTopValveInd27)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind27");
+            entity.Property(e => e.CsTopValveInd28)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind28");
+            entity.Property(e => e.CsTopValveInd29)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind29");
+            entity.Property(e => e.CsTopValveInd30)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind30");
+            entity.Property(e => e.CsTopValveInd31)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("csTopValve_ind31");
             entity.Property(e => e.CsUncHeadLength)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("CS uncooled head length")
@@ -22149,7 +22534,7 @@ public partial class PrdbContext : AbpDbContext
                 .HasColumnName("coMzcCoolDistribution_ind39");
             entity.Property(e => e.CoMzcValveNumberChange)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Change in the number of cooling zones: 0 = Only covered cooling zones are cooled, 1 = Both on OS and DS, an additional zone is cooled next to the edge of the strip, -1 = the first covered cooling zone is not cooled. For larger numbers (2, 3, â€¦ or -2, -3, â€¦) the number of additional or removed cooling zones are accordingly")
+                .HasComment("Change in the number of cooling zones: 0 = Only covered cooling zones are cooled, 1 = Both on OS and DS, an additional zone is cooled next to the edge of the strip, -1 = the first covered cooling zone is not cooled. For larger numbers (2, 3, … or -2, -3, …) the number of additional or removed cooling zones are accordingly")
                 .HasColumnName("coMzcValveNumberChange");
             entity.Property(e => e.CoRollFlInd0)
                 .HasDefaultValueSql("(NULL)")
@@ -23182,14 +23567,22 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[0/1] anti-oxidation exit pass state: 0-AUTO, 1-MANUAL")
                 .HasColumnName("antiOxStateExit");
-            entity.Property(e => e.AntiOxidationEntry)
+            entity.Property(e => e.AntiOxidationEntryInd0)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("anti-oxidation entry")
-                .HasColumnName("antiOxidationEntry");
-            entity.Property(e => e.AntiOxidationExit)
+                .HasComment("anti-oxidation entry top")
+                .HasColumnName("antiOxidationEntry_ind0");
+            entity.Property(e => e.AntiOxidationEntryInd1)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("anti-oxidation exit")
-                .HasColumnName("antiOxidationExit");
+                .HasComment("anti-oxidation entry bot.")
+                .HasColumnName("antiOxidationEntry_ind1");
+            entity.Property(e => e.AntiOxidationExitInd0)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("anti-oxidation exit top")
+                .HasColumnName("antiOxidationExit_ind0");
+            entity.Property(e => e.AntiOxidationExitInd1)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("anti-oxidation exit bot.")
+                .HasColumnName("antiOxidationExit_ind1");
             entity.Property(e => e.AntiPeeling)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("anti-peeling")
@@ -26412,4 +26805,5 @@ public partial class PrdbContext : AbpDbContext
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }
+
 

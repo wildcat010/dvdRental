@@ -12,9 +12,11 @@ namespace WebHMI.Dtos.Setpoints.CommonDtos
         public short PassNo { get; set; }
         public SourceSet<int?> PlanNo { get; set; } = new();
         public SourceSet<int?> AntiOxStateEntry { get; set; } = new();
-        public SourceSet<double?> AntiOxidationEntry { get; set; } = new();
+        public SourceSet<double?> AntiOxidationEntryTop { get; set; } = new();
+        public SourceSet<double?> AntiOxidationEntryBottom { get; set; } = new();
         public SourceSet<int?> AntiOxStateExit { get; set; } = new();
-        public SourceSet<double?> AntiOxidationExit { get; set; } = new();
+        public SourceSet<double?> AntiOxidationExitTop { get; set; } = new();
+        public SourceSet<double?> AntiOxidationExitBottom { get; set; } = new();
         public SourceSet<int?> AntiPeelingState { get; set; } = new();
         public SourceSet<double?> AntiPeeling { get; set; } = new();
     }
