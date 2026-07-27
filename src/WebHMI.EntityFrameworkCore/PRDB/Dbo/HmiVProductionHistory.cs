@@ -5,7 +5,7 @@ namespace WebHMI.PRDB.Dbo;
 
 public partial class HmiVProductionHistory
 {
-    public int Meid { get; set; }
+    public int MeId { get; set; }
 
     public string CoilId { get; set; }
 
@@ -15,11 +15,11 @@ public partial class HmiVProductionHistory
 
     public string HeatId1 { get; set; }
 
-    public int? Flagbatchrolling { get; set; }
+    public int? FlagBatchRolling { get; set; }
 
-    public string Alloycode { get; set; }
+    public string AlloyCode { get; set; }
 
-    public DateTime? Prodstart { get; set; }
+    public DateTime? ProdStart { get; set; }
 
     public DateTime? ProdEnd { get; set; }
 
@@ -41,11 +41,23 @@ public partial class HmiVProductionHistory
 
     public double? TExitCs { get; set; }
 
-    public double? TExitCsaver { get; set; }
+    public double? TExitCsAver { get; set; }
 
-    public double? TExitCsmin { get; set; }
+    public double? TExitCsMin { get; set; }
 
-    public double? TExitCsmax { get; set; }
+    public double? TExitCsMax { get; set; }
 
     public double? CoilLengthX { get; set; }
+
+    public string EnOrCreator { get; set; }
+
+    public int EnOrMeid { get; set; }
+
+    public short? EnOrStatus { get; set; }
+
+    public string EnOrExitId { get; set; }
+
+    public string EnOrMeType { get; set; }
+
+    public short? EnOrCurMesId { get; set; }
 }

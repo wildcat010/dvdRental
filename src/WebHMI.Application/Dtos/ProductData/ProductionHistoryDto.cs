@@ -4,6 +4,7 @@ namespace WebHMI.Dtos.ProductData
 {
     public class ProductionHistoryDto
     {
+        public MeCodeDto MeCode { get; set; }
         public string CoilID { get; set; }
         public string SequenceID { get; set; }
         public string HeatID1 { get; set; }

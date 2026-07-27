@@ -6994,39 +6994,55 @@ public partial class PrdbContext : AbpDbContext
                 .HasNoKey()
                 .ToView("HMI_V_PRODUCTION_HISTORY", "PRDB");
 
-            entity.Property(e => e.Alloycode)
+            entity.Property(e => e.AlloyCode)
                 .HasMaxLength(30)
                 .IsUnicode(false)
-                .HasColumnName("ALLOYCODE");
+                .HasColumnName("alloyCode");
             entity.Property(e => e.CoilId)
                 .IsRequired()
                 .HasMaxLength(20)
-                .IsUnicode(false);
+                .IsUnicode(false)
+                .HasColumnName("coilId");
             entity.Property(e => e.CoilLengthX).HasColumnName("coilLengthX");
-            entity.Property(e => e.Flagbatchrolling).HasColumnName("FLAGBATCHROLLING");
+            entity.Property(e => e.EnOrCreator)
+                .IsRequired()
+                .HasMaxLength(2)
+                .IsUnicode(false);
+            entity.Property(e => e.EnOrExitId)
+                .IsRequired()
+                .HasMaxLength(20)
+                .IsUnicode(false);
+            entity.Property(e => e.EnOrMeType)
+                .IsRequired()
+                .HasMaxLength(2)
+                .IsUnicode(false);
+            entity.Property(e => e.FlagBatchRolling).HasColumnName("flagBatchRolling");
             entity.Property(e => e.HExit).HasColumnName("hExit");
             entity.Property(e => e.HExitAver).HasColumnName("hExitAver");
             entity.Property(e => e.HExitMax).HasColumnName("hExitMax");
             entity.Property(e => e.HExitMin).HasColumnName("hExitMin");
             entity.Property(e => e.HeatId1)
                 .HasMaxLength(20)
-                .IsUnicode(false);
+                .IsUnicode(false)
+                .HasColumnName("heatId1");
+            entity.Property(e => e.MeId).HasColumnName("meId");
             entity.Property(e => e.ProdEnd)
                 .HasPrecision(3)
                 .HasColumnName("prodEnd");
-            entity.Property(e => e.Prodstart)
+            entity.Property(e => e.ProdStart)
                 .HasPrecision(3)
-                .HasColumnName("PRODSTART");
+                .HasColumnName("prodStart");
             entity.Property(e => e.SequenceId)
                 .HasMaxLength(20)
                 .IsUnicode(false);
             entity.Property(e => e.SlabId)
                 .HasMaxLength(20)
-                .IsUnicode(false);
+                .IsUnicode(false)
+                .HasColumnName("slabId");
             entity.Property(e => e.TExitCs).HasColumnName("tExitCS");
-            entity.Property(e => e.TExitCsaver).HasColumnName("tExitCSAver");
-            entity.Property(e => e.TExitCsmax).HasColumnName("tExitCSMax");
-            entity.Property(e => e.TExitCsmin).HasColumnName("tExitCSMin");
+            entity.Property(e => e.TExitCsAver).HasColumnName("tExitCsAver");
+            entity.Property(e => e.TExitCsMax).HasColumnName("tExitCsMax");
+            entity.Property(e => e.TExitCsMin).HasColumnName("tExitCsMin");
             entity.Property(e => e.WExit).HasColumnName("wExit");
             entity.Property(e => e.WExitAver).HasColumnName("wExitAver");
             entity.Property(e => e.WExitMax).HasColumnName("wExitMax");

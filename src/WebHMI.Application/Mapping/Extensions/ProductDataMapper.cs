@@ -1,4 +1,5 @@
-﻿using WebHMI.Dtos.ProductData;
+﻿using WebHMI.Dtos;
+using WebHMI.Dtos.ProductData;
 using WebHMI.PRDB.Dbo;
 
 namespace WebHMI.Mapping.Extensions
@@ -8,13 +9,24 @@ namespace WebHMI.Mapping.Extensions
         public static ProductionHistoryDto MapToDto(this HmiVProductionHistory dbo)
         {
             var dto = new ProductionHistoryDto();
+
+            dto.MeCode = new MeCodeDto()
+            {
+                Status = dbo.EnOrStatus ,
+                MeId = dbo.EnOrMeid,
+                MatType = dbo.EnOrMeType,
+                MesId = dbo.EnOrCurMesId ?? -1,
+                ExtId = dbo.EnOrExitId,
+                MeCreator = dbo.EnOrCreator
+            };
+
             dto.CoilID = dbo.CoilId;
             dto.SlabId = dbo.SlabId;
             dto.SequenceID = dbo.SequenceId;
             dto.HeatID1 = dbo.HeatId1;
-            dto.FlagBatchRolling = dbo.Flagbatchrolling;
-            dto.AlloyCode = dbo.Alloycode;
-            dto.Prodstart = dbo.Prodstart;
+            dto.FlagBatchRolling = dbo.FlagBatchRolling;
+            dto.AlloyCode = dbo.AlloyCode;
+            dto.Prodstart = dbo.ProdStart;
             dto.Prodend = dbo.ProdEnd;
             dto.ExitWidthSP = dbo.WExit;
             dto.ExitWidth = dbo.WExitAver;
@@ -25,9 +37,9 @@ namespace WebHMI.Mapping.Extensions
             dto.ExitThicknessMin = dbo.HExitMin;
             dto.ExitThicknessMax = dbo.HExitMax;
             dto.CSExitTempSP = dbo.TExitCs;
-            dto.CSExitTemp = dbo.TExitCsaver;
-            dto.CSExitTempMin = dbo.TExitCsmin;
-            dto.CSExitTempMax = dbo.TExitCsmax;
+            dto.CSExitTemp = dbo.TExitCsAver;
+            dto.CSExitTempMin = dbo.TExitCsMin;
+            dto.CSExitTempMax = dbo.TExitCsMax;
             dto.CoilLength = dbo.CoilLengthX;
             return dto;
         }

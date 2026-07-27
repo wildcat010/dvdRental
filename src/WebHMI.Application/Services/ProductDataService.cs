@@ -46,7 +46,7 @@ namespace WebHMI.Services
                     query = query.Where(x => x.SequenceId == sequenceId);
 
                 if (timeFrom != null)
-                    query = query.Where(x => x.Prodstart >= timeFrom);
+                    query = query.Where(x => x.ProdStart >= timeFrom);
 
                 if (timeTo != null)
                     query = query.Where(x => x.ProdEnd <= timeTo);
@@ -69,7 +69,7 @@ namespace WebHMI.Services
             var context = await _dbContextProvider.GetDbContextAsync();
 
             var entryMatStruct = await _matStructEntryService.GetMaterialEntryStruct(meId, matType);
-            var prodData = await context.HmiVProductionHistories.FirstOrDefaultAsync(x => x.Meid == entryMatStruct.EnOrMeId);
+            var prodData = await context.HmiVProductionHistories.FirstOrDefaultAsync(x => x.MeId == entryMatStruct.EnOrMeId);
 
             if (prodData is null)
             {
@@ -91,7 +91,7 @@ namespace WebHMI.Services
                 query = query.Where(x => x.SequenceId == sequenceId);
 
             if (timeFrom != null)
-                query = query.Where(x => x.Prodstart >= timeFrom);
+                query = query.Where(x => x.ProdStart >= timeFrom);
 
             if (timeTo != null)
                 query = query.Where(x => x.ProdEnd <= timeTo);
@@ -109,7 +109,7 @@ namespace WebHMI.Services
                                     .Distinct()
                                     .Count(),
 
-                NoOfCoils = overviewData.Select(x => x.Meid)
+                NoOfCoils = overviewData.Select(x => x.MeId)
                                     .Distinct()
                                     .Count(),
 
@@ -134,7 +134,7 @@ namespace WebHMI.Services
                 query = query.Where(x => x.SequenceId == sequenceId);
 
             if (timeFrom != null)
-                query = query.Where(x => x.Prodstart >= timeFrom);
+                query = query.Where(x => x.ProdStart >= timeFrom);
 
             if (timeTo != null)
                 query = query.Where(x => x.ProdEnd <= timeTo);
@@ -143,7 +143,7 @@ namespace WebHMI.Services
                     x.CoilId,
                     new SingleProdSequenceThicknessWidth
                     {
-                        EntryThickness = x.TExitCsaver,
+                        EntryThickness = x.TExitCsAver,
                         Width = x.WExitAver,
                         HeatId = x.HeatId1,
                         SeqId = x.SequenceId,
