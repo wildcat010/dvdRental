@@ -23,7 +23,7 @@ public partial class HmiVMatInfoShort
 
     public string EnOrCreator { get; set; }
 
-    public short Enorbasid { get; set; }
+    public short EnOrBasId { get; set; }
 
     public string EdOrSrc { get; set; }
 
@@ -51,15 +51,13 @@ public partial class HmiVMatInfoShort
 
     public short? SetpointsPc2Ok { get; set; }
 
-    public short? Setpointshrmok { get; set; }
+    public short? SetpointsHrmOk { get; set; }
 
     public int? Sbaz { get; set; }
 
     public DateTime? LastCalc { get; set; }
 
-    public string Sptlfaultcs { get; set; }
-
-    public string Sptlfaultfm { get; set; }
+    public string SptlFaultCs { get; set; }
 
     public string ApsKey { get; set; }
 
@@ -121,7 +119,11 @@ public partial class HmiVMatInfoShort
 
     public string EnLoCreator { get; set; }
 
-    public int? Idseq { get; set; }
+    public int? IdSeq { get; set; }
 
-    public int? Idriga { get; set; }
+    public int? IdRiga { get; set; }
+
+    public string SptlFaultHfm { get; set; }
+
+    public string SptlFaultHrm { get; set; }
 }

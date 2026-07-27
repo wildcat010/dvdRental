@@ -84,8 +84,8 @@ namespace WebHMI.Services
             return await ApplyFilter(_prdbContext.HmiVMatInfoShorts
                 .Where(x => x.EdOrSrc == "E" && x.EdLoSrc == "E" && x.EdPhySrc == "E")
                 .OrderBy(x => x.SequenceId)
-                .ThenBy(x=> x.Idseq)
-                .ThenBy(x => x.Idriga), input, MaterialHeaderDtoMapper.MapToDto);
+                .ThenBy(x=> x.IdSeq)
+                .ThenBy(x => x.IdRiga), input, MaterialHeaderDtoMapper.MapToDto);
         }
 
         [AbpAuthorize(Permissions.Pages_Setpoints_FM, Permissions.Pages_Setpoints_RM, Permissions.Pages_PrimaryData)]
@@ -93,8 +93,8 @@ namespace WebHMI.Services
         {
             return await ApplyFilter(_prdbContext.HmiVMatInfoShorts
                 .Where(x => x.EdOrSrc == "E" && x.EdLoSrc == "E" && x.EdPhySrc == "E" && x.SimMat == 1)
-                .OrderBy(x => x.Idseq)
-                .ThenByDescending(x => x.Idriga), input, MaterialHeaderDtoMapper.MapToDto);
+                .OrderBy(x => x.IdSeq)
+                .ThenByDescending(x => x.IdRiga), input, MaterialHeaderDtoMapper.MapToDto);
         }
 
         [AbpAuthorize(Permissions.Pages_Setpoints_FM, Permissions.Pages_Setpoints_RM, Permissions.Pages_PrimaryData)]

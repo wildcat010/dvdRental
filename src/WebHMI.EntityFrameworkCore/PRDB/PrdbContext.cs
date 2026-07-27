@@ -6757,7 +6757,6 @@ public partial class PrdbContext : AbpDbContext
                 .IsRequired()
                 .HasMaxLength(2)
                 .IsUnicode(false);
-            entity.Property(e => e.Enorbasid).HasColumnName("enorbasid");
             entity.Property(e => e.FlagBatchRolling).HasColumnName("flagBatchRolling");
             entity.Property(e => e.HEntry).HasColumnName("hEntry");
             entity.Property(e => e.HExit).HasColumnName("hExit");
@@ -6768,8 +6767,8 @@ public partial class PrdbContext : AbpDbContext
                 .HasMaxLength(20)
                 .IsUnicode(false)
                 .HasColumnName("heatId");
-            entity.Property(e => e.Idriga).HasColumnName("IDRIGA");
-            entity.Property(e => e.Idseq).HasColumnName("IDSEQ");
+            entity.Property(e => e.IdRiga).HasColumnName("idRiga");
+            entity.Property(e => e.IdSeq).HasColumnName("idSeq");
             entity.Property(e => e.LEntry).HasColumnName("lEntry");
             entity.Property(e => e.LExit).HasColumnName("lExit");
             entity.Property(e => e.LastCalc).HasPrecision(3);
@@ -6791,16 +6790,21 @@ public partial class PrdbContext : AbpDbContext
                 .IsUnicode(false)
                 .HasColumnName("sequenceId");
             entity.Property(e => e.SetpointsCsOk).HasColumnName("setpointsCsOk");
+            entity.Property(e => e.SetpointsHrmOk).HasColumnName("setpointsHrmOK");
             entity.Property(e => e.SetpointsPc2Ok).HasColumnName("setpointsPc2Ok");
             entity.Property(e => e.SimMat).HasColumnName("simMat");
-            entity.Property(e => e.Sptlfaultcs)
+            entity.Property(e => e.SptlFaultCs)
                 .HasMaxLength(256)
                 .IsUnicode(false)
-                .HasColumnName("sptlfaultcs");
-            entity.Property(e => e.Sptlfaultfm)
+                .HasColumnName("sptlFaultCS");
+            entity.Property(e => e.SptlFaultHfm)
                 .HasMaxLength(256)
                 .IsUnicode(false)
-                .HasColumnName("sptlfaultfm");
+                .HasColumnName("sptlFaultHFM");
+            entity.Property(e => e.SptlFaultHrm)
+                .HasMaxLength(256)
+                .IsUnicode(false)
+                .HasColumnName("sptlFaultHRM");
             entity.Property(e => e.TEntryFm).HasColumnName("tEntryFM");
             entity.Property(e => e.TExitCaster).HasColumnName("tExitCaster");
             entity.Property(e => e.TExitFm).HasColumnName("tExitFM");
@@ -15150,12 +15154,16 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("ONLY FOR HMI: additional information from MOS-CS")
                 .HasColumnName("sptlFaultCS");
-            entity.Property(e => e.SptlFaultFm)
+            entity.Property(e => e.SptlFaultHfm)
                 .HasMaxLength(256)
                 .IsUnicode(false)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("ONLY FOR HMI: additional information from MOS-FM")
-                .HasColumnName("sptlFaultFM");
+                .HasColumnName("sptlFaultHFM");
+            entity.Property(e => e.SptlFaultHrm)
+                .HasMaxLength(256)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("sptlFaultHRM");
             entity.Property(e => e.StandNoStartSpeedDown)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("standNo, from which speed down is driven")
@@ -15386,10 +15394,6 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[m] entry width hot (rough strip width cold)")
                 .HasColumnName("wEntryColdFM");
-            entity.Property(e => e.WEntryE)
-                .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] entry width Edger")
-                .HasColumnName("wEntryE");
             entity.Property(e => e.WEntryHot)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[m] entry width hot (rough strip width hot)")
@@ -15398,10 +15402,6 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[m] strip width cold")
                 .HasColumnName("wExitCold");
-            entity.Property(e => e.WExitE)
-                .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] exit width Edger")
-                .HasColumnName("wExitE");
             entity.Property(e => e.WExitFmHot)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[m] width behind FM hot")
@@ -16471,6 +16471,18 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[m] sum wear crown (2xWKR+BUR) used in gap calculation")
                 .HasColumnName("wCrown");
+            entity.Property(e => e.WEntry)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("wEntry");
+            entity.Property(e => e.WEntryE)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("wEntryE");
+            entity.Property(e => e.WExit)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("wExit");
+            entity.Property(e => e.WExitE)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("wExitE");
             entity.Property(e => e.WrCrownEff)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[m] effective work roll crown over barrel length")
@@ -21919,10 +21931,12 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("ONLY FOR HMI: additional information from MOS-CS")
                 .HasColumnName("sptlFaultCS");
-            entity.Property(e => e.SptlFaultFm)
+            entity.Property(e => e.SptlFaultHfm)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("ONLY FOR HMI: additional information from MOS-FM")
-                .HasColumnName("sptlFaultFM");
+                .HasColumnName("sptlFaultHFM");
+            entity.Property(e => e.SptlFaultHrm)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("sptlFaultHRM");
             entity.Property(e => e.StandNoStartSpeedDown)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("standNo, from which speed down is driven")
@@ -22153,10 +22167,6 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("entry width hot (rough strip width cold)")
                 .HasColumnName("wEntryColdFM");
-            entity.Property(e => e.WEntryE)
-                .HasDefaultValueSql("(NULL)")
-                .HasComment("entry width Edger")
-                .HasColumnName("wEntryE");
             entity.Property(e => e.WEntryHot)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("entry width hot (rough strip width hot)")
@@ -22165,10 +22175,6 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("strip width cold")
                 .HasColumnName("wExitCold");
-            entity.Property(e => e.WExitE)
-                .HasDefaultValueSql("(NULL)")
-                .HasComment("exit width Edger")
-                .HasColumnName("wExitE");
             entity.Property(e => e.WExitFmHot)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("width behind FM hot")
@@ -23238,6 +23244,18 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("sum wear crown (2xWKR+BUR) used in gap calculation")
                 .HasColumnName("wCrown");
+            entity.Property(e => e.WEntry)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("wEntry");
+            entity.Property(e => e.WEntryE)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("wEntryE");
+            entity.Property(e => e.WExit)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("wExit");
+            entity.Property(e => e.WExitE)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("wExitE");
             entity.Property(e => e.WrCrownEff)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("effective work roll crown over barrel length")

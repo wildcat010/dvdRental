@@ -1264,5 +1264,13 @@ public partial class SpOrd2PcStand
 
     public short? EdgerActive { get; set; }
 
+    public double? WEntryE { get; set; }
+
+    public double? WExitE { get; set; }
+
+    public double? WEntry { get; set; }
+
+    public double? WExit { get; set; }
+
     public virtual Me1 Me1 { get; set; }
 }

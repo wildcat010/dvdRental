@@ -25,10 +25,10 @@ namespace WebHMI.Mapping.Extensions
 			result.Data.EnPhExtId.S = sourceS?.EnPhExtId;
 			result.Data.EnPhExtId.E = sourceE?.EnPhExtId;
 
-            result.Data.EnorBasId.L = sourceL?.Enorbasid;
-            result.Data.EnorBasId.M = sourceM?.Enorbasid;
-            result.Data.EnorBasId.S = sourceS?.Enorbasid;
-            result.Data.EnorBasId.E = sourceE?.Enorbasid;
+            result.Data.EnorBasId.L = sourceL?.EnOrBasId;
+            result.Data.EnorBasId.M = sourceM?.EnOrBasId;
+            result.Data.EnorBasId.S = sourceS?.EnOrBasId;
+            result.Data.EnorBasId.E = sourceE?.EnOrBasId;
 
             result.Data.EnPhMeId.L = sourceL?.EnPhMeId;
 			result.Data.EnPhMeId.M = sourceM?.EnPhMeId;
@@ -110,10 +110,10 @@ namespace WebHMI.Mapping.Extensions
 			result.Data.SetpointsPc2Ok.S = sourceS?.SetpointsPc2Ok;
 			result.Data.SetpointsPc2Ok.E = sourceE?.SetpointsPc2Ok;
 
-            result.Data.Setpointshrmok.L = sourceL?.Setpointshrmok;
-            result.Data.Setpointshrmok.M = sourceM?.Setpointshrmok;
-            result.Data.Setpointshrmok.S = sourceS?.Setpointshrmok;
-            result.Data.Setpointshrmok.E = sourceE?.Setpointshrmok;
+            result.Data.Setpointshrmok.L = sourceL?.SetpointsHrmOk;
+            result.Data.Setpointshrmok.M = sourceM?.SetpointsHrmOk;
+            result.Data.Setpointshrmok.S = sourceS?.SetpointsHrmOk;
+            result.Data.Setpointshrmok.E = sourceE?.SetpointsHrmOk;
 
             result.Data.Sbaz.L = sourceL?.Sbaz;
 			result.Data.Sbaz.M = sourceM?.Sbaz;
@@ -125,15 +125,20 @@ namespace WebHMI.Mapping.Extensions
 			result.Data.LastCalc.S = sourceS?.LastCalc;
 			result.Data.LastCalc.E = sourceE?.LastCalc;
 
-            result.Data.ModelInfoPc2.L = sourceL?.Sptlfaultfm;
-            result.Data.ModelInfoPc2.M = sourceM?.Sptlfaultfm;
-            result.Data.ModelInfoPc2.S = sourceS?.Sptlfaultfm;
-            result.Data.ModelInfoPc2.E = sourceE?.Sptlfaultfm;
+            result.Data.ModelInfoPc1.L = sourceL?.SptlFaultHrm;
+            result.Data.ModelInfoPc1.M = sourceM?.SptlFaultHrm;
+            result.Data.ModelInfoPc1.S = sourceS?.SptlFaultHrm;
+            result.Data.ModelInfoPc1.E = sourceE?.SptlFaultHrm;
 
-            result.Data.ModelInfoLC.L = sourceL?.Sptlfaultcs;
-            result.Data.ModelInfoLC.M = sourceM?.Sptlfaultcs;
-            result.Data.ModelInfoLC.S = sourceS?.Sptlfaultcs;
-            result.Data.ModelInfoLC.E = sourceE?.Sptlfaultcs;
+            result.Data.ModelInfoPc2.L = sourceL?.SptlFaultHfm;
+            result.Data.ModelInfoPc2.M = sourceM?.SptlFaultHfm;
+            result.Data.ModelInfoPc2.S = sourceS?.SptlFaultHfm;
+            result.Data.ModelInfoPc2.E = sourceE?.SptlFaultHfm;
+
+            result.Data.ModelInfoLC.L = sourceL?.SptlFaultCs;
+            result.Data.ModelInfoLC.M = sourceM?.SptlFaultCs;
+            result.Data.ModelInfoLC.S = sourceS?.SptlFaultCs;
+            result.Data.ModelInfoLC.E = sourceE?.SptlFaultCs;
 
             result.Data.ApsKey.L = sourceL?.ApsKey;
 			result.Data.ApsKey.M = sourceM?.ApsKey;

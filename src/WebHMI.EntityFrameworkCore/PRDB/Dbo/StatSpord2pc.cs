@@ -1550,11 +1550,6 @@ public partial class StatSpOrd2Pc
     public short? SptlFaultCs { get; set; }
 
     /// <summary>
-    /// ONLY FOR HMI: additional information from MOS-FM
-    /// </summary>
-    public short? SptlFaultFm { get; set; }
-
-    /// <summary>
     /// standNo, from which speed down is driven
     /// </summary>
     public short? StandNoStartSpeedDown { get; set; }
@@ -1830,11 +1825,6 @@ public partial class StatSpOrd2Pc
     public short? WEntryColdFm { get; set; }
 
     /// <summary>
-    /// entry width Edger
-    /// </summary>
-    public short? WEntryE { get; set; }
-
-    /// <summary>
     /// entry width hot (rough strip width hot)
     /// </summary>
     public short? WEntryHot { get; set; }
@@ -1843,11 +1833,6 @@ public partial class StatSpOrd2Pc
     /// strip width cold
     /// </summary>
     public short? WExitCold { get; set; }
-
-    /// <summary>
-    /// exit width Edger
-    /// </summary>
-    public short? WExitE { get; set; }
 
     /// <summary>
     /// width behind FM hot
@@ -2025,6 +2010,10 @@ public partial class StatSpOrd2Pc
     public short? CsTopValveInd30 { get; set; }
 
     public short? CsTopValveInd31 { get; set; }
+
+    public short? SptlFaultHfm { get; set; }
+
+    public short? SptlFaultHrm { get; set; }
 
     public virtual Me1 Me1 { get; set; }
 }

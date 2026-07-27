@@ -1264,5 +1264,13 @@ public partial class StatSpOrd2PcStand
 
     public short? EdgerActive { get; set; }
 
+    public short? WEntryE { get; set; }
+
+    public short? WExitE { get; set; }
+
+    public short? WEntry { get; set; }
+
+    public short? WExit { get; set; }
+
     public virtual Me1 Me1 { get; set; }
 }

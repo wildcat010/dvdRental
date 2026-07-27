@@ -47,6 +47,7 @@ namespace WebHMI.Dtos.Common
 		public SourceSet<int?> ProductType { get; set; } = new();
 		public SourceSet<DateTime?> ProdStartTime { get; set; } = new();
 		public SourceSet<DateTime?> ProdEndTime { get; set; } = new();
+        public SourceSet<string> ModelInfoPc1 { get; set; } = new();
         public SourceSet<string> ModelInfoPc2 { get; set; } = new();
         public SourceSet<string> ModelInfoLC { get; set; } = new();
         public SourceSet<short?> Setpointshrmok { get; set; } = new();
