@@ -830,6 +830,7 @@ namespace WebHMI.Services
                 dirFmPfcCycShiftPassM.CSstepSmartCrownInd0 =pass.CsstepsmartcrownInd0?.M ;
                 dirFmPfcCycShiftPassM.CSstepSmartCrownInd1 =pass.CsstepsmartcrownInd1?.M ;
                 dirFmPfcCycShiftPassM.CSstepSmartCrownInd2 =pass.CsstepsmartcrownInd2?.M ;
+                dirFmPfcCycShiftPassM.CSmode = pass.CsMode?.M ;
 
             }
             await context.SaveChangesAsync();

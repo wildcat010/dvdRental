@@ -1346,6 +1346,12 @@ namespace WebHMI.Mapping.Extensions
                 stand.CsstepsmartcrownInd2.DbSource = $"{nameof(DirFmPfcCycShiftPpass)}.{nameof(DirFmPfcCycShiftPpass.CSstepSmartCrownInd0)}{i}";
                 stand.CsstepsmartcrownInd2.Status = statDirFmPfcCycShiftPass?.CSstepSmartCrownInd2;
 
+                stand.CsMode.L = dirFmPfcCycShiftPassL?.CSmode;
+                stand.CsMode.E = dirFmPfcCycShiftPassE?.CSmode;
+                stand.CsMode.M = dirFmPfcCycShiftPassM?.CSmode;
+                stand.CsMode.DbSource = $"{nameof(DirFmPfcCycShiftPpass)}.{nameof(DirFmPfcCycShiftPpass.CSmode)}{i}";
+                stand.CsMode.Status = statDirFmPfcCycShiftPass?.CSmode;
+
                 result.ShiftingDtos.Add(stand);
             }
 
