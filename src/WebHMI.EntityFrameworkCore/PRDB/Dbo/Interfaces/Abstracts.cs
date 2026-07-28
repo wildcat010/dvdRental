@@ -37,4 +37,6 @@ namespace WebHMI.PRDB.Dbo
     public partial class Srp : IMaterialIdTypeOrder { }
     public partial class Tp : IMaterialIdTypeOrder { }
     public partial class Tppass : IMaterialIdTypeOrder { }
+    public partial class Pc : IMaterialIdTypeOrder { }
+    public partial class Pcramp : IMaterialIdTypeOrder { }
 }

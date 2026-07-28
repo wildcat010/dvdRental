@@ -126,4 +126,6 @@ public partial class HmiVMatInfoShort
     public string SptlFaultHfm { get; set; }
 
     public string SptlFaultHrm { get; set; }
+
+    public string HeatName { get; set; }
 }

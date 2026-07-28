@@ -61,5 +61,7 @@ namespace WebHMI.Dtos.ProductionSchedule
         public DateTime? ProdStartTime { get; set; }
 
         public DateTime? ProdEndTime { get; set; }
+        public string HeatName { get; internal set; }
+        public short? calcFlag { get; internal set; }
     }
 }

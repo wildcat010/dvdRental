@@ -39,5 +39,6 @@ namespace WebHMI.Dtos.Setpoints.SetpointsHFM
         public SourceSet<int?> IhpPlanNo { get; set; } = new();
         public SourceSet<double?> Temperature { get; set; } = new();
         public SourceSet<int?> AntiLubricationPlanNo { get; set; } = new();
+        public SourceSet<int?> PowerCoolingPlanNo { get; set; } = new();
     }
 }

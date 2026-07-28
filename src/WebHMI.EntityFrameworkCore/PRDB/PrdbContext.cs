@@ -6767,6 +6767,10 @@ public partial class PrdbContext : AbpDbContext
                 .HasMaxLength(20)
                 .IsUnicode(false)
                 .HasColumnName("heatId");
+            entity.Property(e => e.HeatName)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("heatName");
             entity.Property(e => e.IdRiga).HasColumnName("idRiga");
             entity.Property(e => e.IdSeq).HasColumnName("idSeq");
             entity.Property(e => e.LEntry).HasColumnName("lEntry");
@@ -6828,6 +6832,7 @@ public partial class PrdbContext : AbpDbContext
                 .HasMaxLength(6)
                 .IsUnicode(false)
                 .HasColumnName("apsKey");
+            entity.Property(e => e.CalcFlag).HasColumnName("calcFlag");
             entity.Property(e => e.CoilTemp).HasColumnName("coilTemp");
             entity.Property(e => e.CoolStrategy).HasColumnName("coolStrategy");
             entity.Property(e => e.EdOrSrc)
@@ -6874,6 +6879,10 @@ public partial class PrdbContext : AbpDbContext
                 .HasMaxLength(20)
                 .IsUnicode(false)
                 .HasColumnName("heatId");
+            entity.Property(e => e.HeatName)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("heatName");
             entity.Property(e => e.LEntry).HasColumnName("lEntry");
             entity.Property(e => e.LExit).HasColumnName("lExit");
             entity.Property(e => e.LastCalc).HasPrecision(3);
@@ -6917,6 +6926,7 @@ public partial class PrdbContext : AbpDbContext
                 .HasMaxLength(6)
                 .IsUnicode(false)
                 .HasColumnName("apsKey");
+            entity.Property(e => e.CalcFlag).HasColumnName("calcFlag");
             entity.Property(e => e.CoilTemp).HasColumnName("coilTemp");
             entity.Property(e => e.CoolStrategy).HasColumnName("coolStrategy");
             entity.Property(e => e.EdOrSrc)
@@ -6963,6 +6973,10 @@ public partial class PrdbContext : AbpDbContext
                 .HasMaxLength(20)
                 .IsUnicode(false)
                 .HasColumnName("heatId");
+            entity.Property(e => e.HeatName)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("heatName");
             entity.Property(e => e.LEntry).HasColumnName("lEntry");
             entity.Property(e => e.LExit).HasColumnName("lExit");
             entity.Property(e => e.LastCalc).HasPrecision(3);
@@ -8475,6 +8489,10 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("modifying process")
                 .HasColumnName("mop");
+            entity.Property(e => e.SpecificWeight)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("density in kg/m^3 of alloy at roomtemperature")
+                .HasColumnName("specificWeight");
             entity.Property(e => e.Toc)
                 .HasPrecision(3)
                 .HasDefaultValueSql("(NULL)")

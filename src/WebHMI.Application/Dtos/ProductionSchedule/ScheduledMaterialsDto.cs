@@ -67,5 +67,7 @@ namespace WebHMI.Dtos.ProductionSchedule
 		public string EdPhySrc { get; internal set; }
 		public string EdOrSrc { get; internal set; }
         public int? ProductType { get; internal set; }
+        public string HeatName { get; internal set; }
+        public short? calcFlag { get; internal set; }
     }
 }

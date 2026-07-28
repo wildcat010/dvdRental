@@ -589,4 +589,9 @@ public partial class MatDat
     /// time of modification
     /// </summary>
     public DateTime? Tom { get; set; }
+
+    /// <summary>
+    /// density in kg/m^3 of alloy at roomtemperature
+    /// </summary>
+    public double? SpecificWeight { get; set; }
 }

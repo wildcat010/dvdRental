@@ -85,6 +85,8 @@ public partial class HmiVProdsequence
 
     public string HeatId { get; set; }
 
+    public string HeatName { get; set; }
+
     public string FlagBatchRolling { get; set; }
 
     public int? PlateProduction { get; set; }
@@ -94,4 +96,6 @@ public partial class HmiVProdsequence
     public double? ProfileHrm { get; set; }
 
     public string OrderNo { get; set; }
+
+    public short? CalcFlag { get; set; }
 }

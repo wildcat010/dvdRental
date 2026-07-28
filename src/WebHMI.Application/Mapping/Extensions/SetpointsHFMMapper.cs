@@ -90,6 +90,11 @@ namespace WebHMI.Mapping.Extensions
             var aopS = dataBlob.Aoppasses.Where(x => x.Source == "S").FirstOrDefault();
             var aopE = dataBlob.Aoppasses.Where(x => x.Source == "E").FirstOrDefault();
 
+            var pcL = dataBlob.Pc.Where(x => x.Source == "L").FirstOrDefault();
+            var pcM = dataBlob.Pc.Where(x => x.Source == "M").FirstOrDefault();
+            var pcS = dataBlob.Pc.Where(x => x.Source == "S").FirstOrDefault();
+            var pcE = dataBlob.Pc.Where(x => x.Source == "E").FirstOrDefault();
+
             result.HExit.L = edOrdEntL?.HExit;
             result.HExit.E = edOrdEntE?.HExit;
             result.HExit.M = edOrdEntM?.HExit;
@@ -217,6 +222,11 @@ namespace WebHMI.Mapping.Extensions
             result.Temperature.E = IhpE?.Temperature;
             result.Temperature.M = IhpM?.Temperature;
             result.Temperature.DbSource = $"{nameof(Ihp)}.{nameof(Ihp.Temperature)}";
+
+            result.PowerCoolingPlanNo.L = pcL?.PlanNo;
+            result.PowerCoolingPlanNo.E = pcE?.PlanNo;
+            result.PowerCoolingPlanNo.M = pcM?.PlanNo;           
+            result.Temperature.DbSource = $"{nameof(Pc)}.{nameof(Pc.PlanNo)}";
 
             return result;
         }

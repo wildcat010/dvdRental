@@ -116,6 +116,10 @@ namespace WebHMI.Services
             spOrd2PcM.LExit = input.LExit?.M;
             spOrd2PcM.Profexcalc = input.ProfExCalc?.M;
 
+            var pcM = await context.Pcs.FirstOrDefaultAsync(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M");
+            pcM = context.InsertIfNull(pcM, vMatStructEntryOr);
+            pcM.PlanNo = input.PowerCoolingPlanNo?.M;
+
             await context.SaveChangesAsync();
         }
 

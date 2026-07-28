@@ -122,7 +122,9 @@ namespace WebHMI.Mapping.Extensions
             CoolStrategy = dbo.CoolStrategy,
             HeatId = dbo.HeatId,
             FlagBatchRolling = dbo.FlagBatchRolling,
-            ProductType = dbo.PlateProduction
+            ProductType = dbo.PlateProduction,
+            HeatName = dbo.HeatName,
+            calcFlag =  dbo.CalcFlag
         };
 
         internal static GhostDischargedMaterialsDto ToGhostDischargedMaterialsDto(HmiVProdsequence dbo) => new()
@@ -171,7 +173,9 @@ namespace WebHMI.Mapping.Extensions
             CoolStrategy = dbo.CoolStrategy,
             HeatId = dbo.HeatId,
             FlagBatchRolling = dbo.FlagBatchRolling,
-            PlateProduction = dbo.PlateProduction
+            PlateProduction = dbo.PlateProduction,
+            HeatName = dbo.HeatName,
+            calcFlag = dbo.CalcFlag
         };
 
     }
