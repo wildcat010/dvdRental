@@ -580,11 +580,8 @@ namespace WebHMI.Services
                     context.Pcramps.Add(pcRampM);
                 }
                 pcRampM.PlanNo = pcManual?.PlanNo;
-                pcRampM.Description = ramp.Description.M;
                 pcRampM.PcRampAuto = ramp.PcRampAuto.M ;
                 pcRampM.PcRampState = ramp.PcRampState.M ;
-                pcRampM.PlanNo = ramp.PlanNo.M ;
-                pcRampM.PrioPowerC = ramp.PrioPowerC.M ;
                 pcRampM.PcRampVolumeInd0 = ramp.PcRampVolumeInd0.M ;
                 pcRampM.PcRampVolumeInd1 = ramp.PcRampVolumeInd1.M ;
             }

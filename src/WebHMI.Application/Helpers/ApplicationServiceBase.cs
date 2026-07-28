@@ -87,6 +87,23 @@ namespace WebHMI.Helpers
             );
         }
 
+        public static async Task<PagedResultDto<TEntityDto>> ApplyFilterPC<TRampEntity, TEntityDto>(IQueryable<TRampEntity> query, FilteredRequestDto input, Func<TRampEntity, TEntityDto> map)
+        {
+            query = ApplySorting(query, input);
+            query = ApplyFilters(query, input);
+
+            var totalCount = await query.CountAsync();
+
+            query = ApplyPaging(query, input, totalCount);
+
+            var entities = await query.ToListAsync();
+
+            return new PagedResultDto<TEntityDto>(
+                totalCount,
+                entities.Select(map).ToList()
+            );
+        }
+
         protected Task<PagedResultDto<TEntityDto>> ApplyFilter<TEntity, TEntityDto>(IQueryable<TEntity> query, FilteredRequestDto input)
         {
             return ApplyFilter(query, input, MapToEntityDto<TEntity, TEntityDto>);

@@ -1449,16 +1449,6 @@ namespace WebHMI.Mapping.Extensions
 
                 pcRampDto.RampNo = i;
 
-                pcRampDto.PlanNo.E = pcRampE?.PlanNo;
-                pcRampDto.PlanNo.M = pcRampM?.PlanNo;
-                pcRampDto.PlanNo.S = pcRampS?.PlanNo;
-                pcRampDto.PlanNo.L = pcRampL?.PlanNo;
-
-                pcRampDto.Description.E = pcRampE?.Description;
-                pcRampDto.Description.M = pcRampM?.Description;
-                pcRampDto.Description.S = pcRampS?.Description;
-                pcRampDto.Description.L = pcRampL?.Description;
-
                 pcRampDto.PcRampAuto.E = pcRampE?.PcRampAuto;
                 pcRampDto.PcRampAuto.M = pcRampM?.PcRampAuto;
                 pcRampDto.PcRampAuto.S = pcRampS?.PcRampAuto;
@@ -1468,11 +1458,6 @@ namespace WebHMI.Mapping.Extensions
                 pcRampDto.PcRampState.M = pcRampM?.PcRampState;
                 pcRampDto.PcRampState.S = pcRampS?.PcRampState;
                 pcRampDto.PcRampState.L = pcRampL?.PcRampState;
-
-                pcRampDto.PrioPowerC.E = pcRampE?.PrioPowerC;
-                pcRampDto.PrioPowerC.M = pcRampM?.PrioPowerC;
-                pcRampDto.PrioPowerC.S = pcRampS?.PrioPowerC;
-                pcRampDto.PrioPowerC.L = pcRampL?.PrioPowerC;
 
                 pcRampDto.PcRampVolumeInd0.E = pcRampE?.PcRampVolumeInd0;
                 pcRampDto.PcRampVolumeInd0.M = pcRampM?.PcRampVolumeInd0;

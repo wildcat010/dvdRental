@@ -50,20 +50,6 @@ namespace WebHMI.Services.StrategyServices
         { }
     }
 
-    public class StdPcService : StdRampService<
-    StdPc, StdPcDto,
-    StdPcramp, StdPcRampDto>
-    {
-        public override string AggregateName => "FmPowerCoolingPlan";
-
-        public StdPcService() : base(
-            StdPcMapper.ToDto,
-            StdPcMapper.MapEntity,
-            StdPcRampMapper.ToDto,
-            StdPcRampMapper.MapEntity)
-        { }
-    }
-
     public class StdRcpPassService : StdPassService<
     StdRcp, StdRcpDto,
     StdRcppass, StdRcpPassDto>

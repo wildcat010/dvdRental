@@ -148,7 +148,6 @@ namespace WebHMI.Services.StrategyServices
                 Description = entity.Description,
                 LastModified = entity.Tom
             };
-           // return await _stdService.GetAvailablePlans(input);
         }
 
         //[AbpAuthorize(Permissions.Pages_Strategies)]
