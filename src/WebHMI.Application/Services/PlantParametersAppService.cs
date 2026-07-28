@@ -68,7 +68,18 @@ namespace WebHMI.Services
             _prdbContext.PlantParams.Add(parameter);
             await CurrentUnitOfWork.SaveChangesAsync();
 
-            //_l2Sender.SendProcessParametersUpdated(XIDL.HmiParamCategory.PlantParameter, input.PlantType);
+            var callArguments = new ParamsDto()
+            {
+                PlantType = input.PlantType,
+                Name = input.ParamName,
+                DisplayName = input.ParamName,
+                UserName = "user",
+                OldUValue = parameter.CurValN?.ToString() ?? parameter.CurValC,
+                OldLValue = "",
+                NewUValue = input.CurValN?.ToString() ?? input.CurValC,
+                NewLValue = ""
+            };
+            _l2Sender.SendProcessParametersUpdated(callArguments);
 
             return parameter.MapToDto();
         }
@@ -122,6 +133,19 @@ namespace WebHMI.Services
                 .ToListAsync();
 
             _prdbContext.PlantParams.RemoveRange(parameters);
+
+            var callArguments = new ParamsDto()
+            {
+                PlantType = input.PlantType,
+                Name = input.ParamName,
+                DisplayName = input.ParamName,
+                UserName = "user",
+                OldUValue = "",
+                OldLValue = "",
+                NewUValue = "",
+                NewLValue = ""
+            };
+            _l2Sender.SendProcessParametersUpdated(callArguments);
 
             await CurrentUnitOfWork.SaveChangesAsync();
 

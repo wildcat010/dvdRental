@@ -6,6 +6,7 @@ using Abp.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
+using WebHMI.Dtos.Limit;
 using WebHMI.Dtos.Parameters;
 using WebHMI.Filters;
 using WebHMI.Helpers;
@@ -72,7 +73,19 @@ namespace WebHMI.Services
 
             await CurrentUnitOfWork.SaveChangesAsync();
 
-            //_l2Sender.SendProcessParametersUpdated(XIDL.HmiParamCategory.ModelParameter, limitDto.Planttype);
+            var callArguments = new ParamsDto()
+            {
+                PlantType = limitDto.PlantType,
+                Name = limitDto.ParamName,
+                DisplayName = limitDto.ParamName,
+                UserName = "user",
+                OldUValue = parameter.CurValN?.ToString() ?? parameter.CurValC,
+                OldLValue = "",
+                NewUValue = limitDto.CurValN?.ToString() ?? limitDto.CurValC,
+                NewLValue = ""
+            };
+
+            _l2Sender.SendProcessParametersUpdated(callArguments);
 
             return MapToEntityDto<MosParam, ParameterDto>(parameter);
         }
@@ -120,7 +133,19 @@ namespace WebHMI.Services
             _prdbContext.MosParams.RemoveRange(parameters);
             await CurrentUnitOfWork.SaveChangesAsync();
 
-            //_l2Sender.SendProcessParametersUpdated(XIDL.HmiParamCategory.ModelParameter, input.Planttype);
+            var callArguments = new ParamsDto()
+            {
+                PlantType = input.PlantType,
+                Name = input.ParamName,
+                DisplayName = "",
+                UserName = "user",
+                OldUValue = "",
+                OldLValue = "",
+                NewUValue = "",
+                NewLValue = ""
+            };
+
+            _l2Sender.SendProcessParametersUpdated(callArguments);
         }
     }
 }

@@ -52,31 +52,15 @@ namespace WebHMI.Services
             return result;
         }
 
-        /////// <summary>
-        /////// Function to get single limit by given Id
-        /////// </summary>
-        /////// <param name="id"></param>
-        /////// <returns></returns>
-        ////[AbpAuthorize(Permissions.Pages_Limits)]
-        ////public async Task<List<LimitDto>> GetByIds(List<LimitKeyDto> ids)
-        ////{
-        ////    LimitKeyDto[] x = ids.ToArray();
-        ////    var limit = await _cache.GetAsync(x,
-        ////         async (key) =>
-        ////            ObjectMapper.Map<LimitDto>(await _prdbContext.PlantLimits
-        ////            .FirstOrDefaultAsync(x => x.LimitName == key.LimitName && x.PlantType == key.PlantType.ToString()))
-        ////        );
+   
 
-        ////    return limit.ToList();
-        ////}
         /// <summary>
-        /// Function to get single limit by given Id
+        /// Get plant limit by Ids
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="limitNames"></param>
+        /// <param name="plantTypes"></param>
         /// <returns></returns>
-        /// 
-
-
+        /// <exception cref="Abp.UI.UserFriendlyException"></exception>
         [AbpAuthorize(Permissions.Pages_Limits)]
         public async Task<List<LimitDto>> GetByIds(List<string> limitNames, List<string> plantTypes)
         {
@@ -124,7 +108,19 @@ namespace WebHMI.Services
             _prdbContext.PlantLimits.Add(plantlimit);
             await CurrentUnitOfWork.SaveChangesAsync();
 
-            //_l2Sender.SendProcessParametersUpdated(XIDL.HmiParamCategory.Limit, limitDto.PlantType);
+            var callArguments = new ParamsDto()
+            {
+                PlantType = limitDto.PlantType,
+                Name = limitDto.LimitName,
+                DisplayName = limitDto.LimitName,
+                UserName = "user",
+                OldUValue = "",
+                OldLValue = "",
+                NewUValue = limitDto.UpperLimit.ToString(),
+                NewLValue = limitDto.LowerLimit.ToString()
+            };
+
+            _l2Sender.SendProcessParametersUpdated(callArguments);
 
             return plantlimit.MapToDto();
         }
@@ -188,7 +184,19 @@ namespace WebHMI.Services
             _prdbContext.PlantLimits.RemoveRange(limits);
             await CurrentUnitOfWork.SaveChangesAsync();
 
-           // _l2Sender.SendProcessParametersUpdated(XIDL.HmiParamCategory.Limit, input.PlantType);
+            var callArguments = new ParamsDto()
+            {
+                PlantType = input.Planttype,
+                Name = input.Limitname,
+                DisplayName = "",
+                UserName = "",
+                OldUValue = "",
+                OldLValue = "",
+                NewUValue = "",
+                NewLValue = ""
+            };
+
+            _l2Sender.SendProcessParametersUpdated(callArguments);
         }
     }
 }
