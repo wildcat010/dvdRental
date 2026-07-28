@@ -64,7 +64,8 @@ namespace WebHMI.Services
             edphyentM = _prdbContext.InsertIfNull(edphyentM, entryMatStruct);
             edphyentM.SequenceId = input.Data.SequenceId.M;
 			edphyentM.HeatId = input.Data.HeatId.M;
-			edphyentM.AimSlabThickness = input.Data.SlabThickness.M;
+            edphyentM.HeatName = input.Data.HeatName.M;
+            edphyentM.AimSlabThickness = input.Data.SlabThickness.M;
 			edphyentM.SlabWidth = input.Data.SlabWidth.M;
 			edphyentM.SlabLength = input.Data.SlabLength.M;
 			edphyentM.SlabWeight = input.Data.SlabWeight.M;

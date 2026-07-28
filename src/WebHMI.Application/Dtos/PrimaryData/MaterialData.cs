@@ -7,7 +7,8 @@ namespace WebHMI.Dtos.PrimaryData
 		public SourceSet<string> OrderNo { get; set; } = new();
 		public SourceSet<string> SequenceId { get; set; } = new();
         public SourceSet<string> HeatId { get; set; } = new();
-		public SourceSet<double?> SlabThickness { get; set; } = new();
+        public SourceSet<string> HeatName { get; set; } = new();
+        public SourceSet<double?> SlabThickness { get; set; } = new();
 		public SourceSet<double?> SlabWidth { get; set; } = new();
 		public SourceSet<double?> SlabLength { get; set; } = new();
 		public SourceSet<double?> SlabWeight { get; set; } = new();

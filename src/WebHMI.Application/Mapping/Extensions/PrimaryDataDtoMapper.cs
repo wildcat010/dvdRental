@@ -29,6 +29,13 @@ namespace WebHMI.Mapping.Extensions
             result.Data.HeatId.DbSource = $"{nameof(EdPhyEnt)}.{nameof(EdPhyEnt.HeatId)}";
             result.Data.HeatId.Status = dataBlob.StatEdPhyEnts?.HeatId;
 
+            result.Data.HeatName.L = dataBlob.EdPhyEnts.FirstOrDefault(x => x.Source == "L")?.HeatName;
+            result.Data.HeatName.M = dataBlob.EdPhyEnts.FirstOrDefault(x => x.Source == "M")?.HeatName;
+            result.Data.HeatName.S = dataBlob.EdPhyEnts.FirstOrDefault(x => x.Source == "S")?.HeatName;
+            result.Data.HeatName.E = dataBlob.EdPhyEnts.FirstOrDefault(x => x.Source == "E")?.HeatName;
+            result.Data.HeatName.DbSource = $"{nameof(EdPhyEnt)}.{nameof(EdPhyEnt.HeatName)}";
+            result.Data.HeatName.Status = dataBlob.StatEdPhyEnts?.HeatName;
+
             result.Data.SlabThickness.L = dataBlob.EdPhyEnts.FirstOrDefault(x => x.Source == "L")?.AimSlabThickness;
 			result.Data.SlabThickness.M = dataBlob.EdPhyEnts.FirstOrDefault(x => x.Source == "M")?.AimSlabThickness;
 			result.Data.SlabThickness.S = dataBlob.EdPhyEnts.FirstOrDefault(x => x.Source == "S")?.AimSlabThickness;
