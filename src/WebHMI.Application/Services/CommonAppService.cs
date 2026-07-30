@@ -291,19 +291,14 @@ namespace WebHMI.Services
                 { "AUTOMATICBENDING", () => MosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd17) },
                 { "PRIORITY", () => MosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd34) },
                 { "IED", () => MosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd20) },
+                { "WOS", () => MosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd19) },
 
-                { "TAKORM", () => ProgparamsToHMISwitch(progparams.FirstOrDefault(m => m.Param == "SETPTRM_TAKEOVER_MANUAL")?.ParamNum) },
-                { "TAKOFM", () =>  ProgparamsToHMISwitch(progparams.FirstOrDefault(m => m.Param == "SETPTFM_TAKEOVER_MANUAL")?.ParamNum) },
+                { "TAKOM", () => ProgparamsToHMISwitch(progparams.FirstOrDefault(m => m.Param == "SETPT_TAKEOVER_MANUAL")?.ParamNum) },
                 { "LTI", () => MosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd05) },
                 { "STI", () => MosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd06) },
+
                 { "LTIPFC", () => MosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd23) },
                 { "STIPFC", () => MosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd22) },
-                //Mapping not finished because db is old(info from Helmut Fett
-                { "WOS1", () => {return 0; } },
-                { "WOS2", () => {return 0; } },
-                { "WOS3", () => {return 0; } },
-                { "WOS4", () => {return 0; } },
-                { "WOS5", () => {return 0; } },
             };
 
             var result = ids
@@ -329,12 +324,24 @@ namespace WebHMI.Services
 
             var flags = new Dictionary<string, Action<short>>()
             {
-                { "TAKORM", (x) => {
-                    var param = progparams.FirstOrDefault(m => m.Param == "SETPTRM_TAKEOVER_MANUAL");
-                    if (param != null) param.ParamNum = HMIToProgparamsSwitch(x);
+                { "AUTOMATICBENDING", (x) => {
+                    var mos = mosswitches.FirstOrDefault(m => m.PlantType == "HFM");
+                    if (mos != null) mos.StrSwitchesInd17 = HMIToMosswitchSwitch(x);
                 }},
-                { "TAKOFM", (x) => {
-                    var param = progparams.FirstOrDefault(m => m.Param == "SETPTFM_TAKEOVER_MANUAL");
+                { "PRIORITY", (x) => {
+                    var mos = mosswitches.FirstOrDefault(m => m.PlantType == "HFM");
+                    if (mos != null) mos.StrSwitchesInd34 = HMIToMosswitchSwitch(x);
+                }},
+                { "IED", (x) => {
+                    var mos = mosswitches.FirstOrDefault(m => m.PlantType == "HFM");
+                    if (mos != null) mos.StrSwitchesInd20 = HMIToMosswitchSwitch(x);
+                }},
+                { "WOS", (x) => {
+                    var mos = mosswitches.FirstOrDefault(m => m.PlantType == "HFM");
+                    if (mos != null) mos.StrSwitchesInd19 = HMIToMosswitchSwitch(x);
+                }},
+                { "TAKOM", (x) => {
+                    var param = progparams.FirstOrDefault(m => m.Param == "SETPT_TAKEOVER_MANUAL");
                     if (param != null) param.ParamNum = HMIToProgparamsSwitch(x);
                 }},
                 { "LTI", (x) => {
@@ -345,10 +352,7 @@ namespace WebHMI.Services
                     var mos = mosswitches.FirstOrDefault(m => m.PlantType == "HFM");
                     if (mos != null) mos.StrSwitchesInd06 = HMIToMosswitchSwitch(x);
                 }},
-                { "PRIORITY", (x) => {
-                    var mos = mosswitches.FirstOrDefault(m => m.PlantType == "HFM");
-                    if (mos != null) mos.StrSwitchesInd34 = HMIToMosswitchSwitch(x);
-                }},
+                
                 { "LTIPFC", (x) => {
                     var mos = mosswitches.FirstOrDefault(m => m.PlantType == "HFM");
                     if (mos != null) mos.StrSwitchesInd23 = HMIToMosswitchSwitch(x);
@@ -357,26 +361,7 @@ namespace WebHMI.Services
                     var mos = mosswitches.FirstOrDefault(m => m.PlantType == "HFM");
                     if (mos != null) mos.StrSwitchesInd22 = HMIToMosswitchSwitch(x);
                 }},
-                { "IED", (x) => {
-                    var mos = mosswitches.FirstOrDefault(m => m.PlantType == "HFM");
-                    if (mos != null) mos.StrSwitchesInd20 = HMIToMosswitchSwitch(x);
-                }},
-                //Mapping not finished because db is old(info from Helmut Fett
-                { "WOS1", (x) => {
-                    return;
-                }},
-                { "WOS2", (x) => {
-                    return;
-                }},
-                { "WOS3", (x) => {
-                    return;
-                }},
-                { "WOS4", (x) => {
-                    return;
-                }},
-                { "WOS5", (x) => {
-                    return;
-                }},
+                
             };
 
             var toUpdate = ids
@@ -396,6 +381,8 @@ namespace WebHMI.Services
             "TORM" => "SETPTRM_TAKEOVER_MANUAL",
             "TOFM" => "SETPTFM_TAKEOVER_MANUAL",
             "TOCS" => "SETPTCS_TAKEOVER_MANUAL",
+            "TAKOM" => "SETPT_TAKEOVER_MANUAL",
+
             _ => null
         };
 
