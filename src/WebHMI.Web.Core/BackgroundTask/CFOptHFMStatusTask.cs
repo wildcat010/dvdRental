@@ -45,7 +45,7 @@ namespace WebHMI.API.BackgroundTask
 
                 if (mosswitches.Any())
                 {
-                    _statusManager.AddStatus(ConvertMosSwitchToDto(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd34), "PRP", SimpleStatusGroup.CFOptFM, 1);
+                   
                     _statusManager.AddStatus(ConvertMosSwitchToDto(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd23), "LTI", SimpleStatusGroup.CFOptFM, 2);
                     _statusManager.AddStatus(ConvertMosSwitchToDto(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd22), "STI", SimpleStatusGroup.CFOptFM, 3);
                     //setpoints group (common for HRM and FM)
