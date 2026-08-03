@@ -287,7 +287,7 @@ namespace WebHMI.Mapping.Extensions.Strategy
             ChemistryElement27 =  new ApsChemistryElement()
             {
                 Name = Decode(entity.CnInd27),
-                Value = entity.CaInd00
+                Value = entity.CaInd27
             },
             ChemistryElement28 =  new ApsChemistryElement()
             {
