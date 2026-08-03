@@ -90,6 +90,7 @@ namespace WebHMI
             workManager.Add(IocManager.Resolve<TrackingDataBackgroundTask>());
             workManager.Add(IocManager.Resolve<CFOptHRMStatusTask>());
             workManager.Add(IocManager.Resolve<CFOptHFMStatusTask>());
+            workManager.Add(IocManager.Resolve<BroadcastHmiServerHealthCheck>());
 
         }
     }
