@@ -31,8 +31,9 @@ namespace WebHMI.Status
         WatchdogStatus,
         RollConsistency,
         Setpoints,
+        CFOpt,
         CFOptHRM,
-        CFOptHFM,
+        CFOptFM,
         CS,
         Others,
     }

@@ -443,13 +443,13 @@ namespace WebHMI.Mapping.Extensions
 			{
 				var nameProperties = edlogent.GetType()
 					.GetProperties()
-					.Where(prop => prop.Name.StartsWith("AlloyName_Ind", StringComparison.OrdinalIgnoreCase))
-					.Select(prop => new { Number = prop.Name["AlloyName_Ind".Length..], ElementName = prop.GetValue(edlogent)?.ToString() });
+					.Where(prop => prop.Name.StartsWith("AlloyNameInd", StringComparison.OrdinalIgnoreCase))
+					.Select(prop => new { Number = prop.Name["AlloyNameInd".Length..], ElementName = prop.GetValue(edlogent)?.ToString() });
 
 				var valueProperties = edlogent.GetType()
 					.GetProperties()
-					.Where(prop => prop.Name.StartsWith("AlloyValue_Ind", StringComparison.OrdinalIgnoreCase))
-					.Select(prop => new { Number = prop.Name["AlloyValue_Ind".Length..], ElementValue = (double?)prop.GetValue(edlogent) });
+					.Where(prop => prop.Name.StartsWith("AlloyValueInd", StringComparison.OrdinalIgnoreCase))
+					.Select(prop => new { Number = prop.Name["AlloyValueInd".Length..], ElementValue = (double?)prop.GetValue(edlogent) });
 
 				foreach (var nameProperty in nameProperties.Where(x => x.ElementName is not null))
 				{

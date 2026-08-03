@@ -45,11 +45,9 @@ namespace WebHMI.API.BackgroundTask
 
                 if (mosswitches.Any())
                 {
-                    _statusManager.AddStatus(ConvertMosSwitchToDto(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd34), "PRP", SimpleStatusGroup.CFOptHFM, 1);
-                    _statusManager.AddStatus(ConvertMosSwitchToDto(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd23), "LTI", SimpleStatusGroup.CFOptHFM, 2);
-                    _statusManager.AddStatus(ConvertMosSwitchToDto(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd22), "STI", SimpleStatusGroup.CFOptHFM, 3);
-                    _statusManager.AddStatus(ConvertMosSwitchToDto(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd20), "IED", SimpleStatusGroup.CFOptHFM, 4);
-                    _statusManager.AddStatus(ConvertMosSwitchToDto(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd19), "OSH", SimpleStatusGroup.CFOptHFM, 5);
+                    _statusManager.AddStatus(ConvertMosSwitchToDto(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd34), "PRP", SimpleStatusGroup.CFOptFM, 1);
+                    _statusManager.AddStatus(ConvertMosSwitchToDto(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd23), "LTI", SimpleStatusGroup.CFOptFM, 2);
+                    _statusManager.AddStatus(ConvertMosSwitchToDto(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd22), "STI", SimpleStatusGroup.CFOptFM, 3);
                     //setpoints group (common for HRM and FM)
                     _statusManager.AddStatus(ConvertMosSwitchToDtoReversed(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd05), "LTI", SimpleStatusGroup.Setpoints, 2);
                     _statusManager.AddStatus(ConvertMosSwitchToDtoReversed(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd06), "STI", SimpleStatusGroup.Setpoints, 3);
