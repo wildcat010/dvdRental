@@ -20,6 +20,8 @@ namespace WebHMI.Mapping.Extensions.Strategy.CSMappers
             entity.PerformatorEnableForF4tCooling = dto.Performatorenableforf4tcooling;
             entity.PerformatorMaxLimit = dto.Performatormaxlimit;
             entity.PerformatorMinLimit = dto.Performatorminlimit;
+            entity.PerformatorManualNo = dto.Performatormanualno;
+            entity.PerformatorControlRatio = dto.Performatorcontrolratio;
         }
 
         public static StdCsPerfDto ToDto(StdCsPerf entity) => new()
@@ -32,6 +34,8 @@ namespace WebHMI.Mapping.Extensions.Strategy.CSMappers
             Performatorenableforf4tcooling = entity.PerformatorEnableForF4tCooling,
             Performatormaxlimit = entity.PerformatorMaxLimit,
             Performatorminlimit = entity.PerformatorMinLimit,
+            Performatormanualno = entity.PerformatorManualNo,
+            Performatorcontrolratio = entity.PerformatorControlRatio,
         };
     }
 }
