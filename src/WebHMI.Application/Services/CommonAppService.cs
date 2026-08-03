@@ -294,8 +294,8 @@ namespace WebHMI.Services
                 { "WOS", () => MosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd19) },
 
                 { "TAKOM", () => ProgparamsToHMISwitch(progparams.FirstOrDefault(m => m.Param == "SETPT_TAKEOVER_MANUAL")?.ParamNum) },
-                { "LTI", () => MosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd05) },
-                { "STI", () => MosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd06) },
+                { "LTI", () => ReverseMosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd05) },
+                { "STI", () => ReverseMosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd06) },
 
                 { "LTIPFC", () => MosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd23) },
                 { "STIPFC", () => MosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd22) },
@@ -346,11 +346,11 @@ namespace WebHMI.Services
                 }},
                 { "LTI", (x) => {
                     var mos = mosswitches.FirstOrDefault(m => m.PlantType == "HFM");
-                    if (mos != null) mos.StrSwitchesInd05 = HMIToMosswitchSwitch(x);
+                    if (mos != null) mos.StrSwitchesInd05 = ReverseHMIToMosswitchSwitch(x);
                 }},
                 { "STI", (x) => {
                     var mos = mosswitches.FirstOrDefault(m => m.PlantType == "HFM");
-                    if (mos != null) mos.StrSwitchesInd06 = HMIToMosswitchSwitch(x);
+                    if (mos != null) mos.StrSwitchesInd06 = ReverseHMIToMosswitchSwitch(x);
                 }},
                 
                 { "LTIPFC", (x) => {
@@ -388,12 +388,12 @@ namespace WebHMI.Services
 
         private static short MosswitchToHMISwitch(int? value)
         {
-            return (short)(value == 0 ? 1 : 0);
+            return (short)(value == 1 ? 1 : 0);
         }
 
         private static short ReverseMosswitchToHMISwitch(int? value)
         {
-            return (short)(value == 0 ? 0 : 1);
+            return (short)(value == 0 ? 1 : 0);
         }
 
         private static short ProgparamsToHMISwitch(double? value)
@@ -403,12 +403,12 @@ namespace WebHMI.Services
 
         private static int HMIToMosswitchSwitch(short value)
         {
-            return value == 0 ? 1 : 0;
+            return value == 1 ? 1 : 0;
         }
 
         private static int ReverseHMIToMosswitchSwitch(short value)
         {
-            return value == 0 ? 0 : 1;
+            return value == 1 ? 0 : 0;
         }
 
         private static float HMIToProgparamsSwitch(short value)

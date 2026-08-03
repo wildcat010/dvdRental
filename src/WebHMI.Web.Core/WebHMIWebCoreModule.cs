@@ -88,6 +88,8 @@ namespace WebHMI
             workManager.Add(IocManager.Resolve<WatchDogStatusTask>());
             workManager.Add(IocManager.Resolve<WidgetUpdaterTask>());
             workManager.Add(IocManager.Resolve<TrackingDataBackgroundTask>());
+            workManager.Add(IocManager.Resolve<CFOptHRMStatusTask>());
+            workManager.Add(IocManager.Resolve<CFOptHFMStatusTask>());
 
         }
     }

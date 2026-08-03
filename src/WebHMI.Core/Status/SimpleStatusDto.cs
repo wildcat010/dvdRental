@@ -29,12 +29,11 @@ namespace WebHMI.Status
     public enum SimpleStatusGroup
     {
         WatchdogStatus,
-        Alieves,
         RollConsistency,
-        Rm,
-        Fm,
-        CfoPt,
-        Cs,
+        Setpoints,
+        CFOptHRM,
+        CFOptHFM,
+        CS,
         Others,
     }
 }
