@@ -316,7 +316,7 @@ namespace WebHMI.Services
 
             dprmM.PlanNo = input.Descaling?.PlanNo.M;
 
-            var dpramprmM = await context.DprampHrms.Where(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M").FirstOrDefaultAsync();
+            var dpramprmM = await context.DprampHrms.Where(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M" && x.RampNo == 1).FirstOrDefaultAsync();
 
             if (dpramprmM == null)
             {
@@ -326,6 +326,7 @@ namespace WebHMI.Services
                     MeId = vMatStructEntryOr.EnOrMeId,
                     MesId = (short)vMatStructEntryOr.EnOrMesId,
                     Source = "M",
+                    RampNo = 1
                 };
                 context.DprampHrms.Add(dpramprmM);
             }
@@ -785,7 +786,7 @@ namespace WebHMI.Services
                 DirFmPfcParaPs = await _prdbContext.DirFmPfcParaPs.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
                 DirFmPfcParapPasses = await _prdbContext.DirFmPfcParaPpasses.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
                 DpRms = await _prdbContext.Dphrms.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
-                Dpramprms = await _prdbContext.DprampHrms.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
+                Dpramprms = await _prdbContext.DprampHrms.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source) && x.RampNo == 1).AsNoTracking().ToListAsync(),
                 adordPc2 = await _prdbContext.AdOrd2Pcs.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && x.Source == "S").FirstOrDefaultAsync(),
                 adordPc2Stands = await _prdbContext.AdOrd2PcStands.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && x.Source == "S").ToListAsync(),
 
