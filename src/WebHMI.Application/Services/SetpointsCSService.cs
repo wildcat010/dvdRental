@@ -191,7 +191,7 @@ namespace WebHMI.API.Services
 
             var csStrategyM = await context.CsStrategies.FirstOrDefaultAsync(x => x.MeId == vMatStructEntry.EnOrMeId && x.Source == "M");
             csStrategyM = context.InsertIfNull(csStrategyM, vMatStructEntry);
-            csStrategyM.PlanNo = input.CoolingStrategyTab.PlanNo?.M;
+            //csStrategyM.PlanNo = input.CoolingStrategyTab.PlanNo?.M; //plan number set in method UpdateMaterialOverview
             csStrategyM.StartValveNumberTopInd0 = input.CoolingStrategyTab.StartValveNumberTopInd0?.M;
             csStrategyM.StartValveNumberBotInd0 = input.CoolingStrategyTab.StartValveNumberBotInd0?.M;
             csStrategyM.CoolRateTopInd0 = input.CoolingStrategyTab.CoolRateTopInd0?.M;
@@ -211,7 +211,7 @@ namespace WebHMI.API.Services
 
             var csProfileM = await context.CsProfiles.FirstOrDefaultAsync(x => x.MeId == vMatStructEntry.EnOrMeId && x.Source == "M");
             csProfileM = context.InsertIfNull(csProfileM, vMatStructEntry);
-            csProfileM.PlanNo = input.ProfileCoolingTab?.PlanNo.M;
+            //csProfileM.PlanNo = input.ProfileCoolingTab?.PlanNo.M; //plan number set in method UpdateMaterialOverview
             csProfileM.LengthUncooledHead = input.ProfileCoolingTab?.LengthUncooledHead.M;
             csProfileM.CoilTempProfileHead = input.ProfileCoolingTab?.CoilTempProfileHead.M;
             csProfileM.LengthProfileHead = input.ProfileCoolingTab?.LengthProfileHead.M;

@@ -46,18 +46,18 @@ namespace WebHMI.API.BackgroundTask
                 if (mosswitches.Any())
                 {
                    
-                    _statusManager.AddStatus(ConvertMosSwitchToDto(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd23), "LTI", SimpleStatusGroup.CFOptFM, 1);
-                    _statusManager.AddStatus(ConvertMosSwitchToDto(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd22), "STI", SimpleStatusGroup.CFOptFM, 2);
+                    _statusManager.AddStatus(ConvertMosSwitchToDto(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd23), "LTI", SimpleStatusGroup.CFOptFM, 1, "CFOpt Long Time Inheritance");
+                    _statusManager.AddStatus(ConvertMosSwitchToDto(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd22), "STI", SimpleStatusGroup.CFOptFM, 2, "CFOpt Short Time Inheritance");
                     //setpoints group (common for HRM and FM)
-                    _statusManager.AddStatus(ConvertMosSwitchToDtoReversed(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd05), "LTI", SimpleStatusGroup.Setpoints, 2);
-                    _statusManager.AddStatus(ConvertMosSwitchToDtoReversed(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd06), "STI", SimpleStatusGroup.Setpoints, 3);
+                    _statusManager.AddStatus(ConvertMosSwitchToDtoReversed(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd05), "LTI", SimpleStatusGroup.Setpoints, 2, "Long Time Inheritance");
+                    _statusManager.AddStatus(ConvertMosSwitchToDtoReversed(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd06), "STI", SimpleStatusGroup.Setpoints, 3, "Short Time Inheritance");
 
                 }
 
                 var progparam  = await context.ProgParameters.Where(x => x.Param == "SETPT_TAKEOVER_MANUAL").FirstOrDefaultAsync(); 
                 if (progparam != null)
                 {
-                    _statusManager.AddStatus(ConvertProgParamToDto(progparam.ParamNum), "TO", SimpleStatusGroup.Setpoints, 1);
+                    _statusManager.AddStatus(ConvertProgParamToDto(progparam.ParamNum), "TO", SimpleStatusGroup.Setpoints, 1, "Take Over");
                 }
 
             }

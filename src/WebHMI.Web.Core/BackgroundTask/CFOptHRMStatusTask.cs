@@ -45,10 +45,10 @@ namespace WebHMI.API.BackgroundTask
 
                 if (mosswitches.Any())
                 {
-                    _statusManager.AddStatus(ConvertMosSwitchToDto(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd17), "ABE", SimpleStatusGroup.CFOptHRM, 1);                    
-                    _statusManager.AddStatus(ConvertMosSwitchToDto(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd20), "IED", SimpleStatusGroup.CFOpt, 1);
-                    _statusManager.AddStatus(ConvertMosSwitchToDto(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd19), "OSH", SimpleStatusGroup.CFOpt, 2);
-                    _statusManager.AddStatus(ConvertMosSwitchToDto(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd34), "PRP", SimpleStatusGroup.CFOpt, 3);
+                    _statusManager.AddStatus(ConvertMosSwitchToDto(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd17), "ABE", SimpleStatusGroup.CFOptHRM, 1, "Automatic Bending");                    
+                    _statusManager.AddStatus(ConvertMosSwitchToDto(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd20), "IED", SimpleStatusGroup.CFOpt, 1, "Ignore Edge Drop");
+                    _statusManager.AddStatus(ConvertMosSwitchToDto(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd19), "OSH", SimpleStatusGroup.CFOpt, 2, "Wear Optimized Shifting");
+                    _statusManager.AddStatus(ConvertMosSwitchToDto(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd34), "PRP", SimpleStatusGroup.CFOpt, 3, "Priority Parameter");
 
                 }
                 
