@@ -43,7 +43,7 @@ namespace WebHMI.BackgroundTask
                 {
                     var wdog = watchdogs[i];
                     var label = GetWatchDogLabel(wdog);
-                    _statusManager.AddStatus(GetState(wdog), label, SimpleStatusGroup.WatchdogStatus, i, $"{_watchDogStatusService.GetWatchdogNameElementWithRedHealthState(wdog.Name)} error");
+                    _statusManager.AddStatus(GetState(wdog), label, SimpleStatusGroup.WatchdogStatus, i, $"{wdog.Name}");
                 }
             }
             catch (Exception ex)
