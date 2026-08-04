@@ -53,6 +53,7 @@ namespace WebHMI.Services.StrategyServices
             //create definition
 
             StdPc stdPc = new StdPc();
+            stdPc.ActiveFlag = 1;
             stdPc.PlanNo = input.PlanNo;
             stdPc.Description = input.Description;
             stdPc.NoRamps = input.NoRamps;
@@ -66,6 +67,7 @@ namespace WebHMI.Services.StrategyServices
             {
                 StdPcramp stdPcramp = new StdPcramp();
                 stdPcramp.PlanNo = input.PlanNo;
+                stdPcramp.ActiveFlag = 1;
                 stdPcramp.RampNo = idx++;
                 stdPcramp.PcRampState = r.Pcrampstate;
                 stdPcramp.PcRampAuto = r.Pcrampauto;

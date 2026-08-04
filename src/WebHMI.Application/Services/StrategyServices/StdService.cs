@@ -50,7 +50,7 @@ namespace WebHMI.Services.StrategyServices
         {
             if (dto.PlanNo == 0)
                 throw new EntityNotFoundException("Cannot create strategy with plan number 0");
-
+            dto.ActiveFlag = 1; //force active flag to be 1 on create
             var context = _dbContextProvider.GetDbContext();
             bool stdExist = await context.Set<TEntity>().AnyAsync(x =>
                 x.PlanNo == dto.PlanNo);
