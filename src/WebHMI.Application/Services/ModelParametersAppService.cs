@@ -114,7 +114,7 @@ namespace WebHMI.Services
                 NewLValue = ""
             };
 
-            parameter = ObjectMapper.Map<MosParam>(input);
+            ObjectMapper.Map(input, parameter);
             await CurrentUnitOfWork.SaveChangesAsync();
 
             _l2Sender.SendProcessParametersUpdated(callArguments);
