@@ -314,8 +314,6 @@ namespace WebHMI.Services
                 context.Dphrms.Add(dprmM);
             }
 
-            dprmM.PlanNo = input.Descaling?.PlanNo.M;
-
             var dpramprmM = await context.DprampHrms.Where(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M" && x.RampNo == 1).FirstOrDefaultAsync();
 
             if (dpramprmM == null)
@@ -528,9 +526,9 @@ namespace WebHMI.Services
             dirFmPfcCycShiftM = context.InsertIfNull(dirFmPfcCycShiftM, vMatStructEntry);
             dirFmPfcCycShiftM.PlanNo = input.DirFmPfcCycShiftPlanNo?.M;
 
-            var rcpM = await context.Rcps.FirstOrDefaultAsync(x => x.MeId == vMatStructEntry.EnOrMeId && x.Source == "M");
-            rcpM = context.InsertIfNull(rcpM, vMatStructEntry);
-            rcpM.PlanNo = input.RcpPlanNo?.M;
+            //var rcpM = await context.Rcps.FirstOrDefaultAsync(x => x.MeId == vMatStructEntry.EnOrMeId && x.Source == "M");
+            //rcpM = context.InsertIfNull(rcpM, vMatStructEntry);
+            //rcpM.PlanNo = input.RcpPlanNo?.M;
 
             await context.SaveChangesAsync();
         }

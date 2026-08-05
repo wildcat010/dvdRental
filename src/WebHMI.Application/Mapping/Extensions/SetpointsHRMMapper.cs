@@ -446,6 +446,7 @@ namespace WebHMI.Mapping.Extensions
 
             result.Descaling.PlanNo.L = dprmL?.PlanNo;
             result.Descaling.PlanNo.E = dprmE?.PlanNo;
+            result.Descaling.PlanNo.M = dprmM?.PlanNo;
             result.Descaling.PlanNo.DbSource = $"{nameof(Dphrm)}.{nameof(Dphrm.PlanNo)}";
 
             result.Descaling.DescrampAuto.L = dpramprmL?.DescRampAuto;
