@@ -609,6 +609,37 @@ namespace WebHMI.Services
                 lpPassM.BendingForce = pass.BendingForce?.M;
                 lpPassM.CVcshifting = pass.CvcShifting?.M;
 
+                var srpPassM = srpPassManuals.FirstOrDefault(x => x.PassNo == pass.PassNo);
+                if (srpPassM == null)
+                {
+                    srpPassM = new Srppass()
+                    {
+                        MeCreator = vMatStructEntryOr.EnOrCreator,
+                        MeId = vMatStructEntryOr.EnOrMeId,
+                        MesId = (short)vMatStructEntryOr.EnOrMesId,
+                        PassNo = pass.PassNo,
+                        Source = "M",
+                    };
+                    context.Srppasses.Add(srpPassM);
+                }
+
+                srpPassM.Model = pass.TaperShiftSpeedCorr?.M;
+
+                var wmpPassM = wmpPassManuals.FirstOrDefault(x => x.PassNo == pass.PassNo);
+                if (wmpPassM == null)
+                {
+                    wmpPassM = new Wmppass()
+                    {
+                        MeCreator = vMatStructEntryOr.EnOrCreator,
+                        MeId = vMatStructEntryOr.EnOrMeId,
+                        MesId = (short)vMatStructEntryOr.EnOrMesId,
+                        PassNo = pass.PassNo,
+                        Source = "M",
+                    };
+                    context.Wmppasses.Add(wmpPassM);
+                }
+
+                wmpPassM.Model = pass.WearCorr?.M;
             }
             await context.SaveChangesAsync();
 

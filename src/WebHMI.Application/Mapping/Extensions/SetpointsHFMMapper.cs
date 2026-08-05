@@ -1129,10 +1129,12 @@ namespace WebHMI.Mapping.Extensions
 
                 stand.WearCorr.L = wmppassesL?.Model;
                 stand.WearCorr.E = wmppassesE?.Model;
+                stand.WearCorr.M = wmppassesM?.Model;
                 stand.WearCorr.DbSource = $"{nameof(Wmppass)}.{nameof(Wmppass.Model)}{i}";
 
                 stand.TaperShiftSpeedCorr.L = SrppassL?.Model;
                 stand.TaperShiftSpeedCorr.E = SrppassE?.Model;
+                stand.TaperShiftSpeedCorr.M = SrppassM?.Model;
                 stand.TaperShiftSpeedCorr.DbSource = $"{nameof(Srppass)}.{nameof(Srppass.Model)}{i}";
 
                 stand.ObservedFlat.L = dirFmPfcParaPassesL?.ObservedFlat;
