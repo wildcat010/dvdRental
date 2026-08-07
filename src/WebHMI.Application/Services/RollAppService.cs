@@ -705,6 +705,13 @@ namespace WebHMI.Services
             }
         }
 
+        /// <summary>
+        /// Request from UI to trigger roll change in L2
+        /// </summary>
+        /// <param name="connectionId"></param>
+        /// <param name="input">List of DTOs for each stand with flags which rolls are meant to be changed</param>
+        /// <returns></returns>
+        /// <exception cref="UserFriendlyException"></exception>
         [Audited]
         [AbpAuthorize(Permissions.Pages_RollData_Edit)]
         public async Task DoEmergencyRollChange(string connectionId, EmergencyRollChangeBaseDto input)
@@ -714,22 +721,27 @@ namespace WebHMI.Services
 
             foreach (var dto in input.RollChangeDtos)
             {
-                var l2Item = new RollChangeDto
+                if (dto.ChangeBURBot != 0 || dto.ChangeBURTop != 0 || dto.ChangeWKR != 0)
                 {
-                    PlantType = input.PlantType,
-                    StandNo = dto.StandNo,
-                    ChangeWKR = dto.ChangeWKR,
-                    ChangeBURu = dto.ChangeBURTop,
-                    ChangeBURl = dto.ChangeBURBot,
-                    ChangeIMR = 0,
-                    ChangeEWR = 0,
-                    ChangeSPT = 0,
-                    ChangeZR0 = 0,
-                    ChangeZR1 = 0,
-                    SendL1 = 0
-                };
+                    var l2Item = new RollChangeDto
+                    {
+                        PlantType = input.PlantType,
+                        StandNo = dto.StandNo,
+                        ChangeWKR = dto.ChangeWKR,
+                        ChangeBURu = dto.ChangeBURTop,
+                        ChangeBURl = dto.ChangeBURBot,
+                        ChangeIMR = 0,
+                        ChangeEWR = 0,
+                        ChangeSPT = 0,
+                        ChangeZR0 = 0,
+                        ChangeZR1 = 0,
+                        SendL1 = 0
+                    };
+                    _l2Sender.RollChange(l2Item);
+                }
+                else 
+                    Logger.Warn($"[RollData] dto has no roll makred for roll change, skipping");
 
-                _l2Sender.RollChange(l2Item);
             }
         }
 

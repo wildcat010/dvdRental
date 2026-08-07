@@ -206,7 +206,7 @@ namespace WebHMI.Services
         }
 
         [AbpAuthorize(Permissions.Pages_ProductionSchedule)]
-        public async Task<string> GetPreviousSequenceId(string actuallyDisplayedSequenceId)
+        public async Task<string> GetPreviousSequenceIdFromAll(string actuallyDisplayedSequenceId)
         {
             var sequences = await _prdbContext.EdPhyEnts
                 .Where(x => x.Source == "E")
@@ -225,11 +225,47 @@ namespace WebHMI.Services
         }
 
         [AbpAuthorize(Permissions.Pages_ProductionSchedule)]
-        public async Task<string> GetNextSequenceId(string actuallyDisplayedSequenceId)
+        public async Task<string> GetPreviousSequenceId(string actuallyDisplayedSequenceId)
+        {
+            var sequences = await _prdbContext.HmiVProdsequences
+                 .Select(x => x.SequenceId)
+                .Distinct()
+                .OrderBy(x => x)
+                .ToListAsync();
+
+            var actualIndex = sequences.IndexOf(actuallyDisplayedSequenceId);
+
+            // Doesn't contain or first
+            if (actualIndex < 1)
+                return "-1";
+
+            return sequences[--actualIndex];
+        }
+
+        [AbpAuthorize(Permissions.Pages_ProductionSchedule)]
+        public async Task<string> GetNextSequenceIdFromAll(string actuallyDisplayedSequenceId)
         {
             var sequences = await _prdbContext.EdPhyEnts
                 .Where(x => x.Source == "E")
                 .Select(x => x.SequenceId)
+                .Distinct()
+                .OrderBy(x => x)
+                .ToListAsync();
+
+            var actualIndex = sequences.IndexOf(actuallyDisplayedSequenceId);
+
+            // Doesn't contain or last
+            if (actualIndex == -1 || actualIndex == sequences.Count - 1)
+                return "-1";
+
+            return sequences[++actualIndex];
+        }
+
+        [AbpAuthorize(Permissions.Pages_ProductionSchedule)]
+        public async Task<string> GetNextSequenceId(string actuallyDisplayedSequenceId)
+        {
+            var sequences = await _prdbContext.HmiVProdsequences
+                 .Select(x => x.SequenceId)
                 .Distinct()
                 .OrderBy(x => x)
                 .ToListAsync();
@@ -251,6 +287,19 @@ namespace WebHMI.Services
                 .Select(x => x.SequenceId)
                 .Distinct()
                 .OrderBy(x => x)
+                , input, (u) => { return new SequenceIdDto() { Key = u }; });
+        }
+
+        public async Task<PagedResultDto<SequenceIdDto>> GetAllProducedSequenceIds(FilteredRequestDto input)
+        {
+            var context = _prdbContextProvider.GetDbContext();
+
+            return await ApplyFilter(context.EdPhyEnts
+
+                .Where(x => x.Source == "E")
+                .Select(x => x.SequenceId)
+                .Distinct()
+                .OrderByDescending(x => x)                
                 , input, (u) => { return new SequenceIdDto() { Key = u }; });
         }
 
