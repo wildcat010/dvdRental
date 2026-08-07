@@ -17,7 +17,7 @@ namespace WebHMI.Dtos.Roll
 
         public string GetAuditLogRelatedId()
         {
-            throw new System.NotImplementedException();
+            return $"-";
         }
     }
 }

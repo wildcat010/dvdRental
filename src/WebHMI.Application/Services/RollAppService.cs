@@ -571,7 +571,14 @@ namespace WebHMI.Services
 
         #endregion
 
-        /// <param name="rollId">Unique Roll Id </param>
+       
+        /// <summary>
+        /// Returns basic roll information
+        /// </summary>
+        /// <param name="rollId"></param>
+        /// <param name="planttype"></param>
+        /// <returns></returns>
+        /// <exception cref="UserFriendlyException"></exception>
         [AbpAuthorize(Permissions.Pages_RollData)]
         public async Task<SingleRollDataCoreDto> GetRollDataCoreById(string rollId, string planttype)
         {
@@ -590,6 +597,16 @@ namespace WebHMI.Services
             }
         }
 
+        /// <summary>
+        /// Rerquest returns information about roll on designated position, of a specified plant type and status
+        /// </summary>
+        /// <param name="plantType"></param>
+        /// <param name="standId"></param>
+        /// <param name="rollType"></param>
+        /// <param name="rollPos"></param>
+        /// <param name="rollStatus"></param>
+        /// <returns></returns>
+        /// <exception cref="UserFriendlyException"></exception>
         [AbpAuthorize(Permissions.Pages_RollData)]
         public async Task<SingleRollDataCoreDto> GetRollDataByPosition(string plantType, int standId, string rollType, string rollPos, string rollStatus)
         {
@@ -620,6 +637,14 @@ namespace WebHMI.Services
             return result;
         }
 
+        /// <summary>
+        /// Request returns set of rolls available to be planned for given plant type and roll type
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="plantType"></param>
+        /// <param name="rollType"></param>
+        /// <returns></returns>
+        /// <exception cref="UserFriendlyException"></exception>
         [AbpAuthorize(Permissions.Pages_RollData)]
         public Task<PagedResultDto<SingleRollDataCoreDto>> GetAvailableRolls(FilteredRequestDto input, string plantType, string rollType)
         {
@@ -641,7 +666,18 @@ namespace WebHMI.Services
                 throw new UserFriendlyException($"Exception occured druing reading Roll data. {ex.Message}");
             }
         }
-
+        /// <summary>
+        /// Request sets given Roll as Planned for next roll change
+        /// </summary>
+        /// <param name="rollId"></param>
+        /// <param name="plantType"></param>
+        /// <param name="standId"></param>
+        /// <param name="rollType"></param>
+        /// <param name="rollPos"></param>
+        /// <param name="diameter"></param>
+        /// <param name="shimm"></param>
+        /// <returns></returns>
+        /// <exception cref="UserFriendlyException"></exception>
         [UnitOfWork]
         [Audited]
         [AbpAuthorize(Permissions.Pages_RollData_Edit)]
@@ -745,6 +781,11 @@ namespace WebHMI.Services
             }
         }
 
+        /// <summary>
+        /// Triggers sending actual roll data to L1 for selected stand
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         [Audited]
         [AbpAuthorize(Permissions.Pages_RollData_Edit)]
         public async Task SendActualStandData(SendActualStandDataDto input)
@@ -753,6 +794,13 @@ namespace WebHMI.Services
                 _l2Sender.SendRollData(input.PlantType, id);
         }
 
+        /// <summary>
+        /// Sends over L2 request to Roll Shop to provide specified roll data
+        /// </summary>
+        /// <param name="rollId"></param>
+        /// <param name="rollType"></param>
+        /// <param name="plantType"></param>
+        /// <returns></returns>
         [Audited]
         [AbpAuthorize(Permissions.Pages_RollData_Edit)]
         public async Task SendRollDataRequest(string rollId, string rollType, string plantType)
@@ -760,6 +808,13 @@ namespace WebHMI.Services
             _l2Sender.RequestRollData(plantType, rollId, -1, rollType);
         }
 
+        /// <summary>
+        /// Updates preditcted roll change reason and stores operator remarks for selected rolls
+        /// </summary>
+        /// <param name="plantType"></param>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        /// <exception cref="UserFriendlyException"></exception>
         [Audited]
         [AbpAuthorize(Permissions.Pages_RollData_Edit)]
         [UnitOfWork]
