@@ -1,0 +1,165 @@
+<!-- Notes: This file should be put on NCTR server in L2 ..\public\dat\config folder 
+Not used directly in this solution but added in order not to loose it during L2 sweeps and config resets 
+-->
+<?xml version="1.0" encoding="utf-8"?>
+<XIDLcon figuration xmlns:xs= "http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="..\..\..\public\inc\Platform\systemConfig.xsd">
+  <systemConfig>
+
+    <environment>
+      <elem>ASYNC_LOGGING=1</elem>
+      <!--elem>HOST_LOCAL=localhost</elem-->
+      <elem>THROW_ON_FAILED_FIRST_DBLOGIN=1</elem>
+      <elem>SiansDatDir=$(DAT_DIR)/sians</elem>
+    </environment>
+
+   
+
+    <nameServiceDirsToWrite>
+      <dir>\\L2NCTR\PRJ\Workspaces\Name_Service_Dir</dir>
+      <dir>\\L2MILL\PRJ\Workspaces\Name_Service_Dir</dir>
+      <dir>\\L2COOL\PRJ\Workspaces\Name_Service_Dir</dir>
+      <dir>\\L2DEV\PRJ\Workspaces\Name_Service_Dir</dir>
+      <!--<dir>\\L2ADH\PRJ\Workspaces\Name_Service_Dir</dir>-->
+    </nameServiceDirsToWrite>
+
+    <applications>
+      <!-- Notes: 
+        - By convention, within element 'externalCommunication' receive relations/channels are always mentioned befores send relations/channels.
+        - If alive telegrams are sent on a channel, fixTelegramLen="-1" (means 'compute length from telegram definition) is specified because 
+          the alive-telegrams must have the same size as regular telegrams.
+      -->
+      <!-- ****************************** -->
+      <!--      WebHMI                    -->
+      <!--      Port-Numbers: 28400-28449 -->
+      <!-- ****************************** -->
+      <app name="AppWdogHMI"        port="28400"  host="L2NCTR">
+        <components>
+          <component name="watchdog">
+            <uses>
+              <elem>Config.wdogHMI</elem>
+            </uses>
+          </component>
+        </components>
+      </app>
+      <!-- HMI -->
+      <app name="AppHmiServer"       port="28401" host="L2NCTR" />
+      <app name="AppAlarmHandler"    port="28402" host="L2NCTR" />
+      <app name="AppHmiSupplyTwmHrm" port="28403" host="L2NCTR" />
+      <app name="AppHmiSupplyTwmFm"  port="28404" host="L2NCTR" />
+
+
+      <!-- *************************** -->
+      <!--      WebHMI                 -->
+      <!-- *************************** -->
+      <!--****************************************************************************************************************-->
+
+      <!-- ****************************** -->
+      <!--      WinCC-Servers             -->
+      <!--      Port-Numbers: 28900-28920 -->
+      <!-- ****************************** -->
+
+      <app name="AppWdogWCC1"        port="28900">
+        <components>
+          <component name="watchdog">
+            <uses>
+              <elem>Config.wdogWCC1</elem>
+            </uses>
+          </component>
+        </components>
+      </app>
+      <!--<app name="hmi1" port="28901"/>-->
+
+      <app name="AppTagProvider1" port="28901"/>
+      <app name="AppMsg1"          port="28902"/>
+
+      <app name="AppWdogWCC2"        port="28910">
+        <components>
+          <component name="watchdog">
+            <uses>
+              <elem>Config.wdogWCC2</elem>
+            </uses>
+          </component>
+        </components>
+      </app>
+
+      <app name="AppWdogNCTR"       port="28000"  host="L2NCTR">
+        <components>
+          <component name="watchdog">
+            <uses>
+              <elem>Config.wdogNCTR</elem>
+            </uses>
+          </component>
+        </components>
+      </app>
+
+      <!-- NonControl LFE's-->
+      <app name="AppOdaDb"          port="28024"  host="L2NCTR"  alarmArea="FP1"/>
+      <app name="AppOda"            port="28025"  host="L2NCTR" alarmArea="FP1"/>
+      <app name="AppPdh"            port="28016"  host="L2NCTR" alarmArea="FP1" />
+      <app name="AppPapRcv"         port="28013"  host="L2NCTR"/>
+      <app name="AppPapSnd"         port="28014"  host="L2NCTR"/>
+      <app name="AppPdm"            port="28017"  host="L2NCTR" alarmArea="FP1"/>
+      <app name="AppRlt"            port="28150"  host="L2NCTR" alarmArea="FP1"/>
+      <app name="AppLds"            port="28123"  host="L2NCTR" alarmArea="FP1"/>
+      <app name="AppStaPc2"         port="28020"  host="L2NCTR" alarmArea="FP1" roundtripTimeout="120000"/>
+	<app name="AppMosRc"            port="28129"  host="L2MILL" alarmArea="FP2"/>
+      <app name="AppHmiSupply"      port="28015"  host="L2NCTR" />
+      <!-- ****************************** -->
+      <app name="AppWdogADH"        port="28200"  host="L2NCTR">
+        <components>
+          <component name="watchdog">
+            <uses>
+              <elem>Config.wdogADH</elem>
+            </uses>
+          </component>
+        </components>
+      </app>
+
+    
+      <app name="AppWdogMILL"       port="28100"  host="L2MILL">
+        <components>
+          <component name="watchdog">
+            <uses>
+              <elem>Config.wdogMILL</elem>
+            </uses>
+          </component>
+        </components>
+      </app>
+
+   
+      <app name="AppHmiMill"          port="28480"  host="L2MILL" />
+      <app name="AppWdogCOOL"       port="28300"  host="L2COOL">
+        <components>
+          <component name="watchdog">
+            <uses>
+              <elem>Config.wdogCOOL</elem>
+            </uses>
+          </component>
+        </components>
+      </app>
+
+      <!-- non control part CS -->
+      <app name="AppDbCs"      port="28320" host="L2COOL"/>
+      <!--app name="AppShmCheck"      port="2827" host="L2COOL"/-->
+
+
+      <!-- control part CS -->
+      <app name="AppOdsCs" 			port="28301"  host="L2COOL" tryConnectTimeoutLocal="20" tryConnectTimeoutRemote="20"/>
+      <app name="AppPcCs"  			port="28302"  host="L2COOL" tryConnectTimeoutLocal="20" tryConnectTimeoutRemote="20"/>
+      <app name="AppPcCs2" 			port="28303"  host="L2COOL" tryConnectTimeoutLocal="20" tryConnectTimeoutRemote="20"/>
+      <app name="AppPcCs3" 			port="28304"  host="L2COOL" tryConnectTimeoutLocal="20" tryConnectTimeoutRemote="20"/>
+
+      <app name="AppUtilsCs" port="28353" host="L2COOL" roundtripTimeout="20">
+        <!-- shmCheck -->
+        <environment>
+          <!-- if environmentVariable AppHmiServer is set, it will be used instead of AppHmiServer.hsmHmi as defined in AppUtilsCs.xidl -->
+          <!-- this way sendig to the real AppHmiServer can be easily switched off or even HmiServer.hsmHmi could be used -->
+          <!--elem>AppHmiServer=AppDummyHmi</elem-->
+        </environment>
+      </app>
+    </applications>
+
+
+  </systemConfig>
+
+</XIDLconfiguration>
