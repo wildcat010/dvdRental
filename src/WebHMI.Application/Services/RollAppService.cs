@@ -773,6 +773,13 @@ namespace WebHMI.Services
                         ChangeZR1 = 0,
                         SendL1 = 0
                     };
+                    //special handling for edger
+                    if (dto.StandNo == 100)
+                    {
+                        l2Item.ChangeWKR = 0;
+                        l2Item.ChangeEWR = 1;
+
+                    }
                     _l2Sender.RollChange(l2Item);
                 }
                 else 
