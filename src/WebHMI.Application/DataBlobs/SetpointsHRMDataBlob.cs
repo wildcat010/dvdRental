@@ -43,5 +43,6 @@ namespace WebHMI.DataBlobs
         public List<StatDirFmPfcParaPpass> StatDirFmPfcParapPasses { get; set; } = new();
         public StatAdOrd2Pc StatadordPc2 { get; set; } = new();
         public List<StatAdOrd2PcStand> StatadordPc2Stands { get; set; } = new();
+        public List<Edghrm> Edghrm { get; set; } = new();
     }
 }

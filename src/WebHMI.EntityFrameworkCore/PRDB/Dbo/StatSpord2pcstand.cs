@@ -956,7 +956,7 @@ public partial class StatSpOrd2PcStand
     public short? Dx2pDfb { get; set; }
 
     /// <summary>
-    /// status if edger active 0/1
+    /// status if stand active 0 = inactive / 1 = active / 2 = inlineRCH
     /// </summary>
     public short? EdgerActive { get; set; }
 
@@ -1186,7 +1186,7 @@ public partial class StatSpOrd2PcStand
     public short? SprayFlag { get; set; }
 
     /// <summary>
-    /// status if stand active 0/1
+    /// status if stand active 0 = inactive / 1 = active / 2 = inlineRCH
     /// </summary>
     public short? StandActive { get; set; }
 
@@ -1304,6 +1304,10 @@ public partial class StatSpOrd2PcStand
     /// time of modification
     /// </summary>
     public DateTime? Tom { get; set; }
+
+    public short? MsE { get; set; }
+
+    public short? RPowerE { get; set; }
 
     public virtual Me1 Me1 { get; set; }
 }

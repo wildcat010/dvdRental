@@ -49,6 +49,8 @@ dotnet ef dbcontext scaffold $DBConnString Microsoft.EntityFrameworkCore.SqlServ
 -t DIRFMPFCCYCSHIFTPPASS `
 -t DIRFMPFCPARAP `
 -t V_MAT_STRUCT_ENTRY `
+-t EDGHRM `
+-t StdEDGHRM `
 -t DPFM `
 -t DPHRM `
 -t EDLOGENT `

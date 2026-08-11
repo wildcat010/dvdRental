@@ -71,7 +71,7 @@ namespace WebHMI.Mapping.Extensions
             var dirFmPfcCycShiftM = dataBlob.Dirfmpfccycshiftps.Where(x => x.Source == "M").FirstOrDefault();
             var dirFmPfcCycShiftS = dataBlob.Dirfmpfccycshiftps.Where(x => x.Source == "S").FirstOrDefault();
             var dirFmPfcCycShiftE = dataBlob.Dirfmpfccycshiftps.Where(x => x.Source == "E").FirstOrDefault();
-            
+
             var aopL = dataBlob.Aoppasses.Where(x => x.Source == "L").FirstOrDefault();
             var aopM = dataBlob.Aoppasses.Where(x => x.Source == "M").FirstOrDefault();
             var aopS = dataBlob.Aoppasses.Where(x => x.Source == "S").FirstOrDefault();
@@ -375,6 +375,72 @@ namespace WebHMI.Mapping.Extensions
             return result;
         }
 
+        public static SetpointsHRMDto MapEdger(this SetpointsHRMDto result, SetpointsHRMDataBlob dataBlob)
+        {
+            var spOrd2PcStandL = dataBlob.Spord2pcstands.Where(x => x.Source == "L" && x.StandId == 0).FirstOrDefault();
+            var spOrd2PcStandM = dataBlob.Spord2pcstands.Where(x => x.Source == "M" && x.StandId == 0).FirstOrDefault();
+            var spOrd2PcStandS = dataBlob.Spord2pcstands.Where(x => x.Source == "S" && x.StandId == 0).FirstOrDefault();
+            var spOrd2PcStandE = dataBlob.Spord2pcstands.Where(x => x.Source == "E" && x.StandId == 0).FirstOrDefault();
+            var statSpord2PcStand = dataBlob.StatSpord2pcstands.FirstOrDefault(x => x.StandId == 0);
+
+            var edgHrmL = dataBlob.Edghrm.Where(x => x.Source == "L").FirstOrDefault();
+            var edgHrmM = dataBlob.Edghrm.Where(x => x.Source == "M").FirstOrDefault();
+            var edgHrmS = dataBlob.Edghrm.Where(x => x.Source == "S").FirstOrDefault();
+            var edgHrmE = dataBlob.Edghrm.Where(x => x.Source == "E").FirstOrDefault();
+
+            result.EdgerDto.RollForce.L = spOrd2PcStandL?.FrE;
+            result.EdgerDto.RollForce.E = spOrd2PcStandE?.FrE;
+            result.EdgerDto.RollForce.M = spOrd2PcStandM?.FrE;
+            result.EdgerDto.RollForce.DbSource = $"{nameof(SpOrd2PcStand)}.{nameof(SpOrd2PcStand.FrE)}0";
+            result.EdgerDto.RollForce.Status = statSpord2PcStand?.FrE;
+
+            result.EdgerDto.Sd.L = spOrd2PcStandL?.SdE;
+            result.EdgerDto.Sd.E = spOrd2PcStandE?.SdE;
+            result.EdgerDto.Sd.M = spOrd2PcStandM?.SdE;
+            result.EdgerDto.Sd.DbSource = $"{nameof(SpOrd2PcStand)}.{nameof(SpOrd2PcStand.SdE)}0";
+            result.EdgerDto.Sd.Status = statSpord2PcStand?.SdE;
+
+            result.EdgerDto.VCircumE.L = spOrd2PcStandL?.VCircumE;
+            result.EdgerDto.VCircumE.E = spOrd2PcStandE?.VCircumE;
+            result.EdgerDto.VCircumE.M = spOrd2PcStandM?.VCircumE;
+            result.EdgerDto.VCircumE.DbSource = $"{nameof(SpOrd2PcStand)}.{nameof(SpOrd2PcStand.VCircumE)}0";
+            result.EdgerDto.VCircumE.Status = statSpord2PcStand?.VCircumE;
+
+            result.EdgerDto.Ms.L = spOrd2PcStandL?.MsE;
+            result.EdgerDto.Ms.E = spOrd2PcStandE?.MsE;
+            result.EdgerDto.Ms.M = spOrd2PcStandM?.MsE;
+            result.EdgerDto.Ms.DbSource = $"{nameof(SpOrd2PcStand)}.{nameof(SpOrd2PcStand.MsE)}0";
+            result.EdgerDto.Ms.Status = statSpord2PcStand?.MsE;
+
+            result.EdgerDto.RPower.L = spOrd2PcStandL?.RPowerE;
+            result.EdgerDto.RPower.E = spOrd2PcStandE?.RPowerE;
+            result.EdgerDto.RPower.M = spOrd2PcStandM?.RPowerE;
+            result.EdgerDto.RPower.DbSource = $"{nameof(SpOrd2PcStand)}.{nameof(SpOrd2PcStand.RPowerE)}0";
+            result.EdgerDto.RPower.Status = statSpord2PcStand?.RPowerE;
+
+            result.EdgerDto.PlanNo.L = edgHrmL?.PlanNo;
+            result.EdgerDto.PlanNo.E = edgHrmE?.PlanNo;
+            result.EdgerDto.PlanNo.M = edgHrmM?.PlanNo;
+            result.EdgerDto.PlanNo.DbSource = $"{nameof(Edghrm)}.{nameof(Edghrm.PlanNo)}";
+
+            result.EdgerDto.EdgerMode.L = edgHrmL?.EdgMode;
+            result.EdgerDto.EdgerMode.E = edgHrmE?.EdgMode;
+            result.EdgerDto.EdgerMode.M = edgHrmM?.EdgMode;
+            result.EdgerDto.EdgerMode.DbSource = $"{nameof(Edghrm)}.{nameof(Edghrm.EdgMode)}";
+
+            result.EdgerDto.EdgerActive.L = edgHrmL?.EdgerActive;
+            result.EdgerDto.EdgerActive.E = edgHrmE?.EdgerActive;
+            result.EdgerDto.EdgerActive.M = edgHrmM?.EdgerActive;
+            result.EdgerDto.EdgerActive.DbSource = $"{nameof(Edghrm)}.{nameof(Edghrm.EdgerActive)}";
+
+            result.EdgerDto.WidthReduction.L = edgHrmL?.Dw;
+            result.EdgerDto.WidthReduction.E = edgHrmE?.Dw;
+            result.EdgerDto.WidthReduction.M = edgHrmM?.Dw;
+            result.EdgerDto.WidthReduction.DbSource = $"{nameof(Edghrm)}.{nameof(Edghrm.Dw)}";
+
+            return result;
+        }
+
         //function to map the loading data from the data blob to the dto
         public static SetpointsHRMDto MapLoading(this SetpointsHRMDto result, SetpointsHRMDataBlob dataBlob, int standCount)
         {
@@ -458,7 +524,7 @@ namespace WebHMI.Mapping.Extensions
             result.Descaling.DescrampState.E = dpramprmE?.DescRampState;
             result.Descaling.DescrampState.M = dpramprmM?.DescRampState;
             result.Descaling.DescrampState.DbSource = $"{nameof(DprampHrm)}.{nameof(DprampHrm.DescRampState)}";
-            
+
             result.Descaling.DescrampVolume.L = dpramprmL?.DescRampVolume;
             result.Descaling.DescrampVolume.E = dpramprmE?.DescRampVolume;
             result.Descaling.DescrampVolume.M = dpramprmM?.DescRampVolume;

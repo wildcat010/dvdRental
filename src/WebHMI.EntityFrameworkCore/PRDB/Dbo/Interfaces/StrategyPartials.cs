@@ -39,4 +39,5 @@ namespace WebHMI.PRDB.Dbo
     public partial class StdCsCoilTempOffset : IStd { }
     public partial class StdCsPerf : IStd { }
     public partial class StdCsEdgeMasking : IStd { }
+    public partial class StdEdghrm : IStd { }
 }

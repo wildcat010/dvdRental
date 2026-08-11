@@ -103,6 +103,8 @@ public partial class Me1
 
     public virtual ICollection<EdPhyEnt> EdPhyEnts { get; set; } = new List<EdPhyEnt>();
 
+    public virtual ICollection<Edghrm> Edghrms { get; set; } = new List<Edghrm>();
+
     public virtual ICollection<Ihp> Ihps { get; set; } = new List<Ihp>();
 
     public virtual ICollection<Iscppass> Iscppasses { get; set; } = new List<Iscppass>();

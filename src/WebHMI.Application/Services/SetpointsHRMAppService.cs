@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Threading.Tasks;
+using System.Threading.Tasks.Dataflow;
 using Abp.Auditing;
 using Abp.Authorization;
 using Abp.EntityFrameworkCore;
@@ -119,6 +120,7 @@ namespace WebHMI.Services
 
             result.MeCode = hmiVEntryMatStruct.ToOrMeCodeDto();
             result.MapPassSchedule(dataBlob, _standCount);
+            result.MapEdger(dataBlob);
             result.MapLubrication(dataBlob);
             result.MapDescaling(dataBlob);
             result.MapAntiPeeling(dataBlob, _standCount);
@@ -142,12 +144,38 @@ namespace WebHMI.Services
             await UpdateSrpPasses(input, vMatStructEntry);
             await UpdateDirFmPfcParaPasses(input, vMatStructEntry);
 
+            await UpdateEdger(input, vMatStructEntry);
             await UpdateLoadingTab(input, vMatStructEntry);
             await UpdateDescalingTab(input, vMatStructEntry);
             await UpdateWorkCoolingTab(input, vMatStructEntry);
             await UpdateTensionTab(input, vMatStructEntry);
             await UpdateTaperShiftingTab(input, vMatStructEntry);
             await UpdateAntiPeelingTab(input, vMatStructEntry);
+        }
+
+        private async Task UpdateEdger(SetpointsHRMDto input, VMatStructEntry vMatStructEntryOr)
+        {
+            var context = _prdbContextProvider.GetDbContext();
+
+            var edgHrmManuals = await context.Edghrms.Where(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M").FirstOrDefaultAsync();
+            if (edgHrmManuals == null)
+            {
+                edgHrmManuals = new Edghrm()
+                {
+                    MeCreator = vMatStructEntryOr.EnOrCreator,
+                    MeId = vMatStructEntryOr.EnOrMeId,
+                    MesId = (short)vMatStructEntryOr.EnOrMesId,
+                    Source = "M",
+                };
+                context.Edghrms.Add(edgHrmManuals);
+            }
+
+            edgHrmManuals.PlanNo = input.EdgerDto.PlanNo?.M;
+            edgHrmManuals.EdgMode = input.EdgerDto.EdgerMode?.M;
+            edgHrmManuals.EdgerActive = input.EdgerDto.EdgerActive?.M;
+            edgHrmManuals.Dw = input.EdgerDto.WidthReduction?.M;
+
+            await context.SaveChangesAsync();
         }
 
         private async Task UpdateLpPasses(SetpointsHRMDto input, VMatStructEntry vMatStructEntryOr)
@@ -818,6 +846,7 @@ namespace WebHMI.Services
                 Dpramprms = await _prdbContext.DprampHrms.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source) && x.RampNo == 1).AsNoTracking().ToListAsync(),
                 adordPc2 = await _prdbContext.AdOrd2Pcs.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && x.Source == "S").FirstOrDefaultAsync(),
                 adordPc2Stands = await _prdbContext.AdOrd2PcStands.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && x.Source == "S").ToListAsync(),
+                Edghrm = await _prdbContext.Edghrms.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
 
 
                 StatSpord2pcstands = await _prdbContext.StatSpOrd2PcStands.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && x.Source == "E").AsNoTracking().ToListAsync(),

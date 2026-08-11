@@ -87,6 +87,8 @@ public partial class PrdbContext : AbpDbContext
 
     public virtual DbSet<EdPhyEnt> EdPhyEnts { get; set; }
 
+    public virtual DbSet<Edghrm> Edghrms { get; set; }
+
     public virtual DbSet<Heat> Heats { get; set; }
 
     public virtual DbSet<HmiCoil> HmiCoils { get; set; }
@@ -268,6 +270,8 @@ public partial class PrdbContext : AbpDbContext
     public virtual DbSet<StdDprampFm> StdDprampFms { get; set; }
 
     public virtual DbSet<StdDprampHrm> StdDprampHrms { get; set; }
+
+    public virtual DbSet<StdEdghrm> StdEdghrms { get; set; }
 
     public virtual DbSet<StdIhp> StdIhps { get; set; }
 
@@ -6013,6 +6017,68 @@ public partial class PrdbContext : AbpDbContext
             entity.HasOne(d => d.Me1).WithMany(p => p.EdPhyEnts)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
                 .HasConstraintName("FK__EdPhyEnt__63EEA865");
+        });
+
+        modelBuilder.Entity<Edghrm>(entity =>
+        {
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__EDGHRM__D3DB124A811D731F");
+
+            entity.ToTable("EDGHRM", "PRDB", tb =>
+                {
+                    tb.HasTrigger("TI_EDGHRM");
+                    tb.HasTrigger("TU_EDGHRM");
+                });
+
+            entity.Property(e => e.MeId)
+                .HasDefaultValue(1)
+                .HasColumnName("meId");
+            entity.Property(e => e.MeCreator)
+                .HasMaxLength(2)
+                .IsUnicode(false)
+                .HasDefaultValue("")
+                .HasColumnName("meCreator");
+            entity.Property(e => e.MesId)
+                .HasDefaultValue((short)1)
+                .HasColumnName("mesId");
+            entity.Property(e => e.Source)
+                .HasMaxLength(2)
+                .IsUnicode(false)
+                .HasDefaultValue("-")
+                .HasColumnName("source");
+            entity.Property(e => e.Description)
+                .HasMaxLength(80)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("description");
+            entity.Property(e => e.Dw)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("dw");
+            entity.Property(e => e.EdgMode)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("edgMode");
+            entity.Property(e => e.EdgerActive)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("edgerActive");
+            entity.Property(e => e.Mop)
+                .HasMaxLength(120)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("mop");
+            entity.Property(e => e.PlanNo)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("planNo");
+            entity.Property(e => e.Toc)
+                .HasPrecision(3)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("toc");
+            entity.Property(e => e.Tom)
+                .HasPrecision(3)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("tom");
+
+            entity.HasOne(d => d.Me1).WithMany(p => p.Edghrms)
+                .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
+                .HasConstraintName("FK__EDGHRM__7425102E");
         });
 
         modelBuilder.Entity<Heat>(entity =>
@@ -16176,7 +16242,7 @@ public partial class PrdbContext : AbpDbContext
                 .HasColumnName("dx2pDfb");
             entity.Property(e => e.EdgerActive)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("status if edger active 0/1")
+                .HasComment("status if stand active 0 = inactive / 1 = active / 2 = inlineRCH")
                 .HasColumnName("edgerActive");
             entity.Property(e => e.EntryLength)
                 .HasDefaultValueSql("(NULL)")
@@ -16288,6 +16354,9 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[Nm] rolling torque")
                 .HasColumnName("ms");
+            entity.Property(e => e.MsE)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("msE");
             entity.Property(e => e.MsWt)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[Nm] rolling torque (wedge target/ next strip)")
@@ -16316,6 +16385,9 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[W] Rolling power")
                 .HasColumnName("rPower");
+            entity.Property(e => e.RPowerE)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("rPowerE");
             entity.Property(e => e.RPowerWt)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[W] Rolling power  (wedge target/ next strip)")
@@ -16366,7 +16438,7 @@ public partial class PrdbContext : AbpDbContext
                 .HasColumnName("sprayFlag");
             entity.Property(e => e.StandActive)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("status if stand active 0/1")
+                .HasComment("status if stand active 0 = inactive / 1 = active / 2 = inlineRCH")
                 .HasColumnName("standActive");
             entity.Property(e => e.StandModule)
                 .HasDefaultValueSql("(NULL)")
@@ -22929,7 +23001,7 @@ public partial class PrdbContext : AbpDbContext
                 .HasColumnName("dx2pDfb");
             entity.Property(e => e.EdgerActive)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("status if edger active 0/1")
+                .HasComment("status if stand active 0 = inactive / 1 = active / 2 = inlineRCH")
                 .HasColumnName("edgerActive");
             entity.Property(e => e.EntryLength)
                 .HasDefaultValueSql("(NULL)")
@@ -23041,6 +23113,9 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("rolling torque")
                 .HasColumnName("ms");
+            entity.Property(e => e.MsE)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("msE");
             entity.Property(e => e.MsWt)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("rolling torque (wedge target/ next strip)")
@@ -23069,6 +23144,9 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Rolling power")
                 .HasColumnName("rPower");
+            entity.Property(e => e.RPowerE)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("rPowerE");
             entity.Property(e => e.RPowerWt)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Rolling power  (wedge target/ next strip)")
@@ -23119,7 +23197,7 @@ public partial class PrdbContext : AbpDbContext
                 .HasColumnName("sprayFlag");
             entity.Property(e => e.StandActive)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("status if stand active 0/1")
+                .HasComment("status if stand active 0 = inactive / 1 = active / 2 = inlineRCH")
                 .HasColumnName("standActive");
             entity.Property(e => e.StandModule)
                 .HasDefaultValueSql("(NULL)")
@@ -25289,6 +25367,47 @@ public partial class PrdbContext : AbpDbContext
                 .HasPrecision(3)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("time of modification")
+                .HasColumnName("tom");
+        });
+
+        modelBuilder.Entity<StdEdghrm>(entity =>
+        {
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdEDGHR__52AAFC534FF5BFF7");
+
+            entity.ToTable("StdEDGHRM", "PRDB", tb =>
+                {
+                    tb.HasTrigger("TI_StdEDGHRM");
+                    tb.HasTrigger("TU_StdEDGHRM");
+                });
+
+            entity.Property(e => e.PlanNo).HasColumnName("planNo");
+            entity.Property(e => e.ActiveFlag).HasColumnName("activeFlag");
+            entity.Property(e => e.Description)
+                .HasMaxLength(80)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("description");
+            entity.Property(e => e.Dw)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("dw");
+            entity.Property(e => e.EdgMode)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("edgMode");
+            entity.Property(e => e.EdgerActive)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("edgerActive");
+            entity.Property(e => e.Mop)
+                .HasMaxLength(120)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("mop");
+            entity.Property(e => e.Toc)
+                .HasPrecision(3)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("toc");
+            entity.Property(e => e.Tom)
+                .HasPrecision(3)
+                .HasDefaultValueSql("(NULL)")
                 .HasColumnName("tom");
         });
 
