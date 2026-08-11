@@ -41,23 +41,23 @@ public partial class HmiVProductionHistory
 
     public double? TExitCs { get; set; }
 
-    public double? TExitCsAver { get; set; }
+    public double? TexitCsAver { get; set; }
 
-    public double? TExitCsMin { get; set; }
+    public double? TexitCsMin { get; set; }
 
-    public double? TExitCsMax { get; set; }
+    public double? TexitCsMax { get; set; }
 
     public double? CoilLengthX { get; set; }
 
-    public string EnOrCreator { get; set; }
+    public int EnOrMeId { get; set; }
 
-    public int EnOrMeid { get; set; }
+    public string EnOrMeType { get; set; }
 
     public short? EnOrStatus { get; set; }
 
     public string EnOrExitId { get; set; }
 
-    public string EnOrMeType { get; set; }
-
     public short? EnOrCurMesId { get; set; }
+
+    public string EnOrCreator { get; set; }
 }

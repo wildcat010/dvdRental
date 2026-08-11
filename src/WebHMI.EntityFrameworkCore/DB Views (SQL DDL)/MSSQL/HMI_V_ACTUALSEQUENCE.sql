@@ -1,0 +1,4 @@
+CREATE VIEW [PRDB].[HMI_V_ACTUALSEQUENCE]
+AS
+SELECT     PRDB.GetCurrentSequence() AS GetCurrentSequence
+GO

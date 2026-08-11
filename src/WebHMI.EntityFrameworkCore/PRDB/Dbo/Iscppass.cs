@@ -56,6 +56,11 @@ public partial class Iscppass
     public double? FumeSuppSprayBefor { get; set; }
 
     /// <summary>
+    /// Unit[0 / 1]  (dust) suppresion spray state: ON=0, OFF=1
+    /// </summary>
+    public int? FumeSuppSprayBehState { get; set; }
+
+    /// <summary>
     /// Unit[0...1] fume (dust) suppresion spray
     /// </summary>
     public double? FumeSuppSprayBehind { get; set; }
@@ -136,6 +141,11 @@ public partial class Iscppass
     public double? IscVolumeInd3 { get; set; }
 
     /// <summary>
+    /// Unit[0...1] longitudinal spraying
+    /// </summary>
+    public double? LongCrossSpray { get; set; }
+
+    /// <summary>
     /// Unit[0...1] looper cooling
     /// </summary>
     public double? LooperCool { get; set; }
@@ -184,11 +194,6 @@ public partial class Iscppass
     /// time of modification
     /// </summary>
     public DateTime? Tom { get; set; }
-
-    /// <summary>
-    /// Unit[0...1] longitudinal spraying
-    /// </summary>
-    public double? LongCrossSpray { get; set; }
 
     public virtual Me1 Me1 { get; set; }
 }

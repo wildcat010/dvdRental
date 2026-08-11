@@ -39,6 +39,16 @@ public partial class StdPcramp
     public int? PcRampState { get; set; }
 
     /// <summary>
+    /// Unit[0 / 1] ramp volume flow factor from max flow
+    /// </summary>
+    public double? PcRampVolumeInd0 { get; set; }
+
+    /// <summary>
+    /// Unit[0 / 1] ramp volume flow factor from max flow
+    /// </summary>
+    public double? PcRampVolumeInd1 { get; set; }
+
+    /// <summary>
     /// Unit[0...n] priority: -1: do not switch, 0,1,2,3,.....: lowest number is switched on first and switched off last
     /// </summary>
     public int? PrioPowerC { get; set; }
@@ -57,14 +67,4 @@ public partial class StdPcramp
     /// time of modification
     /// </summary>
     public DateTime? Tom { get; set; }
-
-    /// <summary>
-    /// Unit[0 / 1] ramp volume flow factor from max flow
-    /// </summary>
-    public double? PcRampVolumeInd0 { get; set; }
-
-    /// <summary>
-    /// Unit[0 / 1] ramp volume flow factor from max flow
-    /// </summary>
-    public double? PcRampVolumeInd1 { get; set; }
 }

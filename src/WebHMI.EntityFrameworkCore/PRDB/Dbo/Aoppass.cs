@@ -41,6 +41,26 @@ public partial class Aoppass
     public int? AntiOxStateExit { get; set; }
 
     /// <summary>
+    /// anti-oxidation entry
+    /// </summary>
+    public double? AntiOxidationEntryInd0 { get; set; }
+
+    /// <summary>
+    /// anti-oxidation entry
+    /// </summary>
+    public double? AntiOxidationEntryInd1 { get; set; }
+
+    /// <summary>
+    /// anti-oxidation exit
+    /// </summary>
+    public double? AntiOxidationExitInd0 { get; set; }
+
+    /// <summary>
+    /// anti-oxidation exit
+    /// </summary>
+    public double? AntiOxidationExitInd1 { get; set; }
+
+    /// <summary>
     /// anti-peeling
     /// </summary>
     public double? AntiPeeling { get; set; }
@@ -74,14 +94,6 @@ public partial class Aoppass
     /// time of modification
     /// </summary>
     public DateTime? Tom { get; set; }
-
-    public double? AntiOxidationEntryInd0 { get; set; }
-
-    public double? AntiOxidationEntryInd1 { get; set; }
-
-    public double? AntiOxidationExitInd0 { get; set; }
-
-    public double? AntiOxidationExitInd1 { get; set; }
 
     public virtual Me1 Me1 { get; set; }
 }

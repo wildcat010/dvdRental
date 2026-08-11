@@ -396,6 +396,21 @@ public partial class SpOrd2PcStand
     public double? CoMzcCoolDistributionInd39 { get; set; }
 
     /// <summary>
+    /// First index of the nozzle with contact to strip + additional nozzles
+    /// </summary>
+    public double? CoMzcFirstnozzle { get; set; }
+
+    /// <summary>
+    /// Amount of flow for the edge nozzles (no contact to strip and not an additional valve) [0-1]
+    /// </summary>
+    public double? CoMzcFlowRateEdge { get; set; }
+
+    /// <summary>
+    /// Amplitude of the parabolic shape [0-1]
+    /// </summary>
+    public double? CoMzcParabolic { get; set; }
+
+    /// <summary>
     /// Change in the number of cooling zones: 0 = Only covered cooling zones are cooled, 1 = Both on OS and DS, an additional zone is cooled next to the edge of the strip, -1 = the first covered cooling zone is not cooled. For larger numbers (2, 3, â€¦ or -2, -3, â€¦) the number of additional or removed cooling zones are accordingly
     /// </summary>
     public short? CoMzcValveNumberChange { get; set; }
@@ -941,6 +956,11 @@ public partial class SpOrd2PcStand
     public double? Dx2pDfb { get; set; }
 
     /// <summary>
+    /// status if edger active 0/1
+    /// </summary>
+    public short? EdgerActive { get; set; }
+
+    /// <summary>
     /// Unit[m] slablength entry ()
     /// </summary>
     public double? EntryLength { get; set; }
@@ -1151,7 +1171,7 @@ public partial class SpOrd2PcStand
     public double? SdEwt { get; set; }
 
     /// <summary>
-    /// status flags for screw down system (bit0:stand active, bit1:AGC absolute, bit2:DPC absolute, bit3: edger active)
+    /// status flags for screw down system (bit0:stand active, bit1:AGC absolute)
     /// </summary>
     public short? SdFlag { get; set; }
 
@@ -1164,6 +1184,11 @@ public partial class SpOrd2PcStand
     /// spray flag bit=1 is on (bit0:cross spray behind on, bit1:fume suppression spray on , bit2:roll gap spray on, bit3:looper cooling on , bit4: roll gap lubrication top on, bit5: roll gap lubrication bottom on, bit6: interstand descaling on, bit7: work roll cooling entry on, bit8: interstand cooling on, bit12: cross spray before on)
     /// </summary>
     public short? SprayFlag { get; set; }
+
+    /// <summary>
+    /// status if stand active 0/1
+    /// </summary>
+    public short? StandActive { get; set; }
 
     /// <summary>
     /// Unit[N/m] stand module (CG) in working point
@@ -1216,6 +1241,11 @@ public partial class SpOrd2PcStand
     public double? VCircum { get; set; }
 
     /// <summary>
+    /// Unit[m/s] workroll circumference speed Edger
+    /// </summary>
+    public double? VCircumE { get; set; }
+
+    /// <summary>
     /// Unit[m/s] workroll circumference speed (wedge target/ next strip)
     /// </summary>
     public double? VCircumWt { get; set; }
@@ -1224,6 +1254,26 @@ public partial class SpOrd2PcStand
     /// Unit[m] sum wear crown (2xWKR+BUR) used in gap calculation
     /// </summary>
     public double? WCrown { get; set; }
+
+    /// <summary>
+    /// Unit[m] entry width
+    /// </summary>
+    public double? WEntry { get; set; }
+
+    /// <summary>
+    /// Unit[m] entry width Edger
+    /// </summary>
+    public double? WEntryE { get; set; }
+
+    /// <summary>
+    /// Unit[m] exit width
+    /// </summary>
+    public double? WExit { get; set; }
+
+    /// <summary>
+    /// Unit[m] exit width Edger
+    /// </summary>
+    public double? WExitE { get; set; }
 
     /// <summary>
     /// Unit[m] effective work roll crown over barrel length
@@ -1254,23 +1304,6 @@ public partial class SpOrd2PcStand
     /// time of modification
     /// </summary>
     public DateTime? Tom { get; set; }
-
-    /// <summary>
-    /// Unit[m/s] workroll circumference speed Edger
-    /// </summary>
-    public double? VCircumE { get; set; }
-
-    public short? StandActive { get; set; }
-
-    public short? EdgerActive { get; set; }
-
-    public double? WEntryE { get; set; }
-
-    public double? WExitE { get; set; }
-
-    public double? WEntry { get; set; }
-
-    public double? WExit { get; set; }
 
     public virtual Me1 Me1 { get; set; }
 }

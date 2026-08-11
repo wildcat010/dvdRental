@@ -31,6 +31,11 @@ public partial class StatEdLogEnt
     public short? AlloyCode { get; set; }
 
     /// <summary>
+    /// Alloy compensation for thickness
+    /// </summary>
+    public short? AlloyCompensation { get; set; }
+
+    /// <summary>
     /// Array of names for slab chemistry
     /// </summary>
     public short? AlloyNameInd00 { get; set; }
@@ -464,6 +469,11 @@ public partial class StatEdLogEnt
     /// identification, material data OK = 1
     /// </summary>
     public short? Ok { get; set; }
+
+    /// <summary>
+    /// customer steel grade
+    /// </summary>
+    public short? SteelCustomer { get; set; }
 
     /// <summary>
     /// modifying process

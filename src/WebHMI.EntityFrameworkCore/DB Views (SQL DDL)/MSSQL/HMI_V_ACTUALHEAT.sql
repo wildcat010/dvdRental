@@ -1,0 +1,4 @@
+CREATE VIEW [PRDB].[HMI_V_ACTUALHEAT]
+AS
+SELECT     PRDB.GetCurrentHeat() AS GetCurrentHeat
+GO

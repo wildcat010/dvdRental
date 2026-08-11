@@ -270,7 +270,35 @@ namespace WebHMI.Services
                 .ToListAsync();
 
             if (matInfos.Count == 0)
-                throw new EntityNotFoundException("Data for given sequence not found");
+            {
+                //throw new EntityNotFoundException("Data for given sequence not found");
+                return new SequenceOverviewDto
+                {
+                    SequenceId = "Not actual Seq",
+
+                    NoOfHeats = 0,
+
+                    NoOfCoils = 0,
+
+                    RemNoOfCoils = 0,
+
+                    TotalCastLength = 0,
+
+                    TotalRollLength = 0,
+
+                    RemRollLength = 0,
+
+                    MaxThick = 0,
+
+                    MinThick = 0,
+
+                    WidthFrom = 0,
+
+                    WidthTo = 0,
+                };
+                
+            }
+
 
             return new SequenceOverviewDto
             {

@@ -13,7 +13,7 @@ namespace WebHMI.Mapping.Extensions
             dto.MeCode = new MeCodeDto()
             {
                 Status = dbo.EnOrStatus ,
-                MeId = dbo.EnOrMeid,
+                MeId = dbo.EnOrMeId,
                 MatType = dbo.EnOrMeType,
                 MesId = dbo.EnOrCurMesId ?? -1,
                 ExtId = dbo.EnOrExitId,
@@ -37,9 +37,9 @@ namespace WebHMI.Mapping.Extensions
             dto.ExitThicknessMin = dbo.HExitMin;
             dto.ExitThicknessMax = dbo.HExitMax;
             dto.CSExitTempSP = dbo.TExitCs;
-            dto.CSExitTemp = dbo.TExitCsAver;
-            dto.CSExitTempMin = dbo.TExitCsMin;
-            dto.CSExitTempMax = dbo.TExitCsMax;
+            dto.CSExitTemp = dbo.TexitCsAver;
+            dto.CSExitTempMin = dbo.TexitCsMin;
+            dto.CSExitTempMax = dbo.TexitCsMax;
             dto.CoilLength = dbo.CoilLengthX;
             return dto;
         }

@@ -143,7 +143,7 @@ namespace WebHMI.Services
                     x.CoilId,
                     new SingleProdSequenceThicknessWidth
                     {
-                        EntryThickness = x.TExitCsAver,
+                        EntryThickness = x.TexitCsAver,
                         Width = x.WExitAver,
                         HeatId = x.HeatId1,
                         SeqId = x.SequenceId,

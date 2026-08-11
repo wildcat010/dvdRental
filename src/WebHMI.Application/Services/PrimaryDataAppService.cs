@@ -69,7 +69,7 @@ namespace WebHMI.Services
 			edphyentM.SlabWidth = input.Data.SlabWidth.M;
 			edphyentM.SlabLength = input.Data.SlabLength.M;
 			edphyentM.SlabWeight = input.Data.SlabWeight.M;
-			edphyentM.SteelCustomer = input.Data.AlloyCodeCustomer.M;
+
            edphyentM.SlabWidthHead = input.Data.SlabWidthHead.M;
 			edphyentM.SlabWidthTail = input.Data.SlabWidthTail.M;
 			edphyentM.WidthChangeFlag = input.Data.WidthChangeFlag.M;
@@ -80,14 +80,11 @@ namespace WebHMI.Services
 			edphyentM.MaxSlabWeight = input.Data.MaxSlabWeight.M;
 			edphyentM.PlateProduction = input.Data.PlateProductionFlag.M;
 			edphyentM.SimMat = input.Data.SimulationFlag.M;
-			edphyentM.HExitCustomer = input.Data.FMExitThicknessCustomer.M;
-			edphyentM.WidthExitCustomer = input.Data.FMExitWidthCustomer.M;
             edphyentM.SequenceId = input.Data.SequenceId.M;
 
             var edordentM = await _prdbContext.EdOrdEnts.FirstOrDefaultAsync(x => x.MeId == entryMatStruct.EnOrMeId && x.Source == "M");
             edordentM = _prdbContext.InsertIfNull(edordentM, entryMatStruct);
             edordentM.FlagBatchRolling = input.Data.FlagBatchRolling.M;
-            edordentM.AlloyCompensation = input.Data.AlloyCompensation.M;
             edordentM.CastSpeed = input.Data.CastSpeed.M;
             edordentM.CastSpeedMin = input.Data.MinCastSpeed.M;
             edordentM.HIntermediate = input.Data.FMEntryThickness.M;
@@ -97,7 +94,7 @@ namespace WebHMI.Services
             edordentM.WidthExit = input.Data.FMExitWidth.M;
             edordentM.WClassMinDelta = input.Data.FMExitWidthDeltaMin.M;
             edordentM.WClassMaxDelta = input.Data.FMExitWidthDeltaMax.M;
-            edordentM.ExitCrownC25 = input.Data.FMExitCrown.M;
+            edordentM.ExitCrownC40 = input.Data.FMExitCrown.M;
             edordentM.ClassMinCrownDelta = input.Data.FMExitCrownDeltaMin.M;
             edordentM.ClassMaxCrownDelta = input.Data.FMExitCrownDeltaMax.M;
             edordentM.TExit = input.Data.FMExitTemp.M;
@@ -112,6 +109,8 @@ namespace WebHMI.Services
             edordentM.CoilTemp = input.Data.CoilerTemp.M;
             edordentM.CoilTempMaxTol = input.Data.CoilerTempDeltaMax.M;
             edordentM.CoilTempMinTol = input.Data.CoilerTempDeltaMin.M;
+            edordentM.HExitCustomer = input.Data.FMExitThicknessCustomer.M;
+            edordentM.WidthExitCustomer = input.Data.FMExitWidthCustomer.M;
 
             //CSSection
             edordentM.CoilTemp = input.CSData.CoilTemp.M;
@@ -125,6 +124,8 @@ namespace WebHMI.Services
             var edlogentM = await _prdbContext.EdLogEnts.FirstOrDefaultAsync(x => x.MeId == entryMatStruct.EnLoMeId && x.Source == "M");
             edlogentM = _prdbContext.InsertIfNull(edlogentM, entryMatStruct);
             edlogentM.AlloyCode = input.Data.AlloyCode.M;
+            edlogentM.SteelCustomer = input.Data.AlloyCodeCustomer.M;
+            edlogentM.AlloyCompensation = input.Data.AlloyCompensation.M;
             await UpdateChemistry(input, edlogentM, entryMatStruct);
 
             await _prdbContext.SaveChangesAsync();

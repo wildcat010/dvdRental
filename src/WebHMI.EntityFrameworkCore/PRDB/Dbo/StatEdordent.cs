@@ -26,11 +26,6 @@ public partial class StatEdOrdEnt
     public string Source { get; set; }
 
     /// <summary>
-    /// Alloy compensation for thickness
-    /// </summary>
-    public short? AlloyCompensation { get; set; }
-
-    /// <summary>
     /// Amount of bindings circumferential
     /// </summary>
     public short? AmountBindings { get; set; }
@@ -39,6 +34,11 @@ public partial class StatEdOrdEnt
     /// Amount of bindings radial
     /// </summary>
     public short? AmountBindingsR { get; set; }
+
+    /// <summary>
+    /// bend mode flag from mos
+    /// </summary>
+    public short? BendModeFlag { get; set; }
 
     /// <summary>
     /// casting speed
@@ -255,27 +255,17 @@ public partial class StatEdOrdEnt
     /// </summary>
     public short? DilatometerCurve { get; set; }
 
-    /// <summary>
-    /// time of slab in furnace (if available)
-    /// </summary>
-    public short? Duration { get; set; }
-
     public short? EdgeMask { get; set; }
 
     /// <summary>
     /// Finished strip crown C25
     /// </summary>
-    public short? ExitCrownC25 { get; set; }
+    public short? ExitCrownC40 { get; set; }
 
     /// <summary>
     /// ( 0 for Arvedi) 0=no ferritic transformation in FM, 2=ferritic transformation between F2 and F3 is required, 3=ferritic transformation between F3 and F4 is required
     /// </summary>
     public short? FerriticRollingMode { get; set; }
-
-    /// <summary>
-    /// whether slab is first in heat
-    /// </summary>
-    public short? FirstInHeat { get; set; }
 
     /// <summary>
     /// 1=alternative thickness is used
@@ -316,11 +306,6 @@ public partial class StatEdOrdEnt
     /// flag speed change requested from caster 0= no , 1=yes
     /// </summary>
     public short? FlagSpeedReqCas { get; set; }
-
-    /// <summary>
-    /// (Arvedi not available)  stainless steel
-    /// </summary>
-    public short? FlagStainless { get; set; }
 
     /// <summary>
     /// Customer limit for maximum fm exit temp
@@ -368,9 +353,9 @@ public partial class StatEdOrdEnt
     public short? HExitAlt { get; set; }
 
     /// <summary>
-    /// Finishing strip thickness(only for marking
+    /// exit thickness ordered by customer
     /// </summary>
-    public short? HExitCus { get; set; }
+    public short? HExitCustomer { get; set; }
 
     /// <summary>
     /// thickness after HRM (plate)
@@ -403,24 +388,19 @@ public partial class StatEdOrdEnt
     public short? HoldTime2 { get; set; }
 
     /// <summary>
-    /// Row order identifier from L3
+    /// Sampling/inspection code
     /// </summary>
-    public short? IdRiga { get; set; }
-
-    /// <summary>
-    /// Sequence identifier from L3
-    /// </summary>
-    public short? IdSeq { get; set; }
+    public short? InspectionCode { get; set; }
 
     /// <summary>
     /// 0: no inspection 1: inspection required
     /// </summary>
-    public short? IncspectionFlag { get; set; }
+    public short? InspectionFlag { get; set; }
 
     /// <summary>
-    /// Sampling/inspection code
+    /// exit length of coil
     /// </summary>
-    public short? InspectionCode { get; set; }
+    public short? LExit { get; set; }
 
     /// <summary>
     /// Slab length setpoint
@@ -453,78 +433,14 @@ public partial class StatEdOrdEnt
     public short? Ok { get; set; }
 
     /// <summary>
-    /// D or I or U
-    /// </summary>
-    public short? OperationFlag { get; set; }
-
-    /// <summary>
     /// Order number for the end customer
     /// </summary>
     public short? OrderNo { get; set; }
 
     /// <summary>
-    /// (Arvedi not available)  parent actual material creator (before divide)
-    /// </summary>
-    public short? ParentActMeCreator { get; set; }
-
-    /// <summary>
-    /// (Arvedi not available)  parent actual material identification (before divide)
-    /// </summary>
-    public short? ParentActMeId { get; set; }
-
-    /// <summary>
-    /// (Arvedi not available) parent actual material workstep (before divide)
-    /// </summary>
-    public short? ParentActMesId { get; set; }
-
-    /// <summary>
-    /// (Arvedi not available) parent basis id (before divide)
-    /// </summary>
-    public short? ParentBasId { get; set; }
-
-    /// <summary>
-    /// (Arvedi not available)parent external material identification (before divide)
-    /// </summary>
-    public short? ParentExtId { get; set; }
-
-    /// <summary>
-    /// (Arvedi not available)parent material typ (before divide)
-    /// </summary>
-    public short? ParentMeTyp { get; set; }
-
-    /// <summary>
-    /// (Arvedi not available)parent original material creator (before divide)
-    /// </summary>
-    public short? ParentOriMeCreator { get; set; }
-
-    /// <summary>
-    /// (Arvedi not available)parent original material identification (before divide)
-    /// </summary>
-    public short? ParentOriMeId { get; set; }
-
-    /// <summary>
-    /// (Arvedi not available)parent original workstep (before divide)
-    /// </summary>
-    public short? ParentOriMesId { get; set; }
-
-    /// <summary>
-    /// part number of material
-    /// </summary>
-    public short? PartNum { get; set; }
-
-    /// <summary>
-    /// (Arvedi not available)percent of slab length planned for the first strip
-    /// </summary>
-    public short? PlannedDivision { get; set; }
-
-    public short? ProdType { get; set; }
-
-    public short? ProductionOrderId { get; set; }
-
-    /// <summary>
     /// target profile for HRM exit, 1 = 1prz
     /// </summary>
-    public short? RMtargProfile { get; set; }
+    public short? RmTargProfile { get; set; }
 
     /// <summary>
     /// Cooling Section: Valve to be switched lower side (1st cooling phase)
@@ -555,11 +471,6 @@ public partial class StatEdOrdEnt
     /// Cooling Section: Valve to be switched upper side (3rd cooling phase)
     /// </summary>
     public short? StartValveTop3 { get; set; }
-
-    /// <summary>
-    /// Steel grade customer (only for marking
-    /// </summary>
-    public short? SteelCus { get; set; }
 
     /// <summary>
     /// Classif. max. strip temperature delta
@@ -597,321 +508,6 @@ public partial class StatEdOrdEnt
     public short? TExitCaster { get; set; }
 
     /// <summary>
-    /// calculated head temperature at position X
-    /// </summary>
-    public short? THeadXInd00 { get; set; }
-
-    /// <summary>
-    /// calculated head temperature at position X
-    /// </summary>
-    public short? THeadXInd01 { get; set; }
-
-    /// <summary>
-    /// calculated head temperature at position X
-    /// </summary>
-    public short? THeadXInd02 { get; set; }
-
-    /// <summary>
-    /// calculated head temperature at position X
-    /// </summary>
-    public short? THeadXInd03 { get; set; }
-
-    /// <summary>
-    /// calculated head temperature at position X
-    /// </summary>
-    public short? THeadXInd04 { get; set; }
-
-    /// <summary>
-    /// calculated head temperature at position X
-    /// </summary>
-    public short? THeadXInd05 { get; set; }
-
-    /// <summary>
-    /// calculated head temperature at position X
-    /// </summary>
-    public short? THeadXInd06 { get; set; }
-
-    /// <summary>
-    /// calculated head temperature at position X
-    /// </summary>
-    public short? THeadXInd07 { get; set; }
-
-    /// <summary>
-    /// calculated head temperature at position X
-    /// </summary>
-    public short? THeadXInd08 { get; set; }
-
-    /// <summary>
-    /// calculated head temperature at position X
-    /// </summary>
-    public short? THeadXInd09 { get; set; }
-
-    /// <summary>
-    /// calculated head temperature at position X
-    /// </summary>
-    public short? THeadXInd10 { get; set; }
-
-    /// <summary>
-    /// calculated head temperature at position X
-    /// </summary>
-    public short? THeadXInd11 { get; set; }
-
-    /// <summary>
-    /// calculated head temperature at position X
-    /// </summary>
-    public short? THeadXInd12 { get; set; }
-
-    /// <summary>
-    /// calculated head temperature at position X
-    /// </summary>
-    public short? THeadXInd13 { get; set; }
-
-    /// <summary>
-    /// calculated head temperature at position X
-    /// </summary>
-    public short? THeadXInd14 { get; set; }
-
-    /// <summary>
-    /// calculated head temperature at position X
-    /// </summary>
-    public short? THeadXInd15 { get; set; }
-
-    /// <summary>
-    /// calculated head temperature at position X
-    /// </summary>
-    public short? THeadXInd16 { get; set; }
-
-    /// <summary>
-    /// calculated head temperature at position X
-    /// </summary>
-    public short? THeadXInd17 { get; set; }
-
-    /// <summary>
-    /// calculated head temperature at position X
-    /// </summary>
-    public short? THeadXInd18 { get; set; }
-
-    /// <summary>
-    /// calculated head temperature at position X
-    /// </summary>
-    public short? THeadXInd19 { get; set; }
-
-    /// <summary>
-    /// calculated head temperature at position X
-    /// </summary>
-    public short? THeadXInd20 { get; set; }
-
-    /// <summary>
-    /// Thickness coordinate (Head) for tHeadX
-    /// </summary>
-    public short? TPosHeadXInd00 { get; set; }
-
-    /// <summary>
-    /// Thickness coordinate (Head) for tHeadX
-    /// </summary>
-    public short? TPosHeadXInd01 { get; set; }
-
-    /// <summary>
-    /// Thickness coordinate (Head) for tHeadX
-    /// </summary>
-    public short? TPosHeadXInd02 { get; set; }
-
-    /// <summary>
-    /// Thickness coordinate (Head) for tHeadX
-    /// </summary>
-    public short? TPosHeadXInd03 { get; set; }
-
-    /// <summary>
-    /// Thickness coordinate (Head) for tHeadX
-    /// </summary>
-    public short? TPosHeadXInd04 { get; set; }
-
-    /// <summary>
-    /// Thickness coordinate (Head) for tHeadX
-    /// </summary>
-    public short? TPosHeadXInd05 { get; set; }
-
-    /// <summary>
-    /// Thickness coordinate (Head) for tHeadX
-    /// </summary>
-    public short? TPosHeadXInd06 { get; set; }
-
-    /// <summary>
-    /// Thickness coordinate (Head) for tHeadX
-    /// </summary>
-    public short? TPosHeadXInd07 { get; set; }
-
-    /// <summary>
-    /// Thickness coordinate (Head) for tHeadX
-    /// </summary>
-    public short? TPosHeadXInd08 { get; set; }
-
-    /// <summary>
-    /// Thickness coordinate (Head) for tHeadX
-    /// </summary>
-    public short? TPosHeadXInd09 { get; set; }
-
-    /// <summary>
-    /// Thickness coordinate (Head) for tHeadX
-    /// </summary>
-    public short? TPosHeadXInd10 { get; set; }
-
-    /// <summary>
-    /// Thickness coordinate (Head) for tHeadX
-    /// </summary>
-    public short? TPosHeadXInd11 { get; set; }
-
-    /// <summary>
-    /// Thickness coordinate (Head) for tHeadX
-    /// </summary>
-    public short? TPosHeadXInd12 { get; set; }
-
-    /// <summary>
-    /// Thickness coordinate (Head) for tHeadX
-    /// </summary>
-    public short? TPosHeadXInd13 { get; set; }
-
-    /// <summary>
-    /// Thickness coordinate (Head) for tHeadX
-    /// </summary>
-    public short? TPosHeadXInd14 { get; set; }
-
-    /// <summary>
-    /// Thickness coordinate (Head) for tHeadX
-    /// </summary>
-    public short? TPosHeadXInd15 { get; set; }
-
-    /// <summary>
-    /// Thickness coordinate (Head) for tHeadX
-    /// </summary>
-    public short? TPosHeadXInd16 { get; set; }
-
-    /// <summary>
-    /// Thickness coordinate (Head) for tHeadX
-    /// </summary>
-    public short? TPosHeadXInd17 { get; set; }
-
-    /// <summary>
-    /// Thickness coordinate (Head) for tHeadX
-    /// </summary>
-    public short? TPosHeadXInd18 { get; set; }
-
-    /// <summary>
-    /// Thickness coordinate (Head) for tHeadX
-    /// </summary>
-    public short? TPosHeadXInd19 { get; set; }
-
-    /// <summary>
-    /// Thickness coordinate (Head) for tHeadX
-    /// </summary>
-    public short? TPosHeadXInd20 { get; set; }
-
-    /// <summary>
-    /// Thickness coordinate for tX (starting with 0 for top  surfac e temperature, ending with 100 for bottom surface temperature)
-    /// </summary>
-    public short? TPosXInd00 { get; set; }
-
-    /// <summary>
-    /// Thickness coordinate for tX (starting with 0 for top  surfac e temperature, ending with 100 for bottom surface temperature)
-    /// </summary>
-    public short? TPosXInd01 { get; set; }
-
-    /// <summary>
-    /// Thickness coordinate for tX (starting with 0 for top  surfac e temperature, ending with 100 for bottom surface temperature)
-    /// </summary>
-    public short? TPosXInd02 { get; set; }
-
-    /// <summary>
-    /// Thickness coordinate for tX (starting with 0 for top  surfac e temperature, ending with 100 for bottom surface temperature)
-    /// </summary>
-    public short? TPosXInd03 { get; set; }
-
-    /// <summary>
-    /// Thickness coordinate for tX (starting with 0 for top  surfac e temperature, ending with 100 for bottom surface temperature)
-    /// </summary>
-    public short? TPosXInd04 { get; set; }
-
-    /// <summary>
-    /// Thickness coordinate for tX (starting with 0 for top  surfac e temperature, ending with 100 for bottom surface temperature)
-    /// </summary>
-    public short? TPosXInd05 { get; set; }
-
-    /// <summary>
-    /// Thickness coordinate for tX (starting with 0 for top  surfac e temperature, ending with 100 for bottom surface temperature)
-    /// </summary>
-    public short? TPosXInd06 { get; set; }
-
-    /// <summary>
-    /// Thickness coordinate for tX (starting with 0 for top  surfac e temperature, ending with 100 for bottom surface temperature)
-    /// </summary>
-    public short? TPosXInd07 { get; set; }
-
-    /// <summary>
-    /// Thickness coordinate for tX (starting with 0 for top  surfac e temperature, ending with 100 for bottom surface temperature)
-    /// </summary>
-    public short? TPosXInd08 { get; set; }
-
-    /// <summary>
-    /// Thickness coordinate for tX (starting with 0 for top  surfac e temperature, ending with 100 for bottom surface temperature)
-    /// </summary>
-    public short? TPosXInd09 { get; set; }
-
-    /// <summary>
-    /// Thickness coordinate for tX (starting with 0 for top  surfac e temperature, ending with 100 for bottom surface temperature)
-    /// </summary>
-    public short? TPosXInd10 { get; set; }
-
-    /// <summary>
-    /// Thickness coordinate for tX (starting with 0 for top  surfac e temperature, ending with 100 for bottom surface temperature)
-    /// </summary>
-    public short? TPosXInd11 { get; set; }
-
-    /// <summary>
-    /// Thickness coordinate for tX (starting with 0 for top  surfac e temperature, ending with 100 for bottom surface temperature)
-    /// </summary>
-    public short? TPosXInd12 { get; set; }
-
-    /// <summary>
-    /// Thickness coordinate for tX (starting with 0 for top  surfac e temperature, ending with 100 for bottom surface temperature)
-    /// </summary>
-    public short? TPosXInd13 { get; set; }
-
-    /// <summary>
-    /// Thickness coordinate for tX (starting with 0 for top  surfac e temperature, ending with 100 for bottom surface temperature)
-    /// </summary>
-    public short? TPosXInd14 { get; set; }
-
-    /// <summary>
-    /// Thickness coordinate for tX (starting with 0 for top  surfac e temperature, ending with 100 for bottom surface temperature)
-    /// </summary>
-    public short? TPosXInd15 { get; set; }
-
-    /// <summary>
-    /// Thickness coordinate for tX (starting with 0 for top  surfac e temperature, ending with 100 for bottom surface temperature)
-    /// </summary>
-    public short? TPosXInd16 { get; set; }
-
-    /// <summary>
-    /// Thickness coordinate for tX (starting with 0 for top  surfac e temperature, ending with 100 for bottom surface temperature)
-    /// </summary>
-    public short? TPosXInd17 { get; set; }
-
-    /// <summary>
-    /// Thickness coordinate for tX (starting with 0 for top  surfac e temperature, ending with 100 for bottom surface temperature)
-    /// </summary>
-    public short? TPosXInd18 { get; set; }
-
-    /// <summary>
-    /// Thickness coordinate for tX (starting with 0 for top  surfac e temperature, ending with 100 for bottom surface temperature)
-    /// </summary>
-    public short? TPosXInd19 { get; set; }
-
-    /// <summary>
-    /// Thickness coordinate for tX (starting with 0 for top  surfac e temperature, ending with 100 for bottom surface temperature)
-    /// </summary>
-    public short? TPosXInd20 { get; set; }
-
-    /// <summary>
     /// measured slab temperature
     /// </summary>
     public short? TSlab { get; set; }
@@ -925,111 +521,6 @@ public partial class StatEdOrdEnt
     /// ( not used for Arvedi) target temperature where the conversion starts ferritic rolling
     /// </summary>
     public short? TTemperatureFeStart { get; set; }
-
-    /// <summary>
-    /// calculated temperature at position X
-    /// </summary>
-    public short? TXInd00 { get; set; }
-
-    /// <summary>
-    /// calculated temperature at position X
-    /// </summary>
-    public short? TXInd01 { get; set; }
-
-    /// <summary>
-    /// calculated temperature at position X
-    /// </summary>
-    public short? TXInd02 { get; set; }
-
-    /// <summary>
-    /// calculated temperature at position X
-    /// </summary>
-    public short? TXInd03 { get; set; }
-
-    /// <summary>
-    /// calculated temperature at position X
-    /// </summary>
-    public short? TXInd04 { get; set; }
-
-    /// <summary>
-    /// calculated temperature at position X
-    /// </summary>
-    public short? TXInd05 { get; set; }
-
-    /// <summary>
-    /// calculated temperature at position X
-    /// </summary>
-    public short? TXInd06 { get; set; }
-
-    /// <summary>
-    /// calculated temperature at position X
-    /// </summary>
-    public short? TXInd07 { get; set; }
-
-    /// <summary>
-    /// calculated temperature at position X
-    /// </summary>
-    public short? TXInd08 { get; set; }
-
-    /// <summary>
-    /// calculated temperature at position X
-    /// </summary>
-    public short? TXInd09 { get; set; }
-
-    /// <summary>
-    /// calculated temperature at position X
-    /// </summary>
-    public short? TXInd10 { get; set; }
-
-    /// <summary>
-    /// calculated temperature at position X
-    /// </summary>
-    public short? TXInd11 { get; set; }
-
-    /// <summary>
-    /// calculated temperature at position X
-    /// </summary>
-    public short? TXInd12 { get; set; }
-
-    /// <summary>
-    /// calculated temperature at position X
-    /// </summary>
-    public short? TXInd13 { get; set; }
-
-    /// <summary>
-    /// calculated temperature at position X
-    /// </summary>
-    public short? TXInd14 { get; set; }
-
-    /// <summary>
-    /// calculated temperature at position X
-    /// </summary>
-    public short? TXInd15 { get; set; }
-
-    /// <summary>
-    /// calculated temperature at position X
-    /// </summary>
-    public short? TXInd16 { get; set; }
-
-    /// <summary>
-    /// calculated temperature at position X
-    /// </summary>
-    public short? TXInd17 { get; set; }
-
-    /// <summary>
-    /// calculated temperature at position X
-    /// </summary>
-    public short? TXInd18 { get; set; }
-
-    /// <summary>
-    /// calculated temperature at position X
-    /// </summary>
-    public short? TXInd19 { get; set; }
-
-    /// <summary>
-    /// calculated temperature at position X
-    /// </summary>
-    public short? TXInd20 { get; set; }
 
     /// <summary>
     /// finished strip target flatness
@@ -1082,9 +573,9 @@ public partial class StatEdOrdEnt
     public short? WidthExit { get; set; }
 
     /// <summary>
-    /// Finishing strip width (only for marking device)
+    /// width exit orderd by customer
     /// </summary>
-    public short? WidthExitCus { get; set; }
+    public short? WidthExitCustomer { get; set; }
 
     /// <summary>
     /// Customer limit for maximum width

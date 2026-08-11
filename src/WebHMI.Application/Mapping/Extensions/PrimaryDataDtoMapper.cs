@@ -64,12 +64,12 @@ namespace WebHMI.Mapping.Extensions
             result.Data.SlabWeight.DbSource = $"{nameof(EdPhyEnt)}.{nameof(EdPhyEnt.SlabWeight)}";
             result.Data.SlabWeight.Status = dataBlob.StatEdPhyEnts?.SlabWeight;
 
-            result.Data.AlloyCodeCustomer.L = dataBlob.EdPhyEnts.FirstOrDefault(x => x.Source == "L")?.SteelCustomer;
-			result.Data.AlloyCodeCustomer.M = dataBlob.EdPhyEnts.FirstOrDefault(x => x.Source == "M")?.SteelCustomer;
-			result.Data.AlloyCodeCustomer.S = dataBlob.EdPhyEnts.FirstOrDefault(x => x.Source == "S")?.SteelCustomer;
-			result.Data.AlloyCodeCustomer.E = dataBlob.EdPhyEnts.FirstOrDefault(x => x.Source == "E")?.SteelCustomer;
-            result.Data.AlloyCodeCustomer.DbSource = $"{nameof(EdPhyEnt)}.{nameof(EdPhyEnt.SteelCustomer)}";
-            result.Data.AlloyCodeCustomer.Status = dataBlob.StatEdPhyEnts?.SteelCustomer;
+            result.Data.AlloyCodeCustomer.L = dataBlob.EdLogEnts.FirstOrDefault(x => x.Source == "L")?.SteelCustomer;
+			result.Data.AlloyCodeCustomer.M = dataBlob.EdLogEnts.FirstOrDefault(x => x.Source == "M")?.SteelCustomer;
+			result.Data.AlloyCodeCustomer.S = dataBlob.EdLogEnts.FirstOrDefault(x => x.Source == "S")?.SteelCustomer;
+			result.Data.AlloyCodeCustomer.E = dataBlob.EdLogEnts.FirstOrDefault(x => x.Source == "E")?.SteelCustomer;
+            result.Data.AlloyCodeCustomer.DbSource = $"{nameof(EdLogEnt)}.{nameof(EdLogEnt.SteelCustomer)}";
+            result.Data.AlloyCodeCustomer.Status = dataBlob.StatEdLogEnts?.SteelCustomer;
 
             result.Data.SlabWidthHead.L = dataBlob.EdPhyEnts.FirstOrDefault(x => x.Source == "L")?.SlabWidthHead;
 			result.Data.SlabWidthHead.M = dataBlob.EdPhyEnts.FirstOrDefault(x => x.Source == "M")?.SlabWidthHead;
@@ -141,19 +141,19 @@ namespace WebHMI.Mapping.Extensions
             result.Data.SimulationFlag.DbSource = $"{nameof(EdPhyEnt)}.{nameof(EdPhyEnt.SimMat)}";
             result.Data.SimulationFlag.Status = dataBlob.StatEdPhyEnts?.SimMat;
 
-            result.Data.FMExitThicknessCustomer.L = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "L")?.HExitCus;
-			result.Data.FMExitThicknessCustomer.M = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "M")?.HExitCus;
-			result.Data.FMExitThicknessCustomer.S = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "S")?.HExitCus;
-			result.Data.FMExitThicknessCustomer.E = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "E")?.HExitCus;
-            result.Data.FMExitThicknessCustomer.DbSource = $"{nameof(EdOrdEnt)}.{nameof(EdOrdEnt.HExitCus)}";
-            result.Data.FMExitThicknessCustomer.Status = dataBlob.StatEdOrdEnts?.HExitCus;
+            result.Data.FMExitThicknessCustomer.L = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "L")?.HExitCustomer;
+			result.Data.FMExitThicknessCustomer.M = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "M")?.HExitCustomer;
+			result.Data.FMExitThicknessCustomer.S = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "S")?.HExitCustomer;
+			result.Data.FMExitThicknessCustomer.E = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "E")?.HExitCustomer;
+            result.Data.FMExitThicknessCustomer.DbSource = $"{nameof(EdOrdEnt)}.{nameof(EdOrdEnt.HExitCustomer)}";
+            result.Data.FMExitThicknessCustomer.Status = dataBlob.StatEdOrdEnts?.HExitCustomer;
 
-            result.Data.FMExitWidthCustomer.L = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "L")?.WidthExitCus   ;
-			result.Data.FMExitWidthCustomer.M = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "M")?.WidthExitCus;
-			result.Data.FMExitWidthCustomer.S = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "S")?.WidthExitCus;
-			result.Data.FMExitWidthCustomer.E = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "E")?.WidthExitCus;
-            result.Data.FMExitWidthCustomer.DbSource = $"{nameof(EdOrdEnt)}.{nameof(EdOrdEnt.WidthExitCus)}";
-            result.Data.FMExitWidthCustomer.Status = dataBlob.StatEdPhyEnts?.WidthExitCustomer;
+            result.Data.FMExitWidthCustomer.L = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "L")?.WidthExitCustomer   ;
+			result.Data.FMExitWidthCustomer.M = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "M")?.WidthExitCustomer;
+			result.Data.FMExitWidthCustomer.S = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "S")?.WidthExitCustomer;
+			result.Data.FMExitWidthCustomer.E = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "E")?.WidthExitCustomer;
+            result.Data.FMExitWidthCustomer.DbSource = $"{nameof(EdOrdEnt)}.{nameof(EdOrdEnt.WidthExitCustomer)}";
+            result.Data.FMExitWidthCustomer.Status = dataBlob.StatEdOrdEnts?.WidthExitCustomer;
 
             result.Data.OrderNo.L = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "L")?.OrderNo;
             result.Data.OrderNo.M = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "M")?.OrderNo;
@@ -169,12 +169,12 @@ namespace WebHMI.Mapping.Extensions
             result.Data.FlagBatchRolling.DbSource = $"{nameof(EdOrdEnt)}.{nameof(EdOrdEnt.FlagBatchRolling)}";
             result.Data.FlagBatchRolling.Status = dataBlob.StatEdOrdEnts?.FlagBatchRolling;
 
-            result.Data.AlloyCompensation.L = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "L")?.AlloyCompensation;
-			result.Data.AlloyCompensation.M = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "M")?.AlloyCompensation;
-			result.Data.AlloyCompensation.S = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "S")?.AlloyCompensation;
-			result.Data.AlloyCompensation.E = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "E")?.AlloyCompensation;
-            result.Data.AlloyCompensation.DbSource = $"{nameof(EdOrdEnt)}.{nameof(EdOrdEnt.AlloyCompensation)}";
-            result.Data.AlloyCompensation.Status = dataBlob.StatEdOrdEnts?.AlloyCompensation;
+            result.Data.AlloyCompensation.L = dataBlob.EdLogEnts.FirstOrDefault(x => x.Source == "L")?.AlloyCompensation;
+			result.Data.AlloyCompensation.M = dataBlob.EdLogEnts.FirstOrDefault(x => x.Source == "M")?.AlloyCompensation;
+			result.Data.AlloyCompensation.S = dataBlob.EdLogEnts.FirstOrDefault(x => x.Source == "S")?.AlloyCompensation;
+			result.Data.AlloyCompensation.E = dataBlob.EdLogEnts.FirstOrDefault(x => x.Source == "E")?.AlloyCompensation;
+            result.Data.AlloyCompensation.DbSource = $"{nameof(EdLogEnt)}.{nameof(EdLogEnt.AlloyCompensation)}";
+            result.Data.AlloyCompensation.Status = dataBlob.StatEdLogEnts?.AlloyCompensation;
 
             result.Data.CastSpeed.L = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "L")?.CastSpeed;
 			result.Data.CastSpeed.M = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "M")?.CastSpeed;
@@ -239,12 +239,12 @@ namespace WebHMI.Mapping.Extensions
             result.Data.FMExitWidthDeltaMax.DbSource = $"{nameof(EdOrdEnt)}.{nameof(EdOrdEnt.WClassMaxDelta)}";
             result.Data.FMExitWidthDeltaMax.Status = dataBlob.StatEdOrdEnts?.WClassMaxDelta;
 
-            result.Data.FMExitCrown.L = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "L")?.ExitCrownC25;
-			result.Data.FMExitCrown.M = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "M")?.ExitCrownC25;
-			result.Data.FMExitCrown.S = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "S")?.ExitCrownC25;
-			result.Data.FMExitCrown.E = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "E")?.ExitCrownC25;
-            result.Data.FMExitCrown.DbSource = $"{nameof(EdOrdEnt)}.{nameof(EdOrdEnt.ExitCrownC25)}";
-            result.Data.FMExitCrown.Status = dataBlob.StatEdOrdEnts?.ExitCrownC25;
+            result.Data.FMExitCrown.L = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "L")?.ExitCrownC40;
+			result.Data.FMExitCrown.M = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "M")?.ExitCrownC40;
+			result.Data.FMExitCrown.S = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "S")?.ExitCrownC40;
+			result.Data.FMExitCrown.E = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "E")?.ExitCrownC40;
+            result.Data.FMExitCrown.DbSource = $"{nameof(EdOrdEnt)}.{nameof(EdOrdEnt.ExitCrownC40)}";
+            result.Data.FMExitCrown.Status = dataBlob.StatEdOrdEnts?.ExitCrownC40;
 
             result.Data.FMExitCrownDeltaMin.L = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "L")?.ClassMinCrownDelta;
 			result.Data.FMExitCrownDeltaMin.M = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "M")?.ClassMinCrownDelta;

@@ -1,14 +1,3 @@
-USE [PRDB]
-GO
-
-/****** Object:  View [PRDB].[HMI_V_PRODSEQUENCE_COMPLETE]    Script Date: 7/28/2026 3:16:02 PM ******/
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER OFF
-GO
-
-
 CREATE   VIEW [PRDB].[HMI_V_PRODSEQUENCE_COMPLETE] AS
 WITH ProdSequence AS (
     SELECT 
@@ -55,7 +44,6 @@ WITH ProdSequence AS (
         H.coolStrategy,
         ISNULL(H.csCoilTempSetp, H.coilTemp) AS coilTemp,
         H.heatId,
-		H.heatName,
         CASE
             WHEN H.plateProduction = 1 THEN 'PLATE'
             WHEN H.flagBatchRolling = 1 THEN 'BATCH'
@@ -64,8 +52,7 @@ WITH ProdSequence AS (
         H.plateProduction,
         ISNULL(H.hExitHRM, H.hExitHRMCalc) as hExitHRM,
         H.profileHRM,
-        H.orderNo,
-		P.calcFlag
+        H.orderNo
     FROM ProdSchedule P
     JOIN HMI_V_MAT_INFO_SHORT H ON P.meId = H.EnPhMeID
     UNION ALL
@@ -113,7 +100,6 @@ WITH ProdSequence AS (
         H.coolStrategy,
         ISNULL(H.csCoilTempSetp, H.coilTemp),
         H.heatId,
-		H.heatName,
         CASE
             WHEN H.plateProduction = 1 THEN 'PLATE'
             WHEN H.flagBatchRolling = 1 THEN 'BATCH'
@@ -122,8 +108,7 @@ WITH ProdSequence AS (
         H.plateProduction,
         ISNULL(H.hExitHRM, H.hExitHRMCalc),
         H.profileHRM,
-        H.orderNo,
-		P.calcFlag
+        H.orderNo
     FROM HMI_V_MAT_INFO_SHORT H
     LEFT JOIN ProdSchedule P ON P.meId = H.EnPhMeID
     WHERE P.meId IS NULL
@@ -172,14 +157,9 @@ SELECT
     coolStrategy,
     coilTemp,
     heatId,
-	heatName,
     flagBatchRolling,
     plateProduction,
     hExitHRM,
     profileHRM,
-    orderNo,
-	calcFlag
+    orderNo
 FROM ProdSequence
-GO
-
-

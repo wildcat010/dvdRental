@@ -131,6 +131,11 @@ public partial class Rcppass
     public double? FlowWrIdleInd4 { get; set; }
 
     /// <summary>
+    /// Unit[0..1] area work roll, factor flow work roll cooling idle
+    /// </summary>
+    public double? FlowWrIdleInd5 { get; set; }
+
+    /// <summary>
     /// Unit[0..1] factor flow work roll cooling loaded
     /// </summary>
     public double? FlowWrLoadedInd0 { get; set; }
@@ -154,6 +159,11 @@ public partial class Rcppass
     /// Unit[0..1] factor flow work roll cooling loaded
     /// </summary>
     public double? FlowWrLoadedInd4 { get; set; }
+
+    /// <summary>
+    /// Unit[0..1] factor flow work roll cooling loaded
+    /// </summary>
+    public double? FlowWrLoadedInd5 { get; set; }
 
     /// <summary>
     /// Unit[0...999] r c p number
@@ -189,16 +199,6 @@ public partial class Rcppass
     /// time of modification
     /// </summary>
     public DateTime? Tom { get; set; }
-
-    /// <summary>
-    /// Unit[0..1] area work roll, factor flow work roll cooling idle
-    /// </summary>
-    public double? FlowWrIdleInd5 { get; set; }
-
-    /// <summary>
-    /// Unit[0..1] factor flow work roll cooling loaded
-    /// </summary>
-    public double? FlowWrLoadedInd5 { get; set; }
 
     public virtual Me1 Me1 { get; set; }
 }

@@ -115,12 +115,12 @@ namespace WebHMI.Mapping.Extensions
             result.TExit.DbSource = $"{nameof(EdOrdEnt)}.{nameof(EdOrdEnt.TExit)}";
             result.TExit.Status = dataBlob.StatEdordents?.TExit;
 
-            result.ExitCrownc25.L = edOrdEntL?.ExitCrownC25;
-            result.ExitCrownc25.E = edOrdEntE?.ExitCrownC25;
-            result.ExitCrownc25.M = edOrdEntM?.ExitCrownC25;
+            result.ExitCrownc25.L = edOrdEntL?.ExitCrownC40;
+            result.ExitCrownc25.E = edOrdEntE?.ExitCrownC40;
+            result.ExitCrownc25.M = edOrdEntM?.ExitCrownC40;
             result.ExitCrownc25.S = dataBlob.Adord2PC?.Profile;
-            result.ExitCrownc25.DbSource = $"{nameof(EdOrdEnt)}.{nameof(EdOrdEnt.ExitCrownC25)}";
-            result.HExit.Status = dataBlob.StatEdordents?.HExit;
+            result.ExitCrownc25.DbSource = $"{nameof(EdOrdEnt)}.{nameof(EdOrdEnt.ExitCrownC40)}";
+            result.ExitCrownc25.Status = dataBlob.StatEdordents?.ExitCrownC40;
 
             result.HExitCold.L = spOrd2PcL?.HExitCold;
             result.HExitCold.E = spOrd2PcE?.HExitCold;
@@ -921,12 +921,12 @@ namespace WebHMI.Mapping.Extensions
             result.TExit.DbSource = $"{nameof(EdOrdEnt)}.{nameof(EdOrdEnt.TExit)}";
             result.TExit.Status = dataBlob.StatEdordents?.TExit;
 
-            result.ExitCrownC25.L = edOrdEntL?.ExitCrownC25;
-            result.ExitCrownC25.E = edOrdEntE?.ExitCrownC25;
-            result.ExitCrownC25.M = edOrdEntM?.ExitCrownC25;
+            result.ExitCrownC25.L = edOrdEntL?.ExitCrownC40;
+            result.ExitCrownC25.E = edOrdEntE?.ExitCrownC40;
+            result.ExitCrownC25.M = edOrdEntM?.ExitCrownC40;
             result.ExitCrownC25.S = dataBlob.Adord2Pc?.Profile;
-            result.ExitCrownC25.DbSource = $"{nameof(EdOrdEnt)}.{nameof(EdOrdEnt.ExitCrownC25)}";
-            result.HExit.Status = dataBlob.StatEdordents?.HExit;
+            result.ExitCrownC25.DbSource = $"{nameof(EdOrdEnt)}.{nameof(EdOrdEnt.ExitCrownC40)}";
+            result.ExitCrownC25.Status = dataBlob.StatEdordents?.ExitCrownC40;
 
             result.HExitCold.L = spOrd2PcL?.HExitCold;
             result.HExitCold.E = spOrd2PcE?.HExitCold;

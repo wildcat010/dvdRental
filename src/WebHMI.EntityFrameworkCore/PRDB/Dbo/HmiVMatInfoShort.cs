@@ -59,6 +59,10 @@ public partial class HmiVMatInfoShort
 
     public string SptlFaultCs { get; set; }
 
+    public string SptlFaultHfm { get; set; }
+
+    public string SptlFaultHrm { get; set; }
+
     public string ApsKey { get; set; }
 
     public int? SimMat { get; set; }
@@ -122,10 +126,6 @@ public partial class HmiVMatInfoShort
     public int? IdSeq { get; set; }
 
     public int? IdRiga { get; set; }
-
-    public string SptlFaultHfm { get; set; }
-
-    public string SptlFaultHrm { get; set; }
 
     public string HeatName { get; set; }
 }

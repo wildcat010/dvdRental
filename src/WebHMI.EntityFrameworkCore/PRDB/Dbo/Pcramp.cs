@@ -46,6 +46,16 @@ public partial class Pcramp
     public int? PcRampState { get; set; }
 
     /// <summary>
+    /// Unit[0 / 1] ramp volume flow factor from max flow
+    /// </summary>
+    public double? PcRampVolumeInd0 { get; set; }
+
+    /// <summary>
+    /// Unit[0 / 1] ramp volume flow factor from max flow
+    /// </summary>
+    public double? PcRampVolumeInd1 { get; set; }
+
+    /// <summary>
     /// Unit[0...999] pc p number
     /// </summary>
     public int? PlanNo { get; set; }
@@ -69,16 +79,6 @@ public partial class Pcramp
     /// time of modification
     /// </summary>
     public DateTime? Tom { get; set; }
-
-    /// <summary>
-    /// Unit[0 / 1] ramp volume flow factor from max flow
-    /// </summary>
-    public double? PcRampVolumeInd0 { get; set; }
-
-    /// <summary>
-    /// Unit[0 / 1] ramp volume flow factor from max flow
-    /// </summary>
-    public double? PcRampVolumeInd1 { get; set; }
 
     public virtual Me1 Me1 { get; set; }
 }

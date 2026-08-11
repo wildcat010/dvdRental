@@ -75,7 +75,7 @@ namespace WebHMI.API.Services
                 HmiTrackingData = await _cacheTrackingData.GetOrDefaultAsync(_trackingDataCacheKey),
                 ActualNext = await _cacheActualNext.GetOrDefaultAsync(_trackingDataCacheKey),
                 NextSlabs = await _cacheNextSlabs.GetAsync(_trackingDataCacheKey, async key => await GetNextSlabsCachesAsync()),
-                ActualSequenceId = await context.HmiVActualsequences.Select(x => x.Getcurrentsequence).FirstOrDefaultAsync(),
+                ActualSequenceId = await context.HmiVActualsequences.Select(x => x.GetCurrentSequence).FirstOrDefaultAsync(),
                 ActualHeatId = await context.HmiVActualheats.Select(x => x.GetCurrentHeat).FirstOrDefaultAsync(),
                 //ProducedCoils = await _cacheProducedCoils.GetOrDefaultAsync(_trackingDataCacheKey),
             };

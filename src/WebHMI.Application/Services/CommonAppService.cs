@@ -199,10 +199,10 @@ namespace WebHMI.Services
         public async Task<string> GetActualSequenceId()
         {
             var seq = (await _prdbContext.HmiVActualsequences
-               .Select(x => new { x.Getcurrentsequence })
+               .Select(x => new { x.GetCurrentSequence })
                .FirstOrDefaultAsync());
 
-            return seq.Getcurrentsequence;
+            return seq.GetCurrentSequence ?? "No actual sequence found";
         }
 
         [AbpAuthorize(Permissions.Pages_ProductionSchedule)]

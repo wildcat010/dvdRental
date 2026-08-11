@@ -41,19 +41,9 @@ public partial class EdPhyEnt
     public double? AimSlabThicknessTail { get; set; }
 
     /// <summary>
-    /// bend mode flag from mos
-    /// </summary>
-    public int? BendModeFlag { get; set; }
-
-    /// <summary>
     /// (not used forArvedi) 1=caster 1, 2=caster2
     /// </summary>
     public short? CasterLine { get; set; }
-
-    /// <summary>
-    /// Unit[m] length of coil
-    /// </summary>
-    public double? CoilLength { get; set; }
 
     /// <summary>
     /// Caster slab flag (1= width tapered slab, 2 = thickness tapered flag, 3=both)
@@ -61,14 +51,9 @@ public partial class EdPhyEnt
     public int? FlagCaster { get; set; }
 
     /// <summary>
-    /// (not used for Arvedi) Flag 1=mixed slab
+    /// 1= coil is transition coil
     /// </summary>
-    public int? FlagMixed { get; set; }
-
-    /// <summary>
-    /// (Arvedi not available)  Furnace Number
-    /// </summary>
-    public int? FurnaceNo { get; set; }
+    public int? FlagTransition { get; set; }
 
     /// <summary>
     /// Unit[m] Slab thickness - setpoint
@@ -81,11 +66,6 @@ public partial class EdPhyEnt
     public double? HEntryFm { get; set; }
 
     /// <summary>
-    /// exit thickness ordered by customer
-    /// </summary>
-    public double? HExitCustomer { get; set; }
-
-    /// <summary>
     /// unique heat identificationn
     /// </summary>
     public string HeatId { get; set; }
@@ -96,9 +76,9 @@ public partial class EdPhyEnt
     public string HeatName { get; set; }
 
     /// <summary>
-    /// Sequence identifier from L3
+    /// position of heat in Sequence
     /// </summary>
-    public int? HeatPos { get; set; }
+    public int? HeatPosInSeq { get; set; }
 
     /// <summary>
     /// Entry length FM
@@ -106,9 +86,9 @@ public partial class EdPhyEnt
     public double? LEntryFm { get; set; }
 
     /// <summary>
-    /// Row order identifier from L3
+    /// position of coil in heat
     /// </summary>
-    public int? MatPos { get; set; }
+    public int? MatPosInHeat { get; set; }
 
     /// <summary>
     /// Unit[m] maximum slab length (used as cutting limit)
@@ -149,11 +129,6 @@ public partial class EdPhyEnt
     /// operation flag from L3
     /// </summary>
     public int? OperationFlag { get; set; }
-
-    /// <summary>
-    /// plan identification
-    /// </summary>
-    public string PlanId { get; set; }
 
     /// <summary>
     /// 0 : coil 1: plate production
@@ -216,11 +191,6 @@ public partial class EdPhyEnt
     public double? SlabWidthTail { get; set; }
 
     /// <summary>
-    /// customer steel grade
-    /// </summary>
-    public string SteelCustomer { get; set; }
-
-    /// <summary>
     /// Unit[_C] Slab furnace entry temperature setpoint
     /// </summary>
     public double? TEntry { get; set; }
@@ -229,6 +199,11 @@ public partial class EdPhyEnt
     /// Unit[_C] Transfer bar temperature set point
     /// </summary>
     public double? TEntryFm { get; set; }
+
+    /// <summary>
+    /// Type of transition: 0=grade, 1=thickness, 2=width
+    /// </summary>
+    public int? TransitionType { get; set; }
 
     /// <summary>
     /// Unit[kg/m3] specific weight of material
@@ -249,11 +224,6 @@ public partial class EdPhyEnt
     /// Unit[0, 1] 1 - width change telegram sent to Caster
     /// </summary>
     public short? WidthChangeSent { get; set; }
-
-    /// <summary>
-    /// Unit[m] width exit orderd by customer
-    /// </summary>
-    public double? WidthExitCustomer { get; set; }
 
     /// <summary>
     /// modifying process

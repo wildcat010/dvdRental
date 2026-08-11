@@ -26,11 +26,6 @@ public partial class EdOrdEnt
     public string Source { get; set; }
 
     /// <summary>
-    /// Alloy compensation for thickness
-    /// </summary>
-    public double? AlloyCompensation { get; set; }
-
-    /// <summary>
     /// Amount of bindings circumferential
     /// </summary>
     public short? AmountBindings { get; set; }
@@ -39,6 +34,11 @@ public partial class EdOrdEnt
     /// Amount of bindings radial
     /// </summary>
     public short? AmountBindingsR { get; set; }
+
+    /// <summary>
+    /// bend mode flag from mos
+    /// </summary>
+    public int? BendModeFlag { get; set; }
 
     /// <summary>
     /// Unit[m/s] casting speed
@@ -256,11 +256,6 @@ public partial class EdOrdEnt
     public int? DilatometerCurve { get; set; }
 
     /// <summary>
-    /// Unit[s] time of slab in furnace (if available)
-    /// </summary>
-    public double? Duration { get; set; }
-
-    /// <summary>
     /// Unit[m] 
     /// </summary>
     public double? EdgeMask { get; set; }
@@ -268,17 +263,12 @@ public partial class EdOrdEnt
     /// <summary>
     /// Unit[m] Finished strip crown C25
     /// </summary>
-    public double? ExitCrownC25 { get; set; }
+    public double? ExitCrownC40 { get; set; }
 
     /// <summary>
     /// ( 0 for Arvedi) 0=no ferritic transformation in FM, 2=ferritic transformation between F2 and F3 is required, 3=ferritic transformation between F3 and F4 is required
     /// </summary>
     public short? FerriticRollingMode { get; set; }
-
-    /// <summary>
-    /// whether slab is first in heat
-    /// </summary>
-    public int? FirstInHeat { get; set; }
 
     /// <summary>
     /// 1=alternative thickness is used
@@ -319,11 +309,6 @@ public partial class EdOrdEnt
     /// flag speed change requested from caster 0= no , 1=yes
     /// </summary>
     public int? FlagSpeedReqCas { get; set; }
-
-    /// <summary>
-    /// (Arvedi not available)  stainless steel
-    /// </summary>
-    public int? FlagStainless { get; set; }
 
     /// <summary>
     /// Unit[m] Customer limit for maximum fm exit temp
@@ -371,9 +356,9 @@ public partial class EdOrdEnt
     public double? HExitAlt { get; set; }
 
     /// <summary>
-    /// Finishing strip thickness(only for marking
+    /// exit thickness ordered by customer
     /// </summary>
-    public double? HExitCus { get; set; }
+    public double? HExitCustomer { get; set; }
 
     /// <summary>
     /// thickness after HRM (plate)
@@ -406,24 +391,19 @@ public partial class EdOrdEnt
     public double? HoldTime2 { get; set; }
 
     /// <summary>
-    /// Row order identifier from L3
+    /// Sampling/inspection code
     /// </summary>
-    public int? IdRiga { get; set; }
-
-    /// <summary>
-    /// Sequence identifier from L3
-    /// </summary>
-    public int? IdSeq { get; set; }
+    public int? InspectionCode { get; set; }
 
     /// <summary>
     /// 0: no inspection 1: inspection required
     /// </summary>
-    public int? IncspectionFlag { get; set; }
+    public int? InspectionFlag { get; set; }
 
     /// <summary>
-    /// Sampling/inspection code
+    /// Unit[m] exit length of coil
     /// </summary>
-    public int? InspectionCode { get; set; }
+    public double? LExit { get; set; }
 
     /// <summary>
     /// Unit[m] Slab length setpoint
@@ -456,78 +436,14 @@ public partial class EdOrdEnt
     public int? Ok { get; set; }
 
     /// <summary>
-    /// D or I or U
-    /// </summary>
-    public string OperationFlag { get; set; }
-
-    /// <summary>
     /// Order number for the end customer
     /// </summary>
     public string OrderNo { get; set; }
 
     /// <summary>
-    /// (Arvedi not available)  parent actual material creator (before divide)
-    /// </summary>
-    public string ParentActMeCreator { get; set; }
-
-    /// <summary>
-    /// (Arvedi not available)  parent actual material identification (before divide)
-    /// </summary>
-    public int? ParentActMeId { get; set; }
-
-    /// <summary>
-    /// (Arvedi not available) parent actual material workstep (before divide)
-    /// </summary>
-    public short? ParentActMesId { get; set; }
-
-    /// <summary>
-    /// (Arvedi not available) parent basis id (before divide)
-    /// </summary>
-    public short? ParentBasId { get; set; }
-
-    /// <summary>
-    /// (Arvedi not available)parent external material identification (before divide)
-    /// </summary>
-    public string ParentExtId { get; set; }
-
-    /// <summary>
-    /// (Arvedi not available)parent material typ (before divide)
-    /// </summary>
-    public string ParentMeTyp { get; set; }
-
-    /// <summary>
-    /// (Arvedi not available)parent original material creator (before divide)
-    /// </summary>
-    public string ParentOriMeCreator { get; set; }
-
-    /// <summary>
-    /// (Arvedi not available)parent original material identification (before divide)
-    /// </summary>
-    public int? ParentOriMeId { get; set; }
-
-    /// <summary>
-    /// (Arvedi not available)parent original workstep (before divide)
-    /// </summary>
-    public short? ParentOriMesId { get; set; }
-
-    /// <summary>
-    /// part number of material
-    /// </summary>
-    public int? PartNum { get; set; }
-
-    /// <summary>
-    /// Unit[%] (Arvedi not available)percent of slab length planned for the first strip
-    /// </summary>
-    public double? PlannedDivision { get; set; }
-
-    public string ProdType { get; set; }
-
-    public string ProductionOrderId { get; set; }
-
-    /// <summary>
     /// target profile for HRM exit, 1 = 1prz
     /// </summary>
-    public double? RMtargProfile { get; set; }
+    public double? RmTargProfile { get; set; }
 
     /// <summary>
     /// Cooling Section: Valve to be switched lower side (1st cooling phase)
@@ -558,11 +474,6 @@ public partial class EdOrdEnt
     /// Cooling Section: Valve to be switched upper side (3rd cooling phase)
     /// </summary>
     public short? StartValveTop3 { get; set; }
-
-    /// <summary>
-    /// Steel grade customer (only for marking
-    /// </summary>
-    public string SteelCus { get; set; }
 
     /// <summary>
     /// Unit[_C] Classif. max. strip temperature delta
@@ -600,321 +511,6 @@ public partial class EdOrdEnt
     public double? TExitCaster { get; set; }
 
     /// <summary>
-    /// Unit[_C] calculated head temperature at position X
-    /// </summary>
-    public double? THeadXInd00 { get; set; }
-
-    /// <summary>
-    /// Unit[_C] calculated head temperature at position X
-    /// </summary>
-    public double? THeadXInd01 { get; set; }
-
-    /// <summary>
-    /// Unit[_C] calculated head temperature at position X
-    /// </summary>
-    public double? THeadXInd02 { get; set; }
-
-    /// <summary>
-    /// Unit[_C] calculated head temperature at position X
-    /// </summary>
-    public double? THeadXInd03 { get; set; }
-
-    /// <summary>
-    /// Unit[_C] calculated head temperature at position X
-    /// </summary>
-    public double? THeadXInd04 { get; set; }
-
-    /// <summary>
-    /// Unit[_C] calculated head temperature at position X
-    /// </summary>
-    public double? THeadXInd05 { get; set; }
-
-    /// <summary>
-    /// Unit[_C] calculated head temperature at position X
-    /// </summary>
-    public double? THeadXInd06 { get; set; }
-
-    /// <summary>
-    /// Unit[_C] calculated head temperature at position X
-    /// </summary>
-    public double? THeadXInd07 { get; set; }
-
-    /// <summary>
-    /// Unit[_C] calculated head temperature at position X
-    /// </summary>
-    public double? THeadXInd08 { get; set; }
-
-    /// <summary>
-    /// Unit[_C] calculated head temperature at position X
-    /// </summary>
-    public double? THeadXInd09 { get; set; }
-
-    /// <summary>
-    /// Unit[_C] calculated head temperature at position X
-    /// </summary>
-    public double? THeadXInd10 { get; set; }
-
-    /// <summary>
-    /// Unit[_C] calculated head temperature at position X
-    /// </summary>
-    public double? THeadXInd11 { get; set; }
-
-    /// <summary>
-    /// Unit[_C] calculated head temperature at position X
-    /// </summary>
-    public double? THeadXInd12 { get; set; }
-
-    /// <summary>
-    /// Unit[_C] calculated head temperature at position X
-    /// </summary>
-    public double? THeadXInd13 { get; set; }
-
-    /// <summary>
-    /// Unit[_C] calculated head temperature at position X
-    /// </summary>
-    public double? THeadXInd14 { get; set; }
-
-    /// <summary>
-    /// Unit[_C] calculated head temperature at position X
-    /// </summary>
-    public double? THeadXInd15 { get; set; }
-
-    /// <summary>
-    /// Unit[_C] calculated head temperature at position X
-    /// </summary>
-    public double? THeadXInd16 { get; set; }
-
-    /// <summary>
-    /// Unit[_C] calculated head temperature at position X
-    /// </summary>
-    public double? THeadXInd17 { get; set; }
-
-    /// <summary>
-    /// Unit[_C] calculated head temperature at position X
-    /// </summary>
-    public double? THeadXInd18 { get; set; }
-
-    /// <summary>
-    /// Unit[_C] calculated head temperature at position X
-    /// </summary>
-    public double? THeadXInd19 { get; set; }
-
-    /// <summary>
-    /// Unit[_C] calculated head temperature at position X
-    /// </summary>
-    public double? THeadXInd20 { get; set; }
-
-    /// <summary>
-    /// Unit[%] Thickness coordinate (Head) for tHeadX
-    /// </summary>
-    public double? TPosHeadXInd00 { get; set; }
-
-    /// <summary>
-    /// Unit[%] Thickness coordinate (Head) for tHeadX
-    /// </summary>
-    public double? TPosHeadXInd01 { get; set; }
-
-    /// <summary>
-    /// Unit[%] Thickness coordinate (Head) for tHeadX
-    /// </summary>
-    public double? TPosHeadXInd02 { get; set; }
-
-    /// <summary>
-    /// Unit[%] Thickness coordinate (Head) for tHeadX
-    /// </summary>
-    public double? TPosHeadXInd03 { get; set; }
-
-    /// <summary>
-    /// Unit[%] Thickness coordinate (Head) for tHeadX
-    /// </summary>
-    public double? TPosHeadXInd04 { get; set; }
-
-    /// <summary>
-    /// Unit[%] Thickness coordinate (Head) for tHeadX
-    /// </summary>
-    public double? TPosHeadXInd05 { get; set; }
-
-    /// <summary>
-    /// Unit[%] Thickness coordinate (Head) for tHeadX
-    /// </summary>
-    public double? TPosHeadXInd06 { get; set; }
-
-    /// <summary>
-    /// Unit[%] Thickness coordinate (Head) for tHeadX
-    /// </summary>
-    public double? TPosHeadXInd07 { get; set; }
-
-    /// <summary>
-    /// Unit[%] Thickness coordinate (Head) for tHeadX
-    /// </summary>
-    public double? TPosHeadXInd08 { get; set; }
-
-    /// <summary>
-    /// Unit[%] Thickness coordinate (Head) for tHeadX
-    /// </summary>
-    public double? TPosHeadXInd09 { get; set; }
-
-    /// <summary>
-    /// Unit[%] Thickness coordinate (Head) for tHeadX
-    /// </summary>
-    public double? TPosHeadXInd10 { get; set; }
-
-    /// <summary>
-    /// Unit[%] Thickness coordinate (Head) for tHeadX
-    /// </summary>
-    public double? TPosHeadXInd11 { get; set; }
-
-    /// <summary>
-    /// Unit[%] Thickness coordinate (Head) for tHeadX
-    /// </summary>
-    public double? TPosHeadXInd12 { get; set; }
-
-    /// <summary>
-    /// Unit[%] Thickness coordinate (Head) for tHeadX
-    /// </summary>
-    public double? TPosHeadXInd13 { get; set; }
-
-    /// <summary>
-    /// Unit[%] Thickness coordinate (Head) for tHeadX
-    /// </summary>
-    public double? TPosHeadXInd14 { get; set; }
-
-    /// <summary>
-    /// Unit[%] Thickness coordinate (Head) for tHeadX
-    /// </summary>
-    public double? TPosHeadXInd15 { get; set; }
-
-    /// <summary>
-    /// Unit[%] Thickness coordinate (Head) for tHeadX
-    /// </summary>
-    public double? TPosHeadXInd16 { get; set; }
-
-    /// <summary>
-    /// Unit[%] Thickness coordinate (Head) for tHeadX
-    /// </summary>
-    public double? TPosHeadXInd17 { get; set; }
-
-    /// <summary>
-    /// Unit[%] Thickness coordinate (Head) for tHeadX
-    /// </summary>
-    public double? TPosHeadXInd18 { get; set; }
-
-    /// <summary>
-    /// Unit[%] Thickness coordinate (Head) for tHeadX
-    /// </summary>
-    public double? TPosHeadXInd19 { get; set; }
-
-    /// <summary>
-    /// Unit[%] Thickness coordinate (Head) for tHeadX
-    /// </summary>
-    public double? TPosHeadXInd20 { get; set; }
-
-    /// <summary>
-    /// Unit[%] Thickness coordinate for tX (starting with 0 for top  surfac e temperature, ending with 100 for bottom surface temperature)
-    /// </summary>
-    public double? TPosXInd00 { get; set; }
-
-    /// <summary>
-    /// Unit[%] Thickness coordinate for tX (starting with 0 for top  surfac e temperature, ending with 100 for bottom surface temperature)
-    /// </summary>
-    public double? TPosXInd01 { get; set; }
-
-    /// <summary>
-    /// Unit[%] Thickness coordinate for tX (starting with 0 for top  surfac e temperature, ending with 100 for bottom surface temperature)
-    /// </summary>
-    public double? TPosXInd02 { get; set; }
-
-    /// <summary>
-    /// Unit[%] Thickness coordinate for tX (starting with 0 for top  surfac e temperature, ending with 100 for bottom surface temperature)
-    /// </summary>
-    public double? TPosXInd03 { get; set; }
-
-    /// <summary>
-    /// Unit[%] Thickness coordinate for tX (starting with 0 for top  surfac e temperature, ending with 100 for bottom surface temperature)
-    /// </summary>
-    public double? TPosXInd04 { get; set; }
-
-    /// <summary>
-    /// Unit[%] Thickness coordinate for tX (starting with 0 for top  surfac e temperature, ending with 100 for bottom surface temperature)
-    /// </summary>
-    public double? TPosXInd05 { get; set; }
-
-    /// <summary>
-    /// Unit[%] Thickness coordinate for tX (starting with 0 for top  surfac e temperature, ending with 100 for bottom surface temperature)
-    /// </summary>
-    public double? TPosXInd06 { get; set; }
-
-    /// <summary>
-    /// Unit[%] Thickness coordinate for tX (starting with 0 for top  surfac e temperature, ending with 100 for bottom surface temperature)
-    /// </summary>
-    public double? TPosXInd07 { get; set; }
-
-    /// <summary>
-    /// Unit[%] Thickness coordinate for tX (starting with 0 for top  surfac e temperature, ending with 100 for bottom surface temperature)
-    /// </summary>
-    public double? TPosXInd08 { get; set; }
-
-    /// <summary>
-    /// Unit[%] Thickness coordinate for tX (starting with 0 for top  surfac e temperature, ending with 100 for bottom surface temperature)
-    /// </summary>
-    public double? TPosXInd09 { get; set; }
-
-    /// <summary>
-    /// Unit[%] Thickness coordinate for tX (starting with 0 for top  surfac e temperature, ending with 100 for bottom surface temperature)
-    /// </summary>
-    public double? TPosXInd10 { get; set; }
-
-    /// <summary>
-    /// Unit[%] Thickness coordinate for tX (starting with 0 for top  surfac e temperature, ending with 100 for bottom surface temperature)
-    /// </summary>
-    public double? TPosXInd11 { get; set; }
-
-    /// <summary>
-    /// Unit[%] Thickness coordinate for tX (starting with 0 for top  surfac e temperature, ending with 100 for bottom surface temperature)
-    /// </summary>
-    public double? TPosXInd12 { get; set; }
-
-    /// <summary>
-    /// Unit[%] Thickness coordinate for tX (starting with 0 for top  surfac e temperature, ending with 100 for bottom surface temperature)
-    /// </summary>
-    public double? TPosXInd13 { get; set; }
-
-    /// <summary>
-    /// Unit[%] Thickness coordinate for tX (starting with 0 for top  surfac e temperature, ending with 100 for bottom surface temperature)
-    /// </summary>
-    public double? TPosXInd14 { get; set; }
-
-    /// <summary>
-    /// Unit[%] Thickness coordinate for tX (starting with 0 for top  surfac e temperature, ending with 100 for bottom surface temperature)
-    /// </summary>
-    public double? TPosXInd15 { get; set; }
-
-    /// <summary>
-    /// Unit[%] Thickness coordinate for tX (starting with 0 for top  surfac e temperature, ending with 100 for bottom surface temperature)
-    /// </summary>
-    public double? TPosXInd16 { get; set; }
-
-    /// <summary>
-    /// Unit[%] Thickness coordinate for tX (starting with 0 for top  surfac e temperature, ending with 100 for bottom surface temperature)
-    /// </summary>
-    public double? TPosXInd17 { get; set; }
-
-    /// <summary>
-    /// Unit[%] Thickness coordinate for tX (starting with 0 for top  surfac e temperature, ending with 100 for bottom surface temperature)
-    /// </summary>
-    public double? TPosXInd18 { get; set; }
-
-    /// <summary>
-    /// Unit[%] Thickness coordinate for tX (starting with 0 for top  surfac e temperature, ending with 100 for bottom surface temperature)
-    /// </summary>
-    public double? TPosXInd19 { get; set; }
-
-    /// <summary>
-    /// Unit[%] Thickness coordinate for tX (starting with 0 for top  surfac e temperature, ending with 100 for bottom surface temperature)
-    /// </summary>
-    public double? TPosXInd20 { get; set; }
-
-    /// <summary>
     /// Unit[_C] measured slab temperature
     /// </summary>
     public double? TSlab { get; set; }
@@ -928,111 +524,6 @@ public partial class EdOrdEnt
     /// Unit[_C] ( not used for Arvedi) target temperature where the conversion starts ferritic rolling
     /// </summary>
     public double? TTemperatureFeStart { get; set; }
-
-    /// <summary>
-    /// Unit[_C] calculated temperature at position X
-    /// </summary>
-    public double? TXInd00 { get; set; }
-
-    /// <summary>
-    /// Unit[_C] calculated temperature at position X
-    /// </summary>
-    public double? TXInd01 { get; set; }
-
-    /// <summary>
-    /// Unit[_C] calculated temperature at position X
-    /// </summary>
-    public double? TXInd02 { get; set; }
-
-    /// <summary>
-    /// Unit[_C] calculated temperature at position X
-    /// </summary>
-    public double? TXInd03 { get; set; }
-
-    /// <summary>
-    /// Unit[_C] calculated temperature at position X
-    /// </summary>
-    public double? TXInd04 { get; set; }
-
-    /// <summary>
-    /// Unit[_C] calculated temperature at position X
-    /// </summary>
-    public double? TXInd05 { get; set; }
-
-    /// <summary>
-    /// Unit[_C] calculated temperature at position X
-    /// </summary>
-    public double? TXInd06 { get; set; }
-
-    /// <summary>
-    /// Unit[_C] calculated temperature at position X
-    /// </summary>
-    public double? TXInd07 { get; set; }
-
-    /// <summary>
-    /// Unit[_C] calculated temperature at position X
-    /// </summary>
-    public double? TXInd08 { get; set; }
-
-    /// <summary>
-    /// Unit[_C] calculated temperature at position X
-    /// </summary>
-    public double? TXInd09 { get; set; }
-
-    /// <summary>
-    /// Unit[_C] calculated temperature at position X
-    /// </summary>
-    public double? TXInd10 { get; set; }
-
-    /// <summary>
-    /// Unit[_C] calculated temperature at position X
-    /// </summary>
-    public double? TXInd11 { get; set; }
-
-    /// <summary>
-    /// Unit[_C] calculated temperature at position X
-    /// </summary>
-    public double? TXInd12 { get; set; }
-
-    /// <summary>
-    /// Unit[_C] calculated temperature at position X
-    /// </summary>
-    public double? TXInd13 { get; set; }
-
-    /// <summary>
-    /// Unit[_C] calculated temperature at position X
-    /// </summary>
-    public double? TXInd14 { get; set; }
-
-    /// <summary>
-    /// Unit[_C] calculated temperature at position X
-    /// </summary>
-    public double? TXInd15 { get; set; }
-
-    /// <summary>
-    /// Unit[_C] calculated temperature at position X
-    /// </summary>
-    public double? TXInd16 { get; set; }
-
-    /// <summary>
-    /// Unit[_C] calculated temperature at position X
-    /// </summary>
-    public double? TXInd17 { get; set; }
-
-    /// <summary>
-    /// Unit[_C] calculated temperature at position X
-    /// </summary>
-    public double? TXInd18 { get; set; }
-
-    /// <summary>
-    /// Unit[_C] calculated temperature at position X
-    /// </summary>
-    public double? TXInd19 { get; set; }
-
-    /// <summary>
-    /// Unit[_C] calculated temperature at position X
-    /// </summary>
-    public double? TXInd20 { get; set; }
 
     /// <summary>
     /// finished strip target flatness
@@ -1085,9 +576,9 @@ public partial class EdOrdEnt
     public double? WidthExit { get; set; }
 
     /// <summary>
-    /// Finishing strip width (only for marking device)
+    /// Unit[m] width exit orderd by customer
     /// </summary>
-    public double? WidthExitCus { get; set; }
+    public double? WidthExitCustomer { get; set; }
 
     /// <summary>
     /// Unit[m] Customer limit for maximum width

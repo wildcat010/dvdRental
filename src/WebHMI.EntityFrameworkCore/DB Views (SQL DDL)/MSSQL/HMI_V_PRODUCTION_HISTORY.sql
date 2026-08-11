@@ -1,24 +1,36 @@
-USE [PRDB]
-GO
-
-/****** Object:  View [PRDB].[HMI_V_PRODUCTION_HISTORY]    Script Date: 7/27/2026 11:23:15 AM ******/
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
-GO
-
-CREATE VIEW [PRDB].[HMI_V_PRODUCTION_HISTORY]
-AS
-SELECT     PRDB.ProdDataCore.meId, PRDB.ProdDataCore.coilId, PRDB.ProdDataCore.slabId, PRDB.ProdDataCore.seqId AS SequenceId, PRDB.ProdDataCore.heatId1, PRDB.EdOrdEnt.flagBatchRolling, PRDB.EdLogEnt.alloyCode, PRDB.ProdDataCore.prodStart, PRDB.ProdDataCore.prodEnd, 
-                  PRDB.ProdDataCore.wExit, PRDB.ProdDataCore.wExitAver, PRDB.ProdDataCore.wExitMin, PRDB.ProdDataCore.wExitMax, PRDB.ProdDataCore.hExit, PRDB.ProdDataCore.hExitAver, PRDB.ProdDataCore.hExitMin, PRDB.ProdDataCore.hExitMax, PRDB.ProdDataCore.tExitCS, 
-                  PRDB.ProdDataCore.tExitCsAver, PRDB.ProdDataCore.tExitCsMin, PRDB.ProdDataCore.tExitCsMax, PRDB.ProdDataCore.coilLengthX, PRDB.Me.meCreator AS EnOrCreator, PRDB.Me.meId AS EnOrMeid, PRDB.Me.status AS EnOrStatus, PRDB.Me.extId AS EnOrExitId, 
-                  PRDB.Me.meTyp AS EnOrMeType, PRDB.Me.curMesId AS EnOrCurMesId
-FROM        PRDB.ProdDataCore INNER JOIN
-                  PRDB.Me AS meLo ON meLo.extId = PRDB.ProdDataCore.coilId AND meLo.meTyp = 'LO' INNER JOIN
-                  PRDB.Me ON PRDB.ProdDataCore.meId = PRDB.Me.meId LEFT OUTER JOIN
-                  PRDB.EdLogEnt ON PRDB.EdLogEnt.meId = meLo.meId AND PRDB.EdLogEnt.source = 'E' LEFT OUTER JOIN
-                  PRDB.EdOrdEnt ON PRDB.EdOrdEnt.meId = PRDB.ProdDataCore.meId AND PRDB.EdOrdEnt.source = 'E'
-GO
-
-
+CREATE OR ALTER VIEW HMI_V_PRODUCTION_HISTORY AS 
+SELECT 
+PRODDATACORE.Meid as MeId,
+PRODDATACORE.CoilId,
+PRODDATACORE.SlabId,
+PRODDATACORE.Seqid as SequenceId,
+PRODDATACORE.HeatId1,
+EdOrdEnt.FLAGBATCHROLLING as FlagBatchRolling,
+EdLogEnt.ALLOYCODE as AlloyCode,
+PRODDATACORE.PRODSTART as ProdStart,
+PRODDATACORE.prodEnd as ProdEnd, 
+PRODDATACORE.wExit,
+PRODDATACORE.wExitAver,
+PRODDATACORE.wExitMin,
+PRODDATACORE.wExitMax,
+PRODDATACORE.hExit,
+PRODDATACORE.hExitAver,
+PRODDATACORE.hExitMin,
+PRODDATACORE.hExitMax,
+PRODDATACORE.tExitCS,
+PRODDATACORE.tExitCSAver as TExitCsAver,
+PRODDATACORE.tExitCSMin as TExitCsMin,
+PRODDATACORE.tExitCSMax as TExitCsMax,
+PRODDATACORE.coilLengthX,
+meOr.meId as EnOrMeId,
+meOr.meTyp as EnOrMeType,
+meOr.status as EnOrStatus,
+meOr.extId as EnOrExitId,
+meOr.curMesId as EnOrCurMesId,
+meOr.meCreator as EnOrCreator
+FROM 
+PRDB.PRODDATACORE
+inner join PRDB.ME meLo on melo.ExtId = PRODDATACORE.CoilId and meLo.meTyp = 'LO'
+inner join PRDB.ME meOR on meOr.meId = PRODDATACORE.Meid 
+left join PRDB.EDLOGENT on EDLOGENT.Meid = meLo.MEID and EDLOGENT.Source = 'E'
+left join PRDB.Edordent on Edordent.Meid = PRODDATACORE.MEID and Edordent.Source = 'E'

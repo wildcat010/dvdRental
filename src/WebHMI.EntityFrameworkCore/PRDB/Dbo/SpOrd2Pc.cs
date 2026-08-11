@@ -81,6 +81,166 @@ public partial class SpOrd2Pc
     public double? CsAustenite { get; set; }
 
     /// <summary>
+    /// CS: bottom valve volume flow (0/1)
+    /// </summary>
+    public short? CsBotValveInd00 { get; set; }
+
+    /// <summary>
+    /// CS: bottom valve volume flow (0/1)
+    /// </summary>
+    public short? CsBotValveInd01 { get; set; }
+
+    /// <summary>
+    /// CS: bottom valve volume flow (0/1)
+    /// </summary>
+    public short? CsBotValveInd02 { get; set; }
+
+    /// <summary>
+    /// CS: bottom valve volume flow (0/1)
+    /// </summary>
+    public short? CsBotValveInd03 { get; set; }
+
+    /// <summary>
+    /// CS: bottom valve volume flow (0/1)
+    /// </summary>
+    public short? CsBotValveInd04 { get; set; }
+
+    /// <summary>
+    /// CS: bottom valve volume flow (0/1)
+    /// </summary>
+    public short? CsBotValveInd05 { get; set; }
+
+    /// <summary>
+    /// CS: bottom valve volume flow (0/1)
+    /// </summary>
+    public short? CsBotValveInd06 { get; set; }
+
+    /// <summary>
+    /// CS: bottom valve volume flow (0/1)
+    /// </summary>
+    public short? CsBotValveInd07 { get; set; }
+
+    /// <summary>
+    /// CS: bottom valve volume flow (0/1)
+    /// </summary>
+    public short? CsBotValveInd08 { get; set; }
+
+    /// <summary>
+    /// CS: bottom valve volume flow (0/1)
+    /// </summary>
+    public short? CsBotValveInd09 { get; set; }
+
+    /// <summary>
+    /// CS: bottom valve volume flow (0/1)
+    /// </summary>
+    public short? CsBotValveInd10 { get; set; }
+
+    /// <summary>
+    /// CS: bottom valve volume flow (0/1)
+    /// </summary>
+    public short? CsBotValveInd11 { get; set; }
+
+    /// <summary>
+    /// CS: bottom valve volume flow (0/1)
+    /// </summary>
+    public short? CsBotValveInd12 { get; set; }
+
+    /// <summary>
+    /// CS: bottom valve volume flow (0/1)
+    /// </summary>
+    public short? CsBotValveInd13 { get; set; }
+
+    /// <summary>
+    /// CS: bottom valve volume flow (0/1)
+    /// </summary>
+    public short? CsBotValveInd14 { get; set; }
+
+    /// <summary>
+    /// CS: bottom valve volume flow (0/1)
+    /// </summary>
+    public short? CsBotValveInd15 { get; set; }
+
+    /// <summary>
+    /// CS: bottom valve volume flow (0/1)
+    /// </summary>
+    public short? CsBotValveInd16 { get; set; }
+
+    /// <summary>
+    /// CS: bottom valve volume flow (0/1)
+    /// </summary>
+    public short? CsBotValveInd17 { get; set; }
+
+    /// <summary>
+    /// CS: bottom valve volume flow (0/1)
+    /// </summary>
+    public short? CsBotValveInd18 { get; set; }
+
+    /// <summary>
+    /// CS: bottom valve volume flow (0/1)
+    /// </summary>
+    public short? CsBotValveInd19 { get; set; }
+
+    /// <summary>
+    /// CS: bottom valve volume flow (0/1)
+    /// </summary>
+    public short? CsBotValveInd20 { get; set; }
+
+    /// <summary>
+    /// CS: bottom valve volume flow (0/1)
+    /// </summary>
+    public short? CsBotValveInd21 { get; set; }
+
+    /// <summary>
+    /// CS: bottom valve volume flow (0/1)
+    /// </summary>
+    public short? CsBotValveInd22 { get; set; }
+
+    /// <summary>
+    /// CS: bottom valve volume flow (0/1)
+    /// </summary>
+    public short? CsBotValveInd23 { get; set; }
+
+    /// <summary>
+    /// CS: bottom valve volume flow (0/1)
+    /// </summary>
+    public short? CsBotValveInd24 { get; set; }
+
+    /// <summary>
+    /// CS: bottom valve volume flow (0/1)
+    /// </summary>
+    public short? CsBotValveInd25 { get; set; }
+
+    /// <summary>
+    /// CS: bottom valve volume flow (0/1)
+    /// </summary>
+    public short? CsBotValveInd26 { get; set; }
+
+    /// <summary>
+    /// CS: bottom valve volume flow (0/1)
+    /// </summary>
+    public short? CsBotValveInd27 { get; set; }
+
+    /// <summary>
+    /// CS: bottom valve volume flow (0/1)
+    /// </summary>
+    public short? CsBotValveInd28 { get; set; }
+
+    /// <summary>
+    /// CS: bottom valve volume flow (0/1)
+    /// </summary>
+    public short? CsBotValveInd29 { get; set; }
+
+    /// <summary>
+    /// CS: bottom valve volume flow (0/1)
+    /// </summary>
+    public short? CsBotValveInd30 { get; set; }
+
+    /// <summary>
+    /// CS: bottom valve volume flow (0/1)
+    /// </summary>
+    public short? CsBotValveInd31 { get; set; }
+
+    /// <summary>
     /// Unit[%] CS:  percentage of cementite
     /// </summary>
     public double? CsCementite { get; set; }
@@ -389,6 +549,166 @@ public partial class SpOrd2Pc
     /// CS: correction offset for coiling temperature
     /// </summary>
     public double? CsTempOffsetInd2 { get; set; }
+
+    /// <summary>
+    /// CS: top valve volume flow (0/1)
+    /// </summary>
+    public short? CsTopValveInd00 { get; set; }
+
+    /// <summary>
+    /// CS: top valve volume flow (0/1)
+    /// </summary>
+    public short? CsTopValveInd01 { get; set; }
+
+    /// <summary>
+    /// CS: top valve volume flow (0/1)
+    /// </summary>
+    public short? CsTopValveInd02 { get; set; }
+
+    /// <summary>
+    /// CS: top valve volume flow (0/1)
+    /// </summary>
+    public short? CsTopValveInd03 { get; set; }
+
+    /// <summary>
+    /// CS: top valve volume flow (0/1)
+    /// </summary>
+    public short? CsTopValveInd04 { get; set; }
+
+    /// <summary>
+    /// CS: top valve volume flow (0/1)
+    /// </summary>
+    public short? CsTopValveInd05 { get; set; }
+
+    /// <summary>
+    /// CS: top valve volume flow (0/1)
+    /// </summary>
+    public short? CsTopValveInd06 { get; set; }
+
+    /// <summary>
+    /// CS: top valve volume flow (0/1)
+    /// </summary>
+    public short? CsTopValveInd07 { get; set; }
+
+    /// <summary>
+    /// CS: top valve volume flow (0/1)
+    /// </summary>
+    public short? CsTopValveInd08 { get; set; }
+
+    /// <summary>
+    /// CS: top valve volume flow (0/1)
+    /// </summary>
+    public short? CsTopValveInd09 { get; set; }
+
+    /// <summary>
+    /// CS: top valve volume flow (0/1)
+    /// </summary>
+    public short? CsTopValveInd10 { get; set; }
+
+    /// <summary>
+    /// CS: top valve volume flow (0/1)
+    /// </summary>
+    public short? CsTopValveInd11 { get; set; }
+
+    /// <summary>
+    /// CS: top valve volume flow (0/1)
+    /// </summary>
+    public short? CsTopValveInd12 { get; set; }
+
+    /// <summary>
+    /// CS: top valve volume flow (0/1)
+    /// </summary>
+    public short? CsTopValveInd13 { get; set; }
+
+    /// <summary>
+    /// CS: top valve volume flow (0/1)
+    /// </summary>
+    public short? CsTopValveInd14 { get; set; }
+
+    /// <summary>
+    /// CS: top valve volume flow (0/1)
+    /// </summary>
+    public short? CsTopValveInd15 { get; set; }
+
+    /// <summary>
+    /// CS: top valve volume flow (0/1)
+    /// </summary>
+    public short? CsTopValveInd16 { get; set; }
+
+    /// <summary>
+    /// CS: top valve volume flow (0/1)
+    /// </summary>
+    public short? CsTopValveInd17 { get; set; }
+
+    /// <summary>
+    /// CS: top valve volume flow (0/1)
+    /// </summary>
+    public short? CsTopValveInd18 { get; set; }
+
+    /// <summary>
+    /// CS: top valve volume flow (0/1)
+    /// </summary>
+    public short? CsTopValveInd19 { get; set; }
+
+    /// <summary>
+    /// CS: top valve volume flow (0/1)
+    /// </summary>
+    public short? CsTopValveInd20 { get; set; }
+
+    /// <summary>
+    /// CS: top valve volume flow (0/1)
+    /// </summary>
+    public short? CsTopValveInd21 { get; set; }
+
+    /// <summary>
+    /// CS: top valve volume flow (0/1)
+    /// </summary>
+    public short? CsTopValveInd22 { get; set; }
+
+    /// <summary>
+    /// CS: top valve volume flow (0/1)
+    /// </summary>
+    public short? CsTopValveInd23 { get; set; }
+
+    /// <summary>
+    /// CS: top valve volume flow (0/1)
+    /// </summary>
+    public short? CsTopValveInd24 { get; set; }
+
+    /// <summary>
+    /// CS: top valve volume flow (0/1)
+    /// </summary>
+    public short? CsTopValveInd25 { get; set; }
+
+    /// <summary>
+    /// CS: top valve volume flow (0/1)
+    /// </summary>
+    public short? CsTopValveInd26 { get; set; }
+
+    /// <summary>
+    /// CS: top valve volume flow (0/1)
+    /// </summary>
+    public short? CsTopValveInd27 { get; set; }
+
+    /// <summary>
+    /// CS: top valve volume flow (0/1)
+    /// </summary>
+    public short? CsTopValveInd28 { get; set; }
+
+    /// <summary>
+    /// CS: top valve volume flow (0/1)
+    /// </summary>
+    public short? CsTopValveInd29 { get; set; }
+
+    /// <summary>
+    /// CS: top valve volume flow (0/1)
+    /// </summary>
+    public short? CsTopValveInd30 { get; set; }
+
+    /// <summary>
+    /// CS: top valve volume flow (0/1)
+    /// </summary>
+    public short? CsTopValveInd31 { get; set; }
 
     /// <summary>
     /// Unit[m] CS uncooled head length
@@ -824,6 +1144,8 @@ public partial class SpOrd2Pc
     /// enco panel 4 (0 - open, 1- closed)
     /// </summary>
     public short? EncoPanel4 { get; set; }
+
+    public short? FccCoolBlocked { get; set; }
 
     /// <summary>
     /// flatness curve number default=0
@@ -1550,6 +1872,16 @@ public partial class SpOrd2Pc
     public string SptlFaultCs { get; set; }
 
     /// <summary>
+    /// ONLY FOR HMI: additional information from MOS-FM
+    /// </summary>
+    public string SptlFaultHfm { get; set; }
+
+    /// <summary>
+    /// ONLY FOR HMI: additional information from MOS-RM
+    /// </summary>
+    public string SptlFaultHrm { get; set; }
+
+    /// <summary>
     /// standNo, from which speed down is driven
     /// </summary>
     public double? StandNoStartSpeedDown { get; set; }
@@ -1663,6 +1995,406 @@ public partial class SpOrd2Pc
     /// Unit[m/s2] temperature speed up value
     /// </summary>
     public double? TSuValue { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd00 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd01 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd02 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd03 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd04 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd05 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd06 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd07 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd08 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd09 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd10 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd11 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd12 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd13 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd14 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd15 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd16 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd17 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd18 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd19 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd20 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd21 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd22 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd23 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd24 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd25 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd26 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd27 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd28 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd29 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd30 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd31 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd32 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd33 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd34 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd35 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd36 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd37 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd38 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd39 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd40 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd41 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd42 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd43 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd44 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd45 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd46 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd47 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd48 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd49 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd50 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd51 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd52 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd53 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd54 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd55 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd56 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd57 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd58 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd59 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd60 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd61 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd62 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd63 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd64 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd65 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd66 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd67 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd68 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd69 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd70 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd71 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd72 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd73 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd74 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd75 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd76 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd77 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd78 { get; set; }
+
+    /// <summary>
+    /// Unit[IU] target flatness curve for L1 for MZC
+    /// </summary>
+    public double? TargetFlatnessCurveInd79 { get; set; }
 
     /// <summary>
     /// Unit[m/s] target speed for speed change 1  (after tail cut)
@@ -1882,138 +2614,6 @@ public partial class SpOrd2Pc
     /// time of modification
     /// </summary>
     public DateTime? Tom { get; set; }
-
-    public short? CsBotValveInd00 { get; set; }
-
-    public short? CsBotValveInd01 { get; set; }
-
-    public short? CsBotValveInd02 { get; set; }
-
-    public short? CsBotValveInd03 { get; set; }
-
-    public short? CsBotValveInd04 { get; set; }
-
-    public short? CsBotValveInd05 { get; set; }
-
-    public short? CsBotValveInd06 { get; set; }
-
-    public short? CsBotValveInd07 { get; set; }
-
-    public short? CsBotValveInd08 { get; set; }
-
-    public short? CsBotValveInd09 { get; set; }
-
-    public short? CsBotValveInd10 { get; set; }
-
-    public short? CsBotValveInd11 { get; set; }
-
-    public short? CsBotValveInd12 { get; set; }
-
-    public short? CsBotValveInd13 { get; set; }
-
-    public short? CsBotValveInd14 { get; set; }
-
-    public short? CsBotValveInd15 { get; set; }
-
-    public short? CsBotValveInd16 { get; set; }
-
-    public short? CsBotValveInd17 { get; set; }
-
-    public short? CsBotValveInd18 { get; set; }
-
-    public short? CsBotValveInd19 { get; set; }
-
-    public short? CsBotValveInd20 { get; set; }
-
-    public short? CsBotValveInd21 { get; set; }
-
-    public short? CsBotValveInd22 { get; set; }
-
-    public short? CsBotValveInd23 { get; set; }
-
-    public short? CsBotValveInd24 { get; set; }
-
-    public short? CsBotValveInd25 { get; set; }
-
-    public short? CsBotValveInd26 { get; set; }
-
-    public short? CsBotValveInd27 { get; set; }
-
-    public short? CsBotValveInd28 { get; set; }
-
-    public short? CsBotValveInd29 { get; set; }
-
-    public short? CsBotValveInd30 { get; set; }
-
-    public short? CsBotValveInd31 { get; set; }
-
-    public short? CsTopValveInd00 { get; set; }
-
-    public short? CsTopValveInd01 { get; set; }
-
-    public short? CsTopValveInd02 { get; set; }
-
-    public short? CsTopValveInd03 { get; set; }
-
-    public short? CsTopValveInd04 { get; set; }
-
-    public short? CsTopValveInd05 { get; set; }
-
-    public short? CsTopValveInd06 { get; set; }
-
-    public short? CsTopValveInd07 { get; set; }
-
-    public short? CsTopValveInd08 { get; set; }
-
-    public short? CsTopValveInd09 { get; set; }
-
-    public short? CsTopValveInd10 { get; set; }
-
-    public short? CsTopValveInd11 { get; set; }
-
-    public short? CsTopValveInd12 { get; set; }
-
-    public short? CsTopValveInd13 { get; set; }
-
-    public short? CsTopValveInd14 { get; set; }
-
-    public short? CsTopValveInd15 { get; set; }
-
-    public short? CsTopValveInd16 { get; set; }
-
-    public short? CsTopValveInd17 { get; set; }
-
-    public short? CsTopValveInd18 { get; set; }
-
-    public short? CsTopValveInd19 { get; set; }
-
-    public short? CsTopValveInd20 { get; set; }
-
-    public short? CsTopValveInd21 { get; set; }
-
-    public short? CsTopValveInd22 { get; set; }
-
-    public short? CsTopValveInd23 { get; set; }
-
-    public short? CsTopValveInd24 { get; set; }
-
-    public short? CsTopValveInd25 { get; set; }
-
-    public short? CsTopValveInd26 { get; set; }
-
-    public short? CsTopValveInd27 { get; set; }
-
-    public short? CsTopValveInd28 { get; set; }
-
-    public short? CsTopValveInd29 { get; set; }
-
-    public short? CsTopValveInd30 { get; set; }
-
-    public short? CsTopValveInd31 { get; set; }
-
-    public string SptlFaultHfm { get; set; }
-
-    public string SptlFaultHrm { get; set; }
 
     public virtual Me1 Me1 { get; set; }
 }

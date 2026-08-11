@@ -34,6 +34,26 @@ public partial class StdAoppass
     public int? AntiOxStateExit { get; set; }
 
     /// <summary>
+    /// anti-oxidation entry
+    /// </summary>
+    public double? AntiOxidationEntryInd0 { get; set; }
+
+    /// <summary>
+    /// anti-oxidation entry
+    /// </summary>
+    public double? AntiOxidationEntryInd1 { get; set; }
+
+    /// <summary>
+    /// anti-oxidation exit
+    /// </summary>
+    public double? AntiOxidationExitInd0 { get; set; }
+
+    /// <summary>
+    /// anti-oxidation exit
+    /// </summary>
+    public double? AntiOxidationExitInd1 { get; set; }
+
+    /// <summary>
     /// anti-peeling
     /// </summary>
     public double? AntiPeeling { get; set; }
@@ -62,24 +82,4 @@ public partial class StdAoppass
     /// time of modification
     /// </summary>
     public DateTime? Tom { get; set; }
-
-    /// <summary>
-    /// anti-oxidation entry top
-    /// </summary>
-    public double? AntiOxidationEntryInd0 { get; set; }
-
-    /// <summary>
-    /// anti-oxidation entry bot.
-    /// </summary>
-    public double? AntiOxidationEntryInd1 { get; set; }
-
-    /// <summary>
-    /// anti-oxidation exit top
-    /// </summary>
-    public double? AntiOxidationExitInd0 { get; set; }
-
-    /// <summary>
-    /// anti-oxidation exit bot.
-    /// </summary>
-    public double? AntiOxidationExitInd1 { get; set; }
 }

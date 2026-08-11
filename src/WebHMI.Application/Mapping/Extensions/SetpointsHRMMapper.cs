@@ -91,11 +91,11 @@ namespace WebHMI.Mapping.Extensions
             result.SlabWidth.DbSource = $"{nameof(EdPhyEnt)}.{nameof(EdPhyEnt.SlabWidth)}";
             result.SlabWidth.Status = dataBlob.StatEdphyents?.SlabWidth;
 
-            result.ExitCrownC25.L = edOrdEntL?.ExitCrownC25;
-            result.ExitCrownC25.E = edOrdEntE?.ExitCrownC25;
-            result.ExitCrownC25.M = edOrdEntM?.ExitCrownC25;
-            result.ExitCrownC25.DbSource = $"{nameof(EdOrdEnt)}.{nameof(EdOrdEnt.ExitCrownC25)}";
-            result.ExitCrownC25.Status = dataBlob.StatEdordents?.ExitCrownC25;
+            result.ExitCrownC25.L = edOrdEntL?.ExitCrownC40;
+            result.ExitCrownC25.E = edOrdEntE?.ExitCrownC40;
+            result.ExitCrownC25.M = edOrdEntM?.ExitCrownC40;
+            result.ExitCrownC25.DbSource = $"{nameof(EdOrdEnt)}.{nameof(EdOrdEnt.ExitCrownC40)}";
+            result.ExitCrownC25.Status = dataBlob.StatEdordents?.ExitCrownC40;
 
             result.TEntry.L = edPhyEntL?.TEntry;
             result.TEntry.E = edPhyEntE?.TEntry;
@@ -722,11 +722,11 @@ namespace WebHMI.Mapping.Extensions
             result.SlabWidth.DbSource = $"{nameof(EdPhyEnt)}.{nameof(EdPhyEnt.SlabWidth)}";
             result.SlabWidth.Status = dataBlob.StatEdphyents?.SlabWidth;
 
-            result.ExitCrownC25.L = edOrdEntL?.ExitCrownC25;
-            result.ExitCrownC25.E = edOrdEntE?.ExitCrownC25;
-            result.ExitCrownC25.M = edOrdEntM?.ExitCrownC25;
-            result.ExitCrownC25.DbSource = $"{nameof(EdOrdEnt)}.{nameof(EdOrdEnt.ExitCrownC25)}";
-            result.ExitCrownC25.Status = dataBlob.StatEdordents?.ExitCrownC25;
+            result.ExitCrownC25.L = edOrdEntL?.ExitCrownC40;
+            result.ExitCrownC25.E = edOrdEntE?.ExitCrownC40;
+            result.ExitCrownC25.M = edOrdEntM?.ExitCrownC40;
+            result.ExitCrownC25.DbSource = $"{nameof(EdOrdEnt)}.{nameof(EdOrdEnt.ExitCrownC40)}";
+            result.ExitCrownC25.Status = dataBlob.StatEdordents?.ExitCrownC40;
 
             result.TEntry.L = edPhyEntL?.TEntry;
             result.TEntry.E = edPhyEntE?.TEntry;
