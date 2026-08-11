@@ -348,6 +348,7 @@ namespace WebHMI.Services
 
                 { "LTIPFC", () => MosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd23) },
                 { "STIPFC", () => MosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd22) },
+                { "TOCS", () => ProgparamsToHMISwitch(progparams.FirstOrDefault(x => x.Param == "SETPTCS_TAKEOVER_MANUAL")?.ParamNum) },
             };
 
             var result = ids
