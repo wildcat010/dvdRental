@@ -13,6 +13,7 @@ using System.Reflection.Metadata.Ecma335;
 using System.Threading.Tasks;
 using WebHMI.Dtos;
 using WebHMI.Dtos.Common;
+using WebHMI.Dtos.ProductionSchedule;
 using WebHMI.Filters;
 using WebHMI.Helpers;
 using WebHMI.Mapping.Extensions;
@@ -86,6 +87,17 @@ namespace WebHMI.Services
                 .OrderBy(x => x.SequenceId)
                 .ThenBy(x=> x.IdSeq)
                 .ThenBy(x => x.IdRiga), input, MaterialHeaderDtoMapper.MapToDto);
+        }
+
+        [AbpAuthorize(Permissions.Pages_Setpoints_FM, Permissions.Pages_Setpoints_RM, Permissions.Pages_PrimaryData)]
+        public async Task<PagedResultDto<ScheduledMaterialsDto>> GetPlannedMaterialList(FilteredRequestDto input)
+        {
+            var actualSequenceId = await GetActualSequenceId();
+
+            return await ApplyFilter(_prdbContext.HmiVProdsequences
+                    .Where(x => x.SimMat == 0 && x.SequenceId != actualSequenceId)
+                    .OrderBy(x => x.Majorno)
+                    .ThenBy(x => x.Minorno), input, MaterialHeaderDtoMapper.ToPlannedMaterialsDto);
         }
 
         [AbpAuthorize(Permissions.Pages_Setpoints_FM, Permissions.Pages_Setpoints_RM, Permissions.Pages_PrimaryData)]
