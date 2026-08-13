@@ -418,6 +418,7 @@ namespace WebHMI.Services
                     context.Iscppasses.Add(iscpPassM);
                 }
                 iscpPassM.StripSprayBefor = pass.StripSprayBefor?.M;
+                iscpPassM.StripSprayBehind = pass.StripSprayBehind?.M;
                 iscpPassM.IscVolumeInd0 = pass.IscVolumeInd0?.M;
                 iscpPassM.IscVolumeInd1 = pass.IscVolumeInd1?.M;
                 iscpPassM.IscVolumeInd2 = pass.IscVolumeInd2?.M;

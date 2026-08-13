@@ -648,6 +648,11 @@ namespace WebHMI.Mapping.Extensions
                 stand.StripSprayBefor.M = iscpPassM?.StripSprayBefor;
                 stand.StripSprayBefor.DbSource = $"{nameof(Iscppass)}.{nameof(Iscppass.StripSprayBefor)}{i}";
 
+                stand.StripSprayBehind.L = iscpPassL?.StripSprayBehind;
+                stand.StripSprayBehind.E = iscpPassE?.StripSprayBehind;
+                stand.StripSprayBehind.M = iscpPassM?.StripSprayBehind;
+                stand.StripSprayBehind.DbSource = $"{nameof(Iscppass)}.{nameof(Iscppass.StripSprayBehind)}{i}";
+
                 stand.IscVolumeInd0.L = iscpPassL?.IscVolumeInd0;
                 stand.IscVolumeInd0.E = iscpPassE?.IscVolumeInd0;
                 stand.IscVolumeInd0.M = iscpPassM?.IscVolumeInd0;

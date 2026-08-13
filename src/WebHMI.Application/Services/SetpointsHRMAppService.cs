@@ -414,6 +414,7 @@ namespace WebHMI.Services
                     context.Iscppasses.Add(iscpPassM);
                 }
                 iscpPassM.StripSprayBefor = pass.StripSprayBefor?.M;
+                iscpPassM.StripSprayBehind = pass.StripSprayBehind?.M;
                 iscpPassM.LooperCool = pass.LooperCooling?.M;
             }
 

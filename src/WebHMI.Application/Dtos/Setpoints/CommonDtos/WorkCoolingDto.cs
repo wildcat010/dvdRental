@@ -22,6 +22,6 @@ namespace WebHMI.Dtos.Setpoints.CommonDtos
         public SourceSet<double?> IscVolumeInd2 { get; set; } = new();
         public SourceSet<double?> IscVolumeInd3 { get; set; } = new();
         public SourceSet<double?> FumesuppSprayBehind { get; set; } = new();
-
+        public SourceSet<double?> StripSprayBehind { get; set; } = new();
     }
 }
