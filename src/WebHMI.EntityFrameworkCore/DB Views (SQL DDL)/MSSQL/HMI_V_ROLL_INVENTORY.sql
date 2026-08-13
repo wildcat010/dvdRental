@@ -1,5 +1,4 @@
-
-CREATE   VIEW [PRDB].[HMI_V_ROLL_INVENTORY] AS
+ALTER   VIEW [PRDB].[HMI_V_ROLL_INVENTORY] AS
 SELECT
     RD.rollId,
     RD.plantType,
@@ -19,8 +18,8 @@ SELECT
     RP.description AS ROLLPROPERTYDESC,
     RD.rollPos,
     RD.standId,
-    RRU.rolledlength,
-    RRU.rolledweight,
+    RD.rolledlength,
+    RD.rolledweight,
     RD.grinding,
     SYSDATETIME() AS GrindingTime,
     RD.relatedRollId,
@@ -47,5 +46,3 @@ LEFT JOIN RollChamfer RCH
 LEFT JOIN hmi_v_rolld_rollusage RRU
     ON RD.rollId = RRU.rollid
 GO
-
-
