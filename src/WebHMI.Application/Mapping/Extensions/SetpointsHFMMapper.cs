@@ -1457,6 +1457,9 @@ namespace WebHMI.Mapping.Extensions
             result.PowerCooling.PlanNo.S = pcS?.PlanNo;
             result.PowerCooling.PlanNo.L = pcL?.PlanNo;
 
+            if (pcE == null)
+                return result;
+
             for (short i = 0; i < pcE.NoRamps; i++)
             {
                 var pcRampL = dataBlob.PcRamp.Where(x => x.RampNo == i && x.Source == "L").FirstOrDefault();
