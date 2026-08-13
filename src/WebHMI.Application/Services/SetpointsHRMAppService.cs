@@ -107,6 +107,10 @@ namespace WebHMI.Services
             dirFmPfcCycShiftM = context.InsertIfNull(dirFmPfcCycShiftM, vMatStructEntry);
             dirFmPfcCycShiftM.PlanNo = input.DirFmPfcCycShiftPlanNo?.M;
 
+            var edgerM = await context.Edghrms.FirstOrDefaultAsync(x => x.MeId == vMatStructEntry.EnOrMeId && x.Source == "M");
+            edgerM = context.InsertIfNull(edgerM, vMatStructEntry);
+            edgerM.PlanNo = input.EdgerPlanNo?.M;
+
             await context.SaveChangesAsync();
         }
 

@@ -77,6 +77,11 @@ namespace WebHMI.Mapping.Extensions
             var aopS = dataBlob.Aoppasses.Where(x => x.Source == "S").FirstOrDefault();
             var aopE = dataBlob.Aoppasses.Where(x => x.Source == "E").FirstOrDefault();
 
+            var edgHrmL = dataBlob.Edghrm.Where(x => x.Source == "L").FirstOrDefault();
+            var edgHrmM = dataBlob.Edghrm.Where(x => x.Source == "M").FirstOrDefault();
+            var edgHrmS = dataBlob.Edghrm.Where(x => x.Source == "S").FirstOrDefault();
+            var edgHrmE = dataBlob.Edghrm.Where(x => x.Source == "E").FirstOrDefault();
+
             result.AimsLabThickness.L = edPhyEntL?.AimSlabThickness;
             result.AimsLabThickness.E = edPhyEntE?.AimSlabThickness;
             result.AimsLabThickness.M = edPhyEntM?.AimSlabThickness;
@@ -187,6 +192,11 @@ namespace WebHMI.Mapping.Extensions
             result.AntiLubricationPlanNo.E = aopE?.PlanNo;
             result.AntiLubricationPlanNo.M = aopM?.PlanNo;
             result.AntiLubricationPlanNo.DbSource = $"{nameof(Aoppass)}.{nameof(Aoppass.PlanNo)}";
+
+            result.EdgerPlanNo.L = edgHrmL?.PlanNo;
+            result.EdgerPlanNo.E = edgHrmE?.PlanNo;
+            result.EdgerPlanNo.M = edgHrmM?.PlanNo;
+            result.EdgerPlanNo.DbSource = $"{nameof(Edghrm)}.{nameof(Edghrm.PlanNo)}";
 
             return result;
         }

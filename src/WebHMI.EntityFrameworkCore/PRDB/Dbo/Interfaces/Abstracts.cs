@@ -20,6 +20,7 @@ namespace WebHMI.PRDB.Dbo
     public partial class CsRtCooling : IMaterialIdTypeOrder { }
     public partial class CsStrategy : IMaterialIdTypeOrder { }
     public partial class DirFmPfcCycShiftP : IMaterialIdTypeOrder { }
+    public partial class Edghrm : IMaterialIdTypeOrder { }
     public partial class DirFmPfcCycShiftPpass : IMaterialIdTypeOrder { }
     public partial class DirFmPfcParaP : IMaterialIdTypeOrder { }
     public partial class DirFmPfcParaPpass : IMaterialIdTypeOrder { }
