@@ -398,11 +398,11 @@ namespace WebHMI.Mapping.Extensions
             var edgHrmS = dataBlob.Edghrm.Where(x => x.Source == "S").FirstOrDefault();
             var edgHrmE = dataBlob.Edghrm.Where(x => x.Source == "E").FirstOrDefault();
 
-            result.EdgerDto.RollForce.L = spOrd2PcStandL?.FrE;
-            result.EdgerDto.RollForce.E = spOrd2PcStandE?.FrE;
-            result.EdgerDto.RollForce.M = spOrd2PcStandM?.FrE;
-            result.EdgerDto.RollForce.DbSource = $"{nameof(SpOrd2PcStand)}.{nameof(SpOrd2PcStand.FrE)}0";
-            result.EdgerDto.RollForce.Status = statSpord2PcStand?.FrE;
+            result.EdgerDto.Fr.L = spOrd2PcStandL?.FrE;
+            result.EdgerDto.Fr.E = spOrd2PcStandE?.FrE;
+            result.EdgerDto.Fr.M = spOrd2PcStandM?.FrE;
+            result.EdgerDto.Fr.DbSource = $"{nameof(SpOrd2PcStand)}.{nameof(SpOrd2PcStand.FrE)}0";
+            result.EdgerDto.Fr.Status = statSpord2PcStand?.FrE;
 
             result.EdgerDto.Sd.L = spOrd2PcStandL?.SdE;
             result.EdgerDto.Sd.E = spOrd2PcStandE?.SdE;
@@ -410,11 +410,11 @@ namespace WebHMI.Mapping.Extensions
             result.EdgerDto.Sd.DbSource = $"{nameof(SpOrd2PcStand)}.{nameof(SpOrd2PcStand.SdE)}0";
             result.EdgerDto.Sd.Status = statSpord2PcStand?.SdE;
 
-            result.EdgerDto.VCircumE.L = spOrd2PcStandL?.VCircumE;
-            result.EdgerDto.VCircumE.E = spOrd2PcStandE?.VCircumE;
-            result.EdgerDto.VCircumE.M = spOrd2PcStandM?.VCircumE;
-            result.EdgerDto.VCircumE.DbSource = $"{nameof(SpOrd2PcStand)}.{nameof(SpOrd2PcStand.VCircumE)}0";
-            result.EdgerDto.VCircumE.Status = statSpord2PcStand?.VCircumE;
+            result.EdgerDto.VCircum.L = spOrd2PcStandL?.VCircumE;
+            result.EdgerDto.VCircum.E = spOrd2PcStandE?.VCircumE;
+            result.EdgerDto.VCircum.M = spOrd2PcStandM?.VCircumE;
+            result.EdgerDto.VCircum.DbSource = $"{nameof(SpOrd2PcStand)}.{nameof(SpOrd2PcStand.VCircumE)}0";
+            result.EdgerDto.VCircum.Status = statSpord2PcStand?.VCircumE;
 
             result.EdgerDto.Ms.L = spOrd2PcStandL?.MsE;
             result.EdgerDto.Ms.E = spOrd2PcStandE?.MsE;
