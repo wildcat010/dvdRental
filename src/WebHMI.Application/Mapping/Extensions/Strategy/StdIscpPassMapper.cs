@@ -19,6 +19,7 @@ namespace WebHMI.Mapping.Extensions.Strategy
             entity.IscVolumeInd0 = dto.IscVolumeInd0;
             entity.IscVolumeInd1 = dto.IscVolumeInd1;
             entity.IscVolumeInd2 = dto.IscVolumeInd2;
+            entity.IscVolumeInd3 = dto.IscVolumeInd3;
             entity.IscState = dto.IscState;
             entity.StripSprayBefor = dto.StripSprayBefore;
             entity.FumeSuppSprayBehind = dto.FumeSuppSprayBehind;
@@ -35,6 +36,7 @@ namespace WebHMI.Mapping.Extensions.Strategy
             IscVolumeInd0 = entity.IscVolumeInd0,
             IscVolumeInd1 = entity.IscVolumeInd1,
             IscVolumeInd2 = entity.IscVolumeInd2,
+            IscVolumeInd3 = entity.IscVolumeInd3,
             IscState = entity.IscState,
             StripSprayBefore = entity.StripSprayBefor,
             FumeSuppSprayBehind = entity.FumeSuppSprayBehind,
