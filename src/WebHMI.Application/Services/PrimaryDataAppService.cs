@@ -126,7 +126,7 @@ namespace WebHMI.Services
             edlogentM.AlloyCode = input.Data.AlloyCode.M;
             edlogentM.SteelCustomer = input.Data.AlloyCodeCustomer.M;
             edlogentM.AlloyCompensation = input.Data.AlloyCompensation.M;
-            await UpdateChemistry(input, edlogentM, entryMatStruct);
+            //await UpdateChemistry(input, edlogentM, entryMatStruct);
 
             await _prdbContext.SaveChangesAsync();
 
