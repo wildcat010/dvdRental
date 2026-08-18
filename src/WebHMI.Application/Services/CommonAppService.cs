@@ -408,11 +408,11 @@ namespace WebHMI.Services
                 }},
                 { "LTI", (x) => {
                     var mos = mosswitches.FirstOrDefault(m => m.PlantType == "HFM");
-                    if (mos != null) mos.StrSwitchesInd05 = ReverseHMIToMosswitchSwitch(x);
+                    if (mos != null) mos.StrSwitchesInd06 = ReverseHMIToMosswitchSwitch(x);
                 }},
                 { "STI", (x) => {
                     var mos = mosswitches.FirstOrDefault(m => m.PlantType == "HFM");
-                    if (mos != null) mos.StrSwitchesInd06 = ReverseHMIToMosswitchSwitch(x);
+                    if (mos != null) mos.StrSwitchesInd05 = ReverseHMIToMosswitchSwitch(x);
                 }},
                 
                 { "LTIPFC", (x) => {
@@ -470,7 +470,7 @@ namespace WebHMI.Services
 
         private static int ReverseHMIToMosswitchSwitch(short value)
         {
-            return value == 1 ? 0 : 0;
+            return value == 1 ? 0 : 1;
         }
 
         private static float HMIToProgparamsSwitch(short value)
