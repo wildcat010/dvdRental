@@ -16,6 +16,6 @@ namespace WebHMI.Dtos.Strategy.StdDtos.StdSingleDtos
         public double? FumeSuppSprayBehind { get; set; }
         public string Description { get; set; }
         public double? StripSprayBehind { get; set; }
-        public int? IscState { get; internal set; }
+        public int? IscState { get; set; }
     }
 }
