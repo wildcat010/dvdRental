@@ -299,52 +299,52 @@ namespace WebHMI.Mapping.Extensions
                 stand.LoadingType.L = LppassL?.LoadingType;
                 stand.LoadingType.E = LppassE?.LoadingType;
                 stand.LoadingType.M = LppassM?.LoadingType;
-                stand.LoadingType.DbSource = $"{nameof(Lppass)}.{nameof(Lppass.LoadingType)}{i}";
+                stand.LoadingType.DbSource = $"{nameof(Lppass)}.{nameof(Lppass.LoadingType)}[{i}]";
                 stand.LoadingType.Status = statLppass?.LoadingType;
 
                 stand.Red.L = spOrd2PcStandL?.Red;
                 stand.Red.E = spOrd2PcStandE?.Red;
-                stand.Red.DbSource = $"{nameof(SpOrd2PcStand)}.{nameof(SpOrd2PcStand.Red)}{i}";
+                stand.Red.DbSource = $"{nameof(SpOrd2PcStand)}.{nameof(SpOrd2PcStand.Red)}[{i}]";
                 stand.Red.Status = statSpord2Pc?.Red;
 
                 stand.LoadingValue.L = LppassL?.LoadingValue;
                 stand.LoadingValue.E = LppassE?.LoadingValue;
                 stand.LoadingValue.M = LppassM?.LoadingValue;
-                stand.LoadingValue.DbSource = $"{nameof(Lppass)}.{nameof(Lppass.LoadingValue)}{i}";
+                stand.LoadingValue.DbSource = $"{nameof(Lppass)}.{nameof(Lppass.LoadingValue)}[{i}]";
                 stand.LoadingValue.Status = statLppass?.LoadingValue;
 
                 stand.LoadingValueCorrection.L = LppassL?.LoadingValueCorrection;
                 stand.LoadingValueCorrection.E = LppassE?.LoadingValueCorrection;
                 stand.LoadingValueCorrection.M = LppassM?.LoadingValueCorrection;
-                stand.LoadingValueCorrection.DbSource = $"{nameof(Lppass)}.{nameof(Lppass.LoadingValueCorrection)}{i}";
+                stand.LoadingValueCorrection.DbSource = $"{nameof(Lppass)}.{nameof(Lppass.LoadingValueCorrection)}[{i}]";
                 stand.LoadingValueCorrection.Status = statLppass?.LoadingValueCorrection;
 
                 stand.Fb.L = spOrd2PcStandL?.Fb;
                 stand.Fb.E = spOrd2PcStandE?.Fb;
                 stand.Fb.S = adordPC2StandS?.Fb;
-                stand.Fb.DbSource = $"{nameof(SpOrd2PcStand)}.{nameof(SpOrd2PcStand.Fb)}{i}";
+                stand.Fb.DbSource = $"{nameof(SpOrd2PcStand)}.{nameof(SpOrd2PcStand.Fb)}[{i}]";
                 stand.Fb.Status = statSpord2Pc?.Fb;
 
                 stand.PositionWRS.L = spOrd2PcStandL?.PositionWrs;
                 stand.PositionWRS.E = spOrd2PcStandE?.PositionWrs;
                 stand.PositionWRS.M = spOrd2PcStandM?.PositionWrs;
                 stand.PositionWRS.S = adordPC2StandS?.PositionWrs;
-                stand.PositionWRS.DbSource = $"{nameof(SpOrd2PcStand)}.{nameof(SpOrd2PcStand.PositionWrs)}{i}";
+                stand.PositionWRS.DbSource = $"{nameof(SpOrd2PcStand)}.{nameof(SpOrd2PcStand.PositionWrs)}[{i}]";
                 stand.PositionWRS.Status = statSpord2Pc?.PositionWrs;
 
                 stand.Model.L = SrppassL?.Model;
                 stand.Model.E = SrppassE?.Model;
-                stand.Model.DbSource = $"{nameof(Srppass)}.{nameof(Srppass.Model)}{i}";
+                stand.Model.DbSource = $"{nameof(Srppass)}.{nameof(Srppass.Model)}[{i}]";
 
                 stand.SpecifFoTension.L = TppassL?.SpecifFoTension;
                 stand.SpecifFoTension.E = TppassE?.SpecifFoTension;
                 stand.SpecifFoTension.M = TppassM?.SpecifFoTension;
-                stand.SpecifFoTension.DbSource = $"{nameof(Tppass)}.{nameof(Tppass.SpecifFoTension)}{i}";
+                stand.SpecifFoTension.DbSource = $"{nameof(Tppass)}.{nameof(Tppass.SpecifFoTension)}[{i}]";
 
                 stand.ObservedFlat.L = dirFmPfcParapPassL?.ObservedFlat;
                 stand.ObservedFlat.E = dirFmPfcParapPassE?.ObservedFlat;
                 stand.ObservedFlat.M = dirFmPfcParapPassM?.ObservedFlat;
-                stand.ObservedFlat.DbSource = $"{nameof(DirFmPfcParaPpass)}.{nameof(DirFmPfcParaPpass.ObservedFlat)}{i}";
+                stand.ObservedFlat.DbSource = $"{nameof(DirFmPfcParaPpass)}.{nameof(DirFmPfcParaPpass.ObservedFlat)}[{i}]";
                 stand.ObservedFlat.Status = statDirFmPfcParapPasses?.ObservedFlat;
 
 
@@ -353,67 +353,67 @@ namespace WebHMI.Mapping.Extensions
                 stand.Fr.L = spOrd2PcStandL?.Fr;
                 stand.Fr.E = spOrd2PcStandE?.Fr;
                 stand.Fr.S = adordPC2StandS?.Fr;
-                stand.Fr.DbSource = $"{nameof(SpOrd2PcStand)}.{nameof(SpOrd2PcStand.Fr)}{i}";
+                stand.Fr.DbSource = $"{nameof(SpOrd2PcStand)}.{nameof(SpOrd2PcStand.Fr)}[{i}]";
                 stand.Fr.Status = statSpord2Pc?.Fr;
 
                 stand.Sd.L = spOrd2PcStandL?.Sd;
                 stand.Sd.E = spOrd2PcStandE?.Sd;
-                stand.Sd.DbSource = $"{nameof(SpOrd2PcStand)}.{nameof(SpOrd2PcStand.Sd)}{i}";
+                stand.Sd.DbSource = $"{nameof(SpOrd2PcStand)}.{nameof(SpOrd2PcStand.Sd)}[{i}]";
                 stand.Sd.Status = statSpord2Pc?.Sd;
 
                 stand.T0.L = spOrd2PcStandL?.T0;
                 stand.T0.E = spOrd2PcStandE?.T0;
-                stand.T0.DbSource = $"{nameof(SpOrd2PcStand)}.{nameof(SpOrd2PcStand.T0)}{i}";
+                stand.T0.DbSource = $"{nameof(SpOrd2PcStand)}.{nameof(SpOrd2PcStand.T0)}[{i}]";
                 stand.T0.Status = statSpord2Pc?.T0;
 
                 stand.H0.L = spOrd2PcStandL?.H0;
                 stand.H0.E = spOrd2PcStandE?.H0;
-                stand.H0.DbSource = $"{nameof(SpOrd2PcStand)}.{nameof(SpOrd2PcStand.H0)}{i}";
+                stand.H0.DbSource = $"{nameof(SpOrd2PcStand)}.{nameof(SpOrd2PcStand.H0)}[{i}]";
                 stand.H0.Status = statSpord2Pc?.H0;
 
                 stand.VCircum.L = spOrd2PcStandL?.VCircum;
                 stand.VCircum.E = spOrd2PcStandE?.VCircum;
                 stand.VCircum.S = adordPC2StandS?.VCircum;
-                stand.VCircum.DbSource = $"{nameof(SpOrd2PcStand)}.{nameof(SpOrd2PcStand.VCircum)}{i}";
+                stand.VCircum.DbSource = $"{nameof(SpOrd2PcStand)}.{nameof(SpOrd2PcStand.VCircum)}[{i}]";
                 stand.VCircum.Status = statSpord2Pc?.VCircum;
 
                 stand.TRoll.L = spOrd2PcStandL?.TRoll;
                 stand.TRoll.E = spOrd2PcStandE?.TRoll;
-                stand.TRoll.DbSource = $"{nameof(SpOrd2PcStand)}.{nameof(SpOrd2PcStand.TRoll)}{i}";
+                stand.TRoll.DbSource = $"{nameof(SpOrd2PcStand)}.{nameof(SpOrd2PcStand.TRoll)}[{i}]";
                 stand.TRoll.Status = statSpord2Pc?.TRoll;
 
                 stand.DeltaSdPos.L = spOrd2PcStandL?.SdCorr;
                 stand.DeltaSdPos.E = spOrd2PcStandE?.SdCorr;
-                stand.DeltaSdPos.DbSource = $"{nameof(SpOrd2PcStand)}.{nameof(SpOrd2PcStand.SdCorr)}{i}";
+                stand.DeltaSdPos.DbSource = $"{nameof(SpOrd2PcStand)}.{nameof(SpOrd2PcStand.SdCorr)}[{i}]";
                 stand.DeltaSdPos.Status = statSpord2Pc?.SdCorr;
 
                 stand.RelProfile.L = spOrd2PcStandL?.RelProfile;
                 stand.RelProfile.E = spOrd2PcStandE?.RelProfile;
                 stand.RelProfile.S = adordPC2StandS?.RelProfile;
-                stand.RelProfile.DbSource = $"{nameof(SpOrd2PcStand)}.{nameof(SpOrd2PcStand.RelProfile)}{i}";
+                stand.RelProfile.DbSource = $"{nameof(SpOrd2PcStand)}.{nameof(SpOrd2PcStand.RelProfile)}[{i}]";
                 stand.RelProfile.Status = statSpord2Pc?.RelProfile;
 
                 stand.Profile.L = spOrd2PcStandL?.Profile;
                 stand.Profile.E = spOrd2PcStandE?.Profile;
                 stand.Profile.S = adordPC2StandS?.AbsProfile;
-                stand.Profile.DbSource = $"{nameof(SpOrd2PcStand)}.{nameof(SpOrd2PcStand.Profile)}{i}";
+                stand.Profile.DbSource = $"{nameof(SpOrd2PcStand)}.{nameof(SpOrd2PcStand.Profile)}[{i}]";
                 stand.Profile.Status = statSpord2Pc?.Profile;
 
                 stand.Ms.L = spOrd2PcStandL?.Ms;
                 stand.Ms.E = spOrd2PcStandE?.Ms;
                 stand.Ms.S = adordPC2StandS?.Ms;
-                stand.Ms.DbSource = $"{nameof(SpOrd2PcStand)}.{nameof(SpOrd2PcStand.Ms)}{i}";
+                stand.Ms.DbSource = $"{nameof(SpOrd2PcStand)}.{nameof(SpOrd2PcStand.Ms)}[{i}]";
                 stand.Ms.Status = statSpord2Pc?.Ms;
 
                 stand.RPower.L = spOrd2PcStandL?.RPower;
                 stand.RPower.E = spOrd2PcStandE?.RPower;
                 stand.RPower.S = adordPC2StandS?.RPower;
-                stand.RPower.DbSource = $"{nameof(SpOrd2PcStand)}.{nameof(SpOrd2PcStand.RPower)}{i}";
+                stand.RPower.DbSource = $"{nameof(SpOrd2PcStand)}.{nameof(SpOrd2PcStand.RPower)}[{i}]";
                 stand.RPower.Status = statSpord2Pc?.RPower;
 
                 stand.CalcFlat.L = spOrd2PcStandL?.CalcFlat;
                 stand.CalcFlat.E = spOrd2PcStandE?.CalcFlat;
-                stand.CalcFlat.DbSource = $"{nameof(SpOrd2PcStand)}.{nameof(SpOrd2PcStand.CalcFlat)}{i}";
+                stand.CalcFlat.DbSource = $"{nameof(SpOrd2PcStand)}.{nameof(SpOrd2PcStand.CalcFlat)}[{i}]";
                 stand.CalcFlat.Status = statSpord2Pc?.CalcFlat;
 
                 result.PassScheduleDtos.Add(stand);
@@ -446,25 +446,25 @@ namespace WebHMI.Mapping.Extensions
 
                 stand.LoadingPlan.L = lpL?.PlanNo;
                 stand.LoadingPlan.E = lpE?.PlanNo;
-                stand.LoadingPlan.DbSource = $"{nameof(Lppass)}.{nameof(Lppass.PlanNo)}{i}";
+                stand.LoadingPlan.DbSource = $"{nameof(Lppass)}.{nameof(Lppass.PlanNo)}[{i}]";
                 stand.LoadingPlan.Status = statLppass?.PlanNo;
 
                 stand.LoadingType.L = LppassL?.LoadingType;
                 stand.LoadingType.E = LppassE?.LoadingType;
                 stand.LoadingType.M = LppassM?.LoadingType;
-                stand.LoadingType.DbSource = $"{nameof(Lppass)}.{nameof(Lppass.LoadingType)}{i}";
+                stand.LoadingType.DbSource = $"{nameof(Lppass)}.{nameof(Lppass.LoadingType)}[{i}]";
                 stand.LoadingType.Status = statLppass?.LoadingType;
 
                 stand.LoadingValue.L = LppassL?.LoadingValue;
                 stand.LoadingValue.E = LppassE?.LoadingValue;
                 stand.LoadingValue.M = LppassM?.LoadingValue;
-                stand.LoadingValue.DbSource = $"{nameof(Lppass)}.{nameof(Lppass.LoadingValue)}{i}";
+                stand.LoadingValue.DbSource = $"{nameof(Lppass)}.{nameof(Lppass.LoadingValue)}[{i}]";
                 stand.LoadingValue.Status = statLppass?.LoadingValue;
 
                 stand.CircumSpeedCorrection.L = LppassL?.CircumSpeedCorrection;
                 stand.CircumSpeedCorrection.E = LppassE?.CircumSpeedCorrection;
                 stand.CircumSpeedCorrection.M = LppassM?.CircumSpeedCorrection;
-                stand.CircumSpeedCorrection.DbSource = $"{nameof(Lppass)}.{nameof(Lppass.CircumSpeedCorrection)}{i}";
+                stand.CircumSpeedCorrection.DbSource = $"{nameof(Lppass)}.{nameof(Lppass.CircumSpeedCorrection)}[{i}]";
                 stand.CircumSpeedCorrection.Status = statLppass?.CircumSpeedCorrection;
 
                 stand.BendingForce.L = LppassL?.BendingForce;
@@ -543,42 +543,42 @@ namespace WebHMI.Mapping.Extensions
                 stand.AntiOxStateEntry.L = aopPassL?.AntiOxStateEntry;
                 stand.AntiOxStateEntry.E = aopPassE?.AntiOxStateEntry;
                 stand.AntiOxStateEntry.M = aopPassM?.AntiOxStateEntry;
-                stand.AntiOxStateEntry.DbSource = $"{nameof(Aoppass)}.{nameof(Aoppass.AntiOxStateEntry)}{i}";
+                stand.AntiOxStateEntry.DbSource = $"{nameof(Aoppass)}.{nameof(Aoppass.AntiOxStateEntry)}[{i}]";
 
                 stand.AntiOxidationEntryTop.L = aopPassL?.AntiOxidationEntryInd0;
                 stand.AntiOxidationEntryTop.E = aopPassE?.AntiOxidationEntryInd0;
                 stand.AntiOxidationEntryTop.M = aopPassM?.AntiOxidationEntryInd0;
-                stand.AntiOxidationEntryTop.DbSource = $"{nameof(Aoppass)}.{nameof(Aoppass.AntiOxidationEntryInd0)}{i}";
+                stand.AntiOxidationEntryTop.DbSource = $"{nameof(Aoppass)}.{nameof(Aoppass.AntiOxidationEntryInd0)}[{i}]";
 
                 stand.AntiOxidationEntryBottom.L = aopPassL?.AntiOxidationEntryInd1;
                 stand.AntiOxidationEntryBottom.E = aopPassE?.AntiOxidationEntryInd1;
                 stand.AntiOxidationEntryBottom.M = aopPassM?.AntiOxidationEntryInd1;
-                stand.AntiOxidationEntryBottom.DbSource = $"{nameof(Aoppass)}.{nameof(Aoppass.AntiOxidationEntryInd1)}{i}";
+                stand.AntiOxidationEntryBottom.DbSource = $"{nameof(Aoppass)}.{nameof(Aoppass.AntiOxidationEntryInd1)}[{i}]";
 
                 stand.AntiOxStateExit.L = aopPassL?.AntiOxStateExit;
                 stand.AntiOxStateExit.E = aopPassE?.AntiOxStateExit;
                 stand.AntiOxStateExit.M = aopPassM?.AntiOxStateExit;
-                stand.AntiOxStateExit.DbSource = $"{nameof(Aoppass)}.{nameof(Aoppass.AntiOxStateExit)}{i}";
+                stand.AntiOxStateExit.DbSource = $"{nameof(Aoppass)}.{nameof(Aoppass.AntiOxStateExit)}[{i}]";
 
                 stand.AntiOxidationExitTop.L = aopPassL?.AntiOxidationExitInd0;
                 stand.AntiOxidationExitTop.E = aopPassE?.AntiOxidationExitInd0;
                 stand.AntiOxidationExitTop.M = aopPassM?.AntiOxidationExitInd0;
-                stand.AntiOxidationExitTop.DbSource = $"{nameof(Aoppass)}.{nameof(Aoppass.AntiOxidationExitInd0)}{i}";
+                stand.AntiOxidationExitTop.DbSource = $"{nameof(Aoppass)}.{nameof(Aoppass.AntiOxidationExitInd0)}[{i}]";
 
                 stand.AntiOxidationExitBottom.L = aopPassL?.AntiOxidationExitInd1;
                 stand.AntiOxidationExitBottom.E = aopPassE?.AntiOxidationExitInd1;
                 stand.AntiOxidationExitBottom.M = aopPassM?.AntiOxidationExitInd1;
-                stand.AntiOxidationExitBottom.DbSource = $"{nameof(Aoppass)}.{nameof(Aoppass.AntiOxidationExitInd1)}{i}";
+                stand.AntiOxidationExitBottom.DbSource = $"{nameof(Aoppass)}.{nameof(Aoppass.AntiOxidationExitInd1)}[{i}]";
 
                 stand.AntiPeelingState.L = aopPassL?.AntiPeelingState;
                 stand.AntiPeelingState.E = aopPassE?.AntiPeelingState;
                 stand.AntiPeelingState.M = aopPassM?.AntiPeelingState;
-                stand.AntiPeelingState.DbSource = $"{nameof(Aoppass)}.{nameof(Aoppass.AntiPeelingState)}{i}";
+                stand.AntiPeelingState.DbSource = $"{nameof(Aoppass)}.{nameof(Aoppass.AntiPeelingState)}[{i}]";
 
                 stand.AntiPeeling.L = aopPassL?.AntiPeeling;
                 stand.AntiPeeling.E = aopPassE?.AntiPeeling;
                 stand.AntiPeeling.M = aopPassM?.AntiPeeling;
-                stand.AntiPeeling.DbSource = $"{nameof(Aoppass)}.{nameof(Aoppass.AntiPeeling)}{i}";
+                stand.AntiPeeling.DbSource = $"{nameof(Aoppass)}.{nameof(Aoppass.AntiPeeling)}[{i}]";
 
                 result.AntiPeelingDtos.Add(stand);
             }
@@ -626,62 +626,62 @@ namespace WebHMI.Mapping.Extensions
                 stand.RollCoolState.L = rcpPassL?.RollCoolState;
                 stand.RollCoolState.E = rcpPassE?.RollCoolState;
                 stand.RollCoolState.M = rcpPassM?.RollCoolState;
-                stand.RollCoolState.DbSource = $"{nameof(Rcppass)}.{nameof(Rcppass.RollCoolState)}{i}";
+                stand.RollCoolState.DbSource = $"{nameof(Rcppass)}.{nameof(Rcppass.RollCoolState)}[{i}]";
 
                 stand.FlowWrLoadedInd0.L = rcpPassL?.FlowWrLoadedInd0;
                 stand.FlowWrLoadedInd0.E = rcpPassE?.FlowWrLoadedInd0;
                 stand.FlowWrLoadedInd0.M = rcpPassM?.FlowWrLoadedInd0;
-                stand.FlowWrLoadedInd0.DbSource = $"{nameof(Rcppass)}.{nameof(Rcppass.FlowWrLoadedInd0)}{i}";
+                stand.FlowWrLoadedInd0.DbSource = $"{nameof(Rcppass)}.{nameof(Rcppass.FlowWrLoadedInd0)}[{i}]";
 
                 stand.FlowWrLoadedInd1.L = rcpPassL?.FlowWrLoadedInd1;
                 stand.FlowWrLoadedInd1.E = rcpPassE?.FlowWrLoadedInd1;
                 stand.FlowWrLoadedInd1.M = rcpPassM?.FlowWrLoadedInd1;
-                stand.FlowWrLoadedInd1.DbSource = $"{nameof(Rcppass)}.{nameof(Rcppass.FlowWrLoadedInd1)}{i}";
+                stand.FlowWrLoadedInd1.DbSource = $"{nameof(Rcppass)}.{nameof(Rcppass.FlowWrLoadedInd1)}[{i}]";
 
                 stand.FlowWrLoadedInd2.L = rcpPassL?.FlowWrLoadedInd2;
                 stand.FlowWrLoadedInd2.E = rcpPassE?.FlowWrLoadedInd2;
                 stand.FlowWrLoadedInd2.M = rcpPassM?.FlowWrLoadedInd2;
-                stand.FlowWrLoadedInd2.DbSource = $"{nameof(Rcppass)}.{nameof(Rcppass.FlowWrLoadedInd2)}{i}";
+                stand.FlowWrLoadedInd2.DbSource = $"{nameof(Rcppass)}.{nameof(Rcppass.FlowWrLoadedInd2)}[{i}]";
 
                 stand.StripSprayBefor.L = iscpPassL?.StripSprayBefor;
                 stand.StripSprayBefor.E = iscpPassE?.StripSprayBefor;
                 stand.StripSprayBefor.M = iscpPassM?.StripSprayBefor;
-                stand.StripSprayBefor.DbSource = $"{nameof(Iscppass)}.{nameof(Iscppass.StripSprayBefor)}{i}";
+                stand.StripSprayBefor.DbSource = $"{nameof(Iscppass)}.{nameof(Iscppass.StripSprayBefor)}[{i}]";
 
                 stand.StripSprayBehind.L = iscpPassL?.StripSprayBehind;
                 stand.StripSprayBehind.E = iscpPassE?.StripSprayBehind;
                 stand.StripSprayBehind.M = iscpPassM?.StripSprayBehind;
-                stand.StripSprayBehind.DbSource = $"{nameof(Iscppass)}.{nameof(Iscppass.StripSprayBehind)}{i}";
+                stand.StripSprayBehind.DbSource = $"{nameof(Iscppass)}.{nameof(Iscppass.StripSprayBehind)}[{i}]";
 
                 stand.IscVolumeInd0.L = iscpPassL?.IscVolumeInd0;
                 stand.IscVolumeInd0.E = iscpPassE?.IscVolumeInd0;
                 stand.IscVolumeInd0.M = iscpPassM?.IscVolumeInd0;
-                stand.IscVolumeInd0.DbSource = $"{nameof(Iscppass)}.{nameof(Iscppass.IscVolumeInd0)}{i}";
+                stand.IscVolumeInd0.DbSource = $"{nameof(Iscppass)}.{nameof(Iscppass.IscVolumeInd0)}[{i}]";
 
                 stand.IscVolumeInd1.L = iscpPassL?.IscVolumeInd1;
                 stand.IscVolumeInd1.E = iscpPassE?.IscVolumeInd1;
                 stand.IscVolumeInd1.M = iscpPassM?.IscVolumeInd1;
-                stand.IscVolumeInd1.DbSource = $"{nameof(Iscppass)}.{nameof(Iscppass.IscVolumeInd1)}{i}";
+                stand.IscVolumeInd1.DbSource = $"{nameof(Iscppass)}.{nameof(Iscppass.IscVolumeInd1)}[{i}]";
 
                 stand.IscVolumeInd2.L = iscpPassL?.IscVolumeInd2;
                 stand.IscVolumeInd2.E = iscpPassE?.IscVolumeInd2;
                 stand.IscVolumeInd2.M = iscpPassM?.IscVolumeInd2;
-                stand.IscVolumeInd2.DbSource = $"{nameof(Iscppass)}.{nameof(Iscppass.IscVolumeInd2)}{i}";
+                stand.IscVolumeInd2.DbSource = $"{nameof(Iscppass)}.{nameof(Iscppass.IscVolumeInd2)}[{i}]";
 
                 stand.IscVolumeInd3.L = iscpPassL?.IscVolumeInd3;
                 stand.IscVolumeInd3.E = iscpPassE?.IscVolumeInd3;
                 stand.IscVolumeInd3.M = iscpPassM?.IscVolumeInd3;
-                stand.IscVolumeInd3.DbSource = $"{nameof(Iscppass)}.{nameof(Iscppass.IscVolumeInd3)}{i}";
+                stand.IscVolumeInd3.DbSource = $"{nameof(Iscppass)}.{nameof(Iscppass.IscVolumeInd3)}[{i}]";
 
                 stand.IscState.L = iscpPassL?.IscState;
                 stand.IscState.E = iscpPassE?.IscState;
                 stand.IscState.M = iscpPassM?.IscState;
-                stand.IscState.DbSource = $"{nameof(Iscppass)}.{nameof(Iscppass.IscState)}{i}";
+                stand.IscState.DbSource = $"{nameof(Iscppass)}.{nameof(Iscppass.IscState)}[{i}]";
 
                 stand.FumesuppSprayBehind.L = iscpPassL?.FumeSuppSprayBehind;
                 stand.FumesuppSprayBehind.E = iscpPassE?.FumeSuppSprayBehind;
                 stand.FumesuppSprayBehind.M = iscpPassM?.FumeSuppSprayBehind;
-                stand.FumesuppSprayBehind.DbSource = $"{nameof(Iscppass)}.{nameof(Iscppass.FumeSuppSprayBehind)}{i}";
+                stand.FumesuppSprayBehind.DbSource = $"{nameof(Iscppass)}.{nameof(Iscppass.FumeSuppSprayBehind)}[{i}]";
 
                 stand.LooperCooling.L = iscpPassL?.LooperCool;
                 stand.LooperCooling.E = iscpPassE?.LooperCool;
@@ -721,12 +721,12 @@ namespace WebHMI.Mapping.Extensions
                 stand.SpeciffoTension.L = TppassL?.SpecifFoTension;
                 stand.SpeciffoTension.E = TppassE?.SpecifFoTension;
                 stand.SpeciffoTension.M = TppassM?.SpecifFoTension;
-                stand.SpeciffoTension.DbSource = $"{nameof(Tppass)}.{nameof(Tppass.SpecifFoTension)}{i}";
+                stand.SpeciffoTension.DbSource = $"{nameof(Tppass)}.{nameof(Tppass.SpecifFoTension)}[{i}]";
 
                 stand.LooperStripLen.L = TppassL?.LooperStripLen;
                 stand.LooperStripLen.E = TppassE?.LooperStripLen;
                 stand.LooperStripLen.M = TppassM?.LooperStripLen;
-                stand.LooperStripLen.DbSource = $"{nameof(Tppass)}.{nameof(Tppass.LooperStripLen)}{i}";
+                stand.LooperStripLen.DbSource = $"{nameof(Tppass)}.{nameof(Tppass.LooperStripLen)}[{i}]";
 
                 result.TensionDtos.Add(stand);
             }
@@ -760,32 +760,32 @@ namespace WebHMI.Mapping.Extensions
                 stand.RollGapLubState.L = rgLppassL?.RollGapLubState;
                 stand.RollGapLubState.E = rgLppassE?.RollGapLubState;
                 stand.RollGapLubState.M = rgLppassM?.RollGapLubState;
-                stand.RollGapLubState.DbSource = $"{nameof(Rglppass)}.{nameof(Rglppass.RollGapLubState)}{i}";
+                stand.RollGapLubState.DbSource = $"{nameof(Rglppass)}.{nameof(Rglppass.RollGapLubState)}[{i}]";
                 
                 stand.RollGapLubRampTimeStart.L = rgLppassL?.RollGapLubRampTimeStart;
                 stand.RollGapLubRampTimeStart.E = rgLppassE?.RollGapLubRampTimeStart;
                 stand.RollGapLubRampTimeStart.M = rgLppassM?.RollGapLubRampTimeStart;
-                stand.RollGapLubRampTimeStart.DbSource = $"{nameof(Rglppass)}.{nameof(Rglppass.RollGapLubRampTimeStart)}{i}";
+                stand.RollGapLubRampTimeStart.DbSource = $"{nameof(Rglppass)}.{nameof(Rglppass.RollGapLubRampTimeStart)}[{i}]";
 
                 stand.RollGapLubRampTimeStop.L = rgLppassL?.RollGapLubRampTimeStop;
                 stand.RollGapLubRampTimeStop.E = rgLppassE?.RollGapLubRampTimeStop;
                 stand.RollGapLubRampTimeStop.M = rgLppassM?.RollGapLubRampTimeStop;
-                stand.RollGapLubRampTimeStop.DbSource = $"{nameof(Rglppass)}.{nameof(Rglppass.RollGapLubRampTimeStop)}{i}";
+                stand.RollGapLubRampTimeStop.DbSource = $"{nameof(Rglppass)}.{nameof(Rglppass.RollGapLubRampTimeStop)}[{i}]";
 
                 stand.RollGapLubSwitchLength.L = rgLppassL?.RollGapLubSwitchLength;
                 stand.RollGapLubSwitchLength.E = rgLppassE?.RollGapLubSwitchLength;
                 stand.RollGapLubSwitchLength.M = rgLppassM?.RollGapLubSwitchLength;
-                stand.RollGapLubSwitchLength.DbSource = $"{nameof(Rglppass)}.{nameof(Rglppass.RollGapLubSwitchLength)}{i}";
+                stand.RollGapLubSwitchLength.DbSource = $"{nameof(Rglppass)}.{nameof(Rglppass.RollGapLubSwitchLength)}[{i}]";
 
                 stand.RollGapLubOilFlowTop.L = rgLppassL?.RollGapLubOilFlowTop;
                 stand.RollGapLubOilFlowTop.E = rgLppassE?.RollGapLubOilFlowTop;
                 stand.RollGapLubOilFlowTop.M = rgLppassM?.RollGapLubOilFlowTop;
-                stand.RollGapLubOilFlowTop.DbSource = $"{nameof(Rglppass)}.{nameof(Rglppass.RollGapLubOilFlowTop)}{i}";
+                stand.RollGapLubOilFlowTop.DbSource = $"{nameof(Rglppass)}.{nameof(Rglppass.RollGapLubOilFlowTop)}[{i}]";
 
                 stand.RollGapLubOilFlowBot.L = rgLppassL?.RollGapLubOilFlowBot;
                 stand.RollGapLubOilFlowBot.E = rgLppassE?.RollGapLubOilFlowBot;
                 stand.RollGapLubOilFlowBot.M = rgLppassM?.RollGapLubOilFlowBot;
-                stand.RollGapLubOilFlowBot.DbSource = $"{nameof(Rglppass)}.{nameof(Rglppass.RollGapLubOilFlowBot)}{i}";
+                stand.RollGapLubOilFlowBot.DbSource = $"{nameof(Rglppass)}.{nameof(Rglppass.RollGapLubOilFlowBot)}[{i}]";
 
                 result.LubricationDtos.Add(stand);
             }
@@ -820,7 +820,7 @@ namespace WebHMI.Mapping.Extensions
                 stand.Model.L = SrppassL?.Model;
                 stand.Model.E = SrppassE?.Model;
                 stand.Model.M = SrppassM?.Model;
-                stand.Model.DbSource = $"{nameof(Srppass)}.{nameof(Srppass.Model)}{i}";
+                stand.Model.DbSource = $"{nameof(Srppass)}.{nameof(Srppass.Model)}[{i}]";
 
                 result.TaperShiftingDtos.Add(stand);
             }
@@ -855,7 +855,7 @@ namespace WebHMI.Mapping.Extensions
                 stand.Model.L = SrppassL?.Model;
                 stand.Model.E = SrppassE?.Model;
                 stand.Model.M = SrppassM?.Model;
-                stand.Model.DbSource = $"{nameof(Srppass)}.{nameof(Srppass.Model)}{i}";
+                stand.Model.DbSource = $"{nameof(Srppass)}.{nameof(Srppass.Model)}[{i}]";
 
                 result.TaperShiftingDtos.Add(stand);
             }
@@ -1083,75 +1083,75 @@ namespace WebHMI.Mapping.Extensions
                 stand.BendingForce.L = LppassL?.BendingForce;
                 stand.BendingForce.E = LppassE?.BendingForce;
                 stand.BendingForce.M = LppassM?.BendingForce;
-                stand.BendingForce.DbSource = $"{nameof(Lppass)}.{nameof(Lppass.BendingForce)}{i}";
+                stand.BendingForce.DbSource = $"{nameof(Lppass)}.{nameof(Lppass.BendingForce)}[{i}]";
                 stand.BendingForce.Status = statLppass?.BendingForce;
 
                 stand.Fbul.L = dirFmPfcParaPassesL?.FbUl;
                 stand.Fbul.E = dirFmPfcParaPassesE?.FbUl;
                 stand.Fbul.M = dirFmPfcParaPassesM?.FbUl;
-                stand.Fbul.DbSource = $"{nameof(DirFmPfcParaPpass)}.{nameof(DirFmPfcParaPpass.FbUl)}{i}";
+                stand.Fbul.DbSource = $"{nameof(DirFmPfcParaPpass)}.{nameof(DirFmPfcParaPpass.FbUl)}[{i}]";
                 stand.Fbul.Status = statDirFmPfcParaPasses?.FbUl;
 
                 stand.Fbll.L = dirFmPfcParaPassesL?.FbLl;
                 stand.Fbll.E = dirFmPfcParaPassesE?.FbLl;
                 stand.Fbll.M = dirFmPfcParaPassesM?.FbLl;
-                stand.Fbll.DbSource = $"{nameof(DirFmPfcParaPpass)}.{nameof(DirFmPfcParaPpass.FbLl)}{i}";
+                stand.Fbll.DbSource = $"{nameof(DirFmPfcParaPpass)}.{nameof(DirFmPfcParaPpass.FbLl)}[{i}]";
                 stand.Fbll.Status = statDirFmPfcParaPasses?.FbLl;
 
                 stand.CvcShifting.L = LppassL?.CVcshifting;
                 stand.CvcShifting.E = LppassE?.CVcshifting;
                 stand.CvcShifting.M = LppassM?.CVcshifting;
-                stand.CvcShifting.DbSource = $"{nameof(Lppass)}.{nameof(Lppass.CVcshifting)}{i}";
+                stand.CvcShifting.DbSource = $"{nameof(Lppass)}.{nameof(Lppass.CVcshifting)}[{i}]";
                 stand.CvcShifting.Status = statLppass?.CVcshifting;
 
                 stand.Srul.L = dirFmPfcParaPassesL?.SrUl;
                 stand.Srul.E = dirFmPfcParaPassesE?.SrUl;
                 stand.Srul.E = dirFmPfcParaPassesM?.SrUl;
-                stand.Srul.DbSource = $"{nameof(DirFmPfcParaPpass)}.{nameof(DirFmPfcParaPpass.SrUl)}{i}";
+                stand.Srul.DbSource = $"{nameof(DirFmPfcParaPpass)}.{nameof(DirFmPfcParaPpass.SrUl)}[{i}]";
                 stand.Srul.Status = statDirFmPfcParaPasses?.SrUl;
 
                 stand.Srll.L = dirFmPfcParaPassesL?.SrLl;
                 stand.Srll.E = dirFmPfcParaPassesE?.SrLl;
                 stand.Srll.E = dirFmPfcParaPassesM?.SrLl;
-                stand.Srll.DbSource = $"{nameof(DirFmPfcParaPpass)}.{nameof(DirFmPfcParaPpass.SrLl)}{i}";
+                stand.Srll.DbSource = $"{nameof(DirFmPfcParaPpass)}.{nameof(DirFmPfcParaPpass.SrLl)}[{i}]";
                 stand.Srll.Status = statDirFmPfcParaPasses?.SrLl;
 
                 stand.CsMaxLimit.L = dirFmPfcCycShiftPassL?.CSmaxLimit;
                 stand.CsMaxLimit.E = dirFmPfcCycShiftPassE?.CSmaxLimit;
-                stand.CsMaxLimit.DbSource = $"{nameof(DirFmPfcCycShiftPpass)}.{nameof(DirFmPfcCycShiftPpass.CSmaxLimit)}{i}";
+                stand.CsMaxLimit.DbSource = $"{nameof(DirFmPfcCycShiftPpass)}.{nameof(DirFmPfcCycShiftPpass.CSmaxLimit)}[{i}]";
                 stand.CsMaxLimit.Status = statDirfmpfccycshifTppasses?.CSmaxLimit;
 
                 stand.CsMinLimit.L = dirFmPfcCycShiftPassL?.CSminLimit;
                 stand.CsMinLimit.E = dirFmPfcCycShiftPassE?.CSminLimit;
-                stand.CsMinLimit.DbSource = $"{nameof(DirFmPfcCycShiftPpass)}.{nameof(DirFmPfcCycShiftPpass.CSminLimit)}{i}";
+                stand.CsMinLimit.DbSource = $"{nameof(DirFmPfcCycShiftPpass)}.{nameof(DirFmPfcCycShiftPpass.CSminLimit)}[{i}]";
                 stand.CsMinLimit.Status = statDirfmpfccycshifTppasses?.CSminLimit;
 
                 stand.Fb.L = spOrd2PcStandL?.Fb;
                 stand.Fb.E = spOrd2PcStandE?.Fb;
                 stand.Fb.S = adordPc2StandS?.Fb;
-                stand.Fb.DbSource = $"{nameof(SpOrd2PcStand)}.{nameof(SpOrd2PcStand.Fb)}{i}";
+                stand.Fb.DbSource = $"{nameof(SpOrd2PcStand)}.{nameof(SpOrd2PcStand.Fb)}[{i}]";
                 stand.Fb.Status = statSpordPc2Stand?.Fb;
 
                 stand.PositionWrs.L = spOrd2PcStandL?.PositionWrs;
                 stand.PositionWrs.E = spOrd2PcStandE?.PositionWrs;
                 stand.PositionWrs.S = adordPc2StandS?.PositionWrs;
-                stand.PositionWrs.DbSource = $"{nameof(SpOrd2PcStand)}.{nameof(SpOrd2PcStand.PositionWrs)}{i}";
+                stand.PositionWrs.DbSource = $"{nameof(SpOrd2PcStand)}.{nameof(SpOrd2PcStand.PositionWrs)}[{i}]";
                 stand.PositionWrs.Status = statSpordPc2Stand?.PositionWrs;
 
                 stand.WearCorr.L = wmppassesL?.Model;
                 stand.WearCorr.E = wmppassesE?.Model;
                 stand.WearCorr.M = wmppassesM?.Model;
-                stand.WearCorr.DbSource = $"{nameof(Wmppass)}.{nameof(Wmppass.Model)}{i}";
+                stand.WearCorr.DbSource = $"{nameof(Wmppass)}.{nameof(Wmppass.Model)}[{i}]";
 
                 stand.TaperShiftSpeedCorr.L = SrppassL?.Model;
                 stand.TaperShiftSpeedCorr.E = SrppassE?.Model;
                 stand.TaperShiftSpeedCorr.M = SrppassM?.Model;
-                stand.TaperShiftSpeedCorr.DbSource = $"{nameof(Srppass)}.{nameof(Srppass.Model)}{i}";
+                stand.TaperShiftSpeedCorr.DbSource = $"{nameof(Srppass)}.{nameof(Srppass.Model)}[{i}]";
 
                 stand.ObservedFlat.L = dirFmPfcParaPassesL?.ObservedFlat;
                 stand.ObservedFlat.E = dirFmPfcParaPassesE?.ObservedFlat;
                 stand.ObservedFlat.M = dirFmPfcParaPassesM?.ObservedFlat;
-                stand.ObservedFlat.DbSource = $"{nameof(DirFmPfcParaPpass)}.{nameof(DirFmPfcParaPpass.ObservedFlat)}{i}";
+                stand.ObservedFlat.DbSource = $"{nameof(DirFmPfcParaPpass)}.{nameof(DirFmPfcParaPpass.ObservedFlat)}[{i}]";
                 stand.ObservedFlat.Status = statDirFmPfcParaPasses?.ObservedFlat;
 
 
@@ -1160,39 +1160,39 @@ namespace WebHMI.Mapping.Extensions
                 stand.Fr.L = spOrd2PcStandL?.Fr;
                 stand.Fr.E = spOrd2PcStandE?.Fr;
                 stand.Fr.S = adordPc2StandS?.Fr;
-                stand.Fr.DbSource = $"{nameof(SpOrd2PcStand)}.{nameof(SpOrd2PcStand.Fr)}{i}";
+                stand.Fr.DbSource = $"{nameof(SpOrd2PcStand)}.{nameof(SpOrd2PcStand.Fr)}[{i}]";
                 stand.Fr.Status = statSpordPc2Stand?.Fr;
 
                 stand.WrCrownEff.L = spOrd2PcStandL?.WrCrownEff;
                 stand.WrCrownEff.E = spOrd2PcStandE?.WrCrownEff;
-                stand.WrCrownEff.DbSource = $"{nameof(SpOrd2PcStand)}.{nameof(SpOrd2PcStand.WrCrownEff)}{i}";
+                stand.WrCrownEff.DbSource = $"{nameof(SpOrd2PcStand)}.{nameof(SpOrd2PcStand.WrCrownEff)}[{i}]";
                 stand.WrCrownEff.Status = statSpordPc2Stand?.WrCrownEff;
 
                 stand.ThermCrown.L = spOrd2PcStandL?.TCrown;
                 stand.ThermCrown.E = spOrd2PcStandE?.TCrown;
-                stand.ThermCrown.DbSource = $"{nameof(SpOrd2PcStand)}.{nameof(SpOrd2PcStand.TCrown)}{i}";
+                stand.ThermCrown.DbSource = $"{nameof(SpOrd2PcStand)}.{nameof(SpOrd2PcStand.TCrown)}[{i}]";
                 stand.ThermCrown.Status = statSpordPc2Stand?.TCrown;
 
                 stand.Troll.L = spOrd2PcStandL?.TRoll;
                 stand.Troll.E = spOrd2PcStandE?.TRoll;
-                stand.Troll.DbSource = $"{nameof(SpOrd2PcStand)}.{nameof(SpOrd2PcStand.TRoll)}{i}";
+                stand.Troll.DbSource = $"{nameof(SpOrd2PcStand)}.{nameof(SpOrd2PcStand.TRoll)}[{i}]";
                 stand.Troll.Status = statSpordPc2Stand?.TRoll;
 
                 stand.RelProfile.L = spOrd2PcStandL?.RelProfile;
                 stand.RelProfile.E = spOrd2PcStandE?.RelProfile;
                 stand.RelProfile.S = adordPc2StandS?.RelProfile;
-                stand.RelProfile.DbSource = $"{nameof(SpOrd2PcStand)}.{nameof(SpOrd2PcStand.RelProfile)}{i}";
+                stand.RelProfile.DbSource = $"{nameof(SpOrd2PcStand)}.{nameof(SpOrd2PcStand.RelProfile)}[{i}]";
                 stand.RelProfile.Status = statSpordPc2Stand?.RelProfile;
 
                 stand.Profile.L = spOrd2PcStandL?.Profile;
                 stand.Profile.E = spOrd2PcStandE?.Profile;
                 stand.Profile.S = adordPc2StandS?.AbsProfile;
-                stand.Profile.DbSource = $"{nameof(SpOrd2PcStand)}.{nameof(SpOrd2PcStand.Profile)}{i}";
+                stand.Profile.DbSource = $"{nameof(SpOrd2PcStand)}.{nameof(SpOrd2PcStand.Profile)}[{i}]";
                 stand.Profile.Status = statSpordPc2Stand?.Profile;
 
                 stand.Wear.L = spOrd2PcStandL?.WCrown;
                 stand.Wear.E = spOrd2PcStandE?.WCrown;
-                stand.Wear.DbSource = $"{nameof(SpOrd2PcStand)}.{nameof(SpOrd2PcStand.WCrown)}{i}";
+                stand.Wear.DbSource = $"{nameof(SpOrd2PcStand)}.{nameof(SpOrd2PcStand.WCrown)}[{i}]";
                 stand.Wear.Status = statSpordPc2Stand?.WCrown;
 
                 result.PassScheduleDtos.Add(stand);
@@ -1231,138 +1231,138 @@ namespace WebHMI.Mapping.Extensions
                 stand.CsMaxLimit.L = dirFmPfcCycShiftPassL?.CSmaxLimit;
                 stand.CsMaxLimit.E = dirFmPfcCycShiftPassE?.CSmaxLimit;
                 stand.CsMaxLimit.M = dirFmPfcCycShiftPassM?.CSmaxLimit;
-                stand.CsMaxLimit.DbSource = $"{nameof(DirFmPfcCycShiftPpass)}.{nameof(DirFmPfcCycShiftPpass.CSmaxLimit)}{i}";
+                stand.CsMaxLimit.DbSource = $"{nameof(DirFmPfcCycShiftPpass)}.{nameof(DirFmPfcCycShiftPpass.CSmaxLimit)}[{i}]";
                 stand.CsMaxLimit.Status = statDirFmPfcCycShiftPass?.CSmaxLimit;
 
                 stand.CsMinLimit.L = dirFmPfcCycShiftPassL?.CSminLimit;
                 stand.CsMinLimit.E = dirFmPfcCycShiftPassE?.CSminLimit;
                 stand.CsMinLimit.M = dirFmPfcCycShiftPassM?.CSminLimit;
-                stand.CsMinLimit.DbSource = $"{nameof(DirFmPfcCycShiftPpass)}.{nameof(DirFmPfcCycShiftPpass.CSminLimit)}{i}";
+                stand.CsMinLimit.DbSource = $"{nameof(DirFmPfcCycShiftPpass)}.{nameof(DirFmPfcCycShiftPpass.CSminLimit)}[{i}]";
                 stand.CsMinLimit.Status = statDirFmPfcCycShiftPass?.CSminLimit;
 
                 stand.CsStartPos.L = dirFmPfcCycShiftPassL?.CSstartPos;
                 stand.CsStartPos.E = dirFmPfcCycShiftPassE?.CSstartPos;
                 stand.CsStartPos.M = dirFmPfcCycShiftPassM?.CSstartPos;
-                stand.CsStartPos.DbSource = $"{nameof(DirFmPfcCycShiftPpass)}.{nameof(DirFmPfcCycShiftPpass.CSstartPos)}{i}";
+                stand.CsStartPos.DbSource = $"{nameof(DirFmPfcCycShiftPpass)}.{nameof(DirFmPfcCycShiftPpass.CSstartPos)}[{i}]";
                 stand.CsStartPos.Status = statDirFmPfcCycShiftPass?.CSstartPos;
 
                 stand.CsShiftDir.L = dirFmPfcCycShiftPassL?.CSshiftDir;
                 stand.CsShiftDir.E = dirFmPfcCycShiftPassE?.CSshiftDir;
                 stand.CsShiftDir.M = dirFmPfcCycShiftPassM?.CSshiftDir;
-                stand.CsShiftDir.DbSource = $"{nameof(DirFmPfcCycShiftPpass)}.{nameof(DirFmPfcCycShiftPpass.CSshiftDir)}{i}";
+                stand.CsShiftDir.DbSource = $"{nameof(DirFmPfcCycShiftPpass)}.{nameof(DirFmPfcCycShiftPpass.CSshiftDir)}[{i}]";
                 stand.CsShiftDir.Status = statDirFmPfcCycShiftPass?.CSshiftDir;
 
                 stand.CsShiftStep1.L = dirFmPfcCycShiftPassL?.CSshiftStep1;
                 stand.CsShiftStep1.E = dirFmPfcCycShiftPassE?.CSshiftStep1;
                 stand.CsShiftStep1.M = dirFmPfcCycShiftPassM?.CSshiftStep1;
-                stand.CsShiftStep1.DbSource = $"{nameof(DirFmPfcCycShiftPpass)}.{nameof(DirFmPfcCycShiftPpass.CSshiftStep1)}{i}";
+                stand.CsShiftStep1.DbSource = $"{nameof(DirFmPfcCycShiftPpass)}.{nameof(DirFmPfcCycShiftPpass.CSshiftStep1)}[{i}]";
                 stand.CsShiftStep1.Status = statDirFmPfcCycShiftPass?.CSshiftStep1;
 
                 stand.CsShiftStep2.L = dirFmPfcCycShiftPassL?.CSshiftStep2;
                 stand.CsShiftStep2.E = dirFmPfcCycShiftPassE?.CSshiftStep2;
                 stand.CsShiftStep2.M = dirFmPfcCycShiftPassM?.CSshiftStep2;
-                stand.CsShiftStep2.DbSource = $"{nameof(DirFmPfcCycShiftPpass)}.{nameof(DirFmPfcCycShiftPpass.CSshiftStep2)}{i}";
+                stand.CsShiftStep2.DbSource = $"{nameof(DirFmPfcCycShiftPpass)}.{nameof(DirFmPfcCycShiftPpass.CSshiftStep2)}[{i}]";
                 stand.CsShiftStep2.Status = statDirFmPfcCycShiftPass?.CSshiftStep2;
 
                 stand.CsShiftStep3.L = dirFmPfcCycShiftPassL?.CSshiftStep3;
                 stand.CsShiftStep3.E = dirFmPfcCycShiftPassE?.CSshiftStep3;
                 stand.CsShiftStep3.M = dirFmPfcCycShiftPassM?.CSshiftStep3;
-                stand.CsShiftStep3.DbSource = $"{nameof(DirFmPfcCycShiftPpass)}.{nameof(DirFmPfcCycShiftPpass.CSshiftStep3)}{i}";
+                stand.CsShiftStep3.DbSource = $"{nameof(DirFmPfcCycShiftPpass)}.{nameof(DirFmPfcCycShiftPpass.CSshiftStep3)}[{i}]";
                 stand.CsShiftStep3.Status = statDirFmPfcCycShiftPass?.CSshiftStep3;
 
                 stand.Description.L = dirFmPfcCycShiftPassL?.Description;
                 stand.Description.E = dirFmPfcCycShiftPassE?.Description;
                 stand.Description.M = dirFmPfcCycShiftPassM?.Description;
-                stand.Description.DbSource = $"{nameof(DirFmPfcCycShiftPpass)}.{nameof(DirFmPfcCycShiftPpass.Description)}{i}";
+                stand.Description.DbSource = $"{nameof(DirFmPfcCycShiftPpass)}.{nameof(DirFmPfcCycShiftPpass.Description)}[{i}]";
                 stand.Description.Status = statDirFmPfcCycShiftPass?.Description;
 
                 stand.Manint.L = dirFmPfcCycShiftPassL?.ManInt;
                 stand.Manint.E = dirFmPfcCycShiftPassE?.ManInt;
                 stand.Manint.M = dirFmPfcCycShiftPassM?.ManInt;
-                stand.Manint.DbSource = $"{nameof(DirFmPfcCycShiftPpass)}.{nameof(DirFmPfcCycShiftPpass.ManInt)}{i}";
+                stand.Manint.DbSource = $"{nameof(DirFmPfcCycShiftPpass)}.{nameof(DirFmPfcCycShiftPpass.ManInt)}[{i}]";
                 stand.Manint.Status = statDirFmPfcCycShiftPass?.ManInt;
 
                 stand.Toextid.L = dirFmPfcCycShiftPassL?.ToExtId;
                 stand.Toextid.E = dirFmPfcCycShiftPassE?.ToExtId;
                 stand.Toextid.M = dirFmPfcCycShiftPassM?.ToExtId;
-                stand.Toextid.DbSource = $"{nameof(DirFmPfcCycShiftPpass)}.{nameof(DirFmPfcCycShiftPpass.ToExtId)}{i}";
+                stand.Toextid.DbSource = $"{nameof(DirFmPfcCycShiftPpass)}.{nameof(DirFmPfcCycShiftPpass.ToExtId)}[{i}]";
 
                 stand.CsmaxlimitparabolicInd0.L = dirFmPfcCycShiftPassL?.CSmaxLimitParabolicInd0;
                 stand.CsmaxlimitparabolicInd0.E = dirFmPfcCycShiftPassE?.CSmaxLimitParabolicInd0;
                 stand.CsmaxlimitparabolicInd0.M = dirFmPfcCycShiftPassM?.CSmaxLimitParabolicInd0;
-                stand.CsmaxlimitparabolicInd0.DbSource = $"{nameof(DirFmPfcCycShiftPpass)}.{nameof(DirFmPfcCycShiftPpass.CSmaxLimitParabolicInd0)}{i}";
+                stand.CsmaxlimitparabolicInd0.DbSource = $"{nameof(DirFmPfcCycShiftPpass)}.{nameof(DirFmPfcCycShiftPpass.CSmaxLimitParabolicInd0)}[{i}]";
                 stand.CsmaxlimitparabolicInd0.Status = statDirFmPfcCycShiftPass?.CSmaxLimitParabolicInd0;
 
                 stand.CsmaxlimitparabolicInd1.L = dirFmPfcCycShiftPassL?.CSmaxLimitParabolicInd1;
                 stand.CsmaxlimitparabolicInd1.E = dirFmPfcCycShiftPassE?.CSmaxLimitParabolicInd1;
                 stand.CsmaxlimitparabolicInd1.M = dirFmPfcCycShiftPassM?.CSmaxLimitParabolicInd1;
-                stand.CsmaxlimitparabolicInd1.DbSource = $"{nameof(DirFmPfcCycShiftPpass)}.{nameof(DirFmPfcCycShiftPpass.CSmaxLimitParabolicInd1)}{i}";
+                stand.CsmaxlimitparabolicInd1.DbSource = $"{nameof(DirFmPfcCycShiftPpass)}.{nameof(DirFmPfcCycShiftPpass.CSmaxLimitParabolicInd1)}[{i}]";
                 stand.CsmaxlimitparabolicInd1.Status = statDirFmPfcCycShiftPass?.CSmaxLimitParabolicInd1;
 
                 stand.CsmaxlimitparabolicInd2.L = dirFmPfcCycShiftPassL?.CSmaxLimitParabolicInd2;
                 stand.CsmaxlimitparabolicInd2.E = dirFmPfcCycShiftPassE?.CSmaxLimitParabolicInd2;
                 stand.CsmaxlimitparabolicInd2.M = dirFmPfcCycShiftPassM?.CSmaxLimitParabolicInd2;
-                stand.CsmaxlimitparabolicInd2.DbSource = $"{nameof(DirFmPfcCycShiftPpass)}.{nameof(DirFmPfcCycShiftPpass.CSmaxLimitParabolicInd2)}{i}";
+                stand.CsmaxlimitparabolicInd2.DbSource = $"{nameof(DirFmPfcCycShiftPpass)}.{nameof(DirFmPfcCycShiftPpass.CSmaxLimitParabolicInd2)}[{i}]";
                 stand.CsmaxlimitparabolicInd2.Status = statDirFmPfcCycShiftPass?.CSmaxLimitParabolicInd2;
 
                 stand.CsminlimitparabolicInd0.L = dirFmPfcCycShiftPassL?.CSminLimitParabolicInd0;
                 stand.CsminlimitparabolicInd0.E = dirFmPfcCycShiftPassE?.CSminLimitParabolicInd0;
                 stand.CsminlimitparabolicInd0.M = dirFmPfcCycShiftPassM?.CSminLimitParabolicInd0;
-                stand.CsminlimitparabolicInd0.DbSource = $"{nameof(DirFmPfcCycShiftPpass)}.{nameof(DirFmPfcCycShiftPpass.CSminLimitParabolicInd0)}{i}";
+                stand.CsminlimitparabolicInd0.DbSource = $"{nameof(DirFmPfcCycShiftPpass)}.{nameof(DirFmPfcCycShiftPpass.CSminLimitParabolicInd0)}[{i}]";
                 stand.CsminlimitparabolicInd0.Status = statDirFmPfcCycShiftPass?.CSminLimitParabolicInd0;
 
                 stand.CsminlimitparabolicInd1.L = dirFmPfcCycShiftPassL?.CSminLimitParabolicInd1;
                 stand.CsminlimitparabolicInd1.E = dirFmPfcCycShiftPassE?.CSminLimitParabolicInd1;
                 stand.CsminlimitparabolicInd1.M = dirFmPfcCycShiftPassM?.CSminLimitParabolicInd1;
-                stand.CsminlimitparabolicInd1.DbSource = $"{nameof(DirFmPfcCycShiftPpass)}.{nameof(DirFmPfcCycShiftPpass.CSminLimitParabolicInd1)}{i}";
+                stand.CsminlimitparabolicInd1.DbSource = $"{nameof(DirFmPfcCycShiftPpass)}.{nameof(DirFmPfcCycShiftPpass.CSminLimitParabolicInd1)}[{i}]";
                 stand.CsminlimitparabolicInd1.Status = statDirFmPfcCycShiftPass?.CSminLimitParabolicInd1;
 
                 stand.CsminlimitparabolicInd2.L = dirFmPfcCycShiftPassL?.CSminLimitParabolicInd2;
                 stand.CsminlimitparabolicInd2.E = dirFmPfcCycShiftPassE?.CSminLimitParabolicInd2;
                 stand.CsminlimitparabolicInd2.M = dirFmPfcCycShiftPassM?.CSminLimitParabolicInd2;
-                stand.CsminlimitparabolicInd2.DbSource = $"{nameof(DirFmPfcCycShiftPpass)}.{nameof(DirFmPfcCycShiftPpass.CSminLimitParabolicInd2)}{i}";
+                stand.CsminlimitparabolicInd2.DbSource = $"{nameof(DirFmPfcCycShiftPpass)}.{nameof(DirFmPfcCycShiftPpass.CSminLimitParabolicInd2)}[{i}]";
                 stand.CsminlimitparabolicInd2.Status = statDirFmPfcCycShiftPass?.CSminLimitParabolicInd2;
 
                 stand.CsstepparabolicInd0.L = dirFmPfcCycShiftPassL?.CSstepParabolicInd0;
                 stand.CsstepparabolicInd0.E = dirFmPfcCycShiftPassE?.CSstepParabolicInd0;
                 stand.CsstepparabolicInd0.M = dirFmPfcCycShiftPassM?.CSstepParabolicInd0;
-                stand.CsstepparabolicInd0.DbSource = $"{nameof(DirFmPfcCycShiftPpass)}.{nameof(DirFmPfcCycShiftPpass.CSstepParabolicInd0)}{i}";
+                stand.CsstepparabolicInd0.DbSource = $"{nameof(DirFmPfcCycShiftPpass)}.{nameof(DirFmPfcCycShiftPpass.CSstepParabolicInd0)}[{i}]";
                 stand.CsstepparabolicInd0.Status = statDirFmPfcCycShiftPass?.CSstepParabolicInd0;
 
                 stand.CsstepparabolicInd1.L = dirFmPfcCycShiftPassL?.CSstepParabolicInd1;
                 stand.CsstepparabolicInd1.E = dirFmPfcCycShiftPassE?.CSstepParabolicInd1;
                 stand.CsstepparabolicInd1.M = dirFmPfcCycShiftPassM?.CSstepParabolicInd1;
-                stand.CsstepparabolicInd1.DbSource = $"{nameof(DirFmPfcCycShiftPpass)}.{nameof(DirFmPfcCycShiftPpass.CSstepParabolicInd1)}{i}";
+                stand.CsstepparabolicInd1.DbSource = $"{nameof(DirFmPfcCycShiftPpass)}.{nameof(DirFmPfcCycShiftPpass.CSstepParabolicInd1)}[{i}]";
                 stand.CsstepparabolicInd1.Status = statDirFmPfcCycShiftPass?.CSstepParabolicInd1;
 
                 stand.CsstepparabolicInd2.L = dirFmPfcCycShiftPassL?.CSstepParabolicInd2;
                 stand.CsstepparabolicInd2.E = dirFmPfcCycShiftPassE?.CSstepParabolicInd2;
                 stand.CsstepparabolicInd2.M = dirFmPfcCycShiftPassM?.CSstepParabolicInd2;
-                stand.CsstepparabolicInd2.DbSource = $"{nameof(DirFmPfcCycShiftPpass)}.{nameof(DirFmPfcCycShiftPpass.CSstepParabolicInd2)}{i}";
+                stand.CsstepparabolicInd2.DbSource = $"{nameof(DirFmPfcCycShiftPpass)}.{nameof(DirFmPfcCycShiftPpass.CSstepParabolicInd2)}[{i}]";
                 stand.CsstepparabolicInd2.Status = statDirFmPfcCycShiftPass?.CSstepParabolicInd2;
 
                 stand.CsstepsmartcrownInd0.L = dirFmPfcCycShiftPassL?.CSstepSmartCrownInd0;
                 stand.CsstepsmartcrownInd0.E = dirFmPfcCycShiftPassE?.CSstepSmartCrownInd0;
                 stand.CsstepsmartcrownInd0.M = dirFmPfcCycShiftPassM?.CSstepSmartCrownInd0;
-                stand.CsstepsmartcrownInd0.DbSource = $"{nameof(DirFmPfcCycShiftPpass)}.{nameof(DirFmPfcCycShiftPpass.CSstepSmartCrownInd0)}{i}";
+                stand.CsstepsmartcrownInd0.DbSource = $"{nameof(DirFmPfcCycShiftPpass)}.{nameof(DirFmPfcCycShiftPpass.CSstepSmartCrownInd0)}[{i}]";
                 stand.CsstepsmartcrownInd0.Status = statDirFmPfcCycShiftPass?.CSstepSmartCrownInd0;
 
                 stand.CsstepsmartcrownInd1.L = dirFmPfcCycShiftPassL?.CSstepSmartCrownInd1;
                 stand.CsstepsmartcrownInd1.E = dirFmPfcCycShiftPassE?.CSstepSmartCrownInd1;
                 stand.CsstepsmartcrownInd1.M = dirFmPfcCycShiftPassM?.CSstepSmartCrownInd1;
-                stand.CsstepsmartcrownInd1.DbSource = $"{nameof(DirFmPfcCycShiftPpass)}.{nameof(DirFmPfcCycShiftPpass.CSstepSmartCrownInd1)}{i}";
+                stand.CsstepsmartcrownInd1.DbSource = $"{nameof(DirFmPfcCycShiftPpass)}.{nameof(DirFmPfcCycShiftPpass.CSstepSmartCrownInd1)}[{i}]";
                 stand.CsstepsmartcrownInd1.Status = statDirFmPfcCycShiftPass?.CSstepSmartCrownInd2;
 
                 stand.CsstepsmartcrownInd2.L = dirFmPfcCycShiftPassL?.CSstepSmartCrownInd2;
                 stand.CsstepsmartcrownInd2.E = dirFmPfcCycShiftPassE?.CSstepSmartCrownInd2;
                 stand.CsstepsmartcrownInd2.M = dirFmPfcCycShiftPassM?.CSstepSmartCrownInd2;
-                stand.CsstepsmartcrownInd2.DbSource = $"{nameof(DirFmPfcCycShiftPpass)}.{nameof(DirFmPfcCycShiftPpass.CSstepSmartCrownInd0)}{i}";
+                stand.CsstepsmartcrownInd2.DbSource = $"{nameof(DirFmPfcCycShiftPpass)}.{nameof(DirFmPfcCycShiftPpass.CSstepSmartCrownInd0)}[{i}]";
                 stand.CsstepsmartcrownInd2.Status = statDirFmPfcCycShiftPass?.CSstepSmartCrownInd2;
 
                 stand.CsMode.L = dirFmPfcCycShiftPassL?.CSmode;
                 stand.CsMode.E = dirFmPfcCycShiftPassE?.CSmode;
                 stand.CsMode.M = dirFmPfcCycShiftPassM?.CSmode;
-                stand.CsMode.DbSource = $"{nameof(DirFmPfcCycShiftPpass)}.{nameof(DirFmPfcCycShiftPpass.CSmode)}{i}";
+                stand.CsMode.DbSource = $"{nameof(DirFmPfcCycShiftPpass)}.{nameof(DirFmPfcCycShiftPpass.CSmode)}[{i}]";
                 stand.CsMode.Status = statDirFmPfcCycShiftPass?.CSmode;
 
                 result.ShiftingDtos.Add(stand);
@@ -1400,37 +1400,37 @@ namespace WebHMI.Mapping.Extensions
                 stand.Fbul.L = dirFmPfcParaPassesL?.FbUl;
                 stand.Fbul.E = dirFmPfcParaPassesE?.FbUl;
                 stand.Fbul.M = dirFmPfcParaPassesM?.FbUl;
-                stand.Fbul.DbSource = $"{nameof(DirFmPfcParaPpass)}.{nameof(DirFmPfcParaPpass.FbUl)}{i}";
+                stand.Fbul.DbSource = $"{nameof(DirFmPfcParaPpass)}.{nameof(DirFmPfcParaPpass.FbUl)}[{i}]";
                 stand.Fbul.Status = statDirFmPfcParapPass?.FbUl;
 
                 stand.Fbll.L = dirFmPfcParaPassesL?.FbLl;
                 stand.Fbll.E = dirFmPfcParaPassesE?.FbLl;
                 stand.Fbll.M = dirFmPfcParaPassesM?.FbLl;
-                stand.Fbll.DbSource = $"{nameof(DirFmPfcParaPpass)}.{nameof(DirFmPfcParaPpass.FbLl)}{i}";
+                stand.Fbll.DbSource = $"{nameof(DirFmPfcParaPpass)}.{nameof(DirFmPfcParaPpass.FbLl)}[{i}]";
                 stand.Fbll.Status = statDirFmPfcParapPass?.FbLl;
 
                 stand.Srul.L = dirFmPfcParaPassesL?.SrUl;
                 stand.Srul.E = dirFmPfcParaPassesE?.SrUl;
                 stand.Srul.E = dirFmPfcParaPassesM?.SrUl;
-                stand.Srul.DbSource = $"{nameof(DirFmPfcParaPpass)}.{nameof(DirFmPfcParaPpass.SrUl)}{i}";
+                stand.Srul.DbSource = $"{nameof(DirFmPfcParaPpass)}.{nameof(DirFmPfcParaPpass.SrUl)}[{i}]";
                 stand.Srul.Status = statDirFmPfcParapPass?.SrUl;
 
                 stand.Srll.L = dirFmPfcParaPassesL?.SrLl;
                 stand.Srll.E = dirFmPfcParaPassesE?.SrLl;
                 stand.Srll.E = dirFmPfcParaPassesM?.SrLl;
-                stand.Srll.DbSource = $"{nameof(DirFmPfcParaPpass)}.{nameof(DirFmPfcParaPpass.SrLl)}{i}";
+                stand.Srll.DbSource = $"{nameof(DirFmPfcParaPpass)}.{nameof(DirFmPfcParaPpass.SrLl)}[{i}]";
                 stand.Srll.Status = statDirFmPfcParapPass?.SrLl;
 
                 stand.Facdfbdfr.L = dirFmPfcParaPassesL?.FacDfbDfr;
                 stand.Facdfbdfr.E = dirFmPfcParaPassesE?.FacDfbDfr;
                 stand.Facdfbdfr.E = dirFmPfcParaPassesM?.FacDfbDfr;
-                stand.Facdfbdfr.DbSource = $"{nameof(DirFmPfcParaPpass)}.{nameof(DirFmPfcParaPpass.FacDfbDfr)}{i}";
+                stand.Facdfbdfr.DbSource = $"{nameof(DirFmPfcParaPpass)}.{nameof(DirFmPfcParaPpass.FacDfbDfr)}[{i}]";
                 stand.Facdfbdfr.Status = statDirFmPfcParapPass?.FacDfbDfr;
 
                 stand.Facdfbdiu.L = dirFmPfcParaPassesL?.FacDfbDiu;
                 stand.Facdfbdiu.E = dirFmPfcParaPassesE?.FacDfbDiu;
                 stand.Facdfbdiu.E = dirFmPfcParaPassesM?.FacDfbDiu;
-                stand.Facdfbdiu.DbSource = $"{nameof(DirFmPfcParaPpass)}.{nameof(DirFmPfcParaPpass.FacDfbDiu)}{i}";
+                stand.Facdfbdiu.DbSource = $"{nameof(DirFmPfcParaPpass)}.{nameof(DirFmPfcParaPpass.FacDfbDiu)}[{i}]";
                 stand.Facdfbdiu.Status = statDirFmPfcParapPass?.FacDfbDiu;
 
                 result.FlatnessDtos.Add(stand);
