@@ -83,7 +83,6 @@ namespace WebHMI.Services
         public async Task<SequenceOverviewDto> GetSequenceOverview(string sequenceId, DateTime? timeFrom, DateTime? timeTo)
         {
             var context = await _dbContextProvider.GetDbContextAsync();
-            sequenceId ??= await _commonAppService.GetActualSequenceId();
 
             var query = context.HmiVProductionHistories.AsQueryable();
 
