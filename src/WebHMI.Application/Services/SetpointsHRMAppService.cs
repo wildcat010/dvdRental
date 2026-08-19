@@ -174,7 +174,6 @@ namespace WebHMI.Services
                 context.Edghrms.Add(edgHrmManuals);
             }
 
-            edgHrmManuals.PlanNo = input.EdgerDto.PlanNo?.M;
             edgHrmManuals.EdgMode = input.EdgerDto.EdgerMode?.M;
             edgHrmManuals.EdgerActive = input.EdgerDto.EdgerActive?.M;
             edgHrmManuals.Dw = input.EdgerDto.WidthReduction?.M;
