@@ -540,6 +540,11 @@ namespace WebHMI.Mapping.Extensions
             result.Descaling.DescrampVolume.M = dpramprmM?.DescRampVolume;
             result.Descaling.DescrampVolume.DbSource = $"{nameof(DprampHrm)}.{nameof(DprampHrm.DescRampVolume)}";
 
+            result.Descaling.RampNo.L = dpramprmL?.RampNo;
+            result.Descaling.RampNo.E = dpramprmE?.RampNo;
+            result.Descaling.RampNo.M = dpramprmM?.RampNo;
+            result.Descaling.RampNo.DbSource = $"{nameof(DprampHrm)}.{nameof(DprampHrm.RampNo)}";
+
             return result;
         }
 
