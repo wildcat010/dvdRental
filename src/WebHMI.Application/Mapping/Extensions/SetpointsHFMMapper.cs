@@ -1106,13 +1106,13 @@ namespace WebHMI.Mapping.Extensions
 
                 stand.Srul.L = dirFmPfcParaPassesL?.SrUl;
                 stand.Srul.E = dirFmPfcParaPassesE?.SrUl;
-                stand.Srul.E = dirFmPfcParaPassesM?.SrUl;
+                stand.Srul.M = dirFmPfcParaPassesM?.SrUl;
                 stand.Srul.DbSource = $"{nameof(DirFmPfcParaPpass)}.{nameof(DirFmPfcParaPpass.SrUl)}[{i}]";
                 stand.Srul.Status = statDirFmPfcParaPasses?.SrUl;
 
                 stand.Srll.L = dirFmPfcParaPassesL?.SrLl;
                 stand.Srll.E = dirFmPfcParaPassesE?.SrLl;
-                stand.Srll.E = dirFmPfcParaPassesM?.SrLl;
+                stand.Srll.M = dirFmPfcParaPassesM?.SrLl;
                 stand.Srll.DbSource = $"{nameof(DirFmPfcParaPpass)}.{nameof(DirFmPfcParaPpass.SrLl)}[{i}]";
                 stand.Srll.Status = statDirFmPfcParaPasses?.SrLl;
 
@@ -1411,25 +1411,25 @@ namespace WebHMI.Mapping.Extensions
 
                 stand.Srul.L = dirFmPfcParaPassesL?.SrUl;
                 stand.Srul.E = dirFmPfcParaPassesE?.SrUl;
-                stand.Srul.E = dirFmPfcParaPassesM?.SrUl;
+                stand.Srul.M = dirFmPfcParaPassesM?.SrUl;
                 stand.Srul.DbSource = $"{nameof(DirFmPfcParaPpass)}.{nameof(DirFmPfcParaPpass.SrUl)}[{i}]";
                 stand.Srul.Status = statDirFmPfcParapPass?.SrUl;
 
                 stand.Srll.L = dirFmPfcParaPassesL?.SrLl;
                 stand.Srll.E = dirFmPfcParaPassesE?.SrLl;
-                stand.Srll.E = dirFmPfcParaPassesM?.SrLl;
+                stand.Srll.M = dirFmPfcParaPassesM?.SrLl;
                 stand.Srll.DbSource = $"{nameof(DirFmPfcParaPpass)}.{nameof(DirFmPfcParaPpass.SrLl)}[{i}]";
                 stand.Srll.Status = statDirFmPfcParapPass?.SrLl;
 
                 stand.Facdfbdfr.L = dirFmPfcParaPassesL?.FacDfbDfr;
                 stand.Facdfbdfr.E = dirFmPfcParaPassesE?.FacDfbDfr;
-                stand.Facdfbdfr.E = dirFmPfcParaPassesM?.FacDfbDfr;
+                stand.Facdfbdfr.M = dirFmPfcParaPassesM?.FacDfbDfr;
                 stand.Facdfbdfr.DbSource = $"{nameof(DirFmPfcParaPpass)}.{nameof(DirFmPfcParaPpass.FacDfbDfr)}[{i}]";
                 stand.Facdfbdfr.Status = statDirFmPfcParapPass?.FacDfbDfr;
 
                 stand.Facdfbdiu.L = dirFmPfcParaPassesL?.FacDfbDiu;
                 stand.Facdfbdiu.E = dirFmPfcParaPassesE?.FacDfbDiu;
-                stand.Facdfbdiu.E = dirFmPfcParaPassesM?.FacDfbDiu;
+                stand.Facdfbdiu.M = dirFmPfcParaPassesM?.FacDfbDiu;
                 stand.Facdfbdiu.DbSource = $"{nameof(DirFmPfcParaPpass)}.{nameof(DirFmPfcParaPpass.FacDfbDiu)}[{i}]";
                 stand.Facdfbdiu.Status = statDirFmPfcParapPass?.FacDfbDiu;
 

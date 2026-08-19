@@ -254,7 +254,7 @@ namespace WebHMI.Services
                     };
                     context.Srppasses.Add(srpPassM);
                 }
-                srpPassM.PlanNo = srpManual?.PlanNo;
+                srpPassM.Model = pass?.Model?.M;
 
             }
             await context.SaveChangesAsync();
@@ -417,6 +417,7 @@ namespace WebHMI.Services
                     };
                     context.Iscppasses.Add(iscpPassM);
                 }
+                iscpPassM.IscState = pass.IscState?.M;
                 iscpPassM.StripSprayBefor = pass.StripSprayBefor?.M;
                 iscpPassM.StripSprayBehind = pass.StripSprayBehind?.M;
                 iscpPassM.IscVolumeInd0 = pass.IscVolumeInd0?.M;
@@ -634,6 +635,10 @@ namespace WebHMI.Services
             dirFmPfcParapM.PlanNo = input.DirFmPfcParaPlanNo?.M;
             dirFmPfcParapM.ProfileCorr = input.ProfileCorr?.M;
 
+            var dirFmPfcCycShiftM = await context.DirFmPfcCycShiftPs.FirstOrDefaultAsync(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M");
+            dirFmPfcCycShiftM = context.InsertIfNull(dirFmPfcCycShiftM, vMatStructEntryOr);
+            dirFmPfcCycShiftM.PlanNo = input.ShiftingPlan?.M;
+
             var srpM = await context.Srps.FirstOrDefaultAsync(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M");
             srpM = context.InsertIfNull(srpM, vMatStructEntryOr);
             srpM.PlanNo = input.SrpPlanNo?.M;
@@ -722,8 +727,22 @@ namespace WebHMI.Services
 
                 lpPassM.BendingForce = pass.BendingForce?.M;
                 lpPassM.CVcshifting = pass.CvcShifting?.M;
-            }
 
+                var wmppassM = wmpPassManuals.FirstOrDefault(x=>x.PassNo == pass.PassNo);
+                if(wmppassM == null)
+                {
+                    wmppassM = new Wmppass()
+                    {
+                        MeCreator = vMatStructEntryOr.EnOrCreator,
+                        MeId = vMatStructEntryOr.EnOrMeId,
+                        MesId = (short)vMatStructEntryOr.EnOrMesId,
+                        PassNo = pass.PassNo,
+                        Source = "M",
+                    };
+                    context.Wmppasses.Add(wmppassM);
+                }
+                wmppassM.Model = pass.WearCorr?.M;
+            }
         }
 
         private async Task UpdateApxSpOrd2PcStands(SetpointsHFMApxDto input, VMatStructEntry vMatStructEntryOr)
