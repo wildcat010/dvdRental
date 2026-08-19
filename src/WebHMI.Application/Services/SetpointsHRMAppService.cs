@@ -264,8 +264,7 @@ namespace WebHMI.Services
                     context.Srppasses.Add(srpPassM);
                 }
 
-                srpPassM.PlanNo = srpManual?.PlanNo;
-                srpPassM.Model = srpPassM?.Model;
+                srpPassM.Model = pass.Model.M;
 
             }
             await context.SaveChangesAsync();
