@@ -334,6 +334,7 @@ namespace WebHMI.Mapping.Extensions
 
                 stand.Model.L = SrppassL?.Model;
                 stand.Model.E = SrppassE?.Model;
+                stand.Model.M = SrppassM?.Model;
                 stand.Model.DbSource = $"{nameof(Srppass)}.{nameof(Srppass.Model)}[{i}]";
 
                 stand.SpecifFoTension.L = TppassL?.SpecifFoTension;

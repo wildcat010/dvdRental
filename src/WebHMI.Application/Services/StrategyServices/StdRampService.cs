@@ -102,7 +102,7 @@ namespace WebHMI.Services.StrategyServices
         {
             var context = _dbContextProvider.GetDbContext();
             var ramps = await context.Set<TRampEntity>().Where(x =>
-                x.PlanNo == planNo && x.PlanNo != 0 && x.ActiveFlag == 1 && x.RampNo == 1)
+                x.PlanNo == planNo && x.ActiveFlag == 1 && x.RampNo == 1)
                 .ToListAsync();
 
             return new StdRampSetsDto<TDto, TRampDto>()
