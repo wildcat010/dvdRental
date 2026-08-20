@@ -689,6 +689,11 @@ namespace WebHMI.Mapping.Extensions
                 stand.LooperCooling.M = iscpPassM?.LooperCool;
                 stand.LooperCooling.DbSource = $"{nameof(Iscppass)}.{nameof(Iscppass.LooperCool)}";
 
+                stand.FumeSuppSprayBehState.L = iscpPassL?.FumeSuppSprayBehState;
+                stand.FumeSuppSprayBehState.E = iscpPassE?.FumeSuppSprayBehState;
+                stand.FumeSuppSprayBehState.M = iscpPassM?.FumeSuppSprayBehState;
+                stand.FumeSuppSprayBehState.DbSource = $"{nameof(Iscppass)}.{nameof(Iscppass.FumeSuppSprayBehState)}";
+
                 result.WorkCoolingDtos.Add(stand);
             }
 

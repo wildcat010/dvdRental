@@ -425,6 +425,7 @@ namespace WebHMI.Services
                 iscpPassM.IscVolumeInd2 = pass.IscVolumeInd2?.M;
                 iscpPassM.IscVolumeInd3 = pass.IscVolumeInd3?.M;
                 iscpPassM.FumeSuppSprayBehind = pass.FumesuppSprayBehind?.M;
+                iscpPassM.FumeSuppSprayBehState = pass.FumeSuppSprayBehState?.M;
                 iscpPassM.LooperCool = pass.LooperCooling?.M;
             }
 
