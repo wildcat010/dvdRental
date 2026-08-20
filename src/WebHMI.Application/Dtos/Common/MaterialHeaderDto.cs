@@ -51,5 +51,6 @@ namespace WebHMI.Dtos.Common
         public SourceSet<string> ModelInfoPc2 { get; set; } = new();
         public SourceSet<string> ModelInfoLC { get; set; } = new();
         public SourceSet<short?> Setpointshrmok { get; set; } = new();
+        public SourceSet<string> HeatName { get; set; } = new();
     }
 }

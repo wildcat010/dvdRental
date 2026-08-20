@@ -183,6 +183,11 @@ namespace WebHMI.Mapping.Extensions
             result.Data.HeatId.S = sourceS?.HeatId;
             result.Data.HeatId.E = sourceE?.HeatId;
 
+            result.Data.HeatName.L = sourceL?.HeatName;
+            result.Data.HeatName.M = sourceM?.HeatName;
+            result.Data.HeatName.S = sourceS?.HeatName;
+            result.Data.HeatName.E = sourceE?.HeatName;
+
             result.Data.FlagBatchRolling.L = sourceL?.FlagBatchRolling;
             result.Data.FlagBatchRolling.M = sourceM?.FlagBatchRolling;
             result.Data.FlagBatchRolling.S = sourceS?.FlagBatchRolling;
@@ -272,6 +277,8 @@ namespace WebHMI.Mapping.Extensions
             result.Data.CoilTemp.E = matInfo?.CoilTemp;
 
             result.Data.HeatId.E = matInfo?.HeatId;
+
+            result.Data.HeatName.E = matInfo?.HeatName;
 
             result.Data.FlagBatchRolling.E = matInfo?.FlagBatchRolling;
 
