@@ -273,6 +273,8 @@ namespace WebHMI.Mapping.Extensions
 
             result.Data.HeatId.E = matInfo?.HeatId;
 
+            result.Data.HeatName.E = matInfo?.HeatName;
+
             result.Data.FlagBatchRolling.E = matInfo?.FlagBatchRolling;
 
             result.Data.ProductType.E = matInfo?.PlateProduction;
