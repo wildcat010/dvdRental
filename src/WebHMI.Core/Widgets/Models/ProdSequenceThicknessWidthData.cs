@@ -18,6 +18,7 @@ namespace WebHMI.Core.Widget.Models
 		public string SeqId {get; set; }
 		public short? FlagNext {get; set; }
 		public int? Status {get; set; }
-
+        public string HeatName { get; set; }
+        public string AlloyCode { get; set; }
     }
 }

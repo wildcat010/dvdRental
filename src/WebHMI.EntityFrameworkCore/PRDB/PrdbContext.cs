@@ -6586,6 +6586,10 @@ public partial class PrdbContext : AbpDbContext
                 .HasMaxLength(20)
                 .IsUnicode(false)
                 .HasColumnName("heatId");
+            entity.Property(e => e.HeatName)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("heatName");
             entity.Property(e => e.LEntry).HasColumnName("lEntry");
             entity.Property(e => e.LExit).HasColumnName("lExit");
             entity.Property(e => e.LastCalc).HasPrecision(3);

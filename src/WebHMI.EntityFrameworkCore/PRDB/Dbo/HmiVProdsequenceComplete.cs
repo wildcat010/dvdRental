@@ -85,6 +85,8 @@ public partial class HmiVProdsequenceComplete
 
     public string HeatId { get; set; }
 
+    public string HeatName { get; set; }
+
     public string FlagBatchRolling { get; set; }
 
     public int? PlateProduction { get; set; }

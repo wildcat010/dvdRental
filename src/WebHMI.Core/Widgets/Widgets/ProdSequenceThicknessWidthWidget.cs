@@ -15,43 +15,43 @@ using WebHMI.PRDB;
 
 namespace WebHMI.Core.Widget.Widgets
 {
-	public class ProdSequenceThicknessWidthWidget : BaseWidget<ProdSequenceThicknessWidthData>, ISingletonDependency
-	{
-		private readonly IDbContextProvider<PrdbContext> _dbContextProvider;
+    public class ProdSequenceThicknessWidthWidget : BaseWidget<ProdSequenceThicknessWidthData>, ISingletonDependency
+    {
+        private readonly IDbContextProvider<PrdbContext> _dbContextProvider;
 
-		public ProdSequenceThicknessWidthWidget(ISignalRNotifier notifier,
-			IDbContextProvider<PrdbContext> dbContextProvider) : base(notifier)
-		{
-			_dbContextProvider = dbContextProvider;
-			Data.WidgetId = WidgetDefs.WidgetIdThicknessWidth;
-		}
+        public ProdSequenceThicknessWidthWidget(ISignalRNotifier notifier,
+            IDbContextProvider<PrdbContext> dbContextProvider) : base(notifier)
+        {
+            _dbContextProvider = dbContextProvider;
+            Data.WidgetId = WidgetDefs.WidgetIdThicknessWidth;
+        }
 
-		public override Task Initialize()
-		{
-			Update().GetAwaiter().GetResult(); // test
+        public override Task Initialize()
+        {
+            Update().GetAwaiter().GetResult(); // test
 
-			return base.Initialize();
-		}
+            return base.Initialize();
+        }
 
-		[UnitOfWork]
-		public override async Task Update()
-		{
-			Logger.Debug($"Calculating widget ProdSequenceThicknessWidthWidget.");
-			try
-			{
-				await ReadData();
-			}
-			catch (Exception ex)
-			{
-				Data.Status = WidgetCalculationStatus.Error;
-				Logger.Error($"Calculate widget {Data.WidgetId} error", ex);
-				throw;
-			}
+        [UnitOfWork]
+        public override async Task Update()
+        {
+            Logger.Debug($"Calculating widget ProdSequenceThicknessWidthWidget.");
+            try
+            {
+                await ReadData();
+            }
+            catch (Exception ex)
+            {
+                Data.Status = WidgetCalculationStatus.Error;
+                Logger.Error($"Calculate widget {Data.WidgetId} error", ex);
+                throw;
+            }
 
-			await base.Update();
-		}
+            await base.Update();
+        }
 
-		protected override long GetRefreshPeriodInSeconds() => 60;
+        protected override long GetRefreshPeriodInSeconds() => 60;
 
         public async Task<string> GetActualSequenceId()
         {
@@ -68,35 +68,36 @@ namespace WebHMI.Core.Widget.Widgets
         }
 
         private async Task ReadData()
-		{
-			var context = _dbContextProvider.GetDbContext();
+        {
+            var context = _dbContextProvider.GetDbContext();
 
             //var actualSeqId = await GetActualSequenceId();
 
             var prodSequences = context.HmiVProdsequenceCompletes
                 .OrderBy(x => x.Position)
                 .AsEnumerable();
-               // .Where(x => x.SequenceId == actualSeqId);
+            // .Where(x => x.SequenceId == actualSeqId);
 
-			var result = new List<KeyValuePair<string, SingleProdSequenceThicknessWidth>>();
+            var result = new List<KeyValuePair<string, SingleProdSequenceThicknessWidth>>();
 
-			foreach (var el in prodSequences)
-			{
-				result.Add(new KeyValuePair<string, SingleProdSequenceThicknessWidth>(
+            foreach (var el in prodSequences)
+            {
+                result.Add(new KeyValuePair<string, SingleProdSequenceThicknessWidth>(
                    el.EnOrExtId,
-					new SingleProdSequenceThicknessWidth
-					{
-                     EntryThickness = el.HEntry,
-						ExitThickness = el.HExit,
-						Width = el.WExit,
-						HeatId = el.HeatId,
-						SeqId = el.SequenceId,
-						FlagNext = el.Pnext,
-                     Status = el.EnOrStatus,
+                    new SingleProdSequenceThicknessWidth
+                    {
+                        EntryThickness = el.HEntry,
+                        ExitThickness = el.HExit,
+                        Width = el.WExit,
+                        HeatName = el.HeatName,
+                        SeqId = el.SequenceId,
+                        FlagNext = el.Pnext,
+                        AlloyCode = el.AlloyCode,
+                        Status = el.EnOrStatus,
                     }));
-			}
+            }
 
-			Data.ProductionDistributionData = result;
-		}
-	}
+            Data.ProductionDistributionData = result;
+        }
+    }
 }
