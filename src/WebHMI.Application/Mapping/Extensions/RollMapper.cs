@@ -155,6 +155,7 @@ namespace WebHMI.Mapping.Extensions
             entity.Diameter = dto.Diameter;
             entity.RollClass = dto.Rollclass;
             entity.RollPropertyClass = dto.RollPropertyClass;
+            entity.InitTemp = dto.InitTemp;
             entity.Roughness = dto.Roughness;
             entity.RollShapeCode = dto.ShapeCode;
             entity.Grinding = dto.Grinding;

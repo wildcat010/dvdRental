@@ -157,6 +157,7 @@ namespace WebHMI.Services
             rollData.RollChamferCode = rollDto.RollChamferClassId;
             rollData.Stat = rollDto.Stat;
             rollData.Shimm = rollDto.Shimm;
+            rollData.InitTemp = rollDto.InitTemp;
             //rollData.DismountTime = dto.Dismounttime;
             rollData.RelatedRollId = rollDto.RelatedRollid;
 
