@@ -578,6 +578,21 @@ namespace WebHMI.Mapping.Extensions
                 stand.AntiPeelingState.M = aopPassM?.AntiPeelingState;
                 stand.AntiPeelingState.DbSource = $"{nameof(Aoppass)}.{nameof(Aoppass.AntiPeelingState)}[{i}]";
 
+                stand.AntiOxStateEntry.L = aopPassL?.AntiOxStateEntry;
+                stand.AntiOxStateEntry.E = aopPassE?.AntiOxStateEntry;
+                stand.AntiOxStateEntry.M = aopPassM?.AntiOxStateEntry;
+                stand.AntiOxStateEntry.DbSource = $"{nameof(Aoppass)}.{nameof(Aoppass.AntiOxStateEntry)}[{i}]";
+
+                stand.AntiOxidationEntryTop.L = aopPassL?.AntiOxidationEntryInd0;
+                stand.AntiOxidationEntryTop.E = aopPassE?.AntiOxidationEntryInd0;
+                stand.AntiOxidationEntryTop.M = aopPassM?.AntiOxidationEntryInd0;
+                stand.AntiOxidationEntryTop.DbSource = $"{nameof(Aoppass)}.{nameof(Aoppass.AntiOxidationEntryInd0)}[{i}]";
+
+                stand.AntiOxidationEntryBottom.L = aopPassL?.AntiOxidationEntryInd1;
+                stand.AntiOxidationEntryBottom.E = aopPassE?.AntiOxidationEntryInd1;
+                stand.AntiOxidationEntryBottom.M = aopPassM?.AntiOxidationEntryInd1;
+                stand.AntiOxidationEntryBottom.DbSource = $"{nameof(Aoppass)}.{nameof(Aoppass.AntiOxidationEntryInd1)}[{i}]";
+
                 stand.AntiPeeling.L = aopPassL?.AntiPeeling;
                 stand.AntiPeeling.E = aopPassE?.AntiPeeling;
                 stand.AntiPeeling.M = aopPassM?.AntiPeeling;
