@@ -220,7 +220,6 @@ namespace WebHMI.Services.StrategyServices
         private static void ValidateInput(StdPowerCoolingDto input)
         {
             if (input == null) { throw new UserFriendlyException("Input data missing"); }
-            if (String.IsNullOrEmpty(input.Description)) { throw new UserFriendlyException("Invalid description (must not be empty"); }
             if (input.NoRamps != 2 && input.Ramps.Count != 2) { throw new UserFriendlyException("Expected 2 ramps, check provided data"); }
         }
 
