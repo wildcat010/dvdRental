@@ -285,9 +285,6 @@ namespace WebHMI.Services.StrategyServices
 
         private static void ValidateInput(StdPassSetsDto<TDto, TPassDto> input)
         {
-            if (input.Std.PlanNo == 0)
-                throw new UserFriendlyException("Plan 0 (default) is not editable");
-
             if (input.Std.PlanNo != input.PassSets.PlanNo)
                 throw new UserFriendlyException("Std and passes keys don't match");
 

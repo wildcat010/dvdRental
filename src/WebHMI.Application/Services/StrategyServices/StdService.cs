@@ -48,8 +48,6 @@ namespace WebHMI.Services.StrategyServices
         [AbpAuthorize(Permissions.Pages_Strategies_Edit)]
         public async Task<TDto> Create(TDto dto)
         {
-            if (dto.PlanNo == 0)
-                throw new EntityNotFoundException("Cannot create strategy with plan number 0");
             dto.ActiveFlag = 1; //force active flag to be 1 on create
             var context = _dbContextProvider.GetDbContext();
             bool stdExist = await context.Set<TEntity>().AnyAsync(x =>
@@ -161,9 +159,6 @@ namespace WebHMI.Services.StrategyServices
         [AbpAuthorize(Permissions.Pages_Strategies_Edit)]
         public async Task<TDto> Update(TDto dto)
         {
-            if (dto.PlanNo == 0)
-                throw new EntityNotFoundException("Plan number cannot have value 0");
-
             var context = _dbContextProvider.GetDbContext();
             var entity = await context.Set<TEntity>().FirstOrDefaultAsync(x =>
                 x.PlanNo == dto.PlanNo && x.ActiveFlag == 1);
@@ -184,9 +179,6 @@ namespace WebHMI.Services.StrategyServices
         [AbpAuthorize(Permissions.Pages_Strategies_Edit)]
         public async Task<List<TDto>> UpdateAll(List<TDto> dtos)
         {
-            if (dtos.Any(x => x.PlanNo == 0))
-                throw new EntityNotFoundException("Plan number cannot have value 0");
-
             var context = _dbContextProvider.GetDbContext();
             if (dtos is null || !dtos.Any())
                 throw new UserFriendlyException("Input list is empty or null");

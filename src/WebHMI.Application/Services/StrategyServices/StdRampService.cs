@@ -161,7 +161,6 @@ namespace WebHMI.Services.StrategyServices
         {
             var context = _dbContextProvider.GetDbContext();
             var ramps = await context.Set<TRampEntity>()
-                .Where(x => x.PlanNo != 0)
                 .OrderBy(x => x.RampNo)
                 .ToListAsync();
 
@@ -310,9 +309,6 @@ namespace WebHMI.Services.StrategyServices
 
         private static void ValidateInput(StdRampSetsDto<TDto, TRampDto> input)
         {
-            if (input.Std.PlanNo == 0)
-                throw new UserFriendlyException("Plan 0 (default) is not editable");
-
             if (input.Std.PlanNo != input.RampSets.PlanNo)
                 throw new UserFriendlyException("Std and passes keys don't match");
 
