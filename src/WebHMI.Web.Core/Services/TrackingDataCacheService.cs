@@ -31,7 +31,8 @@ namespace WebHMI.API.Services
         private readonly ITypedCache<MeIdMatTypeKey, MeasurementCache> _cacheMeasuredValues;
         private readonly ITypedCache<string, Dictionary<string, MeCodeDto>> _cacheActualNext;
         private readonly ITypedCache<string, List<MeCodeDto>> _cacheNextSlabs;
-        //private readonly ITypedCache<string, List<MeCodeDto>> _cacheProducedCoils;
+        private readonly ITypedCache<string, List<MeCodeDto>> _cacheProducedCoils;
+        private readonly ITypedCache<string, MeCodeDto> _cacheMeCode;
 
         private readonly CommonAppService _commonService;
         private readonly IDbContextProvider<PrdbContext> _dbContextProvider;
@@ -47,9 +48,10 @@ namespace WebHMI.API.Services
             _cacheTrackingData = cacheManager.GetCache<string, HmiTrackingData>("HmiTrackingData");
             _cacheMeasuredValues = cacheManager.GetCache<MeIdMatTypeKey, MeasurementCache>("Measurements");
             _cacheActualNext = cacheManager.GetCache<string, Dictionary<string, MeCodeDto>>("ActualNext");
-
+            _cacheMeCode = cacheManager.GetCache<string, MeCodeDto>("MeCode");
             _cacheNextSlabs = cacheManager.GetCache<string, List<MeCodeDto>>("NextSlabs");
-            //_cacheProducedCoils = cacheManager.GetCache<string, List<MeCodeDto>>("ProducedCoils");
+            _cacheProducedCoils = cacheManager.GetCache<string, List<MeCodeDto>>("ProducedCoils");
+
             _signalRNotifier = signalRNotifier;
             _unitOfWorkManager = unitOfWorkManager;
             _dbContextProvider = dbContextProvider;
@@ -59,10 +61,11 @@ namespace WebHMI.API.Services
         [UnitOfWork]
         public async Task HandleEventAsync(EventWrapper<HmiRefreshDto> eventData)
         {
-            bool isCoilEvent = eventData.Data?.EventKey?.Contains("COILS") ?? false;
-            if (!isCoilEvent)
+            bool isPRodHEvent = eventData.Data?.EventKey?.Contains("COILS") ?? false;
+            if (!isPRodHEvent)
                 return;
 
+            await UpdateProducedCoilsCachesAsync();
             //await _cacheNextSlabs.SetAsync(_trackingDataCacheKey, await GetNextSlabsCachesAsync());
         }
 
@@ -77,7 +80,7 @@ namespace WebHMI.API.Services
                 NextSlabs = await _cacheNextSlabs.GetAsync(_trackingDataCacheKey, async key => await GetNextSlabsCachesAsync()),
                 ActualSequenceId = await context.HmiVActualsequences.Select(x => x.GetCurrentSequence).FirstOrDefaultAsync(),
                 ActualHeatId = await context.HmiVActualheats.Select(x => x.GetCurrentHeat).FirstOrDefaultAsync(),
-                //ProducedCoils = await _cacheProducedCoils.GetOrDefaultAsync(_trackingDataCacheKey),
+                ProducedCoils = await _cacheProducedCoils.GetAsync(_trackingDataCacheKey, async key => await UpdateProducedCoilsCachesAsync()),
             };
         }
 
@@ -183,6 +186,32 @@ namespace WebHMI.API.Services
 
             await _signalRNotifier.BroadcastToAllClientsAsync(result, "NextSlabs");
             return result;
+        }
+
+        private async Task<List<MeCodeDto>> UpdateProducedCoilsCachesAsync()
+        {
+            var context = _dbContextProvider.GetDbContext();
+            var result = new List<MeCodeDto>();
+            var nextSlabs = await context.ProdDataCores.Where(x => x.ProdEnd.HasValue)
+                .OrderBy(x => x.ProdEnd).Take(5).ToListAsync();
+            foreach (var slab in nextSlabs)
+                result.Add(await GetMeCodeFromCaches(slab.CoilId));
+            await _cacheProducedCoils.SetAsync(_trackingDataCacheKey, result);
+            await _signalRNotifier.BroadcastToAllClientsAsync(result, "ProducedCoils");
+            return result;
+        }
+
+        private async Task<MeCodeDto> GetMeCodeFromCaches(string enloextid)
+        {
+            var context = _dbContextProvider.GetDbContext();
+
+            return await _cacheMeCode.GetAsync(enloextid, async () =>
+            {
+                return (await context.VMatStructEntries
+                .FirstOrDefaultAsync(x => x.EnLoExtId == enloextid)
+                )?.ToMeCodeDto();
+
+            });
         }
     }
 }
