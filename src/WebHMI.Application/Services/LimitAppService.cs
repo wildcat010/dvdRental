@@ -104,6 +104,9 @@ namespace WebHMI.Services
         [AbpAuthorize(Permissions.Pages_Limits_Edit)]
         public async Task<LimitDto> CreateAsync(LimitDto limitDto)
         {
+            if(_prdbContext.PlantLimits.Any(x=>x.PlantType == limitDto.PlantType && x.LimitName == limitDto.LimitName))
+                throw new Abp.UI.UserFriendlyException("A limit with the same name and plant type already exists.");
+
             var plantlimit = limitDto.MapToDbo();
             _prdbContext.PlantLimits.Add(plantlimit);
             await CurrentUnitOfWork.SaveChangesAsync();

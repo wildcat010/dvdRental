@@ -3,7 +3,9 @@ using Abp.Auditing;
 using Abp.Authorization;
 using Abp.Domain.Entities;
 using Abp.EntityFrameworkCore;
+using Abp.UI;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebHMI.Dtos.Parameters;
@@ -64,6 +66,9 @@ namespace WebHMI.Services
         [AbpAuthorize(Permissions.Pages_Parameters_Edit)]
         public async Task<ParameterDto> CreateAsync(ParameterDto input)
         {
+            if (_prdbContext.PlantParams.Any(x => x.ParamName == input.ParamName && x.PlantType == input.PlantType))
+                throw new UserFriendlyException("A plant parameter with the same name and plant type already exists.");
+
             var parameter = input.MapToDbo();
             _prdbContext.PlantParams.Add(parameter);
             await CurrentUnitOfWork.SaveChangesAsync();

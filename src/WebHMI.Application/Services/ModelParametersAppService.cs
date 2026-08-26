@@ -3,6 +3,7 @@ using Abp.Auditing;
 using Abp.Authorization;
 using Abp.Domain.Entities;
 using Abp.EntityFrameworkCore;
+using Abp.UI;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
@@ -68,6 +69,9 @@ namespace WebHMI.Services
         [AbpAuthorize(Permissions.Pages_Parameters_Edit)]
         public async Task<ParameterDto> CreateAsync(ParameterDto limitDto)
         {
+            if(_prdbContext.MosParams.Any(x => x.ParamName == limitDto.ParamName && x.PlantType == limitDto.PlantType))
+                throw new UserFriendlyException("A model  with the same name and plant type already exists.");
+
             var parameter = ObjectMapper.Map<MosParam>(limitDto);
             _prdbContext.MosParams.Add(parameter);
 
