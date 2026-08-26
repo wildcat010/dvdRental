@@ -11,5 +11,6 @@ namespace WebHMI.Dtos.Strategy.ApsRef
         public string KeyName { get; set; }
         public string KeyType { get; set; }
         public string ApsKey { get; set; }
+        public string Description { get; set; }
     }
 }

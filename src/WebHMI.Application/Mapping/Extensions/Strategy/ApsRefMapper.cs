@@ -17,6 +17,7 @@ namespace WebHMI.Mapping.Extensions.Strategy
             entity.KeyName = dto.KeyName;
             entity.KeyType = dto.KeyType;
             entity.ApsKey = dto.ApsKey;
+            entity.Description = dto.Description;
         }
 
         public static ApsRefDto MapToDto(this ApsRef entity)
@@ -25,6 +26,7 @@ namespace WebHMI.Mapping.Extensions.Strategy
             result.KeyName = entity.KeyName;
             result.KeyType = entity.KeyType;
             result.ApsKey = entity.ApsKey;
+            result.Description = entity.Description;
 
             return result;
         }
