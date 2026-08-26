@@ -111,11 +111,6 @@ namespace WebHMI.Services
             ihpM = context.InsertIfNull(ihpM, vMatStructEntryOr);
             ihpM.Temperature = input.Temperature?.M;
 
-            var spOrd2PcM = await context.SpOrd2Pcs.FirstOrDefaultAsync(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M");
-            spOrd2PcM = context.InsertIfNull(spOrd2PcM, vMatStructEntryOr);
-            spOrd2PcM.LExit = input.LExit?.M;
-            spOrd2PcM.Profexcalc = input.ProfExCalc?.M;
-
             var pcM = await context.Pcs.FirstOrDefaultAsync(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M");
             pcM = context.InsertIfNull(pcM, vMatStructEntryOr);
             pcM.PlanNo = input.PowerCoolingPlanNo?.M;
@@ -160,7 +155,6 @@ namespace WebHMI.Services
             await UpdateLpPasses(input, vMatStructEntry);
             await UpdateTpPasses(input, vMatStructEntry);
             await UpdateSrpPasses(input, vMatStructEntry);
-            await UpdateSpOrdPasses(input, vMatStructEntry);
             await UpdateDirFmPfcParaPasses(input, vMatStructEntry);
 
             await UpdateLoadingTab(input, vMatStructEntry);
@@ -255,34 +249,6 @@ namespace WebHMI.Services
                     context.Srppasses.Add(srpPassM);
                 }
                 srpPassM.Model = pass?.Model?.M;
-
-            }
-            await context.SaveChangesAsync();
-        }
-
-        private async Task UpdateSpOrdPasses(SetpointsHFMDto input, VMatStructEntry vMatStructEntryOr)
-        {
-            var context = _prdbContextProvider.GetDbContext();
-
-            var spOrd2PcStandManuals = await context.SpOrd2PcStands.Where(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M").ToListAsync();
-
-            foreach (var pass in input.PassScheduleDtos.OrderByDescending(x => x.PassNo))
-            {
-                var spOrd2PcStandM = spOrd2PcStandManuals.FirstOrDefault(x => x.StandId == pass.PassNo);
-                if (spOrd2PcStandM == null)
-                {
-                    spOrd2PcStandM = new SpOrd2PcStand()
-                    {
-                        MeCreator = vMatStructEntryOr.EnOrCreator,
-                        MeId = vMatStructEntryOr.EnOrMeId,
-                        MesId = (short)vMatStructEntryOr.EnOrMesId,
-                        StandId = pass.PassNo,
-                        Source = "M",
-                    };
-                    context.SpOrd2PcStands.Add(spOrd2PcStandM);
-                }
-
-                spOrd2PcStandM.PositionWrs = pass.PositionWRS?.M;
 
             }
             await context.SaveChangesAsync();
@@ -648,9 +614,6 @@ namespace WebHMI.Services
             lpM = context.InsertIfNull(lpM, vMatStructEntryOr);
             lpM.RedDistHrmHfm = input.RedDistHrmHfm?.M;
 
-            var spOrd2PcM = await context.SpOrd2Pcs.FirstOrDefaultAsync(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M");
-            spOrd2PcM = context.InsertIfNull(spOrd2PcM, vMatStructEntryOr);
-
             await context.SaveChangesAsync();
         }
 
@@ -688,7 +651,6 @@ namespace WebHMI.Services
             edOrdEntM = context.InsertIfNull(edOrdEntM, vMatStructEntryOr);
 
             await UpdateLpSrpWmpPass(input, vMatStructEntryOr);
-            await UpdateApxSpOrd2PcStands(input, vMatStructEntryOr);
             await UpdateApxDirFmPfcParaPasses(input, vMatStructEntryOr);
 
             await UpdateShifting(input, vMatStructEntryOr);
@@ -744,36 +706,6 @@ namespace WebHMI.Services
                 }
                 wmppassM.Model = pass.WearCorr?.M;
             }
-        }
-
-        private async Task UpdateApxSpOrd2PcStands(SetpointsHFMApxDto input, VMatStructEntry vMatStructEntryOr)
-        {
-            var context = _prdbContextProvider.GetDbContext();
-
-            var spOrd2PcStandManuals = await context.SpOrd2PcStands.Where(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M").ToListAsync();
-
-            foreach (var pass in input.PassScheduleDtos.OrderByDescending(x => x.PassNo))
-            {
-                var spOrd2PcStandM = spOrd2PcStandManuals.FirstOrDefault(x => x.StandId == pass.PassNo);
-                if (spOrd2PcStandM == null)
-                {
-                    spOrd2PcStandM = new SpOrd2PcStand()
-                    {
-                        MeCreator = vMatStructEntryOr.EnOrCreator,
-                        MeId = vMatStructEntryOr.EnOrMeId,
-                        MesId = (short)vMatStructEntryOr.EnOrMesId,
-                        StandId = (short)pass.PassNo,
-                        Source = "M",
-                    };
-                    context.SpOrd2PcStands.Add(spOrd2PcStandM);
-                }
-
-                spOrd2PcStandM.RelProfile = pass.RelProfile?.M;
-                spOrd2PcStandM.Profile = pass.Profile?.M;
-                spOrd2PcStandM.WCrown = pass.Wear?.M;
-
-            }
-            await context.SaveChangesAsync();
         }
 
         private async Task UpdateApxDirFmPfcParaPasses(SetpointsHFMApxDto input, VMatStructEntry vMatStructEntryOr)

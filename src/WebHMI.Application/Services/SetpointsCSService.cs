@@ -85,8 +85,6 @@ namespace WebHMI.API.Services
 
                 result.MeCode = entryMatStruct.ToOrMeCodeDto();
 
-
-
                 return result;
             });
 
@@ -172,10 +170,6 @@ namespace WebHMI.API.Services
         {
             var context = _dbContextProvider.GetDbContext();
             var vMatStructEntry = await _matStructEntryService.GetMaterialEntryStruct(input.MeCode.MeId, "OR");
-
-            var spOrd2pcM = await context.SpOrd2Pcs.FirstOrDefaultAsync(x => x.MeId == vMatStructEntry.EnOrMeId && x.Source == "M");
-            spOrd2pcM = context.InsertIfNull(spOrd2pcM, vMatStructEntry);
-            spOrd2pcM.VExitLas = input.PreCalculation.OrderData.Vexit?.M;
 
             var csPcResultM = await context.CsPcResults.FirstOrDefaultAsync(x => x.MeId == vMatStructEntry.EnOrMeId);
             if (csPcResultM == null)

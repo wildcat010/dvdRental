@@ -57,7 +57,6 @@ namespace WebHMI.Mapping.Extensions
             var lpE = dataBlob.Lps.Where(x => x.Source == "E").FirstOrDefault();
 
             var spOrd2PcL = dataBlob.Spord2pcs.Where(x => x.Source == "L").FirstOrDefault();
-            var spOrd2PcM = dataBlob.Spord2pcs.Where(x => x.Source == "M").FirstOrDefault();
             var spOrd2PcS = dataBlob.Spord2pcs.Where(x => x.Source == "S").FirstOrDefault();
             var spOrd2PcE = dataBlob.Spord2pcs.Where(x => x.Source == "E").FirstOrDefault();
 
@@ -235,7 +234,6 @@ namespace WebHMI.Mapping.Extensions
         public static SetpointsHFMDto MapPassSchedule(this SetpointsHFMDto result, SetpointsHFMDataBlob dataBlob, short standCount, short standStartIdx)
         {
             var spOrd2PcL = dataBlob.Spord2pcs.Where(x => x.Source == "L").FirstOrDefault();
-            var spOrd2PcM = dataBlob.Spord2pcs.Where(x => x.Source == "M").FirstOrDefault();
             var spOrd2PcS = dataBlob.Spord2pcs.Where(x => x.Source == "S").FirstOrDefault();
             var spOrd2PcE = dataBlob.Spord2pcs.Where(x => x.Source == "E").FirstOrDefault();
 
@@ -249,7 +247,6 @@ namespace WebHMI.Mapping.Extensions
                 var SrppassE = dataBlob.Srppasses.Where(x => x.Source == "E" && x.PassNo == i).FirstOrDefault();
 
                 var spOrd2PcStandL = dataBlob.Spord2pcstands.Where(x => x.Source == "L" && x.StandId == i).FirstOrDefault();
-                var spOrd2PcStandM = dataBlob.Spord2pcstands.Where(x => x.Source == "M" && x.StandId == i).FirstOrDefault();
                 var spOrd2PcStandS = dataBlob.Spord2pcstands.Where(x => x.Source == "S" && x.StandId == i).FirstOrDefault();
                 var spOrd2PcStandE = dataBlob.Spord2pcstands.Where(x => x.Source == "E" && x.StandId == i).FirstOrDefault();
 
@@ -327,7 +324,6 @@ namespace WebHMI.Mapping.Extensions
 
                 stand.PositionWRS.L = spOrd2PcStandL?.PositionWrs;
                 stand.PositionWRS.E = spOrd2PcStandE?.PositionWrs;
-                stand.PositionWRS.M = spOrd2PcStandM?.PositionWrs;
                 stand.PositionWRS.S = adordPC2StandS?.PositionWrs;
                 stand.PositionWRS.DbSource = $"{nameof(SpOrd2PcStand)}.{nameof(SpOrd2PcStand.PositionWrs)}[{i}]";
                 stand.PositionWRS.Status = statSpord2Pc?.PositionWrs;
@@ -1053,7 +1049,6 @@ namespace WebHMI.Mapping.Extensions
                 var wmppassesE = dataBlob.Wmppasses.Where(x => x.Source == "E" && x.PassNo == i).FirstOrDefault();
 
                 var spOrd2PcStandL = dataBlob.Spord2pcstands.Where(x => x.Source == "L" && x.StandId == i).FirstOrDefault();
-                var spOrd2PcStandM = dataBlob.Spord2pcstands.Where(x => x.Source == "M" && x.StandId == i).FirstOrDefault();
                 var spOrd2PcStandS = dataBlob.Spord2pcstands.Where(x => x.Source == "S" && x.StandId == i).FirstOrDefault();
                 var spOrd2PcStandE = dataBlob.Spord2pcstands.Where(x => x.Source == "E" && x.StandId == i).FirstOrDefault();
 

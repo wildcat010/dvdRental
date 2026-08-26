@@ -16,7 +16,6 @@ namespace WebHMI.Mapping.Extensions
             var edordentE = dataBlob.Edordents.Where(x => x.Source == "E").FirstOrDefault();
 
             var spord2pcL = dataBlob.SpOrd2Pcs.Where(x => x.Source == "L").FirstOrDefault();
-            var spord2pcM = dataBlob.SpOrd2Pcs.Where(x => x.Source == "M").FirstOrDefault();
             var spord2pcE = dataBlob.SpOrd2Pcs.Where(x => x.Source == "E").FirstOrDefault();
 
             var csstrategyL = dataBlob.CsStrategies.Where(x => x.Source == "X").FirstOrDefault();
