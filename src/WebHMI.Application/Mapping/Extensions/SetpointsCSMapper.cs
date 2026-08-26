@@ -306,42 +306,52 @@ namespace WebHMI.Mapping.Extensions
 
             result.CoolingStrategyTab.StartValveNumberTopInd1.L = csstrategyL?.StartValveNumberTopInd1;
             result.CoolingStrategyTab.StartValveNumberTopInd1.E = csstrategyE?.StartValveNumberTopInd1;
+            result.CoolingStrategyTab.StartValveNumberTopInd1.M = csstrategyM?.StartValveNumberTopInd1;
             result.CoolingStrategyTab.StartValveNumberTopInd1.DbSource = $"{nameof(CsStrategy)}.{nameof(CsStrategy.StartValveNumberTopInd1)}";
 
             result.CoolingStrategyTab.StartValveNumberBotInd1.L = csstrategyL?.StartValveNumberBotInd1;
             result.CoolingStrategyTab.StartValveNumberBotInd1.E = csstrategyE?.StartValveNumberBotInd1;
+            result.CoolingStrategyTab.StartValveNumberBotInd1.M = csstrategyM?.StartValveNumberBotInd1;
             result.CoolingStrategyTab.StartValveNumberBotInd1.DbSource = $"{nameof(CsStrategy)}.{nameof(CsStrategy.StartValveNumberBotInd1)}";
 
             result.CoolingStrategyTab.CoolRateTopInd1.L = csstrategyL?.CoolRateTopInd1;
             result.CoolingStrategyTab.CoolRateTopInd1.E = csstrategyE?.CoolRateTopInd1;
+            result.CoolingStrategyTab.CoolRateTopInd1.M = csstrategyM?.CoolRateTopInd1;
             result.CoolingStrategyTab.CoolRateTopInd1.DbSource = $"{nameof(CsStrategy)}.{nameof(CsStrategy.CoolRateTopInd1)}";
 
             result.CoolingStrategyTab.CoolRateBotInd1.L = csstrategyL?.CoolRateBotInd1;
             result.CoolingStrategyTab.CoolRateBotInd1.E = csstrategyE?.CoolRateBotInd1;
+            result.CoolingStrategyTab.CoolRateBotInd1.M = csstrategyM?.CoolRateBotInd1;
             result.CoolingStrategyTab.CoolRateBotInd1.DbSource = $"{nameof(CsStrategy)}.{nameof(CsStrategy.CoolRateBotInd1)}";
 
             result.CoolingStrategyTab.TempOffsetAInd1.L = csstrategyL?.TempOffsetAInd1;
             result.CoolingStrategyTab.TempOffsetAInd1.E = csstrategyE?.TempOffsetAInd1;
+            result.CoolingStrategyTab.TempOffsetAInd1.M = csstrategyM?.TempOffsetAInd1;
             result.CoolingStrategyTab.TempOffsetAInd1.DbSource = $"{nameof(CsStrategy)}.{nameof(CsStrategy.TempOffsetAInd1)}";
 
             result.CoolingStrategyTab.TempOffsetBInd1.L = csstrategyL?.TempOffsetBInd1;
             result.CoolingStrategyTab.TempOffsetBInd1.E = csstrategyE?.TempOffsetBInd1;
+            result.CoolingStrategyTab.TempOffsetBInd1.M = csstrategyM?.TempOffsetBInd1;
             result.CoolingStrategyTab.TempOffsetBInd1.DbSource = $"{nameof(CsStrategy)}.{nameof(CsStrategy.TempOffsetBInd1)}";
 
             result.CoolingStrategyTab.AdaptationInd1.L = csstrategyL?.AdaptationInd1;
             result.CoolingStrategyTab.AdaptationInd1.E = csstrategyE?.AdaptationInd1;
+            result.CoolingStrategyTab.AdaptationInd1.M = csstrategyM?.AdaptationInd1;
             result.CoolingStrategyTab.AdaptationInd1.DbSource = $"{nameof(CsStrategy)}.{nameof(CsStrategy.AdaptationInd1)}";
 
             result.CoolingStrategyTab.LeadingPyroIndexInd1.L = csstrategyL?.LeadingPyroIndexInd1;
             result.CoolingStrategyTab.LeadingPyroIndexInd1.E = csstrategyE?.LeadingPyroIndexInd1;
+            result.CoolingStrategyTab.LeadingPyroIndexInd1.M = csstrategyM?.LeadingPyroIndexInd1;
             result.CoolingStrategyTab.LeadingPyroIndexInd1.DbSource = $"{nameof(CsStrategy)}.{nameof(CsStrategy.LeadingPyroIndexInd1)}";
 
             result.CoolingStrategyTab.TargetF4TInd1.L = csstrategyL?.TargetF4tInd1;
             result.CoolingStrategyTab.TargetF4TInd1.E = csstrategyE?.TargetF4tInd1;
+            result.CoolingStrategyTab.TargetF4TInd1.M = csstrategyM?.TargetF4tInd1;
             result.CoolingStrategyTab.TargetF4TInd1.DbSource = $"{nameof(CsStrategy)}.{nameof(CsStrategy.TargetF4tInd1)}";
 
             result.CoolingStrategyTab.TargetTempInd1.L = csstrategyL?.TargetTempInd1;
             result.CoolingStrategyTab.TargetTempInd1.E = csstrategyE?.TargetTempInd1;
+            result.CoolingStrategyTab.TargetTempInd1.M = csstrategyM?.TargetTempInd1;
             result.CoolingStrategyTab.TargetTempInd1.DbSource = $"{nameof(CsStrategy)}.{nameof(CsStrategy.TargetTempInd1)}";
 
             result.CoolingStrategyTab.AutoSplineValueLowTop.L = csstrategyL?.AutoSplineValueLowTop;
