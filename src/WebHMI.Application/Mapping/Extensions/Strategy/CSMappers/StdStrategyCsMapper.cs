@@ -55,6 +55,7 @@ namespace WebHMI.Mapping.Extensions.Strategy.CSMappers
             Tempoffsetfmb = entity.TempOffsetFmB,
             UsetempgradselectionInd0 = entity.UseTempGradSelectionInd0,
             UsetempgradselectionInd1 = entity.UseTempGradSelectionInd1,
+            Valvesequenceindexcus = entity.ValveSequenceIndexCus
 
         };
 
@@ -103,6 +104,7 @@ namespace WebHMI.Mapping.Extensions.Strategy.CSMappers
             entity.TempOffsetFmB = dto.Tempoffsetfmb;
             entity.UseTempGradSelectionInd0 = dto.UsetempgradselectionInd0;
             entity.UseTempGradSelectionInd1 = dto.UsetempgradselectionInd1;
+            entity.ValveSequenceIndexCus = dto.Valvesequenceindexcus;
 
         }
     }
