@@ -61,7 +61,7 @@ namespace WebHMI.API.Services
         [UnitOfWork]
         public async Task HandleEventAsync(EventWrapper<HmiRefreshDto> eventData)
         {
-            bool isPRodHEvent = eventData.Data?.EventKey?.Contains("COILS") ?? false;
+            bool isPRodHEvent = eventData.Data?.EventKey?.Contains("PRODH") ?? false;
             if (!isPRodHEvent)
                 return;
 
@@ -192,8 +192,8 @@ namespace WebHMI.API.Services
         {
             var context = _dbContextProvider.GetDbContext();
             var result = new List<MeCodeDto>();
-            var nextSlabs = await context.ProdDataCores.Where(x => x.ProdEnd.HasValue)
-                .OrderBy(x => x.ProdEnd).Take(5).ToListAsync();
+            var nextSlabs = await context.ProdDataCores
+                .OrderByDescending(x => x.Toc).Take(5).ToListAsync();
             foreach (var slab in nextSlabs)
                 result.Add(await GetMeCodeFromCaches(slab.CoilId));
             await _cacheProducedCoils.SetAsync(_trackingDataCacheKey, result);
