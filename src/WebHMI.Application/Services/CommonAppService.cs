@@ -355,8 +355,8 @@ namespace WebHMI.Services
                 { "WOS", () => MosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd19) },
 
                 { "TAKOM", () => ProgparamsToHMISwitch(progparams.FirstOrDefault(m => m.Param == "SETPT_TAKEOVER_MANUAL")?.ParamNum) },
-                { "LTI", () => ReverseMosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd05) },
-                { "STI", () => ReverseMosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd06) },
+                { "LTI", () => ReverseMosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd06) },
+                { "STI", () => ReverseMosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd05) },
 
                 { "LTIPFC", () => MosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd23) },
                 { "STIPFC", () => MosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd22) },
