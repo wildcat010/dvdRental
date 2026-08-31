@@ -443,6 +443,9 @@ namespace WebHMI.Services
                 }
                 aopPassM.AntiPeelingState = pass.AntiPeelingState?.M;
                 aopPassM.AntiPeeling = pass.AntiPeeling?.M;
+                aopPassM.AntiOxStateEntry = pass.AntiOxStateEntry.M;
+                aopPassM.AntiOxidationEntryInd0 = pass.AntiOxidationEntryTop.M;
+                aopPassM.AntiOxidationEntryInd1 = pass.AntiOxidationEntryBottom.M;
             }
 
             await context.SaveChangesAsync();
