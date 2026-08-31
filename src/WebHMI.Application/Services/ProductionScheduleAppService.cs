@@ -100,13 +100,15 @@ namespace WebHMI.Services
         public async Task<List<string>> GetMoveDestinationCoilCandidates(string steelGrade, string sequenceId)
         {
             var context = await _prdbContextProvider.GetDbContextAsync();
+            var actualNextMat = await context.HmiCoils.Where(x=> x.Param == "SETPTRM_ACTUAL" || x.Param == "SETPTRM_NEXT").Select(x => x.Id).ToListAsync();
             var candidates = await context.HmiVProdsequences
                 .Where(h =>
                     h.SequenceId == sequenceId &&
                     h.AlloyCode == steelGrade &&
                     h.EnOrExtId != null &&
+                    !actualNextMat.Contains(h.EnOrExtId) &&
                     !EF.Functions.Like(h.EnOrExtId, "%@%") &&
-                    !EF.Functions.Like(h.EnOrExtId, "%#%")
+                    !EF.Functions.Like(h.EnOrExtId, "%#%") 
                 )
                 .Select(x => x.EnOrExtId)
                 .OrderBy(x => x)    
