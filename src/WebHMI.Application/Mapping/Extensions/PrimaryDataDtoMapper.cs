@@ -435,6 +435,41 @@ namespace WebHMI.Mapping.Extensions
             result.CSData.CoolModeSource.DbSource = $"{nameof(EdOrdEnt)}.{nameof(EdOrdEnt.CoolingStrategyModeSelection)}";
             result.CSData.CoolModeSource.Status = dataBlob.StatEdOrdEnts?.CoolingStrategyModeSelection;
 
+            result.CSData.CsDirectivesCoolingRateTop.L = edOrdEntL?.CoolRateTop2;
+            result.CSData.CsDirectivesCoolingRateTop.M = edOrdEntM?.CoolRateTop2;
+            result.CSData.CsDirectivesCoolingRateTop.S = edOrdEntS?.CoolRateTop2;
+            result.CSData.CsDirectivesCoolingRateTop.E = edOrdEntE?.CoolRateTop2;
+            result.CSData.CsDirectivesCoolingRateTop.Status = dataBlob.StatEdOrdEnts?.CoolRateTop2;
+            result.CSData.CsDirectivesCoolingRateTop.DbSource = $"{nameof(EdOrdEnt)}.{nameof(EdOrdEnt.CoolRateTop2)}";
+
+            result.CSData.CsDirectivesCoolingRateBot.L = edOrdEntL?.CoolRateBot2;
+            result.CSData.CsDirectivesCoolingRateBot.M = edOrdEntM?.CoolRateBot2;
+            result.CSData.CsDirectivesCoolingRateBot.S = edOrdEntS?.CoolRateBot2;
+            result.CSData.CsDirectivesCoolingRateBot.E = edOrdEntE?.CoolRateBot2;
+            result.CSData.CsDirectivesCoolingRateBot.Status = dataBlob.StatEdOrdEnts?.CoolRateBot2;
+            result.CSData.CsDirectivesCoolingRateBot.DbSource = $"{nameof(EdOrdEnt)}.{nameof(EdOrdEnt.CoolRateBot2)}";
+
+            result.CSData.HoldTime.L = edOrdEntL?.HoldTime;
+            result.CSData.HoldTime.M = edOrdEntM?.HoldTime;
+            result.CSData.HoldTime.S = edOrdEntS?.HoldTime;
+            result.CSData.HoldTime.E = edOrdEntE?.HoldTime;
+            result.CSData.HoldTime.Status = dataBlob.StatEdOrdEnts?.HoldTime;
+            result.CSData.HoldTime.DbSource = $"{nameof(EdOrdEnt)}.{nameof(EdOrdEnt.HoldTime)}";
+
+            result.CSData.HoldTemp.L = edOrdEntL?.HoldTemp;
+            result.CSData.HoldTemp.M = edOrdEntM?.HoldTemp;
+            result.CSData.HoldTemp.S = edOrdEntS?.HoldTemp;
+            result.CSData.HoldTemp.E = edOrdEntE?.HoldTemp;
+            result.CSData.HoldTemp.Status = dataBlob.StatEdOrdEnts?.HoldTemp;
+            result.CSData.HoldTemp.DbSource = $"{nameof(EdOrdEnt)}.{nameof(EdOrdEnt.HoldTemp)}";
+
+            result.CSData.CsDualPhaseFractionForTrans.L = edOrdEntL?.TCsHoldF4t;
+            result.CSData.CsDualPhaseFractionForTrans.M = edOrdEntM?.TCsHoldF4t;
+            result.CSData.CsDualPhaseFractionForTrans.S = edOrdEntS?.TCsHoldF4t;
+            result.CSData.CsDualPhaseFractionForTrans.E = edOrdEntE?.TCsHoldF4t;
+            result.CSData.CsDualPhaseFractionForTrans.Status = dataBlob.StatEdOrdEnts?.TCsHoldF4t;
+            result.CSData.CsDualPhaseFractionForTrans.DbSource = $"{nameof(EdOrdEnt)}.{nameof(EdOrdEnt.TCsHoldF4t)}";
+
             return result;
         }
 		public static PrimaryDataDto MapChemistryElements(this PrimaryDataDto result, PrimaryDataDataBlob dataBlob)

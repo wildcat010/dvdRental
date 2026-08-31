@@ -36,6 +36,8 @@ namespace WebHMI.Dtos.PrimaryData
         public SourceSet<double?> HoldTime { get; set; } = new();
         public SourceSet<double?> HoldTemp { get; set; } = new();
         public SourceSet<double?> DpFraction { get; set; } = new();
-
+        public SourceSet<double?> CsDirectivesCoolingRateTop { get; set; } = new();
+        public SourceSet<double?> CsDirectivesCoolingRateBot { get; set; } = new();
+        public SourceSet<double?> CsDualPhaseFractionForTrans { get; set; } = new();
     }
 }
