@@ -9,6 +9,10 @@
         On = 3,
         Off = 4,
         OFFWARNING = 5,
-        OTHER = 9
+        OTHER = 9,
+        Flatness = 10,
+        Profile = 11,
+        Manual = 12,
+        Model = 13
     }
 }

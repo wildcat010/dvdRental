@@ -45,10 +45,10 @@ namespace WebHMI.API.BackgroundTask
 
                 if (mosswitches.Any())
                 {
-                    _statusManager.AddStatus(ConvertMosSwitchToDto(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd17), "ABE", SimpleStatusGroup.CFOptHRM, 1, "Automatic Bending");                    
+                    _statusManager.AddStatus(MapAutomaticBending(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd17), "ABE", SimpleStatusGroup.CFOptHRM, 1, "Automatic Bending");                    
                     _statusManager.AddStatus(ConvertMosSwitchToDto(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd20), "IED", SimpleStatusGroup.CFOpt, 1, "Ignore Edge Drop");
                     _statusManager.AddStatus(ConvertMosSwitchToDto(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd19), "OSH", SimpleStatusGroup.CFOpt, 2, "Wear Optimized Shifting");
-                    _statusManager.AddStatus(ConvertMosSwitchToDto(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd34), "PRP", SimpleStatusGroup.CFOpt, 3, "Priority Parameter");
+                    _statusManager.AddStatus(MapPriorityParameter(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd34), "PRP", SimpleStatusGroup.CFOpt, 3, "Priority Parameter");
 
                 }
                 
@@ -70,5 +70,26 @@ namespace WebHMI.API.BackgroundTask
             return OveralStateDto.UNKNOWN;
         }
 
+        private OveralStateDto MapPriorityParameter(int? par)
+        {
+            if (par is null)
+                return OveralStateDto.UNKNOWN;
+            if (par == 0)
+                return OveralStateDto.Flatness;
+            if (par == 1)
+                return OveralStateDto.Profile;
+            return OveralStateDto.UNKNOWN;
+        }
+
+        private OveralStateDto MapAutomaticBending(int? par)
+        {
+            if (par is null)
+                return OveralStateDto.UNKNOWN;
+            if (par == 0)
+                return OveralStateDto.Manual;
+            if (par == 1)
+                return OveralStateDto.Model;
+            return OveralStateDto.UNKNOWN;
+        }
     }
 }
