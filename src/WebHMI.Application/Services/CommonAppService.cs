@@ -358,8 +358,8 @@ namespace WebHMI.Services
                 { "LTI", () => ReverseMosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd06) },
                 { "STI", () => ReverseMosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd05) },
 
-                { "LTIPFC", () => MosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd23) },
-                { "STIPFC", () => MosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd22) },
+                { "LTIPFC", () => ReverseMosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd23) },
+                { "STIPFC", () => ReverseMosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd45) },
                 { "TOCS", () => ProgparamsToHMISwitch(progparams.FirstOrDefault(x => x.Param == "SETPTCS_TAKEOVER_MANUAL")?.ParamNum) },
             };
 
@@ -417,11 +417,11 @@ namespace WebHMI.Services
                 
                 { "LTIPFC", (x) => {
                     var mos = mosswitches.FirstOrDefault(m => m.PlantType == "HFM");
-                    if (mos != null) mos.StrSwitchesInd23 = HMIToMosswitchSwitch(x);
+                    if (mos != null) mos.StrSwitchesInd23 = ReverseHMIToMosswitchSwitch(x);
                 }},
                 { "STIPFC", (x) => {
                     var mos = mosswitches.FirstOrDefault(m => m.PlantType == "HFM");
-                    if (mos != null) mos.StrSwitchesInd22 = HMIToMosswitchSwitch(x);
+                    if (mos != null) mos.StrSwitchesInd45 = ReverseHMIToMosswitchSwitch(x);
                 }},
                 
             };
