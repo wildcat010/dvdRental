@@ -269,7 +269,7 @@ namespace WebHMI.Services.StrategyServices
 
     public class StdEdghrmService : StdService<StdEdghrm, StdEdghrmDto>
     {
-        public override string AggregateName => "CsEdgeMaskingSelection";
+        public override string AggregateName => "RmEdgerPlan";
 
         public StdEdghrmService() : base(
             StdEdghrmMapper.ToDto,
