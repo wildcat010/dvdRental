@@ -349,17 +349,20 @@ namespace WebHMI.Services
 
             var flags = new Dictionary<string, Func<short>>()
             {
-                { "AUTOMATICBENDING", () => MosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd17) },
+                { "AUTOMATICBENDINGRM", () => MosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd17) },
+                { "AUTOMATICBENDINGFM", () => MosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd16) },
                 { "PRIORITY", () => MosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd34) },
+                { "LTIPFC", () => MosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd23) },
                 { "IED", () => MosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd20) },
                 { "WOS", () => MosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd19) },
+
 
                 { "TAKOM", () => ProgparamsToHMISwitch(progparams.FirstOrDefault(m => m.Param == "SETPT_TAKEOVER_MANUAL")?.ParamNum) },
                 { "LTI", () => ReverseMosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd06) },
                 { "STI", () => ReverseMosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd05) },
 
-                { "LTIPFC", () => ReverseMosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd23) },
-                { "STIPFC", () => ReverseMosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd45) },
+                { "STIPFCRM", () => MosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd45) },
+                { "STIPFCFM", () => MosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd22) },
                 { "TOCS", () => ProgparamsToHMISwitch(progparams.FirstOrDefault(x => x.Param == "SETPTCS_TAKEOVER_MANUAL")?.ParamNum) },
             };
 
@@ -386,9 +389,13 @@ namespace WebHMI.Services
 
             var flags = new Dictionary<string, Action<short>>()
             {
-                { "AUTOMATICBENDING", (x) => {
+                { "AUTOMATICBENDINGRM", (x) => {
                     var mos = mosswitches.FirstOrDefault(m => m.PlantType == "HFM");
                     if (mos != null) mos.StrSwitchesInd17 = HMIToMosswitchSwitch(x);
+                }},
+                { "AUTOMATICBENDINGFM", (x) => {
+                    var mos = mosswitches.FirstOrDefault(m => m.PlantType == "HFM");
+                    if (mos != null) mos.StrSwitchesInd16 = HMIToMosswitchSwitch(x);
                 }},
                 { "PRIORITY", (x) => {
                     var mos = mosswitches.FirstOrDefault(m => m.PlantType == "HFM");
