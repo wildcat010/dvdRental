@@ -13,6 +13,7 @@ namespace WebHMI.Dtos
         public TSourceType L { get; set; }
         public TSourceType P { get; set; }
         public TSourceType S { get; set; }
+        public TSourceType R { get; set; }
         public TSourceType PreviousM { get; set; }
 
         public short? Status { get; set; }

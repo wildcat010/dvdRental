@@ -20,6 +20,7 @@ namespace WebHMI.Dtos.Setpoints.SetpointsHRM
         public List<ApxShiftingDto> ShiftingDtos { get; set; } = new();
         public List<ApxFlatnessDto> FlatnessDtos { get; set; } = new();
         public List<TaperShiftingDto> TaperShiftingDtos { get; set; } = new();
+        public List<WearFactorDto> WearFactor { get; set; } = new();
 
     }
 }

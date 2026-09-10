@@ -1,11 +1,12 @@
-using System.Linq;
-using System.Threading.Tasks;
-using System.Threading.Tasks.Dataflow;
 using Abp.Auditing;
 using Abp.Authorization;
 using Abp.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Threading.Tasks.Dataflow;
 using WebHMI.DataBlobs;
+using WebHMI.Dtos.Setpoints.SetpointsHFM;
 using WebHMI.Dtos.Setpoints.SetpointsHRM;
 using WebHMI.Helpers;
 using WebHMI.L2Adapter.Common;
@@ -41,8 +42,6 @@ namespace WebHMI.Services
         {
             var result = new HRMMaterialOverviewDto();
             var hmiVEntryMatStruct = await _matStructEntryService.GetMaterialEntryStruct(meid, matType);
-
-            string[] sources = ["L", "M", "S", "E"];
 
             var dataBlob = await GetHrmDataBlob(hmiVEntryMatStruct);
 
@@ -606,12 +605,37 @@ namespace WebHMI.Services
             await UpdateShifting(input, vMatStructEntryOr);
             await UpdateFlatness(input, vMatStructEntryOr);
             await UpdateTaperShiftingTab(input, vMatStructEntryOr);
+            await UpdateWmp(input, vMatStructEntryOr);
 
             if (pdiChanged)
                 _l2Sender.EntryDataChange(vMatStructEntryOr, connectionId);
             else
                 _l2Sender.SetpointsCalculationHMI(vMatStructEntryOr, "HFM", connectionId);
 
+        }
+
+        private async Task UpdateWmp(SetpointsHRMApxDto input, VMatStructEntry vMatStructEntryOr)
+        {
+            var context = _prdbContextProvider.GetDbContext();
+            var wmpPassManuals = await context.Wmppasses.Where(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M").ToListAsync();
+
+            foreach (var pass in input.WearFactor.OrderByDescending(x => x.PassNo))
+            {
+                var wmppassM = wmpPassManuals.FirstOrDefault(x => x.PassNo == pass.PassNo);
+                if (wmppassM == null)
+                {
+                    wmppassM = new Wmppass()
+                    {
+                        MeCreator = vMatStructEntryOr.EnOrCreator,
+                        MeId = vMatStructEntryOr.EnOrMeId,
+                        MesId = (short)vMatStructEntryOr.EnOrMesId,
+                        PassNo = pass.PassNo,
+                        Source = "M",
+                    };
+                    context.Wmppasses.Add(wmppassM);
+                }
+                wmppassM.Model = pass.Model?.M;
+            }
         }
 
         private async Task UpdateLpSrpWmpPass(SetpointsHRMApxDto input, VMatStructEntry vMatStructEntryOr)
@@ -824,7 +848,7 @@ namespace WebHMI.Services
 
         private async Task<SetpointsHRMDataBlob> GetHrmDataBlob(VMatStructEntry hmiVEntryMatStruct)
         {
-            string[] sources = ["L", "M", "S", "E"];
+            string[] sources = ["L", "M", "S", "E", "R"];
             var setpointsHRMBlob = new SetpointsHRMDataBlob()
             {
                 Srppasses = await _prdbContext.Srppasses.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),

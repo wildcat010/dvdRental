@@ -54,6 +54,7 @@ namespace WebHMI.Mapping.Extensions
 			result.Data.SlabLength.M = dataBlob.EdPhyEnts.FirstOrDefault(x => x.Source == "M")?.SlabLength;
 			result.Data.SlabLength.S = dataBlob.EdPhyEnts.FirstOrDefault(x => x.Source == "S")?.SlabLength;
 			result.Data.SlabLength.E = dataBlob.EdPhyEnts.FirstOrDefault(x => x.Source == "E")?.SlabLength;
+            result.Data.SlabLength.R = dataBlob.EdPhyEnts.FirstOrDefault(x => x.Source == "R")?.SlabLength;
             result.Data.SlabLength.DbSource = $"{nameof(EdPhyEnt)}.{nameof(EdPhyEnt.SlabLength)}";
             result.Data.SlabLength.Status = dataBlob.StatEdPhyEnts?.SlabLength;
 
@@ -61,6 +62,7 @@ namespace WebHMI.Mapping.Extensions
 			result.Data.SlabWeight.M = dataBlob.EdPhyEnts.FirstOrDefault(x => x.Source == "M")?.SlabWeight;
 			result.Data.SlabWeight.S = dataBlob.EdPhyEnts.FirstOrDefault(x => x.Source == "S")?.SlabWeight;
 			result.Data.SlabWeight.E = dataBlob.EdPhyEnts.FirstOrDefault(x => x.Source == "E")?.SlabWeight;
+            result.Data.SlabWeight.R = dataBlob.EdPhyEnts.FirstOrDefault(x => x.Source == "R")?.SlabWeight;
             result.Data.SlabWeight.DbSource = $"{nameof(EdPhyEnt)}.{nameof(EdPhyEnt.SlabWeight)}";
             result.Data.SlabWeight.Status = dataBlob.StatEdPhyEnts?.SlabWeight;
 

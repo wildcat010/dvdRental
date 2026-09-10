@@ -1,6 +1,3 @@
-using AutoMapper;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using WebHMI.DataBlobs;
 using WebHMI.Dtos.Setpoints.CommonDtos;
@@ -862,6 +859,36 @@ namespace WebHMI.Mapping.Extensions
                 result.TaperShiftingDtos.Add(stand);
             }
 
+            return result;
+        }
+
+        public static SetpointsHFMApxDto MapWearFactors(this SetpointsHFMApxDto result, SetpointsHFMApxDataBlob dataBlob, short standCount, short standStartIdx)
+        {
+            for (short i = standStartIdx; i < standCount; i++)
+            {
+                var SrppassL = dataBlob.Wmppasses.Where(x => x.Source == "L" && x.PassNo == i).FirstOrDefault();
+                var SrppassM = dataBlob.Wmppasses.Where(x => x.Source == "M" && x.PassNo == i).FirstOrDefault();
+                var SrppassS = dataBlob.Wmppasses.Where(x => x.Source == "S" && x.PassNo == i).FirstOrDefault();
+                var SrppassE = dataBlob.Wmppasses.Where(x => x.Source == "E" && x.PassNo == i).FirstOrDefault();
+
+                var stand = new WearFactorDto();
+
+                stand.PassNo = i;
+
+                stand.PlanNo.L = SrppassL?.PlanNo;
+                stand.PlanNo.M = SrppassM?.PlanNo;
+                stand.PlanNo.S = SrppassS?.PlanNo;
+                stand.PlanNo.E = SrppassE?.PlanNo;
+                stand.PlanNo.DbSource = $"{nameof(Wmppass)}.{nameof(Wmppass.PlanNo)}";
+
+                stand.Model.L = SrppassL?.Model;
+                stand.Model.M = SrppassM?.Model;
+                stand.Model.S = SrppassS?.Model;
+                stand.Model.E = SrppassE?.Model;
+                stand.Model.DbSource = $"{nameof(Wmppass)}.{nameof(Wmppass.Model)}";
+
+                result.WearFactor.Add(stand);
+            }
             return result;
         }
 

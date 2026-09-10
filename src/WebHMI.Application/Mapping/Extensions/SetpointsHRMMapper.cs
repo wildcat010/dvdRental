@@ -2,6 +2,7 @@ using System.Linq;
 using WebHMI.DataBlobs;
 using WebHMI.Dtos.Setpoints.CommonDtos;
 using WebHMI.Dtos.Setpoints.CommonDtos.ApxDtos;
+using WebHMI.Dtos.Setpoints.SetpointsHFM;
 using WebHMI.Dtos.Setpoints.SetpointsHRM;
 using WebHMI.PRDB.Dbo;
 
@@ -56,6 +57,7 @@ namespace WebHMI.Mapping.Extensions
             var edPhyEntM = dataBlob.Edphyents.Where(x => x.Source == "M").FirstOrDefault();
             var edPhyEntS = dataBlob.Edphyents.Where(x => x.Source == "S").FirstOrDefault();
             var edPhyEntE = dataBlob.Edphyents.Where(x => x.Source == "E").FirstOrDefault();
+            var edPhyEntR = dataBlob.Edphyents.Where(x => x.Source == "R").FirstOrDefault();
 
             var edLogEntL = dataBlob.Edlogents.Where(x => x.Source == "L").FirstOrDefault();
             var edLogEntM = dataBlob.Edlogents.Where(x => x.Source == "M").FirstOrDefault();
@@ -111,6 +113,7 @@ namespace WebHMI.Mapping.Extensions
             result.SlabLength.L = edPhyEntL?.SlabLength;
             result.SlabLength.E = edPhyEntE?.SlabLength;
             result.SlabLength.M = edPhyEntM?.SlabLength;
+            result.SlabLength.R = edPhyEntR?.SlabLength;
             result.SlabLength.DbSource = $"{nameof(EdPhyEnt)}.{nameof(EdPhyEnt.SlabLength)}";
             result.SlabLength.Status = dataBlob.StatEdphyents?.SlabLength;
 
@@ -1245,6 +1248,36 @@ namespace WebHMI.Mapping.Extensions
                 result.ShiftingDtos.Add(stand);
             }
 
+            return result;
+        }
+
+        public static SetpointsHRMApxDto MapWearFactors(this SetpointsHRMApxDto result, SetpointsHFMApxDataBlob dataBlob, short standCount, short standStartIdx)
+        {
+            for (short i = standStartIdx; i < standCount; i++)
+            {
+                var wmpPassesL = dataBlob.Wmppasses.Where(x => x.Source == "L" && x.PassNo == i).FirstOrDefault();
+                var wmpPassesM = dataBlob.Wmppasses.Where(x => x.Source == "M" && x.PassNo == i).FirstOrDefault();
+                var wmpPassesS = dataBlob.Wmppasses.Where(x => x.Source == "S" && x.PassNo == i).FirstOrDefault();
+                var wmpPassesE = dataBlob.Wmppasses.Where(x => x.Source == "E" && x.PassNo == i).FirstOrDefault();
+
+                var stand = new WearFactorDto();
+
+                stand.PassNo = i;
+
+                stand.PlanNo.L = wmpPassesL?.PlanNo;
+                stand.PlanNo.M = wmpPassesM?.PlanNo;
+                stand.PlanNo.S = wmpPassesS?.PlanNo;
+                stand.PlanNo.E = wmpPassesE?.PlanNo;
+                stand.PlanNo.DbSource = $"{nameof(Wmppass)}.{nameof(Wmppass.PlanNo)}";
+
+                stand.Model.L = wmpPassesL?.Model;
+                stand.Model.M = wmpPassesM?.Model;
+                stand.Model.S = wmpPassesS?.Model;
+                stand.Model.E = wmpPassesE?.Model;
+                stand.Model.DbSource = $"{nameof(Wmppass)}.{nameof(Wmppass.Model)}";
+
+                result.WearFactor.Add(stand);
+            }
             return result;
         }
 

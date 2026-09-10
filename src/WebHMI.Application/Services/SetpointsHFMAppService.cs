@@ -162,7 +162,7 @@ namespace WebHMI.Services
             await UpdateWorkCoolingTab(input, vMatStructEntry);
             await UpdateTensionTab(input, vMatStructEntry);
             await UpdateLubricationTab(input, vMatStructEntry);
-            await UpdateTaperShiftingTab(input, vMatStructEntry);
+            //await UpdateTaperShiftingTab(input, vMatStructEntry);
             await UpdateAntiPeelingTab(input, vMatStructEntry);
             await UpdatePowerCoolingTab(input, vMatStructEntry);
         }
@@ -627,6 +627,7 @@ namespace WebHMI.Services
 
             result.MeCode = hmiVEntryMatStruct.ToOrMeCodeDto();
             result.MapApxPassSchedule(dataBlob, _standCount, _standStartIdx);
+            result.MapWearFactors(dataBlob, _standCount, _standStartIdx);
             result.MapShifting(dataBlob, _standCount, _standStartIdx);
             result.MapFlatness(dataBlob, _standCount, _standStartIdx);
             result.MapTaperShifting(dataBlob, _standCount, _standStartIdx);
@@ -650,12 +651,13 @@ namespace WebHMI.Services
             var edOrdEntM = await context.EdOrdEnts.FirstOrDefaultAsync(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M");
             edOrdEntM = context.InsertIfNull(edOrdEntM, vMatStructEntryOr);
 
-            await UpdateLpSrpWmpPass(input, vMatStructEntryOr);
+            await UpdateLpSrpPass(input, vMatStructEntryOr);
             await UpdateApxDirFmPfcParaPasses(input, vMatStructEntryOr);
 
             await UpdateShifting(input, vMatStructEntryOr);
             await UpdateFlatness(input, vMatStructEntryOr);
             await UpdateTaperShiftingTab(input, vMatStructEntryOr);
+            await UpdateWmp(input, vMatStructEntryOr);
 
 
             if (pdiChanged)
@@ -664,13 +666,12 @@ namespace WebHMI.Services
                 _l2Sender.SetpointsCalculationHMI(vMatStructEntryOr, "HFM", connectionId);
         }
 
-        private async Task UpdateLpSrpWmpPass(SetpointsHFMApxDto input, VMatStructEntry vMatStructEntryOr)
+        private async Task UpdateLpSrpPass(SetpointsHFMApxDto input, VMatStructEntry vMatStructEntryOr)
         {
             var context = _prdbContextProvider.GetDbContext();
 
             var lpPassManuals = await context.Lppasses.Where(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M").ToListAsync();
             var srpPassManuals = await context.Srppasses.Where(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M").ToListAsync();
-            var wmpPassManuals = await context.Wmppasses.Where(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M").ToListAsync();
 
             foreach (var pass in input.PassScheduleDtos.OrderByDescending(x => x.PassNo))
             {
@@ -690,9 +691,18 @@ namespace WebHMI.Services
 
                 lpPassM.BendingForce = pass.BendingForce?.M;
                 lpPassM.CVcshifting = pass.CvcShifting?.M;
+            }
+        }
 
-                var wmppassM = wmpPassManuals.FirstOrDefault(x=>x.PassNo == pass.PassNo);
-                if(wmppassM == null)
+        private async Task UpdateWmp(SetpointsHFMApxDto input, VMatStructEntry vMatStructEntryOr)
+        {
+            var context = _prdbContextProvider.GetDbContext();
+            var wmpPassManuals = await context.Wmppasses.Where(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M").ToListAsync();
+
+            foreach (var pass in input.WearFactor.OrderByDescending(x => x.PassNo))
+            {
+                var wmppassM = wmpPassManuals.FirstOrDefault(x => x.PassNo == pass.PassNo);
+                if (wmppassM == null)
                 {
                     wmppassM = new Wmppass()
                     {
@@ -704,7 +714,7 @@ namespace WebHMI.Services
                     };
                     context.Wmppasses.Add(wmppassM);
                 }
-                wmppassM.Model = pass.WearCorr?.M;
+                wmppassM.Model = pass.Model?.M;
             }
         }
 

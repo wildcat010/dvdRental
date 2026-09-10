@@ -197,7 +197,7 @@ namespace WebHMI.Services
 
         private async Task<PrimaryDataDataBlob> GetDataBlob(VMatStructEntry entryMatStruct)
         {
-            string[] sources = ["L", "M", "S", "E"];
+            string[] sources = ["L", "M", "S", "E","R"];
 
             return new PrimaryDataDataBlob
             {
