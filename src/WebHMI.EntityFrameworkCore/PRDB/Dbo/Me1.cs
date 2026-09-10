@@ -196,4 +196,6 @@ public partial class Me1
     public virtual ICollection<Tp> Tps { get; set; } = new List<Tp>();
 
     public virtual ICollection<Wmppass> Wmppasses { get; set; } = new List<Wmppass>();
+
+    public virtual ICollection<Wmp> Wmps { get; set; } = new List<Wmp>();
 }

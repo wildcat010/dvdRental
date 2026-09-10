@@ -313,6 +313,8 @@ public partial class PrdbContext : AbpDbContext
 
     public virtual DbSet<VMatStructEntry> VMatStructEntries { get; set; }
 
+    public virtual DbSet<Wmp> Wmps { get; set; }
+
     public virtual DbSet<Wmppass> Wmppasses { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -5406,6 +5408,9 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[_C] CoolingSection: (not used for Arvedi) Coil profile temperature tail")
                 .HasColumnName("coilTempProfileTail");
+            entity.Property(e => e.CoilYard)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("coilYard");
             entity.Property(e => e.CoilerLocationSelection)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("CoolingSection:  (not used for Arvedi) when strips pass different numbers of valves on the way to the coiler")
@@ -5512,7 +5517,7 @@ public partial class PrdbContext : AbpDbContext
                 .HasColumnName("edgeMask");
             entity.Property(e => e.ExitCrownC40)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] Finished strip crown C25")
+                .HasComment("Unit[m] Finished strip crown C40")
                 .HasColumnName("exitCrownC40");
             entity.Property(e => e.FerriticRollingMode)
                 .HasDefaultValueSql("(NULL)")
@@ -18983,6 +18988,9 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("CoolingSection: (not used for Arvedi) Coil profile temperature tail")
                 .HasColumnName("coilTempProfileTail");
+            entity.Property(e => e.CoilYard)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("coilYard");
             entity.Property(e => e.CoilerLocationSelection)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("CoolingSection:  (not used for Arvedi) when strips pass different numbers of valves on the way to the coiler")
@@ -23345,6 +23353,9 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("only for HMI: technological material key")
                 .HasColumnName("apsKey");
+            entity.Property(e => e.CoilYard)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("coilYard");
             entity.Property(e => e.DilatometerCurve)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("no. of dilatometer curve to be applied")
@@ -26808,6 +26819,73 @@ public partial class PrdbContext : AbpDbContext
                 .HasMaxLength(2)
                 .IsUnicode(false);
             entity.Property(e => e.LastUpdate).HasPrecision(3);
+        });
+
+        modelBuilder.Entity<Wmp>(entity =>
+        {
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__WMP__D3DB124A612D3660");
+
+            entity.ToTable("WMP", "PRDB", tb =>
+                {
+                    tb.HasComment("");
+                    tb.HasTrigger("TI_WMP");
+                    tb.HasTrigger("TU_WMP");
+                });
+
+            entity.Property(e => e.MeId)
+                .HasDefaultValue(1)
+                .HasComment("Material idendification number")
+                .HasColumnName("meId");
+            entity.Property(e => e.MeCreator)
+                .HasMaxLength(2)
+                .IsUnicode(false)
+                .HasDefaultValue("")
+                .HasComment("Material owner")
+                .HasColumnName("meCreator");
+            entity.Property(e => e.MesId)
+                .HasDefaultValue((short)1)
+                .HasComment("Line status")
+                .HasColumnName("mesId");
+            entity.Property(e => e.Source)
+                .HasMaxLength(2)
+                .IsUnicode(false)
+                .HasDefaultValue("-")
+                .HasComment("source")
+                .HasColumnName("source");
+            entity.Property(e => e.Description)
+                .HasMaxLength(80)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("description field")
+                .HasColumnName("description");
+            entity.Property(e => e.Dummy)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] dummy for mosDm")
+                .HasColumnName("dummy");
+            entity.Property(e => e.Mop)
+                .HasMaxLength(120)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("modifying process")
+                .HasColumnName("mop");
+            entity.Property(e => e.PlanNo)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("wear model plan number")
+                .HasColumnName("planNo");
+            entity.Property(e => e.Toc)
+                .HasPrecision(3)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("time of creation")
+                .HasColumnName("toc");
+            entity.Property(e => e.Tom)
+                .HasPrecision(3)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("time of modification")
+                .HasColumnName("tom");
+
+            entity.HasOne(d => d.Me1).WithMany(p => p.Wmps)
+                .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
+                .HasConstraintName("FK__WMP__6B2817DE");
         });
 
         modelBuilder.Entity<Wmppass>(entity =>

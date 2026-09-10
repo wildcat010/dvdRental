@@ -32,5 +32,6 @@ namespace WebHMI.Dtos.Setpoints.SetpointsHRM
         public SourceSet<int?> DirFmPfcParaPlanNo { get; set; } = new();
         public SourceSet<int?> DirFmPfcCycShiftPlanNo { get; set; } = new();
         public SourceSet<int?> RcpPlanNo { get; set; } = new();
+        public SourceSet<int?> WmpPlanNo { get; set; } = new();
     }
 }

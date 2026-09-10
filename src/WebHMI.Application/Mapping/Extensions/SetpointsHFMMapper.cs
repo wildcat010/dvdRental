@@ -940,6 +940,11 @@ namespace WebHMI.Mapping.Extensions
             var dirFmPfcCycShiftS = dataBlob.Dirfmpfccycshiftps.Where(x => x.Source == "S").FirstOrDefault();
             var dirFmPfcCycShiftL = dataBlob.Dirfmpfccycshiftps.Where(x => x.Source == "L").FirstOrDefault();
 
+            var wmpL = dataBlob.Wmp.Where(x => x.Source == "L").FirstOrDefault();
+            var wmpM = dataBlob.Wmp.Where(x => x.Source == "M").FirstOrDefault();
+            var wmpS = dataBlob.Wmp.Where(x => x.Source == "S").FirstOrDefault();
+            var wmpE = dataBlob.Wmp.Where(x => x.Source == "E").FirstOrDefault();
+
             result.HExit.L = edOrdEntL?.HExit;
             result.HExit.E = edOrdEntE?.HExit;
             result.HExit.M = edOrdEntM?.HExit;
@@ -1055,6 +1060,11 @@ namespace WebHMI.Mapping.Extensions
             result.SrpPlanNo.E = srpE?.PlanNo;
             result.SrpPlanNo.M = srpM?.PlanNo;
             result.SrpPlanNo.DbSource = $"{nameof(Srp)}.{nameof(Srp.PlanNo)}";
+
+            result.WmpPlanNo.L = wmpL?.PlanNo;
+            result.WmpPlanNo.E = wmpE?.PlanNo;
+            result.WmpPlanNo.M = wmpM?.PlanNo;
+            result.WmpPlanNo.DbSource = $"{nameof(Wmp)}.{nameof(Wmp.PlanNo)}";
 
             return result;
         }

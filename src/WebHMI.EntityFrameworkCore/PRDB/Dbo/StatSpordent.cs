@@ -160,5 +160,7 @@ public partial class StatSpOrdEnt
     /// </summary>
     public DateTime? Tom { get; set; }
 
+    public short? CoilYard { get; set; }
+
     public virtual Me1 Me1 { get; set; }
 }

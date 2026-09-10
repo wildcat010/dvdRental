@@ -30,5 +30,6 @@ namespace WebHMI.Dtos.Setpoints.SetpointsHRM
         public SourceSet<string> InherPfcId { get; set; } = new();
         public SourceSet<double?> Temperature { get; set; } = new();
         public SourceSet<int?> ShiftingPlan { get; set; } = new();
+        public SourceSet<int?> WmpPlanNo { get; set; } = new();
     }
 }

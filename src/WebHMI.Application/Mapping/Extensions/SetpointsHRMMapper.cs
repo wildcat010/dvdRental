@@ -811,6 +811,11 @@ namespace WebHMI.Mapping.Extensions
             var rcpS = dataBlob.Rcps.Where(x => x.Source == "S").FirstOrDefault();
             var rcpE = dataBlob.Rcps.Where(x => x.Source == "E").FirstOrDefault();
 
+            var wmpL = dataBlob.Wmp.Where(x => x.Source == "L").FirstOrDefault();
+            var wmpM = dataBlob.Wmp.Where(x => x.Source == "M").FirstOrDefault();
+            var wmpS = dataBlob.Wmp.Where(x => x.Source == "S").FirstOrDefault();
+            var wmpE = dataBlob.Wmp.Where(x => x.Source == "E").FirstOrDefault();
+
             result.AimsLabThickness.L = edPhyEntL?.AimSlabThickness;
             result.AimsLabThickness.E = edPhyEntE?.AimSlabThickness;
             result.AimsLabThickness.M = edPhyEntM?.AimSlabThickness;
@@ -915,6 +920,11 @@ namespace WebHMI.Mapping.Extensions
             result.RcpPlanNo.E = rcpE?.PlanNo;
             result.RcpPlanNo.M = rcpM?.PlanNo;
             result.RcpPlanNo.DbSource = $"{nameof(Rcp)}.{nameof(Rcp.PlanNo)}";
+
+            result.WmpPlanNo.L = wmpL?.PlanNo;
+            result.WmpPlanNo.E = wmpE?.PlanNo;
+            result.WmpPlanNo.M = wmpM?.PlanNo;
+            result.WmpPlanNo.DbSource = $"{nameof(Wmp)}.{nameof(Wmp.PlanNo)}";
 
             return result;
         }

@@ -35,5 +35,6 @@ namespace WebHMI.DataBlobs
         public List<StatAdOrd2PcStand> StatAdord2PcStands { get; set; } = new();
         public List<Ihp> Ihps { get; internal set; }
         public List<Srp> Srps { get; internal set; }
+        public List<Wmp> Wmp { get; internal set; }
     }
 }

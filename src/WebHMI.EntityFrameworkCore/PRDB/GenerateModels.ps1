@@ -132,6 +132,7 @@ dotnet ef dbcontext scaffold $DBConnString Microsoft.EntityFrameworkCore.SqlServ
 -t ROLLSHAPECURVECUSTOM `
 -t SRPPASS `
 -t STAT_DIRFMPFCPARAPPASS `
+-t WMP `
 -t WMPPASS `
 -t CALDSS `
 -t CALDSSACT `
