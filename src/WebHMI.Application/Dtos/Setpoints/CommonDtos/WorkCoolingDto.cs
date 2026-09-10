@@ -25,5 +25,10 @@ namespace WebHMI.Dtos.Setpoints.CommonDtos
         public SourceSet<double?> StripSprayBehind { get; set; } = new();
         public SourceSet<int?> IscState { get; set; } = new();
         public SourceSet<int?> FumeSuppSprayBehState { get; set; } = new();
+        public SourceSet<double?> Mzcamplitude { get; set; } = new();
+        public SourceSet<int?> MzccascadeInd0 { get; set; } = new();
+        public SourceSet<double?> MzcflowRate { get; set; } = new();
+        public SourceSet<double?> MzcflowRateEdge { get; set; } = new();
+        public SourceSet<int?> MzcnozzelIndex { get; set; } = new();
     }
 }

@@ -663,6 +663,31 @@ namespace WebHMI.Mapping.Extensions
                 stand.FlowWrLoadedInd2.M = rcpPassM?.FlowWrLoadedInd2;
                 stand.FlowWrLoadedInd2.DbSource = $"{nameof(Rcppass)}.{nameof(Rcppass.FlowWrLoadedInd2)}[{i}]";
 
+                stand.Mzcamplitude.L = rcpPassL?.Mzcamplitude;
+                stand.Mzcamplitude.E = rcpPassE?.Mzcamplitude;
+                stand.Mzcamplitude.M = rcpPassM?.Mzcamplitude;
+                stand.Mzcamplitude.DbSource = $"{nameof(Rcppass)}.{nameof(Rcppass.Mzcamplitude)}[{i}]";
+
+                stand.MzccascadeInd0.L = rcpPassL?.MzccascadeInd0;
+                stand.MzccascadeInd0.E = rcpPassE?.MzccascadeInd0;
+                stand.MzccascadeInd0.M = rcpPassM?.MzccascadeInd0;
+                stand.MzccascadeInd0.DbSource = $"{nameof(Rcppass)}.{nameof(Rcppass.MzccascadeInd0)}[{i}]";
+
+                stand.MzcflowRate.L = rcpPassL?.MzcflowRate;
+                stand.MzcflowRate.E = rcpPassE?.MzcflowRate;
+                stand.MzcflowRate.M = rcpPassM?.MzcflowRate;
+                stand.MzcflowRate.DbSource = $"{nameof(Rcppass)}.{nameof(Rcppass.MzcflowRate)}[{i}]";
+
+                stand.MzcflowRateEdge.L = rcpPassL?.MzcflowRateEdge;
+                stand.MzcflowRateEdge.E = rcpPassE?.MzcflowRateEdge;
+                stand.MzcflowRateEdge.M = rcpPassM?.MzcflowRateEdge;
+                stand.MzcflowRateEdge.DbSource = $"{nameof(Rcppass)}.{nameof(Rcppass.MzcflowRateEdge)}[{i}]";
+
+                stand.MzcnozzelIndex.L = rcpPassL?.MzcnozzelIndex;
+                stand.MzcnozzelIndex.E = rcpPassE?.MzcnozzelIndex;
+                stand.MzcnozzelIndex.M = rcpPassM?.MzcnozzelIndex;
+                stand.MzcnozzelIndex.DbSource = $"{nameof(Rcppass)}.{nameof(Rcppass.MzcnozzelIndex)}[{i}]";
+
                 stand.StripSprayBefor.L = iscpPassL?.StripSprayBefor;
                 stand.StripSprayBefor.E = iscpPassE?.StripSprayBefor;
                 stand.StripSprayBefor.M = iscpPassM?.StripSprayBefor;
@@ -672,6 +697,11 @@ namespace WebHMI.Mapping.Extensions
                 stand.StripSprayBehind.E = iscpPassE?.StripSprayBehind;
                 stand.StripSprayBehind.M = iscpPassM?.StripSprayBehind;
                 stand.StripSprayBehind.DbSource = $"{nameof(Iscppass)}.{nameof(Iscppass.StripSprayBehind)}[{i}]";
+
+                stand.LooperCooling.L = iscpPassL?.LooperCool;
+                stand.LooperCooling.E = iscpPassE?.LooperCool;
+                stand.LooperCooling.M = iscpPassM?.LooperCool;
+                stand.LooperCooling.DbSource = $"{nameof(Iscppass)}.{nameof(Iscppass.LooperCool)}";
 
                 stand.LooperCooling.L = iscpPassL?.LooperCool;
                 stand.LooperCooling.E = iscpPassE?.LooperCool;

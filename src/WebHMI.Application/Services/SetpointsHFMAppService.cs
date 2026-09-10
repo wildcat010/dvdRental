@@ -364,6 +364,11 @@ namespace WebHMI.Services
                 rcPassM.FlowWrLoadedInd0 = pass.FlowWrLoadedInd0?.M;
                 rcPassM.FlowWrLoadedInd1 = pass.FlowWrLoadedInd1?.M;
                 rcPassM.FlowWrLoadedInd2 = pass.FlowWrLoadedInd2?.M;
+                rcPassM.Mzcamplitude = pass.Mzcamplitude?.M;
+                rcPassM.MzccascadeInd0 = pass.MzccascadeInd0?.M;
+                rcPassM.MzcflowRate = pass.MzcflowRate?.M;
+                rcPassM.MzcflowRateEdge = pass.MzcflowRateEdge?.M;
+                rcPassM.MzcnozzelIndex = pass.MzcnozzelIndex?.M;
             }
 
             var iscpPassManuals = await context.Iscppasses.Where(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M").ToListAsync();
