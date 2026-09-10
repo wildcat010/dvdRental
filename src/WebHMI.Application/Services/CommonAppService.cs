@@ -291,17 +291,6 @@ namespace WebHMI.Services
             return sequences[++actualIndex];
         }
 
-        public async Task<PagedResultDto<SequenceIdDto>> GetAllSequenceIds(FilteredRequestDto input)
-        {
-            var context = _prdbContextProvider.GetDbContext();
-
-            return await ApplyFilter(context.HmiVProdsequences
-                .Select(x => x.SequenceId)
-                .Distinct()
-                .OrderBy(x => x)
-                , input, (u) => { return new SequenceIdDto() { Key = u }; });
-        }
-
         public async Task<PagedResultDto<SequenceIdDto>> GetAllProducedSequenceIds(FilteredRequestDto input)
         {
             var context = _prdbContextProvider.GetDbContext();
@@ -421,14 +410,13 @@ namespace WebHMI.Services
                     var mos = mosswitches.FirstOrDefault(m => m.PlantType == "HFM");
                     if (mos != null) mos.StrSwitchesInd05 = ReverseHMIToMosswitchSwitch(x);
                 }},
-                
                 { "LTIPFC", (x) => {
                     var mos = mosswitches.FirstOrDefault(m => m.PlantType == "HFM");
-                    if (mos != null) mos.StrSwitchesInd23 = ReverseHMIToMosswitchSwitch(x);
+                    if (mos != null) mos.StrSwitchesInd23 = HMIToMosswitchSwitch(x);
                 }},
-                { "STIPFC", (x) => {
+                { "STIPFCRM", (x) => {
                     var mos = mosswitches.FirstOrDefault(m => m.PlantType == "HFM");
-                    if (mos != null) mos.StrSwitchesInd45 = ReverseHMIToMosswitchSwitch(x);
+                    if (mos != null) mos.StrSwitchesInd45 = HMIToMosswitchSwitch(x);
                 }},
                 
             };
