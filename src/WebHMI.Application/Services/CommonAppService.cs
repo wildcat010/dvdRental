@@ -418,7 +418,10 @@ namespace WebHMI.Services
                     var mos = mosswitches.FirstOrDefault(m => m.PlantType == "HFM");
                     if (mos != null) mos.StrSwitchesInd45 = HMIToMosswitchSwitch(x);
                 }},
-                
+                { "STIPFCFM", (x) => {
+                    var mos = mosswitches.FirstOrDefault(m => m.PlantType == "HFM");
+                    if (mos != null) mos.StrSwitchesInd22 = HMIToMosswitchSwitch(x);
+                }},
             };
 
             var toUpdate = ids
