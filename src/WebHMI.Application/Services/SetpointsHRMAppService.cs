@@ -586,6 +586,7 @@ namespace WebHMI.Services
             result.MapShifting(dataBlob, _standCount);
             result.MapFlatness(dataBlob, _standCount);
             result.MapTaperShifting(dataBlob, _standCount);
+            result.MapWearFactors(dataBlob, _standCount);
 
             return result;
         }
@@ -606,8 +607,8 @@ namespace WebHMI.Services
             var edOrdEntM = await context.EdOrdEnts.FirstOrDefaultAsync(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M");
             edOrdEntM = context.InsertIfNull(edOrdEntM, vMatStructEntryOr);
 
-            await UpdateLpSrpWmpPass(input, vMatStructEntryOr);
             await UpdateApxDirFmPfcParaPasses(input, vMatStructEntryOr);
+            await UpdateLpSrpWmpPass(input, vMatStructEntryOr);
 
             await UpdateShifting(input, vMatStructEntryOr);
             await UpdateFlatness(input, vMatStructEntryOr);
@@ -713,9 +714,12 @@ namespace WebHMI.Services
             var context = _prdbContextProvider.GetDbContext();
 
             var dirFmPfcParaPassManuals = await context.DirFmPfcParaPpasses.Where(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M").ToListAsync();
+            var dirFmPfcCycShiftPassManuals = await context.DirFmPfcCycShiftPpasses.Where(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M").ToListAsync();
+
 
             foreach (var pass in input.PassScheduleDtos.OrderByDescending(x => x.PassNo))
             {
+                var dirFmPfcCycShiftPassM = dirFmPfcCycShiftPassManuals.FirstOrDefault(x => x.PassNo == pass.PassNo);
                 var dirFmPfcParaPassM = dirFmPfcParaPassManuals.FirstOrDefault(x => x.PassNo == pass.PassNo);
                 if (dirFmPfcParaPassM == null)
                 {
@@ -729,7 +733,21 @@ namespace WebHMI.Services
                     };
                     context.DirFmPfcParaPpasses.Add(dirFmPfcParaPassM);
                 }
+                if (dirFmPfcCycShiftPassM == null)
+                {
+                    dirFmPfcCycShiftPassM = new DirFmPfcCycShiftPpass()
+                    {
+                        MeCreator = vMatStructEntryOr.EnOrCreator,
+                        MeId = vMatStructEntryOr.EnOrMeId,
+                        MesId = (short)vMatStructEntryOr.EnOrMesId, 
+                        PassNo = pass.PassNo,
+                        Source = "M",
+                    };
+                    context.DirFmPfcCycShiftPpasses.Add(dirFmPfcCycShiftPassM);
+                }
 
+                dirFmPfcCycShiftPassM.CSmaxLimit = pass.CsMaxLimit?.M;
+                dirFmPfcCycShiftPassM.CSminLimit = pass.CsMinLimit?.M;
                 dirFmPfcParaPassM.FbUl = pass.Fbul?.M;
                 dirFmPfcParaPassM.FbLl = pass.Fbll?.M;
                 dirFmPfcParaPassM.SrUl = pass.Srul?.M;
@@ -762,8 +780,6 @@ namespace WebHMI.Services
                     context.DirFmPfcCycShiftPpasses.Add(dirFmPfcCycShiftPassM);
                 }
 
-                dirFmPfcCycShiftPassM.CSmaxLimit = pass.CsMaxLimit?.M;
-                dirFmPfcCycShiftPassM.CSminLimit = pass.CsMinLimit?.M;
                 dirFmPfcCycShiftPassM.CSstartPos = pass.CsStartPos?.M;
                 dirFmPfcCycShiftPassM.CSshiftDir = pass.CsShiftDir?.M;
                 dirFmPfcCycShiftPassM.CSshiftStep1 = pass.CsShiftStep1?.M;

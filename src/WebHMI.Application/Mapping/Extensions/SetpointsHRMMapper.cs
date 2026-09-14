@@ -1047,11 +1047,13 @@ namespace WebHMI.Mapping.Extensions
 
                 stand.CsMaxLimit.L = dirFmPfcCycShiftPassL?.CSmaxLimit;
                 stand.CsMaxLimit.E = dirFmPfcCycShiftPassE?.CSmaxLimit;
+                stand.CsMaxLimit.M = dirFmPfcCycShiftPassM?.CSmaxLimit;
                 stand.CsMaxLimit.DbSource = $"{nameof(DirFmPfcCycShiftPpass)}.{nameof(DirFmPfcCycShiftPpass.CSmaxLimit)}[{i}]";
                 stand.CsMaxLimit.Status = statDirFmPfcCycShiftPassE?.CSmaxLimit;
 
                 stand.CsMinLimit.L = dirFmPfcCycShiftPassL?.CSminLimit;
                 stand.CsMinLimit.E = dirFmPfcCycShiftPassE?.CSminLimit;
+                stand.CsMinLimit.M = dirFmPfcCycShiftPassM?.CSminLimit;
                 stand.CsMinLimit.DbSource = $"{nameof(DirFmPfcCycShiftPpass)}.{nameof(DirFmPfcCycShiftPpass.CSminLimit)}[{i}]";
                 stand.CsMinLimit.Status = statDirFmPfcCycShiftPassE?.CSminLimit;
 
@@ -1116,6 +1118,11 @@ namespace WebHMI.Mapping.Extensions
                 stand.Profile.DbSource = $"{nameof(SpOrd2PcStand)}.{nameof(SpOrd2PcStand.Profile)}[{i}]";
                 stand.Profile.Status = statSpord2PcStand?.Profile;
 
+                stand.Wear.L = spOrd2PcStandL?.WCrown;
+                stand.Wear.E = spOrd2PcStandE?.WCrown;
+                stand.Wear.DbSource = $"{nameof(SpOrd2PcStand)}.{nameof(SpOrd2PcStand.WCrown)}[{i}]";
+                stand.Wear.Status = statSpord2PcStand?.WCrown;
+
                 result.PassScheduleDtos.Add(stand);
             }
 
@@ -1148,23 +1155,11 @@ namespace WebHMI.Mapping.Extensions
                 stand.PlanNo.DbSource = $"{nameof(DirFmPfcCycShiftP)}.{nameof(DirFmPfcCycShiftP.PlanNo)}";
                 stand.PlanNo.Status = dataBlob.StatDirfmpfccycshiftps?.PlanNo;
 
-                stand.CsMaxLimit.L = dirFmPfcCycShiftPassL?.CSmaxLimit;
-                stand.CsMaxLimit.E = dirFmPfcCycShiftPassE?.CSmaxLimit;
-                stand.CsMaxLimit.M = dirFmPfcCycShiftPassM?.CSmaxLimit;
-                stand.CsMaxLimit.DbSource = $"{nameof(DirFmPfcCycShiftPpass)}.{nameof(DirFmPfcCycShiftPpass.CSmaxLimit)}[{i}]";
-                stand.CsMaxLimit.Status = statDirFmPfcCycShiftPassE?.CSmaxLimit;
-
                 stand.CsMode.L = dirFmPfcCycShiftPassL?.CSmode;
                 stand.CsMode.E = dirFmPfcCycShiftPassE?.CSmode;
                 stand.CsMode.M = dirFmPfcCycShiftPassM?.CSmode;
                 stand.CsMode.DbSource = $"{nameof(DirFmPfcCycShiftPpass)}.{nameof(DirFmPfcCycShiftPpass.CSmode)}[{i}]";
                 stand.CsMode.Status = statDirFmPfcCycShiftPassE?.CSmode;
-
-                stand.CsMinLimit.L = dirFmPfcCycShiftPassL?.CSminLimit;
-                stand.CsMinLimit.E = dirFmPfcCycShiftPassE?.CSminLimit;
-                stand.CsMinLimit.M = dirFmPfcCycShiftPassM?.CSminLimit;
-                stand.CsMinLimit.DbSource = $"{nameof(DirFmPfcCycShiftPpass)}.{nameof(DirFmPfcCycShiftPpass.CSminLimit)}[{i}]";
-                stand.CsMinLimit.Status = statDirFmPfcCycShiftPassE?.CSminLimit;
 
                 stand.CsStartPos.L = dirFmPfcCycShiftPassL?.CSstartPos;
                 stand.CsStartPos.E = dirFmPfcCycShiftPassE?.CSstartPos;
@@ -1291,9 +1286,9 @@ namespace WebHMI.Mapping.Extensions
             return result;
         }
 
-        public static SetpointsHRMApxDto MapWearFactors(this SetpointsHRMApxDto result, SetpointsHFMApxDataBlob dataBlob, short standCount, short standStartIdx)
+        public static SetpointsHRMApxDto MapWearFactors(this SetpointsHRMApxDto result, SetpointsHRMApxDataBlob dataBlob, short standCount)
         {
-            for (short i = standStartIdx; i < standCount; i++)
+            for (short i = 0; i < standCount; i++)
             {
                 var wmpPassesL = dataBlob.Wmppasses.Where(x => x.Source == "L" && x.PassNo == i).FirstOrDefault();
                 var wmpPassesM = dataBlob.Wmppasses.Where(x => x.Source == "M" && x.PassNo == i).FirstOrDefault();

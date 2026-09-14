@@ -64,10 +64,10 @@ namespace WebHMI.Dtos.ProductionSchedule
         public string HeatId { get; set; }
 
 		public string FlagBatchRolling { get; set; }
-		public string EdPhySrc { get; internal set; }
-		public string EdOrSrc { get; internal set; }
-        public int? ProductType { get; internal set; }
-        public string HeatName { get; internal set; }
-        public short? calcFlag { get; internal set; }
+		public string EdPhySrc { get; set; }
+		public string EdOrSrc { get; set; }
+        public int? ProductType { get; set; }
+        public string HeatName { get; set; }
+        public short? calcFlag { get; set; }
     }
 }

@@ -32,10 +32,10 @@ namespace WebHMI.Dtos.Roll
         public int? Grinding { get; set; }
         public string RelatedRollid { get; set; }
         public short RollChamferClassId { get; set; }
-        public string Remarks { get; internal set; }
-        public int? ReasonId { get; internal set; }
-        public string PlannedRollPos { get; internal set; }
-        public int? PlannedStandId { get; internal set; }
+        public string Remarks { get; set; }
+        public int? ReasonId { get; set; }
+        public string PlannedRollPos { get; set; }
+        public int? PlannedStandId { get; set; }
         public string StandRange { get; set; }
         public DateTime? GrindingTime { get; set; } = new();
 

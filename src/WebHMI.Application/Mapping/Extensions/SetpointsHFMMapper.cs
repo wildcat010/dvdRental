@@ -1181,11 +1181,13 @@ namespace WebHMI.Mapping.Extensions
 
                 stand.CsMaxLimit.L = dirFmPfcCycShiftPassL?.CSmaxLimit;
                 stand.CsMaxLimit.E = dirFmPfcCycShiftPassE?.CSmaxLimit;
+                stand.CsMaxLimit.M = dirFmPfcCycShiftPassM?.CSmaxLimit;
                 stand.CsMaxLimit.DbSource = $"{nameof(DirFmPfcCycShiftPpass)}.{nameof(DirFmPfcCycShiftPpass.CSmaxLimit)}[{i}]";
                 stand.CsMaxLimit.Status = statDirfmpfccycshifTppasses?.CSmaxLimit;
 
                 stand.CsMinLimit.L = dirFmPfcCycShiftPassL?.CSminLimit;
                 stand.CsMinLimit.E = dirFmPfcCycShiftPassE?.CSminLimit;
+                stand.CsMinLimit.M = dirFmPfcCycShiftPassM?.CSminLimit;
                 stand.CsMinLimit.DbSource = $"{nameof(DirFmPfcCycShiftPpass)}.{nameof(DirFmPfcCycShiftPpass.CSminLimit)}[{i}]";
                 stand.CsMinLimit.Status = statDirfmpfccycshifTppasses?.CSminLimit;
 
@@ -1290,18 +1292,6 @@ namespace WebHMI.Mapping.Extensions
                 stand.PlanNo.E = dirFmPfcCycShiftE?.PlanNo;
                 stand.PlanNo.DbSource = $"{nameof(DirFmPfcCycShiftP)}.{nameof(DirFmPfcCycShiftP.PlanNo)}";
                 stand.PlanNo.Status = dataBlob.StatDirfmpfccycshiftps?.PlanNo;
-
-                stand.CsMaxLimit.L = dirFmPfcCycShiftPassL?.CSmaxLimit;
-                stand.CsMaxLimit.E = dirFmPfcCycShiftPassE?.CSmaxLimit;
-                stand.CsMaxLimit.M = dirFmPfcCycShiftPassM?.CSmaxLimit;
-                stand.CsMaxLimit.DbSource = $"{nameof(DirFmPfcCycShiftPpass)}.{nameof(DirFmPfcCycShiftPpass.CSmaxLimit)}[{i}]";
-                stand.CsMaxLimit.Status = statDirFmPfcCycShiftPass?.CSmaxLimit;
-
-                stand.CsMinLimit.L = dirFmPfcCycShiftPassL?.CSminLimit;
-                stand.CsMinLimit.E = dirFmPfcCycShiftPassE?.CSminLimit;
-                stand.CsMinLimit.M = dirFmPfcCycShiftPassM?.CSminLimit;
-                stand.CsMinLimit.DbSource = $"{nameof(DirFmPfcCycShiftPpass)}.{nameof(DirFmPfcCycShiftPpass.CSminLimit)}[{i}]";
-                stand.CsMinLimit.Status = statDirFmPfcCycShiftPass?.CSminLimit;
 
                 stand.CsStartPos.L = dirFmPfcCycShiftPassL?.CSstartPos;
                 stand.CsStartPos.E = dirFmPfcCycShiftPassE?.CSstartPos;

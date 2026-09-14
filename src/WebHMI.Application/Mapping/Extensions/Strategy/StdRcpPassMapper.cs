@@ -7,6 +7,9 @@ namespace WebHMI.Mapping.Extensions.Strategy
     {
         public static void MapEntity(StdRcppass entity, StdRcpPassDto dto)
         {
+            entity.ActiveFlag = dto.ActiveFlag;
+            entity.PlanNo = dto.PlanNo;
+            entity.PassNo = dto.PassNo;
             entity.Mzcamplitude = dto.Mzcamplitude;
             entity.MzccascadeInd0 = dto.MzccascadeInd0;
             entity.MzccascadeInd1 = dto.MzccascadeInd1;
@@ -41,6 +44,9 @@ namespace WebHMI.Mapping.Extensions.Strategy
 
         public static StdRcpPassDto ToDto(StdRcppass entity) => new()
         {
+            ActiveFlag = entity.ActiveFlag,
+            PlanNo = entity.PlanNo,
+            PassNo = entity.PassNo,
             Mzcamplitude = entity.Mzcamplitude,
             MzccascadeInd0 = entity.MzccascadeInd0,
             MzccascadeInd1 = entity.MzccascadeInd1,

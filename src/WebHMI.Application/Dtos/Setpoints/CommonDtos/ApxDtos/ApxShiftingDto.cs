@@ -10,8 +10,6 @@ namespace WebHMI.Dtos.Setpoints.CommonDtos.ApxDtos
     {
         public int PassNo { get; set; }
         public SourceSet<int?> PlanNo { get; set; } = new();
-        public SourceSet<double?> CsMaxLimit { get; set; } = new();
-        public SourceSet<double?> CsMinLimit { get; set; } = new();
         public SourceSet<double?> CsStartPos { get; set; } = new();
         public SourceSet<int?> CsShiftDir { get; set; } = new();
         public SourceSet<double?> CsShiftStep1 { get; set; } = new();
