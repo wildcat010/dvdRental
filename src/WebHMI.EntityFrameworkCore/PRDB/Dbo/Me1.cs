@@ -61,6 +61,8 @@ public partial class Me1
 
     public virtual ICollection<Aoppass> Aoppasses { get; set; } = new List<Aoppass>();
 
+    public virtual ICollection<Aop> Aops { get; set; } = new List<Aop>();
+
     public virtual ICollection<CsCr> CsCrs { get; set; } = new List<CsCr>();
 
     public virtual ICollection<CsEdgeMasking> CsEdgeMaskings { get; set; } = new List<CsEdgeMasking>();

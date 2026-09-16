@@ -193,6 +193,7 @@ dotnet ef dbcontext scaffold $DBConnString Microsoft.EntityFrameworkCore.SqlServ
 -t CSCALIBRATIONCONFIG `
 -t HMI_V_PRODUCTION_HISTORY `
 -t HMI_V_ACTUALHEAT `
+-t AOP `
 
 
 

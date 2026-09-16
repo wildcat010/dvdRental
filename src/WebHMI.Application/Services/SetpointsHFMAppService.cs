@@ -87,6 +87,10 @@ namespace WebHMI.Services
             dpfmM = context.InsertIfNull(dpfmM, vMatStructEntryOr);
             dpfmM.PlanNo = input.DpHfmPlanNo?.M;
 
+            var aopM = await context.Aops.FirstOrDefaultAsync(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M");
+            aopM = context.InsertIfNull(aopM, vMatStructEntryOr);
+            aopM.PlanNo = input.AntiLubricationPlanNo?.M;
+
             var rcpM = await context.Rcps.FirstOrDefaultAsync(x => x.MeId == vMatStructEntryOr.EnOrMeId && x.Source == "M");
             rcpM = context.InsertIfNull(rcpM, vMatStructEntryOr);
             rcpM.PlanNo = input.RcpPlanNo?.M;

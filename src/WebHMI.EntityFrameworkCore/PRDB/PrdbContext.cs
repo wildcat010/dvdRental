@@ -19,6 +19,8 @@ public partial class PrdbContext : AbpDbContext
 
     public virtual DbSet<AggregateSelection> AggregateSelections { get; set; }
 
+    public virtual DbSet<Aop> Aops { get; set; }
+
     public virtual DbSet<Aoppass> Aoppasses { get; set; }
 
     public virtual DbSet<ApsRef> ApsRefs { get; set; }
@@ -976,6 +978,73 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[kg] slab weight")
                 .HasColumnName("weightEntryTo");
+        });
+
+        modelBuilder.Entity<Aop>(entity =>
+        {
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__AOP__D3DB124A547F4C5B");
+
+            entity.ToTable("AOP", "PRDB", tb =>
+                {
+                    tb.HasComment("");
+                    tb.HasTrigger("TI_AOP");
+                    tb.HasTrigger("TU_AOP");
+                });
+
+            entity.Property(e => e.MeId)
+                .HasDefaultValue(1)
+                .HasComment("Material idendification number")
+                .HasColumnName("meId");
+            entity.Property(e => e.MeCreator)
+                .HasMaxLength(2)
+                .IsUnicode(false)
+                .HasDefaultValue("")
+                .HasComment("Material owner")
+                .HasColumnName("meCreator");
+            entity.Property(e => e.MesId)
+                .HasDefaultValue((short)1)
+                .HasComment("Line status")
+                .HasColumnName("mesId");
+            entity.Property(e => e.Source)
+                .HasMaxLength(2)
+                .IsUnicode(false)
+                .HasDefaultValue("-")
+                .HasComment("owner")
+                .HasColumnName("source");
+            entity.Property(e => e.Description)
+                .HasMaxLength(80)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("description field")
+                .HasColumnName("description");
+            entity.Property(e => e.Dummy)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[m] dummy for mosDm")
+                .HasColumnName("dummy");
+            entity.Property(e => e.Mop)
+                .HasMaxLength(120)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("modifying process")
+                .HasColumnName("mop");
+            entity.Property(e => e.PlanNo)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[0...999] anti-peeling and anti-oxidation plan number")
+                .HasColumnName("planNo");
+            entity.Property(e => e.Toc)
+                .HasPrecision(3)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("time of creation")
+                .HasColumnName("toc");
+            entity.Property(e => e.Tom)
+                .HasPrecision(3)
+                .HasDefaultValueSql("(NULL)")
+                .HasComment("time of modification")
+                .HasColumnName("tom");
+
+            entity.HasOne(d => d.Me1).WithMany(p => p.Aops)
+                .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
+                .HasConstraintName("FK__AOP__58671BC9");
         });
 
         modelBuilder.Entity<Aoppass>(entity =>

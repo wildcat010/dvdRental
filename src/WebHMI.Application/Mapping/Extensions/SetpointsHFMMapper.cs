@@ -222,7 +222,7 @@ namespace WebHMI.Mapping.Extensions
             result.PowerCoolingPlanNo.L = pcL?.PlanNo;
             result.PowerCoolingPlanNo.E = pcE?.PlanNo;
             result.PowerCoolingPlanNo.M = pcM?.PlanNo;           
-            result.Temperature.DbSource = $"{nameof(Pc)}.{nameof(Pc.PlanNo)}";
+            result.PowerCoolingPlanNo.DbSource = $"{nameof(Pc)}.{nameof(Pc.PlanNo)}";
 
             return result;
         }

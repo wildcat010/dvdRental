@@ -108,6 +108,10 @@ namespace WebHMI.Services
             edgerM = context.InsertIfNull(edgerM, vMatStructEntry);
             edgerM.PlanNo = input.EdgerPlanNo?.M;
 
+            var aopM = await context.Aops.FirstOrDefaultAsync(x => x.MeId == vMatStructEntry.EnOrMeId && x.Source == "M");
+            aopM = context.InsertIfNull(aopM, vMatStructEntry);
+            aopM.PlanNo = input.AntiLubricationPlanNo?.M;
+
             await context.SaveChangesAsync();
         }
 
