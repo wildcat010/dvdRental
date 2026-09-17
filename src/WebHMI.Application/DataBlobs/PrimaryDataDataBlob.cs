@@ -15,5 +15,6 @@ namespace WebHMI.DataBlobs
 		public StatEdPhyEnt StatEdPhyEnts { get; internal set; }
 		public StatEdOrdEnt StatEdOrdEnts { get; internal set; }
 		public StatEdLogEnt StatEdLogEnts { get; internal set; }
+        public List<SpOrd2PcStand> Spord2PcStand { get; internal set; }
     }
 }

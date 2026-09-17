@@ -15,7 +15,9 @@ namespace WebHMI.Mapping.Extensions
         //Function which maps the data from the PrimaryDataDataBlob to the PrimaryDataDto
         public static PrimaryDataDto MapData(this PrimaryDataDto result, PrimaryDataDataBlob dataBlob)
 		{
-			result.Data.SequenceId.L = dataBlob.EdPhyEnts.FirstOrDefault(x => x.Source == "L")?.SequenceId;
+            result.Data.IsAnyStandInactive = dataBlob.Spord2PcStand?.Any(x => x.StandActive.HasValue && (x.StandActive == 0 || x.StandActive == 2)) ?? false;
+
+            result.Data.SequenceId.L = dataBlob.EdPhyEnts.FirstOrDefault(x => x.Source == "L")?.SequenceId;
 			result.Data.SequenceId.M = dataBlob.EdPhyEnts.FirstOrDefault(x => x.Source == "M")?.SequenceId;
 			result.Data.SequenceId.S = dataBlob.EdPhyEnts.FirstOrDefault(x => x.Source == "S")?.SequenceId;
 			result.Data.SequenceId.E = dataBlob.EdPhyEnts.FirstOrDefault(x => x.Source == "E")?.SequenceId;

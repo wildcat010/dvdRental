@@ -290,6 +290,8 @@ namespace WebHMI.Mapping.Extensions
 
                 stand.PassNo = i;
 
+                stand.IsActive = spOrd2PcStandE.StandActive.HasValue && spOrd2PcStandE?.StandActive == 1;
+
                 stand.LoadingType.L = LppassL?.LoadingType;
                 stand.LoadingType.E = LppassE?.LoadingType;
                 stand.LoadingType.M = LppassM?.LoadingType;

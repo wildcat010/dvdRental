@@ -25,5 +25,6 @@
         public SourceSet<double?> Ms { get; set; } = new();
         public SourceSet<double?> RPower { get; set; } = new();
         public SourceSet<double?> CalcFlat { get; set; } = new();
+        public bool IsActive { get; set; }
     }
 }

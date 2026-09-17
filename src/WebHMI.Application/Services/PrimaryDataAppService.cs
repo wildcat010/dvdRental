@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Security.Cryptography.Xml;
 using System.Text;
 using System.Threading.Tasks;
 using WebHMI.DataBlobs;
@@ -204,6 +205,7 @@ namespace WebHMI.Services
                 EdPhyEnts = await _prdbContext.EdPhyEnts.Where(x => x.MeId == entryMatStruct.EnPhMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
                 EdOrdEnts = await _prdbContext.EdOrdEnts.Where(x => x.MeId == entryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
                 EdLogEnts = await _prdbContext.EdLogEnts.Where(x => x.MeId == entryMatStruct.EnLoMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
+                Spord2PcStand = await _prdbContext.SpOrd2PcStands.Where(x => x.MeId == entryMatStruct.EnOrMeId && x.Source == "E").AsNoTracking().ToListAsync(),
 
                 StatEdPhyEnts = await _prdbContext.StatEdPhyEnts.Where(x => x.MeId == entryMatStruct.EnPhMeId && x.Source == "E").AsNoTracking().FirstOrDefaultAsync(),
                 StatEdOrdEnts = await _prdbContext.StatEdOrdEnts.Where(x => x.MeId == entryMatStruct.EnOrMeId && x.Source == "E").AsNoTracking().FirstOrDefaultAsync(),
