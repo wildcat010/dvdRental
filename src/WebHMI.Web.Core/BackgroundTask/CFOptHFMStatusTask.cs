@@ -41,20 +41,24 @@ namespace WebHMI.API.BackgroundTask
             try
             {
                 var context = await _prdbContextProvider.GetDbContextAsync();
-                var mosswitches = await context.MosSwitches.Where(x => x.RecNo == 0).ToListAsync();
+                var mosswitches = await context.MosSwitches.FirstOrDefaultAsync(x => x.RecNo == 0 && x.PlantType == "HFM");
 
-                if (mosswitches.Any())
-                {
-                   
-                    _statusManager.AddStatus(ConvertMosSwitchToDto(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd23), "LTI", SimpleStatusGroup.CFOptFM, 1, "CFOpt Long Time Inheritance");
-                    _statusManager.AddStatus(ConvertMosSwitchToDto(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd22), "STI", SimpleStatusGroup.CFOptFM, 2, "CFOpt Short Time Inheritance");
-                    //setpoints group (common for HRM and FM)
-                    _statusManager.AddStatus(ConvertMosSwitchToDtoReversed(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd05), "LTI", SimpleStatusGroup.Setpoints, 2, "Long Time Inheritance");
-                    _statusManager.AddStatus(ConvertMosSwitchToDtoReversed(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd06), "STI", SimpleStatusGroup.Setpoints, 3, "Short Time Inheritance");
+                _statusManager.AddStatus(ConvertMosSwitchToDtoReversed(mosswitches?.StrSwitchesInd06), "LTI", SimpleStatusGroup.Setpoints, 2, "Long Time Inheritance");
+                _statusManager.AddStatus(ConvertMosSwitchToDtoReversed(mosswitches?.StrSwitchesInd05), "STI", SimpleStatusGroup.Setpoints, 3, "Short Time Inheritance");
 
-                }
+                _statusManager.AddStatus(ConvertMosSwitchToDto(mosswitches?.StrSwitchesInd20), "IED", SimpleStatusGroup.CFOpt, 1, "Ignore Edge Drop");
+                _statusManager.AddStatus(ConvertMosSwitchToDto(mosswitches?.StrSwitchesInd19), "OSH", SimpleStatusGroup.CFOpt, 2, "Wear Optimized Shifting");
+                _statusManager.AddStatus(MapPriorityParameter(mosswitches?.StrSwitchesInd34), "PRP", SimpleStatusGroup.CFOpt, 3, "Priority Parameter");
+                _statusManager.AddStatus(ConvertMosSwitchToDto(mosswitches?.StrSwitchesInd23), "LTI", SimpleStatusGroup.CFOpt, 2, "Long Time Inheritance");
 
-                var progparam  = await context.ProgParameters.Where(x => x.Param == "SETPT_TAKEOVER_MANUAL").FirstOrDefaultAsync(); 
+                _statusManager.AddStatus(MapAutomaticBending(mosswitches?.StrSwitchesInd17), "ABE", SimpleStatusGroup.CFOptHRM, 1, "Automatic Bending");
+                _statusManager.AddStatus(ConvertMosSwitchToDto(mosswitches?.StrSwitchesInd45), "STI", SimpleStatusGroup.CFOptHRM, 3, "Short Time Inheritance");
+
+                _statusManager.AddStatus(MapAutomaticBending(mosswitches?.StrSwitchesInd16), "ABE", SimpleStatusGroup.CFOptFM, 1, "Automatic Bending");
+                _statusManager.AddStatus(ConvertMosSwitchToDto(mosswitches?.StrSwitchesInd22), "STI", SimpleStatusGroup.CFOptFM, 2, "Short Time Inheritance");
+                //setpoints group (common for HRM and FM)
+
+                var progparam = await context.ProgParameters.Where(x => x.Param == "SETPT_TAKEOVER_MANUAL").FirstOrDefaultAsync();
                 if (progparam != null)
                 {
                     _statusManager.AddStatus(ConvertProgParamToDto(progparam.ParamNum), "TO", SimpleStatusGroup.Setpoints, 1, "Take Over");
@@ -97,6 +101,28 @@ namespace WebHMI.API.BackgroundTask
                 return OveralStateDto.Off;
             if (par == 1)
                 return OveralStateDto.On;
+            return OveralStateDto.UNKNOWN;
+        }
+
+        private OveralStateDto MapPriorityParameter(int? par)
+        {
+            if (par is null)
+                return OveralStateDto.UNKNOWN;
+            if (par == 0)
+                return OveralStateDto.Flatness;
+            if (par == 1)
+                return OveralStateDto.Profile;
+            return OveralStateDto.UNKNOWN;
+        }
+
+        private OveralStateDto MapAutomaticBending(int? par)
+        {
+            if (par is null)
+                return OveralStateDto.UNKNOWN;
+            if (par == 0)
+                return OveralStateDto.Manual;
+            if (par == 1)
+                return OveralStateDto.Model;
             return OveralStateDto.UNKNOWN;
         }
 
