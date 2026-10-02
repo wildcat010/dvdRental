@@ -353,6 +353,8 @@ namespace WebHMI.Services
                 { "STIPFCRM", () => MosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd45) },
                 { "STIPFCFM", () => MosswitchToHMISwitch(mosswitches.FirstOrDefault(m => m.PlantType == "HFM")?.StrSwitchesInd22) },
                 { "TOCS", () => ProgparamsToHMISwitch(progparams.FirstOrDefault(x => x.Param == "SETPTCS_TAKEOVER_MANUAL")?.ParamNum) },
+
+                { "TAKOMCS", () => ProgparamsToHMISwitch(progparams.FirstOrDefault(m => m.Param == "SETPTCS_TAKEOVER_MANUAL")?.ParamNum) }
             };
 
             var result = ids
@@ -400,6 +402,10 @@ namespace WebHMI.Services
                 }},
                 { "TAKOM", (x) => {
                     var param = progparams.FirstOrDefault(m => m.Param == "SETPT_TAKEOVER_MANUAL");
+                    if (param != null) param.ParamNum = HMIToProgparamsSwitch(x);
+                }},
+                { "TAKOMCS", (x) => {
+                    var param = progparams.FirstOrDefault(m => m.Param == "SETPTCS_TAKEOVER_MANUAL");
                     if (param != null) param.ParamNum = HMIToProgparamsSwitch(x);
                 }},
                 { "LTI", (x) => {
