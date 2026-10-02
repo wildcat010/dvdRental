@@ -36,5 +36,6 @@ namespace WebHMI.DataBlobs
         public List<Srp> Srp { get; set; } = new();
         public List<Rcp> Rcps { get; set; } = new();
         public List<Wmp> Wmp { get; set; } = new();
+        public MosParam MosParam { get; internal set; }
     }
 }

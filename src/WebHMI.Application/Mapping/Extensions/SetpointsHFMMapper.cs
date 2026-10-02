@@ -290,7 +290,7 @@ namespace WebHMI.Mapping.Extensions
 
                 stand.PassNo = i;
 
-                stand.IsActive = spOrd2PcStandE.StandActive.HasValue && spOrd2PcStandE?.StandActive == 1;
+                stand.IsInlineRollChangeActive = spOrd2PcStandE.StandActive.HasValue && spOrd2PcStandE?.StandActive == 2;
 
                 stand.LoadingType.L = LppassL?.LoadingType;
                 stand.LoadingType.E = LppassE?.LoadingType;
@@ -638,6 +638,11 @@ namespace WebHMI.Mapping.Extensions
                 stand.FlowWrLoadedInd2.E = rcpPassE?.FlowWrLoadedInd2;
                 stand.FlowWrLoadedInd2.M = rcpPassM?.FlowWrLoadedInd2;
                 stand.FlowWrLoadedInd2.DbSource = $"{nameof(Rcppass)}.{nameof(Rcppass.FlowWrLoadedInd2)}[{i}]";
+
+                stand.FlowWrLoadedInd3.L = rcpPassL?.FlowWrLoadedInd3;
+                stand.FlowWrLoadedInd3.E = rcpPassE?.FlowWrLoadedInd3;
+                stand.FlowWrLoadedInd3.M = rcpPassM?.FlowWrLoadedInd3;
+                stand.FlowWrLoadedInd3.DbSource = $"{nameof(Rcppass)}.{nameof(Rcppass.FlowWrLoadedInd3)}[{i}]";
 
                 stand.Mzcamplitude.L = rcpPassL?.Mzcamplitude;
                 stand.Mzcamplitude.E = rcpPassE?.Mzcamplitude;

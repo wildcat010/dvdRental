@@ -15,6 +15,7 @@ namespace WebHMI.Dtos.Setpoints.CommonDtos
         public SourceSet<double?> FlowWrLoadedInd0 { get; set; } = new();
         public SourceSet<double?> FlowWrLoadedInd1 { get; set; } = new();
         public SourceSet<double?> FlowWrLoadedInd2 { get; set; } = new();
+        public SourceSet<double?> FlowWrLoadedInd3 { get; set; } = new();
         public SourceSet<double?> StripSprayBefor { get; set; } = new();
         public SourceSet<double?> LooperCooling { get; set; } = new();
         public SourceSet<double?> IscVolumeInd0 { get; set; } = new();

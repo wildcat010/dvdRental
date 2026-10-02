@@ -44,5 +44,6 @@ namespace WebHMI.DataBlobs
         public StatAdOrd2Pc StatadordPc2 { get; set; } = new();
         public List<StatAdOrd2PcStand> StatadordPc2Stands { get; set; } = new();
         public List<Edghrm> Edghrm { get; set; } = new();
+        public MosParam MosParam { get; set; }
     }
 }
