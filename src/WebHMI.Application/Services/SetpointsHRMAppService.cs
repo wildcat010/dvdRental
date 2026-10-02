@@ -904,6 +904,7 @@ namespace WebHMI.Services
                 adordPc2 = await _prdbContext.AdOrd2Pcs.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && x.Source == "S").FirstOrDefaultAsync(),
                 adordPc2Stands = await _prdbContext.AdOrd2PcStands.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && x.Source == "S").ToListAsync(),
                 Edghrm = await _prdbContext.Edghrms.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
+                MosParam = await _prdbContext.MosParams.Where(x => x.ParamName == "PMPM_EXIT_PROFILE_CASTER").AsNoTracking().FirstOrDefaultAsync(),
 
 
                 StatSpord2pcstands = await _prdbContext.StatSpOrd2PcStands.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && x.Source == "E").AsNoTracking().ToListAsync(),
@@ -948,7 +949,7 @@ namespace WebHMI.Services
                 AdordPc2Stands = await _prdbContext.AdOrd2PcStands.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && x.Source == "S").ToListAsync(),
                 DirFmPfcParaPasses = await _prdbContext.DirFmPfcParaPpasses.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
                 Rcps = await _prdbContext.Rcps.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && sources.Contains(x.Source)).AsNoTracking().ToListAsync(),
-
+                MosParam = await _prdbContext.MosParams.Where(x => x.ParamName == "PMPM_EXIT_PROFILE_CASTER").AsNoTracking().FirstOrDefaultAsync(),
 
                 StatSpord2pcs = await _prdbContext.StatSpOrd2Pcs.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && x.Source == "E").AsNoTracking().FirstOrDefaultAsync(),
                 StatEdordents = await _prdbContext.StatEdOrdEnts.Where(x => x.MeId == hmiVEntryMatStruct.EnOrMeId && x.Source == "E").AsNoTracking().FirstOrDefaultAsync(),

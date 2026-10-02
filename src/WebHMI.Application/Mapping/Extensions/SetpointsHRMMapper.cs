@@ -98,11 +98,8 @@ namespace WebHMI.Mapping.Extensions
             result.SlabWidth.DbSource = $"{nameof(EdPhyEnt)}.{nameof(EdPhyEnt.SlabWidth)}";
             result.SlabWidth.Status = dataBlob.StatEdphyents?.SlabWidth;
 
-            result.ExitCrownC25.L = edOrdEntL?.ExitCrownC40;
-            result.ExitCrownC25.E = edOrdEntE?.ExitCrownC40;
-            result.ExitCrownC25.M = edOrdEntM?.ExitCrownC40;
-            result.ExitCrownC25.DbSource = $"{nameof(EdOrdEnt)}.{nameof(EdOrdEnt.ExitCrownC40)}";
-            result.ExitCrownC25.Status = dataBlob.StatEdordents?.ExitCrownC40;
+            result.ExitCrownC25.E = dataBlob.MosParam?.CurValN;
+            result.ExitCrownC25.DbSource = $"{nameof(MosParam)}.MosParam.PMPM_EXIT_PROFILE_CASTER";
 
             result.TEntry.L = edPhyEntL?.TEntry;
             result.TEntry.E = edPhyEntE?.TEntry;
@@ -133,10 +130,10 @@ namespace WebHMI.Mapping.Extensions
             result.WEntryColdFm.DbSource = $"{nameof(SpOrd2Pc)}.{nameof(SpOrd2Pc.WEntryColdFm)}";
             result.WEntryColdFm.Status = dataBlob.StatSpord2pcs?.WEntryColdFm;
 
-            result.ProfExCalcHrm.L = spOrd2PcL?.ProfexcalcHrm;
-            result.ProfExCalcHrm.E = spOrd2PcE?.ProfexcalcHrm;
-            result.ProfExCalcHrm.DbSource = $"{nameof(SpOrd2Pc)}.{nameof(SpOrd2Pc.ProfexcalcHrm)}";
-            result.ProfExCalcHrm.Status = dataBlob.StatSpord2pcs?.ProfexcalcHrm;
+            result.ProfExCalcHrm.L = spOrd2PcL?.ProfextargetHrm;
+            result.ProfExCalcHrm.E = spOrd2PcE?.ProfextargetHrm;
+            result.ProfExCalcHrm.DbSource = $"{nameof(SpOrd2Pc)}.{nameof(SpOrd2Pc.ProfextargetHrm)}";
+            result.ProfExCalcHrm.Status = dataBlob.StatSpord2pcs?.ProfextargetHrm;
 
             result.ProfExTargetHrm.L = spOrd2PcL?.ProfextargetHrm;
             result.ProfExTargetHrm.E = spOrd2PcE?.ProfextargetHrm;
@@ -264,7 +261,7 @@ namespace WebHMI.Mapping.Extensions
 
                 stand.PassNo = i;
 
-                stand.IsActive = spOrd2PcStandE.StandActive.HasValue && spOrd2PcStandE?.StandActive == 1;
+                stand.IsInlineRollChangeActive = spOrd2PcStandE.StandActive.HasValue && spOrd2PcStandE?.StandActive == 2;
 
                 stand.LoadingType.L = lpPassL?.LoadingType;
                 stand.LoadingType.E = lpPassE?.LoadingType;
@@ -862,11 +859,8 @@ namespace WebHMI.Mapping.Extensions
             result.SlabWidth.DbSource = $"{nameof(EdPhyEnt)}.{nameof(EdPhyEnt.SlabWidth)}";
             result.SlabWidth.Status = dataBlob.StatEdphyents?.SlabWidth;
 
-            result.ExitCrownC25.L = edOrdEntL?.ExitCrownC40;
-            result.ExitCrownC25.E = edOrdEntE?.ExitCrownC40;
-            result.ExitCrownC25.M = edOrdEntM?.ExitCrownC40;
-            result.ExitCrownC25.DbSource = $"{nameof(EdOrdEnt)}.{nameof(EdOrdEnt.ExitCrownC40)}";
-            result.ExitCrownC25.Status = dataBlob.StatEdordents?.ExitCrownC40;
+            result.ExitCrownC25.E = dataBlob.MosParam?.CurValN;
+            result.ExitCrownC25.DbSource = $"{nameof(MosParam)}.MosParam.PMPM_EXIT_PROFILE_CASTER";
 
             result.TEntry.L = edPhyEntL?.TEntry;
             result.TEntry.E = edPhyEntE?.TEntry;
@@ -902,11 +896,11 @@ namespace WebHMI.Mapping.Extensions
             result.ProfExTargetHrm.DbSource = $"{nameof(SpOrd2Pc)}.{nameof(SpOrd2Pc.ProfextargetHrm)}";
             result.ProfExTargetHrm.Status = dataBlob.StatSpord2pcs?.ProfextargetHrm;
 
-            result.ProfExCalcHrm.L = spOrd2PcL?.ProfexcalcHrm;
-            result.ProfExCalcHrm.E = spOrd2PcE?.ProfexcalcHrm;
-            result.ProfExCalcHrm.M = spOrd2PcM?.ProfexcalcHrm;
-            result.ProfExCalcHrm.DbSource = $"{nameof(SpOrd2Pc)}.{nameof(SpOrd2Pc.ProfexcalcHrm)}";
-            result.ProfExCalcHrm.Status = dataBlob.StatSpord2pcs?.ProfexcalcHrm;
+            result.ProfExCalcHrm.L = spOrd2PcL?.ProfextargetHrm;
+            result.ProfExCalcHrm.E = spOrd2PcE?.ProfextargetHrm;
+            result.ProfExCalcHrm.M = spOrd2PcM?.ProfextargetHrm;
+            result.ProfExCalcHrm.DbSource = $"{nameof(SpOrd2Pc)}.{nameof(SpOrd2Pc.ProfextargetHrm)}";
+            result.ProfExCalcHrm.Status = dataBlob.StatSpord2pcs?.ProfextargetHrm;
 
             result.ProfileCorr.L = dirFmPfcParaPL?.ProfileCorr;
             result.ProfileCorr.E = dirFmPfcParaPE?.ProfileCorr;

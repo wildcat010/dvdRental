@@ -55,6 +55,6 @@ namespace WebHMI.Dtos.PrimaryData
 		public SourceSet<double?> ClassWedgeDeltaMax { get; set; } = new();
         public SourceSet<double?> ClassFlatDeltaMin { get; set; } = new();
         public SourceSet<double?> ClassFlatDeltaMax { get; set; } = new();
-        public bool IsAnyStandInactive { get; set; }
+        public bool IsInlineRollChangeActive { get; set; }
     }
 }
