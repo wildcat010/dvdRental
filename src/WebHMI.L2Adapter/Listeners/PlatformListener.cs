@@ -36,7 +36,7 @@ namespace WebHMI.L2Adapter.Listeners
                 {
                     Data = new HmiRefreshDto()
                     {
-                        EventKey = eventKey.ToList(),
+                        EventKey = eventKey.ToList(), 
                         LocationId = locationId,
                         LocationName = locationName,
                         MeCode = meCode != null && meCode.Actual != null ? new MeCodeDto()

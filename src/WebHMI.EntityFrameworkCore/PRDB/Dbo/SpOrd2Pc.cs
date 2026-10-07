@@ -1752,16 +1752,6 @@ public partial class SpOrd2Pc
     public double? ProfextargetHrm { get; set; }
 
     /// <summary>
-    /// Unit[m] strip profile max
-    /// </summary>
-    public double? ProfileMaxX { get; set; }
-
-    /// <summary>
-    /// Unit[m] strip profile min
-    /// </summary>
-    public double? ProfileMinX { get; set; }
-
-    /// <summary>
     /// Unit[m] strip profile
     /// </summary>
     public double? ProfileX { get; set; }
@@ -2575,16 +2565,6 @@ public partial class SpOrd2Pc
     /// Unit[m] width behind HRM hot
     /// </summary>
     public double? WExitHotHrm { get; set; }
-
-    /// <summary>
-    /// Unit[m] strip wedge max
-    /// </summary>
-    public double? WedgeMaxX { get; set; }
-
-    /// <summary>
-    /// Unit[m] strip wedge min
-    /// </summary>
-    public double? WedgeMinX { get; set; }
 
     /// <summary>
     /// Unit[m] strip wedge target

@@ -1,3 +1,4 @@
+using Abp.Application.Services.Dto;
 using Abp.Auditing;
 using Abp.Domain.Entities;
 using Abp.EntityFrameworkCore;
@@ -13,6 +14,7 @@ using System.Threading.Tasks;
 using WebHMI.DataBlobs;
 using WebHMI.Dtos;
 using WebHMI.Dtos.PrimaryData;
+using WebHMI.Filters;
 using WebHMI.Helpers;
 using WebHMI.L2Adapter.Common;
 using WebHMI.Mapping.Extensions;
@@ -38,6 +40,13 @@ namespace WebHMI.Services
             _prdbContextProvider = prdbContextProvider;
             _matStructEntryService = matStructEntryService;
             _l2CommunicationHandler = l2CommunicationHandler;
+        }
+
+        public async Task<PagedResultDto<ProductOrderDto>> GetProductOrders(FilteredRequestDto input)
+        {
+            var context = _prdbContextProvider.GetDbContext();
+
+            return await ApplyFilter(context.HmiProductionorders,input, PrimaryDataDtoMapper.MapProductOrder);
         }
 
         public async Task<PrimaryDataDto> GetPrimaryDataById(int meid, string matType)

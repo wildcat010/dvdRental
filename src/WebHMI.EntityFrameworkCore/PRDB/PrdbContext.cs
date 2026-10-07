@@ -95,6 +95,8 @@ public partial class PrdbContext : AbpDbContext
 
     public virtual DbSet<HmiCoil> HmiCoils { get; set; }
 
+    public virtual DbSet<HmiProductionorder> HmiProductionorders { get; set; }
+
     public virtual DbSet<HmiVActualheat> HmiVActualheats { get; set; }
 
     public virtual DbSet<HmiVActualsequence> HmiVActualsequences { get; set; }
@@ -6288,6 +6290,20 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("time of modification")
                 .HasColumnName("tom");
+        });
+
+        modelBuilder.Entity<HmiProductionorder>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("HMI_PRODUCTIONORDERS");
+
+            entity.Property(e => e.CoilerTemp).HasColumnType("decimal(10, 2)");
+            entity.Property(e => e.CoolType).HasMaxLength(10);
+            entity.Property(e => e.OrderNo).HasMaxLength(50);
+            entity.Property(e => e.Profile).HasColumnType("decimal(10, 2)");
+            entity.Property(e => e.Weight).HasColumnType("decimal(12, 2)");
+            entity.Property(e => e.Width).HasColumnType("decimal(10, 2)");
         });
 
         modelBuilder.Entity<HmiVActualheat>(entity =>
@@ -14823,14 +14839,6 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[m] PFC target profile of HRM")
                 .HasColumnName("profextargetHRM");
-            entity.Property(e => e.ProfileMaxX)
-                .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] strip profile max")
-                .HasColumnName("profileMaxX");
-            entity.Property(e => e.ProfileMinX)
-                .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] strip profile min")
-                .HasColumnName("profileMinX");
             entity.Property(e => e.ProfileX)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[m] strip profile")
@@ -15515,14 +15523,6 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Reference Square Coefficient Head")
                 .HasColumnName("W_FG_SqCoefH");
-            entity.Property(e => e.WedgeMaxX)
-                .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] strip wedge max")
-                .HasColumnName("wedgeMaxX");
-            entity.Property(e => e.WedgeMinX)
-                .HasDefaultValueSql("(NULL)")
-                .HasComment("Unit[m] strip wedge min")
-                .HasColumnName("wedgeMinX");
             entity.Property(e => e.WedgeX)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[m] strip wedge target")
@@ -21591,14 +21591,6 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("PFC target profile of HRM")
                 .HasColumnName("profextargetHRM");
-            entity.Property(e => e.ProfileMaxX)
-                .HasDefaultValueSql("(NULL)")
-                .HasComment("strip profile max")
-                .HasColumnName("profileMaxX");
-            entity.Property(e => e.ProfileMinX)
-                .HasDefaultValueSql("(NULL)")
-                .HasComment("strip profile min")
-                .HasColumnName("profileMinX");
             entity.Property(e => e.ProfileX)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("strip profile")
@@ -22277,14 +22269,6 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Reference Square Coefficient Head")
                 .HasColumnName("W_FG_SqCoefH");
-            entity.Property(e => e.WedgeMaxX)
-                .HasDefaultValueSql("(NULL)")
-                .HasComment("strip wedge max")
-                .HasColumnName("wedgeMaxX");
-            entity.Property(e => e.WedgeMinX)
-                .HasDefaultValueSql("(NULL)")
-                .HasComment("strip wedge min")
-                .HasColumnName("wedgeMinX");
             entity.Property(e => e.WedgeX)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("strip wedge target")
@@ -23425,6 +23409,12 @@ public partial class PrdbContext : AbpDbContext
             entity.Property(e => e.CoilYard)
                 .HasDefaultValueSql("(NULL)")
                 .HasColumnName("coilYard");
+            entity.Property(e => e.CrownMax)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("crownMax");
+            entity.Property(e => e.CrownMin)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("crownMin");
             entity.Property(e => e.DilatometerCurve)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("no. of dilatometer curve to be applied")
@@ -23433,6 +23423,15 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Flag for plate production:  0 = strip production, 1 = plate production")
                 .HasColumnName("flagPlateProd");
+            entity.Property(e => e.FlatAsymMax)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("flatASymMax");
+            entity.Property(e => e.FlatSymMax)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("flatSymMax");
+            entity.Property(e => e.FlatSymMin)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("flatSymMin");
             entity.Property(e => e.HExitCus)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("for marking")
@@ -23499,6 +23498,9 @@ public partial class PrdbContext : AbpDbContext
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("planned exit temperature from L3")
                 .HasColumnName("tExitSetp");
+            entity.Property(e => e.TargetFlatness)
+                .HasDefaultValueSql("(NULL)")
+                .HasColumnName("targetFlatness");
             entity.Property(e => e.Toc)
                 .HasPrecision(3)
                 .HasDefaultValueSql("(NULL)")
@@ -27042,6 +27044,7 @@ public partial class PrdbContext : AbpDbContext
             .HasMax(2000000000L)
             .IsCyclic();
         modelBuilder.HasSequence("transferid", "COMUSER")
+            .StartsAt(85744L)
             .HasMin(1L)
             .HasMax(2000000000L)
             .IsCyclic();

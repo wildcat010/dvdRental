@@ -99,7 +99,7 @@ namespace WebHMI.Mapping.Extensions
             result.SlabWidth.Status = dataBlob.StatEdphyents?.SlabWidth;
 
             result.ExitCrownC25.E = dataBlob.MosParam?.CurValN;
-            result.ExitCrownC25.DbSource = $"{nameof(MosParam)}.MosParam.PMPM_EXIT_PROFILE_CASTER";
+            result.ExitCrownC25.DbSource = $"MosParam.PMPM_EXIT_PROFILE_CASTER";
 
             result.TEntry.L = edPhyEntL?.TEntry;
             result.TEntry.E = edPhyEntE?.TEntry;
@@ -860,7 +860,7 @@ namespace WebHMI.Mapping.Extensions
             result.SlabWidth.Status = dataBlob.StatEdphyents?.SlabWidth;
 
             result.ExitCrownC25.E = dataBlob.MosParam?.CurValN;
-            result.ExitCrownC25.DbSource = $"{nameof(MosParam)}.MosParam.PMPM_EXIT_PROFILE_CASTER";
+            result.ExitCrownC25.DbSource = $"MosParam.PMPM_EXIT_PROFILE_CASTER";
 
             result.TEntry.L = edPhyEntL?.TEntry;
             result.TEntry.E = edPhyEntE?.TEntry;

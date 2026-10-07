@@ -63,7 +63,11 @@ namespace WebHMI.API.BackgroundTask
                 {
                     _statusManager.AddStatus(ConvertProgParamToDto(progparam.ParamNum), "TO", SimpleStatusGroup.Setpoints, 1, "Take Over");
                 }
-
+                var progparamCs = await context.ProgParameters.Where(x => x.Param == "SETPT_TAKEOVER_MANUAL").FirstOrDefaultAsync();
+                if (progparam != null)
+                {
+                    _statusManager.AddStatus(ConvertProgParamToDto(progparamCs.ParamNum), "TO", SimpleStatusGroup.SetpointsCs, 1, "Take Over");
+                }
             }
             catch (Exception ex)
             {

@@ -14,6 +14,7 @@ namespace WebHMI.Status
         public DateTime LastStatusChangeTs { get; set; }
         public SimpleStatusGroup Group { get; set; }
         public int GroupOrder { get; set; }
+        public string FaultyElements { get; set; } = string.Empty;
 
         public SimpleStatusDto(OveralStateDto state, string label, DateTime lastStatusChangeTs, SimpleStatusGroup group, int groupOrder, string additionalInfo = "")
         {
@@ -36,5 +37,6 @@ namespace WebHMI.Status
         CFOptFM,
         CS,
         Others,
+        SetpointsCs,
     }
 }

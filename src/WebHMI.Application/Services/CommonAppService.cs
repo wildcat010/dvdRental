@@ -400,6 +400,10 @@ namespace WebHMI.Services
                     var mos = mosswitches.FirstOrDefault(m => m.PlantType == "HFM");
                     if (mos != null) mos.StrSwitchesInd19 = HMIToMosswitchSwitch(x);
                 }},
+                { "TOCS", (x) => {
+                    var param = progparams.FirstOrDefault(m => m.Param == "SETPTCS_TAKEOVER_MANUAL");
+                    if (param != null) param.ParamNum = HMIToProgparamsSwitch(x);
+                }},
                 { "TAKOM", (x) => {
                     var param = progparams.FirstOrDefault(m => m.Param == "SETPT_TAKEOVER_MANUAL");
                     if (param != null) param.ParamNum = HMIToProgparamsSwitch(x);

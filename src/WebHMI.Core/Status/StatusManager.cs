@@ -61,6 +61,25 @@ namespace WebHMI.Status
                     return val;
                 });
         }
+        public void AddWdogStatus(OveralStateDto state, string label, SimpleStatusGroup group, int groupOrder, string additionalInfo = "", string wdog = "")
+        {
+            var key = new StatusKey(label, group);
+            var lastStatusChangeTs = DateTime.UtcNow;
+
+            _simpleStatusDtos.AddOrUpdate(key,
+                new SimpleStatusDto(state, label, lastStatusChangeTs, group, groupOrder, additionalInfo),
+                (key, val) =>
+                {
+                    val.State = state;
+                    val.Label = label;
+                    val.AddInfo = additionalInfo;
+                    val.LastStatusChangeTs = lastStatusChangeTs;
+                    val.Group = group;
+                    val.GroupOrder = groupOrder;
+                    val.FaultyElements = wdog;
+                    return val;
+                });
+        }
     }
 
     public record StatusKey(string Label, SimpleStatusGroup Group);

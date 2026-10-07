@@ -38,7 +38,8 @@ namespace WebHMI.Web.Host.Startup
                         ValidAudience = configuration["Authentication:JwtBearer:Audience"],
 
                         // Validate the token expiry
-                        ValidateLifetime = true,
+                        ValidateLifetime = false,
+                        RequireExpirationTime = false,
 
                         // If you want to allow a certain amount of clock drift, set that here
                         ClockSkew = TimeSpan.Zero

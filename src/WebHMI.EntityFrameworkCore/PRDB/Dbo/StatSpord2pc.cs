@@ -1752,16 +1752,6 @@ public partial class StatSpOrd2Pc
     public short? ProfextargetHrm { get; set; }
 
     /// <summary>
-    /// strip profile max
-    /// </summary>
-    public short? ProfileMaxX { get; set; }
-
-    /// <summary>
-    /// strip profile min
-    /// </summary>
-    public short? ProfileMinX { get; set; }
-
-    /// <summary>
     /// strip profile
     /// </summary>
     public short? ProfileX { get; set; }
@@ -2575,16 +2565,6 @@ public partial class StatSpOrd2Pc
     /// width behind HRM hot
     /// </summary>
     public short? WExitHotHrm { get; set; }
-
-    /// <summary>
-    /// strip wedge max
-    /// </summary>
-    public short? WedgeMaxX { get; set; }
-
-    /// <summary>
-    /// strip wedge min
-    /// </summary>
-    public short? WedgeMinX { get; set; }
 
     /// <summary>
     /// strip wedge target

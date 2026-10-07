@@ -162,5 +162,17 @@ public partial class StatSpOrdEnt
 
     public short? CoilYard { get; set; }
 
+    public short? CrownMax { get; set; }
+
+    public short? CrownMin { get; set; }
+
+    public short? FlatAsymMax { get; set; }
+
+    public short? FlatSymMax { get; set; }
+
+    public short? FlatSymMin { get; set; }
+
+    public short? TargetFlatness { get; set; }
+
     public virtual Me1 Me1 { get; set; }
 }
