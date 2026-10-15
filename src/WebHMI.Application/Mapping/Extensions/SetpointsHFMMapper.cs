@@ -111,12 +111,12 @@ namespace WebHMI.Mapping.Extensions
             result.TExit.DbSource = $"{nameof(EdOrdEnt)}.{nameof(EdOrdEnt.TExit)}";
             result.TExit.Status = dataBlob.StatEdordents?.TExit;
 
-            result.ExitCrownc25.L = edOrdEntL?.ExitCrownC40;
-            result.ExitCrownc25.E = edOrdEntE?.ExitCrownC40;
-            result.ExitCrownc25.M = edOrdEntM?.ExitCrownC40;
-            result.ExitCrownc25.S = dataBlob.Adord2PC?.Profile;
-            result.ExitCrownc25.DbSource = $"{nameof(EdOrdEnt)}.{nameof(EdOrdEnt.ExitCrownC40)}";
-            result.ExitCrownc25.Status = dataBlob.StatEdordents?.ExitCrownC40;
+            result.ExitCrownc40.L = edOrdEntL?.ExitCrownC40;
+            result.ExitCrownc40.E = edOrdEntE?.ExitCrownC40;
+            result.ExitCrownc40.M = edOrdEntM?.ExitCrownC40;
+            result.ExitCrownc40.S = dataBlob.Adord2PC?.Profile;
+            result.ExitCrownc40.DbSource = $"{nameof(EdOrdEnt)}.{nameof(EdOrdEnt.ExitCrownC40)}";
+            result.ExitCrownc40.Status = dataBlob.StatEdordents?.ExitCrownC40;
 
             result.HExitCold.L = spOrd2PcL?.HExitCold;
             result.HExitCold.E = spOrd2PcE?.HExitCold;
