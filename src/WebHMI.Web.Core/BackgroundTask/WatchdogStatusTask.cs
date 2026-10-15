@@ -50,21 +50,14 @@ namespace WebHMI.BackgroundTask
                     var label = GetWatchDogLabel(wdog);
                     var wdog2 = _watchDogStatusService.GetWatchdog(wdog.Name);
                     var foultyElements = "";
-                    //Logger.Error($"wdog2.Status:{wdog2.Status}");
                     if (wdog2.Status == ComponentHealthState.RED)
                     {
-                        var tmp = WatchdogHelper.GetRedComponentsAndChannels(wdog2);
-                        //Logger.Error($"tmp:{tmp.ToJsonString()}");
-                        var faultyChannels = tmp.ChannelStates.Select(x => $"{x.Item1}-{x.Item2}").ToList();
-                        //Logger.Error($"faultyChannels.Count:{faultyChannels.Count}");
-                        if (faultyChannels.Count > 0)
+                        var redWdogElements = WatchdogHelper.GetRedComponentsAndChannels(wdog2);
+                        if (redWdogElements.ChannelStates.Count > 0)
                         {
-                            OverAllL1L2Comm.AddRange(faultyChannels);
-                            //Logger.Error($"tmp:{tmp.ToJsonString()}");
+                            OverAllL1L2Comm.AddRange(redWdogElements.ChannelStates);
                         }
-                        //Logger.Error($"tmp:{tmp.ToJsonString()}");
-                        foultyElements = string.Join(" ", tmp.ComponentStates.Select(x => $"{x.ComponentName}-{x.RunState}")
-                            .Concat(faultyChannels));
+                        foultyElements = string.Join(" ", redWdogElements.ComponentStates.Select(x => $"{x.ComponentName} - {x.RunState}"));
                     }
                     _statusManager.AddWdogStatus(GetState(wdog), label, SimpleStatusGroup.WatchdogStatus, i + 1, $"{wdog.Name}", foultyElements);
                 }

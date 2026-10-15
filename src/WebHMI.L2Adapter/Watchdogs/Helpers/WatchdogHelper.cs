@@ -108,21 +108,23 @@ namespace WebHMI.L2Adapter.Watchdogs.Helpers
         public static bool CheckIfAnyComponentHasYellowHealthState(WatchdogInfo watchdogInfo)
             => watchdogInfo.Applications.Where(x => !x.Name.Contains("AppWdog")).Any(app => app.Components.Any(comp => comp.RunState == ComponentRunState.BUSY || comp.RunState == ComponentRunState.PAUSED));
 
-        public static (List<(string ComponentName, string RunState)> ComponentStates, List<(string,string)> ChannelStates) GetRedComponentsAndChannels(WatchdogInfo wdog2)
+        public static (List<(string ComponentName, string RunState)> ComponentStates, List<string> ChannelStates) GetRedComponentsAndChannels(WatchdogInfo wdog2)
         {
             if (wdog2?.Applications == null)
-                return (new List<(string ComponentName, string RunState)>(), new List<(string, string)>());
+                return (new List<(string ComponentName, string RunState)>(), new List<string>());
 
             var componentStates = wdog2.Applications
                 .SelectMany(app => app.Components)
-                .Where(component => component.State == ComponentHealthState.RED)
+                .Where(component => component.State == ComponentHealthState.RED 
+                    && component.RunState != ComponentRunState.BUSY 
+                    && component.RunState != ComponentRunState.IDLE)
                 .Select(component => (ComponentName: component.Name, RunState: component.RunState.ToString()))
                 .ToList();
 
             var channelStates = wdog2.Applications
                 .SelectMany(app => app.Channels)
                 .Where(channel => channel.ChannelStatus == ComponentHealthState.RED)
-                .Select(channel => (ComponentName: channel.Name, RunState: channel.Error) )
+                .Select(channel => channel.Name)
                 .ToList();
 
             return (componentStates, channelStates);
