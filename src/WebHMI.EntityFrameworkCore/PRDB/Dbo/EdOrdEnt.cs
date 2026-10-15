@@ -131,6 +131,11 @@ public partial class EdOrdEnt
     public double? CoilTempProfileTail { get; set; }
 
     /// <summary>
+    /// Coil Yard Destination
+    /// </summary>
+    public short? CoilYard { get; set; }
+
+    /// <summary>
     /// CoolingSection:  (not used for Arvedi) when strips pass different numbers of valves on the way to the coiler
     /// </summary>
     public short? CoilerLocationSelection { get; set; }
@@ -604,8 +609,6 @@ public partial class EdOrdEnt
     /// time of modification
     /// </summary>
     public DateTime? Tom { get; set; }
-
-    public short? CoilYard { get; set; }
 
     public virtual Me1 Me1 { get; set; }
 }

@@ -95,7 +95,7 @@ public partial class PrdbContext : AbpDbContext
 
     public virtual DbSet<HmiCoil> HmiCoils { get; set; }
 
-    public virtual DbSet<HmiProductionorder> HmiProductionorders { get; set; }
+    public virtual DbSet<HmiProductionOrder> HmiProductionOrders { get; set; }
 
     public virtual DbSet<HmiVActualheat> HmiVActualheats { get; set; }
 
@@ -325,7 +325,7 @@ public partial class PrdbContext : AbpDbContext
     {
         modelBuilder.Entity<AdOrd2Pc>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.ThickHead }).HasName("PK__AdOrd2Pc__3EFAB4C200DCD3BF");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.ThickHead }).HasName("PK__AdOrd2Pc__3EFAB4C2B6158BD6");
 
             entity.ToTable("AdOrd2Pc", "PRDB", tb =>
                 {
@@ -393,7 +393,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<AdOrd2PcStand>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.ThickHead, e.StandId }).HasName("PK__AdOrd2Pc__591600A4BFEA3EF9");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.ThickHead, e.StandId }).HasName("PK__AdOrd2Pc__591600A45AC3669E");
 
             entity.ToTable("AdOrd2PcStand", "PRDB", tb =>
                 {
@@ -492,7 +492,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<AggregateSelection>(entity =>
         {
-            entity.HasKey(e => new { e.Active, e.RecId, e.Aggregate }).HasName("PK__Aggregat__DE19C9B4C6686C39");
+            entity.HasKey(e => new { e.Active, e.RecId, e.Aggregate }).HasName("PK__Aggregat__DE19C9B4D98C6084");
 
             entity.ToTable("AggregateSelection", "PRDB", tb =>
                 {
@@ -984,7 +984,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<Aop>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__AOP__D3DB124A547F4C5B");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__AOP__D3DB124ACE4EEFBE");
 
             entity.ToTable("AOP", "PRDB", tb =>
                 {
@@ -1051,7 +1051,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<Aoppass>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.PassNo }).HasName("PK__AOPPass__5DCFA6F9700F4171");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.PassNo }).HasName("PK__AOPPass__5DCFA6F935B44E8D");
 
             entity.ToTable("AOPPass", "PRDB", tb =>
                 {
@@ -1149,7 +1149,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<ApsRef>(entity =>
         {
-            entity.HasKey(e => new { e.KeyType, e.KeyName }).HasName("PK__ApsRef__3DB36223292ACD15");
+            entity.HasKey(e => new { e.KeyType, e.KeyName }).HasName("PK__ApsRef__3DB36223DB2F1CD1");
 
             entity.ToTable("ApsRef", "PRDB", tb =>
                 {
@@ -1202,7 +1202,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<CalDss>(entity =>
         {
-            entity.HasKey(e => new { e.StandNo, e.DssNumber, e.PlantType }).HasName("PK__CalDss__2520E9445936BF82");
+            entity.HasKey(e => new { e.StandNo, e.DssNumber, e.PlantType }).HasName("PK__CalDss__2520E944335FBC22");
 
             entity.ToTable("CalDss", "PRDB", tb =>
                 {
@@ -1255,7 +1255,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<CalDssAct>(entity =>
         {
-            entity.HasKey(e => new { e.StandNo, e.DssNumber, e.PlantType }).HasName("PK__CalDssAc__2520E944EFE75257");
+            entity.HasKey(e => new { e.StandNo, e.DssNumber, e.PlantType }).HasName("PK__CalDssAc__2520E9448719926D");
 
             entity.ToTable("CalDssAct", "PRDB", tb =>
                 {
@@ -1308,7 +1308,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<CalPade>(entity =>
         {
-            entity.HasKey(e => new { e.StandNo, e.CurveType, e.PlantType }).HasName("PK__CalPade__070CCC5A1679713D");
+            entity.HasKey(e => new { e.StandNo, e.CurveType, e.PlantType }).HasName("PK__CalPade__070CCC5ABD81D4E2");
 
             entity.ToTable("CalPade", "PRDB", tb =>
                 {
@@ -1365,7 +1365,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<CalPadeAct>(entity =>
         {
-            entity.HasKey(e => new { e.StandNo, e.CurveType, e.PlantType }).HasName("PK__CalPadeA__070CCC5AA5816A4A");
+            entity.HasKey(e => new { e.StandNo, e.CurveType, e.PlantType }).HasName("PK__CalPadeA__070CCC5AA8CBD33E");
 
             entity.ToTable("CalPadeAct", "PRDB", tb =>
                 {
@@ -1422,7 +1422,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<CsCalibrationConfig>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__CsCalibr__3214EC07214F014E");
+            entity.HasKey(e => e.Id).HasName("PK__CsCalibr__3214EC0752B7EF71");
 
             entity.ToTable("CsCalibrationConfig", "PRDB", tb =>
                 {
@@ -1470,7 +1470,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<CsCr>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__CsCrs__D3DB124A5BBD8C32");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__CsCrs__D3DB124AA8BD45CF");
 
             entity.ToTable("CsCrs", "PRDB", tb =>
                 {
@@ -1708,7 +1708,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<CsEdgeMasking>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__CsEdgeMa__D3DB124A3359EB08");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__CsEdgeMa__D3DB124A10C37481");
 
             entity.ToTable("CsEdgeMasking", "PRDB", tb =>
                 {
@@ -1910,7 +1910,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<CsMaintSequence>(entity =>
         {
-            entity.HasKey(e => new { e.Id, e.MId }).HasName("PK__CsMaint___35D8C92058491426");
+            entity.HasKey(e => new { e.Id, e.MId }).HasName("PK__CsMaint___35D8C920FC13AB36");
 
             entity.ToTable("CsMaint_Sequence", "PRDB", tb =>
                 {
@@ -1973,7 +1973,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<CsMaintStep>(entity =>
         {
-            entity.HasKey(e => new { e.Id, e.SqId, e.MId }).HasName("PK__CsMaint___5C164B0852C50C61");
+            entity.HasKey(e => new { e.Id, e.SqId, e.MId }).HasName("PK__CsMaint___5C164B08FAC3EF34");
 
             entity.ToTable("CsMaint_Step", "PRDB", tb =>
                 {
@@ -2075,7 +2075,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<CsMaintenanceValvesTest>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__CsMainte__3214EC07F488ECDD");
+            entity.HasKey(e => e.Id).HasName("PK__CsMainte__3214EC07E553E106");
 
             entity.ToTable("CsMaintenanceValvesTest", "PRDB", tb =>
                 {
@@ -2151,7 +2151,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<CsPcResult>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId }).HasName("PK__CsPcResu__97FBDCEFC80C04E1");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId }).HasName("PK__CsPcResu__97FBDCEFEA5A5641");
 
             entity.ToTable("CsPcResults", "PRDB", tb =>
                 {
@@ -2220,7 +2220,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<CsPcSpeedDiag>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.PhaseIndex }).HasName("PK__CsPcSpee__880F62E45B54D82B");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.PhaseIndex }).HasName("PK__CsPcSpee__880F62E4BE96E3EF");
 
             entity.ToTable("CsPcSpeedDiag", "PRDB", tb =>
                 {
@@ -2290,7 +2290,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<CsPerf>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__CsPerf__D3DB124AEB04DD35");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__CsPerf__D3DB124AE876B553");
 
             entity.ToTable("CsPerf", "PRDB", tb =>
                 {
@@ -2392,7 +2392,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<CsProfile>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__CsProfil__D3DB124A036C99C7");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__CsProfil__D3DB124ADE0665FA");
 
             entity.ToTable("CsProfile", "PRDB", tb =>
                 {
@@ -2498,7 +2498,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<CsProtDatum>(entity =>
         {
-            entity.HasKey(e => e.MeId).HasName("PK__CsProtDa__7D0E9F4B5DB4EC19");
+            entity.HasKey(e => e.MeId).HasName("PK__CsProtDa__7D0E9F4B7944C65C");
 
             entity.ToTable("CsProtData", "PRDB", tb =>
                 {
@@ -3382,7 +3382,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<CsProtSimilar>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeIdSim, e.Seg }).HasName("PK__CsProtSi__C0CDB9C48796B6B9");
+            entity.HasKey(e => new { e.MeId, e.MeIdSim, e.Seg }).HasName("PK__CsProtSi__C0CDB9C44F681669");
 
             entity.ToTable("CsProtSimilar", "PRDB", tb =>
                 {
@@ -3428,7 +3428,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<CsProtTick>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.Seg }).HasName("PK__CsProtTi__60D36480BACD8FC9");
+            entity.HasKey(e => new { e.MeId, e.Seg }).HasName("PK__CsProtTi__60D364801C51749F");
 
             entity.ToTable("CsProtTicks", "PRDB", tb =>
                 {
@@ -3623,7 +3623,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<CsRtCooling>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__CsRtCool__D3DB124ABB2C0DDC");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__CsRtCool__D3DB124A9E287AAA");
 
             entity.ToTable("CsRtCooling", "PRDB", tb =>
                 {
@@ -3760,12 +3760,12 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.CsRtCoolings)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__CsRtCooling__7C7A5F0D");
+                .HasConstraintName("FK__CsRtCooling__78A9CE29");
         });
 
         modelBuilder.Entity<CsStrategy>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__CsStrate__D3DB124A7507CED2");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__CsStrate__D3DB124A6685670F");
 
             entity.ToTable("CsStrategy", "PRDB", tb =>
                 {
@@ -3986,12 +3986,12 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.CsStrategies)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__CsStrategy__6561EF8B");
+                .HasConstraintName("FK__CsStrategy__61915EA7");
         });
 
         modelBuilder.Entity<CspcCurve>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.NumPoint }).HasName("PK__CSPcCurv__0C1CE492110F54D8");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.NumPoint }).HasName("PK__CSPcCurv__0C1CE492FC5802D9");
 
             entity.ToTable("CSPcCurve", "PRDB", tb =>
                 {
@@ -4049,7 +4049,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<Defect>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Sid, e.Source }).HasName("PK__Defect__10C40DF86345844A");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Sid, e.Source }).HasName("PK__Defect__10C40DF848E89E41");
 
             entity.ToTable("Defect", "PRDB", tb =>
                 {
@@ -4164,12 +4164,12 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.Defects)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__Defect__17ED6F58");
+                .HasConstraintName("FK__Defect__141CDE74");
         });
 
         modelBuilder.Entity<DirFmPfcCycShiftP>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__DirFmPfc__D3DB124A40A034A9");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__DirFmPfc__D3DB124A2F5EFE0E");
 
             entity.ToTable("DirFmPfcCycShiftP", "PRDB", tb =>
                 {
@@ -4238,12 +4238,12 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.DirFmPfcCycShiftPs)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__DirFmPfcCycShift__42D7CD5D");
+                .HasConstraintName("FK__DirFmPfcCycShift__3F073C79");
         });
 
         modelBuilder.Entity<DirFmPfcCycShiftPpass>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.PassNo }).HasName("PK__DirFmPfc__5DCFA6F9EED8989A");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.PassNo }).HasName("PK__DirFmPfc__5DCFA6F96E472117");
 
             entity.ToTable("DirFmPfcCycShiftPPass", "PRDB", tb =>
                 {
@@ -4395,12 +4395,12 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.DirFmPfcCycShiftPpasses)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__DirFmPfcCycShift__0B528E49");
+                .HasConstraintName("FK__DirFmPfcCycShift__0781FD65");
         });
 
         modelBuilder.Entity<DirFmPfcParaP>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__DirFmPfc__D3DB124AE87DE4E9");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__DirFmPfc__D3DB124A86D3295B");
 
             entity.ToTable("DirFmPfcParaP", "PRDB", tb =>
                 {
@@ -4479,12 +4479,12 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.DirFmPfcParaPs)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__DirFmPfcParaP__2F8FEEBF");
+                .HasConstraintName("FK__DirFmPfcParaP__2BBF5DDB");
         });
 
         modelBuilder.Entity<DirFmPfcParaPpass>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.PassNo }).HasName("PK__DirFmPfc__5DCFA6F9A6B7E07C");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.PassNo }).HasName("PK__DirFmPfc__5DCFA6F93ABAC4D6");
 
             entity.ToTable("DirFmPfcParaPPass", "PRDB", tb =>
                 {
@@ -4594,12 +4594,12 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.DirFmPfcParaPpasses)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__DirFmPfcParaPPas__630F92C5");
+                .HasConstraintName("FK__DirFmPfcParaPPas__5F3F01E1");
         });
 
         modelBuilder.Entity<Dpfm>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__DPFM__D3DB124A74642E78");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__DPFM__D3DB124A81C8A7A3");
 
             entity.ToTable("DPFM", "PRDB", tb =>
                 {
@@ -4665,12 +4665,12 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.Dpfms)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__DPFM__11CA81AE");
+                .HasConstraintName("FK__DPFM__0DF9F0CA");
         });
 
         modelBuilder.Entity<Dphrm>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__DPHRM__D3DB124A173490F0");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__DPHRM__D3DB124AD20A4232");
 
             entity.ToTable("DPHRM", "PRDB", tb =>
                 {
@@ -4736,12 +4736,12 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.Dphrms)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__DPHRM__210CC53E");
+                .HasConstraintName("FK__DPHRM__1D3C345A");
         });
 
         modelBuilder.Entity<DprampFm>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.RampNo }).HasName("PK__DPRampFM__D9DDAEC3FF859A50");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.RampNo }).HasName("PK__DPRampFM__D9DDAEC32AEC5031");
 
             entity.ToTable("DPRampFM", "PRDB", tb =>
                 {
@@ -4818,12 +4818,12 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.DprampFms)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__DPRampFM__3DA903EC");
+                .HasConstraintName("FK__DPRampFM__39D87308");
         });
 
         modelBuilder.Entity<DprampHrm>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.RampNo }).HasName("PK__DPRampHR__D9DDAEC3FDCD2674");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.RampNo }).HasName("PK__DPRampHR__D9DDAEC37CB9710A");
 
             entity.ToTable("DPRampHRM", "PRDB", tb =>
                 {
@@ -4900,12 +4900,12 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.DprampHrms)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__DPRampHRM__4FC7B427");
+                .HasConstraintName("FK__DPRampHRM__4BF72343");
         });
 
         modelBuilder.Entity<EdLogEnt>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__EdLogEnt__D3DB124AEAD8C534");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__EdLogEnt__D3DB124A8E860E75");
 
             entity.ToTable("EdLogEnt", "PRDB", tb =>
                 {
@@ -5361,12 +5361,12 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.EdLogEnts)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__EdLogEnt__12549193");
+                .HasConstraintName("FK__EdLogEnt__0E8400AF");
         });
 
         modelBuilder.Entity<EdOrdEnt>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__EdOrdEnt__D3DB124A7D7D6ADB");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__EdOrdEnt__D3DB124A561C174D");
 
             entity.ToTable("EdOrdEnt", "PRDB", tb =>
                 {
@@ -5481,6 +5481,7 @@ public partial class PrdbContext : AbpDbContext
                 .HasColumnName("coilTempProfileTail");
             entity.Property(e => e.CoilYard)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Coil Yard Destination")
                 .HasColumnName("coilYard");
             entity.Property(e => e.CoilerLocationSelection)
                 .HasDefaultValueSql("(NULL)")
@@ -5871,12 +5872,12 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.EdOrdEnts)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__EdOrdEnt__00BFF13D");
+                .HasConstraintName("FK__EdOrdEnt__7ED7A8CB");
         });
 
         modelBuilder.Entity<EdPhyEnt>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__EdPhyEnt__D3DB124AD6E6B460");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__EdPhyEnt__D3DB124ACFCA3755");
 
             entity.ToTable("EdPhyEnt", "PRDB", tb =>
                 {
@@ -6092,12 +6093,12 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.EdPhyEnts)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__EdPhyEnt__63EEA865");
+                .HasConstraintName("FK__EdPhyEnt__62065FF3");
         });
 
         modelBuilder.Entity<Edghrm>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__EDGHRM__D3DB124A811D731F");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__EDGHRM__D3DB124A61AD8675");
 
             entity.ToTable("EDGHRM", "PRDB", tb =>
                 {
@@ -6154,12 +6155,12 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.Edghrms)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__EDGHRM__7425102E");
+                .HasConstraintName("FK__EDGHRM__723CC7BC");
         });
 
         modelBuilder.Entity<Heat>(entity =>
         {
-            entity.HasKey(e => new { e.HeatId, e.HeatStart }).HasName("PK__Heat__5476F7681D7B18C4");
+            entity.HasKey(e => new { e.HeatId, e.HeatStart }).HasName("PK__Heat__5476F768500816F9");
 
             entity.ToTable("Heat", "PRDB", tb =>
                 {
@@ -6253,7 +6254,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<HmiCoil>(entity =>
         {
-            entity.HasKey(e => e.Param).HasName("PK__HmiCoil__09E70393C441AA79");
+            entity.HasKey(e => e.Param).HasName("PK__HmiCoil__09E70393E3C14135");
 
             entity.ToTable("HmiCoil", "PRDB", tb =>
                 {
@@ -6292,11 +6293,11 @@ public partial class PrdbContext : AbpDbContext
                 .HasColumnName("tom");
         });
 
-        modelBuilder.Entity<HmiProductionorder>(entity =>
+        modelBuilder.Entity<HmiProductionOrder>(entity =>
         {
             entity
                 .HasNoKey()
-                .ToView("HMI_PRODUCTIONORDERS");
+                .ToView("HMI_Production_Order", "PRDB");
 
             entity.Property(e => e.CoilerTemp).HasColumnType("decimal(10, 2)");
             entity.Property(e => e.CoolType).HasMaxLength(10);
@@ -6876,7 +6877,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<Ihp>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__IHP__D3DB124A88476C9C");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__IHP__D3DB124AA62F1F03");
 
             entity.ToTable("IHP", "PRDB", tb =>
                 {
@@ -6938,12 +6939,12 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.Ihps)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__IHP__118068EB");
+                .HasConstraintName("FK__IHP__0F982079");
         });
 
         modelBuilder.Entity<Iscp>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__ISCP__D3DB124A64BB3C19");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__ISCP__D3DB124AD19C96AA");
 
             entity.ToTable("ISCP", "PRDB", tb =>
                 {
@@ -7005,12 +7006,12 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.Iscps)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__ISCP__3004F00B");
+                .HasConstraintName("FK__ISCP__2E1CA799");
         });
 
         modelBuilder.Entity<Iscppass>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.PassNo }).HasName("PK__ISCPPass__5DCFA6F93CB48C3C");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.PassNo }).HasName("PK__ISCPPass__5DCFA6F909A574B7");
 
             entity.ToTable("ISCPPass", "PRDB", tb =>
                 {
@@ -7183,12 +7184,12 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.Iscppasses)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__ISCPPass__5907059E");
+                .HasConstraintName("FK__ISCPPass__571EBD2C");
         });
 
         modelBuilder.Entity<LogColour>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Log_Colo__3213E83F54AE7F4D");
+            entity.HasKey(e => e.Id).HasName("PK__Log_Colo__3213E83F50BD806B");
 
             entity.ToTable("Log_Colour", "PRDB", tb =>
                 {
@@ -7226,7 +7227,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<LogDatum>(entity =>
         {
-            entity.HasKey(e => new { e.EntryId, e.Lang }).HasName("PK__Log_Data__FB605DAD696EDF57");
+            entity.HasKey(e => new { e.EntryId, e.Lang }).HasName("PK__Log_Data__FB605DADC75796F1");
 
             entity.ToTable("Log_Data", "PRDB", tb =>
                 {
@@ -7324,7 +7325,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<LogFormat>(entity =>
         {
-            entity.HasKey(e => new { e.Id, e.Lang }).HasName("PK__Log_Form__185766478678E099");
+            entity.HasKey(e => new { e.Id, e.Lang }).HasName("PK__Log_Form__1857664798AAEC5F");
 
             entity.ToTable("Log_Format", "PRDB", tb =>
                 {
@@ -7368,7 +7369,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<LogIndex>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Log_Inde__3213E83F26BD2C5D");
+            entity.HasKey(e => e.Id).HasName("PK__Log_Inde__3213E83F69D3FCBF");
 
             entity.ToTable("Log_Index", "PRDB", tb =>
                 {
@@ -7418,7 +7419,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<LogLanguageSetup>(entity =>
         {
-            entity.HasKey(e => e.Lang).HasName("PK__Log_Lang__A448E783580C013D");
+            entity.HasKey(e => e.Lang).HasName("PK__Log_Lang__A448E783A5AD6115");
 
             entity.ToTable("Log_Language_Setup", "PRDB", tb =>
                 {
@@ -7460,7 +7461,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<Lp>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__LP__D3DB124A8A831ABB");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__LP__D3DB124AB526E800");
 
             entity.ToTable("LP", "PRDB", tb =>
                 {
@@ -7578,12 +7579,12 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.Lps)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__LP__2611717D");
+                .HasConstraintName("FK__LP__2429290B");
         });
 
         modelBuilder.Entity<Lppass>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.PassNo }).HasName("PK__LPPass__5DCFA6F97E98A37C");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.PassNo }).HasName("PK__LPPass__5DCFA6F909A1563D");
 
             entity.ToTable("LPPass", "PRDB", tb =>
                 {
@@ -7704,12 +7705,12 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.Lppasses)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__LPPass__5F49EED9");
+                .HasConstraintName("FK__LPPass__5D61A667");
         });
 
         modelBuilder.Entity<MatDat>(entity =>
         {
-            entity.HasKey(e => e.AlloyCode).HasName("PK__MatDat__CE6D2C49DF2D15D5");
+            entity.HasKey(e => e.AlloyCode).HasName("PK__MatDat__CE6D2C49CC8F32BB");
 
             entity.ToTable("MatDat", "PRDB", tb =>
                 {
@@ -8204,7 +8205,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<Me>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator }).HasName("PK__Me__BEC8C9C3AB79074E");
+            entity.HasKey(e => new { e.MeId, e.MeCreator }).HasName("PK__Me__BEC8C9C3CF03F34F");
 
             entity.ToTable("Me", "PRDB", tb =>
                 {
@@ -8277,7 +8278,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<Me1>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId }).HasName("PK__Mes__97FBDCEFDE24BDFC");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId }).HasName("PK__Mes__97FBDCEFD1084872");
 
             entity.ToTable("Mes", "PRDB", tb =>
                 {
@@ -8348,7 +8349,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<MosParam>(entity =>
         {
-            entity.HasKey(e => new { e.ParamName, e.PlantType }).HasName("PK__MosParam__6E6D9C1F99325AD8");
+            entity.HasKey(e => new { e.ParamName, e.PlantType }).HasName("PK__MosParam__6E6D9C1FB59D4396");
 
             entity.ToTable("MosParam", "PRDB", tb =>
                 {
@@ -8443,7 +8444,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<MosSwitch>(entity =>
         {
-            entity.HasKey(e => new { e.RecNo, e.PlantType }).HasName("PK__MosSwitc__A99F71249C98DE62");
+            entity.HasKey(e => new { e.RecNo, e.PlantType }).HasName("PK__MosSwitc__A99F712402610E15");
 
             entity.ToTable("MosSwitches", "PRDB", tb =>
                 {
@@ -8977,7 +8978,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<Pc>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__PC__D3DB124ADD9DA76F");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__PC__D3DB124A79AA10DA");
 
             entity.ToTable("PC", "PRDB", tb =>
                 {
@@ -9043,12 +9044,12 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.Pcs)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__PC__538E236A");
+                .HasConstraintName("FK__PC__51A5DAF8");
         });
 
         modelBuilder.Entity<Pcramp>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.RampNo }).HasName("PK__PCRamp__D9DDAEC39A033E5F");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.RampNo }).HasName("PK__PCRamp__D9DDAEC3C50F5433");
 
             entity.ToTable("PCRamp", "PRDB", tb =>
                 {
@@ -9129,12 +9130,12 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.Pcramps)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__PCRamp__66A0F7DE");
+                .HasConstraintName("FK__PCRamp__64B8AF6C");
         });
 
         modelBuilder.Entity<PlantLimit>(entity =>
         {
-            entity.HasKey(e => new { e.LimitName, e.PlantType }).HasName("PK__PlantLim__8A2C3C94D0B3F709");
+            entity.HasKey(e => new { e.LimitName, e.PlantType }).HasName("PK__PlantLim__8A2C3C94C0940404");
 
             entity.ToTable("PlantLimits", "PRDB", tb =>
                 {
@@ -9215,7 +9216,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<PlantParam>(entity =>
         {
-            entity.HasKey(e => new { e.ParamName, e.PlantType }).HasName("PK__PlantPar__6E6D9C1F6DFF44AE");
+            entity.HasKey(e => new { e.ParamName, e.PlantType }).HasName("PK__PlantPar__6E6D9C1F805F00D7");
 
             entity.ToTable("PlantParam", "PRDB", tb =>
                 {
@@ -9310,7 +9311,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<ProdDataCore>(entity =>
         {
-            entity.HasKey(e => new { e.CoilId, e.BasId, e.MeId }).HasName("PK__ProdData__94319BC990AECD20");
+            entity.HasKey(e => new { e.CoilId, e.BasId, e.MeId }).HasName("PK__ProdData__94319BC9879C4647");
 
             entity.ToTable("ProdDataCore", "PRDB", tb =>
                 {
@@ -10769,7 +10770,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<ProgParameter>(entity =>
         {
-            entity.HasKey(e => e.Param).HasName("PK__ProgPara__09E703932E6DB428");
+            entity.HasKey(e => e.Param).HasName("PK__ProgPara__09E703934FA0CB0D");
 
             entity.ToTable("ProgParameter", "PRDB", tb =>
                 {
@@ -10820,7 +10821,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<Rcp>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__RCP__D3DB124AB76B37B9");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__RCP__D3DB124A62E925C7");
 
             entity.ToTable("RCP", "PRDB", tb =>
                 {
@@ -10882,12 +10883,12 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.Rcps)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__RCP__7CBB2186");
+                .HasConstraintName("FK__RCP__7AD2D914");
         });
 
         modelBuilder.Entity<Rcppass>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.PassNo }).HasName("PK__RCPPass__5DCFA6F9679336DA");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.PassNo }).HasName("PK__RCPPass__5DCFA6F96091202D");
 
             entity.ToTable("RCPPass", "PRDB", tb =>
                 {
@@ -11064,12 +11065,12 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.Rcppasses)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__RCPPass__26B15B52");
+                .HasConstraintName("FK__RCPPass__24C912E0");
         });
 
         modelBuilder.Entity<Rglp>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__RGLP__D3DB124A5FC15DC3");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__RGLP__D3DB124A22DCF217");
 
             entity.ToTable("RGLP", "PRDB", tb =>
                 {
@@ -11131,12 +11132,12 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.Rglps)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__RGLP__34FF7AA9");
+                .HasConstraintName("FK__RGLP__33173237");
         });
 
         modelBuilder.Entity<Rglppass>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.PassNo }).HasName("PK__RGLPPass__5DCFA6F9B43A4D6B");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.PassNo }).HasName("PK__RGLPPass__5DCFA6F906655A45");
 
             entity.ToTable("RGLPPass", "PRDB", tb =>
                 {
@@ -11233,12 +11234,12 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.Rglppasses)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__RGLPPass__4BE2E001");
+                .HasConstraintName("FK__RGLPPass__49FA978F");
         });
 
         modelBuilder.Entity<RollChamfer>(entity =>
         {
-            entity.HasKey(e => e.RollChamferClass).HasName("PK__RollCham__1A9AD6FD99FB4EFE");
+            entity.HasKey(e => e.RollChamferClass).HasName("PK__RollCham__1A9AD6FD100F0FEE");
 
             entity.ToTable("RollChamfer", "PRDB", tb =>
                 {
@@ -11318,7 +11319,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<RollClass>(entity =>
         {
-            entity.HasKey(e => e.RollClass1).HasName("PK__RollClas__310B12B0F25C7492");
+            entity.HasKey(e => e.RollClass1).HasName("PK__RollClas__310B12B02964624C");
 
             entity.ToTable("RollClass", "PRDB", tb =>
                 {
@@ -11402,7 +11403,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<RollDatum>(entity =>
         {
-            entity.HasKey(e => e.RollId).HasName("PK__RollData__FAC09AA0EFC09AA4");
+            entity.HasKey(e => e.RollId).HasName("PK__RollData__FAC09AA017A9C6AF");
 
             entity.ToTable("RollData", "PRDB", tb =>
                 {
@@ -11608,7 +11609,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<RollProperty>(entity =>
         {
-            entity.HasKey(e => e.RollPropertyClass).HasName("PK__RollProp__A803E62D96D77E06");
+            entity.HasKey(e => e.RollPropertyClass).HasName("PK__RollProp__A803E62DB61A6434");
 
             entity.ToTable("RollProperty", "PRDB", tb =>
                 {
@@ -11762,7 +11763,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<RollShapeCoeff>(entity =>
         {
-            entity.HasKey(e => e.ShapeCode).HasName("PK__RollShap__53E7DB0D55717B9B");
+            entity.HasKey(e => e.ShapeCode).HasName("PK__RollShap__53E7DB0D154C88E5");
 
             entity.ToTable("RollShapeCoeff", "PRDB", tb =>
                 {
@@ -11850,7 +11851,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<RollShapeCurveCustom>(entity =>
         {
-            entity.HasKey(e => e.ShapeCurveCode).HasName("PK__RollShap__0F46C11B8F2C0D36");
+            entity.HasKey(e => e.ShapeCurveCode).HasName("PK__RollShap__0F46C11BAC48D35B");
 
             entity.ToTable("RollShapeCurveCustom", "PRDB", tb =>
                 {
@@ -13392,7 +13393,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<SetupColour>(entity =>
         {
-            entity.HasKey(e => e.Colour).HasName("PK__Setup_Co__03FE59872EB73CB6");
+            entity.HasKey(e => e.Colour).HasName("PK__Setup_Co__03FE5987C9F5D2FC");
 
             entity.ToTable("Setup_Colour", "PRDB", tb =>
                 {
@@ -13431,7 +13432,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<SpOrd2Pc>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.ThickHead }).HasName("PK__SpOrd2Pc__3EFAB4C2EF0F8EB1");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.ThickHead }).HasName("PK__SpOrd2Pc__3EFAB4C2F3DDA329");
 
             entity.ToTable("SpOrd2Pc", "PRDB", tb =>
                 {
@@ -14341,7 +14342,7 @@ public partial class PrdbContext : AbpDbContext
                 .HasColumnName("encoPanel4");
             entity.Property(e => e.FccCoolBlocked)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
+                .HasComment("prc Controller cooling")
                 .HasColumnName("fccCoolBlocked");
             entity.Property(e => e.FlatCurveNr)
                 .HasDefaultValueSql("(NULL)")
@@ -14349,11 +14350,11 @@ public partial class PrdbContext : AbpDbContext
                 .HasColumnName("flatCurveNr");
             entity.Property(e => e.FlcAsymBlocked)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
+                .HasComment("prc Controller asym flatness")
                 .HasColumnName("flcAsymBlocked");
             entity.Property(e => e.FlcSymBlocked)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
+                .HasComment("prc Controller sym flatness")
                 .HasColumnName("flcSymBlocked");
             entity.Property(e => e.FlowDescEntryHfm)
                 .HasDefaultValueSql("(NULL)")
@@ -15510,30 +15511,30 @@ public partial class PrdbContext : AbpDbContext
             entity.Property(e => e.WFgLiCoefC)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Reference Linear Coefficient Coiler")
-                .HasColumnName("W_FG_LiCoefC");
+                .HasColumnName("w_FG_LiCoefC");
             entity.Property(e => e.WFgLiCoefH)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Reference Linear Coefficient Head")
-                .HasColumnName("W_FG_LiCoefH");
+                .HasColumnName("w_FG_LiCoefH");
             entity.Property(e => e.WFgSqCoefC)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Reference Square Coefficient Coiler")
-                .HasColumnName("W_FG_SqCoefC");
+                .HasColumnName("w_FG_SqCoefC");
             entity.Property(e => e.WFgSqCoefH)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Reference Square Coefficient Head")
-                .HasColumnName("W_FG_SqCoefH");
+                .HasColumnName("w_FG_SqCoefH");
             entity.Property(e => e.WedgeX)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Unit[m] strip wedge target")
                 .HasColumnName("wedgeX");
             entity.Property(e => e.WpcAsymBlocked)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
+                .HasComment("prc Controller wedge")
                 .HasColumnName("wpcAsymBlocked");
             entity.Property(e => e.WpcSymBlocked)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
+                .HasComment("prc Controller profile")
                 .HasColumnName("wpcSymBlocked");
             entity.Property(e => e.YieldStressCoiler)
                 .HasDefaultValueSql("(NULL)")
@@ -15542,12 +15543,12 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.SpOrd2Pcs)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__SpOrd2Pc__7C5CC581");
+                .HasConstraintName("FK__SpOrd2Pc__72D35B47");
         });
 
         modelBuilder.Entity<SpOrd2PcStand>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.ThickHead, e.StandId }).HasName("PK__SpOrd2Pc__591600A4E7180972");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.ThickHead, e.StandId }).HasName("PK__SpOrd2Pc__591600A438A4A466");
 
             entity.ToTable("SpOrd2PcStand", "PRDB", tb =>
                 {
@@ -16320,7 +16321,7 @@ public partial class PrdbContext : AbpDbContext
                 .HasColumnName("dx2pDfb");
             entity.Property(e => e.EdgerActive)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("status if stand active 0 = inactive / 1 = active / 2 = inlineRCH")
+                .HasComment("status if edger active 0 = inactive / 1 = active / 2 = inlineRCH")
                 .HasColumnName("edgerActive");
             entity.Property(e => e.EntryLength)
                 .HasDefaultValueSql("(NULL)")
@@ -16434,6 +16435,7 @@ public partial class PrdbContext : AbpDbContext
                 .HasColumnName("ms");
             entity.Property(e => e.MsE)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[Nm] rolling torque Edger")
                 .HasColumnName("msE");
             entity.Property(e => e.MsWt)
                 .HasDefaultValueSql("(NULL)")
@@ -16465,6 +16467,7 @@ public partial class PrdbContext : AbpDbContext
                 .HasColumnName("rPower");
             entity.Property(e => e.RPowerE)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Unit[W] Rolling power Edger")
                 .HasColumnName("rPowerE");
             entity.Property(e => e.RPowerWt)
                 .HasDefaultValueSql("(NULL)")
@@ -16611,12 +16614,12 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.SpOrd2PcStands)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__SpOrd2PcStand__75CFC383");
+                .HasConstraintName("FK__SpOrd2PcStand__7016EA2D");
         });
 
         modelBuilder.Entity<Srp>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__SRP__D3DB124A3DC6D93D");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__SRP__D3DB124A919675F4");
 
             entity.ToTable("SRP", "PRDB", tb =>
                 {
@@ -16678,12 +16681,12 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.Srps)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__SRP__7A5F6E76");
+                .HasConstraintName("FK__SRP__0200903E");
         });
 
         modelBuilder.Entity<Srppass>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.PassNo }).HasName("PK__SRPPass__5DCFA6F9594B5D08");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.PassNo }).HasName("PK__SRPPass__5DCFA6F9C516911C");
 
             entity.ToTable("SRPPass", "PRDB", tb =>
                 {
@@ -16748,12 +16751,12 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.Srppasses)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__SRPPass__09A1B206");
+                .HasConstraintName("FK__SRPPass__1142D3CE");
         });
 
         modelBuilder.Entity<StatAdOrd1Pc>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.ThickHead }).HasName("PK__Stat_AdO__3EFAB4C2A9560A0D");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.ThickHead }).HasName("PK__Stat_AdO__3EFAB4C231AFDDA3");
 
             entity.ToTable("Stat_AdOrd1Pc", "PRDB", tb =>
                 {
@@ -16809,7 +16812,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StatAdOrd2Pc>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.ThickHead }).HasName("PK__Stat_AdO__3EFAB4C20189ED34");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.ThickHead }).HasName("PK__Stat_AdO__3EFAB4C2EB52BD85");
 
             entity.ToTable("Stat_AdOrd2Pc", "PRDB", tb =>
                 {
@@ -16877,7 +16880,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StatAdOrd2PcStand>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.ThickHead, e.StandId }).HasName("PK__Stat_AdO__591600A4AD205737");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.ThickHead, e.StandId }).HasName("PK__Stat_AdO__591600A4B394DF48");
 
             entity.ToTable("Stat_AdOrd2PcStand", "PRDB", tb =>
                 {
@@ -16976,7 +16979,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StatAdOrdEnt>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.ThickHead }).HasName("PK__Stat_AdO__3EFAB4C212190467");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.ThickHead }).HasName("PK__Stat_AdO__3EFAB4C2823C2B4E");
 
             entity.ToTable("Stat_AdOrdEnt", "PRDB", tb =>
                 {
@@ -17040,7 +17043,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StatCsCoilTempOffset>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__Stat_CsC__D3DB124A64C6CAA9");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__Stat_CsC__D3DB124A9518AA72");
 
             entity.ToTable("Stat_CsCoilTempOffset", "PRDB", tb =>
                 {
@@ -17109,7 +17112,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StatCsCr>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__Stat_CsC__D3DB124A29F630E3");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__Stat_CsC__D3DB124AAB37F27F");
 
             entity.ToTable("Stat_CsCrs", "PRDB", tb =>
                 {
@@ -17345,7 +17348,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StatCsEdgeMasking>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__Stat_CsE__D3DB124A1149075A");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__Stat_CsE__D3DB124A19D567B4");
 
             entity.ToTable("Stat_CsEdgeMasking", "PRDB", tb =>
                 {
@@ -17545,7 +17548,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StatCsPerf>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__Stat_CsP__D3DB124A04BE5BEB");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__Stat_CsP__D3DB124A5B27EA80");
 
             entity.ToTable("Stat_CsPerf", "PRDB", tb =>
                 {
@@ -17645,7 +17648,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StatCsProfile>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__Stat_CsP__D3DB124AD496C32A");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__Stat_CsP__D3DB124AD0B00401");
 
             entity.ToTable("Stat_CsProfile", "PRDB", tb =>
                 {
@@ -17749,7 +17752,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StatCsRtCooling>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__Stat_CsR__D3DB124A1EF31D82");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__Stat_CsR__D3DB124A76F2E0A1");
 
             entity.ToTable("Stat_CsRtCooling", "PRDB", tb =>
                 {
@@ -17884,12 +17887,12 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.StatCsRtCoolings)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__Stat_CsRtCooling__5C0D8F7B");
+                .HasConstraintName("FK__Stat_CsRtCooling__583CFE97");
         });
 
         modelBuilder.Entity<StatCsStrategy>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__Stat_CsS__D3DB124AD0020F7B");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__Stat_CsS__D3DB124A5255A340");
 
             entity.ToTable("Stat_CsStrategy", "PRDB", tb =>
                 {
@@ -18108,12 +18111,12 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.StatCsStrategies)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__Stat_CsStrategy__30EE274C");
+                .HasConstraintName("FK__Stat_CsStrategy__2D1D9668");
         });
 
         modelBuilder.Entity<StatDirFmPfcCycShiftP>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__Stat_Dir__D3DB124A6886E8C5");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__Stat_Dir__D3DB124A0EE24CF3");
 
             entity.ToTable("Stat_DirFmPfcCycShiftP", "PRDB", tb =>
                 {
@@ -18180,12 +18183,12 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.StatDirFmPfcCycShiftPs)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__Stat_DirFmPfcCyc__32A16594");
+                .HasConstraintName("FK__Stat_DirFmPfcCyc__2ED0D4B0");
         });
 
         modelBuilder.Entity<StatDirFmPfcCycShiftPpass>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.PassNo }).HasName("PK__Stat_Dir__5DCFA6F992DFCE23");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.PassNo }).HasName("PK__Stat_Dir__5DCFA6F9814774DF");
 
             entity.ToTable("Stat_DirFmPfcCycShiftPPass", "PRDB", tb =>
                 {
@@ -18335,12 +18338,12 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.StatDirFmPfcCycShiftPpasses)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__Stat_DirFmPfcCyc__67152DD3");
+                .HasConstraintName("FK__Stat_DirFmPfcCyc__63449CEF");
         });
 
         modelBuilder.Entity<StatDirFmPfcParaP>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__Stat_Dir__D3DB124ACC404789");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__Stat_Dir__D3DB124ABC313074");
 
             entity.ToTable("Stat_DirFmPfcParaP", "PRDB", tb =>
                 {
@@ -18415,12 +18418,12 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.StatDirFmPfcParaPs)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__Stat_DirFmPfcPar__1D713E84");
+                .HasConstraintName("FK__Stat_DirFmPfcPar__19A0ADA0");
         });
 
         modelBuilder.Entity<StatDirFmPfcParaPpass>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.PassNo }).HasName("PK__Stat_Dir__5DCFA6F9C4A75E1C");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.PassNo }).HasName("PK__Stat_Dir__5DCFA6F9FEDCF474");
 
             entity.ToTable("Stat_DirFmPfcParaPPass", "PRDB", tb =>
                 {
@@ -18526,12 +18529,12 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.StatDirFmPfcParaPpasses)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__Stat_DirFmPfcPar__494FC0C2");
+                .HasConstraintName("FK__Stat_DirFmPfcPar__457F2FDE");
         });
 
         modelBuilder.Entity<StatEdLogEnt>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__Stat_EdL__D3DB124AC54C6D8A");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__Stat_EdL__D3DB124AF6F0873E");
 
             entity.ToTable("Stat_EdLogEnt", "PRDB", tb =>
                 {
@@ -18939,12 +18942,12 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.StatEdLogEnts)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__Stat_EdLogEnt__310E22DD");
+                .HasConstraintName("FK__Stat_EdLogEnt__2D3D91F9");
         });
 
         modelBuilder.Entity<StatEdOrdEnt>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__Stat_EdO__D3DB124A1B51C35F");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__Stat_EdO__D3DB124A1DAFEE44");
 
             entity.ToTable("Stat_EdOrdEnt", "PRDB", tb =>
                 {
@@ -19059,6 +19062,7 @@ public partial class PrdbContext : AbpDbContext
                 .HasColumnName("coilTempProfileTail");
             entity.Property(e => e.CoilYard)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Coil Yard Destination")
                 .HasColumnName("coilYard");
             entity.Property(e => e.CoilerLocationSelection)
                 .HasDefaultValueSql("(NULL)")
@@ -19166,7 +19170,7 @@ public partial class PrdbContext : AbpDbContext
                 .HasColumnName("edgeMask");
             entity.Property(e => e.ExitCrownC40)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("Finished strip crown C25")
+                .HasComment("Finished strip crown C40")
                 .HasColumnName("exitCrownC40");
             entity.Property(e => e.FerriticRollingMode)
                 .HasDefaultValueSql("(NULL)")
@@ -19447,12 +19451,12 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.StatEdOrdEnts)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__Stat_EdOrdEnt__098A4168");
+                .HasConstraintName("FK__Stat_EdOrdEnt__06ADD4BD");
         });
 
         modelBuilder.Entity<StatEdPhyEnt>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__Stat_EdP__D3DB124AA5AF398A");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__Stat_EdP__D3DB124A2180491D");
 
             entity.ToTable("Stat_EdPhyEnt", "PRDB", tb =>
                 {
@@ -19660,12 +19664,12 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.StatEdPhyEnts)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__Stat_EdPhyEnt__32574CD1");
+                .HasConstraintName("FK__Stat_EdPhyEnt__306F045F");
         });
 
         modelBuilder.Entity<StatLppass>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.PassNo }).HasName("PK__Stat_LPP__5DCFA6F9FFBD3CD0");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.PassNo }).HasName("PK__Stat_LPP__5DCFA6F9EBA538E3");
 
             entity.ToTable("Stat_LPPass", "PRDB", tb =>
                 {
@@ -19784,12 +19788,12 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.StatLppasses)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__Stat_LPPass__42ADB02B");
+                .HasConstraintName("FK__Stat_LPPass__40C567B9");
         });
 
         modelBuilder.Entity<StatMsmDir>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__Stat_Msm__D3DB124A2E031195");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__Stat_Msm__D3DB124AFB75E744");
 
             entity.ToTable("Stat_MsmDir", "PRDB", tb =>
                 {
@@ -19893,12 +19897,12 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.StatMsmDirs)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__Stat_MsmDir__6D82FF97");
+                .HasConstraintName("FK__Stat_MsmDir__6B9AB725");
         });
 
         modelBuilder.Entity<StatSpLogEnt>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.ThickHead }).HasName("PK__Stat_SpL__3EFAB4C2C0E48D8B");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.ThickHead }).HasName("PK__Stat_SpL__3EFAB4C24EED896C");
 
             entity.ToTable("Stat_SpLogEnt", "PRDB", tb =>
                 {
@@ -20121,12 +20125,12 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.StatSpLogEnts)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__Stat_SpLogEnt__395AE6C9");
+                .HasConstraintName("FK__Stat_SpLogEnt__37729E57");
         });
 
         modelBuilder.Entity<StatSpOrd1PcStand>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.ThickHead, e.StandId }).HasName("PK__Stat_SpO__591600A48C2CCB59");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.ThickHead, e.StandId }).HasName("PK__Stat_SpO__591600A46FB08CC9");
 
             entity.ToTable("Stat_SpOrd1PcStand", "PRDB", tb =>
                 {
@@ -20180,12 +20184,12 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.StatSpOrd1PcStands)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__Stat_SpOrd1PcSta__7C1CCE5F");
+                .HasConstraintName("FK__Stat_SpOrd1PcSta__7A3485ED");
         });
 
         modelBuilder.Entity<StatSpOrd2Pc>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.ThickHead }).HasName("PK__Stat_SpO__3EFAB4C25D57A620");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.ThickHead }).HasName("PK__Stat_SpO__3EFAB4C2CE617CF1");
 
             entity.ToTable("Stat_SpOrd2Pc", "PRDB", tb =>
                 {
@@ -21095,7 +21099,7 @@ public partial class PrdbContext : AbpDbContext
                 .HasColumnName("encoPanel4");
             entity.Property(e => e.FccCoolBlocked)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
+                .HasComment("prc Controller cooling")
                 .HasColumnName("fccCoolBlocked");
             entity.Property(e => e.FlatCurveNr)
                 .HasDefaultValueSql("(NULL)")
@@ -21103,11 +21107,11 @@ public partial class PrdbContext : AbpDbContext
                 .HasColumnName("flatCurveNr");
             entity.Property(e => e.FlcAsymBlocked)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
+                .HasComment("prc Controller asym flatness")
                 .HasColumnName("flcAsymBlocked");
             entity.Property(e => e.FlcSymBlocked)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
+                .HasComment("prc Controller sym flatness")
                 .HasColumnName("flcSymBlocked");
             entity.Property(e => e.FlowDescEntryHfm)
                 .HasDefaultValueSql("(NULL)")
@@ -22256,30 +22260,30 @@ public partial class PrdbContext : AbpDbContext
             entity.Property(e => e.WFgLiCoefC)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Reference Linear Coefficient Coiler")
-                .HasColumnName("W_FG_LiCoefC");
+                .HasColumnName("w_FG_LiCoefC");
             entity.Property(e => e.WFgLiCoefH)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Reference Linear Coefficient Head")
-                .HasColumnName("W_FG_LiCoefH");
+                .HasColumnName("w_FG_LiCoefH");
             entity.Property(e => e.WFgSqCoefC)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Reference Square Coefficient Coiler")
-                .HasColumnName("W_FG_SqCoefC");
+                .HasColumnName("w_FG_SqCoefC");
             entity.Property(e => e.WFgSqCoefH)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("Reference Square Coefficient Head")
-                .HasColumnName("W_FG_SqCoefH");
+                .HasColumnName("w_FG_SqCoefH");
             entity.Property(e => e.WedgeX)
                 .HasDefaultValueSql("(NULL)")
                 .HasComment("strip wedge target")
                 .HasColumnName("wedgeX");
             entity.Property(e => e.WpcAsymBlocked)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
+                .HasComment("prc Controller wedge")
                 .HasColumnName("wpcAsymBlocked");
             entity.Property(e => e.WpcSymBlocked)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("")
+                .HasComment("prc Controller profile")
                 .HasColumnName("wpcSymBlocked");
             entity.Property(e => e.YieldStressCoiler)
                 .HasDefaultValueSql("(NULL)")
@@ -22288,12 +22292,12 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.StatSpOrd2Pcs)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__Stat_SpOrd2Pc__02E9C77F");
+                .HasConstraintName("FK__Stat_SpOrd2Pc__7D30EE29");
         });
 
         modelBuilder.Entity<StatSpOrd2PcStand>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.ThickHead, e.StandId }).HasName("PK__Stat_SpO__591600A40251A57F");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.ThickHead, e.StandId }).HasName("PK__Stat_SpO__591600A404473CDC");
 
             entity.ToTable("Stat_SpOrd2PcStand", "PRDB", tb =>
                 {
@@ -23066,7 +23070,7 @@ public partial class PrdbContext : AbpDbContext
                 .HasColumnName("dx2pDfb");
             entity.Property(e => e.EdgerActive)
                 .HasDefaultValueSql("(NULL)")
-                .HasComment("status if stand active 0 = inactive / 1 = active / 2 = inlineRCH")
+                .HasComment("status if edger active 0 = inactive / 1 = active / 2 = inlineRCH")
                 .HasColumnName("edgerActive");
             entity.Property(e => e.EntryLength)
                 .HasDefaultValueSql("(NULL)")
@@ -23180,6 +23184,7 @@ public partial class PrdbContext : AbpDbContext
                 .HasColumnName("ms");
             entity.Property(e => e.MsE)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("rolling torque Edger")
                 .HasColumnName("msE");
             entity.Property(e => e.MsWt)
                 .HasDefaultValueSql("(NULL)")
@@ -23211,6 +23216,7 @@ public partial class PrdbContext : AbpDbContext
                 .HasColumnName("rPower");
             entity.Property(e => e.RPowerE)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Rolling power Edger")
                 .HasColumnName("rPowerE");
             entity.Property(e => e.RPowerWt)
                 .HasDefaultValueSql("(NULL)")
@@ -23357,12 +23363,12 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.StatSpOrd2PcStands)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__Stat_SpOrd2PcSta__79164482");
+                .HasConstraintName("FK__Stat_SpOrd2PcSta__717522BA");
         });
 
         modelBuilder.Entity<StatSpOrdEnt>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.ThickHead }).HasName("PK__Stat_SpO__3EFAB4C2D0C1CE11");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.ThickHead }).HasName("PK__Stat_SpO__3EFAB4C2BA37DD97");
 
             entity.ToTable("Stat_SpOrdEnt", "PRDB", tb =>
                 {
@@ -23408,12 +23414,15 @@ public partial class PrdbContext : AbpDbContext
                 .HasColumnName("apsKey");
             entity.Property(e => e.CoilYard)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("Coil Yard Destination")
                 .HasColumnName("coilYard");
             entity.Property(e => e.CrownMax)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("strip crown - maximum tolerance from aim C40")
                 .HasColumnName("crownMax");
             entity.Property(e => e.CrownMin)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("strip crown - minimum tolerance from aim C40")
                 .HasColumnName("crownMin");
             entity.Property(e => e.DilatometerCurve)
                 .HasDefaultValueSql("(NULL)")
@@ -23425,12 +23434,15 @@ public partial class PrdbContext : AbpDbContext
                 .HasColumnName("flagPlateProd");
             entity.Property(e => e.FlatAsymMax)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("strip flatness - maximum tolerance for asymetric flatness")
                 .HasColumnName("flatASymMax");
             entity.Property(e => e.FlatSymMax)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("strip flatness - maximum tolerance for symetric flatness")
                 .HasColumnName("flatSymMax");
             entity.Property(e => e.FlatSymMin)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("strip flatness - minimum tolerance for symetric flatness")
                 .HasColumnName("flatSymMin");
             entity.Property(e => e.HExitCus)
                 .HasDefaultValueSql("(NULL)")
@@ -23500,6 +23512,7 @@ public partial class PrdbContext : AbpDbContext
                 .HasColumnName("tExitSetp");
             entity.Property(e => e.TargetFlatness)
                 .HasDefaultValueSql("(NULL)")
+                .HasComment("finished strip target flatness")
                 .HasColumnName("targetFlatness");
             entity.Property(e => e.Toc)
                 .HasPrecision(3)
@@ -23526,12 +23539,12 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.StatSpOrdEnts)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__Stat_SpOrdEnt__1824DB87");
+                .HasConstraintName("FK__Stat_SpOrdEnt__1918FFC0");
         });
 
         modelBuilder.Entity<StatSpPhyEnt>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.ThickHead }).HasName("PK__Stat_SpP__3EFAB4C2199E9EBA");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.ThickHead }).HasName("PK__Stat_SpP__3EFAB4C248075763");
 
             entity.ToTable("Stat_SpPhyEnt", "PRDB", tb =>
                 {
@@ -23634,12 +23647,12 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.StatSpPhyEnts)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__Stat_SpPhyEnt__5345A155");
+                .HasConstraintName("FK__Stat_SpPhyEnt__5AE6C31D");
         });
 
         modelBuilder.Entity<StdAop>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdAOP__171BDFC5A2777081");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdAOP__171BDFC5D90B3B2D");
 
             entity.ToTable("StdAOP", "PRDB", tb =>
                 {
@@ -23682,7 +23695,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdAoppass>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag, e.PassNo }).HasName("PK__StdAOPPa__461E4FDD4467D0D3");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag, e.PassNo }).HasName("PK__StdAOPPa__461E4FDDC6B4CE1A");
 
             entity.ToTable("StdAOPPass", "PRDB", tb =>
                 {
@@ -23758,7 +23771,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdCompPlan>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdCompP__52AAFC537FD5A7BF");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdCompP__52AAFC53B5AB6195");
 
             entity.ToTable("StdCompPlan", "PRDB", tb =>
                 {
@@ -24027,7 +24040,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdCsCoilTempOffset>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdCsCoi__52AAFC533F4BB520");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdCsCoi__52AAFC5339B75D38");
 
             entity.ToTable("StdCsCoilTempOffset", "PRDB", tb =>
                 {
@@ -24078,7 +24091,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdCsCr>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdCsCrs__52AAFC53D38CC1D0");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdCsCrs__52AAFC53D5F43FBD");
 
             entity.ToTable("StdCsCrs", "PRDB", tb =>
                 {
@@ -24289,7 +24302,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdCsEdgeMasking>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdCsEdg__52AAFC535A0BC82B");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdCsEdg__52AAFC53EDFE71F4");
 
             entity.ToTable("StdCsEdgeMasking", "PRDB", tb =>
                 {
@@ -24464,7 +24477,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdCsPerf>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdCsPer__52AAFC53106B0AD7");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdCsPer__52AAFC539660F496");
 
             entity.ToTable("StdCsPerf", "PRDB", tb =>
                 {
@@ -24539,7 +24552,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdCsProfile>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdCsPro__52AAFC53314F5C72");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdCsPro__52AAFC53C422FE6D");
 
             entity.ToTable("StdCsProfile", "PRDB", tb =>
                 {
@@ -24618,7 +24631,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdCsRtCooling>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdCsRtC__52AAFC533FFD2892");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdCsRtC__52AAFC53146A0EE6");
 
             entity.ToTable("StdCsRtCooling", "PRDB", tb =>
                 {
@@ -24727,7 +24740,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdCsStrategy>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdCsStr__52AAFC53CF52B956");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdCsStr__52AAFC53A25584E1");
 
             entity.ToTable("StdCsStrategy", "PRDB", tb =>
                 {
@@ -24926,7 +24939,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdDirFmPfcCycShiftP>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdDirFm__52AAFC5378C41A63");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdDirFm__52AAFC532AF2EF09");
 
             entity.ToTable("StdDirFmPfcCycShiftP", "PRDB", tb =>
                 {
@@ -24971,7 +24984,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdDirFmPfcCycShiftPpass>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag, e.PassNo }).HasName("PK__StdDirFm__461E4FDD4A2AD30E");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag, e.PassNo }).HasName("PK__StdDirFm__461E4FDD7738587C");
 
             entity.ToTable("StdDirFmPfcCycShiftPPass", "PRDB", tb =>
                 {
@@ -25099,7 +25112,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdDirFmPfcParaP>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdDirFm__52AAFC53C9E28189");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdDirFm__52AAFC537EF16D60");
 
             entity.ToTable("StdDirFmPfcParaP", "PRDB", tb =>
                 {
@@ -25154,7 +25167,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdDirFmPfcParaPpass>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag, e.PassNo }).HasName("PK__StdDirFm__461E4FDDAA3E6660");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag, e.PassNo }).HasName("PK__StdDirFm__461E4FDDB6941BB5");
 
             entity.ToTable("StdDirFmPfcParaPPass", "PRDB", tb =>
                 {
@@ -25240,7 +25253,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdDpfm>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdDPFM__52AAFC53F788501A");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdDPFM__52AAFC537F368E7D");
 
             entity.ToTable("StdDPFM", "PRDB", tb =>
                 {
@@ -25289,7 +25302,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdDphrm>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdDPHRM__52AAFC532716517A");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdDPHRM__52AAFC53317676A7");
 
             entity.ToTable("StdDPHRM", "PRDB", tb =>
                 {
@@ -25338,7 +25351,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdDprampFm>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag, e.RampNo }).HasName("PK__StdDPRam__54167559F8933571");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag, e.RampNo }).HasName("PK__StdDPRam__54167559CD94ADAD");
 
             entity.ToTable("StdDPRampFM", "PRDB", tb =>
                 {
@@ -25398,7 +25411,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdDprampHrm>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag, e.RampNo }).HasName("PK__StdDPRam__541675591C15E9ED");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag, e.RampNo }).HasName("PK__StdDPRam__54167559C279827C");
 
             entity.ToTable("StdDPRampHRM", "PRDB", tb =>
                 {
@@ -25458,7 +25471,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdEdghrm>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdEDGHR__52AAFC534FF5BFF7");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdEDGHR__52AAFC53EA3FD841");
 
             entity.ToTable("StdEDGHRM", "PRDB", tb =>
                 {
@@ -25499,7 +25512,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdIhp>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdIHP__52AAFC53CC109D15");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdIHP__52AAFC5303D7F523");
 
             entity.ToTable("StdIHP", "PRDB", tb =>
                 {
@@ -25544,7 +25557,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdIscp>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdISCP__52AAFC535F990055");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdISCP__52AAFC5308C6CE8E");
 
             entity.ToTable("StdISCP", "PRDB", tb =>
                 {
@@ -25589,7 +25602,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdIscppass>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag, e.PassNo }).HasName("PK__StdISCPP__461E4FDD3839F277");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag, e.PassNo }).HasName("PK__StdISCPP__461E4FDD716DFFA9");
 
             entity.ToTable("StdISCPPass", "PRDB", tb =>
                 {
@@ -25745,7 +25758,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdLp>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdLP__52AAFC53D5A18123");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdLP__52AAFC53150C1769");
 
             entity.ToTable("StdLP", "PRDB", tb =>
                 {
@@ -25846,7 +25859,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdLppass>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag, e.PassNo }).HasName("PK__StdLPPas__461E4FDD1AAAC048");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag, e.PassNo }).HasName("PK__StdLPPas__461E4FDD7F4C7861");
 
             entity.ToTable("StdLPPass", "PRDB", tb =>
                 {
@@ -25950,7 +25963,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdPc>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdPC__52AAFC537DE5E11E");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdPC__52AAFC53EF8FB8C8");
 
             entity.ToTable("StdPC", "PRDB", tb =>
                 {
@@ -25999,7 +26012,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdPcramp>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag, e.RampNo }).HasName("PK__StdPCRam__54167559798FAA1C");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag, e.RampNo }).HasName("PK__StdPCRam__54167559CA9887AE");
 
             entity.ToTable("StdPCRamp", "PRDB", tb =>
                 {
@@ -26063,7 +26076,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdRcp>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdRCP__52AAFC5380BBEA03");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdRCP__52AAFC5366AA2685");
 
             entity.ToTable("StdRCP", "PRDB", tb =>
                 {
@@ -26108,7 +26121,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdRcppass>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag, e.PassNo }).HasName("PK__StdRCPPa__461E4FDDAE9B8166");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag, e.PassNo }).HasName("PK__StdRCPPa__461E4FDD7A1583BA");
 
             entity.ToTable("StdRCPPass", "PRDB", tb =>
                 {
@@ -26268,7 +26281,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdRglp>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdRGLP__52AAFC5300CAC995");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdRGLP__52AAFC532B233AC2");
 
             entity.ToTable("StdRGLP", "PRDB", tb =>
                 {
@@ -26313,7 +26326,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdRglppass>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag, e.PassNo }).HasName("PK__StdRGLPP__461E4FDD2D36169B");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag, e.PassNo }).HasName("PK__StdRGLPP__461E4FDD62C89D17");
 
             entity.ToTable("StdRGLPPass", "PRDB", tb =>
                 {
@@ -26393,7 +26406,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdSrp>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdSRP__52AAFC5332E652F4");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdSRP__52AAFC534BCC9469");
 
             entity.ToTable("StdSRP", "PRDB", tb =>
                 {
@@ -26438,7 +26451,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdSrppass>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag, e.PassNo }).HasName("PK__StdSRPPa__03AF6C4B9A949279");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag, e.PassNo }).HasName("PK__StdSRPPa__03AF6C4BDCC7F09E");
 
             entity.ToTable("StdSRPPass", "PRDB", tb =>
                 {
@@ -26484,7 +26497,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdTp>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdTP__52AAFC53E4621DCF");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdTP__52AAFC5308CD40A5");
 
             entity.ToTable("StdTP", "PRDB", tb =>
                 {
@@ -26537,7 +26550,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdTppass>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag, e.PassNo }).HasName("PK__StdTPPas__461E4FDDDE989112");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag, e.PassNo }).HasName("PK__StdTPPas__461E4FDD70F6BF53");
 
             entity.ToTable("StdTPPass", "PRDB", tb =>
                 {
@@ -26597,7 +26610,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdWmp>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdWMP__52AAFC53DF60CEF9");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag }).HasName("PK__StdWMP__52AAFC532919E9E2");
 
             entity.ToTable("StdWMP", "PRDB", tb =>
                 {
@@ -26642,7 +26655,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<StdWmppass>(entity =>
         {
-            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag, e.PassNo }).HasName("PK__StdWMPPa__03AF6C4BFE4B022B");
+            entity.HasKey(e => new { e.PlanNo, e.ActiveFlag, e.PassNo }).HasName("PK__StdWMPPa__03AF6C4BE4682C6B");
 
             entity.ToTable("StdWMPPass", "PRDB", tb =>
                 {
@@ -26688,7 +26701,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<Tp>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__TP__D3DB124AECDB6444");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__TP__D3DB124A0CC6C4D7");
 
             entity.ToTable("TP", "PRDB", tb =>
                 {
@@ -26758,12 +26771,12 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.Tps)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__TP__2D5FEF8F");
+                .HasConstraintName("FK__TP__35011157");
         });
 
         modelBuilder.Entity<Tppass>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.PassNo }).HasName("PK__TPPass__5DCFA6F9661AA60D");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.PassNo }).HasName("PK__TPPass__5DCFA6F97503B16E");
 
             entity.ToTable("TPPass", "PRDB", tb =>
                 {
@@ -26840,7 +26853,7 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.Tppasses)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__TPPass__3F7E9FCA");
+                .HasConstraintName("FK__TPPass__471FC192");
         });
 
         modelBuilder.Entity<VMatStructEntry>(entity =>
@@ -26894,7 +26907,7 @@ public partial class PrdbContext : AbpDbContext
 
         modelBuilder.Entity<Wmp>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__WMP__D3DB124A612D3660");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source }).HasName("PK__WMP__D3DB124A98E0340B");
 
             entity.ToTable("WMP", "PRDB", tb =>
                 {
@@ -26956,12 +26969,12 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.Wmps)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__WMP__6B2817DE");
+                .HasConstraintName("FK__WMP__72C939A6");
         });
 
         modelBuilder.Entity<Wmppass>(entity =>
         {
-            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.PassNo }).HasName("PK__WMPPass__5DCFA6F92F360901");
+            entity.HasKey(e => new { e.MeId, e.MeCreator, e.MesId, e.Source, e.PassNo }).HasName("PK__WMPPass__5DCFA6F95B0E9956");
 
             entity.ToTable("WMPPass", "PRDB", tb =>
                 {
@@ -27026,7 +27039,7 @@ public partial class PrdbContext : AbpDbContext
 
             entity.HasOne(d => d.Me1).WithMany(p => p.Wmppasses)
                 .HasForeignKey(d => new { d.MeId, d.MeCreator, d.MesId })
-                .HasConstraintName("FK__WMPPass__7A6A5B6E");
+                .HasConstraintName("FK__WMPPass__020B7D36");
         });
         modelBuilder.HasSequence("basid", "PRDB")
             .StartsAt(10L)
@@ -27044,7 +27057,6 @@ public partial class PrdbContext : AbpDbContext
             .HasMax(2000000000L)
             .IsCyclic();
         modelBuilder.HasSequence("transferid", "COMUSER")
-            .StartsAt(85744L)
             .HasMin(1L)
             .HasMax(2000000000L)
             .IsCyclic();

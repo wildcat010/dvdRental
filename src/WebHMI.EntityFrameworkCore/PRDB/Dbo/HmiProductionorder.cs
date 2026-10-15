@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace WebHMI.PRDB.Dbo;
 
-public partial class HmiProductionorder
+public partial class HmiProductionOrder
 {
     public string OrderNo { get; set; }
 

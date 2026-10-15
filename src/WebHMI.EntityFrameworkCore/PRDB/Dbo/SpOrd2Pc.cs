@@ -31,26 +31,6 @@ public partial class SpOrd2Pc
     public short ThickHead { get; set; }
 
     /// <summary>
-    /// Reference Linear Coefficient Coiler
-    /// </summary>
-    public double? WFgLiCoefC { get; set; }
-
-    /// <summary>
-    /// Reference Linear Coefficient Head
-    /// </summary>
-    public double? WFgLiCoefH { get; set; }
-
-    /// <summary>
-    /// Reference Square Coefficient Coiler
-    /// </summary>
-    public double? WFgSqCoefC { get; set; }
-
-    /// <summary>
-    /// Reference Square Coefficient Head
-    /// </summary>
-    public double? WFgSqCoefH { get; set; }
-
-    /// <summary>
     /// 1 = absolut cut at end of material (limitation)
     /// </summary>
     public short? AbsCutInfo { get; set; }
@@ -1145,6 +1125,9 @@ public partial class SpOrd2Pc
     /// </summary>
     public short? EncoPanel4 { get; set; }
 
+    /// <summary>
+    /// prc Controller cooling
+    /// </summary>
     public short? FccCoolBlocked { get; set; }
 
     /// <summary>
@@ -1152,8 +1135,14 @@ public partial class SpOrd2Pc
     /// </summary>
     public short? FlatCurveNr { get; set; }
 
+    /// <summary>
+    /// prc Controller asym flatness
+    /// </summary>
     public short? FlcAsymBlocked { get; set; }
 
+    /// <summary>
+    /// prc Controller sym flatness
+    /// </summary>
     public short? FlcSymBlocked { get; set; }
 
     /// <summary>
@@ -2567,12 +2556,38 @@ public partial class SpOrd2Pc
     public double? WExitHotHrm { get; set; }
 
     /// <summary>
+    /// Reference Linear Coefficient Coiler
+    /// </summary>
+    public double? WFgLiCoefC { get; set; }
+
+    /// <summary>
+    /// Reference Linear Coefficient Head
+    /// </summary>
+    public double? WFgLiCoefH { get; set; }
+
+    /// <summary>
+    /// Reference Square Coefficient Coiler
+    /// </summary>
+    public double? WFgSqCoefC { get; set; }
+
+    /// <summary>
+    /// Reference Square Coefficient Head
+    /// </summary>
+    public double? WFgSqCoefH { get; set; }
+
+    /// <summary>
     /// Unit[m] strip wedge target
     /// </summary>
     public double? WedgeX { get; set; }
 
+    /// <summary>
+    /// prc Controller wedge
+    /// </summary>
     public short? WpcAsymBlocked { get; set; }
 
+    /// <summary>
+    /// prc Controller profile
+    /// </summary>
     public short? WpcSymBlocked { get; set; }
 
     /// <summary>

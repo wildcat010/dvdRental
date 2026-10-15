@@ -517,7 +517,7 @@ namespace WebHMI.Mapping.Extensions
             return result;
         }
 
-        public static ProductOrderDto MapProductOrder(HmiProductionorder dbo)
+        public static ProductOrderDto MapProductOrder(HmiProductionOrder dbo)
         {
             var result = new ProductOrderDto();
             result.OrderNo = dbo.OrderNo;

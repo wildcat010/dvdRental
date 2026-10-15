@@ -131,6 +131,11 @@ public partial class StatEdOrdEnt
     public short? CoilTempProfileTail { get; set; }
 
     /// <summary>
+    /// Coil Yard Destination
+    /// </summary>
+    public short? CoilYard { get; set; }
+
+    /// <summary>
     /// CoolingSection:  (not used for Arvedi) when strips pass different numbers of valves on the way to the coiler
     /// </summary>
     public short? CoilerLocationSelection { get; set; }
@@ -258,7 +263,7 @@ public partial class StatEdOrdEnt
     public short? EdgeMask { get; set; }
 
     /// <summary>
-    /// Finished strip crown C25
+    /// Finished strip crown C40
     /// </summary>
     public short? ExitCrownC40 { get; set; }
 
@@ -601,8 +606,6 @@ public partial class StatEdOrdEnt
     /// time of modification
     /// </summary>
     public DateTime? Tom { get; set; }
-
-    public short? CoilYard { get; set; }
 
     public virtual Me1 Me1 { get; set; }
 }

@@ -46,6 +46,21 @@ public partial class StatSpOrdEnt
     public short? ApsKey { get; set; }
 
     /// <summary>
+    /// Coil Yard Destination
+    /// </summary>
+    public short? CoilYard { get; set; }
+
+    /// <summary>
+    /// strip crown - maximum tolerance from aim C40
+    /// </summary>
+    public short? CrownMax { get; set; }
+
+    /// <summary>
+    /// strip crown - minimum tolerance from aim C40
+    /// </summary>
+    public short? CrownMin { get; set; }
+
+    /// <summary>
     /// no. of dilatometer curve to be applied
     /// </summary>
     public short? DilatometerCurve { get; set; }
@@ -54,6 +69,21 @@ public partial class StatSpOrdEnt
     /// Flag for plate production:  0 = strip production, 1 = plate production
     /// </summary>
     public short? FlagPlateProd { get; set; }
+
+    /// <summary>
+    /// strip flatness - maximum tolerance for asymetric flatness
+    /// </summary>
+    public short? FlatAsymMax { get; set; }
+
+    /// <summary>
+    /// strip flatness - maximum tolerance for symetric flatness
+    /// </summary>
+    public short? FlatSymMax { get; set; }
+
+    /// <summary>
+    /// strip flatness - minimum tolerance for symetric flatness
+    /// </summary>
+    public short? FlatSymMin { get; set; }
 
     /// <summary>
     /// for marking
@@ -131,6 +161,11 @@ public partial class StatSpOrdEnt
     public short? TExitSetp { get; set; }
 
     /// <summary>
+    /// finished strip target flatness
+    /// </summary>
+    public short? TargetFlatness { get; set; }
+
+    /// <summary>
     /// strip wedge - positive tolerance limit
     /// </summary>
     public short? WedgeMax { get; set; }
@@ -159,20 +194,6 @@ public partial class StatSpOrdEnt
     /// time of modification
     /// </summary>
     public DateTime? Tom { get; set; }
-
-    public short? CoilYard { get; set; }
-
-    public short? CrownMax { get; set; }
-
-    public short? CrownMin { get; set; }
-
-    public short? FlatAsymMax { get; set; }
-
-    public short? FlatSymMax { get; set; }
-
-    public short? FlatSymMin { get; set; }
-
-    public short? TargetFlatness { get; set; }
 
     public virtual Me1 Me1 { get; set; }
 }

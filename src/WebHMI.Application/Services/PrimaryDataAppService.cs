@@ -46,7 +46,7 @@ namespace WebHMI.Services
         {
             var context = _prdbContextProvider.GetDbContext();
 
-            return await ApplyFilter(context.HmiProductionorders,input, PrimaryDataDtoMapper.MapProductOrder);
+            return await ApplyFilter(context.HmiProductionOrders,input, PrimaryDataDtoMapper.MapProductOrder);
         }
 
         public async Task<PrimaryDataDto> GetPrimaryDataById(int meid, string matType)
