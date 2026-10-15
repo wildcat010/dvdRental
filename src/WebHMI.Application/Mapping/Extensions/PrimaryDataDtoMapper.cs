@@ -362,6 +362,12 @@ namespace WebHMI.Mapping.Extensions
             result.Data.CoolingStrategyMode.E = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "E")?.CoolingStrategyModeSelection;
             result.Data.CoolingStrategyMode.DbSource = $"{nameof(EdOrdEnt)}.{nameof(EdOrdEnt.CoolingStrategyModeSelection)}";
 
+            result.Data.Flatness.L = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "L")?.TargetFlatness;
+            result.Data.Flatness.M = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "M")?.TargetFlatness;
+            result.Data.Flatness.S = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "S")?.TargetFlatness;
+            result.Data.Flatness.E = dataBlob.EdOrdEnts.FirstOrDefault(x => x.Source == "E")?.TargetFlatness;
+            result.Data.Flatness.DbSource = $"{nameof(EdOrdEnt)}.{nameof(EdOrdEnt.TargetFlatness)}";
+
             result.Data.AlloyCode.L = dataBlob.EdLogEnts.FirstOrDefault(x => x.Source == "L")?.AlloyCode;
             result.Data.AlloyCode.M = dataBlob.EdLogEnts.FirstOrDefault(x => x.Source == "M")?.AlloyCode;
             result.Data.AlloyCode.S = dataBlob.EdLogEnts.FirstOrDefault(x => x.Source == "S")?.AlloyCode;
