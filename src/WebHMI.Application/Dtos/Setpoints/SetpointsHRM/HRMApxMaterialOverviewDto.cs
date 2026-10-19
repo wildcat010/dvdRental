@@ -16,14 +16,13 @@ namespace WebHMI.Dtos.Setpoints.SetpointsHRM
         public MeCodeDto MeCode { get; set; } = new();
         public SourceSet<double?> AimsLabThickness { get; set; } = new();
         public SourceSet<double?> SlabWidth { get; set; } = new();
-        public SourceSet<double?> ExitCrownC25 { get; set; } = new();
+        public SourceSet<double?> PMPM_EXIT_PROFILE_CASTER { get; set; } = new();
         public SourceSet<double?> TEntry { get; set; } = new();
         public SourceSet<double?> SlabLength { get; set; } = new();
         public SourceSet<double?> HIntermediate { get; set; } = new();
         public SourceSet<double?> HEntryColdFm { get; set; } = new();
         public SourceSet<double?> WEntryColdFm { get; set; } = new();
         public SourceSet<double?> ProfExTargetHrm { get; set; } = new();
-        public SourceSet<double?> ProfExCalcHrm { get; set; } = new();
         public SourceSet<double?> ProfileCorr { get; set; } = new();
         public SourceSet<double?> RedDistHrmFm { get; set; } = new();
         public SourceSet<int?> InherPfc { get; set; } = new();

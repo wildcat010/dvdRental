@@ -69,7 +69,7 @@ namespace WebHMI.Services
             var edOrdEntM = await context.EdOrdEnts.FirstOrDefaultAsync(x => x.MeId == vMatStructEntry.EnOrMeId && x.Source == "M");
             edOrdEntM = context.InsertIfNull(edOrdEntM, vMatStructEntry);
             edOrdEntM.HIntermediate = input.HIntermediate?.M;
-            edOrdEntM.ExitCrownC40 = input.ExitCrownC25?.M;
+            edOrdEntM.ExitCrownC40 = input.PMPM_EXIT_PROFILE_CASTER?.M;
 
             var dirFmPfcParapM = await context.DirFmPfcParaPs.FirstOrDefaultAsync(x => x.MeId == vMatStructEntry.EnOrMeId && x.Source == "M");
             dirFmPfcParapM = context.InsertIfNull(dirFmPfcParapM, vMatStructEntry);
@@ -551,7 +551,7 @@ namespace WebHMI.Services
             var edOrdEntM = await context.EdOrdEnts.FirstOrDefaultAsync(x => x.MeId == vMatStructEntry.EnOrMeId && x.Source == "M");
             edOrdEntM = context.InsertIfNull(edOrdEntM, vMatStructEntry);
             edOrdEntM.HIntermediate = input.HIntermediate?.M;
-            edOrdEntM.ExitCrownC40 = input.ExitCrownC25?.M;
+            edOrdEntM.ExitCrownC40 = input.PMPM_EXIT_PROFILE_CASTER?.M;
 
             var dirFmPfcParapM = await context.DirFmPfcParaPs.FirstOrDefaultAsync(x => x.MeId == vMatStructEntry.EnOrMeId && x.Source == "M");
             dirFmPfcParapM = context.InsertIfNull(dirFmPfcParapM, vMatStructEntry);

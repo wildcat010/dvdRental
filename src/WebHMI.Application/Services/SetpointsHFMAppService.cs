@@ -599,7 +599,7 @@ namespace WebHMI.Services
             edOrdEntM.HExit = input.HExit?.M;
             edOrdEntM.WidthExit = input.WidthExit?.M;
             edOrdEntM.TExit = input.TExit?.M;
-            edOrdEntM.ExitCrownC40 = input.ExitCrownC25?.M;
+            edOrdEntM.ExitCrownC40 = input.ExitCrownC40?.M;
 
             var edLogEntM = await context.EdLogEnts.FirstOrDefaultAsync(x => x.MeId == vMatStructEntryOr.EnLoMeId && x.Source == "M");
             edLogEntM = context.InsertIfNull(edLogEntM, vMatStructEntryOr);

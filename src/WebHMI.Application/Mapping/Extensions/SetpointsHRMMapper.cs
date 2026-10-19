@@ -98,8 +98,8 @@ namespace WebHMI.Mapping.Extensions
             result.SlabWidth.DbSource = $"{nameof(EdPhyEnt)}.{nameof(EdPhyEnt.SlabWidth)}";
             result.SlabWidth.Status = dataBlob.StatEdphyents?.SlabWidth;
 
-            result.ExitCrownC25.E = dataBlob.MosParam?.CurValN;
-            result.ExitCrownC25.DbSource = $"MosParam.PMPM_EXIT_PROFILE_CASTER";
+            result.PMPM_EXIT_PROFILE_CASTER.E = dataBlob.MosParam?.CurValN;
+            result.PMPM_EXIT_PROFILE_CASTER.DbSource = $"MosParam.PMPM_EXIT_PROFILE_CASTER";
 
             result.TEntry.L = edPhyEntL?.TEntry;
             result.TEntry.E = edPhyEntE?.TEntry;
@@ -859,8 +859,8 @@ namespace WebHMI.Mapping.Extensions
             result.SlabWidth.DbSource = $"{nameof(EdPhyEnt)}.{nameof(EdPhyEnt.SlabWidth)}";
             result.SlabWidth.Status = dataBlob.StatEdphyents?.SlabWidth;
 
-            result.ExitCrownC25.E = dataBlob.MosParam?.CurValN;
-            result.ExitCrownC25.DbSource = $"MosParam.PMPM_EXIT_PROFILE_CASTER";
+            result.PMPM_EXIT_PROFILE_CASTER.E = dataBlob.MosParam?.CurValN;
+            result.PMPM_EXIT_PROFILE_CASTER.DbSource = $"MosParam.PMPM_EXIT_PROFILE_CASTER";
 
             result.TEntry.L = edPhyEntL?.TEntry;
             result.TEntry.E = edPhyEntE?.TEntry;
@@ -895,12 +895,6 @@ namespace WebHMI.Mapping.Extensions
             result.ProfExTargetHrm.M = spOrd2PcM?.ProfextargetHrm;
             result.ProfExTargetHrm.DbSource = $"{nameof(SpOrd2Pc)}.{nameof(SpOrd2Pc.ProfextargetHrm)}";
             result.ProfExTargetHrm.Status = dataBlob.StatSpord2pcs?.ProfextargetHrm;
-
-            result.ProfExCalcHrm.L = spOrd2PcL?.ProfextargetHrm;
-            result.ProfExCalcHrm.E = spOrd2PcE?.ProfextargetHrm;
-            result.ProfExCalcHrm.M = spOrd2PcM?.ProfextargetHrm;
-            result.ProfExCalcHrm.DbSource = $"{nameof(SpOrd2Pc)}.{nameof(SpOrd2Pc.ProfextargetHrm)}";
-            result.ProfExCalcHrm.Status = dataBlob.StatSpord2pcs?.ProfextargetHrm;
 
             result.ProfileCorr.L = dirFmPfcParaPL?.ProfileCorr;
             result.ProfileCorr.E = dirFmPfcParaPE?.ProfileCorr;

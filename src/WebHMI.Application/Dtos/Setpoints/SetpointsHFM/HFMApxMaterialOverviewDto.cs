@@ -13,7 +13,7 @@ namespace WebHMI.Dtos.Setpoints.SetpointsHRM
         public SourceSet<double?> WidthExit { get; set; } = new();
         public SourceSet<double?> TExit { get; set; } = new();
         public SourceSet<double?> LExit { get; set; } = new();
-        public SourceSet<double?> ExitCrownC25 { get; set; } = new();
+        public SourceSet<double?> ExitCrownC40 { get; set; } = new();
         public SourceSet<double?> HExitCold { get; set; } = new();
         public SourceSet<double?> WExitCold { get; set; } = new();
         public SourceSet<double?> HEntryColdFm { get; set; } = new();
